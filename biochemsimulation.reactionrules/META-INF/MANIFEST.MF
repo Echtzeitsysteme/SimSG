@@ -27,3 +27,4 @@ Export-Package: biochemsimulation.reactionrules.services,
  biochemsimulation.reactionrules.reactionRules.util,
  biochemsimulation.reactionrules.reactionRules
 Import-Package: org.apache.log4j
+Automatic-Module-Name: biochemsimulation.reactionrules

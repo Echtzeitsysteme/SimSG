@@ -15,7 +15,6 @@ import org.eclipse.xtext.util.Modules2;
  */
 @SuppressWarnings("all")
 public class ReactionRulesIdeSetup extends ReactionRulesStandaloneSetup {
-  @Override
   public Injector createInjector() {
     ReactionRulesRuntimeModule _reactionRulesRuntimeModule = new ReactionRulesRuntimeModule();
     ReactionRulesIdeModule _reactionRulesIdeModule = new ReactionRulesIdeModule();

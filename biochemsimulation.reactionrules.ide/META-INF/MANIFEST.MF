@@ -12,4 +12,5 @@ Require-Bundle: biochemsimulation.reactionrules,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: biochemsimulation.reactionrules.ide.contentassist.antlr.internal,
  biochemsimulation.reactionrules.ide.contentassist.antlr
+Automatic-Module-Name: biochemsimulation.reactionrules.ide
 
