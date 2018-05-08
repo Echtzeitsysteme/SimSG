@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: biochemsimulation.reactionrules
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: biochemsimulation.reactionrules; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib,
+ org.eclipse.emf.common
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: biochemsimulation.reactionrules.services,
+ biochemsimulation.reactionrules.generator,
+ biochemsimulation.reactionrules,
+ biochemsimulation.reactionrules.parser.antlr.internal,
+ biochemsimulation.reactionrules.scoping,
+ biochemsimulation.reactionrules.reactionRules.impl,
+ biochemsimulation.reactionrules.serializer,
+ biochemsimulation.reactionrules.parser.antlr,
+ biochemsimulation.reactionrules.validation,
+ biochemsimulation.reactionrules.reactionRules.util,
+ biochemsimulation.reactionrules.reactionRules
+Import-Package: org.apache.log4j

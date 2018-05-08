@@ -1,0 +1,120 @@
+grammar biochemsimulation.reactionrules.ReactionRules with org.eclipse.xtext.common.Terminals
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+generate reactionRules "http://www.reactionrules.biochemsimulation/ReactionRules"
+
+ReactionRuleModel:
+	(reactionProperties+=ReactionProperty)*;
+	
+ReactionProperty returns ReactionProperty:
+	Agent | Variable | Observation | Initial | Rule
+;
+
+Float returns ecore::EFloat:
+	INT '.' INT
+;
+
+BigInteger returns ecore::EBigInteger:
+	INT
+;
+
+State returns State:
+	name=ID
+;
+
+States:
+	{States}
+		('{' state+=State ( "," state+=State)* '}' )?	
+;
+
+Site returns Site:
+	name=ID
+	(states=States)
+;
+
+Sites:
+	{Sites}
+		('(' sites+=Site ( "," sites+=Site)* ')' )?	
+;
+
+Agent returns Agent:
+	'Agent'
+	name = ID
+	(sites=Sites)
+;
+
+Variable returns Variable:
+	'Variable'
+	name = ID
+	'='
+	value=Float
+;
+
+LinkState returns LinkState:
+	SemiLink | FreeLink | ExactLink | LimitLink 
+;
+
+SemiLink returns LinkState :
+	{SemiLink}
+	'Semi-Link'
+;
+
+FreeLink returns LinkState :
+	{FreeLink}
+	'Free'
+;
+
+LimitLink returns LinkState :
+	{LimitLink}
+	state = BigInteger
+;
+
+ExactLink returns LinkState :
+	{ExactLink}
+	site = Site
+	'.'
+	agent = [Agent]
+;
+
+SitePattern returns SitePattern:
+	{SitePattern}
+	site = Site
+	('{' state = State '}')?
+	('[' linkState = LinkState ']')?
+;
+
+AgentPattern returns AgentPattern:
+	{AgentPattern}
+	agent = [Agent]
+	'('
+	(sitePatterns += SitePattern (',' sitePatterns += SitePattern)* )?
+	')'
+;
+
+Pattern returns Pattern:
+	{Pattern}
+	(agentPatterns += AgentPattern (',' agentPatterns += AgentPattern)* )?
+;
+
+Observation returns Observation:
+	'Observation'
+	name = ID
+	observationPattern = Pattern
+;
+
+Initial returns Initial:
+	'Initial'
+	name = ID
+	count = BigInteger
+	initialPattern = Pattern
+;
+
+Rule returns Rule:
+	'Rule'
+	name = ID
+	lhs = Pattern
+	('uni' | 'bi')
+	rhs = Pattern
+	'at'
+	variables += [Variable] (',' variables += [Variable])*
+	
+;
