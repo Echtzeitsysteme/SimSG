@@ -781,19 +781,13 @@ ruleExactLink returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getExactLinkAccess().getSiteSiteParserRuleCall_1_0());
-				}
-				lv_site_1_0=ruleSite
-				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getExactLinkRule());
+						$current = createModelElement(grammarAccess.getExactLinkRule());
 					}
-					set(
-						$current,
-						"site",
-						lv_site_1_0,
-						"biochemsimulation.reactionrules.ReactionRules.Site");
-					afterParserOrEnumRuleCall();
+				}
+				otherlv_1=RULE_ID
+				{
+					newLeafNode(otherlv_1, grammarAccess.getExactLinkAccess().getSiteSiteCrossReference_1_0());
 				}
 			)
 		)
@@ -843,19 +837,13 @@ ruleSitePattern returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getSitePatternAccess().getSiteSiteParserRuleCall_1_0());
-				}
-				lv_site_1_0=ruleSite
-				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getSitePatternRule());
+						$current = createModelElement(grammarAccess.getSitePatternRule());
 					}
-					set(
-						$current,
-						"site",
-						lv_site_1_0,
-						"biochemsimulation.reactionrules.ReactionRules.Site");
-					afterParserOrEnumRuleCall();
+				}
+				otherlv_1=RULE_ID
+				{
+					newLeafNode(otherlv_1, grammarAccess.getSitePatternAccess().getSiteSiteCrossReference_1_0());
 				}
 			)
 		)
@@ -867,19 +855,13 @@ ruleSitePattern returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getSitePatternAccess().getStateStateParserRuleCall_2_1_0());
-					}
-					lv_state_3_0=ruleState
-					{
 						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getSitePatternRule());
+							$current = createModelElement(grammarAccess.getSitePatternRule());
 						}
-						set(
-							$current,
-							"state",
-							lv_state_3_0,
-							"biochemsimulation.reactionrules.ReactionRules.State");
-						afterParserOrEnumRuleCall();
+					}
+					otherlv_3=RULE_ID
+					{
+						newLeafNode(otherlv_3, grammarAccess.getSitePatternAccess().getStateStateCrossReference_2_1_0());
 					}
 				)
 			)

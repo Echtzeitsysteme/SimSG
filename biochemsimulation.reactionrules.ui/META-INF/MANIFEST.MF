@@ -18,7 +18,7 @@ Require-Bundle: biochemsimulation.reactionrules,
  org.eclipse.xtend.lib;resolution:=optional,
  org.eclipse.xtext.xbase.lib
 Import-Package: org.apache.log4j
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-9
 Export-Package: biochemsimulation.reactionrules.ui.quickfix,
  biochemsimulation.reactionrules.ui.internal,
  biochemsimulation.reactionrules.ui.contentassist

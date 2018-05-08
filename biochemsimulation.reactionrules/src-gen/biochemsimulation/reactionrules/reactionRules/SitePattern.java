@@ -26,52 +26,52 @@ import org.eclipse.emf.ecore.EObject;
 public interface SitePattern extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Site</b></em>' containment reference.
+   * Returns the value of the '<em><b>Site</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Site</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Site</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Site</em>' containment reference.
+   * @return the value of the '<em>Site</em>' reference.
    * @see #setSite(Site)
    * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getSitePattern_Site()
-   * @model containment="true"
+   * @model
    * @generated
    */
   Site getSite();
 
   /**
-   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.SitePattern#getSite <em>Site</em>}' containment reference.
+   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.SitePattern#getSite <em>Site</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Site</em>' containment reference.
+   * @param value the new value of the '<em>Site</em>' reference.
    * @see #getSite()
    * @generated
    */
   void setSite(Site value);
 
   /**
-   * Returns the value of the '<em><b>State</b></em>' containment reference.
+   * Returns the value of the '<em><b>State</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>State</em>' containment reference isn't clear,
+   * If the meaning of the '<em>State</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>State</em>' containment reference.
+   * @return the value of the '<em>State</em>' reference.
    * @see #setState(State)
    * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getSitePattern_State()
-   * @model containment="true"
+   * @model
    * @generated
    */
   State getState();
 
   /**
-   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.SitePattern#getState <em>State</em>}' containment reference.
+   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.SitePattern#getState <em>State</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>State</em>' containment reference.
+   * @param value the new value of the '<em>State</em>' reference.
    * @see #getState()
    * @generated
    */

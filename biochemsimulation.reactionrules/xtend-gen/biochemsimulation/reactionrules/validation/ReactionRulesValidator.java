@@ -3,7 +3,17 @@
  */
 package biochemsimulation.reactionrules.validation;
 
+import biochemsimulation.reactionrules.reactionRules.Agent;
+import biochemsimulation.reactionrules.reactionRules.Observation;
+import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
+import biochemsimulation.reactionrules.reactionRules.Rule;
+import biochemsimulation.reactionrules.reactionRules.Site;
+import biochemsimulation.reactionrules.reactionRules.Variable;
 import biochemsimulation.reactionrules.validation.AbstractReactionRulesValidator;
+import java.util.List;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.validation.Check;
 
 /**
  * This class contains custom validation rules.
@@ -12,4 +22,137 @@ import biochemsimulation.reactionrules.validation.AbstractReactionRulesValidator
  */
 @SuppressWarnings("all")
 public class ReactionRulesValidator extends AbstractReactionRulesValidator {
+  @Check
+  public void checkAgentIdUnique(final Agent agent) {
+    final EObject rootElement = EcoreUtil2.getRootContainer(agent);
+    List<Agent> candidates = EcoreUtil2.<Agent>getAllContentsOfType(rootElement, Agent.class);
+    int c = 0;
+    for (final Agent candidate : candidates) {
+      {
+        Agent current = ((Agent) candidate);
+        boolean _equals = current.getName().equals(agent.getName());
+        if (_equals) {
+          c++;
+        }
+        if ((c > 1)) {
+          this.error("Agent IDs must be unique.", null);
+          c = 1;
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkVariableIdUnique(final Variable variable) {
+    final EObject rootElement = EcoreUtil2.getRootContainer(variable);
+    List<Variable> candidates = EcoreUtil2.<Variable>getAllContentsOfType(rootElement, Variable.class);
+    int c = 0;
+    for (final Variable candidate : candidates) {
+      {
+        Variable current = ((Variable) candidate);
+        boolean _equals = current.getName().equals(variable.getName());
+        if (_equals) {
+          c++;
+        }
+        if ((c > 1)) {
+          this.error("Variable IDs must be unique.", null);
+          c = 1;
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkObservationIdUnique(final Observation observation) {
+    final EObject rootElement = EcoreUtil2.getRootContainer(observation);
+    List<Observation> candidates = EcoreUtil2.<Observation>getAllContentsOfType(rootElement, Observation.class);
+    int c = 0;
+    for (final Observation candidate : candidates) {
+      {
+        Observation current = ((Observation) candidate);
+        boolean _equals = current.getName().equals(observation.getName());
+        if (_equals) {
+          c++;
+        }
+        if ((c > 1)) {
+          this.error("Observation IDs must be unique.", null);
+          c = 1;
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkRuleIdUnique(final Rule rule) {
+    final EObject rootElement = EcoreUtil2.getRootContainer(rule);
+    List<Rule> candidates = EcoreUtil2.<Rule>getAllContentsOfType(rootElement, Rule.class);
+    int c = 0;
+    for (final Rule candidate : candidates) {
+      {
+        Rule current = ((Rule) candidate);
+        boolean _equals = current.getName().equals(rule.getName());
+        if (_equals) {
+          c++;
+        }
+        if ((c > 1)) {
+          this.error("Rule IDs must be unique.", null);
+          c = 1;
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkSiteIdUnique(final Agent agent) {
+    List<Site> candidates = EcoreUtil2.<Site>getAllContentsOfType(agent, Site.class);
+    int c = 0;
+    for (final Site candidate : candidates) {
+      {
+        Site current = ((Site) candidate);
+        String name = current.getName();
+        for (final Site candidate2 : candidates) {
+          {
+            Site current2 = ((Site) candidate2);
+            String name2 = current2.getName();
+            boolean _equals = name.equals(name2);
+            if (_equals) {
+              c++;
+            }
+            if ((c > 1)) {
+              this.error("Site IDs within Agents must be unique.", ReactionRulesPackage.Literals.AGENT__SITES);
+              c = 1;
+            }
+          }
+        }
+        c = 0;
+      }
+    }
+  }
+  
+  @Check
+  public void checkStateIdUnique(final Site site) {
+    List<biochemsimulation.reactionrules.reactionRules.State> candidates = EcoreUtil2.<biochemsimulation.reactionrules.reactionRules.State>getAllContentsOfType(site, biochemsimulation.reactionrules.reactionRules.State.class);
+    int c = 0;
+    for (final biochemsimulation.reactionrules.reactionRules.State candidate : candidates) {
+      {
+        biochemsimulation.reactionrules.reactionRules.State current = ((biochemsimulation.reactionrules.reactionRules.State) candidate);
+        String name = current.getName();
+        for (final biochemsimulation.reactionrules.reactionRules.State candidate2 : candidates) {
+          {
+            biochemsimulation.reactionrules.reactionRules.State current2 = ((biochemsimulation.reactionrules.reactionRules.State) candidate2);
+            String name2 = current2.getName();
+            boolean _equals = name.equals(name2);
+            if (_equals) {
+              c++;
+            }
+            if ((c > 1)) {
+              this.error("State IDs within Sites must be unique.", ReactionRulesPackage.Literals.SITE__STATES);
+              c = 1;
+            }
+          }
+        }
+        c = 0;
+      }
+    }
+  }
 }

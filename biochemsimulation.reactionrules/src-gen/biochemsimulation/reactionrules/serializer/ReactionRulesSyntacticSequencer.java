@@ -49,7 +49,7 @@ public class ReactionRulesSyntacticSequencer extends AbstractSyntacticSequencer 
 
 	/**
 	 * Ambiguous syntax:
-	 *     'uni' | 'bi'
+	 *     'bi' | 'uni'
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     lhs=Pattern (ambiguity) rhs=Pattern

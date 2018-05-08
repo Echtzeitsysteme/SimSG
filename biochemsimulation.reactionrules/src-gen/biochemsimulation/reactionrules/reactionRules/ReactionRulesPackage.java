@@ -338,7 +338,7 @@ public interface ReactionRulesPackage extends EPackage
   int SITE_PATTERN = 9;
 
   /**
-   * The feature id for the '<em><b>Site</b></em>' containment reference.
+   * The feature id for the '<em><b>Site</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -347,7 +347,7 @@ public interface ReactionRulesPackage extends EPackage
   int SITE_PATTERN__SITE = 0;
 
   /**
-   * The feature id for the '<em><b>State</b></em>' containment reference.
+   * The feature id for the '<em><b>State</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -653,7 +653,7 @@ public interface ReactionRulesPackage extends EPackage
   int EXACT_LINK = 18;
 
   /**
-   * The feature id for the '<em><b>Site</b></em>' containment reference.
+   * The feature id for the '<em><b>Site</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -880,10 +880,10 @@ public interface ReactionRulesPackage extends EPackage
   EClass getSitePattern();
 
   /**
-   * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.SitePattern#getSite <em>Site</em>}'.
+   * Returns the meta object for the reference '{@link biochemsimulation.reactionrules.reactionRules.SitePattern#getSite <em>Site</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Site</em>'.
+   * @return the meta object for the reference '<em>Site</em>'.
    * @see biochemsimulation.reactionrules.reactionRules.SitePattern#getSite()
    * @see #getSitePattern()
    * @generated
@@ -891,10 +891,10 @@ public interface ReactionRulesPackage extends EPackage
   EReference getSitePattern_Site();
 
   /**
-   * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.SitePattern#getState <em>State</em>}'.
+   * Returns the meta object for the reference '{@link biochemsimulation.reactionrules.reactionRules.SitePattern#getState <em>State</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>State</em>'.
+   * @return the meta object for the reference '<em>State</em>'.
    * @see biochemsimulation.reactionrules.reactionRules.SitePattern#getState()
    * @see #getSitePattern()
    * @generated
@@ -1113,10 +1113,10 @@ public interface ReactionRulesPackage extends EPackage
   EClass getExactLink();
 
   /**
-   * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.ExactLink#getSite <em>Site</em>}'.
+   * Returns the meta object for the reference '{@link biochemsimulation.reactionrules.reactionRules.ExactLink#getSite <em>Site</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Site</em>'.
+   * @return the meta object for the reference '<em>Site</em>'.
    * @see biochemsimulation.reactionrules.reactionRules.ExactLink#getSite()
    * @see #getExactLink()
    * @generated
@@ -1330,7 +1330,7 @@ public interface ReactionRulesPackage extends EPackage
     EClass SITE_PATTERN = eINSTANCE.getSitePattern();
 
     /**
-     * The meta object literal for the '<em><b>Site</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Site</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1338,7 +1338,7 @@ public interface ReactionRulesPackage extends EPackage
     EReference SITE_PATTERN__SITE = eINSTANCE.getSitePattern_Site();
 
     /**
-     * The meta object literal for the '<em><b>State</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>State</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1524,7 +1524,7 @@ public interface ReactionRulesPackage extends EPackage
     EClass EXACT_LINK = eINSTANCE.getExactLink();
 
     /**
-     * The meta object literal for the '<em><b>Site</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Site</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

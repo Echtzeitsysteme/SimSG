@@ -144,7 +144,7 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     ExactLink returns ExactLink
 	 *
 	 * Constraint:
-	 *     (site=Site agent=[Agent|ID])
+	 *     (site=[Site|ID] agent=[Agent|ID])
 	 */
 	protected void sequence_ExactLink(ISerializationContext context, ExactLink semanticObject) {
 		if (errorAcceptor != null) {
@@ -154,7 +154,7 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.EXACT_LINK__AGENT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getExactLinkAccess().getSiteSiteParserRuleCall_1_0(), semanticObject.getSite());
+		feeder.accept(grammarAccess.getExactLinkAccess().getSiteSiteIDTerminalRuleCall_1_0_1(), semanticObject.eGet(ReactionRulesPackage.Literals.EXACT_LINK__SITE, false));
 		feeder.accept(grammarAccess.getExactLinkAccess().getAgentAgentIDTerminalRuleCall_3_0_1(), semanticObject.eGet(ReactionRulesPackage.Literals.EXACT_LINK__AGENT, false));
 		feeder.finish();
 	}
@@ -294,7 +294,7 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     SitePattern returns SitePattern
 	 *
 	 * Constraint:
-	 *     (site=Site state=State? linkState=LinkState?)
+	 *     (site=[Site|ID] state=[State|ID]? linkState=LinkState?)
 	 */
 	protected void sequence_SitePattern(ISerializationContext context, SitePattern semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

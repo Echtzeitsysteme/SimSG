@@ -3,6 +3,17 @@
  */
 package biochemsimulation.reactionrules.scoping
 
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.EReference
+import biochemsimulation.reactionrules.reactionRules.Agent
+import org.eclipse.xtext.EcoreUtil2
+import biochemsimulation.reactionrules.reactionRules.Site
+import org.eclipse.xtext.scoping.Scopes
+import org.eclipse.xtext.scoping.impl.FilteringScope
+import biochemsimulation.reactionrules.reactionRules.SitePattern
+import biochemsimulation.reactionrules.reactionRules.ExactLink
+import biochemsimulation.reactionrules.reactionRules.State
+import java.util.LinkedList
 
 /**
  * This class contains custom scoping description.
@@ -11,5 +22,17 @@ package biochemsimulation.reactionrules.scoping
  * on how and when to use it.
  */
 class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvider {
-
+	
+	override getScope(EObject context, EReference reference) {
+	    if (context instanceof SitePattern || context instanceof ExactLink) {
+	        val rootElement = EcoreUtil2.getRootContainer(context)
+	        val list = new LinkedList<EObject>
+	        list.addAll(EcoreUtil2.getAllContentsOfType(rootElement, Site))
+	        list.addAll(EcoreUtil2.getAllContentsOfType(rootElement, State))
+	        list.addAll(EcoreUtil2.getAllContentsOfType(rootElement, Agent))
+	        val existingScope = Scopes.scopeFor(list)
+	        return new FilteringScope(existingScope, [getEObjectOrProxy != context])
+	    }
+	    return super.getScope(context, reference);
+	}
 }

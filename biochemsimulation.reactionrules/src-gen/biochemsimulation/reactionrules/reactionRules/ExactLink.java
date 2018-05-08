@@ -24,26 +24,26 @@ package biochemsimulation.reactionrules.reactionRules;
 public interface ExactLink extends LinkState
 {
   /**
-   * Returns the value of the '<em><b>Site</b></em>' containment reference.
+   * Returns the value of the '<em><b>Site</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Site</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Site</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Site</em>' containment reference.
+   * @return the value of the '<em>Site</em>' reference.
    * @see #setSite(Site)
    * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getExactLink_Site()
-   * @model containment="true"
+   * @model
    * @generated
    */
   Site getSite();
 
   /**
-   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.ExactLink#getSite <em>Site</em>}' containment reference.
+   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.ExactLink#getSite <em>Site</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Site</em>' containment reference.
+   * @param value the new value of the '<em>Site</em>' reference.
    * @see #getSite()
    * @generated
    */

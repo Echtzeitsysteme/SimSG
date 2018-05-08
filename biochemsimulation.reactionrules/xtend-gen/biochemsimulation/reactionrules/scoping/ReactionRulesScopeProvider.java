@@ -3,7 +3,22 @@
  */
 package biochemsimulation.reactionrules.scoping;
 
+import biochemsimulation.reactionrules.reactionRules.Agent;
+import biochemsimulation.reactionrules.reactionRules.ExactLink;
+import biochemsimulation.reactionrules.reactionRules.Site;
+import biochemsimulation.reactionrules.reactionRules.SitePattern;
+import biochemsimulation.reactionrules.reactionRules.State;
 import biochemsimulation.reactionrules.scoping.AbstractReactionRulesScopeProvider;
+import com.google.common.base.Objects;
+import com.google.common.base.Predicate;
+import java.util.LinkedList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.resource.IEObjectDescription;
+import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.scoping.Scopes;
+import org.eclipse.xtext.scoping.impl.FilteringScope;
 
 /**
  * This class contains custom scoping description.
@@ -13,4 +28,22 @@ import biochemsimulation.reactionrules.scoping.AbstractReactionRulesScopeProvide
  */
 @SuppressWarnings("all")
 public class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvider {
+  public IScope getScope(final EObject context, final EReference reference) {
+    if (((context instanceof SitePattern) || (context instanceof ExactLink))) {
+      final EObject rootElement = EcoreUtil2.getRootContainer(context);
+      final LinkedList<EObject> list = new LinkedList<EObject>();
+      list.addAll(EcoreUtil2.<Site>getAllContentsOfType(rootElement, Site.class));
+      list.addAll(EcoreUtil2.<State>getAllContentsOfType(rootElement, State.class));
+      list.addAll(EcoreUtil2.<Agent>getAllContentsOfType(rootElement, Agent.class));
+      final IScope existingScope = Scopes.scopeFor(list);
+      final Predicate<IEObjectDescription> _function = new Predicate<IEObjectDescription>() {
+        public boolean apply(final IEObjectDescription it) {
+          EObject _eObjectOrProxy = it.getEObjectOrProxy();
+          return (!Objects.equal(_eObjectOrProxy, context));
+        }
+      };
+      return new FilteringScope(existingScope, _function);
+    }
+    return super.getScope(context, reference);
+  }
 }

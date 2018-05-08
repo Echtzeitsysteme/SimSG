@@ -70,15 +70,15 @@ LimitLink returns LinkState :
 
 ExactLink returns LinkState :
 	{ExactLink}
-	site = Site
+	site = [Site]
 	'.'
 	agent = [Agent]
 ;
 
 SitePattern returns SitePattern:
 	{SitePattern}
-	site = Site
-	('{' state = State '}')?
+	site = [Site]
+	('{' state = [State] '}')?
 	('[' linkState = LinkState ']')?
 ;
 

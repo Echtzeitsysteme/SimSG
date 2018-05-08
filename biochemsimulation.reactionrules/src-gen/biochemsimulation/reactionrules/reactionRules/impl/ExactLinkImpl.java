@@ -9,7 +9,6 @@ import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 import biochemsimulation.reactionrules.reactionRules.Site;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -33,7 +32,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class ExactLinkImpl extends LinkStateImpl implements ExactLink
 {
   /**
-   * The cached value of the '{@link #getSite() <em>Site</em>}' containment reference.
+   * The cached value of the '{@link #getSite() <em>Site</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getSite()
@@ -80,6 +79,16 @@ public class ExactLinkImpl extends LinkStateImpl implements ExactLink
    */
   public Site getSite()
   {
+    if (site != null && site.eIsProxy())
+    {
+      InternalEObject oldSite = (InternalEObject)site;
+      site = (Site)eResolveProxy(oldSite);
+      if (site != oldSite)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReactionRulesPackage.EXACT_LINK__SITE, oldSite, site));
+      }
+    }
     return site;
   }
 
@@ -88,16 +97,9 @@ public class ExactLinkImpl extends LinkStateImpl implements ExactLink
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetSite(Site newSite, NotificationChain msgs)
+  public Site basicGetSite()
   {
-    Site oldSite = site;
-    site = newSite;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.EXACT_LINK__SITE, oldSite, newSite);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
+    return site;
   }
 
   /**
@@ -107,18 +109,10 @@ public class ExactLinkImpl extends LinkStateImpl implements ExactLink
    */
   public void setSite(Site newSite)
   {
-    if (newSite != site)
-    {
-      NotificationChain msgs = null;
-      if (site != null)
-        msgs = ((InternalEObject)site).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.EXACT_LINK__SITE, null, msgs);
-      if (newSite != null)
-        msgs = ((InternalEObject)newSite).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.EXACT_LINK__SITE, null, msgs);
-      msgs = basicSetSite(newSite, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.EXACT_LINK__SITE, newSite, newSite));
+    Site oldSite = site;
+    site = newSite;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.EXACT_LINK__SITE, oldSite, site));
   }
 
   /**
@@ -170,28 +164,13 @@ public class ExactLinkImpl extends LinkStateImpl implements ExactLink
    * @generated
    */
   @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case ReactionRulesPackage.EXACT_LINK__SITE:
-        return basicSetSite(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
       case ReactionRulesPackage.EXACT_LINK__SITE:
-        return getSite();
+        if (resolve) return getSite();
+        return basicGetSite();
       case ReactionRulesPackage.EXACT_LINK__AGENT:
         if (resolve) return getAgent();
         return basicGetAgent();

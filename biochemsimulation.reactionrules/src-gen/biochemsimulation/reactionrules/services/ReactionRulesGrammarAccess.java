@@ -415,29 +415,33 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cExactLinkAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cSiteAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cSiteSiteParserRuleCall_1_0 = (RuleCall)cSiteAssignment_1.eContents().get(0);
+		private final CrossReference cSiteSiteCrossReference_1_0 = (CrossReference)cSiteAssignment_1.eContents().get(0);
+		private final RuleCall cSiteSiteIDTerminalRuleCall_1_0_1 = (RuleCall)cSiteSiteCrossReference_1_0.eContents().get(1);
 		private final Keyword cFullStopKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cAgentAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final CrossReference cAgentAgentCrossReference_3_0 = (CrossReference)cAgentAssignment_3.eContents().get(0);
 		private final RuleCall cAgentAgentIDTerminalRuleCall_3_0_1 = (RuleCall)cAgentAgentCrossReference_3_0.eContents().get(1);
 		
 		//ExactLink LinkState:
-		//	{ExactLink} site=Site
+		//	{ExactLink} site=[Site]
 		//	'.'
 		//	agent=[Agent];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{ExactLink} site=Site '.' agent=[Agent]
+		//{ExactLink} site=[Site] '.' agent=[Agent]
 		public Group getGroup() { return cGroup; }
 		
 		//{ExactLink}
 		public Action getExactLinkAction_0() { return cExactLinkAction_0; }
 		
-		//site=Site
+		//site=[Site]
 		public Assignment getSiteAssignment_1() { return cSiteAssignment_1; }
 		
-		//Site
-		public RuleCall getSiteSiteParserRuleCall_1_0() { return cSiteSiteParserRuleCall_1_0; }
+		//[Site]
+		public CrossReference getSiteSiteCrossReference_1_0() { return cSiteSiteCrossReference_1_0; }
+		
+		//ID
+		public RuleCall getSiteSiteIDTerminalRuleCall_1_0_1() { return cSiteSiteIDTerminalRuleCall_1_0_1; }
 		
 		//'.'
 		public Keyword getFullStopKeyword_2() { return cFullStopKeyword_2; }
@@ -456,11 +460,13 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cSitePatternAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cSiteAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cSiteSiteParserRuleCall_1_0 = (RuleCall)cSiteAssignment_1.eContents().get(0);
+		private final CrossReference cSiteSiteCrossReference_1_0 = (CrossReference)cSiteAssignment_1.eContents().get(0);
+		private final RuleCall cSiteSiteIDTerminalRuleCall_1_0_1 = (RuleCall)cSiteSiteCrossReference_1_0.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cLeftCurlyBracketKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cStateAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cStateStateParserRuleCall_2_1_0 = (RuleCall)cStateAssignment_2_1.eContents().get(0);
+		private final CrossReference cStateStateCrossReference_2_1_0 = (CrossReference)cStateAssignment_2_1.eContents().get(0);
+		private final RuleCall cStateStateIDTerminalRuleCall_2_1_0_1 = (RuleCall)cStateStateCrossReference_2_1_0.eContents().get(1);
 		private final Keyword cRightCurlyBracketKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cLeftSquareBracketKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
@@ -469,32 +475,38 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
 		
 		//SitePattern:
-		//	{SitePattern} site=Site ('{' state=State '}')? ('[' linkState=LinkState ']')?;
+		//	{SitePattern} site=[Site] ('{' state=[State] '}')? ('[' linkState=LinkState ']')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SitePattern} site=Site ('{' state=State '}')? ('[' linkState=LinkState ']')?
+		//{SitePattern} site=[Site] ('{' state=[State] '}')? ('[' linkState=LinkState ']')?
 		public Group getGroup() { return cGroup; }
 		
 		//{SitePattern}
 		public Action getSitePatternAction_0() { return cSitePatternAction_0; }
 		
-		//site=Site
+		//site=[Site]
 		public Assignment getSiteAssignment_1() { return cSiteAssignment_1; }
 		
-		//Site
-		public RuleCall getSiteSiteParserRuleCall_1_0() { return cSiteSiteParserRuleCall_1_0; }
+		//[Site]
+		public CrossReference getSiteSiteCrossReference_1_0() { return cSiteSiteCrossReference_1_0; }
 		
-		//('{' state=State '}')?
+		//ID
+		public RuleCall getSiteSiteIDTerminalRuleCall_1_0_1() { return cSiteSiteIDTerminalRuleCall_1_0_1; }
+		
+		//('{' state=[State] '}')?
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2_0() { return cLeftCurlyBracketKeyword_2_0; }
 		
-		//state=State
+		//state=[State]
 		public Assignment getStateAssignment_2_1() { return cStateAssignment_2_1; }
 		
-		//State
-		public RuleCall getStateStateParserRuleCall_2_1_0() { return cStateStateParserRuleCall_2_1_0; }
+		//[State]
+		public CrossReference getStateStateCrossReference_2_1_0() { return cStateStateCrossReference_2_1_0; }
+		
+		//ID
+		public RuleCall getStateStateIDTerminalRuleCall_2_1_0_1() { return cStateStateIDTerminalRuleCall_2_1_0_1; }
 		
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_2_2() { return cRightCurlyBracketKeyword_2_2; }
@@ -1020,7 +1032,7 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ExactLink LinkState:
-	//	{ExactLink} site=Site
+	//	{ExactLink} site=[Site]
 	//	'.'
 	//	agent=[Agent];
 	public ExactLinkElements getExactLinkAccess() {
@@ -1032,7 +1044,7 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//SitePattern:
-	//	{SitePattern} site=Site ('{' state=State '}')? ('[' linkState=LinkState ']')?;
+	//	{SitePattern} site=[Site] ('{' state=[State] '}')? ('[' linkState=LinkState ']')?;
 	public SitePatternElements getSitePatternAccess() {
 		return pSitePattern;
 	}

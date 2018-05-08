@@ -758,18 +758,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
             int LA4_0 = input.LA(1);
 
             if ( (LA4_0==12) ) {
-                int LA4_1 = input.LA(2);
-
-                if ( (LA4_1==RULE_ID) ) {
-                    int LA4_3 = input.LA(3);
-
-                    if ( (LA4_3==13) ) {
-                        alt4=1;
-                    }
-                    else if ( (LA4_3==14) ) {
-                        alt4=1;
-                    }
-                }
+                alt4=1;
             }
             switch (alt4) {
                 case 1 :
@@ -2042,24 +2031,23 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExactLink"
-    // InternalReactionRules.g:766:1: ruleExactLink returns [EObject current=null] : ( () ( (lv_site_1_0= ruleSite ) ) otherlv_2= '.' ( (otherlv_3= RULE_ID ) ) ) ;
+    // InternalReactionRules.g:766:1: ruleExactLink returns [EObject current=null] : ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= '.' ( (otherlv_3= RULE_ID ) ) ) ;
     public final EObject ruleExactLink() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_1=null;
         Token otherlv_2=null;
         Token otherlv_3=null;
-        EObject lv_site_1_0 = null;
-
 
 
         	enterRule();
 
         try {
-            // InternalReactionRules.g:772:2: ( ( () ( (lv_site_1_0= ruleSite ) ) otherlv_2= '.' ( (otherlv_3= RULE_ID ) ) ) )
-            // InternalReactionRules.g:773:2: ( () ( (lv_site_1_0= ruleSite ) ) otherlv_2= '.' ( (otherlv_3= RULE_ID ) ) )
+            // InternalReactionRules.g:772:2: ( ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= '.' ( (otherlv_3= RULE_ID ) ) ) )
+            // InternalReactionRules.g:773:2: ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= '.' ( (otherlv_3= RULE_ID ) ) )
             {
-            // InternalReactionRules.g:773:2: ( () ( (lv_site_1_0= ruleSite ) ) otherlv_2= '.' ( (otherlv_3= RULE_ID ) ) )
-            // InternalReactionRules.g:774:3: () ( (lv_site_1_0= ruleSite ) ) otherlv_2= '.' ( (otherlv_3= RULE_ID ) )
+            // InternalReactionRules.g:773:2: ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= '.' ( (otherlv_3= RULE_ID ) ) )
+            // InternalReactionRules.g:774:3: () ( (otherlv_1= RULE_ID ) ) otherlv_2= '.' ( (otherlv_3= RULE_ID ) )
             {
             // InternalReactionRules.g:774:3: ()
             // InternalReactionRules.g:775:4: 
@@ -2072,30 +2060,20 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalReactionRules.g:781:3: ( (lv_site_1_0= ruleSite ) )
-            // InternalReactionRules.g:782:4: (lv_site_1_0= ruleSite )
+            // InternalReactionRules.g:781:3: ( (otherlv_1= RULE_ID ) )
+            // InternalReactionRules.g:782:4: (otherlv_1= RULE_ID )
             {
-            // InternalReactionRules.g:782:4: (lv_site_1_0= ruleSite )
-            // InternalReactionRules.g:783:5: lv_site_1_0= ruleSite
+            // InternalReactionRules.g:782:4: (otherlv_1= RULE_ID )
+            // InternalReactionRules.g:783:5: otherlv_1= RULE_ID
             {
-
-            					newCompositeNode(grammarAccess.getExactLinkAccess().getSiteSiteParserRuleCall_1_0());
-            				
-            pushFollow(FOLLOW_4);
-            lv_site_1_0=ruleSite();
-
-            state._fsp--;
-
 
             					if (current==null) {
-            						current = createModelElementForParent(grammarAccess.getExactLinkRule());
+            						current = createModelElement(grammarAccess.getExactLinkRule());
             					}
-            					set(
-            						current,
-            						"site",
-            						lv_site_1_0,
-            						"biochemsimulation.reactionrules.ReactionRules.Site");
-            					afterParserOrEnumRuleCall();
+            				
+            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_4); 
+
+            					newLeafNode(otherlv_1, grammarAccess.getExactLinkAccess().getSiteSiteCrossReference_1_0());
             				
 
             }
@@ -2107,11 +2085,11 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_2, grammarAccess.getExactLinkAccess().getFullStopKeyword_2());
             		
-            // InternalReactionRules.g:804:3: ( (otherlv_3= RULE_ID ) )
-            // InternalReactionRules.g:805:4: (otherlv_3= RULE_ID )
+            // InternalReactionRules.g:798:3: ( (otherlv_3= RULE_ID ) )
+            // InternalReactionRules.g:799:4: (otherlv_3= RULE_ID )
             {
-            // InternalReactionRules.g:805:4: (otherlv_3= RULE_ID )
-            // InternalReactionRules.g:806:5: otherlv_3= RULE_ID
+            // InternalReactionRules.g:799:4: (otherlv_3= RULE_ID )
+            // InternalReactionRules.g:800:5: otherlv_3= RULE_ID
             {
 
             					if (current==null) {
@@ -2151,7 +2129,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleSitePattern"
-    // InternalReactionRules.g:821:1: entryRuleSitePattern returns [EObject current=null] : iv_ruleSitePattern= ruleSitePattern EOF ;
+    // InternalReactionRules.g:815:1: entryRuleSitePattern returns [EObject current=null] : iv_ruleSitePattern= ruleSitePattern EOF ;
     public final EObject entryRuleSitePattern() throws RecognitionException {
         EObject current = null;
 
@@ -2159,8 +2137,8 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalReactionRules.g:821:52: (iv_ruleSitePattern= ruleSitePattern EOF )
-            // InternalReactionRules.g:822:2: iv_ruleSitePattern= ruleSitePattern EOF
+            // InternalReactionRules.g:815:52: (iv_ruleSitePattern= ruleSitePattern EOF )
+            // InternalReactionRules.g:816:2: iv_ruleSitePattern= ruleSitePattern EOF
             {
              newCompositeNode(grammarAccess.getSitePatternRule()); 
             pushFollow(FOLLOW_1);
@@ -2187,18 +2165,16 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleSitePattern"
-    // InternalReactionRules.g:828:1: ruleSitePattern returns [EObject current=null] : ( () ( (lv_site_1_0= ruleSite ) ) (otherlv_2= '{' ( (lv_state_3_0= ruleState ) ) otherlv_4= '}' )? (otherlv_5= '[' ( (lv_linkState_6_0= ruleLinkState ) ) otherlv_7= ']' )? ) ;
+    // InternalReactionRules.g:822:1: ruleSitePattern returns [EObject current=null] : ( () ( (otherlv_1= RULE_ID ) ) (otherlv_2= '{' ( (otherlv_3= RULE_ID ) ) otherlv_4= '}' )? (otherlv_5= '[' ( (lv_linkState_6_0= ruleLinkState ) ) otherlv_7= ']' )? ) ;
     public final EObject ruleSitePattern() throws RecognitionException {
         EObject current = null;
 
+        Token otherlv_1=null;
         Token otherlv_2=null;
+        Token otherlv_3=null;
         Token otherlv_4=null;
         Token otherlv_5=null;
         Token otherlv_7=null;
-        EObject lv_site_1_0 = null;
-
-        EObject lv_state_3_0 = null;
-
         EObject lv_linkState_6_0 = null;
 
 
@@ -2206,14 +2182,14 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalReactionRules.g:834:2: ( ( () ( (lv_site_1_0= ruleSite ) ) (otherlv_2= '{' ( (lv_state_3_0= ruleState ) ) otherlv_4= '}' )? (otherlv_5= '[' ( (lv_linkState_6_0= ruleLinkState ) ) otherlv_7= ']' )? ) )
-            // InternalReactionRules.g:835:2: ( () ( (lv_site_1_0= ruleSite ) ) (otherlv_2= '{' ( (lv_state_3_0= ruleState ) ) otherlv_4= '}' )? (otherlv_5= '[' ( (lv_linkState_6_0= ruleLinkState ) ) otherlv_7= ']' )? )
+            // InternalReactionRules.g:828:2: ( ( () ( (otherlv_1= RULE_ID ) ) (otherlv_2= '{' ( (otherlv_3= RULE_ID ) ) otherlv_4= '}' )? (otherlv_5= '[' ( (lv_linkState_6_0= ruleLinkState ) ) otherlv_7= ']' )? ) )
+            // InternalReactionRules.g:829:2: ( () ( (otherlv_1= RULE_ID ) ) (otherlv_2= '{' ( (otherlv_3= RULE_ID ) ) otherlv_4= '}' )? (otherlv_5= '[' ( (lv_linkState_6_0= ruleLinkState ) ) otherlv_7= ']' )? )
             {
-            // InternalReactionRules.g:835:2: ( () ( (lv_site_1_0= ruleSite ) ) (otherlv_2= '{' ( (lv_state_3_0= ruleState ) ) otherlv_4= '}' )? (otherlv_5= '[' ( (lv_linkState_6_0= ruleLinkState ) ) otherlv_7= ']' )? )
-            // InternalReactionRules.g:836:3: () ( (lv_site_1_0= ruleSite ) ) (otherlv_2= '{' ( (lv_state_3_0= ruleState ) ) otherlv_4= '}' )? (otherlv_5= '[' ( (lv_linkState_6_0= ruleLinkState ) ) otherlv_7= ']' )?
+            // InternalReactionRules.g:829:2: ( () ( (otherlv_1= RULE_ID ) ) (otherlv_2= '{' ( (otherlv_3= RULE_ID ) ) otherlv_4= '}' )? (otherlv_5= '[' ( (lv_linkState_6_0= ruleLinkState ) ) otherlv_7= ']' )? )
+            // InternalReactionRules.g:830:3: () ( (otherlv_1= RULE_ID ) ) (otherlv_2= '{' ( (otherlv_3= RULE_ID ) ) otherlv_4= '}' )? (otherlv_5= '[' ( (lv_linkState_6_0= ruleLinkState ) ) otherlv_7= ']' )?
             {
-            // InternalReactionRules.g:836:3: ()
-            // InternalReactionRules.g:837:4: 
+            // InternalReactionRules.g:830:3: ()
+            // InternalReactionRules.g:831:4: 
             {
 
             				current = forceCreateModelElement(
@@ -2223,30 +2199,20 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalReactionRules.g:843:3: ( (lv_site_1_0= ruleSite ) )
-            // InternalReactionRules.g:844:4: (lv_site_1_0= ruleSite )
+            // InternalReactionRules.g:837:3: ( (otherlv_1= RULE_ID ) )
+            // InternalReactionRules.g:838:4: (otherlv_1= RULE_ID )
             {
-            // InternalReactionRules.g:844:4: (lv_site_1_0= ruleSite )
-            // InternalReactionRules.g:845:5: lv_site_1_0= ruleSite
+            // InternalReactionRules.g:838:4: (otherlv_1= RULE_ID )
+            // InternalReactionRules.g:839:5: otherlv_1= RULE_ID
             {
-
-            					newCompositeNode(grammarAccess.getSitePatternAccess().getSiteSiteParserRuleCall_1_0());
-            				
-            pushFollow(FOLLOW_12);
-            lv_site_1_0=ruleSite();
-
-            state._fsp--;
-
 
             					if (current==null) {
-            						current = createModelElementForParent(grammarAccess.getSitePatternRule());
+            						current = createModelElement(grammarAccess.getSitePatternRule());
             					}
-            					set(
-            						current,
-            						"site",
-            						lv_site_1_0,
-            						"biochemsimulation.reactionrules.ReactionRules.Site");
-            					afterParserOrEnumRuleCall();
+            				
+            otherlv_1=(Token)match(input,RULE_ID,FOLLOW_12); 
+
+            					newLeafNode(otherlv_1, grammarAccess.getSitePatternAccess().getSiteSiteCrossReference_1_0());
             				
 
             }
@@ -2254,7 +2220,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalReactionRules.g:862:3: (otherlv_2= '{' ( (lv_state_3_0= ruleState ) ) otherlv_4= '}' )?
+            // InternalReactionRules.g:850:3: (otherlv_2= '{' ( (otherlv_3= RULE_ID ) ) otherlv_4= '}' )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -2263,36 +2229,26 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
             }
             switch (alt8) {
                 case 1 :
-                    // InternalReactionRules.g:863:4: otherlv_2= '{' ( (lv_state_3_0= ruleState ) ) otherlv_4= '}'
+                    // InternalReactionRules.g:851:4: otherlv_2= '{' ( (otherlv_3= RULE_ID ) ) otherlv_4= '}'
                     {
                     otherlv_2=(Token)match(input,12,FOLLOW_6); 
 
                     				newLeafNode(otherlv_2, grammarAccess.getSitePatternAccess().getLeftCurlyBracketKeyword_2_0());
                     			
-                    // InternalReactionRules.g:867:4: ( (lv_state_3_0= ruleState ) )
-                    // InternalReactionRules.g:868:5: (lv_state_3_0= ruleState )
+                    // InternalReactionRules.g:855:4: ( (otherlv_3= RULE_ID ) )
+                    // InternalReactionRules.g:856:5: (otherlv_3= RULE_ID )
                     {
-                    // InternalReactionRules.g:868:5: (lv_state_3_0= ruleState )
-                    // InternalReactionRules.g:869:6: lv_state_3_0= ruleState
+                    // InternalReactionRules.g:856:5: (otherlv_3= RULE_ID )
+                    // InternalReactionRules.g:857:6: otherlv_3= RULE_ID
                     {
-
-                    						newCompositeNode(grammarAccess.getSitePatternAccess().getStateStateParserRuleCall_2_1_0());
-                    					
-                    pushFollow(FOLLOW_13);
-                    lv_state_3_0=ruleState();
-
-                    state._fsp--;
-
 
                     						if (current==null) {
-                    							current = createModelElementForParent(grammarAccess.getSitePatternRule());
+                    							current = createModelElement(grammarAccess.getSitePatternRule());
                     						}
-                    						set(
-                    							current,
-                    							"state",
-                    							lv_state_3_0,
-                    							"biochemsimulation.reactionrules.ReactionRules.State");
-                    						afterParserOrEnumRuleCall();
+                    					
+                    otherlv_3=(Token)match(input,RULE_ID,FOLLOW_13); 
+
+                    						newLeafNode(otherlv_3, grammarAccess.getSitePatternAccess().getStateStateCrossReference_2_1_0());
                     					
 
                     }
@@ -2310,7 +2266,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalReactionRules.g:891:3: (otherlv_5= '[' ( (lv_linkState_6_0= ruleLinkState ) ) otherlv_7= ']' )?
+            // InternalReactionRules.g:873:3: (otherlv_5= '[' ( (lv_linkState_6_0= ruleLinkState ) ) otherlv_7= ']' )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -2319,17 +2275,17 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
             }
             switch (alt9) {
                 case 1 :
-                    // InternalReactionRules.g:892:4: otherlv_5= '[' ( (lv_linkState_6_0= ruleLinkState ) ) otherlv_7= ']'
+                    // InternalReactionRules.g:874:4: otherlv_5= '[' ( (lv_linkState_6_0= ruleLinkState ) ) otherlv_7= ']'
                     {
                     otherlv_5=(Token)match(input,22,FOLLOW_15); 
 
                     				newLeafNode(otherlv_5, grammarAccess.getSitePatternAccess().getLeftSquareBracketKeyword_3_0());
                     			
-                    // InternalReactionRules.g:896:4: ( (lv_linkState_6_0= ruleLinkState ) )
-                    // InternalReactionRules.g:897:5: (lv_linkState_6_0= ruleLinkState )
+                    // InternalReactionRules.g:878:4: ( (lv_linkState_6_0= ruleLinkState ) )
+                    // InternalReactionRules.g:879:5: (lv_linkState_6_0= ruleLinkState )
                     {
-                    // InternalReactionRules.g:897:5: (lv_linkState_6_0= ruleLinkState )
-                    // InternalReactionRules.g:898:6: lv_linkState_6_0= ruleLinkState
+                    // InternalReactionRules.g:879:5: (lv_linkState_6_0= ruleLinkState )
+                    // InternalReactionRules.g:880:6: lv_linkState_6_0= ruleLinkState
                     {
 
                     						newCompositeNode(grammarAccess.getSitePatternAccess().getLinkStateLinkStateParserRuleCall_3_1_0());
@@ -2389,7 +2345,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAgentPattern"
-    // InternalReactionRules.g:924:1: entryRuleAgentPattern returns [EObject current=null] : iv_ruleAgentPattern= ruleAgentPattern EOF ;
+    // InternalReactionRules.g:906:1: entryRuleAgentPattern returns [EObject current=null] : iv_ruleAgentPattern= ruleAgentPattern EOF ;
     public final EObject entryRuleAgentPattern() throws RecognitionException {
         EObject current = null;
 
@@ -2397,8 +2353,8 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalReactionRules.g:924:53: (iv_ruleAgentPattern= ruleAgentPattern EOF )
-            // InternalReactionRules.g:925:2: iv_ruleAgentPattern= ruleAgentPattern EOF
+            // InternalReactionRules.g:906:53: (iv_ruleAgentPattern= ruleAgentPattern EOF )
+            // InternalReactionRules.g:907:2: iv_ruleAgentPattern= ruleAgentPattern EOF
             {
              newCompositeNode(grammarAccess.getAgentPatternRule()); 
             pushFollow(FOLLOW_1);
@@ -2425,7 +2381,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAgentPattern"
-    // InternalReactionRules.g:931:1: ruleAgentPattern returns [EObject current=null] : ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= '(' ( ( (lv_sitePatterns_3_0= ruleSitePattern ) ) (otherlv_4= ',' ( (lv_sitePatterns_5_0= ruleSitePattern ) ) )* )? otherlv_6= ')' ) ;
+    // InternalReactionRules.g:913:1: ruleAgentPattern returns [EObject current=null] : ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= '(' ( ( (lv_sitePatterns_3_0= ruleSitePattern ) ) (otherlv_4= ',' ( (lv_sitePatterns_5_0= ruleSitePattern ) ) )* )? otherlv_6= ')' ) ;
     public final EObject ruleAgentPattern() throws RecognitionException {
         EObject current = null;
 
@@ -2442,14 +2398,14 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalReactionRules.g:937:2: ( ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= '(' ( ( (lv_sitePatterns_3_0= ruleSitePattern ) ) (otherlv_4= ',' ( (lv_sitePatterns_5_0= ruleSitePattern ) ) )* )? otherlv_6= ')' ) )
-            // InternalReactionRules.g:938:2: ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= '(' ( ( (lv_sitePatterns_3_0= ruleSitePattern ) ) (otherlv_4= ',' ( (lv_sitePatterns_5_0= ruleSitePattern ) ) )* )? otherlv_6= ')' )
+            // InternalReactionRules.g:919:2: ( ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= '(' ( ( (lv_sitePatterns_3_0= ruleSitePattern ) ) (otherlv_4= ',' ( (lv_sitePatterns_5_0= ruleSitePattern ) ) )* )? otherlv_6= ')' ) )
+            // InternalReactionRules.g:920:2: ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= '(' ( ( (lv_sitePatterns_3_0= ruleSitePattern ) ) (otherlv_4= ',' ( (lv_sitePatterns_5_0= ruleSitePattern ) ) )* )? otherlv_6= ')' )
             {
-            // InternalReactionRules.g:938:2: ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= '(' ( ( (lv_sitePatterns_3_0= ruleSitePattern ) ) (otherlv_4= ',' ( (lv_sitePatterns_5_0= ruleSitePattern ) ) )* )? otherlv_6= ')' )
-            // InternalReactionRules.g:939:3: () ( (otherlv_1= RULE_ID ) ) otherlv_2= '(' ( ( (lv_sitePatterns_3_0= ruleSitePattern ) ) (otherlv_4= ',' ( (lv_sitePatterns_5_0= ruleSitePattern ) ) )* )? otherlv_6= ')'
+            // InternalReactionRules.g:920:2: ( () ( (otherlv_1= RULE_ID ) ) otherlv_2= '(' ( ( (lv_sitePatterns_3_0= ruleSitePattern ) ) (otherlv_4= ',' ( (lv_sitePatterns_5_0= ruleSitePattern ) ) )* )? otherlv_6= ')' )
+            // InternalReactionRules.g:921:3: () ( (otherlv_1= RULE_ID ) ) otherlv_2= '(' ( ( (lv_sitePatterns_3_0= ruleSitePattern ) ) (otherlv_4= ',' ( (lv_sitePatterns_5_0= ruleSitePattern ) ) )* )? otherlv_6= ')'
             {
-            // InternalReactionRules.g:939:3: ()
-            // InternalReactionRules.g:940:4: 
+            // InternalReactionRules.g:921:3: ()
+            // InternalReactionRules.g:922:4: 
             {
 
             				current = forceCreateModelElement(
@@ -2459,11 +2415,11 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalReactionRules.g:946:3: ( (otherlv_1= RULE_ID ) )
-            // InternalReactionRules.g:947:4: (otherlv_1= RULE_ID )
+            // InternalReactionRules.g:928:3: ( (otherlv_1= RULE_ID ) )
+            // InternalReactionRules.g:929:4: (otherlv_1= RULE_ID )
             {
-            // InternalReactionRules.g:947:4: (otherlv_1= RULE_ID )
-            // InternalReactionRules.g:948:5: otherlv_1= RULE_ID
+            // InternalReactionRules.g:929:4: (otherlv_1= RULE_ID )
+            // InternalReactionRules.g:930:5: otherlv_1= RULE_ID
             {
 
             					if (current==null) {
@@ -2484,7 +2440,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_2, grammarAccess.getAgentPatternAccess().getLeftParenthesisKeyword_2());
             		
-            // InternalReactionRules.g:963:3: ( ( (lv_sitePatterns_3_0= ruleSitePattern ) ) (otherlv_4= ',' ( (lv_sitePatterns_5_0= ruleSitePattern ) ) )* )?
+            // InternalReactionRules.g:945:3: ( ( (lv_sitePatterns_3_0= ruleSitePattern ) ) (otherlv_4= ',' ( (lv_sitePatterns_5_0= ruleSitePattern ) ) )* )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -2493,13 +2449,13 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
             }
             switch (alt11) {
                 case 1 :
-                    // InternalReactionRules.g:964:4: ( (lv_sitePatterns_3_0= ruleSitePattern ) ) (otherlv_4= ',' ( (lv_sitePatterns_5_0= ruleSitePattern ) ) )*
+                    // InternalReactionRules.g:946:4: ( (lv_sitePatterns_3_0= ruleSitePattern ) ) (otherlv_4= ',' ( (lv_sitePatterns_5_0= ruleSitePattern ) ) )*
                     {
-                    // InternalReactionRules.g:964:4: ( (lv_sitePatterns_3_0= ruleSitePattern ) )
-                    // InternalReactionRules.g:965:5: (lv_sitePatterns_3_0= ruleSitePattern )
+                    // InternalReactionRules.g:946:4: ( (lv_sitePatterns_3_0= ruleSitePattern ) )
+                    // InternalReactionRules.g:947:5: (lv_sitePatterns_3_0= ruleSitePattern )
                     {
-                    // InternalReactionRules.g:965:5: (lv_sitePatterns_3_0= ruleSitePattern )
-                    // InternalReactionRules.g:966:6: lv_sitePatterns_3_0= ruleSitePattern
+                    // InternalReactionRules.g:947:5: (lv_sitePatterns_3_0= ruleSitePattern )
+                    // InternalReactionRules.g:948:6: lv_sitePatterns_3_0= ruleSitePattern
                     {
 
                     						newCompositeNode(grammarAccess.getAgentPatternAccess().getSitePatternsSitePatternParserRuleCall_3_0_0());
@@ -2526,7 +2482,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalReactionRules.g:983:4: (otherlv_4= ',' ( (lv_sitePatterns_5_0= ruleSitePattern ) ) )*
+                    // InternalReactionRules.g:965:4: (otherlv_4= ',' ( (lv_sitePatterns_5_0= ruleSitePattern ) ) )*
                     loop10:
                     do {
                         int alt10=2;
@@ -2539,17 +2495,17 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
                         switch (alt10) {
                     	case 1 :
-                    	    // InternalReactionRules.g:984:5: otherlv_4= ',' ( (lv_sitePatterns_5_0= ruleSitePattern ) )
+                    	    // InternalReactionRules.g:966:5: otherlv_4= ',' ( (lv_sitePatterns_5_0= ruleSitePattern ) )
                     	    {
                     	    otherlv_4=(Token)match(input,13,FOLLOW_6); 
 
                     	    					newLeafNode(otherlv_4, grammarAccess.getAgentPatternAccess().getCommaKeyword_3_1_0());
                     	    				
-                    	    // InternalReactionRules.g:988:5: ( (lv_sitePatterns_5_0= ruleSitePattern ) )
-                    	    // InternalReactionRules.g:989:6: (lv_sitePatterns_5_0= ruleSitePattern )
+                    	    // InternalReactionRules.g:970:5: ( (lv_sitePatterns_5_0= ruleSitePattern ) )
+                    	    // InternalReactionRules.g:971:6: (lv_sitePatterns_5_0= ruleSitePattern )
                     	    {
-                    	    // InternalReactionRules.g:989:6: (lv_sitePatterns_5_0= ruleSitePattern )
-                    	    // InternalReactionRules.g:990:7: lv_sitePatterns_5_0= ruleSitePattern
+                    	    // InternalReactionRules.g:971:6: (lv_sitePatterns_5_0= ruleSitePattern )
+                    	    // InternalReactionRules.g:972:7: lv_sitePatterns_5_0= ruleSitePattern
                     	    {
 
                     	    							newCompositeNode(grammarAccess.getAgentPatternAccess().getSitePatternsSitePatternParserRuleCall_3_1_1_0());
@@ -2618,7 +2574,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulePattern"
-    // InternalReactionRules.g:1017:1: entryRulePattern returns [EObject current=null] : iv_rulePattern= rulePattern EOF ;
+    // InternalReactionRules.g:999:1: entryRulePattern returns [EObject current=null] : iv_rulePattern= rulePattern EOF ;
     public final EObject entryRulePattern() throws RecognitionException {
         EObject current = null;
 
@@ -2626,8 +2582,8 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalReactionRules.g:1017:48: (iv_rulePattern= rulePattern EOF )
-            // InternalReactionRules.g:1018:2: iv_rulePattern= rulePattern EOF
+            // InternalReactionRules.g:999:48: (iv_rulePattern= rulePattern EOF )
+            // InternalReactionRules.g:1000:2: iv_rulePattern= rulePattern EOF
             {
              newCompositeNode(grammarAccess.getPatternRule()); 
             pushFollow(FOLLOW_1);
@@ -2654,7 +2610,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePattern"
-    // InternalReactionRules.g:1024:1: rulePattern returns [EObject current=null] : ( () ( ( (lv_agentPatterns_1_0= ruleAgentPattern ) ) (otherlv_2= ',' ( (lv_agentPatterns_3_0= ruleAgentPattern ) ) )* )? ) ;
+    // InternalReactionRules.g:1006:1: rulePattern returns [EObject current=null] : ( () ( ( (lv_agentPatterns_1_0= ruleAgentPattern ) ) (otherlv_2= ',' ( (lv_agentPatterns_3_0= ruleAgentPattern ) ) )* )? ) ;
     public final EObject rulePattern() throws RecognitionException {
         EObject current = null;
 
@@ -2668,14 +2624,14 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalReactionRules.g:1030:2: ( ( () ( ( (lv_agentPatterns_1_0= ruleAgentPattern ) ) (otherlv_2= ',' ( (lv_agentPatterns_3_0= ruleAgentPattern ) ) )* )? ) )
-            // InternalReactionRules.g:1031:2: ( () ( ( (lv_agentPatterns_1_0= ruleAgentPattern ) ) (otherlv_2= ',' ( (lv_agentPatterns_3_0= ruleAgentPattern ) ) )* )? )
+            // InternalReactionRules.g:1012:2: ( ( () ( ( (lv_agentPatterns_1_0= ruleAgentPattern ) ) (otherlv_2= ',' ( (lv_agentPatterns_3_0= ruleAgentPattern ) ) )* )? ) )
+            // InternalReactionRules.g:1013:2: ( () ( ( (lv_agentPatterns_1_0= ruleAgentPattern ) ) (otherlv_2= ',' ( (lv_agentPatterns_3_0= ruleAgentPattern ) ) )* )? )
             {
-            // InternalReactionRules.g:1031:2: ( () ( ( (lv_agentPatterns_1_0= ruleAgentPattern ) ) (otherlv_2= ',' ( (lv_agentPatterns_3_0= ruleAgentPattern ) ) )* )? )
-            // InternalReactionRules.g:1032:3: () ( ( (lv_agentPatterns_1_0= ruleAgentPattern ) ) (otherlv_2= ',' ( (lv_agentPatterns_3_0= ruleAgentPattern ) ) )* )?
+            // InternalReactionRules.g:1013:2: ( () ( ( (lv_agentPatterns_1_0= ruleAgentPattern ) ) (otherlv_2= ',' ( (lv_agentPatterns_3_0= ruleAgentPattern ) ) )* )? )
+            // InternalReactionRules.g:1014:3: () ( ( (lv_agentPatterns_1_0= ruleAgentPattern ) ) (otherlv_2= ',' ( (lv_agentPatterns_3_0= ruleAgentPattern ) ) )* )?
             {
-            // InternalReactionRules.g:1032:3: ()
-            // InternalReactionRules.g:1033:4: 
+            // InternalReactionRules.g:1014:3: ()
+            // InternalReactionRules.g:1015:4: 
             {
 
             				current = forceCreateModelElement(
@@ -2685,7 +2641,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalReactionRules.g:1039:3: ( ( (lv_agentPatterns_1_0= ruleAgentPattern ) ) (otherlv_2= ',' ( (lv_agentPatterns_3_0= ruleAgentPattern ) ) )* )?
+            // InternalReactionRules.g:1021:3: ( ( (lv_agentPatterns_1_0= ruleAgentPattern ) ) (otherlv_2= ',' ( (lv_agentPatterns_3_0= ruleAgentPattern ) ) )* )?
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -2694,13 +2650,13 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
             }
             switch (alt13) {
                 case 1 :
-                    // InternalReactionRules.g:1040:4: ( (lv_agentPatterns_1_0= ruleAgentPattern ) ) (otherlv_2= ',' ( (lv_agentPatterns_3_0= ruleAgentPattern ) ) )*
+                    // InternalReactionRules.g:1022:4: ( (lv_agentPatterns_1_0= ruleAgentPattern ) ) (otherlv_2= ',' ( (lv_agentPatterns_3_0= ruleAgentPattern ) ) )*
                     {
-                    // InternalReactionRules.g:1040:4: ( (lv_agentPatterns_1_0= ruleAgentPattern ) )
-                    // InternalReactionRules.g:1041:5: (lv_agentPatterns_1_0= ruleAgentPattern )
+                    // InternalReactionRules.g:1022:4: ( (lv_agentPatterns_1_0= ruleAgentPattern ) )
+                    // InternalReactionRules.g:1023:5: (lv_agentPatterns_1_0= ruleAgentPattern )
                     {
-                    // InternalReactionRules.g:1041:5: (lv_agentPatterns_1_0= ruleAgentPattern )
-                    // InternalReactionRules.g:1042:6: lv_agentPatterns_1_0= ruleAgentPattern
+                    // InternalReactionRules.g:1023:5: (lv_agentPatterns_1_0= ruleAgentPattern )
+                    // InternalReactionRules.g:1024:6: lv_agentPatterns_1_0= ruleAgentPattern
                     {
 
                     						newCompositeNode(grammarAccess.getPatternAccess().getAgentPatternsAgentPatternParserRuleCall_1_0_0());
@@ -2727,7 +2683,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalReactionRules.g:1059:4: (otherlv_2= ',' ( (lv_agentPatterns_3_0= ruleAgentPattern ) ) )*
+                    // InternalReactionRules.g:1041:4: (otherlv_2= ',' ( (lv_agentPatterns_3_0= ruleAgentPattern ) ) )*
                     loop12:
                     do {
                         int alt12=2;
@@ -2740,17 +2696,17 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // InternalReactionRules.g:1060:5: otherlv_2= ',' ( (lv_agentPatterns_3_0= ruleAgentPattern ) )
+                    	    // InternalReactionRules.g:1042:5: otherlv_2= ',' ( (lv_agentPatterns_3_0= ruleAgentPattern ) )
                     	    {
                     	    otherlv_2=(Token)match(input,13,FOLLOW_6); 
 
                     	    					newLeafNode(otherlv_2, grammarAccess.getPatternAccess().getCommaKeyword_1_1_0());
                     	    				
-                    	    // InternalReactionRules.g:1064:5: ( (lv_agentPatterns_3_0= ruleAgentPattern ) )
-                    	    // InternalReactionRules.g:1065:6: (lv_agentPatterns_3_0= ruleAgentPattern )
+                    	    // InternalReactionRules.g:1046:5: ( (lv_agentPatterns_3_0= ruleAgentPattern ) )
+                    	    // InternalReactionRules.g:1047:6: (lv_agentPatterns_3_0= ruleAgentPattern )
                     	    {
-                    	    // InternalReactionRules.g:1065:6: (lv_agentPatterns_3_0= ruleAgentPattern )
-                    	    // InternalReactionRules.g:1066:7: lv_agentPatterns_3_0= ruleAgentPattern
+                    	    // InternalReactionRules.g:1047:6: (lv_agentPatterns_3_0= ruleAgentPattern )
+                    	    // InternalReactionRules.g:1048:7: lv_agentPatterns_3_0= ruleAgentPattern
                     	    {
 
                     	    							newCompositeNode(grammarAccess.getPatternAccess().getAgentPatternsAgentPatternParserRuleCall_1_1_1_0());
@@ -2815,7 +2771,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleObservation"
-    // InternalReactionRules.g:1089:1: entryRuleObservation returns [EObject current=null] : iv_ruleObservation= ruleObservation EOF ;
+    // InternalReactionRules.g:1071:1: entryRuleObservation returns [EObject current=null] : iv_ruleObservation= ruleObservation EOF ;
     public final EObject entryRuleObservation() throws RecognitionException {
         EObject current = null;
 
@@ -2823,8 +2779,8 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalReactionRules.g:1089:52: (iv_ruleObservation= ruleObservation EOF )
-            // InternalReactionRules.g:1090:2: iv_ruleObservation= ruleObservation EOF
+            // InternalReactionRules.g:1071:52: (iv_ruleObservation= ruleObservation EOF )
+            // InternalReactionRules.g:1072:2: iv_ruleObservation= ruleObservation EOF
             {
              newCompositeNode(grammarAccess.getObservationRule()); 
             pushFollow(FOLLOW_1);
@@ -2851,7 +2807,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleObservation"
-    // InternalReactionRules.g:1096:1: ruleObservation returns [EObject current=null] : (otherlv_0= 'Observation' ( (lv_name_1_0= RULE_ID ) ) ( (lv_observationPattern_2_0= rulePattern ) ) ) ;
+    // InternalReactionRules.g:1078:1: ruleObservation returns [EObject current=null] : (otherlv_0= 'Observation' ( (lv_name_1_0= RULE_ID ) ) ( (lv_observationPattern_2_0= rulePattern ) ) ) ;
     public final EObject ruleObservation() throws RecognitionException {
         EObject current = null;
 
@@ -2864,21 +2820,21 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalReactionRules.g:1102:2: ( (otherlv_0= 'Observation' ( (lv_name_1_0= RULE_ID ) ) ( (lv_observationPattern_2_0= rulePattern ) ) ) )
-            // InternalReactionRules.g:1103:2: (otherlv_0= 'Observation' ( (lv_name_1_0= RULE_ID ) ) ( (lv_observationPattern_2_0= rulePattern ) ) )
+            // InternalReactionRules.g:1084:2: ( (otherlv_0= 'Observation' ( (lv_name_1_0= RULE_ID ) ) ( (lv_observationPattern_2_0= rulePattern ) ) ) )
+            // InternalReactionRules.g:1085:2: (otherlv_0= 'Observation' ( (lv_name_1_0= RULE_ID ) ) ( (lv_observationPattern_2_0= rulePattern ) ) )
             {
-            // InternalReactionRules.g:1103:2: (otherlv_0= 'Observation' ( (lv_name_1_0= RULE_ID ) ) ( (lv_observationPattern_2_0= rulePattern ) ) )
-            // InternalReactionRules.g:1104:3: otherlv_0= 'Observation' ( (lv_name_1_0= RULE_ID ) ) ( (lv_observationPattern_2_0= rulePattern ) )
+            // InternalReactionRules.g:1085:2: (otherlv_0= 'Observation' ( (lv_name_1_0= RULE_ID ) ) ( (lv_observationPattern_2_0= rulePattern ) ) )
+            // InternalReactionRules.g:1086:3: otherlv_0= 'Observation' ( (lv_name_1_0= RULE_ID ) ) ( (lv_observationPattern_2_0= rulePattern ) )
             {
             otherlv_0=(Token)match(input,24,FOLLOW_6); 
 
             			newLeafNode(otherlv_0, grammarAccess.getObservationAccess().getObservationKeyword_0());
             		
-            // InternalReactionRules.g:1108:3: ( (lv_name_1_0= RULE_ID ) )
-            // InternalReactionRules.g:1109:4: (lv_name_1_0= RULE_ID )
+            // InternalReactionRules.g:1090:3: ( (lv_name_1_0= RULE_ID ) )
+            // InternalReactionRules.g:1091:4: (lv_name_1_0= RULE_ID )
             {
-            // InternalReactionRules.g:1109:4: (lv_name_1_0= RULE_ID )
-            // InternalReactionRules.g:1110:5: lv_name_1_0= RULE_ID
+            // InternalReactionRules.g:1091:4: (lv_name_1_0= RULE_ID )
+            // InternalReactionRules.g:1092:5: lv_name_1_0= RULE_ID
             {
             lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_6); 
 
@@ -2900,11 +2856,11 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalReactionRules.g:1126:3: ( (lv_observationPattern_2_0= rulePattern ) )
-            // InternalReactionRules.g:1127:4: (lv_observationPattern_2_0= rulePattern )
+            // InternalReactionRules.g:1108:3: ( (lv_observationPattern_2_0= rulePattern ) )
+            // InternalReactionRules.g:1109:4: (lv_observationPattern_2_0= rulePattern )
             {
-            // InternalReactionRules.g:1127:4: (lv_observationPattern_2_0= rulePattern )
-            // InternalReactionRules.g:1128:5: lv_observationPattern_2_0= rulePattern
+            // InternalReactionRules.g:1109:4: (lv_observationPattern_2_0= rulePattern )
+            // InternalReactionRules.g:1110:5: lv_observationPattern_2_0= rulePattern
             {
 
             					newCompositeNode(grammarAccess.getObservationAccess().getObservationPatternPatternParserRuleCall_2_0());
@@ -2954,7 +2910,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleInitial"
-    // InternalReactionRules.g:1149:1: entryRuleInitial returns [EObject current=null] : iv_ruleInitial= ruleInitial EOF ;
+    // InternalReactionRules.g:1131:1: entryRuleInitial returns [EObject current=null] : iv_ruleInitial= ruleInitial EOF ;
     public final EObject entryRuleInitial() throws RecognitionException {
         EObject current = null;
 
@@ -2962,8 +2918,8 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalReactionRules.g:1149:48: (iv_ruleInitial= ruleInitial EOF )
-            // InternalReactionRules.g:1150:2: iv_ruleInitial= ruleInitial EOF
+            // InternalReactionRules.g:1131:48: (iv_ruleInitial= ruleInitial EOF )
+            // InternalReactionRules.g:1132:2: iv_ruleInitial= ruleInitial EOF
             {
              newCompositeNode(grammarAccess.getInitialRule()); 
             pushFollow(FOLLOW_1);
@@ -2990,7 +2946,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleInitial"
-    // InternalReactionRules.g:1156:1: ruleInitial returns [EObject current=null] : (otherlv_0= 'Initial' ( (lv_name_1_0= RULE_ID ) ) ( (lv_count_2_0= ruleBigInteger ) ) ( (lv_initialPattern_3_0= rulePattern ) ) ) ;
+    // InternalReactionRules.g:1138:1: ruleInitial returns [EObject current=null] : (otherlv_0= 'Initial' ( (lv_name_1_0= RULE_ID ) ) ( (lv_count_2_0= ruleBigInteger ) ) ( (lv_initialPattern_3_0= rulePattern ) ) ) ;
     public final EObject ruleInitial() throws RecognitionException {
         EObject current = null;
 
@@ -3005,21 +2961,21 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalReactionRules.g:1162:2: ( (otherlv_0= 'Initial' ( (lv_name_1_0= RULE_ID ) ) ( (lv_count_2_0= ruleBigInteger ) ) ( (lv_initialPattern_3_0= rulePattern ) ) ) )
-            // InternalReactionRules.g:1163:2: (otherlv_0= 'Initial' ( (lv_name_1_0= RULE_ID ) ) ( (lv_count_2_0= ruleBigInteger ) ) ( (lv_initialPattern_3_0= rulePattern ) ) )
+            // InternalReactionRules.g:1144:2: ( (otherlv_0= 'Initial' ( (lv_name_1_0= RULE_ID ) ) ( (lv_count_2_0= ruleBigInteger ) ) ( (lv_initialPattern_3_0= rulePattern ) ) ) )
+            // InternalReactionRules.g:1145:2: (otherlv_0= 'Initial' ( (lv_name_1_0= RULE_ID ) ) ( (lv_count_2_0= ruleBigInteger ) ) ( (lv_initialPattern_3_0= rulePattern ) ) )
             {
-            // InternalReactionRules.g:1163:2: (otherlv_0= 'Initial' ( (lv_name_1_0= RULE_ID ) ) ( (lv_count_2_0= ruleBigInteger ) ) ( (lv_initialPattern_3_0= rulePattern ) ) )
-            // InternalReactionRules.g:1164:3: otherlv_0= 'Initial' ( (lv_name_1_0= RULE_ID ) ) ( (lv_count_2_0= ruleBigInteger ) ) ( (lv_initialPattern_3_0= rulePattern ) )
+            // InternalReactionRules.g:1145:2: (otherlv_0= 'Initial' ( (lv_name_1_0= RULE_ID ) ) ( (lv_count_2_0= ruleBigInteger ) ) ( (lv_initialPattern_3_0= rulePattern ) ) )
+            // InternalReactionRules.g:1146:3: otherlv_0= 'Initial' ( (lv_name_1_0= RULE_ID ) ) ( (lv_count_2_0= ruleBigInteger ) ) ( (lv_initialPattern_3_0= rulePattern ) )
             {
             otherlv_0=(Token)match(input,25,FOLLOW_6); 
 
             			newLeafNode(otherlv_0, grammarAccess.getInitialAccess().getInitialKeyword_0());
             		
-            // InternalReactionRules.g:1168:3: ( (lv_name_1_0= RULE_ID ) )
-            // InternalReactionRules.g:1169:4: (lv_name_1_0= RULE_ID )
+            // InternalReactionRules.g:1150:3: ( (lv_name_1_0= RULE_ID ) )
+            // InternalReactionRules.g:1151:4: (lv_name_1_0= RULE_ID )
             {
-            // InternalReactionRules.g:1169:4: (lv_name_1_0= RULE_ID )
-            // InternalReactionRules.g:1170:5: lv_name_1_0= RULE_ID
+            // InternalReactionRules.g:1151:4: (lv_name_1_0= RULE_ID )
+            // InternalReactionRules.g:1152:5: lv_name_1_0= RULE_ID
             {
             lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_15); 
 
@@ -3041,11 +2997,11 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalReactionRules.g:1186:3: ( (lv_count_2_0= ruleBigInteger ) )
-            // InternalReactionRules.g:1187:4: (lv_count_2_0= ruleBigInteger )
+            // InternalReactionRules.g:1168:3: ( (lv_count_2_0= ruleBigInteger ) )
+            // InternalReactionRules.g:1169:4: (lv_count_2_0= ruleBigInteger )
             {
-            // InternalReactionRules.g:1187:4: (lv_count_2_0= ruleBigInteger )
-            // InternalReactionRules.g:1188:5: lv_count_2_0= ruleBigInteger
+            // InternalReactionRules.g:1169:4: (lv_count_2_0= ruleBigInteger )
+            // InternalReactionRules.g:1170:5: lv_count_2_0= ruleBigInteger
             {
 
             					newCompositeNode(grammarAccess.getInitialAccess().getCountBigIntegerParserRuleCall_2_0());
@@ -3072,11 +3028,11 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalReactionRules.g:1205:3: ( (lv_initialPattern_3_0= rulePattern ) )
-            // InternalReactionRules.g:1206:4: (lv_initialPattern_3_0= rulePattern )
+            // InternalReactionRules.g:1187:3: ( (lv_initialPattern_3_0= rulePattern ) )
+            // InternalReactionRules.g:1188:4: (lv_initialPattern_3_0= rulePattern )
             {
-            // InternalReactionRules.g:1206:4: (lv_initialPattern_3_0= rulePattern )
-            // InternalReactionRules.g:1207:5: lv_initialPattern_3_0= rulePattern
+            // InternalReactionRules.g:1188:4: (lv_initialPattern_3_0= rulePattern )
+            // InternalReactionRules.g:1189:5: lv_initialPattern_3_0= rulePattern
             {
 
             					newCompositeNode(grammarAccess.getInitialAccess().getInitialPatternPatternParserRuleCall_3_0());
@@ -3126,7 +3082,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleRule"
-    // InternalReactionRules.g:1228:1: entryRuleRule returns [EObject current=null] : iv_ruleRule= ruleRule EOF ;
+    // InternalReactionRules.g:1210:1: entryRuleRule returns [EObject current=null] : iv_ruleRule= ruleRule EOF ;
     public final EObject entryRuleRule() throws RecognitionException {
         EObject current = null;
 
@@ -3134,8 +3090,8 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalReactionRules.g:1228:45: (iv_ruleRule= ruleRule EOF )
-            // InternalReactionRules.g:1229:2: iv_ruleRule= ruleRule EOF
+            // InternalReactionRules.g:1210:45: (iv_ruleRule= ruleRule EOF )
+            // InternalReactionRules.g:1211:2: iv_ruleRule= ruleRule EOF
             {
              newCompositeNode(grammarAccess.getRuleRule()); 
             pushFollow(FOLLOW_1);
@@ -3162,7 +3118,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRule"
-    // InternalReactionRules.g:1235:1: ruleRule returns [EObject current=null] : (otherlv_0= 'Rule' ( (lv_name_1_0= RULE_ID ) ) ( (lv_lhs_2_0= rulePattern ) ) (otherlv_3= 'uni' | otherlv_4= 'bi' ) ( (lv_rhs_5_0= rulePattern ) ) otherlv_6= 'at' ( (otherlv_7= RULE_ID ) ) (otherlv_8= ',' ( (otherlv_9= RULE_ID ) ) )* ) ;
+    // InternalReactionRules.g:1217:1: ruleRule returns [EObject current=null] : (otherlv_0= 'Rule' ( (lv_name_1_0= RULE_ID ) ) ( (lv_lhs_2_0= rulePattern ) ) (otherlv_3= 'uni' | otherlv_4= 'bi' ) ( (lv_rhs_5_0= rulePattern ) ) otherlv_6= 'at' ( (otherlv_7= RULE_ID ) ) (otherlv_8= ',' ( (otherlv_9= RULE_ID ) ) )* ) ;
     public final EObject ruleRule() throws RecognitionException {
         EObject current = null;
 
@@ -3183,21 +3139,21 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalReactionRules.g:1241:2: ( (otherlv_0= 'Rule' ( (lv_name_1_0= RULE_ID ) ) ( (lv_lhs_2_0= rulePattern ) ) (otherlv_3= 'uni' | otherlv_4= 'bi' ) ( (lv_rhs_5_0= rulePattern ) ) otherlv_6= 'at' ( (otherlv_7= RULE_ID ) ) (otherlv_8= ',' ( (otherlv_9= RULE_ID ) ) )* ) )
-            // InternalReactionRules.g:1242:2: (otherlv_0= 'Rule' ( (lv_name_1_0= RULE_ID ) ) ( (lv_lhs_2_0= rulePattern ) ) (otherlv_3= 'uni' | otherlv_4= 'bi' ) ( (lv_rhs_5_0= rulePattern ) ) otherlv_6= 'at' ( (otherlv_7= RULE_ID ) ) (otherlv_8= ',' ( (otherlv_9= RULE_ID ) ) )* )
+            // InternalReactionRules.g:1223:2: ( (otherlv_0= 'Rule' ( (lv_name_1_0= RULE_ID ) ) ( (lv_lhs_2_0= rulePattern ) ) (otherlv_3= 'uni' | otherlv_4= 'bi' ) ( (lv_rhs_5_0= rulePattern ) ) otherlv_6= 'at' ( (otherlv_7= RULE_ID ) ) (otherlv_8= ',' ( (otherlv_9= RULE_ID ) ) )* ) )
+            // InternalReactionRules.g:1224:2: (otherlv_0= 'Rule' ( (lv_name_1_0= RULE_ID ) ) ( (lv_lhs_2_0= rulePattern ) ) (otherlv_3= 'uni' | otherlv_4= 'bi' ) ( (lv_rhs_5_0= rulePattern ) ) otherlv_6= 'at' ( (otherlv_7= RULE_ID ) ) (otherlv_8= ',' ( (otherlv_9= RULE_ID ) ) )* )
             {
-            // InternalReactionRules.g:1242:2: (otherlv_0= 'Rule' ( (lv_name_1_0= RULE_ID ) ) ( (lv_lhs_2_0= rulePattern ) ) (otherlv_3= 'uni' | otherlv_4= 'bi' ) ( (lv_rhs_5_0= rulePattern ) ) otherlv_6= 'at' ( (otherlv_7= RULE_ID ) ) (otherlv_8= ',' ( (otherlv_9= RULE_ID ) ) )* )
-            // InternalReactionRules.g:1243:3: otherlv_0= 'Rule' ( (lv_name_1_0= RULE_ID ) ) ( (lv_lhs_2_0= rulePattern ) ) (otherlv_3= 'uni' | otherlv_4= 'bi' ) ( (lv_rhs_5_0= rulePattern ) ) otherlv_6= 'at' ( (otherlv_7= RULE_ID ) ) (otherlv_8= ',' ( (otherlv_9= RULE_ID ) ) )*
+            // InternalReactionRules.g:1224:2: (otherlv_0= 'Rule' ( (lv_name_1_0= RULE_ID ) ) ( (lv_lhs_2_0= rulePattern ) ) (otherlv_3= 'uni' | otherlv_4= 'bi' ) ( (lv_rhs_5_0= rulePattern ) ) otherlv_6= 'at' ( (otherlv_7= RULE_ID ) ) (otherlv_8= ',' ( (otherlv_9= RULE_ID ) ) )* )
+            // InternalReactionRules.g:1225:3: otherlv_0= 'Rule' ( (lv_name_1_0= RULE_ID ) ) ( (lv_lhs_2_0= rulePattern ) ) (otherlv_3= 'uni' | otherlv_4= 'bi' ) ( (lv_rhs_5_0= rulePattern ) ) otherlv_6= 'at' ( (otherlv_7= RULE_ID ) ) (otherlv_8= ',' ( (otherlv_9= RULE_ID ) ) )*
             {
             otherlv_0=(Token)match(input,26,FOLLOW_6); 
 
             			newLeafNode(otherlv_0, grammarAccess.getRuleAccess().getRuleKeyword_0());
             		
-            // InternalReactionRules.g:1247:3: ( (lv_name_1_0= RULE_ID ) )
-            // InternalReactionRules.g:1248:4: (lv_name_1_0= RULE_ID )
+            // InternalReactionRules.g:1229:3: ( (lv_name_1_0= RULE_ID ) )
+            // InternalReactionRules.g:1230:4: (lv_name_1_0= RULE_ID )
             {
-            // InternalReactionRules.g:1248:4: (lv_name_1_0= RULE_ID )
-            // InternalReactionRules.g:1249:5: lv_name_1_0= RULE_ID
+            // InternalReactionRules.g:1230:4: (lv_name_1_0= RULE_ID )
+            // InternalReactionRules.g:1231:5: lv_name_1_0= RULE_ID
             {
             lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_19); 
 
@@ -3219,11 +3175,11 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalReactionRules.g:1265:3: ( (lv_lhs_2_0= rulePattern ) )
-            // InternalReactionRules.g:1266:4: (lv_lhs_2_0= rulePattern )
+            // InternalReactionRules.g:1247:3: ( (lv_lhs_2_0= rulePattern ) )
+            // InternalReactionRules.g:1248:4: (lv_lhs_2_0= rulePattern )
             {
-            // InternalReactionRules.g:1266:4: (lv_lhs_2_0= rulePattern )
-            // InternalReactionRules.g:1267:5: lv_lhs_2_0= rulePattern
+            // InternalReactionRules.g:1248:4: (lv_lhs_2_0= rulePattern )
+            // InternalReactionRules.g:1249:5: lv_lhs_2_0= rulePattern
             {
 
             					newCompositeNode(grammarAccess.getRuleAccess().getLhsPatternParserRuleCall_2_0());
@@ -3250,7 +3206,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalReactionRules.g:1284:3: (otherlv_3= 'uni' | otherlv_4= 'bi' )
+            // InternalReactionRules.g:1266:3: (otherlv_3= 'uni' | otherlv_4= 'bi' )
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -3268,7 +3224,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
             }
             switch (alt14) {
                 case 1 :
-                    // InternalReactionRules.g:1285:4: otherlv_3= 'uni'
+                    // InternalReactionRules.g:1267:4: otherlv_3= 'uni'
                     {
                     otherlv_3=(Token)match(input,27,FOLLOW_21); 
 
@@ -3278,7 +3234,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalReactionRules.g:1290:4: otherlv_4= 'bi'
+                    // InternalReactionRules.g:1272:4: otherlv_4= 'bi'
                     {
                     otherlv_4=(Token)match(input,28,FOLLOW_21); 
 
@@ -3290,11 +3246,11 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalReactionRules.g:1295:3: ( (lv_rhs_5_0= rulePattern ) )
-            // InternalReactionRules.g:1296:4: (lv_rhs_5_0= rulePattern )
+            // InternalReactionRules.g:1277:3: ( (lv_rhs_5_0= rulePattern ) )
+            // InternalReactionRules.g:1278:4: (lv_rhs_5_0= rulePattern )
             {
-            // InternalReactionRules.g:1296:4: (lv_rhs_5_0= rulePattern )
-            // InternalReactionRules.g:1297:5: lv_rhs_5_0= rulePattern
+            // InternalReactionRules.g:1278:4: (lv_rhs_5_0= rulePattern )
+            // InternalReactionRules.g:1279:5: lv_rhs_5_0= rulePattern
             {
 
             					newCompositeNode(grammarAccess.getRuleAccess().getRhsPatternParserRuleCall_4_0());
@@ -3325,11 +3281,11 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_6, grammarAccess.getRuleAccess().getAtKeyword_5());
             		
-            // InternalReactionRules.g:1318:3: ( (otherlv_7= RULE_ID ) )
-            // InternalReactionRules.g:1319:4: (otherlv_7= RULE_ID )
+            // InternalReactionRules.g:1300:3: ( (otherlv_7= RULE_ID ) )
+            // InternalReactionRules.g:1301:4: (otherlv_7= RULE_ID )
             {
-            // InternalReactionRules.g:1319:4: (otherlv_7= RULE_ID )
-            // InternalReactionRules.g:1320:5: otherlv_7= RULE_ID
+            // InternalReactionRules.g:1301:4: (otherlv_7= RULE_ID )
+            // InternalReactionRules.g:1302:5: otherlv_7= RULE_ID
             {
 
             					if (current==null) {
@@ -3346,7 +3302,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalReactionRules.g:1331:3: (otherlv_8= ',' ( (otherlv_9= RULE_ID ) ) )*
+            // InternalReactionRules.g:1313:3: (otherlv_8= ',' ( (otherlv_9= RULE_ID ) ) )*
             loop15:
             do {
                 int alt15=2;
@@ -3359,17 +3315,17 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
                 switch (alt15) {
             	case 1 :
-            	    // InternalReactionRules.g:1332:4: otherlv_8= ',' ( (otherlv_9= RULE_ID ) )
+            	    // InternalReactionRules.g:1314:4: otherlv_8= ',' ( (otherlv_9= RULE_ID ) )
             	    {
             	    otherlv_8=(Token)match(input,13,FOLLOW_6); 
 
             	    				newLeafNode(otherlv_8, grammarAccess.getRuleAccess().getCommaKeyword_7_0());
             	    			
-            	    // InternalReactionRules.g:1336:4: ( (otherlv_9= RULE_ID ) )
-            	    // InternalReactionRules.g:1337:5: (otherlv_9= RULE_ID )
+            	    // InternalReactionRules.g:1318:4: ( (otherlv_9= RULE_ID ) )
+            	    // InternalReactionRules.g:1319:5: (otherlv_9= RULE_ID )
             	    {
-            	    // InternalReactionRules.g:1337:5: (otherlv_9= RULE_ID )
-            	    // InternalReactionRules.g:1338:6: otherlv_9= RULE_ID
+            	    // InternalReactionRules.g:1319:5: (otherlv_9= RULE_ID )
+            	    // InternalReactionRules.g:1320:6: otherlv_9= RULE_ID
             	    {
 
             	    						if (current==null) {
