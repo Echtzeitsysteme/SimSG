@@ -3,24 +3,17 @@
  */
 package biochemsimulation.reactionrules.reactionRules.impl;
 
-import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 import biochemsimulation.reactionrules.reactionRules.Rule;
-import biochemsimulation.reactionrules.reactionRules.Variable;
-
-import java.util.Collection;
+import biochemsimulation.reactionrules.reactionRules.RuleBody;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,9 +23,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.RuleImpl#getLhs <em>Lhs</em>}</li>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.RuleImpl#getRhs <em>Rhs</em>}</li>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.RuleImpl#getVariables <em>Variables</em>}</li>
+ *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.RuleImpl#getRule <em>Rule</em>}</li>
  * </ul>
  *
  * @generated
@@ -40,34 +31,14 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 public class RuleImpl extends ReactionPropertyImpl implements Rule
 {
   /**
-   * The cached value of the '{@link #getLhs() <em>Lhs</em>}' containment reference.
+   * The cached value of the '{@link #getRule() <em>Rule</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getLhs()
+   * @see #getRule()
    * @generated
    * @ordered
    */
-  protected Pattern lhs;
-
-  /**
-   * The cached value of the '{@link #getRhs() <em>Rhs</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getRhs()
-   * @generated
-   * @ordered
-   */
-  protected Pattern rhs;
-
-  /**
-   * The cached value of the '{@link #getVariables() <em>Variables</em>}' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getVariables()
-   * @generated
-   * @ordered
-   */
-  protected EList<Variable> variables;
+  protected RuleBody rule;
 
   /**
    * <!-- begin-user-doc -->
@@ -95,9 +66,9 @@ public class RuleImpl extends ReactionPropertyImpl implements Rule
    * <!-- end-user-doc -->
    * @generated
    */
-  public Pattern getLhs()
+  public RuleBody getRule()
   {
-    return lhs;
+    return rule;
   }
 
   /**
@@ -105,13 +76,13 @@ public class RuleImpl extends ReactionPropertyImpl implements Rule
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetLhs(Pattern newLhs, NotificationChain msgs)
+  public NotificationChain basicSetRule(RuleBody newRule, NotificationChain msgs)
   {
-    Pattern oldLhs = lhs;
-    lhs = newLhs;
+    RuleBody oldRule = rule;
+    rule = newRule;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.RULE__LHS, oldLhs, newLhs);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.RULE__RULE, oldRule, newRule);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -122,82 +93,20 @@ public class RuleImpl extends ReactionPropertyImpl implements Rule
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setLhs(Pattern newLhs)
+  public void setRule(RuleBody newRule)
   {
-    if (newLhs != lhs)
+    if (newRule != rule)
     {
       NotificationChain msgs = null;
-      if (lhs != null)
-        msgs = ((InternalEObject)lhs).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.RULE__LHS, null, msgs);
-      if (newLhs != null)
-        msgs = ((InternalEObject)newLhs).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.RULE__LHS, null, msgs);
-      msgs = basicSetLhs(newLhs, msgs);
+      if (rule != null)
+        msgs = ((InternalEObject)rule).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.RULE__RULE, null, msgs);
+      if (newRule != null)
+        msgs = ((InternalEObject)newRule).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.RULE__RULE, null, msgs);
+      msgs = basicSetRule(newRule, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.RULE__LHS, newLhs, newLhs));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Pattern getRhs()
-  {
-    return rhs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetRhs(Pattern newRhs, NotificationChain msgs)
-  {
-    Pattern oldRhs = rhs;
-    rhs = newRhs;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.RULE__RHS, oldRhs, newRhs);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setRhs(Pattern newRhs)
-  {
-    if (newRhs != rhs)
-    {
-      NotificationChain msgs = null;
-      if (rhs != null)
-        msgs = ((InternalEObject)rhs).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.RULE__RHS, null, msgs);
-      if (newRhs != null)
-        msgs = ((InternalEObject)newRhs).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.RULE__RHS, null, msgs);
-      msgs = basicSetRhs(newRhs, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.RULE__RHS, newRhs, newRhs));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<Variable> getVariables()
-  {
-    if (variables == null)
-    {
-      variables = new EObjectResolvingEList<Variable>(Variable.class, this, ReactionRulesPackage.RULE__VARIABLES);
-    }
-    return variables;
+      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.RULE__RULE, newRule, newRule));
   }
 
   /**
@@ -210,10 +119,8 @@ public class RuleImpl extends ReactionPropertyImpl implements Rule
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.RULE__LHS:
-        return basicSetLhs(null, msgs);
-      case ReactionRulesPackage.RULE__RHS:
-        return basicSetRhs(null, msgs);
+      case ReactionRulesPackage.RULE__RULE:
+        return basicSetRule(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -228,12 +135,8 @@ public class RuleImpl extends ReactionPropertyImpl implements Rule
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.RULE__LHS:
-        return getLhs();
-      case ReactionRulesPackage.RULE__RHS:
-        return getRhs();
-      case ReactionRulesPackage.RULE__VARIABLES:
-        return getVariables();
+      case ReactionRulesPackage.RULE__RULE:
+        return getRule();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -243,21 +146,13 @@ public class RuleImpl extends ReactionPropertyImpl implements Rule
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.RULE__LHS:
-        setLhs((Pattern)newValue);
-        return;
-      case ReactionRulesPackage.RULE__RHS:
-        setRhs((Pattern)newValue);
-        return;
-      case ReactionRulesPackage.RULE__VARIABLES:
-        getVariables().clear();
-        getVariables().addAll((Collection<? extends Variable>)newValue);
+      case ReactionRulesPackage.RULE__RULE:
+        setRule((RuleBody)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -273,14 +168,8 @@ public class RuleImpl extends ReactionPropertyImpl implements Rule
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.RULE__LHS:
-        setLhs((Pattern)null);
-        return;
-      case ReactionRulesPackage.RULE__RHS:
-        setRhs((Pattern)null);
-        return;
-      case ReactionRulesPackage.RULE__VARIABLES:
-        getVariables().clear();
+      case ReactionRulesPackage.RULE__RULE:
+        setRule((RuleBody)null);
         return;
     }
     super.eUnset(featureID);
@@ -296,12 +185,8 @@ public class RuleImpl extends ReactionPropertyImpl implements Rule
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.RULE__LHS:
-        return lhs != null;
-      case ReactionRulesPackage.RULE__RHS:
-        return rhs != null;
-      case ReactionRulesPackage.RULE__VARIABLES:
-        return variables != null && !variables.isEmpty();
+      case ReactionRulesPackage.RULE__RULE:
+        return rule != null;
     }
     return super.eIsSet(featureID);
   }

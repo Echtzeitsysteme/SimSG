@@ -4,10 +4,8 @@
 package biochemsimulation.reactionrules.reactionRules.impl;
 
 import biochemsimulation.reactionrules.reactionRules.Initial;
-import biochemsimulation.reactionrules.reactionRules.Pattern;
+import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
-
-import java.math.BigInteger;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -41,7 +39,7 @@ public class InitialImpl extends ReactionPropertyImpl implements Initial
    * @generated
    * @ordered
    */
-  protected static final BigInteger COUNT_EDEFAULT = null;
+  protected static final String COUNT_EDEFAULT = null;
 
   /**
    * The cached value of the '{@link #getCount() <em>Count</em>}' attribute.
@@ -51,7 +49,7 @@ public class InitialImpl extends ReactionPropertyImpl implements Initial
    * @generated
    * @ordered
    */
-  protected BigInteger count = COUNT_EDEFAULT;
+  protected String count = COUNT_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getInitialPattern() <em>Initial Pattern</em>}' containment reference.
@@ -61,7 +59,7 @@ public class InitialImpl extends ReactionPropertyImpl implements Initial
    * @generated
    * @ordered
    */
-  protected Pattern initialPattern;
+  protected PatternAssignment initialPattern;
 
   /**
    * <!-- begin-user-doc -->
@@ -89,7 +87,7 @@ public class InitialImpl extends ReactionPropertyImpl implements Initial
    * <!-- end-user-doc -->
    * @generated
    */
-  public BigInteger getCount()
+  public String getCount()
   {
     return count;
   }
@@ -99,9 +97,9 @@ public class InitialImpl extends ReactionPropertyImpl implements Initial
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setCount(BigInteger newCount)
+  public void setCount(String newCount)
   {
-    BigInteger oldCount = count;
+    String oldCount = count;
     count = newCount;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.INITIAL__COUNT, oldCount, count));
@@ -112,7 +110,7 @@ public class InitialImpl extends ReactionPropertyImpl implements Initial
    * <!-- end-user-doc -->
    * @generated
    */
-  public Pattern getInitialPattern()
+  public PatternAssignment getInitialPattern()
   {
     return initialPattern;
   }
@@ -122,9 +120,9 @@ public class InitialImpl extends ReactionPropertyImpl implements Initial
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetInitialPattern(Pattern newInitialPattern, NotificationChain msgs)
+  public NotificationChain basicSetInitialPattern(PatternAssignment newInitialPattern, NotificationChain msgs)
   {
-    Pattern oldInitialPattern = initialPattern;
+    PatternAssignment oldInitialPattern = initialPattern;
     initialPattern = newInitialPattern;
     if (eNotificationRequired())
     {
@@ -139,7 +137,7 @@ public class InitialImpl extends ReactionPropertyImpl implements Initial
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setInitialPattern(Pattern newInitialPattern)
+  public void setInitialPattern(PatternAssignment newInitialPattern)
   {
     if (newInitialPattern != initialPattern)
     {
@@ -200,10 +198,10 @@ public class InitialImpl extends ReactionPropertyImpl implements Initial
     switch (featureID)
     {
       case ReactionRulesPackage.INITIAL__COUNT:
-        setCount((BigInteger)newValue);
+        setCount((String)newValue);
         return;
       case ReactionRulesPackage.INITIAL__INITIAL_PATTERN:
-        setInitialPattern((Pattern)newValue);
+        setInitialPattern((PatternAssignment)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -223,7 +221,7 @@ public class InitialImpl extends ReactionPropertyImpl implements Initial
         setCount(COUNT_EDEFAULT);
         return;
       case ReactionRulesPackage.INITIAL__INITIAL_PATTERN:
-        setInitialPattern((Pattern)null);
+        setInitialPattern((PatternAssignment)null);
         return;
     }
     super.eUnset(featureID);

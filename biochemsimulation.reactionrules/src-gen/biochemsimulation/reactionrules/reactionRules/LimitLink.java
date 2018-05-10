@@ -3,7 +3,6 @@
  */
 package biochemsimulation.reactionrules.reactionRules;
 
-import java.math.BigInteger;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,12 +31,12 @@ public interface LimitLink extends LinkState
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>State</em>' attribute.
-   * @see #setState(BigInteger)
+   * @see #setState(String)
    * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getLimitLink_State()
    * @model
    * @generated
    */
-  BigInteger getState();
+  String getState();
 
   /**
    * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.LimitLink#getState <em>State</em>}' attribute.
@@ -47,6 +46,6 @@ public interface LimitLink extends LinkState
    * @see #getState()
    * @generated
    */
-  void setState(BigInteger value);
+  void setState(String value);
 
 } // LimitLink

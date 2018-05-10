@@ -7,6 +7,7 @@ import biochemsimulation.reactionrules.reactionRules.Agent;
 import biochemsimulation.reactionrules.reactionRules.ExactLink;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
+import biochemsimulation.reactionrules.reactionRules.SiteState;
 import biochemsimulation.reactionrules.reactionRules.State;
 import biochemsimulation.reactionrules.scoping.AbstractReactionRulesScopeProvider;
 import com.google.common.base.Objects;
@@ -29,7 +30,7 @@ import org.eclipse.xtext.scoping.impl.FilteringScope;
 @SuppressWarnings("all")
 public class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvider {
   public IScope getScope(final EObject context, final EReference reference) {
-    if (((context instanceof SitePattern) || (context instanceof ExactLink))) {
+    if ((((context instanceof SitePattern) || (context instanceof ExactLink)) || (context instanceof SiteState))) {
       final EObject rootElement = EcoreUtil2.getRootContainer(context);
       final LinkedList<EObject> list = new LinkedList<EObject>();
       list.addAll(EcoreUtil2.<Site>getAllContentsOfType(rootElement, Site.class));

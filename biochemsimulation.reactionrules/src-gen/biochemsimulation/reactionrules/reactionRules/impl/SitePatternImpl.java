@@ -7,7 +7,7 @@ import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
-import biochemsimulation.reactionrules.reactionRules.State;
+import biochemsimulation.reactionrules.reactionRules.SiteState;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -46,14 +46,14 @@ public class SitePatternImpl extends MinimalEObjectImpl.Container implements Sit
   protected Site site;
 
   /**
-   * The cached value of the '{@link #getState() <em>State</em>}' reference.
+   * The cached value of the '{@link #getState() <em>State</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getState()
    * @generated
    * @ordered
    */
-  protected State state;
+  protected SiteState state;
 
   /**
    * The cached value of the '{@link #getLinkState() <em>Link State</em>}' containment reference.
@@ -134,27 +134,7 @@ public class SitePatternImpl extends MinimalEObjectImpl.Container implements Sit
    * <!-- end-user-doc -->
    * @generated
    */
-  public State getState()
-  {
-    if (state != null && state.eIsProxy())
-    {
-      InternalEObject oldState = (InternalEObject)state;
-      state = (State)eResolveProxy(oldState);
-      if (state != oldState)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReactionRulesPackage.SITE_PATTERN__STATE, oldState, state));
-      }
-    }
-    return state;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public State basicGetState()
+  public SiteState getState()
   {
     return state;
   }
@@ -164,12 +144,37 @@ public class SitePatternImpl extends MinimalEObjectImpl.Container implements Sit
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setState(State newState)
+  public NotificationChain basicSetState(SiteState newState, NotificationChain msgs)
   {
-    State oldState = state;
+    SiteState oldState = state;
     state = newState;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.SITE_PATTERN__STATE, oldState, state));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.SITE_PATTERN__STATE, oldState, newState);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setState(SiteState newState)
+  {
+    if (newState != state)
+    {
+      NotificationChain msgs = null;
+      if (state != null)
+        msgs = ((InternalEObject)state).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.SITE_PATTERN__STATE, null, msgs);
+      if (newState != null)
+        msgs = ((InternalEObject)newState).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.SITE_PATTERN__STATE, null, msgs);
+      msgs = basicSetState(newState, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.SITE_PATTERN__STATE, newState, newState));
   }
 
   /**
@@ -230,6 +235,8 @@ public class SitePatternImpl extends MinimalEObjectImpl.Container implements Sit
   {
     switch (featureID)
     {
+      case ReactionRulesPackage.SITE_PATTERN__STATE:
+        return basicSetState(null, msgs);
       case ReactionRulesPackage.SITE_PATTERN__LINK_STATE:
         return basicSetLinkState(null, msgs);
     }
@@ -250,8 +257,7 @@ public class SitePatternImpl extends MinimalEObjectImpl.Container implements Sit
         if (resolve) return getSite();
         return basicGetSite();
       case ReactionRulesPackage.SITE_PATTERN__STATE:
-        if (resolve) return getState();
-        return basicGetState();
+        return getState();
       case ReactionRulesPackage.SITE_PATTERN__LINK_STATE:
         return getLinkState();
     }
@@ -272,7 +278,7 @@ public class SitePatternImpl extends MinimalEObjectImpl.Container implements Sit
         setSite((Site)newValue);
         return;
       case ReactionRulesPackage.SITE_PATTERN__STATE:
-        setState((State)newValue);
+        setState((SiteState)newValue);
         return;
       case ReactionRulesPackage.SITE_PATTERN__LINK_STATE:
         setLinkState((LinkState)newValue);
@@ -295,7 +301,7 @@ public class SitePatternImpl extends MinimalEObjectImpl.Container implements Sit
         setSite((Site)null);
         return;
       case ReactionRulesPackage.SITE_PATTERN__STATE:
-        setState((State)null);
+        setState((SiteState)null);
         return;
       case ReactionRulesPackage.SITE_PATTERN__LINK_STATE:
         setLinkState((LinkState)null);

@@ -67,21 +67,29 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
     {
       case ReactionRulesPackage.REACTION_RULE_MODEL: return createReactionRuleModel();
       case ReactionRulesPackage.REACTION_PROPERTY: return createReactionProperty();
+      case ReactionRulesPackage.ARITHMETIC_VALUE: return createArithmeticValue();
       case ReactionRulesPackage.STATE: return createState();
       case ReactionRulesPackage.STATES: return createStates();
       case ReactionRulesPackage.SITE: return createSite();
       case ReactionRulesPackage.SITES: return createSites();
       case ReactionRulesPackage.AGENT: return createAgent();
+      case ReactionRulesPackage.PATTERN_VARIABLE: return createPatternVariable();
+      case ReactionRulesPackage.ARITHMETIC_VARIABLE: return createArithmeticVariable();
       case ReactionRulesPackage.VARIABLE: return createVariable();
       case ReactionRulesPackage.LINK_STATE: return createLinkState();
+      case ReactionRulesPackage.SITE_STATE: return createSiteState();
       case ReactionRulesPackage.SITE_PATTERN: return createSitePattern();
       case ReactionRulesPackage.AGENT_PATTERN: return createAgentPattern();
       case ReactionRulesPackage.PATTERN: return createPattern();
       case ReactionRulesPackage.OBSERVATION: return createObservation();
       case ReactionRulesPackage.INITIAL: return createInitial();
+      case ReactionRulesPackage.PATTERN_ASSIGNMENT: return createPatternAssignment();
+      case ReactionRulesPackage.RULE_VARIABLES: return createRuleVariables();
+      case ReactionRulesPackage.RULE_BODY: return createRuleBody();
       case ReactionRulesPackage.RULE: return createRule();
       case ReactionRulesPackage.SEMI_LINK: return createSemiLink();
       case ReactionRulesPackage.FREE_LINK: return createFreeLink();
+      case ReactionRulesPackage.WHAT_EVER: return createWhatEver();
       case ReactionRulesPackage.LIMIT_LINK: return createLimitLink();
       case ReactionRulesPackage.EXACT_LINK: return createExactLink();
       default:
@@ -109,6 +117,17 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
   {
     ReactionPropertyImpl reactionProperty = new ReactionPropertyImpl();
     return reactionProperty;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ArithmeticValue createArithmeticValue()
+  {
+    ArithmeticValueImpl arithmeticValue = new ArithmeticValueImpl();
+    return arithmeticValue;
   }
 
   /**
@@ -171,6 +190,28 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  public PatternVariable createPatternVariable()
+  {
+    PatternVariableImpl patternVariable = new PatternVariableImpl();
+    return patternVariable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ArithmeticVariable createArithmeticVariable()
+  {
+    ArithmeticVariableImpl arithmeticVariable = new ArithmeticVariableImpl();
+    return arithmeticVariable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Variable createVariable()
   {
     VariableImpl variable = new VariableImpl();
@@ -186,6 +227,17 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
   {
     LinkStateImpl linkState = new LinkStateImpl();
     return linkState;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SiteState createSiteState()
+  {
+    SiteStateImpl siteState = new SiteStateImpl();
+    return siteState;
   }
 
   /**
@@ -248,6 +300,39 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  public PatternAssignment createPatternAssignment()
+  {
+    PatternAssignmentImpl patternAssignment = new PatternAssignmentImpl();
+    return patternAssignment;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public RuleVariables createRuleVariables()
+  {
+    RuleVariablesImpl ruleVariables = new RuleVariablesImpl();
+    return ruleVariables;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public RuleBody createRuleBody()
+  {
+    RuleBodyImpl ruleBody = new RuleBodyImpl();
+    return ruleBody;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Rule createRule()
   {
     RuleImpl rule = new RuleImpl();
@@ -274,6 +359,17 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
   {
     FreeLinkImpl freeLink = new FreeLinkImpl();
     return freeLink;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public WhatEver createWhatEver()
+  {
+    WhatEverImpl whatEver = new WhatEverImpl();
+    return whatEver;
   }
 
   /**

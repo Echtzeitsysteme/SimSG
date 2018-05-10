@@ -14,6 +14,7 @@ import biochemsimulation.reactionrules.reactionRules.SitePattern
 import biochemsimulation.reactionrules.reactionRules.ExactLink
 import biochemsimulation.reactionrules.reactionRules.State
 import java.util.LinkedList
+import biochemsimulation.reactionrules.reactionRules.SiteState
 
 /**
  * This class contains custom scoping description.
@@ -24,7 +25,7 @@ import java.util.LinkedList
 class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvider {
 	
 	override getScope(EObject context, EReference reference) {
-	    if (context instanceof SitePattern || context instanceof ExactLink) {
+	    if (context instanceof SitePattern || context instanceof ExactLink || context instanceof SiteState) {
 	        val rootElement = EcoreUtil2.getRootContainer(context)
 	        val list = new LinkedList<EObject>
 	        list.addAll(EcoreUtil2.getAllContentsOfType(rootElement, Site))

@@ -4,7 +4,7 @@
 package biochemsimulation.reactionrules.reactionRules.impl;
 
 import biochemsimulation.reactionrules.reactionRules.Observation;
-import biochemsimulation.reactionrules.reactionRules.Pattern;
+import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -38,7 +38,7 @@ public class ObservationImpl extends ReactionPropertyImpl implements Observation
    * @generated
    * @ordered
    */
-  protected Pattern observationPattern;
+  protected PatternAssignment observationPattern;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,7 +66,7 @@ public class ObservationImpl extends ReactionPropertyImpl implements Observation
    * <!-- end-user-doc -->
    * @generated
    */
-  public Pattern getObservationPattern()
+  public PatternAssignment getObservationPattern()
   {
     return observationPattern;
   }
@@ -76,9 +76,9 @@ public class ObservationImpl extends ReactionPropertyImpl implements Observation
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetObservationPattern(Pattern newObservationPattern, NotificationChain msgs)
+  public NotificationChain basicSetObservationPattern(PatternAssignment newObservationPattern, NotificationChain msgs)
   {
-    Pattern oldObservationPattern = observationPattern;
+    PatternAssignment oldObservationPattern = observationPattern;
     observationPattern = newObservationPattern;
     if (eNotificationRequired())
     {
@@ -93,7 +93,7 @@ public class ObservationImpl extends ReactionPropertyImpl implements Observation
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setObservationPattern(Pattern newObservationPattern)
+  public void setObservationPattern(PatternAssignment newObservationPattern)
   {
     if (newObservationPattern != observationPattern)
     {
@@ -152,7 +152,7 @@ public class ObservationImpl extends ReactionPropertyImpl implements Observation
     switch (featureID)
     {
       case ReactionRulesPackage.OBSERVATION__OBSERVATION_PATTERN:
-        setObservationPattern((Pattern)newValue);
+        setObservationPattern((PatternAssignment)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,7 +169,7 @@ public class ObservationImpl extends ReactionPropertyImpl implements Observation
     switch (featureID)
     {
       case ReactionRulesPackage.OBSERVATION__OBSERVATION_PATTERN:
-        setObservationPattern((Pattern)null);
+        setObservationPattern((PatternAssignment)null);
         return;
     }
     super.eUnset(featureID);

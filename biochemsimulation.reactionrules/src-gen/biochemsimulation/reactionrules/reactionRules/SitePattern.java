@@ -52,30 +52,30 @@ public interface SitePattern extends EObject
   void setSite(Site value);
 
   /**
-   * Returns the value of the '<em><b>State</b></em>' reference.
+   * Returns the value of the '<em><b>State</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>State</em>' reference isn't clear,
+   * If the meaning of the '<em>State</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>State</em>' reference.
-   * @see #setState(State)
+   * @return the value of the '<em>State</em>' containment reference.
+   * @see #setState(SiteState)
    * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getSitePattern_State()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  State getState();
+  SiteState getState();
 
   /**
-   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.SitePattern#getState <em>State</em>}' reference.
+   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.SitePattern#getState <em>State</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>State</em>' reference.
+   * @param value the new value of the '<em>State</em>' containment reference.
    * @see #getState()
    * @generated
    */
-  void setState(State value);
+  void setState(SiteState value);
 
   /**
    * Returns the value of the '<em><b>Link State</b></em>' containment reference.

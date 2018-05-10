@@ -3,7 +3,6 @@
  */
 package biochemsimulation.reactionrules.reactionRules;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,9 +13,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.Rule#getLhs <em>Lhs</em>}</li>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.Rule#getRhs <em>Rhs</em>}</li>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.Rule#getVariables <em>Variables</em>}</li>
+ *   <li>{@link biochemsimulation.reactionrules.reactionRules.Rule#getRule <em>Rule</em>}</li>
  * </ul>
  *
  * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getRule()
@@ -26,71 +23,29 @@ import org.eclipse.emf.common.util.EList;
 public interface Rule extends ReactionProperty
 {
   /**
-   * Returns the value of the '<em><b>Lhs</b></em>' containment reference.
+   * Returns the value of the '<em><b>Rule</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Lhs</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Rule</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Lhs</em>' containment reference.
-   * @see #setLhs(Pattern)
-   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getRule_Lhs()
+   * @return the value of the '<em>Rule</em>' containment reference.
+   * @see #setRule(RuleBody)
+   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getRule_Rule()
    * @model containment="true"
    * @generated
    */
-  Pattern getLhs();
+  RuleBody getRule();
 
   /**
-   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.Rule#getLhs <em>Lhs</em>}' containment reference.
+   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.Rule#getRule <em>Rule</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Lhs</em>' containment reference.
-   * @see #getLhs()
+   * @param value the new value of the '<em>Rule</em>' containment reference.
+   * @see #getRule()
    * @generated
    */
-  void setLhs(Pattern value);
-
-  /**
-   * Returns the value of the '<em><b>Rhs</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Rhs</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Rhs</em>' containment reference.
-   * @see #setRhs(Pattern)
-   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getRule_Rhs()
-   * @model containment="true"
-   * @generated
-   */
-  Pattern getRhs();
-
-  /**
-   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.Rule#getRhs <em>Rhs</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Rhs</em>' containment reference.
-   * @see #getRhs()
-   * @generated
-   */
-  void setRhs(Pattern value);
-
-  /**
-   * Returns the value of the '<em><b>Variables</b></em>' reference list.
-   * The list contents are of type {@link biochemsimulation.reactionrules.reactionRules.Variable}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Variables</em>' reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Variables</em>' reference list.
-   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getRule_Variables()
-   * @model
-   * @generated
-   */
-  EList<Variable> getVariables();
+  void setRule(RuleBody value);
 
 } // Rule

@@ -11,6 +11,7 @@ import biochemsimulation.reactionrules.reactionRules.Site
 import biochemsimulation.reactionrules.reactionRules.Variable
 import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.xtext.validation.Check
+import biochemsimulation.reactionrules.reactionRules.Initial
 
 /**
  * This class contains custom validation rules. 
@@ -18,17 +19,6 @@ import org.eclipse.xtext.validation.Check
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class ReactionRulesValidator extends AbstractReactionRulesValidator {
-	
-//	public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					ReactionRulesPackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
 
 	@Check
 	def checkAgentIdUnique(Agent agent) {
@@ -60,6 +50,24 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 			}
 			if(c>1) {
 				error('Variable IDs must be unique.', null)
+				c = 1;
+			}
+		}
+				
+	}
+	
+	@Check
+	def checkInitialIdUnique(Initial initial) {
+		val rootElement = EcoreUtil2.getRootContainer(initial)
+		var candidates = EcoreUtil2.getAllContentsOfType(rootElement, Initial);
+		var c = 0
+		for(candidate : candidates) {
+			var current = candidate as Initial
+			if(current.name.equals(initial.name)) {
+				c++;
+			}
+			if(c>1) {
+				error('Initial IDs must be unique.', null)
 				c = 1;
 			}
 		}

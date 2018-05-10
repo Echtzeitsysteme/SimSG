@@ -114,6 +114,34 @@ public interface ReactionRulesPackage extends EPackage
   int REACTION_PROPERTY_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.ArithmeticValueImpl <em>Arithmetic Value</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ArithmeticValueImpl
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getArithmeticValue()
+   * @generated
+   */
+  int ARITHMETIC_VALUE = 2;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ARITHMETIC_VALUE__VALUE = 0;
+
+  /**
+   * The number of structural features of the '<em>Arithmetic Value</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ARITHMETIC_VALUE_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.StateImpl <em>State</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -121,7 +149,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getState()
    * @generated
    */
-  int STATE = 2;
+  int STATE = 3;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -149,7 +177,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getStates()
    * @generated
    */
-  int STATES = 3;
+  int STATES = 4;
 
   /**
    * The feature id for the '<em><b>State</b></em>' containment reference list.
@@ -177,7 +205,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getSite()
    * @generated
    */
-  int SITE = 4;
+  int SITE = 5;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -214,7 +242,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getSites()
    * @generated
    */
-  int SITES = 5;
+  int SITES = 6;
 
   /**
    * The feature id for the '<em><b>Sites</b></em>' containment reference list.
@@ -242,7 +270,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getAgent()
    * @generated
    */
-  int AGENT = 6;
+  int AGENT = 7;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -279,7 +307,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getVariable()
    * @generated
    */
-  int VARIABLE = 7;
+  int VARIABLE = 10;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -291,22 +319,87 @@ public interface ReactionRulesPackage extends EPackage
   int VARIABLE__NAME = REACTION_PROPERTY__NAME;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int VARIABLE__VALUE = REACTION_PROPERTY_FEATURE_COUNT + 0;
-
-  /**
    * The number of structural features of the '<em>Variable</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VARIABLE_FEATURE_COUNT = REACTION_PROPERTY_FEATURE_COUNT + 1;
+  int VARIABLE_FEATURE_COUNT = REACTION_PROPERTY_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.PatternVariableImpl <em>Pattern Variable</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see biochemsimulation.reactionrules.reactionRules.impl.PatternVariableImpl
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getPatternVariable()
+   * @generated
+   */
+  int PATTERN_VARIABLE = 8;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_VARIABLE__NAME = VARIABLE__NAME;
+
+  /**
+   * The feature id for the '<em><b>Pattern</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_VARIABLE__PATTERN = VARIABLE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Pattern Variable</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_VARIABLE_FEATURE_COUNT = VARIABLE_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.ArithmeticVariableImpl <em>Arithmetic Variable</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ArithmeticVariableImpl
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getArithmeticVariable()
+   * @generated
+   */
+  int ARITHMETIC_VARIABLE = 9;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ARITHMETIC_VARIABLE__NAME = VARIABLE__NAME;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ARITHMETIC_VARIABLE__VALUE = VARIABLE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Arithmetic Variable</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ARITHMETIC_VARIABLE_FEATURE_COUNT = VARIABLE_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.LinkStateImpl <em>Link State</em>}' class.
@@ -316,7 +409,16 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getLinkState()
    * @generated
    */
-  int LINK_STATE = 8;
+  int LINK_STATE = 11;
+
+  /**
+   * The feature id for the '<em><b>Link State</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LINK_STATE__LINK_STATE = 0;
 
   /**
    * The number of structural features of the '<em>Link State</em>' class.
@@ -325,7 +427,35 @@ public interface ReactionRulesPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LINK_STATE_FEATURE_COUNT = 0;
+  int LINK_STATE_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.SiteStateImpl <em>Site State</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see biochemsimulation.reactionrules.reactionRules.impl.SiteStateImpl
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getSiteState()
+   * @generated
+   */
+  int SITE_STATE = 12;
+
+  /**
+   * The feature id for the '<em><b>State</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SITE_STATE__STATE = 0;
+
+  /**
+   * The number of structural features of the '<em>Site State</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SITE_STATE_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.SitePatternImpl <em>Site Pattern</em>}' class.
@@ -335,7 +465,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getSitePattern()
    * @generated
    */
-  int SITE_PATTERN = 9;
+  int SITE_PATTERN = 13;
 
   /**
    * The feature id for the '<em><b>Site</b></em>' reference.
@@ -347,7 +477,7 @@ public interface ReactionRulesPackage extends EPackage
   int SITE_PATTERN__SITE = 0;
 
   /**
-   * The feature id for the '<em><b>State</b></em>' reference.
+   * The feature id for the '<em><b>State</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -381,7 +511,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getAgentPattern()
    * @generated
    */
-  int AGENT_PATTERN = 10;
+  int AGENT_PATTERN = 14;
 
   /**
    * The feature id for the '<em><b>Agent</b></em>' reference.
@@ -418,7 +548,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getPattern()
    * @generated
    */
-  int PATTERN = 11;
+  int PATTERN = 15;
 
   /**
    * The feature id for the '<em><b>Agent Patterns</b></em>' containment reference list.
@@ -446,7 +576,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getObservation()
    * @generated
    */
-  int OBSERVATION = 12;
+  int OBSERVATION = 16;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -483,7 +613,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getInitial()
    * @generated
    */
-  int INITIAL = 13;
+  int INITIAL = 17;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -522,6 +652,117 @@ public interface ReactionRulesPackage extends EPackage
   int INITIAL_FEATURE_COUNT = REACTION_PROPERTY_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.PatternAssignmentImpl <em>Pattern Assignment</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see biochemsimulation.reactionrules.reactionRules.impl.PatternAssignmentImpl
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getPatternAssignment()
+   * @generated
+   */
+  int PATTERN_ASSIGNMENT = 18;
+
+  /**
+   * The feature id for the '<em><b>Pattern</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_ASSIGNMENT__PATTERN = 0;
+
+  /**
+   * The feature id for the '<em><b>Pattern Var</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_ASSIGNMENT__PATTERN_VAR = 1;
+
+  /**
+   * The number of structural features of the '<em>Pattern Assignment</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_ASSIGNMENT_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.RuleVariablesImpl <em>Rule Variables</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see biochemsimulation.reactionrules.reactionRules.impl.RuleVariablesImpl
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getRuleVariables()
+   * @generated
+   */
+  int RULE_VARIABLES = 19;
+
+  /**
+   * The feature id for the '<em><b>Variables</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RULE_VARIABLES__VARIABLES = 0;
+
+  /**
+   * The number of structural features of the '<em>Rule Variables</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RULE_VARIABLES_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.RuleBodyImpl <em>Rule Body</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see biochemsimulation.reactionrules.reactionRules.impl.RuleBodyImpl
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getRuleBody()
+   * @generated
+   */
+  int RULE_BODY = 20;
+
+  /**
+   * The feature id for the '<em><b>Lhs</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RULE_BODY__LHS = 0;
+
+  /**
+   * The feature id for the '<em><b>Rhs</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RULE_BODY__RHS = 1;
+
+  /**
+   * The feature id for the '<em><b>Variables</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RULE_BODY__VARIABLES = 2;
+
+  /**
+   * The number of structural features of the '<em>Rule Body</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RULE_BODY_FEATURE_COUNT = 3;
+
+  /**
    * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.RuleImpl <em>Rule</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -529,7 +770,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getRule()
    * @generated
    */
-  int RULE = 14;
+  int RULE = 21;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -541,31 +782,13 @@ public interface ReactionRulesPackage extends EPackage
   int RULE__NAME = REACTION_PROPERTY__NAME;
 
   /**
-   * The feature id for the '<em><b>Lhs</b></em>' containment reference.
+   * The feature id for the '<em><b>Rule</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RULE__LHS = REACTION_PROPERTY_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Rhs</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RULE__RHS = REACTION_PROPERTY_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Variables</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RULE__VARIABLES = REACTION_PROPERTY_FEATURE_COUNT + 2;
+  int RULE__RULE = REACTION_PROPERTY_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Rule</em>' class.
@@ -574,7 +797,7 @@ public interface ReactionRulesPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RULE_FEATURE_COUNT = REACTION_PROPERTY_FEATURE_COUNT + 3;
+  int RULE_FEATURE_COUNT = REACTION_PROPERTY_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.SemiLinkImpl <em>Semi Link</em>}' class.
@@ -584,7 +807,16 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getSemiLink()
    * @generated
    */
-  int SEMI_LINK = 15;
+  int SEMI_LINK = 22;
+
+  /**
+   * The feature id for the '<em><b>Link State</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SEMI_LINK__LINK_STATE = LINK_STATE__LINK_STATE;
 
   /**
    * The number of structural features of the '<em>Semi Link</em>' class.
@@ -603,7 +835,16 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getFreeLink()
    * @generated
    */
-  int FREE_LINK = 16;
+  int FREE_LINK = 23;
+
+  /**
+   * The feature id for the '<em><b>Link State</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FREE_LINK__LINK_STATE = LINK_STATE__LINK_STATE;
 
   /**
    * The number of structural features of the '<em>Free Link</em>' class.
@@ -615,6 +856,34 @@ public interface ReactionRulesPackage extends EPackage
   int FREE_LINK_FEATURE_COUNT = LINK_STATE_FEATURE_COUNT + 0;
 
   /**
+   * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.WhatEverImpl <em>What Ever</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see biochemsimulation.reactionrules.reactionRules.impl.WhatEverImpl
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getWhatEver()
+   * @generated
+   */
+  int WHAT_EVER = 24;
+
+  /**
+   * The feature id for the '<em><b>Link State</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int WHAT_EVER__LINK_STATE = LINK_STATE__LINK_STATE;
+
+  /**
+   * The number of structural features of the '<em>What Ever</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int WHAT_EVER_FEATURE_COUNT = LINK_STATE_FEATURE_COUNT + 0;
+
+  /**
    * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.LimitLinkImpl <em>Limit Link</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -622,7 +891,16 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getLimitLink()
    * @generated
    */
-  int LIMIT_LINK = 17;
+  int LIMIT_LINK = 25;
+
+  /**
+   * The feature id for the '<em><b>Link State</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LIMIT_LINK__LINK_STATE = LINK_STATE__LINK_STATE;
 
   /**
    * The feature id for the '<em><b>State</b></em>' attribute.
@@ -650,7 +928,16 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getExactLink()
    * @generated
    */
-  int EXACT_LINK = 18;
+  int EXACT_LINK = 26;
+
+  /**
+   * The feature id for the '<em><b>Link State</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXACT_LINK__LINK_STATE = LINK_STATE__LINK_STATE;
 
   /**
    * The feature id for the '<em><b>Site</b></em>' reference.
@@ -721,6 +1008,27 @@ public interface ReactionRulesPackage extends EPackage
    * @generated
    */
   EAttribute getReactionProperty_Name();
+
+  /**
+   * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.ArithmeticValue <em>Arithmetic Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Arithmetic Value</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.ArithmeticValue
+   * @generated
+   */
+  EClass getArithmeticValue();
+
+  /**
+   * Returns the meta object for the attribute '{@link biochemsimulation.reactionrules.reactionRules.ArithmeticValue#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.ArithmeticValue#getValue()
+   * @see #getArithmeticValue()
+   * @generated
+   */
+  EAttribute getArithmeticValue_Value();
 
   /**
    * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.State <em>State</em>}'.
@@ -839,6 +1147,48 @@ public interface ReactionRulesPackage extends EPackage
   EReference getAgent_Sites();
 
   /**
+   * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.PatternVariable <em>Pattern Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pattern Variable</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.PatternVariable
+   * @generated
+   */
+  EClass getPatternVariable();
+
+  /**
+   * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.PatternVariable#getPattern <em>Pattern</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Pattern</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.PatternVariable#getPattern()
+   * @see #getPatternVariable()
+   * @generated
+   */
+  EReference getPatternVariable_Pattern();
+
+  /**
+   * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.ArithmeticVariable <em>Arithmetic Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Arithmetic Variable</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.ArithmeticVariable
+   * @generated
+   */
+  EClass getArithmeticVariable();
+
+  /**
+   * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.ArithmeticVariable#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Value</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.ArithmeticVariable#getValue()
+   * @see #getArithmeticVariable()
+   * @generated
+   */
+  EReference getArithmeticVariable_Value();
+
+  /**
    * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.Variable <em>Variable</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -849,17 +1199,6 @@ public interface ReactionRulesPackage extends EPackage
   EClass getVariable();
 
   /**
-   * Returns the meta object for the attribute '{@link biochemsimulation.reactionrules.reactionRules.Variable#getValue <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Value</em>'.
-   * @see biochemsimulation.reactionrules.reactionRules.Variable#getValue()
-   * @see #getVariable()
-   * @generated
-   */
-  EAttribute getVariable_Value();
-
-  /**
    * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.LinkState <em>Link State</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -868,6 +1207,38 @@ public interface ReactionRulesPackage extends EPackage
    * @generated
    */
   EClass getLinkState();
+
+  /**
+   * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.LinkState#getLinkState <em>Link State</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Link State</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.LinkState#getLinkState()
+   * @see #getLinkState()
+   * @generated
+   */
+  EReference getLinkState_LinkState();
+
+  /**
+   * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.SiteState <em>Site State</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Site State</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.SiteState
+   * @generated
+   */
+  EClass getSiteState();
+
+  /**
+   * Returns the meta object for the reference '{@link biochemsimulation.reactionrules.reactionRules.SiteState#getState <em>State</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>State</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.SiteState#getState()
+   * @see #getSiteState()
+   * @generated
+   */
+  EReference getSiteState_State();
 
   /**
    * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.SitePattern <em>Site Pattern</em>}'.
@@ -891,10 +1262,10 @@ public interface ReactionRulesPackage extends EPackage
   EReference getSitePattern_Site();
 
   /**
-   * Returns the meta object for the reference '{@link biochemsimulation.reactionrules.reactionRules.SitePattern#getState <em>State</em>}'.
+   * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.SitePattern#getState <em>State</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>State</em>'.
+   * @return the meta object for the containment reference '<em>State</em>'.
    * @see biochemsimulation.reactionrules.reactionRules.SitePattern#getState()
    * @see #getSitePattern()
    * @generated
@@ -1019,6 +1390,102 @@ public interface ReactionRulesPackage extends EPackage
   EReference getInitial_InitialPattern();
 
   /**
+   * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.PatternAssignment <em>Pattern Assignment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Pattern Assignment</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.PatternAssignment
+   * @generated
+   */
+  EClass getPatternAssignment();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link biochemsimulation.reactionrules.reactionRules.PatternAssignment#getPattern <em>Pattern</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Pattern</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.PatternAssignment#getPattern()
+   * @see #getPatternAssignment()
+   * @generated
+   */
+  EReference getPatternAssignment_Pattern();
+
+  /**
+   * Returns the meta object for the reference list '{@link biochemsimulation.reactionrules.reactionRules.PatternAssignment#getPatternVar <em>Pattern Var</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Pattern Var</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.PatternAssignment#getPatternVar()
+   * @see #getPatternAssignment()
+   * @generated
+   */
+  EReference getPatternAssignment_PatternVar();
+
+  /**
+   * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.RuleVariables <em>Rule Variables</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Rule Variables</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.RuleVariables
+   * @generated
+   */
+  EClass getRuleVariables();
+
+  /**
+   * Returns the meta object for the reference list '{@link biochemsimulation.reactionrules.reactionRules.RuleVariables#getVariables <em>Variables</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Variables</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.RuleVariables#getVariables()
+   * @see #getRuleVariables()
+   * @generated
+   */
+  EReference getRuleVariables_Variables();
+
+  /**
+   * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.RuleBody <em>Rule Body</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Rule Body</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.RuleBody
+   * @generated
+   */
+  EClass getRuleBody();
+
+  /**
+   * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.RuleBody#getLhs <em>Lhs</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Lhs</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.RuleBody#getLhs()
+   * @see #getRuleBody()
+   * @generated
+   */
+  EReference getRuleBody_Lhs();
+
+  /**
+   * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.RuleBody#getRhs <em>Rhs</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Rhs</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.RuleBody#getRhs()
+   * @see #getRuleBody()
+   * @generated
+   */
+  EReference getRuleBody_Rhs();
+
+  /**
+   * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.RuleBody#getVariables <em>Variables</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Variables</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.RuleBody#getVariables()
+   * @see #getRuleBody()
+   * @generated
+   */
+  EReference getRuleBody_Variables();
+
+  /**
    * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.Rule <em>Rule</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1029,37 +1496,15 @@ public interface ReactionRulesPackage extends EPackage
   EClass getRule();
 
   /**
-   * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.Rule#getLhs <em>Lhs</em>}'.
+   * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.Rule#getRule <em>Rule</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Lhs</em>'.
-   * @see biochemsimulation.reactionrules.reactionRules.Rule#getLhs()
+   * @return the meta object for the containment reference '<em>Rule</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.Rule#getRule()
    * @see #getRule()
    * @generated
    */
-  EReference getRule_Lhs();
-
-  /**
-   * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.Rule#getRhs <em>Rhs</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Rhs</em>'.
-   * @see biochemsimulation.reactionrules.reactionRules.Rule#getRhs()
-   * @see #getRule()
-   * @generated
-   */
-  EReference getRule_Rhs();
-
-  /**
-   * Returns the meta object for the reference list '{@link biochemsimulation.reactionrules.reactionRules.Rule#getVariables <em>Variables</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Variables</em>'.
-   * @see biochemsimulation.reactionrules.reactionRules.Rule#getVariables()
-   * @see #getRule()
-   * @generated
-   */
-  EReference getRule_Variables();
+  EReference getRule_Rule();
 
   /**
    * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.SemiLink <em>Semi Link</em>}'.
@@ -1080,6 +1525,16 @@ public interface ReactionRulesPackage extends EPackage
    * @generated
    */
   EClass getFreeLink();
+
+  /**
+   * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.WhatEver <em>What Ever</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>What Ever</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.WhatEver
+   * @generated
+   */
+  EClass getWhatEver();
 
   /**
    * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.LimitLink <em>Limit Link</em>}'.
@@ -1194,6 +1649,24 @@ public interface ReactionRulesPackage extends EPackage
     EAttribute REACTION_PROPERTY__NAME = eINSTANCE.getReactionProperty_Name();
 
     /**
+     * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.ArithmeticValueImpl <em>Arithmetic Value</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ArithmeticValueImpl
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getArithmeticValue()
+     * @generated
+     */
+    EClass ARITHMETIC_VALUE = eINSTANCE.getArithmeticValue();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ARITHMETIC_VALUE__VALUE = eINSTANCE.getArithmeticValue_Value();
+
+    /**
      * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.StateImpl <em>State</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1292,6 +1765,42 @@ public interface ReactionRulesPackage extends EPackage
     EReference AGENT__SITES = eINSTANCE.getAgent_Sites();
 
     /**
+     * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.PatternVariableImpl <em>Pattern Variable</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see biochemsimulation.reactionrules.reactionRules.impl.PatternVariableImpl
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getPatternVariable()
+     * @generated
+     */
+    EClass PATTERN_VARIABLE = eINSTANCE.getPatternVariable();
+
+    /**
+     * The meta object literal for the '<em><b>Pattern</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PATTERN_VARIABLE__PATTERN = eINSTANCE.getPatternVariable_Pattern();
+
+    /**
+     * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.ArithmeticVariableImpl <em>Arithmetic Variable</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ArithmeticVariableImpl
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getArithmeticVariable()
+     * @generated
+     */
+    EClass ARITHMETIC_VARIABLE = eINSTANCE.getArithmeticVariable();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ARITHMETIC_VARIABLE__VALUE = eINSTANCE.getArithmeticVariable_Value();
+
+    /**
      * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.VariableImpl <em>Variable</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1302,14 +1811,6 @@ public interface ReactionRulesPackage extends EPackage
     EClass VARIABLE = eINSTANCE.getVariable();
 
     /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute VARIABLE__VALUE = eINSTANCE.getVariable_Value();
-
-    /**
      * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.LinkStateImpl <em>Link State</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1318,6 +1819,32 @@ public interface ReactionRulesPackage extends EPackage
      * @generated
      */
     EClass LINK_STATE = eINSTANCE.getLinkState();
+
+    /**
+     * The meta object literal for the '<em><b>Link State</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LINK_STATE__LINK_STATE = eINSTANCE.getLinkState_LinkState();
+
+    /**
+     * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.SiteStateImpl <em>Site State</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see biochemsimulation.reactionrules.reactionRules.impl.SiteStateImpl
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getSiteState()
+     * @generated
+     */
+    EClass SITE_STATE = eINSTANCE.getSiteState();
+
+    /**
+     * The meta object literal for the '<em><b>State</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SITE_STATE__STATE = eINSTANCE.getSiteState_State();
 
     /**
      * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.SitePatternImpl <em>Site Pattern</em>}' class.
@@ -1338,7 +1865,7 @@ public interface ReactionRulesPackage extends EPackage
     EReference SITE_PATTERN__SITE = eINSTANCE.getSitePattern_Site();
 
     /**
-     * The meta object literal for the '<em><b>State</b></em>' reference feature.
+     * The meta object literal for the '<em><b>State</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1442,6 +1969,84 @@ public interface ReactionRulesPackage extends EPackage
     EReference INITIAL__INITIAL_PATTERN = eINSTANCE.getInitial_InitialPattern();
 
     /**
+     * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.PatternAssignmentImpl <em>Pattern Assignment</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see biochemsimulation.reactionrules.reactionRules.impl.PatternAssignmentImpl
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getPatternAssignment()
+     * @generated
+     */
+    EClass PATTERN_ASSIGNMENT = eINSTANCE.getPatternAssignment();
+
+    /**
+     * The meta object literal for the '<em><b>Pattern</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PATTERN_ASSIGNMENT__PATTERN = eINSTANCE.getPatternAssignment_Pattern();
+
+    /**
+     * The meta object literal for the '<em><b>Pattern Var</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PATTERN_ASSIGNMENT__PATTERN_VAR = eINSTANCE.getPatternAssignment_PatternVar();
+
+    /**
+     * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.RuleVariablesImpl <em>Rule Variables</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see biochemsimulation.reactionrules.reactionRules.impl.RuleVariablesImpl
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getRuleVariables()
+     * @generated
+     */
+    EClass RULE_VARIABLES = eINSTANCE.getRuleVariables();
+
+    /**
+     * The meta object literal for the '<em><b>Variables</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RULE_VARIABLES__VARIABLES = eINSTANCE.getRuleVariables_Variables();
+
+    /**
+     * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.RuleBodyImpl <em>Rule Body</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see biochemsimulation.reactionrules.reactionRules.impl.RuleBodyImpl
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getRuleBody()
+     * @generated
+     */
+    EClass RULE_BODY = eINSTANCE.getRuleBody();
+
+    /**
+     * The meta object literal for the '<em><b>Lhs</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RULE_BODY__LHS = eINSTANCE.getRuleBody_Lhs();
+
+    /**
+     * The meta object literal for the '<em><b>Rhs</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RULE_BODY__RHS = eINSTANCE.getRuleBody_Rhs();
+
+    /**
+     * The meta object literal for the '<em><b>Variables</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RULE_BODY__VARIABLES = eINSTANCE.getRuleBody_Variables();
+
+    /**
      * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.RuleImpl <em>Rule</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1452,28 +2057,12 @@ public interface ReactionRulesPackage extends EPackage
     EClass RULE = eINSTANCE.getRule();
 
     /**
-     * The meta object literal for the '<em><b>Lhs</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Rule</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference RULE__LHS = eINSTANCE.getRule_Lhs();
-
-    /**
-     * The meta object literal for the '<em><b>Rhs</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference RULE__RHS = eINSTANCE.getRule_Rhs();
-
-    /**
-     * The meta object literal for the '<em><b>Variables</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference RULE__VARIABLES = eINSTANCE.getRule_Variables();
+    EReference RULE__RULE = eINSTANCE.getRule_Rule();
 
     /**
      * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.SemiLinkImpl <em>Semi Link</em>}' class.
@@ -1494,6 +2083,16 @@ public interface ReactionRulesPackage extends EPackage
      * @generated
      */
     EClass FREE_LINK = eINSTANCE.getFreeLink();
+
+    /**
+     * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.WhatEverImpl <em>What Ever</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see biochemsimulation.reactionrules.reactionRules.impl.WhatEverImpl
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getWhatEver()
+     * @generated
+     */
+    EClass WHAT_EVER = eINSTANCE.getWhatEver();
 
     /**
      * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.LimitLinkImpl <em>Limit Link</em>}' class.

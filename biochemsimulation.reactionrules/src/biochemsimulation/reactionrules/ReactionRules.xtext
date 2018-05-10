@@ -9,12 +9,59 @@ ReactionProperty returns ReactionProperty:
 	Agent | Variable | Observation | Initial | Rule
 ;
 
-Float returns ecore::EFloat:
-	INT '.' INT
+terminal AT:
+	'@'
+;
+terminal BI:
+	'<->'
+;
+terminal UNI:
+	'->'
 ;
 
-BigInteger returns ecore::EBigInteger:
+terminal SEMI_LINK:
+	'semi'
+;
+
+terminal FREE_LINK:
+	'free'
+;
+
+terminal WHATEVER_LINK:
+	'?'
+;
+
+terminal EXPONENT:
+	'E'
+;
+
+@Override
+terminal INT returns ecore::EInt:
+	'0'..'9' ('0'..'9')*
+;
+
+Float hidden():
+	('-')?INT '.' INT
+;
+
+ScientificFloat hidden():
+	('-')?INT '.' INT EXPONENT('-')?INT
+;
+
+UnsignedInteger  hidden():
 	INT
+;
+
+SignedInteger  hidden():
+	('-'INT)
+;
+
+ArithmeticType:
+	Float | UnsignedInteger | SignedInteger | ScientificFloat
+;
+
+ArithmeticValue returns ArithmeticValue:
+	value = ArithmeticType
 ;
 
 State returns State:
@@ -28,7 +75,7 @@ States:
 
 Site returns Site:
 	name=ID
-	(states=States)
+	states = States
 ;
 
 Sites:
@@ -37,35 +84,47 @@ Sites:
 ;
 
 Agent returns Agent:
-	'Agent'
+	'agent'
 	name = ID
-	(sites=Sites)
+	sites = Sites
 ;
 
-Variable returns Variable:
-	'Variable'
+PatternVariable returns PatternVariable:
+	'var'
 	name = ID
 	'='
-	value=Float
+	pattern = Pattern
 ;
 
-LinkState returns LinkState:
-	SemiLink | FreeLink | ExactLink | LimitLink 
+ArithmeticVariable returns ArithmeticVariable:
+	'var'
+	name = ID
+	'='
+	value = ArithmeticValue
+;
+
+Variable:
+	PatternVariable | ArithmeticVariable
 ;
 
 SemiLink returns LinkState :
 	{SemiLink}
-	'Semi-Link'
+	SEMI_LINK
 ;
 
 FreeLink returns LinkState :
 	{FreeLink}
-	'Free'
+	FREE_LINK
+;
+
+WhatEver returns LinkState :
+	{WhatEver}
+	WHATEVER_LINK
 ;
 
 LimitLink returns LinkState :
 	{LimitLink}
-	state = BigInteger
+	state = UnsignedInteger
 ;
 
 ExactLink returns LinkState :
@@ -75,10 +134,20 @@ ExactLink returns LinkState :
 	agent = [Agent]
 ;
 
+SiteState:
+	{SiteState}
+	state = [State]
+;
+
+LinkState:
+	{LinkState}
+	 linkState = (SemiLink | FreeLink | ExactLink | LimitLink | WhatEver) 
+;
+
 SitePattern returns SitePattern:
 	{SitePattern}
-	site = [Site]
-	('{' state = [State] '}')?
+	site = [Site] 
+	('{' state = SiteState '}')?
 	('[' linkState = LinkState ']')?
 ;
 
@@ -92,29 +161,60 @@ AgentPattern returns AgentPattern:
 
 Pattern returns Pattern:
 	{Pattern}
-	(agentPatterns += AgentPattern (',' agentPatterns += AgentPattern)* )?
+	'{' (agentPatterns += AgentPattern (',' agentPatterns += AgentPattern )* )?  '}'
 ;
 
 Observation returns Observation:
-	'Observation'
+	'obs'
 	name = ID
-	observationPattern = Pattern
+	observationPattern = PatternAssignment
 ;
 
 Initial returns Initial:
-	'Initial'
+	'init'
 	name = ID
-	count = BigInteger
-	initialPattern = Pattern
+	count = UnsignedInteger
+	initialPattern = PatternAssignment
+;
+
+AssignFromPattern returns PatternAssignment:
+	pattern += Pattern
+;
+
+AssignFromVariable returns PatternAssignment:
+	patternVar += [PatternVariable] 
+;
+
+PatternAssignment:
+	AssignFromPattern | AssignFromVariable
+;
+
+RuleVariables returns RuleVariables:
+	variables += [ArithmeticVariable] (',' variables += [ArithmeticVariable])*
+;
+
+UnidirectionalRule returns RuleBody:
+	lhs = PatternAssignment
+	UNI
+	rhs = PatternAssignment
+	AT
+	'[' variables = RuleVariables ']'
+;
+
+BidirectionalRule returns RuleBody:
+	lhs = PatternAssignment
+	BI
+	rhs = PatternAssignment
+	AT
+	'[' variables = RuleVariables']'
+;
+
+RuleBody:
+	UnidirectionalRule | BidirectionalRule
 ;
 
 Rule returns Rule:
-	'Rule'
+	'rule'
 	name = ID
-	lhs = Pattern
-	('uni' | 'bi')
-	rhs = Pattern
-	'at'
-	variables += [Variable] (',' variables += [Variable])*
-	
+	rule = RuleBody
 ;

@@ -4,6 +4,7 @@
 package biochemsimulation.reactionrules.validation;
 
 import biochemsimulation.reactionrules.reactionRules.Agent;
+import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.Observation;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 import biochemsimulation.reactionrules.reactionRules.Rule;
@@ -56,6 +57,26 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
         }
         if ((c > 1)) {
           this.error("Variable IDs must be unique.", null);
+          c = 1;
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkInitialIdUnique(final Initial initial) {
+    final EObject rootElement = EcoreUtil2.getRootContainer(initial);
+    List<Initial> candidates = EcoreUtil2.<Initial>getAllContentsOfType(rootElement, Initial.class);
+    int c = 0;
+    for (final Initial candidate : candidates) {
+      {
+        Initial current = ((Initial) candidate);
+        boolean _equals = current.getName().equals(initial.getName());
+        if (_equals) {
+          c++;
+        }
+        if ((c > 1)) {
+          this.error("Initial IDs must be unique.", null);
           c = 1;
         }
       }

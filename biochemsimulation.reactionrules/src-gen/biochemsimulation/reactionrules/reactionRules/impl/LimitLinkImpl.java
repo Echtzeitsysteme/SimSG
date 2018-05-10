@@ -6,8 +6,6 @@ package biochemsimulation.reactionrules.reactionRules.impl;
 import biochemsimulation.reactionrules.reactionRules.LimitLink;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 
-import java.math.BigInteger;
-
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
@@ -37,7 +35,7 @@ public class LimitLinkImpl extends LinkStateImpl implements LimitLink
    * @generated
    * @ordered
    */
-  protected static final BigInteger STATE_EDEFAULT = null;
+  protected static final String STATE_EDEFAULT = null;
 
   /**
    * The cached value of the '{@link #getState() <em>State</em>}' attribute.
@@ -47,7 +45,7 @@ public class LimitLinkImpl extends LinkStateImpl implements LimitLink
    * @generated
    * @ordered
    */
-  protected BigInteger state = STATE_EDEFAULT;
+  protected String state = STATE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -75,7 +73,7 @@ public class LimitLinkImpl extends LinkStateImpl implements LimitLink
    * <!-- end-user-doc -->
    * @generated
    */
-  public BigInteger getState()
+  public String getState()
   {
     return state;
   }
@@ -85,9 +83,9 @@ public class LimitLinkImpl extends LinkStateImpl implements LimitLink
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setState(BigInteger newState)
+  public void setState(String newState)
   {
-    BigInteger oldState = state;
+    String oldState = state;
     state = newState;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.LIMIT_LINK__STATE, oldState, state));
@@ -120,7 +118,7 @@ public class LimitLinkImpl extends LinkStateImpl implements LimitLink
     switch (featureID)
     {
       case ReactionRulesPackage.LIMIT_LINK__STATE:
-        setState((BigInteger)newValue);
+        setState((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);

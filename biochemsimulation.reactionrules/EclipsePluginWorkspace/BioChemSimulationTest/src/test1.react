@@ -1,29 +1,42 @@
 /* Agents & Sites & Site Modifications */
-Agent A(x, c)
-Agent B(x)
-Agent C(x1{u, p}, x2{u, p})
-/* Variables */
-Variable on_rate = 0.0001
-Variable off_rate = 0.1
-Variable mod_rate = 1.0
-Observation AB A(x[x.B])
-/* Observations */
-Observation Cuu C(x1{u}, x2{u})
-Observation Cpu C(x1{p}, x2{u})
-Observation Cpp C(x1{p}, x2{p})
-/* Initial conditions */
-Initial init1 1000 A(),B()
-Initial init1 10000 C(x1{u}, x2{u})
-/* Rules */
-Rule AtoB A(x[Free]), B(x[Free]) bi A(x[1]), B(x[1]) at on_rate, off_rate
-			
-Rule ABtoC A(x[Semi-Link], c[Free]), C(x1{u}[Free]) uni 
-			A(x[Semi-Link], c[2]), C(x1{u}[2]) at on_rate
-			
-Rule modX1 C(x1{u}[1]), A(c[1]) uni C(x1{p}[Free]), A(c[Free]) at mod_rate
+agent A(x, c)
+agent B(x)
+agent C(x1{u, p}, x2{u, p})
+agent D(x1{e, q}, x2{y, t})
 
-Rule AtoC A(x[Free],c[Free]), C(x1{p}[Free], x2{u}[Free]) uni 
-			A(x[Free],c[1]), C(x1{p}[Free], x2{u}[1]) at on_rate
+/* Variables */
+var on_rate = 0.0001
+var off_rate = 0.1
+var mod_rate = 1.0
+//new variable features, i.e. signed integer, unsigned integer, scientific floats and patterns
+var int = -1
+var uint = 2
+var pattern = { A(), B(x[free]) }
+var sci = -2.45E-2
+
+/* Observations */
+obs Cuu { C(x1{u}, x2{u}) }
+obs Cpu { C(x1{p}, x2{u}) }
+obs Cpp { C(x1{p}, x2{p}) }
+obs AxB { A(x[x.B]) }
+
+/* Initial conditions */
+init init1 1000 { A(),B() }
+init init2 10000 { C(x1{u}, x2{u}) }
+
+/* Rules */
+rule AtoB { A(x[free]), B(x[free]) } <-> { A(x[1]), B(x[1]) } @ [on_rate, off_rate]
 			
-Rule modX2 A(x[Free], c[1]), C(x1{p}[Free], x2{u}[1]) uni 
-         A(x[Free], c[Free]), C(x1{p}[Free], x2{p}[Free]) at mod_rate
+rule ABtoC { A(x[semi], c[free]), C(x1{u}[free]) } -> 
+			{ A(x[semi], c[2]), C(x1{u}[2]) } @ [on_rate]
+			
+rule modX1 { C(x1{u}[1]), A(c[1]) } -> { C(x1{p}[free]), A(c[free]) } @ [mod_rate]
+
+rule AtoC { A(x[free],c[free]), C(x1{p}[free], x2{u}[free]) } -> 
+			{ A(x[free],c[1]), C(x1{p}[free], x2{u}[1]) } @ [on_rate]
+			
+rule modX2 { A(x[free], c[1]), C(x1{p}[free], x2{u}[1]) } -> 
+         { A(x[free], c[free]), C(x1{p}[free], x2{p}[free]) } @ [mod_rate]
+         
+// new rule features, i.e. assign patterns from pattern variables 
+rule varTest pattern <-> { A(x[?]) } @ [on_rate, off_rate]

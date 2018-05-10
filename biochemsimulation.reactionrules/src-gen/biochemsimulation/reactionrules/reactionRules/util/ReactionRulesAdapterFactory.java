@@ -86,6 +86,11 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
         return createReactionPropertyAdapter();
       }
       @Override
+      public Adapter caseArithmeticValue(ArithmeticValue object)
+      {
+        return createArithmeticValueAdapter();
+      }
+      @Override
       public Adapter caseState(State object)
       {
         return createStateAdapter();
@@ -111,6 +116,16 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
         return createAgentAdapter();
       }
       @Override
+      public Adapter casePatternVariable(PatternVariable object)
+      {
+        return createPatternVariableAdapter();
+      }
+      @Override
+      public Adapter caseArithmeticVariable(ArithmeticVariable object)
+      {
+        return createArithmeticVariableAdapter();
+      }
+      @Override
       public Adapter caseVariable(Variable object)
       {
         return createVariableAdapter();
@@ -119,6 +134,11 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
       public Adapter caseLinkState(LinkState object)
       {
         return createLinkStateAdapter();
+      }
+      @Override
+      public Adapter caseSiteState(SiteState object)
+      {
+        return createSiteStateAdapter();
       }
       @Override
       public Adapter caseSitePattern(SitePattern object)
@@ -146,6 +166,21 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
         return createInitialAdapter();
       }
       @Override
+      public Adapter casePatternAssignment(PatternAssignment object)
+      {
+        return createPatternAssignmentAdapter();
+      }
+      @Override
+      public Adapter caseRuleVariables(RuleVariables object)
+      {
+        return createRuleVariablesAdapter();
+      }
+      @Override
+      public Adapter caseRuleBody(RuleBody object)
+      {
+        return createRuleBodyAdapter();
+      }
+      @Override
       public Adapter caseRule(Rule object)
       {
         return createRuleAdapter();
@@ -159,6 +194,11 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
       public Adapter caseFreeLink(FreeLink object)
       {
         return createFreeLinkAdapter();
+      }
+      @Override
+      public Adapter caseWhatEver(WhatEver object)
+      {
+        return createWhatEverAdapter();
       }
       @Override
       public Adapter caseLimitLink(LimitLink object)
@@ -218,6 +258,21 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createReactionPropertyAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.ArithmeticValue <em>Arithmetic Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.ArithmeticValue
+   * @generated
+   */
+  public Adapter createArithmeticValueAdapter()
   {
     return null;
   }
@@ -298,6 +353,36 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.PatternVariable <em>Pattern Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.PatternVariable
+   * @generated
+   */
+  public Adapter createPatternVariableAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.ArithmeticVariable <em>Arithmetic Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.ArithmeticVariable
+   * @generated
+   */
+  public Adapter createArithmeticVariableAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.Variable <em>Variable</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -323,6 +408,21 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createLinkStateAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.SiteState <em>Site State</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.SiteState
+   * @generated
+   */
+  public Adapter createSiteStateAdapter()
   {
     return null;
   }
@@ -403,6 +503,51 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.PatternAssignment <em>Pattern Assignment</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.PatternAssignment
+   * @generated
+   */
+  public Adapter createPatternAssignmentAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.RuleVariables <em>Rule Variables</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.RuleVariables
+   * @generated
+   */
+  public Adapter createRuleVariablesAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.RuleBody <em>Rule Body</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.RuleBody
+   * @generated
+   */
+  public Adapter createRuleBodyAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.Rule <em>Rule</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -443,6 +588,21 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createFreeLinkAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.WhatEver <em>What Ever</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.WhatEver
+   * @generated
+   */
+  public Adapter createWhatEverAdapter()
   {
     return null;
   }

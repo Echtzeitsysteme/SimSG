@@ -5,6 +5,8 @@ package biochemsimulation.reactionrules.reactionRules.impl;
 
 import biochemsimulation.reactionrules.reactionRules.Agent;
 import biochemsimulation.reactionrules.reactionRules.AgentPattern;
+import biochemsimulation.reactionrules.reactionRules.ArithmeticValue;
+import biochemsimulation.reactionrules.reactionRules.ArithmeticVariable;
 import biochemsimulation.reactionrules.reactionRules.ExactLink;
 import biochemsimulation.reactionrules.reactionRules.FreeLink;
 import biochemsimulation.reactionrules.reactionRules.Initial;
@@ -12,18 +14,24 @@ import biochemsimulation.reactionrules.reactionRules.LimitLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.Observation;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
+import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
+import biochemsimulation.reactionrules.reactionRules.PatternVariable;
 import biochemsimulation.reactionrules.reactionRules.ReactionProperty;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesFactory;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 import biochemsimulation.reactionrules.reactionRules.Rule;
+import biochemsimulation.reactionrules.reactionRules.RuleBody;
+import biochemsimulation.reactionrules.reactionRules.RuleVariables;
 import biochemsimulation.reactionrules.reactionRules.SemiLink;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
+import biochemsimulation.reactionrules.reactionRules.SiteState;
 import biochemsimulation.reactionrules.reactionRules.Sites;
 import biochemsimulation.reactionrules.reactionRules.State;
 import biochemsimulation.reactionrules.reactionRules.States;
 import biochemsimulation.reactionrules.reactionRules.Variable;
+import biochemsimulation.reactionrules.reactionRules.WhatEver;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -53,6 +61,13 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * @generated
    */
   private EClass reactionPropertyEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass arithmeticValueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -94,6 +109,20 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass patternVariableEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass arithmeticVariableEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass variableEClass = null;
 
   /**
@@ -102,6 +131,13 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * @generated
    */
   private EClass linkStateEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass siteStateEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -143,6 +179,27 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass patternAssignmentEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass ruleVariablesEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass ruleBodyEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass ruleEClass = null;
 
   /**
@@ -158,6 +215,13 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * @generated
    */
   private EClass freeLinkEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass whatEverEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -281,6 +345,26 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getArithmeticValue()
+  {
+    return arithmeticValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getArithmeticValue_Value()
+  {
+    return (EAttribute)arithmeticValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getState()
   {
     return stateEClass;
@@ -391,6 +475,46 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getPatternVariable()
+  {
+    return patternVariableEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPatternVariable_Pattern()
+  {
+    return (EReference)patternVariableEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getArithmeticVariable()
+  {
+    return arithmeticVariableEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getArithmeticVariable_Value()
+  {
+    return (EReference)arithmeticVariableEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getVariable()
   {
     return variableEClass;
@@ -401,9 +525,9 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getVariable_Value()
+  public EClass getLinkState()
   {
-    return (EAttribute)variableEClass.getEStructuralFeatures().get(0);
+    return linkStateEClass;
   }
 
   /**
@@ -411,9 +535,29 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getLinkState()
+  public EReference getLinkState_LinkState()
   {
-    return linkStateEClass;
+    return (EReference)linkStateEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getSiteState()
+  {
+    return siteStateEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSiteState_State()
+  {
+    return (EReference)siteStateEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -561,6 +705,96 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getPatternAssignment()
+  {
+    return patternAssignmentEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPatternAssignment_Pattern()
+  {
+    return (EReference)patternAssignmentEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPatternAssignment_PatternVar()
+  {
+    return (EReference)patternAssignmentEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRuleVariables()
+  {
+    return ruleVariablesEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRuleVariables_Variables()
+  {
+    return (EReference)ruleVariablesEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRuleBody()
+  {
+    return ruleBodyEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRuleBody_Lhs()
+  {
+    return (EReference)ruleBodyEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRuleBody_Rhs()
+  {
+    return (EReference)ruleBodyEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRuleBody_Variables()
+  {
+    return (EReference)ruleBodyEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getRule()
   {
     return ruleEClass;
@@ -571,29 +805,9 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getRule_Lhs()
+  public EReference getRule_Rule()
   {
     return (EReference)ruleEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getRule_Rhs()
-  {
-    return (EReference)ruleEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getRule_Variables()
-  {
-    return (EReference)ruleEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -614,6 +828,16 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
   public EClass getFreeLink()
   {
     return freeLinkEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getWhatEver()
+  {
+    return whatEverEClass;
   }
 
   /**
@@ -702,6 +926,9 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     reactionPropertyEClass = createEClass(REACTION_PROPERTY);
     createEAttribute(reactionPropertyEClass, REACTION_PROPERTY__NAME);
 
+    arithmeticValueEClass = createEClass(ARITHMETIC_VALUE);
+    createEAttribute(arithmeticValueEClass, ARITHMETIC_VALUE__VALUE);
+
     stateEClass = createEClass(STATE);
     createEAttribute(stateEClass, STATE__NAME);
 
@@ -718,10 +945,19 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     agentEClass = createEClass(AGENT);
     createEReference(agentEClass, AGENT__SITES);
 
+    patternVariableEClass = createEClass(PATTERN_VARIABLE);
+    createEReference(patternVariableEClass, PATTERN_VARIABLE__PATTERN);
+
+    arithmeticVariableEClass = createEClass(ARITHMETIC_VARIABLE);
+    createEReference(arithmeticVariableEClass, ARITHMETIC_VARIABLE__VALUE);
+
     variableEClass = createEClass(VARIABLE);
-    createEAttribute(variableEClass, VARIABLE__VALUE);
 
     linkStateEClass = createEClass(LINK_STATE);
+    createEReference(linkStateEClass, LINK_STATE__LINK_STATE);
+
+    siteStateEClass = createEClass(SITE_STATE);
+    createEReference(siteStateEClass, SITE_STATE__STATE);
 
     sitePatternEClass = createEClass(SITE_PATTERN);
     createEReference(sitePatternEClass, SITE_PATTERN__SITE);
@@ -742,14 +978,26 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     createEAttribute(initialEClass, INITIAL__COUNT);
     createEReference(initialEClass, INITIAL__INITIAL_PATTERN);
 
+    patternAssignmentEClass = createEClass(PATTERN_ASSIGNMENT);
+    createEReference(patternAssignmentEClass, PATTERN_ASSIGNMENT__PATTERN);
+    createEReference(patternAssignmentEClass, PATTERN_ASSIGNMENT__PATTERN_VAR);
+
+    ruleVariablesEClass = createEClass(RULE_VARIABLES);
+    createEReference(ruleVariablesEClass, RULE_VARIABLES__VARIABLES);
+
+    ruleBodyEClass = createEClass(RULE_BODY);
+    createEReference(ruleBodyEClass, RULE_BODY__LHS);
+    createEReference(ruleBodyEClass, RULE_BODY__RHS);
+    createEReference(ruleBodyEClass, RULE_BODY__VARIABLES);
+
     ruleEClass = createEClass(RULE);
-    createEReference(ruleEClass, RULE__LHS);
-    createEReference(ruleEClass, RULE__RHS);
-    createEReference(ruleEClass, RULE__VARIABLES);
+    createEReference(ruleEClass, RULE__RULE);
 
     semiLinkEClass = createEClass(SEMI_LINK);
 
     freeLinkEClass = createEClass(FREE_LINK);
+
+    whatEverEClass = createEClass(WHAT_EVER);
 
     limitLinkEClass = createEClass(LIMIT_LINK);
     createEAttribute(limitLinkEClass, LIMIT_LINK__STATE);
@@ -789,12 +1037,15 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
 
     // Add supertypes to classes
     agentEClass.getESuperTypes().add(this.getReactionProperty());
+    patternVariableEClass.getESuperTypes().add(this.getVariable());
+    arithmeticVariableEClass.getESuperTypes().add(this.getVariable());
     variableEClass.getESuperTypes().add(this.getReactionProperty());
     observationEClass.getESuperTypes().add(this.getReactionProperty());
     initialEClass.getESuperTypes().add(this.getReactionProperty());
     ruleEClass.getESuperTypes().add(this.getReactionProperty());
     semiLinkEClass.getESuperTypes().add(this.getLinkState());
     freeLinkEClass.getESuperTypes().add(this.getLinkState());
+    whatEverEClass.getESuperTypes().add(this.getLinkState());
     limitLinkEClass.getESuperTypes().add(this.getLinkState());
     exactLinkEClass.getESuperTypes().add(this.getLinkState());
 
@@ -804,6 +1055,9 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
 
     initEClass(reactionPropertyEClass, ReactionProperty.class, "ReactionProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getReactionProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, ReactionProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(arithmeticValueEClass, ArithmeticValue.class, "ArithmeticValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getArithmeticValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, ArithmeticValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getState_Name(), ecorePackage.getEString(), "name", null, 0, 1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -821,14 +1075,23 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     initEClass(agentEClass, Agent.class, "Agent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAgent_Sites(), this.getSites(), null, "sites", null, 0, 1, Agent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(patternVariableEClass, PatternVariable.class, "PatternVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPatternVariable_Pattern(), this.getPattern(), null, "pattern", null, 0, 1, PatternVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(arithmeticVariableEClass, ArithmeticVariable.class, "ArithmeticVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getArithmeticVariable_Value(), this.getArithmeticValue(), null, "value", null, 0, 1, ArithmeticVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getVariable_Value(), ecorePackage.getEFloat(), "value", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(linkStateEClass, LinkState.class, "LinkState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getLinkState_LinkState(), this.getLinkState(), null, "linkState", null, 0, 1, LinkState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(siteStateEClass, SiteState.class, "SiteState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSiteState_State(), this.getState(), null, "state", null, 0, 1, SiteState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(sitePatternEClass, SitePattern.class, "SitePattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getSitePattern_Site(), this.getSite(), null, "site", null, 0, 1, SitePattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSitePattern_State(), this.getState(), null, "state", null, 0, 1, SitePattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSitePattern_State(), this.getSiteState(), null, "state", null, 0, 1, SitePattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSitePattern_LinkState(), this.getLinkState(), null, "linkState", null, 0, 1, SitePattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(agentPatternEClass, AgentPattern.class, "AgentPattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -839,23 +1102,35 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     initEReference(getPattern_AgentPatterns(), this.getAgentPattern(), null, "agentPatterns", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(observationEClass, Observation.class, "Observation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getObservation_ObservationPattern(), this.getPattern(), null, "observationPattern", null, 0, 1, Observation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getObservation_ObservationPattern(), this.getPatternAssignment(), null, "observationPattern", null, 0, 1, Observation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(initialEClass, Initial.class, "Initial", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getInitial_Count(), ecorePackage.getEBigInteger(), "count", null, 0, 1, Initial.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getInitial_InitialPattern(), this.getPattern(), null, "initialPattern", null, 0, 1, Initial.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getInitial_Count(), ecorePackage.getEString(), "count", null, 0, 1, Initial.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getInitial_InitialPattern(), this.getPatternAssignment(), null, "initialPattern", null, 0, 1, Initial.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(patternAssignmentEClass, PatternAssignment.class, "PatternAssignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPatternAssignment_Pattern(), this.getPattern(), null, "pattern", null, 0, -1, PatternAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPatternAssignment_PatternVar(), this.getPatternVariable(), null, "patternVar", null, 0, -1, PatternAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(ruleVariablesEClass, RuleVariables.class, "RuleVariables", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRuleVariables_Variables(), this.getArithmeticVariable(), null, "variables", null, 0, -1, RuleVariables.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(ruleBodyEClass, RuleBody.class, "RuleBody", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRuleBody_Lhs(), this.getPatternAssignment(), null, "lhs", null, 0, 1, RuleBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRuleBody_Rhs(), this.getPatternAssignment(), null, "rhs", null, 0, 1, RuleBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRuleBody_Variables(), this.getRuleVariables(), null, "variables", null, 0, 1, RuleBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(ruleEClass, Rule.class, "Rule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRule_Lhs(), this.getPattern(), null, "lhs", null, 0, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRule_Rhs(), this.getPattern(), null, "rhs", null, 0, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRule_Variables(), this.getVariable(), null, "variables", null, 0, -1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRule_Rule(), this.getRuleBody(), null, "rule", null, 0, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(semiLinkEClass, SemiLink.class, "SemiLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(freeLinkEClass, FreeLink.class, "FreeLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+    initEClass(whatEverEClass, WhatEver.class, "WhatEver", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
     initEClass(limitLinkEClass, LimitLink.class, "LimitLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getLimitLink_State(), ecorePackage.getEBigInteger(), "state", null, 0, 1, LimitLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLimitLink_State(), ecorePackage.getEString(), "state", null, 0, 1, LimitLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exactLinkEClass, ExactLink.class, "ExactLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExactLink_Site(), this.getSite(), null, "site", null, 0, 1, ExactLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

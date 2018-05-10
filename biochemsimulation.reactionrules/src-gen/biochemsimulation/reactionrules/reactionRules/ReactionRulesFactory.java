@@ -42,6 +42,15 @@ public interface ReactionRulesFactory extends EFactory
   ReactionProperty createReactionProperty();
 
   /**
+   * Returns a new object of class '<em>Arithmetic Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Arithmetic Value</em>'.
+   * @generated
+   */
+  ArithmeticValue createArithmeticValue();
+
+  /**
    * Returns a new object of class '<em>State</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -87,6 +96,24 @@ public interface ReactionRulesFactory extends EFactory
   Agent createAgent();
 
   /**
+   * Returns a new object of class '<em>Pattern Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pattern Variable</em>'.
+   * @generated
+   */
+  PatternVariable createPatternVariable();
+
+  /**
+   * Returns a new object of class '<em>Arithmetic Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Arithmetic Variable</em>'.
+   * @generated
+   */
+  ArithmeticVariable createArithmeticVariable();
+
+  /**
    * Returns a new object of class '<em>Variable</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -103,6 +130,15 @@ public interface ReactionRulesFactory extends EFactory
    * @generated
    */
   LinkState createLinkState();
+
+  /**
+   * Returns a new object of class '<em>Site State</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Site State</em>'.
+   * @generated
+   */
+  SiteState createSiteState();
 
   /**
    * Returns a new object of class '<em>Site Pattern</em>'.
@@ -150,6 +186,33 @@ public interface ReactionRulesFactory extends EFactory
   Initial createInitial();
 
   /**
+   * Returns a new object of class '<em>Pattern Assignment</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pattern Assignment</em>'.
+   * @generated
+   */
+  PatternAssignment createPatternAssignment();
+
+  /**
+   * Returns a new object of class '<em>Rule Variables</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rule Variables</em>'.
+   * @generated
+   */
+  RuleVariables createRuleVariables();
+
+  /**
+   * Returns a new object of class '<em>Rule Body</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rule Body</em>'.
+   * @generated
+   */
+  RuleBody createRuleBody();
+
+  /**
    * Returns a new object of class '<em>Rule</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -175,6 +238,15 @@ public interface ReactionRulesFactory extends EFactory
    * @generated
    */
   FreeLink createFreeLink();
+
+  /**
+   * Returns a new object of class '<em>What Ever</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>What Ever</em>'.
+   * @generated
+   */
+  WhatEver createWhatEver();
 
   /**
    * Returns a new object of class '<em>Limit Link</em>'.

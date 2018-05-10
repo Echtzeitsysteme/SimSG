@@ -11,9 +11,6 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
-import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
-import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
-import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
 import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 
@@ -21,19 +18,94 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class ReactionRulesSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected ReactionRulesGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_Rule_BiKeyword_3_1_or_UniKeyword_3_0;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (ReactionRulesGrammarAccess) access;
-		match_Rule_BiKeyword_3_1_or_UniKeyword_3_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getRuleAccess().getBiKeyword_3_1()), new TokenAlias(false, false, grammarAccess.getRuleAccess().getUniKeyword_3_0()));
 	}
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (ruleCall.getRule() == grammarAccess.getATRule())
+			return getATToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getBIRule())
+			return getBIToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getFREE_LINKRule())
+			return getFREE_LINKToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getSEMI_LINKRule())
+			return getSEMI_LINKToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getUNIRule())
+			return getUNIToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getWHATEVER_LINKRule())
+			return getWHATEVER_LINKToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
+	/**
+	 * terminal AT:
+	 * 	'@'
+	 * ;
+	 */
+	protected String getATToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "@";
+	}
+	
+	/**
+	 * terminal BI:
+	 * 	'<->'
+	 * ;
+	 */
+	protected String getBIToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "<->";
+	}
+	
+	/**
+	 * terminal FREE_LINK:
+	 * 	'free'
+	 * ;
+	 */
+	protected String getFREE_LINKToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "free";
+	}
+	
+	/**
+	 * terminal SEMI_LINK:
+	 * 	'semi'
+	 * ;
+	 */
+	protected String getSEMI_LINKToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "semi";
+	}
+	
+	/**
+	 * terminal UNI:
+	 * 	'->'
+	 * ;
+	 */
+	protected String getUNIToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "->";
+	}
+	
+	/**
+	 * terminal WHATEVER_LINK:
+	 * 	'?'
+	 * ;
+	 */
+	protected String getWHATEVER_LINKToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "?";
+	}
 	
 	@Override
 	protected void emitUnassignedTokens(EObject semanticObject, ISynTransition transition, INode fromNode, INode toNode) {
@@ -41,21 +113,8 @@ public class ReactionRulesSyntacticSequencer extends AbstractSyntacticSequencer 
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_Rule_BiKeyword_3_1_or_UniKeyword_3_0.equals(syntax))
-				emit_Rule_BiKeyword_3_1_or_UniKeyword_3_0(semanticObject, getLastNavigableState(), syntaxNodes);
-			else acceptNodes(getLastNavigableState(), syntaxNodes);
+			acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
-	/**
-	 * Ambiguous syntax:
-	 *     'bi' | 'uni'
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     lhs=Pattern (ambiguity) rhs=Pattern
-	 */
-	protected void emit_Rule_BiKeyword_3_1_or_UniKeyword_3_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
 }

@@ -31,12 +31,12 @@ public interface Observation extends ReactionProperty
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Observation Pattern</em>' containment reference.
-   * @see #setObservationPattern(Pattern)
+   * @see #setObservationPattern(PatternAssignment)
    * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getObservation_ObservationPattern()
    * @model containment="true"
    * @generated
    */
-  Pattern getObservationPattern();
+  PatternAssignment getObservationPattern();
 
   /**
    * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.Observation#getObservationPattern <em>Observation Pattern</em>}' containment reference.
@@ -46,6 +46,6 @@ public interface Observation extends ReactionProperty
    * @see #getObservationPattern()
    * @generated
    */
-  void setObservationPattern(Pattern value);
+  void setObservationPattern(PatternAssignment value);
 
 } // Observation

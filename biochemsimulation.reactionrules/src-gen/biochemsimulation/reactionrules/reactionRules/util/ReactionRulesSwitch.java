@@ -87,6 +87,13 @@ public class ReactionRulesSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ReactionRulesPackage.ARITHMETIC_VALUE:
+      {
+        ArithmeticValue arithmeticValue = (ArithmeticValue)theEObject;
+        T result = caseArithmeticValue(arithmeticValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ReactionRulesPackage.STATE:
       {
         State state = (State)theEObject;
@@ -123,6 +130,24 @@ public class ReactionRulesSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ReactionRulesPackage.PATTERN_VARIABLE:
+      {
+        PatternVariable patternVariable = (PatternVariable)theEObject;
+        T result = casePatternVariable(patternVariable);
+        if (result == null) result = caseVariable(patternVariable);
+        if (result == null) result = caseReactionProperty(patternVariable);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReactionRulesPackage.ARITHMETIC_VARIABLE:
+      {
+        ArithmeticVariable arithmeticVariable = (ArithmeticVariable)theEObject;
+        T result = caseArithmeticVariable(arithmeticVariable);
+        if (result == null) result = caseVariable(arithmeticVariable);
+        if (result == null) result = caseReactionProperty(arithmeticVariable);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ReactionRulesPackage.VARIABLE:
       {
         Variable variable = (Variable)theEObject;
@@ -135,6 +160,13 @@ public class ReactionRulesSwitch<T> extends Switch<T>
       {
         LinkState linkState = (LinkState)theEObject;
         T result = caseLinkState(linkState);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReactionRulesPackage.SITE_STATE:
+      {
+        SiteState siteState = (SiteState)theEObject;
+        T result = caseSiteState(siteState);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -175,6 +207,27 @@ public class ReactionRulesSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ReactionRulesPackage.PATTERN_ASSIGNMENT:
+      {
+        PatternAssignment patternAssignment = (PatternAssignment)theEObject;
+        T result = casePatternAssignment(patternAssignment);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReactionRulesPackage.RULE_VARIABLES:
+      {
+        RuleVariables ruleVariables = (RuleVariables)theEObject;
+        T result = caseRuleVariables(ruleVariables);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReactionRulesPackage.RULE_BODY:
+      {
+        RuleBody ruleBody = (RuleBody)theEObject;
+        T result = caseRuleBody(ruleBody);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ReactionRulesPackage.RULE:
       {
         Rule rule = (Rule)theEObject;
@@ -196,6 +249,14 @@ public class ReactionRulesSwitch<T> extends Switch<T>
         FreeLink freeLink = (FreeLink)theEObject;
         T result = caseFreeLink(freeLink);
         if (result == null) result = caseLinkState(freeLink);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReactionRulesPackage.WHAT_EVER:
+      {
+        WhatEver whatEver = (WhatEver)theEObject;
+        T result = caseWhatEver(whatEver);
+        if (result == null) result = caseLinkState(whatEver);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -247,6 +308,22 @@ public class ReactionRulesSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseReactionProperty(ReactionProperty object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Arithmetic Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Arithmetic Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseArithmeticValue(ArithmeticValue object)
   {
     return null;
   }
@@ -332,6 +409,38 @@ public class ReactionRulesSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Pattern Variable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pattern Variable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePatternVariable(PatternVariable object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Arithmetic Variable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Arithmetic Variable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseArithmeticVariable(ArithmeticVariable object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Variable</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -359,6 +468,22 @@ public class ReactionRulesSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseLinkState(LinkState object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Site State</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Site State</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSiteState(SiteState object)
   {
     return null;
   }
@@ -444,6 +569,54 @@ public class ReactionRulesSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Pattern Assignment</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pattern Assignment</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePatternAssignment(PatternAssignment object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Rule Variables</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Rule Variables</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRuleVariables(RuleVariables object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Rule Body</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Rule Body</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRuleBody(RuleBody object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Rule</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -487,6 +660,22 @@ public class ReactionRulesSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseFreeLink(FreeLink object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>What Ever</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>What Ever</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseWhatEver(WhatEver object)
   {
     return null;
   }

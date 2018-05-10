@@ -3,7 +3,6 @@
  */
 package biochemsimulation.reactionrules.reactionRules;
 
-import java.math.BigInteger;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,12 +32,12 @@ public interface Initial extends ReactionProperty
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Count</em>' attribute.
-   * @see #setCount(BigInteger)
+   * @see #setCount(String)
    * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getInitial_Count()
    * @model
    * @generated
    */
-  BigInteger getCount();
+  String getCount();
 
   /**
    * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.Initial#getCount <em>Count</em>}' attribute.
@@ -48,7 +47,7 @@ public interface Initial extends ReactionProperty
    * @see #getCount()
    * @generated
    */
-  void setCount(BigInteger value);
+  void setCount(String value);
 
   /**
    * Returns the value of the '<em><b>Initial Pattern</b></em>' containment reference.
@@ -59,12 +58,12 @@ public interface Initial extends ReactionProperty
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Initial Pattern</em>' containment reference.
-   * @see #setInitialPattern(Pattern)
+   * @see #setInitialPattern(PatternAssignment)
    * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getInitial_InitialPattern()
    * @model containment="true"
    * @generated
    */
-  Pattern getInitialPattern();
+  PatternAssignment getInitialPattern();
 
   /**
    * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.Initial#getInitialPattern <em>Initial Pattern</em>}' containment reference.
@@ -74,6 +73,6 @@ public interface Initial extends ReactionProperty
    * @see #getInitialPattern()
    * @generated
    */
-  void setInitialPattern(Pattern value);
+  void setInitialPattern(PatternAssignment value);
 
 } // Initial
