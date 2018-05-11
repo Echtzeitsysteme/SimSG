@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.RuleBodyImpl#getLhs <em>Lhs</em>}</li>
+ *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.RuleBodyImpl#getOperator <em>Operator</em>}</li>
  *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.RuleBodyImpl#getRhs <em>Rhs</em>}</li>
  *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.RuleBodyImpl#getVariables <em>Variables</em>}</li>
  * </ul>
@@ -43,6 +44,26 @@ public class RuleBodyImpl extends MinimalEObjectImpl.Container implements RuleBo
    * @ordered
    */
   protected PatternAssignment lhs;
+
+  /**
+   * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getOperator()
+   * @generated
+   * @ordered
+   */
+  protected static final String OPERATOR_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getOperator()
+   * @generated
+   * @ordered
+   */
+  protected String operator = OPERATOR_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getRhs() <em>Rhs</em>}' containment reference.
@@ -131,6 +152,29 @@ public class RuleBodyImpl extends MinimalEObjectImpl.Container implements RuleBo
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.RULE_BODY__LHS, newLhs, newLhs));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getOperator()
+  {
+    return operator;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setOperator(String newOperator)
+  {
+    String oldOperator = operator;
+    operator = newOperator;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.RULE_BODY__OPERATOR, oldOperator, operator));
   }
 
   /**
@@ -261,6 +305,8 @@ public class RuleBodyImpl extends MinimalEObjectImpl.Container implements RuleBo
     {
       case ReactionRulesPackage.RULE_BODY__LHS:
         return getLhs();
+      case ReactionRulesPackage.RULE_BODY__OPERATOR:
+        return getOperator();
       case ReactionRulesPackage.RULE_BODY__RHS:
         return getRhs();
       case ReactionRulesPackage.RULE_BODY__VARIABLES:
@@ -281,6 +327,9 @@ public class RuleBodyImpl extends MinimalEObjectImpl.Container implements RuleBo
     {
       case ReactionRulesPackage.RULE_BODY__LHS:
         setLhs((PatternAssignment)newValue);
+        return;
+      case ReactionRulesPackage.RULE_BODY__OPERATOR:
+        setOperator((String)newValue);
         return;
       case ReactionRulesPackage.RULE_BODY__RHS:
         setRhs((PatternAssignment)newValue);
@@ -305,6 +354,9 @@ public class RuleBodyImpl extends MinimalEObjectImpl.Container implements RuleBo
       case ReactionRulesPackage.RULE_BODY__LHS:
         setLhs((PatternAssignment)null);
         return;
+      case ReactionRulesPackage.RULE_BODY__OPERATOR:
+        setOperator(OPERATOR_EDEFAULT);
+        return;
       case ReactionRulesPackage.RULE_BODY__RHS:
         setRhs((PatternAssignment)null);
         return;
@@ -327,12 +379,31 @@ public class RuleBodyImpl extends MinimalEObjectImpl.Container implements RuleBo
     {
       case ReactionRulesPackage.RULE_BODY__LHS:
         return lhs != null;
+      case ReactionRulesPackage.RULE_BODY__OPERATOR:
+        return OPERATOR_EDEFAULT == null ? operator != null : !OPERATOR_EDEFAULT.equals(operator);
       case ReactionRulesPackage.RULE_BODY__RHS:
         return rhs != null;
       case ReactionRulesPackage.RULE_BODY__VARIABLES:
         return variables != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (operator: ");
+    result.append(operator);
+    result.append(')');
+    return result.toString();
   }
 
 } //RuleBodyImpl

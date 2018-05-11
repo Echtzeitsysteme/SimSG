@@ -8,6 +8,8 @@ import biochemsimulation.reactionrules.reactionRules.AgentPattern;
 import biochemsimulation.reactionrules.reactionRules.ArithmeticValue;
 import biochemsimulation.reactionrules.reactionRules.ArithmeticVariable;
 import biochemsimulation.reactionrules.reactionRules.ExactLink;
+import biochemsimulation.reactionrules.reactionRules.ExactLinkAgent;
+import biochemsimulation.reactionrules.reactionRules.ExactLinkSite;
 import biochemsimulation.reactionrules.reactionRules.FreeLink;
 import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.LimitLink;
@@ -26,6 +28,7 @@ import biochemsimulation.reactionrules.reactionRules.RuleVariables;
 import biochemsimulation.reactionrules.reactionRules.SemiLink;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
+import biochemsimulation.reactionrules.reactionRules.SitePatterns;
 import biochemsimulation.reactionrules.reactionRules.SiteState;
 import biochemsimulation.reactionrules.reactionRules.Sites;
 import biochemsimulation.reactionrules.reactionRules.State;
@@ -137,6 +140,20 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass exactLinkAgentEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exactLinkSiteEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass siteStateEClass = null;
 
   /**
@@ -145,6 +162,13 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * @generated
    */
   private EClass sitePatternEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass sitePatternsEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -545,6 +569,46 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getExactLinkAgent()
+  {
+    return exactLinkAgentEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExactLinkAgent_Agent()
+  {
+    return (EReference)exactLinkAgentEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExactLinkSite()
+  {
+    return exactLinkSiteEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExactLinkSite_Site()
+  {
+    return (EReference)exactLinkSiteEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getSiteState()
   {
     return siteStateEClass;
@@ -598,6 +662,26 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
   public EReference getSitePattern_LinkState()
   {
     return (EReference)sitePatternEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getSitePatterns()
+  {
+    return sitePatternsEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSitePatterns_SitePatterns()
+  {
+    return (EReference)sitePatternsEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -775,9 +859,19 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getRuleBody_Operator()
+  {
+    return (EAttribute)ruleBodyEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getRuleBody_Rhs()
   {
-    return (EReference)ruleBodyEClass.getEStructuralFeatures().get(1);
+    return (EReference)ruleBodyEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -787,7 +881,7 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    */
   public EReference getRuleBody_Variables()
   {
-    return (EReference)ruleBodyEClass.getEStructuralFeatures().get(2);
+    return (EReference)ruleBodyEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -875,7 +969,7 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExactLink_Site()
+  public EReference getExactLink_LinkAgent()
   {
     return (EReference)exactLinkEClass.getEStructuralFeatures().get(0);
   }
@@ -885,7 +979,7 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExactLink_Agent()
+  public EReference getExactLink_LinkSite()
   {
     return (EReference)exactLinkEClass.getEStructuralFeatures().get(1);
   }
@@ -956,6 +1050,12 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     linkStateEClass = createEClass(LINK_STATE);
     createEReference(linkStateEClass, LINK_STATE__LINK_STATE);
 
+    exactLinkAgentEClass = createEClass(EXACT_LINK_AGENT);
+    createEReference(exactLinkAgentEClass, EXACT_LINK_AGENT__AGENT);
+
+    exactLinkSiteEClass = createEClass(EXACT_LINK_SITE);
+    createEReference(exactLinkSiteEClass, EXACT_LINK_SITE__SITE);
+
     siteStateEClass = createEClass(SITE_STATE);
     createEReference(siteStateEClass, SITE_STATE__STATE);
 
@@ -963,6 +1063,9 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     createEReference(sitePatternEClass, SITE_PATTERN__SITE);
     createEReference(sitePatternEClass, SITE_PATTERN__STATE);
     createEReference(sitePatternEClass, SITE_PATTERN__LINK_STATE);
+
+    sitePatternsEClass = createEClass(SITE_PATTERNS);
+    createEReference(sitePatternsEClass, SITE_PATTERNS__SITE_PATTERNS);
 
     agentPatternEClass = createEClass(AGENT_PATTERN);
     createEReference(agentPatternEClass, AGENT_PATTERN__AGENT);
@@ -987,6 +1090,7 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
 
     ruleBodyEClass = createEClass(RULE_BODY);
     createEReference(ruleBodyEClass, RULE_BODY__LHS);
+    createEAttribute(ruleBodyEClass, RULE_BODY__OPERATOR);
     createEReference(ruleBodyEClass, RULE_BODY__RHS);
     createEReference(ruleBodyEClass, RULE_BODY__VARIABLES);
 
@@ -1003,8 +1107,8 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     createEAttribute(limitLinkEClass, LIMIT_LINK__STATE);
 
     exactLinkEClass = createEClass(EXACT_LINK);
-    createEReference(exactLinkEClass, EXACT_LINK__SITE);
-    createEReference(exactLinkEClass, EXACT_LINK__AGENT);
+    createEReference(exactLinkEClass, EXACT_LINK__LINK_AGENT);
+    createEReference(exactLinkEClass, EXACT_LINK__LINK_SITE);
   }
 
   /**
@@ -1086,6 +1190,12 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     initEClass(linkStateEClass, LinkState.class, "LinkState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getLinkState_LinkState(), this.getLinkState(), null, "linkState", null, 0, 1, LinkState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(exactLinkAgentEClass, ExactLinkAgent.class, "ExactLinkAgent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExactLinkAgent_Agent(), this.getAgent(), null, "agent", null, 0, 1, ExactLinkAgent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exactLinkSiteEClass, ExactLinkSite.class, "ExactLinkSite", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExactLinkSite_Site(), this.getSite(), null, "site", null, 0, 1, ExactLinkSite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(siteStateEClass, SiteState.class, "SiteState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getSiteState_State(), this.getState(), null, "state", null, 0, 1, SiteState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1094,9 +1204,12 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     initEReference(getSitePattern_State(), this.getSiteState(), null, "state", null, 0, 1, SitePattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSitePattern_LinkState(), this.getLinkState(), null, "linkState", null, 0, 1, SitePattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(sitePatternsEClass, SitePatterns.class, "SitePatterns", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSitePatterns_SitePatterns(), this.getSitePattern(), null, "sitePatterns", null, 0, -1, SitePatterns.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(agentPatternEClass, AgentPattern.class, "AgentPattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAgentPattern_Agent(), this.getAgent(), null, "agent", null, 0, 1, AgentPattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAgentPattern_SitePatterns(), this.getSitePattern(), null, "sitePatterns", null, 0, -1, AgentPattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAgentPattern_SitePatterns(), this.getSitePatterns(), null, "sitePatterns", null, 0, 1, AgentPattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(patternEClass, Pattern.class, "Pattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPattern_AgentPatterns(), this.getAgentPattern(), null, "agentPatterns", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1117,6 +1230,7 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
 
     initEClass(ruleBodyEClass, RuleBody.class, "RuleBody", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRuleBody_Lhs(), this.getPatternAssignment(), null, "lhs", null, 0, 1, RuleBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRuleBody_Operator(), ecorePackage.getEString(), "operator", null, 0, 1, RuleBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRuleBody_Rhs(), this.getPatternAssignment(), null, "rhs", null, 0, 1, RuleBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRuleBody_Variables(), this.getRuleVariables(), null, "variables", null, 0, 1, RuleBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1133,8 +1247,8 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     initEAttribute(getLimitLink_State(), ecorePackage.getEString(), "state", null, 0, 1, LimitLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exactLinkEClass, ExactLink.class, "ExactLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExactLink_Site(), this.getSite(), null, "site", null, 0, 1, ExactLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExactLink_Agent(), this.getAgent(), null, "agent", null, 0, 1, ExactLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExactLink_LinkAgent(), this.getExactLinkAgent(), null, "linkAgent", null, 0, 1, ExactLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExactLink_LinkSite(), this.getExactLinkSite(), null, "linkSite", null, 0, 1, ExactLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

@@ -77,8 +77,11 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
       case ReactionRulesPackage.ARITHMETIC_VARIABLE: return createArithmeticVariable();
       case ReactionRulesPackage.VARIABLE: return createVariable();
       case ReactionRulesPackage.LINK_STATE: return createLinkState();
+      case ReactionRulesPackage.EXACT_LINK_AGENT: return createExactLinkAgent();
+      case ReactionRulesPackage.EXACT_LINK_SITE: return createExactLinkSite();
       case ReactionRulesPackage.SITE_STATE: return createSiteState();
       case ReactionRulesPackage.SITE_PATTERN: return createSitePattern();
+      case ReactionRulesPackage.SITE_PATTERNS: return createSitePatterns();
       case ReactionRulesPackage.AGENT_PATTERN: return createAgentPattern();
       case ReactionRulesPackage.PATTERN: return createPattern();
       case ReactionRulesPackage.OBSERVATION: return createObservation();
@@ -234,6 +237,28 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  public ExactLinkAgent createExactLinkAgent()
+  {
+    ExactLinkAgentImpl exactLinkAgent = new ExactLinkAgentImpl();
+    return exactLinkAgent;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExactLinkSite createExactLinkSite()
+  {
+    ExactLinkSiteImpl exactLinkSite = new ExactLinkSiteImpl();
+    return exactLinkSite;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public SiteState createSiteState()
   {
     SiteStateImpl siteState = new SiteStateImpl();
@@ -249,6 +274,17 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
   {
     SitePatternImpl sitePattern = new SitePatternImpl();
     return sitePattern;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SitePatterns createSitePatterns()
+  {
+    SitePatternsImpl sitePatterns = new SitePatternsImpl();
+    return sitePatterns;
   }
 
   /**

@@ -3,8 +3,6 @@
  */
 package biochemsimulation.reactionrules.reactionRules;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -53,19 +51,29 @@ public interface AgentPattern extends EObject
   void setAgent(Agent value);
 
   /**
-   * Returns the value of the '<em><b>Site Patterns</b></em>' containment reference list.
-   * The list contents are of type {@link biochemsimulation.reactionrules.reactionRules.SitePattern}.
+   * Returns the value of the '<em><b>Site Patterns</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Site Patterns</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Site Patterns</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Site Patterns</em>' containment reference list.
+   * @return the value of the '<em>Site Patterns</em>' containment reference.
+   * @see #setSitePatterns(SitePatterns)
    * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getAgentPattern_SitePatterns()
    * @model containment="true"
    * @generated
    */
-  EList<SitePattern> getSitePatterns();
+  SitePatterns getSitePatterns();
+
+  /**
+   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.AgentPattern#getSitePatterns <em>Site Patterns</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Site Patterns</em>' containment reference.
+   * @see #getSitePatterns()
+   * @generated
+   */
+  void setSitePatterns(SitePatterns value);
 
 } // AgentPattern

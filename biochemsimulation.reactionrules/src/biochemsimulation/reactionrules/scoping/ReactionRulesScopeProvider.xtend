@@ -7,14 +7,16 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EReference
 import biochemsimulation.reactionrules.reactionRules.Agent
 import org.eclipse.xtext.EcoreUtil2
-import biochemsimulation.reactionrules.reactionRules.Site
 import org.eclipse.xtext.scoping.Scopes
 import org.eclipse.xtext.scoping.impl.FilteringScope
 import biochemsimulation.reactionrules.reactionRules.SitePattern
 import biochemsimulation.reactionrules.reactionRules.ExactLink
-import biochemsimulation.reactionrules.reactionRules.State
 import java.util.LinkedList
 import biochemsimulation.reactionrules.reactionRules.SiteState
+import biochemsimulation.reactionrules.reactionRules.AgentPattern
+import java.util.HashSet
+import biochemsimulation.reactionrules.reactionRules.ExactLinkSite
+import biochemsimulation.reactionrules.reactionRules.ExactLinkAgent
 
 /**
  * This class contains custom scoping description.
@@ -25,15 +27,121 @@ import biochemsimulation.reactionrules.reactionRules.SiteState
 class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvider {
 	
 	override getScope(EObject context, EReference reference) {
-	    if (context instanceof SitePattern || context instanceof ExactLink || context instanceof SiteState) {
-	        val rootElement = EcoreUtil2.getRootContainer(context)
-	        val list = new LinkedList<EObject>
-	        list.addAll(EcoreUtil2.getAllContentsOfType(rootElement, Site))
-	        list.addAll(EcoreUtil2.getAllContentsOfType(rootElement, State))
-	        list.addAll(EcoreUtil2.getAllContentsOfType(rootElement, Agent))
-	        val existingScope = Scopes.scopeFor(list)
-	        return new FilteringScope(existingScope, [getEObjectOrProxy != context])
+	    if (context instanceof SiteState) {
+	        return siteStateScope(context, reference)
+	    }
+	    if (context instanceof ExactLinkAgent) {
+	    	return exactLinkAgentScope(context, reference)
+	    }
+	    if (context instanceof ExactLinkSite) {
+	    	return exactLinkSiteScope(context, reference)
+	    }
+	    if (context instanceof SitePattern) {
+	       return sitePatternScope(context, reference)
 	    }
 	    return super.getScope(context, reference);
+	}
+	
+	def siteStateScope(EObject context, EReference reference) {
+	    val rootElement = EcoreUtil2.getRootContainer(context)
+	    val siteState = context as SiteState
+	    val sitePatterns = new LinkedList<EObject>
+	    sitePatterns.addAll(EcoreUtil2.getAllContentsOfType(rootElement, SitePattern))
+	    
+	    var sitePattern = null as SitePattern
+	    for(sp : sitePatterns) {
+	    	var sPattern = sp as SitePattern
+	    	if(siteState.equals(sPattern.state)) {
+	    		sitePattern = sPattern
+	    	}
+	    }
+	    
+	    if(sitePattern === null) {
+	    	return super.getScope(context, reference);
+	    }
+	    
+	    var list = sitePattern.site.states.state
+	    
+	    val existingScope = Scopes.scopeFor(list)
+	    
+	    return new FilteringScope(existingScope, [getEObjectOrProxy != context])
+	    
+	}
+	
+	def exactLinkAgentScope(EObject context, EReference reference) {
+		val rootElement = EcoreUtil2.getRootContainer(context)
+	    val list = new LinkedList<EObject>
+	    list.addAll(EcoreUtil2.getAllContentsOfType(rootElement, Agent))
+	    val existingScope = Scopes.scopeFor(list)
+	    return new FilteringScope(existingScope, [getEObjectOrProxy != context])
+	}
+	
+	def exactLinkSiteScope(EObject context, EReference reference) {
+		val rootElement = EcoreUtil2.getRootContainer(context)
+	    
+	    var linkSite = context as ExactLinkSite
+	   
+	    val exactLinks = new LinkedList<EObject>
+	    exactLinks.addAll(EcoreUtil2.getAllContentsOfType(rootElement, ExactLink))
+	    
+	   
+	    var agent = null as Agent
+	    for(exactLink : exactLinks) {
+	    	var el = exactLink as ExactLink
+	    	if(el === null) {
+	    		return super.getScope(context, reference);
+	    	}
+	    	if(el.linkSite === null) {
+	    		return super.getScope(context, reference);
+	    	}
+	    	
+	     	if(el.linkSite.equals(linkSite)) {
+	     		if(el.linkAgent === null) {
+	    			return super.getScope(context, reference);
+	    		}
+	    		if(el.linkAgent.agent === null) {
+	    			return super.getScope(context, reference);
+	    		}
+	    		if(el.linkAgent.agent.name === null) {
+	    			return super.getScope(context, reference);
+	    		}
+	     		agent = el.linkAgent.agent
+	     	}
+	    }
+	    if(agent === null) {
+	     	return super.getScope(context, reference);
+	    }
+	    var list = agent.sites.sites
+	    
+	    val existingScope = Scopes.scopeFor(list)
+	    
+	    return new FilteringScope(existingScope, [getEObjectOrProxy != context])
+	}
+	
+	def sitePatternScope(EObject context, EReference reference) {
+		val rootElement = EcoreUtil2.getRootContainer(context)    
+	    var sitePattern = context as SitePattern
+	    val allAgentPatterns = new LinkedList<EObject>
+	    allAgentPatterns.addAll(EcoreUtil2.getAllContentsOfType(rootElement, AgentPattern))
+	        
+	    var agent = null as Agent
+	    for(agentPattern : allAgentPatterns) {
+	    	var ap = agentPattern as AgentPattern
+	     	var sp = ap.sitePatterns.sitePatterns
+	     	var spSet = new HashSet<SitePattern>(sp.size())
+			spSet.addAll(sp)
+	     	if(spSet.contains(sitePattern)) {
+	        	agent = ap.agent
+	       	}
+	    }
+	    if(agent === null) {
+	     	return super.getScope(context, reference);
+	    }
+	        
+	    val relevantSites = new LinkedList<EObject>
+	    relevantSites.addAll(agent.sites.sites)
+	    val existingScope = Scopes.scopeFor(relevantSites)
+	        
+	    return new FilteringScope(existingScope, [getEObjectOrProxy != context])
 	}
 }

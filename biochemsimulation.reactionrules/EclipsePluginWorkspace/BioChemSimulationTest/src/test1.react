@@ -8,18 +8,21 @@ agent D(x1{e, q}, x2{y, t})
 var on_rate = 0.0001
 var off_rate = 0.1
 var mod_rate = 1.0
+var mod_rate2 = -1.0
+var mod_rate3 = -1.0E-1
 //new variable features, i.e. signed integer, unsigned integer, scientific floats and patterns
 var int = -1
 var uint = 2
 var pattern = { A(), B(x[free]) }
+var pattern2 = { D(x1{e}) }
 var sci = -2.45E-2
 
 /* Observations */
 obs Cuu { C(x1{u}, x2{u}) }
-obs Cpu { C(x1{p}, x2{u}) }
+obs Cpu { C(x1{u}, x2{u}) }
 obs Cpp { C(x1{p}, x2{p}) }
-obs AxB { A(x[x.B]) }
-
+obs AxB { A(x[B.x]) }
+ 
 /* Initial conditions */
 init init1 1000 { A(),B() }
 init init2 10000 { C(x1{u}, x2{u}) }

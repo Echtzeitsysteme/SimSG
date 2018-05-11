@@ -12,6 +12,10 @@ import biochemsimulation.reactionrules.reactionRules.Variable
 import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.xtext.validation.Check
 import biochemsimulation.reactionrules.reactionRules.Initial
+import biochemsimulation.reactionrules.reactionRules.RuleBody
+import biochemsimulation.reactionrules.reactionRules.AgentPattern
+import biochemsimulation.reactionrules.reactionRules.SitePattern
+import java.util.HashSet
 
 /**
  * This class contains custom validation rules. 
@@ -159,5 +163,46 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 			
 			}
 				
+	}
+	
+	@Check
+	def checkRuleVariables(RuleBody ruleBody) {
+		var op = ruleBody.operator
+		var variables = ruleBody.variables.variables
+		if(op.equals("<->")) {
+			if(variables.size() != 2) {
+				error('Bi-Directional rules must have two reaction rate variables.', ReactionRulesPackage.Literals.RULE_BODY__VARIABLES)
+			}
+		}else {
+			if(variables.size() != 1) {
+				error('Uni-Directional rules must have one reaction rate variable.', ReactionRulesPackage.Literals.RULE_BODY__VARIABLES)
+			}
+		}
+		for(variable : variables) {
+			var value = variable.value.value
+			var numValue = Double.valueOf(value)
+			if(numValue < 0) {
+				error('Uni-Directional rules must have positive reaction rates.', ReactionRulesPackage.Literals.RULE_BODY__VARIABLES)
+			}
+			if(numValue == 0) {
+				warning('Uni-Directional rules with rates equal to 0 will be inactive.', ReactionRulesPackage.Literals.RULE_BODY__VARIABLES)
+			}
+		}		
+	}
+	
+	@Check
+	def checkAgentPatternSites(AgentPattern agentPattern) {
+		var candidates = EcoreUtil2.getAllContentsOfType(agentPattern, SitePattern);
+		var sites = agentPattern.agent.sites.sites
+		var siteSet = new HashSet<Site>(sites.size())
+		siteSet.addAll(sites)
+		
+		for(candidate : candidates) {
+			var sp = candidate as SitePattern
+			var spSite = sp.site
+			if(!siteSet.contains(spSite)) {
+				error('This Agent does not have a site with ID='+spSite.name, ReactionRulesPackage.Literals.AGENT_PATTERN__SITE_PATTERNS)
+			}
+		}
 	}
 }

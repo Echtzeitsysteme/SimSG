@@ -4,7 +4,10 @@
 package biochemsimulation.reactionrules.scoping;
 
 import biochemsimulation.reactionrules.reactionRules.Agent;
+import biochemsimulation.reactionrules.reactionRules.AgentPattern;
 import biochemsimulation.reactionrules.reactionRules.ExactLink;
+import biochemsimulation.reactionrules.reactionRules.ExactLinkAgent;
+import biochemsimulation.reactionrules.reactionRules.ExactLinkSite;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.SiteState;
@@ -12,7 +15,9 @@ import biochemsimulation.reactionrules.reactionRules.State;
 import biochemsimulation.reactionrules.scoping.AbstractReactionRulesScopeProvider;
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
+import java.util.HashSet;
 import java.util.LinkedList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.EcoreUtil2;
@@ -30,21 +35,147 @@ import org.eclipse.xtext.scoping.impl.FilteringScope;
 @SuppressWarnings("all")
 public class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvider {
   public IScope getScope(final EObject context, final EReference reference) {
-    if ((((context instanceof SitePattern) || (context instanceof ExactLink)) || (context instanceof SiteState))) {
-      final EObject rootElement = EcoreUtil2.getRootContainer(context);
-      final LinkedList<EObject> list = new LinkedList<EObject>();
-      list.addAll(EcoreUtil2.<Site>getAllContentsOfType(rootElement, Site.class));
-      list.addAll(EcoreUtil2.<State>getAllContentsOfType(rootElement, State.class));
-      list.addAll(EcoreUtil2.<Agent>getAllContentsOfType(rootElement, Agent.class));
-      final IScope existingScope = Scopes.scopeFor(list);
-      final Predicate<IEObjectDescription> _function = new Predicate<IEObjectDescription>() {
-        public boolean apply(final IEObjectDescription it) {
-          EObject _eObjectOrProxy = it.getEObjectOrProxy();
-          return (!Objects.equal(_eObjectOrProxy, context));
-        }
-      };
-      return new FilteringScope(existingScope, _function);
+    if ((context instanceof SiteState)) {
+      return this.siteStateScope(context, reference);
+    }
+    if ((context instanceof ExactLinkAgent)) {
+      return this.exactLinkAgentScope(context, reference);
+    }
+    if ((context instanceof ExactLinkSite)) {
+      return this.exactLinkSiteScope(context, reference);
+    }
+    if ((context instanceof SitePattern)) {
+      return this.sitePatternScope(context, reference);
     }
     return super.getScope(context, reference);
+  }
+  
+  public IScope siteStateScope(final EObject context, final EReference reference) {
+    final EObject rootElement = EcoreUtil2.getRootContainer(context);
+    final SiteState siteState = ((SiteState) context);
+    final LinkedList<EObject> sitePatterns = new LinkedList<EObject>();
+    sitePatterns.addAll(EcoreUtil2.<SitePattern>getAllContentsOfType(rootElement, SitePattern.class));
+    SitePattern sitePattern = ((SitePattern) null);
+    for (final EObject sp : sitePatterns) {
+      {
+        SitePattern sPattern = ((SitePattern) sp);
+        boolean _equals = siteState.equals(sPattern.getState());
+        if (_equals) {
+          sitePattern = sPattern;
+        }
+      }
+    }
+    if ((sitePattern == null)) {
+      return super.getScope(context, reference);
+    }
+    EList<State> list = sitePattern.getSite().getStates().getState();
+    final IScope existingScope = Scopes.scopeFor(list);
+    final Predicate<IEObjectDescription> _function = new Predicate<IEObjectDescription>() {
+      public boolean apply(final IEObjectDescription it) {
+        EObject _eObjectOrProxy = it.getEObjectOrProxy();
+        return (!Objects.equal(_eObjectOrProxy, context));
+      }
+    };
+    return new FilteringScope(existingScope, _function);
+  }
+  
+  public FilteringScope exactLinkAgentScope(final EObject context, final EReference reference) {
+    final EObject rootElement = EcoreUtil2.getRootContainer(context);
+    final LinkedList<EObject> list = new LinkedList<EObject>();
+    list.addAll(EcoreUtil2.<Agent>getAllContentsOfType(rootElement, Agent.class));
+    final IScope existingScope = Scopes.scopeFor(list);
+    final Predicate<IEObjectDescription> _function = new Predicate<IEObjectDescription>() {
+      public boolean apply(final IEObjectDescription it) {
+        EObject _eObjectOrProxy = it.getEObjectOrProxy();
+        return (!Objects.equal(_eObjectOrProxy, context));
+      }
+    };
+    return new FilteringScope(existingScope, _function);
+  }
+  
+  public IScope exactLinkSiteScope(final EObject context, final EReference reference) {
+    final EObject rootElement = EcoreUtil2.getRootContainer(context);
+    ExactLinkSite linkSite = ((ExactLinkSite) context);
+    final LinkedList<EObject> exactLinks = new LinkedList<EObject>();
+    exactLinks.addAll(EcoreUtil2.<ExactLink>getAllContentsOfType(rootElement, ExactLink.class));
+    Agent agent = ((Agent) null);
+    for (final EObject exactLink : exactLinks) {
+      {
+        ExactLink el = ((ExactLink) exactLink);
+        if ((el == null)) {
+          return super.getScope(context, reference);
+        }
+        ExactLinkSite _linkSite = el.getLinkSite();
+        boolean _tripleEquals = (_linkSite == null);
+        if (_tripleEquals) {
+          return super.getScope(context, reference);
+        }
+        boolean _equals = el.getLinkSite().equals(linkSite);
+        if (_equals) {
+          ExactLinkAgent _linkAgent = el.getLinkAgent();
+          boolean _tripleEquals_1 = (_linkAgent == null);
+          if (_tripleEquals_1) {
+            return super.getScope(context, reference);
+          }
+          Agent _agent = el.getLinkAgent().getAgent();
+          boolean _tripleEquals_2 = (_agent == null);
+          if (_tripleEquals_2) {
+            return super.getScope(context, reference);
+          }
+          String _name = el.getLinkAgent().getAgent().getName();
+          boolean _tripleEquals_3 = (_name == null);
+          if (_tripleEquals_3) {
+            return super.getScope(context, reference);
+          }
+          agent = el.getLinkAgent().getAgent();
+        }
+      }
+    }
+    if ((agent == null)) {
+      return super.getScope(context, reference);
+    }
+    EList<Site> list = agent.getSites().getSites();
+    final IScope existingScope = Scopes.scopeFor(list);
+    final Predicate<IEObjectDescription> _function = new Predicate<IEObjectDescription>() {
+      public boolean apply(final IEObjectDescription it) {
+        EObject _eObjectOrProxy = it.getEObjectOrProxy();
+        return (!Objects.equal(_eObjectOrProxy, context));
+      }
+    };
+    return new FilteringScope(existingScope, _function);
+  }
+  
+  public IScope sitePatternScope(final EObject context, final EReference reference) {
+    final EObject rootElement = EcoreUtil2.getRootContainer(context);
+    SitePattern sitePattern = ((SitePattern) context);
+    final LinkedList<EObject> allAgentPatterns = new LinkedList<EObject>();
+    allAgentPatterns.addAll(EcoreUtil2.<AgentPattern>getAllContentsOfType(rootElement, AgentPattern.class));
+    Agent agent = ((Agent) null);
+    for (final EObject agentPattern : allAgentPatterns) {
+      {
+        AgentPattern ap = ((AgentPattern) agentPattern);
+        EList<SitePattern> sp = ap.getSitePatterns().getSitePatterns();
+        int _size = sp.size();
+        HashSet<SitePattern> spSet = new HashSet<SitePattern>(_size);
+        spSet.addAll(sp);
+        boolean _contains = spSet.contains(sitePattern);
+        if (_contains) {
+          agent = ap.getAgent();
+        }
+      }
+    }
+    if ((agent == null)) {
+      return super.getScope(context, reference);
+    }
+    final LinkedList<EObject> relevantSites = new LinkedList<EObject>();
+    relevantSites.addAll(agent.getSites().getSites());
+    final IScope existingScope = Scopes.scopeFor(relevantSites);
+    final Predicate<IEObjectDescription> _function = new Predicate<IEObjectDescription>() {
+      public boolean apply(final IEObjectDescription it) {
+        EObject _eObjectOrProxy = it.getEObjectOrProxy();
+        return (!Objects.equal(_eObjectOrProxy, context));
+      }
+    };
+    return new FilteringScope(existingScope, _function);
   }
 }

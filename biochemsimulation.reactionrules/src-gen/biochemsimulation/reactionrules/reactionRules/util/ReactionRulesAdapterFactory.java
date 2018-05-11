@@ -136,6 +136,16 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
         return createLinkStateAdapter();
       }
       @Override
+      public Adapter caseExactLinkAgent(ExactLinkAgent object)
+      {
+        return createExactLinkAgentAdapter();
+      }
+      @Override
+      public Adapter caseExactLinkSite(ExactLinkSite object)
+      {
+        return createExactLinkSiteAdapter();
+      }
+      @Override
       public Adapter caseSiteState(SiteState object)
       {
         return createSiteStateAdapter();
@@ -144,6 +154,11 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
       public Adapter caseSitePattern(SitePattern object)
       {
         return createSitePatternAdapter();
+      }
+      @Override
+      public Adapter caseSitePatterns(SitePatterns object)
+      {
+        return createSitePatternsAdapter();
       }
       @Override
       public Adapter caseAgentPattern(AgentPattern object)
@@ -413,6 +428,36 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.ExactLinkAgent <em>Exact Link Agent</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.ExactLinkAgent
+   * @generated
+   */
+  public Adapter createExactLinkAgentAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.ExactLinkSite <em>Exact Link Site</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.ExactLinkSite
+   * @generated
+   */
+  public Adapter createExactLinkSiteAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.SiteState <em>Site State</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -438,6 +483,21 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createSitePatternAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.SitePatterns <em>Site Patterns</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.SitePatterns
+   * @generated
+   */
+  public Adapter createSitePatternsAdapter()
   {
     return null;
   }

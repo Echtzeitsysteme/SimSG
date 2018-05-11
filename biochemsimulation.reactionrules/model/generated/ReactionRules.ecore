@@ -45,6 +45,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="linkState" eType="#//LinkState"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExactLinkAgent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="agent" eType="#//Agent"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExactLinkSite">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="site" eType="#//Site"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SiteState">
     <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//State"/>
   </eClassifiers>
@@ -55,10 +61,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="linkState" eType="#//LinkState"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AgentPattern">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="agent" eType="#//Agent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SitePatterns">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sitePatterns" upperBound="-1"
         eType="#//SitePattern" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AgentPattern">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="agent" eType="#//Agent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sitePatterns" eType="#//SitePatterns"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Pattern">
     <eStructuralFeatures xsi:type="ecore:EReference" name="agentPatterns" upperBound="-1"
@@ -86,6 +96,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="RuleBody">
     <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" eType="#//PatternAssignment"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" eType="#//PatternAssignment"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" eType="#//RuleVariables"
@@ -102,7 +113,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExactLink" eSuperTypes="#//LinkState">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="site" eType="#//Site"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="agent" eType="#//Agent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkAgent" eType="#//ExactLinkAgent"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkSite" eType="#//ExactLinkSite"
+        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -127,11 +127,21 @@ LimitLink returns LinkState :
 	state = UnsignedInteger
 ;
 
+ExactLinkAgent returns ExactLinkAgent:
+	{ExactLinkAgent}
+	agent = [Agent]
+;
+
+ExactLinkSite returns ExactLinkSite:
+	{ExactLinkSite}
+	site = [Site]
+;
+
 ExactLink returns LinkState :
 	{ExactLink}
-	site = [Site]
+	linkAgent = ExactLinkAgent
 	'.'
-	agent = [Agent]
+	linkSite = ExactLinkSite
 ;
 
 SiteState:
@@ -151,12 +161,15 @@ SitePattern returns SitePattern:
 	('[' linkState = LinkState ']')?
 ;
 
+SitePatterns returns SitePatterns:
+	{SitePatterns}
+	(sitePatterns += SitePattern (',' sitePatterns += SitePattern)* )?
+;
+
 AgentPattern returns AgentPattern:
 	{AgentPattern}
 	agent = [Agent]
-	'('
-	(sitePatterns += SitePattern (',' sitePatterns += SitePattern)* )?
-	')'
+	'('sitePatterns = SitePatterns')'
 ;
 
 Pattern returns Pattern:
@@ -195,7 +208,7 @@ RuleVariables returns RuleVariables:
 
 UnidirectionalRule returns RuleBody:
 	lhs = PatternAssignment
-	UNI
+	operator = UNI
 	rhs = PatternAssignment
 	AT
 	'[' variables = RuleVariables ']'
@@ -203,7 +216,7 @@ UnidirectionalRule returns RuleBody:
 
 BidirectionalRule returns RuleBody:
 	lhs = PatternAssignment
-	BI
+	operator = BI
 	rhs = PatternAssignment
 	AT
 	'[' variables = RuleVariables']'

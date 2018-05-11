@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link biochemsimulation.reactionrules.reactionRules.RuleBody#getLhs <em>Lhs</em>}</li>
+ *   <li>{@link biochemsimulation.reactionrules.reactionRules.RuleBody#getOperator <em>Operator</em>}</li>
  *   <li>{@link biochemsimulation.reactionrules.reactionRules.RuleBody#getRhs <em>Rhs</em>}</li>
  *   <li>{@link biochemsimulation.reactionrules.reactionRules.RuleBody#getVariables <em>Variables</em>}</li>
  * </ul>
@@ -50,6 +51,32 @@ public interface RuleBody extends EObject
    * @generated
    */
   void setLhs(PatternAssignment value);
+
+  /**
+   * Returns the value of the '<em><b>Operator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Operator</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Operator</em>' attribute.
+   * @see #setOperator(String)
+   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getRuleBody_Operator()
+   * @model
+   * @generated
+   */
+  String getOperator();
+
+  /**
+   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.RuleBody#getOperator <em>Operator</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Operator</em>' attribute.
+   * @see #getOperator()
+   * @generated
+   */
+  void setOperator(String value);
 
   /**
    * Returns the value of the '<em><b>Rhs</b></em>' containment reference.

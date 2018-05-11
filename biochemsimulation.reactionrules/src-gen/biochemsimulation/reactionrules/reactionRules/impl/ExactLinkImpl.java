@@ -3,12 +3,13 @@
  */
 package biochemsimulation.reactionrules.reactionRules.impl;
 
-import biochemsimulation.reactionrules.reactionRules.Agent;
 import biochemsimulation.reactionrules.reactionRules.ExactLink;
+import biochemsimulation.reactionrules.reactionRules.ExactLinkAgent;
+import biochemsimulation.reactionrules.reactionRules.ExactLinkSite;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
-import biochemsimulation.reactionrules.reactionRules.Site;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -23,8 +24,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.ExactLinkImpl#getSite <em>Site</em>}</li>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.ExactLinkImpl#getAgent <em>Agent</em>}</li>
+ *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.ExactLinkImpl#getLinkAgent <em>Link Agent</em>}</li>
+ *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.ExactLinkImpl#getLinkSite <em>Link Site</em>}</li>
  * </ul>
  *
  * @generated
@@ -32,24 +33,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class ExactLinkImpl extends LinkStateImpl implements ExactLink
 {
   /**
-   * The cached value of the '{@link #getSite() <em>Site</em>}' reference.
+   * The cached value of the '{@link #getLinkAgent() <em>Link Agent</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getSite()
+   * @see #getLinkAgent()
    * @generated
    * @ordered
    */
-  protected Site site;
+  protected ExactLinkAgent linkAgent;
 
   /**
-   * The cached value of the '{@link #getAgent() <em>Agent</em>}' reference.
+   * The cached value of the '{@link #getLinkSite() <em>Link Site</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAgent()
+   * @see #getLinkSite()
    * @generated
    * @ordered
    */
-  protected Agent agent;
+  protected ExactLinkSite linkSite;
 
   /**
    * <!-- begin-user-doc -->
@@ -77,19 +78,9 @@ public class ExactLinkImpl extends LinkStateImpl implements ExactLink
    * <!-- end-user-doc -->
    * @generated
    */
-  public Site getSite()
+  public ExactLinkAgent getLinkAgent()
   {
-    if (site != null && site.eIsProxy())
-    {
-      InternalEObject oldSite = (InternalEObject)site;
-      site = (Site)eResolveProxy(oldSite);
-      if (site != oldSite)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReactionRulesPackage.EXACT_LINK__SITE, oldSite, site));
-      }
-    }
-    return site;
+    return linkAgent;
   }
 
   /**
@@ -97,42 +88,16 @@ public class ExactLinkImpl extends LinkStateImpl implements ExactLink
    * <!-- end-user-doc -->
    * @generated
    */
-  public Site basicGetSite()
+  public NotificationChain basicSetLinkAgent(ExactLinkAgent newLinkAgent, NotificationChain msgs)
   {
-    return site;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setSite(Site newSite)
-  {
-    Site oldSite = site;
-    site = newSite;
+    ExactLinkAgent oldLinkAgent = linkAgent;
+    linkAgent = newLinkAgent;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.EXACT_LINK__SITE, oldSite, site));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Agent getAgent()
-  {
-    if (agent != null && agent.eIsProxy())
     {
-      InternalEObject oldAgent = (InternalEObject)agent;
-      agent = (Agent)eResolveProxy(oldAgent);
-      if (agent != oldAgent)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReactionRulesPackage.EXACT_LINK__AGENT, oldAgent, agent));
-      }
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.EXACT_LINK__LINK_AGENT, oldLinkAgent, newLinkAgent);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
     }
-    return agent;
+    return msgs;
   }
 
   /**
@@ -140,9 +105,20 @@ public class ExactLinkImpl extends LinkStateImpl implements ExactLink
    * <!-- end-user-doc -->
    * @generated
    */
-  public Agent basicGetAgent()
+  public void setLinkAgent(ExactLinkAgent newLinkAgent)
   {
-    return agent;
+    if (newLinkAgent != linkAgent)
+    {
+      NotificationChain msgs = null;
+      if (linkAgent != null)
+        msgs = ((InternalEObject)linkAgent).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.EXACT_LINK__LINK_AGENT, null, msgs);
+      if (newLinkAgent != null)
+        msgs = ((InternalEObject)newLinkAgent).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.EXACT_LINK__LINK_AGENT, null, msgs);
+      msgs = basicSetLinkAgent(newLinkAgent, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.EXACT_LINK__LINK_AGENT, newLinkAgent, newLinkAgent));
   }
 
   /**
@@ -150,12 +126,65 @@ public class ExactLinkImpl extends LinkStateImpl implements ExactLink
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setAgent(Agent newAgent)
+  public ExactLinkSite getLinkSite()
   {
-    Agent oldAgent = agent;
-    agent = newAgent;
+    return linkSite;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetLinkSite(ExactLinkSite newLinkSite, NotificationChain msgs)
+  {
+    ExactLinkSite oldLinkSite = linkSite;
+    linkSite = newLinkSite;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.EXACT_LINK__AGENT, oldAgent, agent));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.EXACT_LINK__LINK_SITE, oldLinkSite, newLinkSite);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setLinkSite(ExactLinkSite newLinkSite)
+  {
+    if (newLinkSite != linkSite)
+    {
+      NotificationChain msgs = null;
+      if (linkSite != null)
+        msgs = ((InternalEObject)linkSite).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.EXACT_LINK__LINK_SITE, null, msgs);
+      if (newLinkSite != null)
+        msgs = ((InternalEObject)newLinkSite).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.EXACT_LINK__LINK_SITE, null, msgs);
+      msgs = basicSetLinkSite(newLinkSite, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.EXACT_LINK__LINK_SITE, newLinkSite, newLinkSite));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ReactionRulesPackage.EXACT_LINK__LINK_AGENT:
+        return basicSetLinkAgent(null, msgs);
+      case ReactionRulesPackage.EXACT_LINK__LINK_SITE:
+        return basicSetLinkSite(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -168,12 +197,10 @@ public class ExactLinkImpl extends LinkStateImpl implements ExactLink
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.EXACT_LINK__SITE:
-        if (resolve) return getSite();
-        return basicGetSite();
-      case ReactionRulesPackage.EXACT_LINK__AGENT:
-        if (resolve) return getAgent();
-        return basicGetAgent();
+      case ReactionRulesPackage.EXACT_LINK__LINK_AGENT:
+        return getLinkAgent();
+      case ReactionRulesPackage.EXACT_LINK__LINK_SITE:
+        return getLinkSite();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -188,11 +215,11 @@ public class ExactLinkImpl extends LinkStateImpl implements ExactLink
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.EXACT_LINK__SITE:
-        setSite((Site)newValue);
+      case ReactionRulesPackage.EXACT_LINK__LINK_AGENT:
+        setLinkAgent((ExactLinkAgent)newValue);
         return;
-      case ReactionRulesPackage.EXACT_LINK__AGENT:
-        setAgent((Agent)newValue);
+      case ReactionRulesPackage.EXACT_LINK__LINK_SITE:
+        setLinkSite((ExactLinkSite)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -208,11 +235,11 @@ public class ExactLinkImpl extends LinkStateImpl implements ExactLink
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.EXACT_LINK__SITE:
-        setSite((Site)null);
+      case ReactionRulesPackage.EXACT_LINK__LINK_AGENT:
+        setLinkAgent((ExactLinkAgent)null);
         return;
-      case ReactionRulesPackage.EXACT_LINK__AGENT:
-        setAgent((Agent)null);
+      case ReactionRulesPackage.EXACT_LINK__LINK_SITE:
+        setLinkSite((ExactLinkSite)null);
         return;
     }
     super.eUnset(featureID);
@@ -228,10 +255,10 @@ public class ExactLinkImpl extends LinkStateImpl implements ExactLink
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.EXACT_LINK__SITE:
-        return site != null;
-      case ReactionRulesPackage.EXACT_LINK__AGENT:
-        return agent != null;
+      case ReactionRulesPackage.EXACT_LINK__LINK_AGENT:
+        return linkAgent != null;
+      case ReactionRulesPackage.EXACT_LINK__LINK_SITE:
+        return linkSite != null;
     }
     return super.eIsSet(featureID);
   }

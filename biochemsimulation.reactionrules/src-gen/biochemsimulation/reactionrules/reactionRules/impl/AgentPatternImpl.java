@@ -6,23 +6,16 @@ package biochemsimulation.reactionrules.reactionRules.impl;
 import biochemsimulation.reactionrules.reactionRules.Agent;
 import biochemsimulation.reactionrules.reactionRules.AgentPattern;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
-import biochemsimulation.reactionrules.reactionRules.SitePattern;
-
-import java.util.Collection;
+import biochemsimulation.reactionrules.reactionRules.SitePatterns;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,14 +44,14 @@ public class AgentPatternImpl extends MinimalEObjectImpl.Container implements Ag
   protected Agent agent;
 
   /**
-   * The cached value of the '{@link #getSitePatterns() <em>Site Patterns</em>}' containment reference list.
+   * The cached value of the '{@link #getSitePatterns() <em>Site Patterns</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getSitePatterns()
    * @generated
    * @ordered
    */
-  protected EList<SitePattern> sitePatterns;
+  protected SitePatterns sitePatterns;
 
   /**
    * <!-- begin-user-doc -->
@@ -129,13 +122,47 @@ public class AgentPatternImpl extends MinimalEObjectImpl.Container implements Ag
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<SitePattern> getSitePatterns()
+  public SitePatterns getSitePatterns()
   {
-    if (sitePatterns == null)
-    {
-      sitePatterns = new EObjectContainmentEList<SitePattern>(SitePattern.class, this, ReactionRulesPackage.AGENT_PATTERN__SITE_PATTERNS);
-    }
     return sitePatterns;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetSitePatterns(SitePatterns newSitePatterns, NotificationChain msgs)
+  {
+    SitePatterns oldSitePatterns = sitePatterns;
+    sitePatterns = newSitePatterns;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.AGENT_PATTERN__SITE_PATTERNS, oldSitePatterns, newSitePatterns);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setSitePatterns(SitePatterns newSitePatterns)
+  {
+    if (newSitePatterns != sitePatterns)
+    {
+      NotificationChain msgs = null;
+      if (sitePatterns != null)
+        msgs = ((InternalEObject)sitePatterns).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.AGENT_PATTERN__SITE_PATTERNS, null, msgs);
+      if (newSitePatterns != null)
+        msgs = ((InternalEObject)newSitePatterns).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.AGENT_PATTERN__SITE_PATTERNS, null, msgs);
+      msgs = basicSetSitePatterns(newSitePatterns, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.AGENT_PATTERN__SITE_PATTERNS, newSitePatterns, newSitePatterns));
   }
 
   /**
@@ -149,7 +176,7 @@ public class AgentPatternImpl extends MinimalEObjectImpl.Container implements Ag
     switch (featureID)
     {
       case ReactionRulesPackage.AGENT_PATTERN__SITE_PATTERNS:
-        return ((InternalEList<?>)getSitePatterns()).basicRemove(otherEnd, msgs);
+        return basicSetSitePatterns(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -178,7 +205,6 @@ public class AgentPatternImpl extends MinimalEObjectImpl.Container implements Ag
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -188,8 +214,7 @@ public class AgentPatternImpl extends MinimalEObjectImpl.Container implements Ag
         setAgent((Agent)newValue);
         return;
       case ReactionRulesPackage.AGENT_PATTERN__SITE_PATTERNS:
-        getSitePatterns().clear();
-        getSitePatterns().addAll((Collection<? extends SitePattern>)newValue);
+        setSitePatterns((SitePatterns)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -209,7 +234,7 @@ public class AgentPatternImpl extends MinimalEObjectImpl.Container implements Ag
         setAgent((Agent)null);
         return;
       case ReactionRulesPackage.AGENT_PATTERN__SITE_PATTERNS:
-        getSitePatterns().clear();
+        setSitePatterns((SitePatterns)null);
         return;
     }
     super.eUnset(featureID);
@@ -228,7 +253,7 @@ public class AgentPatternImpl extends MinimalEObjectImpl.Container implements Ag
       case ReactionRulesPackage.AGENT_PATTERN__AGENT:
         return agent != null;
       case ReactionRulesPackage.AGENT_PATTERN__SITE_PATTERNS:
-        return sitePatterns != null && !sitePatterns.isEmpty();
+        return sitePatterns != null;
     }
     return super.eIsSet(featureID);
   }

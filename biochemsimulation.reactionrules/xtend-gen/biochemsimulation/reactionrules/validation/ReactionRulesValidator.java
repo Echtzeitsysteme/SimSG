@@ -4,14 +4,20 @@
 package biochemsimulation.reactionrules.validation;
 
 import biochemsimulation.reactionrules.reactionRules.Agent;
+import biochemsimulation.reactionrules.reactionRules.AgentPattern;
+import biochemsimulation.reactionrules.reactionRules.ArithmeticVariable;
 import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.Observation;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 import biochemsimulation.reactionrules.reactionRules.Rule;
+import biochemsimulation.reactionrules.reactionRules.RuleBody;
 import biochemsimulation.reactionrules.reactionRules.Site;
+import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.Variable;
 import biochemsimulation.reactionrules.validation.AbstractReactionRulesValidator;
+import java.util.HashSet;
 import java.util.List;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
@@ -173,6 +179,60 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
           }
         }
         c = 0;
+      }
+    }
+  }
+  
+  @Check
+  public void checkRuleVariables(final RuleBody ruleBody) {
+    String op = ruleBody.getOperator();
+    EList<ArithmeticVariable> variables = ruleBody.getVariables().getVariables();
+    boolean _equals = op.equals("<->");
+    if (_equals) {
+      int _size = variables.size();
+      boolean _notEquals = (_size != 2);
+      if (_notEquals) {
+        this.error("Bi-Directional rules must have two reaction rate variables.", ReactionRulesPackage.Literals.RULE_BODY__VARIABLES);
+      }
+    } else {
+      int _size_1 = variables.size();
+      boolean _notEquals_1 = (_size_1 != 1);
+      if (_notEquals_1) {
+        this.error("Uni-Directional rules must have one reaction rate variable.", ReactionRulesPackage.Literals.RULE_BODY__VARIABLES);
+      }
+    }
+    for (final ArithmeticVariable variable : variables) {
+      {
+        String value = variable.getValue().getValue();
+        Double numValue = Double.valueOf(value);
+        if (((numValue).doubleValue() < 0)) {
+          this.error("Uni-Directional rules must have positive reaction rates.", ReactionRulesPackage.Literals.RULE_BODY__VARIABLES);
+        }
+        if (((numValue).doubleValue() == 0)) {
+          this.warning("Uni-Directional rules with rates equal to 0 will be inactive.", ReactionRulesPackage.Literals.RULE_BODY__VARIABLES);
+        }
+      }
+    }
+  }
+  
+  @Check
+  public void checkAgentPatternSites(final AgentPattern agentPattern) {
+    List<SitePattern> candidates = EcoreUtil2.<SitePattern>getAllContentsOfType(agentPattern, SitePattern.class);
+    EList<Site> sites = agentPattern.getAgent().getSites().getSites();
+    int _size = sites.size();
+    HashSet<Site> siteSet = new HashSet<Site>(_size);
+    siteSet.addAll(sites);
+    for (final SitePattern candidate : candidates) {
+      {
+        SitePattern sp = ((SitePattern) candidate);
+        Site spSite = sp.getSite();
+        boolean _contains = siteSet.contains(spSite);
+        boolean _not = (!_contains);
+        if (_not) {
+          String _name = spSite.getName();
+          String _plus = ("This Agent does not have a site with ID=" + _name);
+          this.error(_plus, ReactionRulesPackage.Literals.AGENT_PATTERN__SITE_PATTERNS);
+        }
       }
     }
   }

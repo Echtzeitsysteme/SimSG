@@ -132,6 +132,24 @@ public interface ReactionRulesFactory extends EFactory
   LinkState createLinkState();
 
   /**
+   * Returns a new object of class '<em>Exact Link Agent</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Exact Link Agent</em>'.
+   * @generated
+   */
+  ExactLinkAgent createExactLinkAgent();
+
+  /**
+   * Returns a new object of class '<em>Exact Link Site</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Exact Link Site</em>'.
+   * @generated
+   */
+  ExactLinkSite createExactLinkSite();
+
+  /**
    * Returns a new object of class '<em>Site State</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -148,6 +166,15 @@ public interface ReactionRulesFactory extends EFactory
    * @generated
    */
   SitePattern createSitePattern();
+
+  /**
+   * Returns a new object of class '<em>Site Patterns</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Site Patterns</em>'.
+   * @generated
+   */
+  SitePatterns createSitePatterns();
 
   /**
    * Returns a new object of class '<em>Agent Pattern</em>'.

@@ -430,6 +430,62 @@ public interface ReactionRulesPackage extends EPackage
   int LINK_STATE_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.ExactLinkAgentImpl <em>Exact Link Agent</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ExactLinkAgentImpl
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getExactLinkAgent()
+   * @generated
+   */
+  int EXACT_LINK_AGENT = 12;
+
+  /**
+   * The feature id for the '<em><b>Agent</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXACT_LINK_AGENT__AGENT = 0;
+
+  /**
+   * The number of structural features of the '<em>Exact Link Agent</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXACT_LINK_AGENT_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.ExactLinkSiteImpl <em>Exact Link Site</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ExactLinkSiteImpl
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getExactLinkSite()
+   * @generated
+   */
+  int EXACT_LINK_SITE = 13;
+
+  /**
+   * The feature id for the '<em><b>Site</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXACT_LINK_SITE__SITE = 0;
+
+  /**
+   * The number of structural features of the '<em>Exact Link Site</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXACT_LINK_SITE_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.SiteStateImpl <em>Site State</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -437,7 +493,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getSiteState()
    * @generated
    */
-  int SITE_STATE = 12;
+  int SITE_STATE = 14;
 
   /**
    * The feature id for the '<em><b>State</b></em>' reference.
@@ -465,7 +521,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getSitePattern()
    * @generated
    */
-  int SITE_PATTERN = 13;
+  int SITE_PATTERN = 15;
 
   /**
    * The feature id for the '<em><b>Site</b></em>' reference.
@@ -504,6 +560,34 @@ public interface ReactionRulesPackage extends EPackage
   int SITE_PATTERN_FEATURE_COUNT = 3;
 
   /**
+   * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.SitePatternsImpl <em>Site Patterns</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see biochemsimulation.reactionrules.reactionRules.impl.SitePatternsImpl
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getSitePatterns()
+   * @generated
+   */
+  int SITE_PATTERNS = 16;
+
+  /**
+   * The feature id for the '<em><b>Site Patterns</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SITE_PATTERNS__SITE_PATTERNS = 0;
+
+  /**
+   * The number of structural features of the '<em>Site Patterns</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SITE_PATTERNS_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.AgentPatternImpl <em>Agent Pattern</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -511,7 +595,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getAgentPattern()
    * @generated
    */
-  int AGENT_PATTERN = 14;
+  int AGENT_PATTERN = 17;
 
   /**
    * The feature id for the '<em><b>Agent</b></em>' reference.
@@ -523,7 +607,7 @@ public interface ReactionRulesPackage extends EPackage
   int AGENT_PATTERN__AGENT = 0;
 
   /**
-   * The feature id for the '<em><b>Site Patterns</b></em>' containment reference list.
+   * The feature id for the '<em><b>Site Patterns</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -548,7 +632,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getPattern()
    * @generated
    */
-  int PATTERN = 15;
+  int PATTERN = 18;
 
   /**
    * The feature id for the '<em><b>Agent Patterns</b></em>' containment reference list.
@@ -576,7 +660,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getObservation()
    * @generated
    */
-  int OBSERVATION = 16;
+  int OBSERVATION = 19;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -613,7 +697,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getInitial()
    * @generated
    */
-  int INITIAL = 17;
+  int INITIAL = 20;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -659,7 +743,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getPatternAssignment()
    * @generated
    */
-  int PATTERN_ASSIGNMENT = 18;
+  int PATTERN_ASSIGNMENT = 21;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference list.
@@ -696,7 +780,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getRuleVariables()
    * @generated
    */
-  int RULE_VARIABLES = 19;
+  int RULE_VARIABLES = 22;
 
   /**
    * The feature id for the '<em><b>Variables</b></em>' reference list.
@@ -724,7 +808,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getRuleBody()
    * @generated
    */
-  int RULE_BODY = 20;
+  int RULE_BODY = 23;
 
   /**
    * The feature id for the '<em><b>Lhs</b></em>' containment reference.
@@ -736,13 +820,22 @@ public interface ReactionRulesPackage extends EPackage
   int RULE_BODY__LHS = 0;
 
   /**
+   * The feature id for the '<em><b>Operator</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RULE_BODY__OPERATOR = 1;
+
+  /**
    * The feature id for the '<em><b>Rhs</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RULE_BODY__RHS = 1;
+  int RULE_BODY__RHS = 2;
 
   /**
    * The feature id for the '<em><b>Variables</b></em>' containment reference.
@@ -751,7 +844,7 @@ public interface ReactionRulesPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RULE_BODY__VARIABLES = 2;
+  int RULE_BODY__VARIABLES = 3;
 
   /**
    * The number of structural features of the '<em>Rule Body</em>' class.
@@ -760,7 +853,7 @@ public interface ReactionRulesPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RULE_BODY_FEATURE_COUNT = 3;
+  int RULE_BODY_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.RuleImpl <em>Rule</em>}' class.
@@ -770,7 +863,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getRule()
    * @generated
    */
-  int RULE = 21;
+  int RULE = 24;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -807,7 +900,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getSemiLink()
    * @generated
    */
-  int SEMI_LINK = 22;
+  int SEMI_LINK = 25;
 
   /**
    * The feature id for the '<em><b>Link State</b></em>' containment reference.
@@ -835,7 +928,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getFreeLink()
    * @generated
    */
-  int FREE_LINK = 23;
+  int FREE_LINK = 26;
 
   /**
    * The feature id for the '<em><b>Link State</b></em>' containment reference.
@@ -863,7 +956,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getWhatEver()
    * @generated
    */
-  int WHAT_EVER = 24;
+  int WHAT_EVER = 27;
 
   /**
    * The feature id for the '<em><b>Link State</b></em>' containment reference.
@@ -891,7 +984,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getLimitLink()
    * @generated
    */
-  int LIMIT_LINK = 25;
+  int LIMIT_LINK = 28;
 
   /**
    * The feature id for the '<em><b>Link State</b></em>' containment reference.
@@ -928,7 +1021,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getExactLink()
    * @generated
    */
-  int EXACT_LINK = 26;
+  int EXACT_LINK = 29;
 
   /**
    * The feature id for the '<em><b>Link State</b></em>' containment reference.
@@ -940,22 +1033,22 @@ public interface ReactionRulesPackage extends EPackage
   int EXACT_LINK__LINK_STATE = LINK_STATE__LINK_STATE;
 
   /**
-   * The feature id for the '<em><b>Site</b></em>' reference.
+   * The feature id for the '<em><b>Link Agent</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXACT_LINK__SITE = LINK_STATE_FEATURE_COUNT + 0;
+  int EXACT_LINK__LINK_AGENT = LINK_STATE_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Agent</b></em>' reference.
+   * The feature id for the '<em><b>Link Site</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXACT_LINK__AGENT = LINK_STATE_FEATURE_COUNT + 1;
+  int EXACT_LINK__LINK_SITE = LINK_STATE_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Exact Link</em>' class.
@@ -1220,6 +1313,48 @@ public interface ReactionRulesPackage extends EPackage
   EReference getLinkState_LinkState();
 
   /**
+   * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.ExactLinkAgent <em>Exact Link Agent</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Exact Link Agent</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.ExactLinkAgent
+   * @generated
+   */
+  EClass getExactLinkAgent();
+
+  /**
+   * Returns the meta object for the reference '{@link biochemsimulation.reactionrules.reactionRules.ExactLinkAgent#getAgent <em>Agent</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Agent</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.ExactLinkAgent#getAgent()
+   * @see #getExactLinkAgent()
+   * @generated
+   */
+  EReference getExactLinkAgent_Agent();
+
+  /**
+   * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.ExactLinkSite <em>Exact Link Site</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Exact Link Site</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.ExactLinkSite
+   * @generated
+   */
+  EClass getExactLinkSite();
+
+  /**
+   * Returns the meta object for the reference '{@link biochemsimulation.reactionrules.reactionRules.ExactLinkSite#getSite <em>Site</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Site</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.ExactLinkSite#getSite()
+   * @see #getExactLinkSite()
+   * @generated
+   */
+  EReference getExactLinkSite_Site();
+
+  /**
    * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.SiteState <em>Site State</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1284,6 +1419,27 @@ public interface ReactionRulesPackage extends EPackage
   EReference getSitePattern_LinkState();
 
   /**
+   * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.SitePatterns <em>Site Patterns</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Site Patterns</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.SitePatterns
+   * @generated
+   */
+  EClass getSitePatterns();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link biochemsimulation.reactionrules.reactionRules.SitePatterns#getSitePatterns <em>Site Patterns</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Site Patterns</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.SitePatterns#getSitePatterns()
+   * @see #getSitePatterns()
+   * @generated
+   */
+  EReference getSitePatterns_SitePatterns();
+
+  /**
    * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.AgentPattern <em>Agent Pattern</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1305,10 +1461,10 @@ public interface ReactionRulesPackage extends EPackage
   EReference getAgentPattern_Agent();
 
   /**
-   * Returns the meta object for the containment reference list '{@link biochemsimulation.reactionrules.reactionRules.AgentPattern#getSitePatterns <em>Site Patterns</em>}'.
+   * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.AgentPattern#getSitePatterns <em>Site Patterns</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Site Patterns</em>'.
+   * @return the meta object for the containment reference '<em>Site Patterns</em>'.
    * @see biochemsimulation.reactionrules.reactionRules.AgentPattern#getSitePatterns()
    * @see #getAgentPattern()
    * @generated
@@ -1464,6 +1620,17 @@ public interface ReactionRulesPackage extends EPackage
   EReference getRuleBody_Lhs();
 
   /**
+   * Returns the meta object for the attribute '{@link biochemsimulation.reactionrules.reactionRules.RuleBody#getOperator <em>Operator</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Operator</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.RuleBody#getOperator()
+   * @see #getRuleBody()
+   * @generated
+   */
+  EAttribute getRuleBody_Operator();
+
+  /**
    * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.RuleBody#getRhs <em>Rhs</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1568,26 +1735,26 @@ public interface ReactionRulesPackage extends EPackage
   EClass getExactLink();
 
   /**
-   * Returns the meta object for the reference '{@link biochemsimulation.reactionrules.reactionRules.ExactLink#getSite <em>Site</em>}'.
+   * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.ExactLink#getLinkAgent <em>Link Agent</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Site</em>'.
-   * @see biochemsimulation.reactionrules.reactionRules.ExactLink#getSite()
+   * @return the meta object for the containment reference '<em>Link Agent</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.ExactLink#getLinkAgent()
    * @see #getExactLink()
    * @generated
    */
-  EReference getExactLink_Site();
+  EReference getExactLink_LinkAgent();
 
   /**
-   * Returns the meta object for the reference '{@link biochemsimulation.reactionrules.reactionRules.ExactLink#getAgent <em>Agent</em>}'.
+   * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.ExactLink#getLinkSite <em>Link Site</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Agent</em>'.
-   * @see biochemsimulation.reactionrules.reactionRules.ExactLink#getAgent()
+   * @return the meta object for the containment reference '<em>Link Site</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.ExactLink#getLinkSite()
    * @see #getExactLink()
    * @generated
    */
-  EReference getExactLink_Agent();
+  EReference getExactLink_LinkSite();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1829,6 +1996,42 @@ public interface ReactionRulesPackage extends EPackage
     EReference LINK_STATE__LINK_STATE = eINSTANCE.getLinkState_LinkState();
 
     /**
+     * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.ExactLinkAgentImpl <em>Exact Link Agent</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ExactLinkAgentImpl
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getExactLinkAgent()
+     * @generated
+     */
+    EClass EXACT_LINK_AGENT = eINSTANCE.getExactLinkAgent();
+
+    /**
+     * The meta object literal for the '<em><b>Agent</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXACT_LINK_AGENT__AGENT = eINSTANCE.getExactLinkAgent_Agent();
+
+    /**
+     * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.ExactLinkSiteImpl <em>Exact Link Site</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ExactLinkSiteImpl
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getExactLinkSite()
+     * @generated
+     */
+    EClass EXACT_LINK_SITE = eINSTANCE.getExactLinkSite();
+
+    /**
+     * The meta object literal for the '<em><b>Site</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXACT_LINK_SITE__SITE = eINSTANCE.getExactLinkSite_Site();
+
+    /**
      * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.SiteStateImpl <em>Site State</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1881,6 +2084,24 @@ public interface ReactionRulesPackage extends EPackage
     EReference SITE_PATTERN__LINK_STATE = eINSTANCE.getSitePattern_LinkState();
 
     /**
+     * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.SitePatternsImpl <em>Site Patterns</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see biochemsimulation.reactionrules.reactionRules.impl.SitePatternsImpl
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getSitePatterns()
+     * @generated
+     */
+    EClass SITE_PATTERNS = eINSTANCE.getSitePatterns();
+
+    /**
+     * The meta object literal for the '<em><b>Site Patterns</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SITE_PATTERNS__SITE_PATTERNS = eINSTANCE.getSitePatterns_SitePatterns();
+
+    /**
      * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.AgentPatternImpl <em>Agent Pattern</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1899,7 +2120,7 @@ public interface ReactionRulesPackage extends EPackage
     EReference AGENT_PATTERN__AGENT = eINSTANCE.getAgentPattern_Agent();
 
     /**
-     * The meta object literal for the '<em><b>Site Patterns</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Site Patterns</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -2031,6 +2252,14 @@ public interface ReactionRulesPackage extends EPackage
     EReference RULE_BODY__LHS = eINSTANCE.getRuleBody_Lhs();
 
     /**
+     * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RULE_BODY__OPERATOR = eINSTANCE.getRuleBody_Operator();
+
+    /**
      * The meta object literal for the '<em><b>Rhs</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2123,20 +2352,20 @@ public interface ReactionRulesPackage extends EPackage
     EClass EXACT_LINK = eINSTANCE.getExactLink();
 
     /**
-     * The meta object literal for the '<em><b>Site</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Link Agent</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference EXACT_LINK__SITE = eINSTANCE.getExactLink_Site();
+    EReference EXACT_LINK__LINK_AGENT = eINSTANCE.getExactLink_LinkAgent();
 
     /**
-     * The meta object literal for the '<em><b>Agent</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Link Site</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference EXACT_LINK__AGENT = eINSTANCE.getExactLink_Agent();
+    EReference EXACT_LINK__LINK_SITE = eINSTANCE.getExactLink_LinkSite();
 
   }
 

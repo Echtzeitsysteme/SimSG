@@ -163,6 +163,20 @@ public class ReactionRulesSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ReactionRulesPackage.EXACT_LINK_AGENT:
+      {
+        ExactLinkAgent exactLinkAgent = (ExactLinkAgent)theEObject;
+        T result = caseExactLinkAgent(exactLinkAgent);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReactionRulesPackage.EXACT_LINK_SITE:
+      {
+        ExactLinkSite exactLinkSite = (ExactLinkSite)theEObject;
+        T result = caseExactLinkSite(exactLinkSite);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ReactionRulesPackage.SITE_STATE:
       {
         SiteState siteState = (SiteState)theEObject;
@@ -174,6 +188,13 @@ public class ReactionRulesSwitch<T> extends Switch<T>
       {
         SitePattern sitePattern = (SitePattern)theEObject;
         T result = caseSitePattern(sitePattern);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReactionRulesPackage.SITE_PATTERNS:
+      {
+        SitePatterns sitePatterns = (SitePatterns)theEObject;
+        T result = caseSitePatterns(sitePatterns);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -473,6 +494,38 @@ public class ReactionRulesSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Exact Link Agent</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Exact Link Agent</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExactLinkAgent(ExactLinkAgent object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Exact Link Site</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Exact Link Site</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExactLinkSite(ExactLinkSite object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Site State</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -500,6 +553,22 @@ public class ReactionRulesSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseSitePattern(SitePattern object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Site Patterns</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Site Patterns</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSitePatterns(SitePatterns object)
   {
     return null;
   }

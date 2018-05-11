@@ -13,8 +13,8 @@ package biochemsimulation.reactionrules.reactionRules;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.ExactLink#getSite <em>Site</em>}</li>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.ExactLink#getAgent <em>Agent</em>}</li>
+ *   <li>{@link biochemsimulation.reactionrules.reactionRules.ExactLink#getLinkAgent <em>Link Agent</em>}</li>
+ *   <li>{@link biochemsimulation.reactionrules.reactionRules.ExactLink#getLinkSite <em>Link Site</em>}</li>
  * </ul>
  *
  * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getExactLink()
@@ -24,55 +24,55 @@ package biochemsimulation.reactionrules.reactionRules;
 public interface ExactLink extends LinkState
 {
   /**
-   * Returns the value of the '<em><b>Site</b></em>' reference.
+   * Returns the value of the '<em><b>Link Agent</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Site</em>' reference isn't clear,
+   * If the meaning of the '<em>Link Agent</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Site</em>' reference.
-   * @see #setSite(Site)
-   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getExactLink_Site()
-   * @model
+   * @return the value of the '<em>Link Agent</em>' containment reference.
+   * @see #setLinkAgent(ExactLinkAgent)
+   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getExactLink_LinkAgent()
+   * @model containment="true"
    * @generated
    */
-  Site getSite();
+  ExactLinkAgent getLinkAgent();
 
   /**
-   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.ExactLink#getSite <em>Site</em>}' reference.
+   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.ExactLink#getLinkAgent <em>Link Agent</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Site</em>' reference.
-   * @see #getSite()
+   * @param value the new value of the '<em>Link Agent</em>' containment reference.
+   * @see #getLinkAgent()
    * @generated
    */
-  void setSite(Site value);
+  void setLinkAgent(ExactLinkAgent value);
 
   /**
-   * Returns the value of the '<em><b>Agent</b></em>' reference.
+   * Returns the value of the '<em><b>Link Site</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Agent</em>' reference isn't clear,
+   * If the meaning of the '<em>Link Site</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Agent</em>' reference.
-   * @see #setAgent(Agent)
-   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getExactLink_Agent()
-   * @model
+   * @return the value of the '<em>Link Site</em>' containment reference.
+   * @see #setLinkSite(ExactLinkSite)
+   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getExactLink_LinkSite()
+   * @model containment="true"
    * @generated
    */
-  Agent getAgent();
+  ExactLinkSite getLinkSite();
 
   /**
-   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.ExactLink#getAgent <em>Agent</em>}' reference.
+   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.ExactLink#getLinkSite <em>Link Site</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Agent</em>' reference.
-   * @see #getAgent()
+   * @param value the new value of the '<em>Link Site</em>' containment reference.
+   * @see #getLinkSite()
    * @generated
    */
-  void setAgent(Agent value);
+  void setLinkSite(ExactLinkSite value);
 
 } // ExactLink
