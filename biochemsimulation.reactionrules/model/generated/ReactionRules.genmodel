@@ -7,7 +7,37 @@
   <genPackages prefix="ReactionRules" basePackage="biochemsimulation.reactionrules"
       disposableProviderFactory="true" fileExtensions="react" ecorePackage="ReactionRules.ecore#/">
     <genClasses ecoreClass="ReactionRules.ecore#//ReactionRuleModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//ReactionRuleModel/model"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//ReactionRuleModel/reationContainer"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//ReactionRuleModel/reactionProperties"/>
+    </genClasses>
+    <genClasses ecoreClass="ReactionRules.ecore#//ModelUri">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//ModelUri/uri"/>
+    </genClasses>
+    <genClasses ecoreClass="ReactionRules.ecore#//ModelPath">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//ModelPath/path"/>
+    </genClasses>
+    <genClasses ecoreClass="ReactionRules.ecore#//ModelLocation"/>
+    <genClasses ecoreClass="ReactionRules.ecore#//Model">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//Model/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//Model/location"/>
+    </genClasses>
+    <genClasses ecoreClass="ReactionRules.ecore#//ReactionContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//ReactionContainer/agentInstances"/>
+    </genClasses>
+    <genClasses ecoreClass="ReactionRules.ecore#//AgentInstanceSiteState">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//AgentInstanceSiteState/site"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//AgentInstanceSiteState/siteState"/>
+    </genClasses>
+    <genClasses ecoreClass="ReactionRules.ecore#//AgentInstanceLinkState">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//AgentInstanceLinkState/site"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//AgentInstanceLinkState/linkState"/>
+    </genClasses>
+    <genClasses ecoreClass="ReactionRules.ecore#//AgentInstance">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//AgentInstance/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//AgentInstance/agent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//AgentInstance/siteStates"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//AgentInstance/linkStates"/>
     </genClasses>
     <genClasses ecoreClass="ReactionRules.ecore#//ReactionProperty">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//ReactionProperty/name"/>
@@ -72,10 +102,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//Initial/count"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//Initial/initialPattern"/>
     </genClasses>
-    <genClasses ecoreClass="ReactionRules.ecore#//PatternAssignment">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//PatternAssignment/pattern"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//PatternAssignment/patternVar"/>
+    <genClasses ecoreClass="ReactionRules.ecore#//AssignFromPattern">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//AssignFromPattern/pattern"/>
     </genClasses>
+    <genClasses ecoreClass="ReactionRules.ecore#//AssignFromVariable">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//AssignFromVariable/patternVar"/>
+    </genClasses>
+    <genClasses ecoreClass="ReactionRules.ecore#//PatternAssignment"/>
     <genClasses ecoreClass="ReactionRules.ecore#//RuleVariables">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//RuleVariables/variables"/>
     </genClasses>

@@ -33,6 +33,78 @@ public interface ReactionRulesFactory extends EFactory
   ReactionRuleModel createReactionRuleModel();
 
   /**
+   * Returns a new object of class '<em>Model Uri</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Model Uri</em>'.
+   * @generated
+   */
+  ModelUri createModelUri();
+
+  /**
+   * Returns a new object of class '<em>Model Path</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Model Path</em>'.
+   * @generated
+   */
+  ModelPath createModelPath();
+
+  /**
+   * Returns a new object of class '<em>Model Location</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Model Location</em>'.
+   * @generated
+   */
+  ModelLocation createModelLocation();
+
+  /**
+   * Returns a new object of class '<em>Model</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Model</em>'.
+   * @generated
+   */
+  Model createModel();
+
+  /**
+   * Returns a new object of class '<em>Reaction Container</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Reaction Container</em>'.
+   * @generated
+   */
+  ReactionContainer createReactionContainer();
+
+  /**
+   * Returns a new object of class '<em>Agent Instance Site State</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Agent Instance Site State</em>'.
+   * @generated
+   */
+  AgentInstanceSiteState createAgentInstanceSiteState();
+
+  /**
+   * Returns a new object of class '<em>Agent Instance Link State</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Agent Instance Link State</em>'.
+   * @generated
+   */
+  AgentInstanceLinkState createAgentInstanceLinkState();
+
+  /**
+   * Returns a new object of class '<em>Agent Instance</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Agent Instance</em>'.
+   * @generated
+   */
+  AgentInstance createAgentInstance();
+
+  /**
    * Returns a new object of class '<em>Reaction Property</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -211,6 +283,24 @@ public interface ReactionRulesFactory extends EFactory
    * @generated
    */
   Initial createInitial();
+
+  /**
+   * Returns a new object of class '<em>Assign From Pattern</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Assign From Pattern</em>'.
+   * @generated
+   */
+  AssignFromPattern createAssignFromPattern();
+
+  /**
+   * Returns a new object of class '<em>Assign From Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Assign From Variable</em>'.
+   * @generated
+   */
+  AssignFromVariable createAssignFromVariable();
 
   /**
    * Returns a new object of class '<em>Pattern Assignment</em>'.

@@ -1,0 +1,15 @@
+package manual.queries
+
+import "http://www.reactionrules.biochemsimulation/ReactionRules"
+
+pattern test1(agentI: AgentInstance) {
+	AgentInstance.agent(agentI, _);
+}
+
+pattern test2(model: Model) {
+	Model.name(model, _);
+}
+
+pattern test3(all: ReactionRuleModel) {
+	ReactionRuleModel.model(all, _);
+}

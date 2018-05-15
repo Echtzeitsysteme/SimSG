@@ -4,9 +4,14 @@
 package biochemsimulation.reactionrules.serializer;
 
 import biochemsimulation.reactionrules.reactionRules.Agent;
+import biochemsimulation.reactionrules.reactionRules.AgentInstance;
+import biochemsimulation.reactionrules.reactionRules.AgentInstanceLinkState;
+import biochemsimulation.reactionrules.reactionRules.AgentInstanceSiteState;
 import biochemsimulation.reactionrules.reactionRules.AgentPattern;
 import biochemsimulation.reactionrules.reactionRules.ArithmeticValue;
 import biochemsimulation.reactionrules.reactionRules.ArithmeticVariable;
+import biochemsimulation.reactionrules.reactionRules.AssignFromPattern;
+import biochemsimulation.reactionrules.reactionRules.AssignFromVariable;
 import biochemsimulation.reactionrules.reactionRules.ExactLink;
 import biochemsimulation.reactionrules.reactionRules.ExactLinkAgent;
 import biochemsimulation.reactionrules.reactionRules.ExactLinkSite;
@@ -14,10 +19,13 @@ import biochemsimulation.reactionrules.reactionRules.FreeLink;
 import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.LimitLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
+import biochemsimulation.reactionrules.reactionRules.Model;
+import biochemsimulation.reactionrules.reactionRules.ModelPath;
+import biochemsimulation.reactionrules.reactionRules.ModelUri;
 import biochemsimulation.reactionrules.reactionRules.Observation;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
-import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
 import biochemsimulation.reactionrules.reactionRules.PatternVariable;
+import biochemsimulation.reactionrules.reactionRules.ReactionContainer;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 import biochemsimulation.reactionrules.reactionRules.Rule;
@@ -62,6 +70,15 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 			case ReactionRulesPackage.AGENT:
 				sequence_Agent(context, (Agent) semanticObject); 
 				return; 
+			case ReactionRulesPackage.AGENT_INSTANCE:
+				sequence_AgentInstance(context, (AgentInstance) semanticObject); 
+				return; 
+			case ReactionRulesPackage.AGENT_INSTANCE_LINK_STATE:
+				sequence_AgentInstanceLinkState(context, (AgentInstanceLinkState) semanticObject); 
+				return; 
+			case ReactionRulesPackage.AGENT_INSTANCE_SITE_STATE:
+				sequence_AgentInstanceSiteState(context, (AgentInstanceSiteState) semanticObject); 
+				return; 
 			case ReactionRulesPackage.AGENT_PATTERN:
 				sequence_AgentPattern(context, (AgentPattern) semanticObject); 
 				return; 
@@ -70,6 +87,12 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 				return; 
 			case ReactionRulesPackage.ARITHMETIC_VARIABLE:
 				sequence_ArithmeticVariable(context, (ArithmeticVariable) semanticObject); 
+				return; 
+			case ReactionRulesPackage.ASSIGN_FROM_PATTERN:
+				sequence_AssignFromPattern(context, (AssignFromPattern) semanticObject); 
+				return; 
+			case ReactionRulesPackage.ASSIGN_FROM_VARIABLE:
+				sequence_AssignFromVariable(context, (AssignFromVariable) semanticObject); 
 				return; 
 			case ReactionRulesPackage.EXACT_LINK:
 				sequence_ExactLink(context, (ExactLink) semanticObject); 
@@ -92,28 +115,26 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 			case ReactionRulesPackage.LINK_STATE:
 				sequence_LinkState(context, (LinkState) semanticObject); 
 				return; 
+			case ReactionRulesPackage.MODEL:
+				sequence_Model(context, (Model) semanticObject); 
+				return; 
+			case ReactionRulesPackage.MODEL_PATH:
+				sequence_ModelPath(context, (ModelPath) semanticObject); 
+				return; 
+			case ReactionRulesPackage.MODEL_URI:
+				sequence_ModelUri(context, (ModelUri) semanticObject); 
+				return; 
 			case ReactionRulesPackage.OBSERVATION:
 				sequence_Observation(context, (Observation) semanticObject); 
 				return; 
 			case ReactionRulesPackage.PATTERN:
 				sequence_Pattern(context, (Pattern) semanticObject); 
 				return; 
-			case ReactionRulesPackage.PATTERN_ASSIGNMENT:
-				if (rule == grammarAccess.getPatternAssignmentRule()) {
-					sequence_AssignFromPattern_AssignFromVariable(context, (PatternAssignment) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getAssignFromPatternRule()) {
-					sequence_AssignFromPattern(context, (PatternAssignment) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getAssignFromVariableRule()) {
-					sequence_AssignFromVariable(context, (PatternAssignment) semanticObject); 
-					return; 
-				}
-				else break;
 			case ReactionRulesPackage.PATTERN_VARIABLE:
 				sequence_PatternVariable(context, (PatternVariable) semanticObject); 
+				return; 
+			case ReactionRulesPackage.REACTION_CONTAINER:
+				sequence_ReactionContainer(context, (ReactionContainer) semanticObject); 
 				return; 
 			case ReactionRulesPackage.REACTION_RULE_MODEL:
 				sequence_ReactionRuleModel(context, (ReactionRuleModel) semanticObject); 
@@ -169,6 +190,60 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
+	
+	/**
+	 * Contexts:
+	 *     AgentInstanceLinkState returns AgentInstanceLinkState
+	 *
+	 * Constraint:
+	 *     (site=[Site|ID] linkState=LinkState)
+	 */
+	protected void sequence_AgentInstanceLinkState(ISerializationContext context, AgentInstanceLinkState semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.AGENT_INSTANCE_LINK_STATE__SITE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.AGENT_INSTANCE_LINK_STATE__SITE));
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.AGENT_INSTANCE_LINK_STATE__LINK_STATE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.AGENT_INSTANCE_LINK_STATE__LINK_STATE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAgentInstanceLinkStateAccess().getSiteSiteIDTerminalRuleCall_0_0_1(), semanticObject.eGet(ReactionRulesPackage.Literals.AGENT_INSTANCE_LINK_STATE__SITE, false));
+		feeder.accept(grammarAccess.getAgentInstanceLinkStateAccess().getLinkStateLinkStateParserRuleCall_1_0(), semanticObject.getLinkState());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     AgentInstanceSiteState returns AgentInstanceSiteState
+	 *
+	 * Constraint:
+	 *     (site=[Site|ID] siteState=SiteState)
+	 */
+	protected void sequence_AgentInstanceSiteState(ISerializationContext context, AgentInstanceSiteState semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.AGENT_INSTANCE_SITE_STATE__SITE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.AGENT_INSTANCE_SITE_STATE__SITE));
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.AGENT_INSTANCE_SITE_STATE__SITE_STATE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.AGENT_INSTANCE_SITE_STATE__SITE_STATE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAgentInstanceSiteStateAccess().getSiteSiteIDTerminalRuleCall_0_0_1(), semanticObject.eGet(ReactionRulesPackage.Literals.AGENT_INSTANCE_SITE_STATE__SITE, false));
+		feeder.accept(grammarAccess.getAgentInstanceSiteStateAccess().getSiteStateSiteStateParserRuleCall_1_0(), semanticObject.getSiteState());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     AgentInstance returns AgentInstance
+	 *
+	 * Constraint:
+	 *     (name=ID agent=[Agent|ID] siteStates+=AgentInstanceSiteState linkStates+=AgentInstanceLinkState)
+	 */
+	protected void sequence_AgentInstance(ISerializationContext context, AgentInstance semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
 	
 	/**
 	 * Contexts:
@@ -256,37 +331,39 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Contexts:
-	 *     PatternAssignment returns PatternAssignment
+	 *     AssignFromPattern returns AssignFromPattern
+	 *     PatternAssignment returns AssignFromPattern
 	 *
 	 * Constraint:
-	 *     (pattern+=Pattern | patternVar+=[PatternVariable|ID])
+	 *     pattern=Pattern
 	 */
-	protected void sequence_AssignFromPattern_AssignFromVariable(ISerializationContext context, PatternAssignment semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_AssignFromPattern(ISerializationContext context, AssignFromPattern semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.ASSIGN_FROM_PATTERN__PATTERN) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.ASSIGN_FROM_PATTERN__PATTERN));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAssignFromPatternAccess().getPatternPatternParserRuleCall_0(), semanticObject.getPattern());
+		feeder.finish();
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     AssignFromPattern returns PatternAssignment
+	 *     AssignFromVariable returns AssignFromVariable
+	 *     PatternAssignment returns AssignFromVariable
 	 *
 	 * Constraint:
-	 *     pattern+=Pattern
+	 *     patternVar=[PatternVariable|ID]
 	 */
-	protected void sequence_AssignFromPattern(ISerializationContext context, PatternAssignment semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     AssignFromVariable returns PatternAssignment
-	 *
-	 * Constraint:
-	 *     patternVar+=[PatternVariable|ID]
-	 */
-	protected void sequence_AssignFromVariable(ISerializationContext context, PatternAssignment semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_AssignFromVariable(ISerializationContext context, AssignFromVariable semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.ASSIGN_FROM_VARIABLE__PATTERN_VAR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.ASSIGN_FROM_VARIABLE__PATTERN_VAR));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAssignFromVariableAccess().getPatternVarPatternVariableIDTerminalRuleCall_0_1(), semanticObject.eGet(ReactionRulesPackage.Literals.ASSIGN_FROM_VARIABLE__PATTERN_VAR, false));
+		feeder.finish();
 	}
 	
 	
@@ -458,6 +535,56 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Contexts:
+	 *     ModelPath returns ModelPath
+	 *     ModelLocation returns ModelPath
+	 *
+	 * Constraint:
+	 *     path=STRING
+	 */
+	protected void sequence_ModelPath(ISerializationContext context, ModelPath semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.MODEL_PATH__PATH) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.MODEL_PATH__PATH));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getModelPathAccess().getPathSTRINGTerminalRuleCall_1_0(), semanticObject.getPath());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     ModelUri returns ModelUri
+	 *     ModelLocation returns ModelUri
+	 *
+	 * Constraint:
+	 *     uri=STRING
+	 */
+	protected void sequence_ModelUri(ISerializationContext context, ModelUri semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.MODEL_URI__URI) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.MODEL_URI__URI));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getModelUriAccess().getUriSTRINGTerminalRuleCall_1_0(), semanticObject.getUri());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Model returns Model
+	 *
+	 * Constraint:
+	 *     (name=ID location=ModelLocation?)
+	 */
+	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ReactionProperty returns Observation
 	 *     Observation returns Observation
 	 *
@@ -515,10 +642,22 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Contexts:
+	 *     ReactionContainer returns ReactionContainer
+	 *
+	 * Constraint:
+	 *     agentInstances+=AgentInstance*
+	 */
+	protected void sequence_ReactionContainer(ISerializationContext context, ReactionContainer semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ReactionRuleModel returns ReactionRuleModel
 	 *
 	 * Constraint:
-	 *     reactionProperties+=ReactionProperty+
+	 *     (model=Model reationContainer=ReactionContainer reactionProperties+=ReactionProperty*)
 	 */
 	protected void sequence_ReactionRuleModel(ISerializationContext context, ReactionRuleModel semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

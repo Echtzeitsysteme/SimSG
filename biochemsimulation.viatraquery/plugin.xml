@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><plugin>
+  <extension id="manual.queries.QueryTest" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:manual.queries.QueryTest" id="manual.queries.QueryTest">
+      <query-specification fqn="manual.queries.test1"/>
+      <query-specification fqn="manual.queries.test2"/>
+      <query-specification fqn="manual.queries.test3"/>
+    </group>
+  </extension>
+</plugin>

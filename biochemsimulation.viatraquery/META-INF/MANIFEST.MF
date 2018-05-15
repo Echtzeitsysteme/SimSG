@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: biochemsimulation.viatraquery
+Bundle-SymbolicName: biochemsimulation.viatraquery;singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Export-Package: manual.queries,
+  manual.queries.util
+Require-Bundle: biochemsimulation.reactionrules,
+  org.eclipse.emf.ecore,
+  org.eclipse.viatra.query.runtime,
+  org.eclipse.viatra.query.runtime.localsearch,
+  org.eclipse.xtext.xbase.lib
+Bundle-RequiredExecutionEnvironment: JavaSE-9
+Import-Package: org.apache.log4j
+Automatic-Module-Name: biochemsimulation.viatraquery

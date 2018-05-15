@@ -3,62 +3,22 @@
  */
 package biochemsimulation.reactionrules.reactionRules.impl;
 
-import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
-import biochemsimulation.reactionrules.reactionRules.PatternVariable;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Pattern Assignment</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
- * <ul>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.PatternAssignmentImpl#getPattern <em>Pattern</em>}</li>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.PatternAssignmentImpl#getPatternVar <em>Pattern Var</em>}</li>
- * </ul>
  *
  * @generated
  */
 public class PatternAssignmentImpl extends MinimalEObjectImpl.Container implements PatternAssignment
 {
-  /**
-   * The cached value of the '{@link #getPattern() <em>Pattern</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getPattern()
-   * @generated
-   * @ordered
-   */
-  protected EList<Pattern> pattern;
-
-  /**
-   * The cached value of the '{@link #getPatternVar() <em>Pattern Var</em>}' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getPatternVar()
-   * @generated
-   * @ordered
-   */
-  protected EList<PatternVariable> patternVar;
-
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -78,129 +38,6 @@ public class PatternAssignmentImpl extends MinimalEObjectImpl.Container implemen
   protected EClass eStaticClass()
   {
     return ReactionRulesPackage.Literals.PATTERN_ASSIGNMENT;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<Pattern> getPattern()
-  {
-    if (pattern == null)
-    {
-      pattern = new EObjectContainmentEList<Pattern>(Pattern.class, this, ReactionRulesPackage.PATTERN_ASSIGNMENT__PATTERN);
-    }
-    return pattern;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<PatternVariable> getPatternVar()
-  {
-    if (patternVar == null)
-    {
-      patternVar = new EObjectResolvingEList<PatternVariable>(PatternVariable.class, this, ReactionRulesPackage.PATTERN_ASSIGNMENT__PATTERN_VAR);
-    }
-    return patternVar;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case ReactionRulesPackage.PATTERN_ASSIGNMENT__PATTERN:
-        return ((InternalEList<?>)getPattern()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
-    switch (featureID)
-    {
-      case ReactionRulesPackage.PATTERN_ASSIGNMENT__PATTERN:
-        return getPattern();
-      case ReactionRulesPackage.PATTERN_ASSIGNMENT__PATTERN_VAR:
-        return getPatternVar();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
-    switch (featureID)
-    {
-      case ReactionRulesPackage.PATTERN_ASSIGNMENT__PATTERN:
-        getPattern().clear();
-        getPattern().addAll((Collection<? extends Pattern>)newValue);
-        return;
-      case ReactionRulesPackage.PATTERN_ASSIGNMENT__PATTERN_VAR:
-        getPatternVar().clear();
-        getPatternVar().addAll((Collection<? extends PatternVariable>)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID)
-  {
-    switch (featureID)
-    {
-      case ReactionRulesPackage.PATTERN_ASSIGNMENT__PATTERN:
-        getPattern().clear();
-        return;
-      case ReactionRulesPackage.PATTERN_ASSIGNMENT__PATTERN_VAR:
-        getPatternVar().clear();
-        return;
-    }
-    super.eUnset(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
-    switch (featureID)
-    {
-      case ReactionRulesPackage.PATTERN_ASSIGNMENT__PATTERN:
-        return pattern != null && !pattern.isEmpty();
-      case ReactionRulesPackage.PATTERN_ASSIGNMENT__PATTERN_VAR:
-        return patternVar != null && !patternVar.isEmpty();
-    }
-    return super.eIsSet(featureID);
   }
 
 } //PatternAssignmentImpl

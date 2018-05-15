@@ -3,7 +3,22 @@
  */
 package biochemsimulation.reactionrules.generator
 
+import biochemsimulation.reactionrules.reactionRules.AgentPattern
+import biochemsimulation.reactionrules.reactionRules.AssignFromPattern
+import biochemsimulation.reactionrules.reactionRules.AssignFromVariable
+import biochemsimulation.reactionrules.reactionRules.Initial
+import biochemsimulation.reactionrules.reactionRules.ModelPath
+import biochemsimulation.reactionrules.reactionRules.ModelUri
+import biochemsimulation.reactionrules.reactionRules.Pattern
+import biochemsimulation.reactionrules.reactionRules.impl.ReactionRuleModelImpl
+import biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesFactoryImpl
+import java.io.IOException
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.emf.ecore.xmi.XMIResource
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
@@ -16,10 +31,123 @@ import org.eclipse.xtext.generator.IGeneratorContext
 class ReactionRulesGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(Greeting)
-//				.map[name]
-//				.join(', '))
+		generateInitialConditions(resource)
+		saveResource(resource)
+	}
+	
+	def generateInitialConditions(Resource resource) {
+		var model = resource.getContents().get(0) as ReactionRuleModelImpl
+		var initials = model.reactionProperties.filter[x | x instanceof Initial]
+		for(init : initials) {
+			val i = init as Initial
+			agentInstancesFromInitial(resource, i)
+		}
+		
+	}
+	
+	def agentInstancesFromInitial(Resource resource, Initial initial) {
+		val content = initial.initialPattern
+		val n = Integer.valueOf(initial.count)
+		if(content instanceof AssignFromPattern) {
+			val c = content as AssignFromPattern
+			agentInstancesFromPattern(resource, c.pattern, n)
+		}else {
+			val va = content as AssignFromVariable
+			agentInstancesFromPattern(resource, va.patternVar.pattern, n)
+		}
+	}
+	
+	def agentInstancesFromPattern(Resource resource, Pattern pattern, int n){
+		var model = resource.getContents().get(0) as ReactionRuleModelImpl
+		val factory = ReactionRulesFactoryImpl.init()
+		for(i : 0 ..< n){
+			for(agentPattern : pattern.agentPatterns) {
+				val ap = agentPattern as AgentPattern
+				val agent = ap.agent
+				var agentI = factory.createAgentInstance
+				agentI.name = agent.name+".Instance@#"+i
+				agentI.agent = agent
+				for(sitePattern : ap.sitePatterns.sitePatterns) {
+					val site = sitePattern.site
+					val oldLinkState = sitePattern.linkState
+					val oldSiteState = sitePattern.state
+					
+					if(oldLinkState !== null) {
+						var newLinkState = factory.createLinkState
+						newLinkState.linkState = oldLinkState.linkState
+						var aiLinkState = factory.createAgentInstanceLinkState
+						
+						aiLinkState.site = site
+						aiLinkState.linkState = newLinkState
+						
+						agentI.linkStates.add(aiLinkState)
+					}
+					
+					if(oldSiteState !== null) {
+						var newSiteState = factory.createSiteState
+						newSiteState.state = oldSiteState.state
+						var aiSiteState = factory.createAgentInstanceSiteState
+					
+						aiSiteState.site = site
+						aiSiteState.siteState = newSiteState
+					
+					
+						agentI.siteStates.add(aiSiteState)
+					}
+					
+					
+				}
+				model.reationContainer.agentInstances.add(agentI)
+			
+			}
+		}
+			
+		
+	}
+	
+	def saveResource(Resource resource) {
+		val model = resource.getContents().get(0) as ReactionRuleModelImpl
+		val name = model.model.name
+		val projectPath = this.getClass().getProtectionDomain().getCodeSource().getLocation().path
+		var uriName = ""
+		if(model.model.location === null) {
+			uriName = "file:"+projectPath+"model/instances/"+name+".xmi"
+		}else {
+			if(model.model.location instanceof ModelPath) {
+				val path = model.model.location as ModelPath
+				uriName = "file://"path.path
+			}else {
+				val path = model.model.location as ModelUri
+				uriName = path.uri
+			}
+		}
+		val uri1 = URI.createURI(uriName);
+		var uri2 = resource.URI
+		uri2 = uri2.trimFileExtension
+		uri2 = uri2.appendFileExtension("xmi")
+		saveModelToURI(model, name, uri1)
+		saveModelToURI(model, name, uri2)
+	}
+	
+	def saveModelToURI(EObject model, String name, URI uri){
+		val Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
+		var m = reg.getExtensionToFactoryMap();
+		m.put(name, new XMIResourceFactoryImpl());
+		var resourceSet = new ResourceSetImpl();
+		var resource = resourceSet.createResource(uri) as XMIResource;
+		resource.getContents().add(model);
+		
+		val saveOptions = resource.getDefaultSaveOptions()
+		saveOptions.put(XMIResource.OPTION_ENCODING,"UTF-8")
+		saveOptions.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE)
+		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION,Boolean.TRUE)
+		saveOptions.put(XMIResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION, Boolean.TRUE)
+		
+		try {
+			resource.save(saveOptions);
+			println("Model saved to: "+uri.path)
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

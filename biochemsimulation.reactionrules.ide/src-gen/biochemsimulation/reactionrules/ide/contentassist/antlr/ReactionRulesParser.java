@@ -31,12 +31,21 @@ public class ReactionRulesParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getModelLocationAccess().getAlternatives(), "rule__ModelLocation__Alternatives");
 					put(grammarAccess.getReactionPropertyAccess().getAlternatives(), "rule__ReactionProperty__Alternatives");
 					put(grammarAccess.getArithmeticTypeAccess().getAlternatives(), "rule__ArithmeticType__Alternatives");
 					put(grammarAccess.getVariableAccess().getAlternatives(), "rule__Variable__Alternatives");
 					put(grammarAccess.getLinkStateAccess().getLinkStateAlternatives_1_0(), "rule__LinkState__LinkStateAlternatives_1_0");
 					put(grammarAccess.getPatternAssignmentAccess().getAlternatives(), "rule__PatternAssignment__Alternatives");
 					put(grammarAccess.getRuleBodyAccess().getAlternatives(), "rule__RuleBody__Alternatives");
+					put(grammarAccess.getReactionRuleModelAccess().getGroup(), "rule__ReactionRuleModel__Group__0");
+					put(grammarAccess.getModelUriAccess().getGroup(), "rule__ModelUri__Group__0");
+					put(grammarAccess.getModelPathAccess().getGroup(), "rule__ModelPath__Group__0");
+					put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
+					put(grammarAccess.getReactionContainerAccess().getGroup(), "rule__ReactionContainer__Group__0");
+					put(grammarAccess.getAgentInstanceSiteStateAccess().getGroup(), "rule__AgentInstanceSiteState__Group__0");
+					put(grammarAccess.getAgentInstanceLinkStateAccess().getGroup(), "rule__AgentInstanceLinkState__Group__0");
+					put(grammarAccess.getAgentInstanceAccess().getGroup(), "rule__AgentInstance__Group__0");
 					put(grammarAccess.getFloatAccess().getGroup(), "rule__Float__Group__0");
 					put(grammarAccess.getScientificFloatAccess().getGroup(), "rule__ScientificFloat__Group__0");
 					put(grammarAccess.getSignedIntegerAccess().getGroup(), "rule__SignedInteger__Group__0");
@@ -76,7 +85,22 @@ public class ReactionRulesParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnidirectionalRuleAccess().getGroup(), "rule__UnidirectionalRule__Group__0");
 					put(grammarAccess.getBidirectionalRuleAccess().getGroup(), "rule__BidirectionalRule__Group__0");
 					put(grammarAccess.getRuleAccess().getGroup(), "rule__Rule__Group__0");
-					put(grammarAccess.getReactionRuleModelAccess().getReactionPropertiesAssignment(), "rule__ReactionRuleModel__ReactionPropertiesAssignment");
+					put(grammarAccess.getReactionRuleModelAccess().getModelAssignment_0(), "rule__ReactionRuleModel__ModelAssignment_0");
+					put(grammarAccess.getReactionRuleModelAccess().getReationContainerAssignment_1(), "rule__ReactionRuleModel__ReationContainerAssignment_1");
+					put(grammarAccess.getReactionRuleModelAccess().getReactionPropertiesAssignment_2(), "rule__ReactionRuleModel__ReactionPropertiesAssignment_2");
+					put(grammarAccess.getModelUriAccess().getUriAssignment_1(), "rule__ModelUri__UriAssignment_1");
+					put(grammarAccess.getModelPathAccess().getPathAssignment_1(), "rule__ModelPath__PathAssignment_1");
+					put(grammarAccess.getModelAccess().getNameAssignment_1(), "rule__Model__NameAssignment_1");
+					put(grammarAccess.getModelAccess().getLocationAssignment_2(), "rule__Model__LocationAssignment_2");
+					put(grammarAccess.getReactionContainerAccess().getAgentInstancesAssignment_1(), "rule__ReactionContainer__AgentInstancesAssignment_1");
+					put(grammarAccess.getAgentInstanceSiteStateAccess().getSiteAssignment_0(), "rule__AgentInstanceSiteState__SiteAssignment_0");
+					put(grammarAccess.getAgentInstanceSiteStateAccess().getSiteStateAssignment_1(), "rule__AgentInstanceSiteState__SiteStateAssignment_1");
+					put(grammarAccess.getAgentInstanceLinkStateAccess().getSiteAssignment_0(), "rule__AgentInstanceLinkState__SiteAssignment_0");
+					put(grammarAccess.getAgentInstanceLinkStateAccess().getLinkStateAssignment_1(), "rule__AgentInstanceLinkState__LinkStateAssignment_1");
+					put(grammarAccess.getAgentInstanceAccess().getNameAssignment_1(), "rule__AgentInstance__NameAssignment_1");
+					put(grammarAccess.getAgentInstanceAccess().getAgentAssignment_2(), "rule__AgentInstance__AgentAssignment_2");
+					put(grammarAccess.getAgentInstanceAccess().getSiteStatesAssignment_3(), "rule__AgentInstance__SiteStatesAssignment_3");
+					put(grammarAccess.getAgentInstanceAccess().getLinkStatesAssignment_4(), "rule__AgentInstance__LinkStatesAssignment_4");
 					put(grammarAccess.getArithmeticValueAccess().getValueAssignment(), "rule__ArithmeticValue__ValueAssignment");
 					put(grammarAccess.getStateAccess().getNameAssignment(), "rule__State__NameAssignment");
 					put(grammarAccess.getStatesAccess().getStateAssignment_1_1(), "rule__States__StateAssignment_1_1");

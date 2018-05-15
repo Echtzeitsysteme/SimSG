@@ -77,23 +77,480 @@ ruleReactionRuleModel returns [EObject current=null]
 }:
 	(
 		(
-			{
-				newCompositeNode(grammarAccess.getReactionRuleModelAccess().getReactionPropertiesReactionPropertyParserRuleCall_0());
-			}
-			lv_reactionProperties_0_0=ruleReactionProperty
-			{
-				if ($current==null) {
-					$current = createModelElementForParent(grammarAccess.getReactionRuleModelRule());
+			(
+				{
+					newCompositeNode(grammarAccess.getReactionRuleModelAccess().getModelModelParserRuleCall_0_0());
 				}
-				add(
-					$current,
-					"reactionProperties",
-					lv_reactionProperties_0_0,
-					"biochemsimulation.reactionrules.ReactionRules.ReactionProperty");
-				afterParserOrEnumRuleCall();
+				lv_model_0_0=ruleModel
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getReactionRuleModelRule());
+					}
+					set(
+						$current,
+						"model",
+						lv_model_0_0,
+						"biochemsimulation.reactionrules.ReactionRules.Model");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getReactionRuleModelAccess().getReationContainerReactionContainerParserRuleCall_1_0());
+				}
+				lv_reationContainer_1_0=ruleReactionContainer
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getReactionRuleModelRule());
+					}
+					set(
+						$current,
+						"reationContainer",
+						lv_reationContainer_1_0,
+						"biochemsimulation.reactionrules.ReactionRules.ReactionContainer");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getReactionRuleModelAccess().getReactionPropertiesReactionPropertyParserRuleCall_2_0());
+				}
+				lv_reactionProperties_2_0=ruleReactionProperty
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getReactionRuleModelRule());
+					}
+					add(
+						$current,
+						"reactionProperties",
+						lv_reactionProperties_2_0,
+						"biochemsimulation.reactionrules.ReactionRules.ReactionProperty");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
+	)
+;
+
+// Entry rule entryRuleModelUri
+entryRuleModelUri returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getModelUriRule()); }
+	iv_ruleModelUri=ruleModelUri
+	{ $current=$iv_ruleModelUri.current; }
+	EOF;
+
+// Rule ModelUri
+ruleModelUri returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='URI'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getModelUriAccess().getURIKeyword_0());
+		}
+		(
+			(
+				lv_uri_1_0=RULE_STRING
+				{
+					newLeafNode(lv_uri_1_0, grammarAccess.getModelUriAccess().getUriSTRINGTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getModelUriRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"uri",
+						lv_uri_1_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleModelPath
+entryRuleModelPath returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getModelPathRule()); }
+	iv_ruleModelPath=ruleModelPath
+	{ $current=$iv_ruleModelPath.current; }
+	EOF;
+
+// Rule ModelPath
+ruleModelPath returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='PATH'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getModelPathAccess().getPATHKeyword_0());
+		}
+		(
+			(
+				lv_path_1_0=RULE_STRING
+				{
+					newLeafNode(lv_path_1_0, grammarAccess.getModelPathAccess().getPathSTRINGTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getModelPathRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"path",
+						lv_path_1_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleModelLocation
+entryRuleModelLocation returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getModelLocationRule()); }
+	iv_ruleModelLocation=ruleModelLocation
+	{ $current=$iv_ruleModelLocation.current; }
+	EOF;
+
+// Rule ModelLocation
+ruleModelLocation returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getModelLocationAccess().getModelUriParserRuleCall_0());
+		}
+		this_ModelUri_0=ruleModelUri
+		{
+			$current = $this_ModelUri_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getModelLocationAccess().getModelPathParserRuleCall_1());
+		}
+		this_ModelPath_1=ruleModelPath
+		{
+			$current = $this_ModelPath_1.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleModel
+entryRuleModel returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getModelRule()); }
+	iv_ruleModel=ruleModel
+	{ $current=$iv_ruleModel.current; }
+	EOF;
+
+// Rule Model
+ruleModel returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='ModelID'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getModelAccess().getModelIDKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getModelAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getModelRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getModelAccess().getLocationModelLocationParserRuleCall_2_0());
+				}
+				lv_location_2_0=ruleModelLocation
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getModelRule());
+					}
+					set(
+						$current,
+						"location",
+						lv_location_2_0,
+						"biochemsimulation.reactionrules.ReactionRules.ModelLocation");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+	)
+;
+
+// Entry rule entryRuleReactionContainer
+entryRuleReactionContainer returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getReactionContainerRule()); }
+	iv_ruleReactionContainer=ruleReactionContainer
+	{ $current=$iv_ruleReactionContainer.current; }
+	EOF;
+
+// Rule ReactionContainer
+ruleReactionContainer returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getReactionContainerAccess().getReactionContainerAction_0(),
+					$current);
 			}
 		)
-	)*
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getReactionContainerAccess().getAgentInstancesAgentInstanceParserRuleCall_1_0());
+				}
+				lv_agentInstances_1_0=ruleAgentInstance
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getReactionContainerRule());
+					}
+					add(
+						$current,
+						"agentInstances",
+						lv_agentInstances_1_0,
+						"biochemsimulation.reactionrules.ReactionRules.AgentInstance");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
+	)
+;
+
+// Entry rule entryRuleAgentInstanceSiteState
+entryRuleAgentInstanceSiteState returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAgentInstanceSiteStateRule()); }
+	iv_ruleAgentInstanceSiteState=ruleAgentInstanceSiteState
+	{ $current=$iv_ruleAgentInstanceSiteState.current; }
+	EOF;
+
+// Rule AgentInstanceSiteState
+ruleAgentInstanceSiteState returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAgentInstanceSiteStateRule());
+					}
+				}
+				otherlv_0=RULE_ID
+				{
+					newLeafNode(otherlv_0, grammarAccess.getAgentInstanceSiteStateAccess().getSiteSiteCrossReference_0_0());
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getAgentInstanceSiteStateAccess().getSiteStateSiteStateParserRuleCall_1_0());
+				}
+				lv_siteState_1_0=ruleSiteState
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getAgentInstanceSiteStateRule());
+					}
+					set(
+						$current,
+						"siteState",
+						lv_siteState_1_0,
+						"biochemsimulation.reactionrules.ReactionRules.SiteState");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleAgentInstanceLinkState
+entryRuleAgentInstanceLinkState returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAgentInstanceLinkStateRule()); }
+	iv_ruleAgentInstanceLinkState=ruleAgentInstanceLinkState
+	{ $current=$iv_ruleAgentInstanceLinkState.current; }
+	EOF;
+
+// Rule AgentInstanceLinkState
+ruleAgentInstanceLinkState returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAgentInstanceLinkStateRule());
+					}
+				}
+				otherlv_0=RULE_ID
+				{
+					newLeafNode(otherlv_0, grammarAccess.getAgentInstanceLinkStateAccess().getSiteSiteCrossReference_0_0());
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getAgentInstanceLinkStateAccess().getLinkStateLinkStateParserRuleCall_1_0());
+				}
+				lv_linkState_1_0=ruleLinkState
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getAgentInstanceLinkStateRule());
+					}
+					set(
+						$current,
+						"linkState",
+						lv_linkState_1_0,
+						"biochemsimulation.reactionrules.ReactionRules.LinkState");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleAgentInstance
+entryRuleAgentInstance returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAgentInstanceRule()); }
+	iv_ruleAgentInstance=ruleAgentInstance
+	{ $current=$iv_ruleAgentInstance.current; }
+	EOF;
+
+// Rule AgentInstance
+ruleAgentInstance returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='AgentInstance'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getAgentInstanceAccess().getAgentInstanceKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getAgentInstanceAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAgentInstanceRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		(
+			(
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAgentInstanceRule());
+					}
+				}
+				otherlv_2=RULE_ID
+				{
+					newLeafNode(otherlv_2, grammarAccess.getAgentInstanceAccess().getAgentAgentCrossReference_2_0());
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getAgentInstanceAccess().getSiteStatesAgentInstanceSiteStateParserRuleCall_3_0());
+				}
+				lv_siteStates_3_0=ruleAgentInstanceSiteState
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getAgentInstanceRule());
+					}
+					add(
+						$current,
+						"siteStates",
+						lv_siteStates_3_0,
+						"biochemsimulation.reactionrules.ReactionRules.AgentInstanceSiteState");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getAgentInstanceAccess().getLinkStatesAgentInstanceLinkStateParserRuleCall_4_0());
+				}
+				lv_linkStates_4_0=ruleAgentInstanceLinkState
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getAgentInstanceRule());
+					}
+					add(
+						$current,
+						"linkStates",
+						lv_linkStates_4_0,
+						"biochemsimulation.reactionrules.ReactionRules.AgentInstanceLinkState");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
 ;
 
 // Entry rule entryRuleReactionProperty
@@ -1844,7 +2301,7 @@ ruleAssignFromPattern returns [EObject current=null]
 				if ($current==null) {
 					$current = createModelElementForParent(grammarAccess.getAssignFromPatternRule());
 				}
-				add(
+				set(
 					$current,
 					"pattern",
 					lv_pattern_0_0,

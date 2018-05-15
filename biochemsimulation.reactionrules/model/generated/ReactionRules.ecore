@@ -3,8 +3,46 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="reactionRules" nsURI="http://www.reactionrules.biochemsimulation/ReactionRules"
     nsPrefix="reactionRules">
   <eClassifiers xsi:type="ecore:EClass" name="ReactionRuleModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="model" eType="#//Model"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reationContainer" eType="#//ReactionContainer"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="reactionProperties" upperBound="-1"
         eType="#//ReactionProperty" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelUri" eSuperTypes="#//ModelLocation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelPath" eSuperTypes="#//ModelLocation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelLocation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Model">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="location" eType="#//ModelLocation"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReactionContainer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="agentInstances" upperBound="-1"
+        eType="#//AgentInstance" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AgentInstanceSiteState">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="site" eType="#//Site"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="siteState" eType="#//SiteState"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AgentInstanceLinkState">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="site" eType="#//Site"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkState" eType="#//LinkState"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AgentInstance">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="agent" eType="#//Agent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="siteStates" upperBound="-1"
+        eType="#//AgentInstanceSiteState" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkStates" upperBound="-1"
+        eType="#//AgentInstanceLinkState" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReactionProperty">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -83,12 +121,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="initialPattern" eType="#//PatternAssignment"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatternAssignment">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" upperBound="-1"
-        eType="#//Pattern" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="patternVar" unique="false"
-        upperBound="-1" eType="#//PatternVariable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AssignFromPattern" eSuperTypes="#//PatternAssignment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" eType="#//Pattern"
+        containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssignFromVariable" eSuperTypes="#//PatternAssignment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="patternVar" eType="#//PatternVariable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PatternAssignment"/>
   <eClassifiers xsi:type="ecore:EClass" name="RuleVariables">
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" unique="false"
         upperBound="-1" eType="#//ArithmeticVariable"/>

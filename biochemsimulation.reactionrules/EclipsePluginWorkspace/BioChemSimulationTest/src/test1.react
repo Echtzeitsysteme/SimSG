@@ -1,10 +1,12 @@
 /* Agents & Sites & Site Modifications */
-agent A(x, c)
-agent B(x)
+ModelID test1 
+
+agent A(x , c )
+agent B(x )
 agent C(x1{u, p}, x2{u, p})
 agent D(x1{e, q}, x2{y, t})
 
-/* Variables */
+/* Variables */ 
 var on_rate = 0.0001
 var off_rate = 0.1
 var mod_rate = 1.0
@@ -16,16 +18,15 @@ var uint = 2
 var pattern = { A(), B(x[free]) }
 var pattern2 = { D(x1{e}) }
 var sci = -2.45E-2
-
-/* Observations */
+/* Observations */ 
 obs Cuu { C(x1{u}, x2{u}) }
 obs Cpu { C(x1{u}, x2{u}) }
-obs Cpp { C(x1{p}, x2{p}) }
+obs Cpp { C(x1{p}, x2{p}) } 
 obs AxB { A(x[B.x]) }
  
 /* Initial conditions */
-init init1 1000 { A(),B() }
-init init2 10000 { C(x1{u}, x2{u}) }
+init init1 4 { A(),B() }
+init init2 4 { C(x1{u}, x2{u}) }
 
 /* Rules */
 rule AtoB { A(x[free]), B(x[free]) } <-> { A(x[1]), B(x[1]) } @ [on_rate, off_rate]

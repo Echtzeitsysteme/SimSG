@@ -3,12 +3,15 @@
  */
 package biochemsimulation.reactionrules.reactionRules.impl;
 
+import biochemsimulation.reactionrules.reactionRules.Model;
+import biochemsimulation.reactionrules.reactionRules.ReactionContainer;
 import biochemsimulation.reactionrules.reactionRules.ReactionProperty;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -16,6 +19,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -29,6 +33,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.ReactionRuleModelImpl#getModel <em>Model</em>}</li>
+ *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.ReactionRuleModelImpl#getReationContainer <em>Reation Container</em>}</li>
  *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.ReactionRuleModelImpl#getReactionProperties <em>Reaction Properties</em>}</li>
  * </ul>
  *
@@ -36,6 +42,26 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ReactionRuleModelImpl extends MinimalEObjectImpl.Container implements ReactionRuleModel
 {
+  /**
+   * The cached value of the '{@link #getModel() <em>Model</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getModel()
+   * @generated
+   * @ordered
+   */
+  protected Model model;
+
+  /**
+   * The cached value of the '{@link #getReationContainer() <em>Reation Container</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getReationContainer()
+   * @generated
+   * @ordered
+   */
+  protected ReactionContainer reationContainer;
+
   /**
    * The cached value of the '{@link #getReactionProperties() <em>Reaction Properties</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -72,6 +98,102 @@ public class ReactionRuleModelImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
+  public Model getModel()
+  {
+    return model;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetModel(Model newModel, NotificationChain msgs)
+  {
+    Model oldModel = model;
+    model = newModel;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.REACTION_RULE_MODEL__MODEL, oldModel, newModel);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setModel(Model newModel)
+  {
+    if (newModel != model)
+    {
+      NotificationChain msgs = null;
+      if (model != null)
+        msgs = ((InternalEObject)model).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.REACTION_RULE_MODEL__MODEL, null, msgs);
+      if (newModel != null)
+        msgs = ((InternalEObject)newModel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.REACTION_RULE_MODEL__MODEL, null, msgs);
+      msgs = basicSetModel(newModel, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.REACTION_RULE_MODEL__MODEL, newModel, newModel));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ReactionContainer getReationContainer()
+  {
+    return reationContainer;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetReationContainer(ReactionContainer newReationContainer, NotificationChain msgs)
+  {
+    ReactionContainer oldReationContainer = reationContainer;
+    reationContainer = newReationContainer;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.REACTION_RULE_MODEL__REATION_CONTAINER, oldReationContainer, newReationContainer);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setReationContainer(ReactionContainer newReationContainer)
+  {
+    if (newReationContainer != reationContainer)
+    {
+      NotificationChain msgs = null;
+      if (reationContainer != null)
+        msgs = ((InternalEObject)reationContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.REACTION_RULE_MODEL__REATION_CONTAINER, null, msgs);
+      if (newReationContainer != null)
+        msgs = ((InternalEObject)newReationContainer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.REACTION_RULE_MODEL__REATION_CONTAINER, null, msgs);
+      msgs = basicSetReationContainer(newReationContainer, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.REACTION_RULE_MODEL__REATION_CONTAINER, newReationContainer, newReationContainer));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<ReactionProperty> getReactionProperties()
   {
     if (reactionProperties == null)
@@ -91,6 +213,10 @@ public class ReactionRuleModelImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
+      case ReactionRulesPackage.REACTION_RULE_MODEL__MODEL:
+        return basicSetModel(null, msgs);
+      case ReactionRulesPackage.REACTION_RULE_MODEL__REATION_CONTAINER:
+        return basicSetReationContainer(null, msgs);
       case ReactionRulesPackage.REACTION_RULE_MODEL__REACTION_PROPERTIES:
         return ((InternalEList<?>)getReactionProperties()).basicRemove(otherEnd, msgs);
     }
@@ -107,6 +233,10 @@ public class ReactionRuleModelImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
+      case ReactionRulesPackage.REACTION_RULE_MODEL__MODEL:
+        return getModel();
+      case ReactionRulesPackage.REACTION_RULE_MODEL__REATION_CONTAINER:
+        return getReationContainer();
       case ReactionRulesPackage.REACTION_RULE_MODEL__REACTION_PROPERTIES:
         return getReactionProperties();
     }
@@ -124,6 +254,12 @@ public class ReactionRuleModelImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
+      case ReactionRulesPackage.REACTION_RULE_MODEL__MODEL:
+        setModel((Model)newValue);
+        return;
+      case ReactionRulesPackage.REACTION_RULE_MODEL__REATION_CONTAINER:
+        setReationContainer((ReactionContainer)newValue);
+        return;
       case ReactionRulesPackage.REACTION_RULE_MODEL__REACTION_PROPERTIES:
         getReactionProperties().clear();
         getReactionProperties().addAll((Collection<? extends ReactionProperty>)newValue);
@@ -142,6 +278,12 @@ public class ReactionRuleModelImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
+      case ReactionRulesPackage.REACTION_RULE_MODEL__MODEL:
+        setModel((Model)null);
+        return;
+      case ReactionRulesPackage.REACTION_RULE_MODEL__REATION_CONTAINER:
+        setReationContainer((ReactionContainer)null);
+        return;
       case ReactionRulesPackage.REACTION_RULE_MODEL__REACTION_PROPERTIES:
         getReactionProperties().clear();
         return;
@@ -159,6 +301,10 @@ public class ReactionRuleModelImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
+      case ReactionRulesPackage.REACTION_RULE_MODEL__MODEL:
+        return model != null;
+      case ReactionRulesPackage.REACTION_RULE_MODEL__REATION_CONTAINER:
+        return reationContainer != null;
       case ReactionRulesPackage.REACTION_RULE_MODEL__REACTION_PROPERTIES:
         return reactionProperties != null && !reactionProperties.isEmpty();
     }
