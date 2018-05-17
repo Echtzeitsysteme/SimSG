@@ -1,0 +1,51 @@
+package patterngenerator
+		
+import "http://www.reactionrules.biochemsimulation/ReactionRules" as reactionRules
+
+pattern AtoB_lhs( A: AgentInstance, Agent_A_Name: java String,  A_xILS: AgentInstanceLinkState, A_x_ILS_name: java String, A_x_ILS_state: FreeLink,  B: AgentInstance, Agent_B_Name: java String,  B_xILS: AgentInstanceLinkState, B_x_ILS_name: java String, B_x_ILS_state: FreeLink) {
+	AgentInstance.agent.name(A, Agent_A_Name);
+		check (
+			Agent_A_Name.matches("A")
+		);
+		AgentInstance.linkStates(A, A_xILS);
+		AgentInstanceLinkState.site.name(A_xILS, A_x_ILS_name);
+			check (
+				A_x_ILS_name.matches("x")
+			);
+		AgentInstanceLinkState.linkState.linkState(A_xILS, A_x_ILS_state);
+	AgentInstance.agent.name(B, Agent_B_Name);
+		check (
+			Agent_B_Name.matches("B")
+		); 
+		AgentInstance.linkStates(B, B_xILS);
+		AgentInstanceLinkState.site.name(B_xILS, B_x_ILS_name);
+			check (
+				B_x_ILS_name.matches("x")
+			);
+		AgentInstanceLinkState.linkState.linkState(B_xILS, B_x_ILS_state);
+	
+}
+pattern AtoB_rhs( A: AgentInstance, Agent_A_Name: java String,  A_xILS: AgentInstanceLinkState, A_x_ILS_name: java String, A_x_ILS_state: LimitLink,  B: AgentInstance, Agent_B_Name: java String,  B_xILS: AgentInstanceLinkState, B_x_ILS_name: java String, B_x_ILS_state: LimitLink) {
+	AgentInstance.agent.name(A, Agent_A_Name);
+		check (
+			Agent_A_Name.matches("A")
+		);
+		AgentInstance.linkStates(A, A_xILS);
+		AgentInstanceLinkState.site.name(A_xILS, A_x_ILS_name);
+			check (
+				A_x_ILS_name.matches("x")
+			);
+		AgentInstanceLinkState.linkState.linkState(A_xILS, A_x_ILS_state);
+	AgentInstance.agent.name(B, Agent_B_Name);
+		check (
+			Agent_B_Name.matches("B")
+		);
+		AgentInstance.linkStates(B, B_xILS);
+		AgentInstanceLinkState.site.name(B_xILS, B_x_ILS_name);
+			check (
+				B_x_ILS_name.matches("x")
+			);
+		AgentInstanceLinkState.linkState.linkState(B_xILS, B_x_ILS_state);
+	
+}
+

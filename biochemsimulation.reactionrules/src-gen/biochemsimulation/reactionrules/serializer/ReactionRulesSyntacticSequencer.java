@@ -28,12 +28,6 @@ public class ReactionRulesSyntacticSequencer extends AbstractSyntacticSequencer 
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (ruleCall.getRule() == grammarAccess.getATRule())
 			return getATToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getFREE_LINKRule())
-			return getFREE_LINKToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getSEMI_LINKRule())
-			return getSEMI_LINKToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getWHATEVER_LINKRule())
-			return getWHATEVER_LINKToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
@@ -46,39 +40,6 @@ public class ReactionRulesSyntacticSequencer extends AbstractSyntacticSequencer 
 		if (node != null)
 			return getTokenText(node);
 		return "@";
-	}
-	
-	/**
-	 * terminal FREE_LINK:
-	 * 	'free'
-	 * ;
-	 */
-	protected String getFREE_LINKToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "free";
-	}
-	
-	/**
-	 * terminal SEMI_LINK:
-	 * 	'semi'
-	 * ;
-	 */
-	protected String getSEMI_LINKToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "semi";
-	}
-	
-	/**
-	 * terminal WHATEVER_LINK:
-	 * 	'?'
-	 * ;
-	 */
-	protected String getWHATEVER_LINKToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "?";
 	}
 	
 	@Override

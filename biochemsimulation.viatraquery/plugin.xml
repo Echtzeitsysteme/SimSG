@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?><plugin>
   <extension id="manual.queries.QueryTest" point="org.eclipse.viatra.query.runtime.queryspecification">
     <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:manual.queries.QueryTest" id="manual.queries.QueryTest">
-      <query-specification fqn="manual.queries.test1"/>
-      <query-specification fqn="manual.queries.test2"/>
-      <query-specification fqn="manual.queries.test3"/>
+      <query-specification fqn="manual.queries.testR1"/>
+      <query-specification fqn="manual.queries.testR1a"/>
+      <query-specification fqn="manual.queries.testR1b"/>
+    </group>
+  </extension>
+  <extension id="patterngenerator.GeneratedQueryTest" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:patterngenerator.GeneratedQueryTest" id="patterngenerator.GeneratedQueryTest">
+      <query-specification fqn="patterngenerator.AtoB_lhs"/>
+      <query-specification fqn="patterngenerator.AtoB_rhs"/>
     </group>
   </extension>
 </plugin>

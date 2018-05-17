@@ -746,58 +746,70 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.SemiLink");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cSemiLinkAction_0 = (Action)cGroup.eContents().get(0);
-		private final RuleCall cSEMI_LINKTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameSEMI_LINKTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
 		//SemiLink LinkState:
-		//	{SemiLink} SEMI_LINK;
+		//	{SemiLink} name=SEMI_LINK;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SemiLink} SEMI_LINK
+		//{SemiLink} name=SEMI_LINK
 		public Group getGroup() { return cGroup; }
 		
 		//{SemiLink}
 		public Action getSemiLinkAction_0() { return cSemiLinkAction_0; }
 		
+		//name=SEMI_LINK
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
 		//SEMI_LINK
-		public RuleCall getSEMI_LINKTerminalRuleCall_1() { return cSEMI_LINKTerminalRuleCall_1; }
+		public RuleCall getNameSEMI_LINKTerminalRuleCall_1_0() { return cNameSEMI_LINKTerminalRuleCall_1_0; }
 	}
 	public class FreeLinkElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.FreeLink");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cFreeLinkAction_0 = (Action)cGroup.eContents().get(0);
-		private final RuleCall cFREE_LINKTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameFREE_LINKTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
 		//FreeLink LinkState:
-		//	{FreeLink} FREE_LINK;
+		//	{FreeLink} name=FREE_LINK;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{FreeLink} FREE_LINK
+		//{FreeLink} name=FREE_LINK
 		public Group getGroup() { return cGroup; }
 		
 		//{FreeLink}
 		public Action getFreeLinkAction_0() { return cFreeLinkAction_0; }
 		
+		//name=FREE_LINK
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
 		//FREE_LINK
-		public RuleCall getFREE_LINKTerminalRuleCall_1() { return cFREE_LINKTerminalRuleCall_1; }
+		public RuleCall getNameFREE_LINKTerminalRuleCall_1_0() { return cNameFREE_LINKTerminalRuleCall_1_0; }
 	}
 	public class WhatEverElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.WhatEver");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cWhatEverAction_0 = (Action)cGroup.eContents().get(0);
-		private final RuleCall cWHATEVER_LINKTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameWHATEVER_LINKTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
 		//WhatEver LinkState:
-		//	{WhatEver} WHATEVER_LINK;
+		//	{WhatEver} name=WHATEVER_LINK;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{WhatEver} WHATEVER_LINK
+		//{WhatEver} name=WHATEVER_LINK
 		public Group getGroup() { return cGroup; }
 		
 		//{WhatEver}
 		public Action getWhatEverAction_0() { return cWhatEverAction_0; }
 		
+		//name=WHATEVER_LINK
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
 		//WHATEVER_LINK
-		public RuleCall getWHATEVER_LINKTerminalRuleCall_1() { return cWHATEVER_LINKTerminalRuleCall_1; }
+		public RuleCall getNameWHATEVER_LINKTerminalRuleCall_1_0() { return cNameWHATEVER_LINKTerminalRuleCall_1_0; }
 	}
 	public class LimitLinkElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.LimitLink");
@@ -1988,7 +2000,7 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//SemiLink LinkState:
-	//	{SemiLink} SEMI_LINK;
+	//	{SemiLink} name=SEMI_LINK;
 	public SemiLinkElements getSemiLinkAccess() {
 		return pSemiLink;
 	}
@@ -1998,7 +2010,7 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//FreeLink LinkState:
-	//	{FreeLink} FREE_LINK;
+	//	{FreeLink} name=FREE_LINK;
 	public FreeLinkElements getFreeLinkAccess() {
 		return pFreeLink;
 	}
@@ -2008,7 +2020,7 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//WhatEver LinkState:
-	//	{WhatEver} WHATEVER_LINK;
+	//	{WhatEver} name=WHATEVER_LINK;
 	public WhatEverElements getWhatEverAccess() {
 		return pWhatEver;
 	}

@@ -3,12 +3,12 @@
  */
 package manual.queries;
 
-import manual.queries.Test1Matcher;
-import manual.queries.Test2Matcher;
-import manual.queries.Test3Matcher;
-import manual.queries.util.Test1QuerySpecification;
-import manual.queries.util.Test2QuerySpecification;
-import manual.queries.util.Test3QuerySpecification;
+import manual.queries.TestR1Matcher;
+import manual.queries.TestR1aMatcher;
+import manual.queries.TestR1bMatcher;
+import manual.queries.util.TestR1QuerySpecification;
+import manual.queries.util.TestR1aQuerySpecification;
+import manual.queries.util.TestR1bQuerySpecification;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
@@ -21,9 +21,9 @@ import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
  * in order to achieve better performance than one-by-one on-demand matcher initialization.
  * 
  * <p> From package manual.queries, the group contains the definition of the following patterns: <ul>
- * <li>test1</li>
- * <li>test2</li>
- * <li>test3</li>
+ * <li>testR1</li>
+ * <li>testR1a</li>
+ * <li>testR1b</li>
  * </ul>
  * 
  * @see IPatternGroup
@@ -48,32 +48,32 @@ public final class QueryTest extends BaseGeneratedPatternGroup {
   private static QueryTest INSTANCE;
   
   private QueryTest() throws ViatraQueryException {
-    querySpecifications.add(Test1QuerySpecification.instance());
-    querySpecifications.add(Test2QuerySpecification.instance());
-    querySpecifications.add(Test3QuerySpecification.instance());
+    querySpecifications.add(TestR1QuerySpecification.instance());
+    querySpecifications.add(TestR1aQuerySpecification.instance());
+    querySpecifications.add(TestR1bQuerySpecification.instance());
   }
   
-  public Test1QuerySpecification getTest1() throws ViatraQueryException {
-    return Test1QuerySpecification.instance();
+  public TestR1QuerySpecification getTestR1() throws ViatraQueryException {
+    return TestR1QuerySpecification.instance();
   }
   
-  public Test1Matcher getTest1(final ViatraQueryEngine engine) throws ViatraQueryException {
-    return Test1Matcher.on(engine);
+  public TestR1Matcher getTestR1(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return TestR1Matcher.on(engine);
   }
   
-  public Test2QuerySpecification getTest2() throws ViatraQueryException {
-    return Test2QuerySpecification.instance();
+  public TestR1aQuerySpecification getTestR1a() throws ViatraQueryException {
+    return TestR1aQuerySpecification.instance();
   }
   
-  public Test2Matcher getTest2(final ViatraQueryEngine engine) throws ViatraQueryException {
-    return Test2Matcher.on(engine);
+  public TestR1aMatcher getTestR1a(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return TestR1aMatcher.on(engine);
   }
   
-  public Test3QuerySpecification getTest3() throws ViatraQueryException {
-    return Test3QuerySpecification.instance();
+  public TestR1bQuerySpecification getTestR1b() throws ViatraQueryException {
+    return TestR1bQuerySpecification.instance();
   }
   
-  public Test3Matcher getTest3(final ViatraQueryEngine engine) throws ViatraQueryException {
-    return Test3Matcher.on(engine);
+  public TestR1bMatcher getTestR1b(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return TestR1bMatcher.on(engine);
   }
 }

@@ -1414,10 +1414,24 @@ ruleSemiLink returns [EObject current=null]
 					$current);
 			}
 		)
-		this_SEMI_LINK_1=RULE_SEMI_LINK
-		{
-			newLeafNode(this_SEMI_LINK_1, grammarAccess.getSemiLinkAccess().getSEMI_LINKTerminalRuleCall_1());
-		}
+		(
+			(
+				lv_name_1_0=RULE_SEMI_LINK
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getSemiLinkAccess().getNameSEMI_LINKTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getSemiLinkRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"biochemsimulation.reactionrules.ReactionRules.SEMI_LINK");
+				}
+			)
+		)
 	)
 ;
 
@@ -1444,10 +1458,24 @@ ruleFreeLink returns [EObject current=null]
 					$current);
 			}
 		)
-		this_FREE_LINK_1=RULE_FREE_LINK
-		{
-			newLeafNode(this_FREE_LINK_1, grammarAccess.getFreeLinkAccess().getFREE_LINKTerminalRuleCall_1());
-		}
+		(
+			(
+				lv_name_1_0=RULE_FREE_LINK
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getFreeLinkAccess().getNameFREE_LINKTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getFreeLinkRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"biochemsimulation.reactionrules.ReactionRules.FREE_LINK");
+				}
+			)
+		)
 	)
 ;
 
@@ -1474,10 +1502,24 @@ ruleWhatEver returns [EObject current=null]
 					$current);
 			}
 		)
-		this_WHATEVER_LINK_1=RULE_WHATEVER_LINK
-		{
-			newLeafNode(this_WHATEVER_LINK_1, grammarAccess.getWhatEverAccess().getWHATEVER_LINKTerminalRuleCall_1());
-		}
+		(
+			(
+				lv_name_1_0=RULE_WHATEVER_LINK
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getWhatEverAccess().getNameWHATEVER_LINKTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getWhatEverRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"biochemsimulation.reactionrules.ReactionRules.WHATEVER_LINK");
+				}
+			)
+		)
 	)
 ;
 

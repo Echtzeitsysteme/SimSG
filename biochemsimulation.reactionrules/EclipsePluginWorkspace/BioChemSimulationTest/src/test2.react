@@ -1,0 +1,17 @@
+/* Agents & Sites & Site Modifications */
+ModelID test2
+
+agent A(x , c )
+agent B(x ) 
+
+/* Variables */ 
+var on_rate = 0.0001
+var off_rate = 0.1 
+var mod_rate = 1.0
+ 
+/* Initial conditions */
+init init1 4 { A(),B() }
+
+/* Rules */
+rule AtoB { A(x[free]), B(x[free]) } <-> { A(x[1]), B(x[1]) } @ [on_rate, off_rate]
+         

@@ -1237,13 +1237,22 @@ public interface ReactionRulesPackage extends EPackage
   int SEMI_LINK__LINK_STATE = LINK_STATE__LINK_STATE;
 
   /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SEMI_LINK__NAME = LINK_STATE_FEATURE_COUNT + 0;
+
+  /**
    * The number of structural features of the '<em>Semi Link</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SEMI_LINK_FEATURE_COUNT = LINK_STATE_FEATURE_COUNT + 0;
+  int SEMI_LINK_FEATURE_COUNT = LINK_STATE_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.FreeLinkImpl <em>Free Link</em>}' class.
@@ -1265,13 +1274,22 @@ public interface ReactionRulesPackage extends EPackage
   int FREE_LINK__LINK_STATE = LINK_STATE__LINK_STATE;
 
   /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FREE_LINK__NAME = LINK_STATE_FEATURE_COUNT + 0;
+
+  /**
    * The number of structural features of the '<em>Free Link</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FREE_LINK_FEATURE_COUNT = LINK_STATE_FEATURE_COUNT + 0;
+  int FREE_LINK_FEATURE_COUNT = LINK_STATE_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.WhatEverImpl <em>What Ever</em>}' class.
@@ -1293,13 +1311,22 @@ public interface ReactionRulesPackage extends EPackage
   int WHAT_EVER__LINK_STATE = LINK_STATE__LINK_STATE;
 
   /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int WHAT_EVER__NAME = LINK_STATE_FEATURE_COUNT + 0;
+
+  /**
    * The number of structural features of the '<em>What Ever</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int WHAT_EVER_FEATURE_COUNT = LINK_STATE_FEATURE_COUNT + 0;
+  int WHAT_EVER_FEATURE_COUNT = LINK_STATE_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.LimitLinkImpl <em>Limit Link</em>}' class.
@@ -2274,6 +2301,17 @@ public interface ReactionRulesPackage extends EPackage
   EClass getSemiLink();
 
   /**
+   * Returns the meta object for the attribute '{@link biochemsimulation.reactionrules.reactionRules.SemiLink#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.SemiLink#getName()
+   * @see #getSemiLink()
+   * @generated
+   */
+  EAttribute getSemiLink_Name();
+
+  /**
    * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.FreeLink <em>Free Link</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2284,6 +2322,17 @@ public interface ReactionRulesPackage extends EPackage
   EClass getFreeLink();
 
   /**
+   * Returns the meta object for the attribute '{@link biochemsimulation.reactionrules.reactionRules.FreeLink#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.FreeLink#getName()
+   * @see #getFreeLink()
+   * @generated
+   */
+  EAttribute getFreeLink_Name();
+
+  /**
    * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.WhatEver <em>What Ever</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2292,6 +2341,17 @@ public interface ReactionRulesPackage extends EPackage
    * @generated
    */
   EClass getWhatEver();
+
+  /**
+   * Returns the meta object for the attribute '{@link biochemsimulation.reactionrules.reactionRules.WhatEver#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.WhatEver#getName()
+   * @see #getWhatEver()
+   * @generated
+   */
+  EAttribute getWhatEver_Name();
 
   /**
    * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.LimitLink <em>Limit Link</em>}'.
@@ -3114,6 +3174,14 @@ public interface ReactionRulesPackage extends EPackage
     EClass SEMI_LINK = eINSTANCE.getSemiLink();
 
     /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SEMI_LINK__NAME = eINSTANCE.getSemiLink_Name();
+
+    /**
      * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.FreeLinkImpl <em>Free Link</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3124,6 +3192,14 @@ public interface ReactionRulesPackage extends EPackage
     EClass FREE_LINK = eINSTANCE.getFreeLink();
 
     /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FREE_LINK__NAME = eINSTANCE.getFreeLink_Name();
+
+    /**
      * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.WhatEverImpl <em>What Ever</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3132,6 +3208,14 @@ public interface ReactionRulesPackage extends EPackage
      * @generated
      */
     EClass WHAT_EVER = eINSTANCE.getWhatEver();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute WHAT_EVER__NAME = eINSTANCE.getWhatEver_Name();
 
     /**
      * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.LimitLinkImpl <em>Limit Link</em>}' class.

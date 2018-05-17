@@ -1249,6 +1249,16 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getSemiLink_Name()
+  {
+    return (EAttribute)semiLinkEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getFreeLink()
   {
     return freeLinkEClass;
@@ -1259,9 +1269,29 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getFreeLink_Name()
+  {
+    return (EAttribute)freeLinkEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getWhatEver()
   {
     return whatEverEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getWhatEver_Name()
+  {
+    return (EAttribute)whatEverEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1463,10 +1493,13 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     createEReference(ruleEClass, RULE__RULE);
 
     semiLinkEClass = createEClass(SEMI_LINK);
+    createEAttribute(semiLinkEClass, SEMI_LINK__NAME);
 
     freeLinkEClass = createEClass(FREE_LINK);
+    createEAttribute(freeLinkEClass, FREE_LINK__NAME);
 
     whatEverEClass = createEClass(WHAT_EVER);
+    createEAttribute(whatEverEClass, WHAT_EVER__NAME);
 
     limitLinkEClass = createEClass(LIMIT_LINK);
     createEAttribute(limitLinkEClass, LIMIT_LINK__STATE);
@@ -1642,10 +1675,13 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     initEReference(getRule_Rule(), this.getRuleBody(), null, "rule", null, 0, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(semiLinkEClass, SemiLink.class, "SemiLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getSemiLink_Name(), ecorePackage.getEString(), "name", null, 0, 1, SemiLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(freeLinkEClass, FreeLink.class, "FreeLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFreeLink_Name(), ecorePackage.getEString(), "name", null, 0, 1, FreeLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(whatEverEClass, WhatEver.class, "WhatEver", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getWhatEver_Name(), ecorePackage.getEString(), "name", null, 0, 1, WhatEver.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(limitLinkEClass, LimitLink.class, "LimitLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getLimitLink_State(), ecorePackage.getEString(), "state", null, 0, 1, LimitLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

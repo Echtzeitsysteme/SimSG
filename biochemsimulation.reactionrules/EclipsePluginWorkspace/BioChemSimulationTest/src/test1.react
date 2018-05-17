@@ -8,7 +8,7 @@ agent D(x1{e, q}, x2{y, t})
 
 /* Variables */ 
 var on_rate = 0.0001
-var off_rate = 0.1
+var off_rate = 0.1 
 var mod_rate = 1.0
 var mod_rate2 = -1.0
 var mod_rate3 = -1.0E-1

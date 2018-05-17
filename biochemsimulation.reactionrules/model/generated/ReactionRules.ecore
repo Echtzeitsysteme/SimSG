@@ -146,9 +146,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="rule" eType="#//RuleBody"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SemiLink" eSuperTypes="#//LinkState"/>
-  <eClassifiers xsi:type="ecore:EClass" name="FreeLink" eSuperTypes="#//LinkState"/>
-  <eClassifiers xsi:type="ecore:EClass" name="WhatEver" eSuperTypes="#//LinkState"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SemiLink" eSuperTypes="#//LinkState">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FreeLink" eSuperTypes="#//LinkState">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WhatEver" eSuperTypes="#//LinkState">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LimitLink" eSuperTypes="#//LinkState">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>

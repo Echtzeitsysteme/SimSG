@@ -121,9 +121,15 @@
     <genClasses ecoreClass="ReactionRules.ecore#//Rule">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//Rule/rule"/>
     </genClasses>
-    <genClasses ecoreClass="ReactionRules.ecore#//SemiLink"/>
-    <genClasses ecoreClass="ReactionRules.ecore#//FreeLink"/>
-    <genClasses ecoreClass="ReactionRules.ecore#//WhatEver"/>
+    <genClasses ecoreClass="ReactionRules.ecore#//SemiLink">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//SemiLink/name"/>
+    </genClasses>
+    <genClasses ecoreClass="ReactionRules.ecore#//FreeLink">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//FreeLink/name"/>
+    </genClasses>
+    <genClasses ecoreClass="ReactionRules.ecore#//WhatEver">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//WhatEver/name"/>
+    </genClasses>
     <genClasses ecoreClass="ReactionRules.ecore#//LimitLink">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//LimitLink/state"/>
     </genClasses>

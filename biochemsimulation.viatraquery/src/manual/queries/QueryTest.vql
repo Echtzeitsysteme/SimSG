@@ -2,14 +2,36 @@ package manual.queries
 
 import "http://www.reactionrules.biochemsimulation/ReactionRules"
 
-pattern test1(agentI: AgentInstance) {
-	AgentInstance.agent(agentI, _);
+pattern testR1(a: AgentInstance, aILS: AgentInstanceLinkState, aN: java String, asN: java String, aLS: FreeLink, bI: AgentInstance, bILS: AgentInstanceLinkState, bN: java String, bsN: java String, bLS: FreeLink) {
+	find testR1a(a, aILS, aN, asN, aLS);
+	find testR1b(bI, bILS, bN, bsN, bLS);
+
+} 
+
+pattern testR1a(a: AgentInstance, aILS: AgentInstanceLinkState, aN: java String, asN: java String, aLS: FreeLink) {
+	AgentInstance.agent.name(a, aN);
+	check (
+		aN.matches("A")
+	);
+	AgentInstance.linkStates(a, aILS);
+	AgentInstanceLinkState.site.name(aILS, asN);
+	check (
+		asN.matches("x")
+	);
+	AgentInstanceLinkState.linkState.linkState(aILS, aLS);
+
 }
 
-pattern test2(model: Model) {
-	Model.name(model, _);
-}
+pattern testR1b(bI: AgentInstance, bILS: AgentInstanceLinkState, bN: java String, bsN: java String, bLS: FreeLink) {
+	AgentInstance.agent.name(bI, bN);
+	check (
+		bN.matches("B")
+	);
+	AgentInstance.linkStates(bI, bILS);
+	AgentInstanceLinkState.site.name(bILS, bsN);
+	check (
+		bsN.matches("x")
+	);
+	AgentInstanceLinkState.linkState.linkState(bILS, bLS);
 
-pattern test3(all: ReactionRuleModel) {
-	ReactionRuleModel.model(all, _);
 }

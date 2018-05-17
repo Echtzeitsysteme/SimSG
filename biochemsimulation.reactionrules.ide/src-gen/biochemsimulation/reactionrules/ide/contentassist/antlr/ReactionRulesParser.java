@@ -115,6 +115,9 @@ public class ReactionRulesParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPatternVariableAccess().getPatternAssignment_3(), "rule__PatternVariable__PatternAssignment_3");
 					put(grammarAccess.getArithmeticVariableAccess().getNameAssignment_1(), "rule__ArithmeticVariable__NameAssignment_1");
 					put(grammarAccess.getArithmeticVariableAccess().getValueAssignment_3(), "rule__ArithmeticVariable__ValueAssignment_3");
+					put(grammarAccess.getSemiLinkAccess().getNameAssignment_1(), "rule__SemiLink__NameAssignment_1");
+					put(grammarAccess.getFreeLinkAccess().getNameAssignment_1(), "rule__FreeLink__NameAssignment_1");
+					put(grammarAccess.getWhatEverAccess().getNameAssignment_1(), "rule__WhatEver__NameAssignment_1");
 					put(grammarAccess.getLimitLinkAccess().getStateAssignment_1(), "rule__LimitLink__StateAssignment_1");
 					put(grammarAccess.getExactLinkAgentAccess().getAgentAssignment_1(), "rule__ExactLinkAgent__AgentAssignment_1");
 					put(grammarAccess.getExactLinkSiteAccess().getSiteAssignment_1(), "rule__ExactLinkSite__SiteAssignment_1");

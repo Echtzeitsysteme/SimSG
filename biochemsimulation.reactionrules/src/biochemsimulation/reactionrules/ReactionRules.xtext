@@ -155,17 +155,17 @@ Variable:
 
 SemiLink returns LinkState :
 	{SemiLink}
-	SEMI_LINK
+	name = SEMI_LINK
 ;
 
 FreeLink returns LinkState :
 	{FreeLink}
-	FREE_LINK
+	name = FREE_LINK
 ;
 
 WhatEver returns LinkState :
 	{WhatEver}
-	WHATEVER_LINK
+	name = WHATEVER_LINK
 ;
 
 LimitLink returns LinkState :

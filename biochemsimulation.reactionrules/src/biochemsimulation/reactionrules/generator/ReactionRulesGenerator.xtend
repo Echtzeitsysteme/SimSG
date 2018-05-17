@@ -72,16 +72,18 @@ class ReactionRulesGenerator extends AbstractGenerator {
 					val oldLinkState = sitePattern.linkState
 					val oldSiteState = sitePattern.state
 					
+					var newLinkState = factory.createLinkState
+					var aiLinkState = factory.createAgentInstanceLinkState
+					aiLinkState.site = site
+					
 					if(oldLinkState !== null) {
-						var newLinkState = factory.createLinkState
 						newLinkState.linkState = oldLinkState.linkState
-						var aiLinkState = factory.createAgentInstanceLinkState
-						
-						aiLinkState.site = site
-						aiLinkState.linkState = newLinkState
-						
-						agentI.linkStates.add(aiLinkState)
+					} else {
+						newLinkState.linkState = factory.createFreeLink
 					}
+					
+					aiLinkState.linkState = newLinkState
+					agentI.linkStates.add(aiLinkState)
 					
 					if(oldSiteState !== null) {
 						var newSiteState = factory.createSiteState
@@ -95,6 +97,17 @@ class ReactionRulesGenerator extends AbstractGenerator {
 						agentI.siteStates.add(aiSiteState)
 					}
 					
+					
+				}
+				if(ap.sitePatterns.sitePatterns.size <= 0) {
+					for(site : agent.sites.sites) {
+						var aiLinkState = factory.createAgentInstanceLinkState
+						aiLinkState.site = site
+						var newLinkState = factory.createLinkState
+						newLinkState.linkState = factory.createFreeLink
+						aiLinkState.linkState = newLinkState
+						agentI.linkStates.add(aiLinkState)
+					}
 					
 				}
 				model.reationContainer.agentInstances.add(agentI)

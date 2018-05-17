@@ -106,14 +106,16 @@ public class ReactionRulesGenerator extends AbstractGenerator {
               final Site site = sitePattern.getSite();
               final LinkState oldLinkState = sitePattern.getLinkState();
               final SiteState oldSiteState = sitePattern.getState();
+              LinkState newLinkState = factory.createLinkState();
+              AgentInstanceLinkState aiLinkState = factory.createAgentInstanceLinkState();
+              aiLinkState.setSite(site);
               if ((oldLinkState != null)) {
-                LinkState newLinkState = factory.createLinkState();
                 newLinkState.setLinkState(oldLinkState.getLinkState());
-                AgentInstanceLinkState aiLinkState = factory.createAgentInstanceLinkState();
-                aiLinkState.setSite(site);
-                aiLinkState.setLinkState(newLinkState);
-                agentI.getLinkStates().add(aiLinkState);
+              } else {
+                newLinkState.setLinkState(factory.createFreeLink());
               }
+              aiLinkState.setLinkState(newLinkState);
+              agentI.getLinkStates().add(aiLinkState);
               if ((oldSiteState != null)) {
                 SiteState newSiteState = factory.createSiteState();
                 newSiteState.setState(oldSiteState.getState());
@@ -121,6 +123,21 @@ public class ReactionRulesGenerator extends AbstractGenerator {
                 aiSiteState.setSite(site);
                 aiSiteState.setSiteState(newSiteState);
                 agentI.getSiteStates().add(aiSiteState);
+              }
+            }
+          }
+          int _size = ap.getSitePatterns().getSitePatterns().size();
+          boolean _lessEqualsThan = (_size <= 0);
+          if (_lessEqualsThan) {
+            EList<Site> _sites = agent.getSites().getSites();
+            for (final Site site : _sites) {
+              {
+                AgentInstanceLinkState aiLinkState = factory.createAgentInstanceLinkState();
+                aiLinkState.setSite(site);
+                LinkState newLinkState = factory.createLinkState();
+                newLinkState.setLinkState(factory.createFreeLink());
+                aiLinkState.setLinkState(newLinkState);
+                agentI.getLinkStates().add(aiLinkState);
               }
             }
           }

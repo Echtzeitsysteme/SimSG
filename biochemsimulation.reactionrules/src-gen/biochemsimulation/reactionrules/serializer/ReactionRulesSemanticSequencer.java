@@ -471,10 +471,16 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     FreeLink returns FreeLink
 	 *
 	 * Constraint:
-	 *     {FreeLink}
+	 *     name=FREE_LINK
 	 */
 	protected void sequence_FreeLink(ISerializationContext context, FreeLink semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.FREE_LINK__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.FREE_LINK__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getFreeLinkAccess().getNameFREE_LINKTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	
@@ -703,10 +709,16 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     SemiLink returns SemiLink
 	 *
 	 * Constraint:
-	 *     {SemiLink}
+	 *     name=SEMI_LINK
 	 */
 	protected void sequence_SemiLink(ISerializationContext context, SemiLink semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.SEMI_LINK__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.SEMI_LINK__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSemiLinkAccess().getNameSEMI_LINKTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	
@@ -847,10 +859,16 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     WhatEver returns WhatEver
 	 *
 	 * Constraint:
-	 *     {WhatEver}
+	 *     name=WHATEVER_LINK
 	 */
 	protected void sequence_WhatEver(ISerializationContext context, WhatEver semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.WHAT_EVER__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.WHAT_EVER__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getWhatEverAccess().getNameWHATEVER_LINKTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	
