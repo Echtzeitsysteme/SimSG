@@ -10,18 +10,19 @@ import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
 import biochemsimulation.reactionrules.reactionRules.Rule;
+import biochemsimulation.reactionrules.reactionRules.RuleBody;
 import biochemsimulation.reactionrules.reactionRules.SemiLink;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
+import biochemsimulation.reactionrules.reactionRules.SitePatterns;
 import biochemsimulation.reactionrules.reactionRules.WhatEver;
 import java.util.Collection;
 import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.LinkedList;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.eclipse.xtext.EcoreUtil2;
 
 @SuppressWarnings("all")
 public class PatternTemplate {
@@ -155,36 +156,33 @@ public class PatternTemplate {
       _builder.append(_aILSVariableName);
       _builder.append(");");
       _builder.newLineIfNotEmpty();
-      _builder.append("\t\t\t\t\t  ");
+      _builder.append("\t\t\t   \t");
       _builder.append("AgentInstanceLinkState.site.name(");
       String _aILSVariableName_1 = this.aILSVariableName(ap, sp);
-      _builder.append(_aILSVariableName_1, "\t\t\t\t\t  ");
+      _builder.append(_aILSVariableName_1, "\t\t\t   \t");
       _builder.append(", ");
       String _aILSNameVariableName = this.aILSNameVariableName(ap, sp);
-      _builder.append(_aILSNameVariableName, "\t\t\t\t\t  ");
+      _builder.append(_aILSNameVariableName, "\t\t\t   \t");
       _builder.append(");");
       _builder.newLineIfNotEmpty();
-      _builder.append("\t\t\t\t\t  ");
       _builder.append("check (");
       _builder.newLine();
-      _builder.append("\t\t\t\t\t  \t");
+      _builder.append("\t");
       String _aILSNameVariableName_1 = this.aILSNameVariableName(ap, sp);
-      _builder.append(_aILSNameVariableName_1, "\t\t\t\t\t  \t");
+      _builder.append(_aILSNameVariableName_1, "\t");
       _builder.append(".matches(\"");
       String _name_1 = sp.getSite().getName();
-      _builder.append(_name_1, "\t\t\t\t\t  \t");
+      _builder.append(_name_1, "\t");
       _builder.append("\")");
       _builder.newLineIfNotEmpty();
-      _builder.append("\t\t\t\t\t  ");
       _builder.append(");");
       _builder.newLine();
-      _builder.append("\t\t\t\t\t  ");
       _builder.append("AgentInstanceLinkState.linkState.linkState(");
       String _aILSVariableName_2 = this.aILSVariableName(ap, sp);
-      _builder.append(_aILSVariableName_2, "\t\t\t\t\t  ");
+      _builder.append(_aILSVariableName_2);
       _builder.append(", ");
       String _aILSContextVariableName = this.aILSContextVariableName(ap, sp);
-      _builder.append(_aILSContextVariableName, "\t\t\t\t\t  ");
+      _builder.append(_aILSContextVariableName);
       _builder.append(");");
       _builder.newLineIfNotEmpty();
       return _builder.toString();
@@ -199,36 +197,32 @@ public class PatternTemplate {
         _builder_1.append(_aILSVariableName_3);
         _builder_1.append(");");
         _builder_1.newLineIfNotEmpty();
-        _builder_1.append("\t\t\t\t\t  ");
         _builder_1.append("AgentInstanceLinkState.site.name(");
         String _aILSVariableName_4 = this.aILSVariableName(ap, sp);
-        _builder_1.append(_aILSVariableName_4, "\t\t\t\t\t  ");
+        _builder_1.append(_aILSVariableName_4);
         _builder_1.append(", ");
         String _aILSNameVariableName_2 = this.aILSNameVariableName(ap, sp);
-        _builder_1.append(_aILSNameVariableName_2, "\t\t\t\t\t  ");
+        _builder_1.append(_aILSNameVariableName_2);
         _builder_1.append(");");
         _builder_1.newLineIfNotEmpty();
-        _builder_1.append("\t\t\t\t\t  ");
         _builder_1.append("check (");
         _builder_1.newLine();
-        _builder_1.append("\t\t\t\t\t  \t");
+        _builder_1.append("\t");
         String _aILSNameVariableName_3 = this.aILSNameVariableName(ap, sp);
-        _builder_1.append(_aILSNameVariableName_3, "\t\t\t\t\t  \t");
+        _builder_1.append(_aILSNameVariableName_3, "\t");
         _builder_1.append(".matches(\"");
         String _name_3 = sp.getSite().getName();
-        _builder_1.append(_name_3, "\t\t\t\t\t  \t");
+        _builder_1.append(_name_3, "\t");
         _builder_1.append("\")");
         _builder_1.newLineIfNotEmpty();
-        _builder_1.append("\t\t\t\t\t  ");
         _builder_1.append(");");
         _builder_1.newLine();
-        _builder_1.append("\t\t\t\t\t  ");
         _builder_1.append("AgentInstanceLinkState.linkState.linkState(");
         String _aILSVariableName_5 = this.aILSVariableName(ap, sp);
-        _builder_1.append(_aILSVariableName_5, "\t\t\t\t\t  ");
+        _builder_1.append(_aILSVariableName_5);
         _builder_1.append(", ");
         String _aILSContextVariableName_1 = this.aILSContextVariableName(ap, sp);
-        _builder_1.append(_aILSContextVariableName_1, "\t\t\t\t\t  ");
+        _builder_1.append(_aILSContextVariableName_1);
         _builder_1.append(");");
         _builder_1.newLineIfNotEmpty();
         return _builder_1.toString();
@@ -262,59 +256,52 @@ public class PatternTemplate {
             _builder_4.append(_aILSVariableName_6);
             _builder_4.append(");");
             _builder_4.newLineIfNotEmpty();
-            _builder_4.append("\t\t\t\t\t  ");
             _builder_4.append("AgentInstanceLinkState.site.name(");
             String _aILSVariableName_7 = this.aILSVariableName(ap, sp);
-            _builder_4.append(_aILSVariableName_7, "\t\t\t\t\t  ");
+            _builder_4.append(_aILSVariableName_7);
             _builder_4.append(", ");
             String _aILSNameVariableName_4 = this.aILSNameVariableName(ap, sp);
-            _builder_4.append(_aILSNameVariableName_4, "\t\t\t\t\t  ");
+            _builder_4.append(_aILSNameVariableName_4);
             _builder_4.append(");");
             _builder_4.newLineIfNotEmpty();
-            _builder_4.append("\t\t\t\t\t  ");
             _builder_4.append("check (");
             _builder_4.newLine();
-            _builder_4.append("\t\t\t\t\t  \t");
+            _builder_4.append("\t");
             String _aILSNameVariableName_5 = this.aILSNameVariableName(ap, sp);
-            _builder_4.append(_aILSNameVariableName_5, "\t\t\t\t\t  \t");
+            _builder_4.append(_aILSNameVariableName_5, "\t");
             _builder_4.append(".matches(\"");
             String _name_6 = sp.getSite().getName();
-            _builder_4.append(_name_6, "\t\t\t\t\t  \t");
+            _builder_4.append(_name_6, "\t");
             _builder_4.append("\")");
             _builder_4.newLineIfNotEmpty();
-            _builder_4.append("\t\t\t\t\t  ");
             _builder_4.append(");");
             _builder_4.newLine();
-            _builder_4.append("\t\t\t\t\t  ");
             _builder_4.append("AgentInstanceLinkState.linkState.linkState(");
             String _aILSVariableName_8 = this.aILSVariableName(ap, sp);
-            _builder_4.append(_aILSVariableName_8, "\t\t\t\t\t  ");
+            _builder_4.append(_aILSVariableName_8);
             _builder_4.append(", ");
             String _aILSContextVariableName_3 = this.aILSContextVariableName(ap, sp);
-            _builder_4.append(_aILSContextVariableName_3, "\t\t\t\t\t  ");
+            _builder_4.append(_aILSContextVariableName_3);
             _builder_4.append(");");
             _builder_4.newLineIfNotEmpty();
-            _builder_4.append("\t\t\t\t\t  ");
             _builder_4.append("IndexedLink.state(");
             String _aILSVariableName_9 = this.aILSVariableName(ap, sp);
-            _builder_4.append(_aILSVariableName_9, "\t\t\t\t\t  ");
+            _builder_4.append(_aILSVariableName_9);
             _builder_4.append(", ");
             String _aILSContextIndexedLinkVariableName = this.aILSContextIndexedLinkVariableName(ap, sp);
-            _builder_4.append(_aILSContextIndexedLinkVariableName, "\t\t\t\t\t  ");
+            _builder_4.append(_aILSContextIndexedLinkVariableName);
             _builder_4.append(");");
             _builder_4.newLineIfNotEmpty();
-            _builder_4.append("\t\t\t\t\t  ");
             _builder_4.append("check (");
             _builder_4.newLine();
-            _builder_4.append("\t\t\t\t\t  \t");
+            _builder_4.append("\t");
             String _aILSContextIndexedLinkVariableName_1 = this.aILSContextIndexedLinkVariableName(ap, sp);
-            _builder_4.append(_aILSContextIndexedLinkVariableName_1, "\t\t\t\t\t  \t");
+            _builder_4.append(_aILSContextIndexedLinkVariableName_1, "\t");
             _builder_4.append(".matches(\"");
             String _otherIndexedLinkVariableName = this.getOtherIndexedLinkVariableName(ap, sp);
-            _builder_4.append(_otherIndexedLinkVariableName, "\t\t\t\t\t  \t");
+            _builder_4.append(_otherIndexedLinkVariableName, "\t");
             _builder_4.append("\")");
             _builder_4.newLineIfNotEmpty();
-            _builder_4.append("\t\t\t\t\t  ");
             _builder_4.append(");");
             _builder_4.newLine();
             return _builder_4.toString();
@@ -335,7 +322,7 @@ public class PatternTemplate {
     if ((eObj instanceof Rule)) {
       rule = ((Rule)eObj);
     }
-    List<IndexedLink> candidates = EcoreUtil2.<IndexedLink>getAllContentsOfType(rule, IndexedLink.class);
+    LinkedList<IndexedLink> candidates = this.getAllIndexedLinksOfRule(rule);
     for (final IndexedLink cand : candidates) {
       {
         final IndexedLink candidate = ((IndexedLink) cand);
@@ -365,6 +352,58 @@ public class PatternTemplate {
     }
     StringConcatenation _builder = new StringConcatenation();
     return _builder.toString();
+  }
+  
+  public LinkedList<IndexedLink> getAllIndexedLinksOfRule(final Rule rule) {
+    LinkedList<IndexedLink> out = new LinkedList<IndexedLink>();
+    RuleBody ruleBody = ((RuleBody) null);
+    RuleBody _rule = rule.getRule();
+    boolean _tripleNotEquals = (_rule != null);
+    if (_tripleNotEquals) {
+      RuleBody _rule_1 = rule.getRule();
+      ruleBody = ((RuleBody) _rule_1);
+    }
+    if ((ruleBody == null)) {
+      return out;
+    }
+    PatternAssignment lhs = ruleBody.getLhs();
+    PatternAssignment rhs = ruleBody.getRhs();
+    LinkedList<Pattern> patterns = new LinkedList<Pattern>();
+    if ((lhs != null)) {
+      patterns.add(this.patternFromPatternAssignment(lhs));
+    }
+    if ((rhs != null)) {
+      patterns.add(this.patternFromPatternAssignment(rhs));
+    }
+    LinkedList<AgentPattern> agentPatterns = new LinkedList<AgentPattern>();
+    for (final Pattern pattern : patterns) {
+      EList<AgentPattern> _agentPatterns = pattern.getAgentPatterns();
+      boolean _tripleNotEquals_1 = (_agentPatterns != null);
+      if (_tripleNotEquals_1) {
+        agentPatterns.addAll(pattern.getAgentPatterns());
+      }
+    }
+    LinkedList<SitePattern> sitePatterns = new LinkedList<SitePattern>();
+    for (final AgentPattern aPattern : agentPatterns) {
+      SitePatterns _sitePatterns = aPattern.getSitePatterns();
+      boolean _tripleNotEquals_2 = (_sitePatterns != null);
+      if (_tripleNotEquals_2) {
+        sitePatterns.addAll(aPattern.getSitePatterns().getSitePatterns());
+      }
+    }
+    for (final SitePattern sPattern : sitePatterns) {
+      LinkState _linkState = sPattern.getLinkState();
+      boolean _tripleNotEquals_3 = (_linkState != null);
+      if (_tripleNotEquals_3) {
+        LinkState _linkState_1 = sPattern.getLinkState().getLinkState();
+        if ((_linkState_1 instanceof IndexedLink)) {
+          LinkState _linkState_2 = sPattern.getLinkState().getLinkState();
+          final IndexedLink iLink = ((IndexedLink) _linkState_2);
+          out.add(iLink);
+        }
+      }
+    }
+    return out;
   }
   
   public String generateAgentPatternContext(final AgentPattern ap) {

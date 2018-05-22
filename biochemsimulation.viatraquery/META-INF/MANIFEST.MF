@@ -24,6 +24,5 @@ Require-Bundle: biochemsimulation.reactionrules,
 Bundle-RequiredExecutionEnvironment: JavaSE-9
 Import-Package: org.apache.log4j,
   org.eclipse.emf.ecore.xmi,
-  org.eclipse.emf.ecore.xmi.impl,
-  org.eclipse.xtext.util
+  org.eclipse.emf.ecore.xmi.impl
 Automatic-Module-Name: biochemsimulation.viatraquery

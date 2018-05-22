@@ -18,7 +18,8 @@ import biochemsimulation.reactionrules.reactionRules.FreeLink
 import biochemsimulation.reactionrules.reactionRules.SemiLink
 import biochemsimulation.reactionrules.reactionRules.WhatEver
 import biochemsimulation.reactionrules.reactionRules.IndexedLink
-import org.eclipse.xtext.EcoreUtil2
+import java.util.LinkedList
+import biochemsimulation.reactionrules.reactionRules.RuleBody
 
 class PatternTemplate {
 	
@@ -77,37 +78,40 @@ class PatternTemplate {
 	def linkStatePattern(AgentPattern ap, SitePattern sp) {
 		val linkState = sp.linkState.linkState as LinkState
 		if(linkState instanceof FreeLink) {
-			return '''AgentInstance.linkStates(«ap.agent.name», «aILSVariableName(ap, sp)»);
-					  AgentInstanceLinkState.site.name(«aILSVariableName(ap, sp)», «aILSNameVariableName(ap, sp)»);
-					  check (
-					  	«aILSNameVariableName(ap, sp)».matches("«sp.site.name»")
-					  );
-					  AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «aILSContextVariableName(ap, sp)»);
-				   '''
+			return '''
+				AgentInstance.linkStates(«ap.agent.name», «aILSVariableName(ap, sp)»);
+			   	AgentInstanceLinkState.site.name(«aILSVariableName(ap, sp)», «aILSNameVariableName(ap, sp)»);
+				check (
+					«aILSNameVariableName(ap, sp)».matches("«sp.site.name»")
+				);
+				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «aILSContextVariableName(ap, sp)»);
+			'''
 		}else if(linkState instanceof SemiLink) {
-			return '''AgentInstance.linkStates(«ap.agent.name», «aILSVariableName(ap, sp)»);
-					  AgentInstanceLinkState.site.name(«aILSVariableName(ap, sp)», «aILSNameVariableName(ap, sp)»);
-					  check (
-					  	«aILSNameVariableName(ap, sp)».matches("«sp.site.name»")
-					  );
-					  AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «aILSContextVariableName(ap, sp)»);
-				   '''
+			return '''
+				AgentInstance.linkStates(«ap.agent.name», «aILSVariableName(ap, sp)»);
+				AgentInstanceLinkState.site.name(«aILSVariableName(ap, sp)», «aILSNameVariableName(ap, sp)»);
+				check (
+					«aILSNameVariableName(ap, sp)».matches("«sp.site.name»")
+				);
+				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «aILSContextVariableName(ap, sp)»);
+			'''
 		}else if(linkState instanceof WhatEver) {
 			return ''''''
 		}else if(linkState instanceof ExactLink) {
 			return '''«aILSContextVariableName(ap, sp)»: «sp.linkState.linkState.eClass.name», «aILSContextExactLinkAgentVariableName(ap, sp)»: java String, «aILSContextExactLinkSiteVariableName(ap, sp)»: java String'''
 		}else {
-			return '''AgentInstance.linkStates(«ap.agent.name», «aILSVariableName(ap, sp)»);
-					  AgentInstanceLinkState.site.name(«aILSVariableName(ap, sp)», «aILSNameVariableName(ap, sp)»);
-					  check (
-					  	«aILSNameVariableName(ap, sp)».matches("«sp.site.name»")
-					  );
-					  AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «aILSContextVariableName(ap, sp)»);
-					  IndexedLink.state(«aILSVariableName(ap, sp)», «aILSContextIndexedLinkVariableName(ap, sp)»);
-					  check (
-					  	«aILSContextIndexedLinkVariableName(ap, sp)».matches("«getOtherIndexedLinkVariableName(ap, sp)»")
-					  );
-				   '''
+			return '''
+				AgentInstance.linkStates(«ap.agent.name», «aILSVariableName(ap, sp)»);
+				AgentInstanceLinkState.site.name(«aILSVariableName(ap, sp)», «aILSNameVariableName(ap, sp)»);
+				check (
+					«aILSNameVariableName(ap, sp)».matches("«sp.site.name»")
+				);
+				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «aILSContextVariableName(ap, sp)»);
+				IndexedLink.state(«aILSVariableName(ap, sp)», «aILSContextIndexedLinkVariableName(ap, sp)»);
+				check (
+					«aILSContextIndexedLinkVariableName(ap, sp)».matches("«getOtherIndexedLinkVariableName(ap, sp)»")
+				);
+			'''
 		}
 	}
 	
@@ -121,7 +125,7 @@ class PatternTemplate {
 		if(eObj instanceof Rule) {
 			rule = eObj
 		}
-		var candidates = EcoreUtil2.getAllContentsOfType(rule, IndexedLink)
+		var candidates = getAllIndexedLinksOfRule(rule)
 		for(cand : candidates) {
 			val candidate = cand as IndexedLink
 			if(!candidate.equals(iLink) && iLink.state.equals(candidate.state)) {
@@ -148,6 +152,48 @@ class PatternTemplate {
 		}
 		return ''''''
 	}
+	
+	def getAllIndexedLinksOfRule(Rule rule) {
+		var out = new LinkedList<IndexedLink>()
+		var ruleBody = null as RuleBody
+		if(rule.rule !== null) {
+			ruleBody = rule.rule as RuleBody
+		}
+		if(ruleBody === null) {
+			return out;
+		}
+		var lhs = ruleBody.lhs
+		var rhs = ruleBody.rhs
+		var patterns = new LinkedList<Pattern>()
+		if(lhs !== null) {
+			patterns.add(patternFromPatternAssignment(lhs))
+		}
+		if(rhs !== null) {
+			patterns.add(patternFromPatternAssignment(rhs))
+		}
+		var agentPatterns = new LinkedList<AgentPattern>()
+		for(pattern : patterns) {
+			if(pattern.agentPatterns !== null) {
+				agentPatterns.addAll(pattern.agentPatterns)
+			}
+		}
+		var sitePatterns = new LinkedList<SitePattern>()
+		for(aPattern : agentPatterns) {
+			if(aPattern.sitePatterns !== null) {
+				sitePatterns.addAll(aPattern.sitePatterns.sitePatterns)
+			}
+		}
+		for(sPattern : sitePatterns) {
+			if(sPattern.linkState !== null) {
+				if(sPattern.linkState.linkState instanceof IndexedLink) {
+					val iLink = sPattern.linkState.linkState as IndexedLink
+					out.add(iLink)
+				}
+			}
+		}
+		return out
+		
+	} 
 	
 	def generateAgentPatternContext(AgentPattern ap) {
 		return '''«ap.agent.name»: AgentInstance, «agentNameVariableName(ap)»: java String, «generateSitePatternContext(ap)»'''
@@ -211,18 +257,5 @@ class PatternTemplate {
 	def aILSContextExactLinkSiteVariableName(AgentPattern ap, SitePattern sp) {
 		return '''«aILSVariableName(ap, sp)»_«sp.linkState.linkState.eClass.name»_siteName'''
 	}
-	
-	/*
-	def generateLinkStateParameter(AgentPattern ap, SitePattern sp) {
-		var param = ap.agent.name+"."+sp.site.name+ ".ILS.state: "
-		val s = sp.linkState.linkState
-		if(s instanceof LimitLink) {
-			val ll = s as LimitLink
-			param  += "java Integer"
-		}else if(s instanceof ExactLink) {
-			
-		}
-	}
-	 */
 	
 }
