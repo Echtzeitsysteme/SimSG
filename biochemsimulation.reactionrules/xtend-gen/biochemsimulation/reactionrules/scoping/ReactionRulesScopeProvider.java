@@ -13,6 +13,7 @@ import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.SitePatterns;
 import biochemsimulation.reactionrules.reactionRules.SiteState;
 import biochemsimulation.reactionrules.reactionRules.State;
+import biochemsimulation.reactionrules.reactionRules.States;
 import biochemsimulation.reactionrules.scoping.AbstractReactionRulesScopeProvider;
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
@@ -51,21 +52,20 @@ public class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvid
   }
   
   public IScope siteStateScope(final EObject context, final EReference reference) {
-    final EObject rootElement = EcoreUtil2.getRootContainer(context);
     final SiteState siteState = ((SiteState) context);
-    final LinkedList<EObject> sitePatterns = new LinkedList<EObject>();
-    sitePatterns.addAll(EcoreUtil2.<SitePattern>getAllContentsOfType(rootElement, SitePattern.class));
     SitePattern sitePattern = ((SitePattern) null);
-    for (final EObject sp : sitePatterns) {
-      {
-        SitePattern sPattern = ((SitePattern) sp);
-        boolean _equals = siteState.equals(sPattern.getState());
-        if (_equals) {
-          sitePattern = sPattern;
-        }
-      }
+    EObject _eContainer = siteState.eContainer();
+    boolean _tripleNotEquals = (_eContainer != null);
+    if (_tripleNotEquals) {
+      EObject _eContainer_1 = siteState.eContainer();
+      sitePattern = ((SitePattern) _eContainer_1);
     }
     if ((sitePattern == null)) {
+      return super.getScope(context, reference);
+    }
+    States _states = sitePattern.getSite().getStates();
+    boolean _tripleEquals = (_states == null);
+    if (_tripleEquals) {
       return super.getScope(context, reference);
     }
     EList<State> list = sitePattern.getSite().getStates().getState();

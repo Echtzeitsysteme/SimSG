@@ -44,25 +44,21 @@ class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvider {
 	}
 	
 	def siteStateScope(EObject context, EReference reference) {
-	    val rootElement = EcoreUtil2.getRootContainer(context)
 	    val siteState = context as SiteState
-	    val sitePatterns = new LinkedList<EObject>
-	    sitePatterns.addAll(EcoreUtil2.getAllContentsOfType(rootElement, SitePattern))
-	    
+	   
 	    var sitePattern = null as SitePattern
-	    for(sp : sitePatterns) {
-	    	var sPattern = sp as SitePattern
-	    	if(siteState.equals(sPattern.state)) {
-	    		sitePattern = sPattern
-	    	}
+	    if(siteState.eContainer !== null) {
+	    	sitePattern = siteState.eContainer as SitePattern
 	    }
 	    
 	    if(sitePattern === null) {
 	    	return super.getScope(context, reference);
 	    }
+	    if(sitePattern.site.states === null){
+	    	return super.getScope(context, reference);
+	    }
 	    
 	    var list = sitePattern.site.states.state
-	    
 	    val existingScope = Scopes.scopeFor(list)
 	    
 	    return new FilteringScope(existingScope, [getEObjectOrProxy != context])
@@ -120,26 +116,9 @@ class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvider {
 	}
 	
 	def sitePatternScope(EObject context, EReference reference) {
-		//val rootElement = EcoreUtil2.getRootContainer(context)    
 	    var sitePattern = context as SitePattern
-	    //val allAgentPatterns = new LinkedList<EObject>
-	    //allAgentPatterns.addAll(EcoreUtil2.getAllContentsOfType(rootElement, AgentPattern))
 	        
 	    var agent = null as Agent
-	    /*
-	    for(agentPattern : allAgentPatterns) {
-	    	var ap = agentPattern as AgentPattern
-	     	var sp = ap.sitePatterns.sitePatterns
-	     	var spSet = new HashSet<SitePattern>(sp.size())
-			spSet.addAll(sp)
-	     	if(spSet.contains(sitePattern)) {
-	        	agent = ap.agent
-	       	}
-	    }
-	    if(agent === null) {
-	     	return super.getScope(context, reference);
-	    }
-	    */
 	    if(sitePattern.eContainer !== null) {
 	    	val sitePatterns = sitePattern.eContainer as SitePatterns
 	    	if(sitePatterns.eContainer !== null) {

@@ -270,7 +270,7 @@
         <agentPatterns xmi:type="reactionRules:AgentPattern" agent="//@reactionProperties.2">
           <sitePatterns xmi:type="reactionRules:SitePatterns">
             <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.2/@sites/@sites.0">
-              <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.2/@sites/@sites.0/@states/@state.0"/>
+              <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.2/@sites/@sites.0/@states/@state.1"/>
               <linkState xmi:type="reactionRules:LinkState">
                 <linkState xmi:type="reactionRules:FreeLink" name="free"/>
               </linkState>

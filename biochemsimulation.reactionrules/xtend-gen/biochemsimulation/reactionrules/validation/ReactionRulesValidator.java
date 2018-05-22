@@ -241,8 +241,15 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
   
   @Check
   public void checkIndexedLinkConstraint(final IndexedLink indexedLink) {
-    final EObject rootElement = EcoreUtil2.getRootContainer(indexedLink);
-    List<IndexedLink> candidates = EcoreUtil2.<IndexedLink>getAllContentsOfType(rootElement, IndexedLink.class);
+    Rule rule = ((Rule) null);
+    EObject eObj = indexedLink.eContainer();
+    while (((!(eObj instanceof Rule)) && (eObj != null))) {
+      eObj = eObj.eContainer();
+    }
+    if ((eObj instanceof Rule)) {
+      rule = ((Rule)eObj);
+    }
+    List<IndexedLink> candidates = EcoreUtil2.<IndexedLink>getAllContentsOfType(rule, IndexedLink.class);
     int c = 1;
     final Integer thisNum = Integer.valueOf(indexedLink.getState());
     for (final IndexedLink cnd : candidates) {

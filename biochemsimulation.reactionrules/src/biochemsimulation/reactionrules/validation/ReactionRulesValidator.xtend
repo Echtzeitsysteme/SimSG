@@ -17,6 +17,7 @@ import biochemsimulation.reactionrules.reactionRules.AgentPattern
 import biochemsimulation.reactionrules.reactionRules.SitePattern
 import java.util.HashSet
 import biochemsimulation.reactionrules.reactionRules.IndexedLink
+import org.eclipse.emf.ecore.EObject
 
 /**
  * This class contains custom validation rules. 
@@ -209,8 +210,15 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 	
 	@Check
 	def checkIndexedLinkConstraint(IndexedLink indexedLink) {
-		val rootElement = EcoreUtil2.getRootContainer(indexedLink) 
-		var candidates = EcoreUtil2.getAllContentsOfType(rootElement, IndexedLink);
+		var rule = null as Rule
+		var eObj = indexedLink.eContainer
+		while(!(eObj instanceof Rule) && eObj !== null) {
+			eObj = eObj.eContainer
+		}
+		if(eObj instanceof Rule) {
+			rule = eObj
+		}
+		var candidates = EcoreUtil2.getAllContentsOfType(rule, IndexedLink);
 		var c = 1
 		val thisNum = Integer.valueOf(indexedLink.state)
 		for(cnd : candidates) {

@@ -20,7 +20,7 @@ var pattern2 = { D(x1{e}[free]) }
 var sci = -2.45E-2
 /* Observations */ 
 obs Cuu { C(x1{u}[free], x2{u}[free]) }
-obs Cpu { C(x1{u}[free], x2{u}[free]) }
+obs Cpu { C(x1{p}[free], x2{u}[free]) }
 obs Cpp { C(x1{p}[free], x2{p}[free]) } 
 obs AxB { A(x[B.x]) }
  
