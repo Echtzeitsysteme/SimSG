@@ -14,7 +14,6 @@ import biochemsimulation.reactionrules.reactionRules.ExactLink
 import java.util.LinkedList
 import biochemsimulation.reactionrules.reactionRules.SiteState
 import biochemsimulation.reactionrules.reactionRules.AgentPattern
-import java.util.HashSet
 import biochemsimulation.reactionrules.reactionRules.ExactLinkSite
 import biochemsimulation.reactionrules.reactionRules.ExactLinkAgent
 import biochemsimulation.reactionrules.reactionRules.SitePatterns
@@ -74,42 +73,22 @@ class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvider {
 	}
 	
 	def exactLinkSiteScope(EObject context, EReference reference) {
-		val rootElement = EcoreUtil2.getRootContainer(context)
 	    
 	    var linkSite = context as ExactLinkSite
 	   
-	    val exactLinks = new LinkedList<EObject>
-	    exactLinks.addAll(EcoreUtil2.getAllContentsOfType(rootElement, ExactLink))
-	    
-	   
 	    var agent = null as Agent
-	    for(exactLink : exactLinks) {
-	    	var el = exactLink as ExactLink
-	    	if(el === null) {
-	    		return super.getScope(context, reference);
+	    if(linkSite.eContainer !== null) {
+	    	val exactLink = linkSite.eContainer as ExactLink
+	    	if(exactLink.linkAgent !== null) {
+	    		agent = exactLink.linkAgent.agent
 	    	}
-	    	if(el.linkSite === null) {
-	    		return super.getScope(context, reference);
-	    	}
-	    	
-	     	if(el.linkSite.equals(linkSite)) {
-	     		if(el.linkAgent === null) {
-	    			return super.getScope(context, reference);
-	    		}
-	    		if(el.linkAgent.agent === null) {
-	    			return super.getScope(context, reference);
-	    		}
-	    		if(el.linkAgent.agent.name === null) {
-	    			return super.getScope(context, reference);
-	    		}
-	     		agent = el.linkAgent.agent
-	     	}
 	    }
+	    
 	    if(agent === null) {
 	     	return super.getScope(context, reference);
 	    }
-	    var list = agent.sites.sites
 	    
+	    var list = agent.sites.sites
 	    val existingScope = Scopes.scopeFor(list)
 	    
 	    return new FilteringScope(existingScope, [getEObjectOrProxy != context])

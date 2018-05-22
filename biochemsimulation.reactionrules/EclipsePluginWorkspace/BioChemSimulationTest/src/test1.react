@@ -22,7 +22,7 @@ var sci = -2.45E-2
 obs Cuu { C(x1{u}[free], x2{u}[free]) }
 obs Cpu { C(x1{p}[free], x2{u}[free]) }
 obs Cpp { C(x1{p}[free], x2{p}[free]) } 
-obs AxB { A(x[B.x]) }
+obs AxB { A(x[B.x]) } 
  
 /* Initial conditions */
 init init1 4 { A(),B() }

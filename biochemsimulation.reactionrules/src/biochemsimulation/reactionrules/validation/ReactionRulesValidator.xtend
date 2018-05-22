@@ -17,7 +17,6 @@ import biochemsimulation.reactionrules.reactionRules.AgentPattern
 import biochemsimulation.reactionrules.reactionRules.SitePattern
 import java.util.HashSet
 import biochemsimulation.reactionrules.reactionRules.IndexedLink
-import org.eclipse.emf.ecore.EObject
 
 /**
  * This class contains custom validation rules. 

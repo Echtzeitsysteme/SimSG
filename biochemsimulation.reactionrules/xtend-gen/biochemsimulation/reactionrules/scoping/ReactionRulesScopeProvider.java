@@ -94,41 +94,17 @@ public class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvid
   }
   
   public IScope exactLinkSiteScope(final EObject context, final EReference reference) {
-    final EObject rootElement = EcoreUtil2.getRootContainer(context);
     ExactLinkSite linkSite = ((ExactLinkSite) context);
-    final LinkedList<EObject> exactLinks = new LinkedList<EObject>();
-    exactLinks.addAll(EcoreUtil2.<ExactLink>getAllContentsOfType(rootElement, ExactLink.class));
     Agent agent = ((Agent) null);
-    for (final EObject exactLink : exactLinks) {
-      {
-        ExactLink el = ((ExactLink) exactLink);
-        if ((el == null)) {
-          return super.getScope(context, reference);
-        }
-        ExactLinkSite _linkSite = el.getLinkSite();
-        boolean _tripleEquals = (_linkSite == null);
-        if (_tripleEquals) {
-          return super.getScope(context, reference);
-        }
-        boolean _equals = el.getLinkSite().equals(linkSite);
-        if (_equals) {
-          ExactLinkAgent _linkAgent = el.getLinkAgent();
-          boolean _tripleEquals_1 = (_linkAgent == null);
-          if (_tripleEquals_1) {
-            return super.getScope(context, reference);
-          }
-          Agent _agent = el.getLinkAgent().getAgent();
-          boolean _tripleEquals_2 = (_agent == null);
-          if (_tripleEquals_2) {
-            return super.getScope(context, reference);
-          }
-          String _name = el.getLinkAgent().getAgent().getName();
-          boolean _tripleEquals_3 = (_name == null);
-          if (_tripleEquals_3) {
-            return super.getScope(context, reference);
-          }
-          agent = el.getLinkAgent().getAgent();
-        }
+    EObject _eContainer = linkSite.eContainer();
+    boolean _tripleNotEquals = (_eContainer != null);
+    if (_tripleNotEquals) {
+      EObject _eContainer_1 = linkSite.eContainer();
+      final ExactLink exactLink = ((ExactLink) _eContainer_1);
+      ExactLinkAgent _linkAgent = exactLink.getLinkAgent();
+      boolean _tripleNotEquals_1 = (_linkAgent != null);
+      if (_tripleNotEquals_1) {
+        agent = exactLink.getLinkAgent().getAgent();
       }
     }
     if ((agent == null)) {
