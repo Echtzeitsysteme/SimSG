@@ -3,16 +3,25 @@ package patterngenerator;
 import biochemsimulation.reactionrules.reactionRules.AgentPattern;
 import biochemsimulation.reactionrules.reactionRules.AssignFromPattern;
 import biochemsimulation.reactionrules.reactionRules.AssignFromVariable;
+import biochemsimulation.reactionrules.reactionRules.ExactLink;
+import biochemsimulation.reactionrules.reactionRules.FreeLink;
+import biochemsimulation.reactionrules.reactionRules.IndexedLink;
+import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
 import biochemsimulation.reactionrules.reactionRules.Rule;
+import biochemsimulation.reactionrules.reactionRules.SemiLink;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
+import biochemsimulation.reactionrules.reactionRules.WhatEver;
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.EcoreUtil2;
 
 @SuppressWarnings("all")
 public class PatternTemplate {
@@ -54,6 +63,16 @@ public class PatternTemplate {
     return _builder.toString();
   }
   
+  public Pattern patternFromPatternAssignment(final PatternAssignment pa) {
+    if ((pa instanceof AssignFromPattern)) {
+      final AssignFromPattern afp = ((AssignFromPattern) pa);
+      return afp.getPattern();
+    } else {
+      final AssignFromVariable afv = ((AssignFromVariable) pa);
+      return afv.getPatternVar().getPattern();
+    }
+  }
+  
   public String generatePatternCode(final Rule rule, final Pattern pattern, final String suffix) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("pattern ");
@@ -86,28 +105,22 @@ public class PatternTemplate {
         String _name_1 = ap_1.getAgent().getName();
         _builder.append(_name_1, "\t");
         _builder.append(", ");
-        String _name_2 = ap_1.getAgent().getName();
-        String _plus_2 = ("Agent_" + _name_2);
-        String _plus_3 = (_plus_2 + "_Name");
-        _builder.append(_plus_3, "\t");
+        String _agentNameVariableName = this.agentNameVariableName(ap_1);
+        _builder.append(_agentNameVariableName, "\t");
         _builder.append(");");
         _builder.newLineIfNotEmpty();
-        _builder.append("\t");
         _builder.append("\t");
         _builder.append("check (");
         _builder.newLine();
         _builder.append("\t");
-        _builder.append("\t\t");
-        String _name_3 = ap_1.getAgent().getName();
-        String _plus_4 = ("Agent_" + _name_3);
-        String _plus_5 = (_plus_4 + "_Name");
-        _builder.append(_plus_5, "\t\t\t");
+        _builder.append("\t");
+        String _agentNameVariableName_1 = this.agentNameVariableName(ap_1);
+        _builder.append(_agentNameVariableName_1, "\t\t");
         _builder.append(".matches(\"");
-        String _name_4 = ap_1.getAgent().getName();
-        _builder.append(_name_4, "\t\t\t");
+        String _name_2 = ap_1.getAgent().getName();
+        _builder.append(_name_2, "\t\t");
         _builder.append("\")");
         _builder.newLineIfNotEmpty();
-        _builder.append("\t");
         _builder.append("\t");
         _builder.append(");");
         _builder.newLine();
@@ -115,72 +128,8 @@ public class PatternTemplate {
           EList<SitePattern> _sitePatterns = ap_1.getSitePatterns().getSitePatterns();
           for(final SitePattern sp : _sitePatterns) {
             _builder.append("\t");
-            _builder.append("\t");
-            _builder.append("AgentInstance.linkStates(");
-            String _name_5 = ap_1.getAgent().getName();
-            _builder.append(_name_5, "\t\t");
-            _builder.append(", ");
-            String _name_6 = ap_1.getAgent().getName();
-            String _plus_6 = (_name_6 + "_");
-            String _name_7 = sp.getSite().getName();
-            String _plus_7 = (_plus_6 + _name_7);
-            _builder.append(_plus_7, "\t\t");
-            _builder.append("ILS);");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t");
-            _builder.append("\t");
-            _builder.append("AgentInstanceLinkState.site.name(");
-            String _name_8 = ap_1.getAgent().getName();
-            String _plus_8 = (_name_8 + "_");
-            String _name_9 = sp.getSite().getName();
-            String _plus_9 = (_plus_8 + _name_9);
-            _builder.append(_plus_9, "\t\t");
-            _builder.append("ILS, ");
-            String _name_10 = ap_1.getAgent().getName();
-            String _plus_10 = (_name_10 + "_");
-            String _name_11 = sp.getSite().getName();
-            String _plus_11 = (_plus_10 + _name_11);
-            _builder.append(_plus_11, "\t\t");
-            _builder.append("_ILS_name);");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t");
-            _builder.append("\t");
-            _builder.append("\t");
-            _builder.append("check (");
-            _builder.newLine();
-            _builder.append("\t");
-            _builder.append("\t");
-            _builder.append("\t\t");
-            String _name_12 = ap_1.getAgent().getName();
-            String _plus_12 = (_name_12 + "_");
-            String _name_13 = sp.getSite().getName();
-            String _plus_13 = (_plus_12 + _name_13);
-            _builder.append(_plus_13, "\t\t\t\t");
-            _builder.append("_ILS_name.matches(\"");
-            String _name_14 = sp.getSite().getName();
-            _builder.append(_name_14, "\t\t\t\t");
-            _builder.append("\")");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t");
-            _builder.append("\t");
-            _builder.append("\t");
-            _builder.append(");");
-            _builder.newLine();
-            _builder.append("\t");
-            _builder.append("\t");
-            _builder.append("AgentInstanceLinkState.linkState.linkState(");
-            String _name_15 = ap_1.getAgent().getName();
-            String _plus_14 = (_name_15 + "_");
-            String _name_16 = sp.getSite().getName();
-            String _plus_15 = (_plus_14 + _name_16);
-            _builder.append(_plus_15, "\t\t");
-            _builder.append("ILS, ");
-            String _name_17 = ap_1.getAgent().getName();
-            String _plus_16 = (_name_17 + "_");
-            String _name_18 = sp.getSite().getName();
-            String _plus_17 = (_plus_16 + _name_18);
-            _builder.append(_plus_17, "\t\t");
-            _builder.append("_ILS_state);");
+            String _linkStatePattern = this.linkStatePattern(ap_1, sp);
+            _builder.append(_linkStatePattern, "\t");
             _builder.newLineIfNotEmpty();
           }
         }
@@ -193,15 +142,238 @@ public class PatternTemplate {
     return _builder.toString();
   }
   
+  public String linkStatePattern(final AgentPattern ap, final SitePattern sp) {
+    LinkState _linkState = sp.getLinkState().getLinkState();
+    final LinkState linkState = ((LinkState) _linkState);
+    if ((linkState instanceof FreeLink)) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("AgentInstance.linkStates(");
+      String _name = ap.getAgent().getName();
+      _builder.append(_name);
+      _builder.append(", ");
+      String _aILSVariableName = this.aILSVariableName(ap, sp);
+      _builder.append(_aILSVariableName);
+      _builder.append(");");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t\t\t\t\t  ");
+      _builder.append("AgentInstanceLinkState.site.name(");
+      String _aILSVariableName_1 = this.aILSVariableName(ap, sp);
+      _builder.append(_aILSVariableName_1, "\t\t\t\t\t  ");
+      _builder.append(", ");
+      String _aILSNameVariableName = this.aILSNameVariableName(ap, sp);
+      _builder.append(_aILSNameVariableName, "\t\t\t\t\t  ");
+      _builder.append(");");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t\t\t\t\t  ");
+      _builder.append("check (");
+      _builder.newLine();
+      _builder.append("\t\t\t\t\t  \t");
+      String _aILSNameVariableName_1 = this.aILSNameVariableName(ap, sp);
+      _builder.append(_aILSNameVariableName_1, "\t\t\t\t\t  \t");
+      _builder.append(".matches(\"");
+      String _name_1 = sp.getSite().getName();
+      _builder.append(_name_1, "\t\t\t\t\t  \t");
+      _builder.append("\")");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t\t\t\t\t  ");
+      _builder.append(");");
+      _builder.newLine();
+      _builder.append("\t\t\t\t\t  ");
+      _builder.append("AgentInstanceLinkState.linkState.linkState(");
+      String _aILSVariableName_2 = this.aILSVariableName(ap, sp);
+      _builder.append(_aILSVariableName_2, "\t\t\t\t\t  ");
+      _builder.append(", ");
+      String _aILSContextVariableName = this.aILSContextVariableName(ap, sp);
+      _builder.append(_aILSContextVariableName, "\t\t\t\t\t  ");
+      _builder.append(");");
+      _builder.newLineIfNotEmpty();
+      return _builder.toString();
+    } else {
+      if ((linkState instanceof SemiLink)) {
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("AgentInstance.linkStates(");
+        String _name_2 = ap.getAgent().getName();
+        _builder_1.append(_name_2);
+        _builder_1.append(", ");
+        String _aILSVariableName_3 = this.aILSVariableName(ap, sp);
+        _builder_1.append(_aILSVariableName_3);
+        _builder_1.append(");");
+        _builder_1.newLineIfNotEmpty();
+        _builder_1.append("\t\t\t\t\t  ");
+        _builder_1.append("AgentInstanceLinkState.site.name(");
+        String _aILSVariableName_4 = this.aILSVariableName(ap, sp);
+        _builder_1.append(_aILSVariableName_4, "\t\t\t\t\t  ");
+        _builder_1.append(", ");
+        String _aILSNameVariableName_2 = this.aILSNameVariableName(ap, sp);
+        _builder_1.append(_aILSNameVariableName_2, "\t\t\t\t\t  ");
+        _builder_1.append(");");
+        _builder_1.newLineIfNotEmpty();
+        _builder_1.append("\t\t\t\t\t  ");
+        _builder_1.append("check (");
+        _builder_1.newLine();
+        _builder_1.append("\t\t\t\t\t  \t");
+        String _aILSNameVariableName_3 = this.aILSNameVariableName(ap, sp);
+        _builder_1.append(_aILSNameVariableName_3, "\t\t\t\t\t  \t");
+        _builder_1.append(".matches(\"");
+        String _name_3 = sp.getSite().getName();
+        _builder_1.append(_name_3, "\t\t\t\t\t  \t");
+        _builder_1.append("\")");
+        _builder_1.newLineIfNotEmpty();
+        _builder_1.append("\t\t\t\t\t  ");
+        _builder_1.append(");");
+        _builder_1.newLine();
+        _builder_1.append("\t\t\t\t\t  ");
+        _builder_1.append("AgentInstanceLinkState.linkState.linkState(");
+        String _aILSVariableName_5 = this.aILSVariableName(ap, sp);
+        _builder_1.append(_aILSVariableName_5, "\t\t\t\t\t  ");
+        _builder_1.append(", ");
+        String _aILSContextVariableName_1 = this.aILSContextVariableName(ap, sp);
+        _builder_1.append(_aILSContextVariableName_1, "\t\t\t\t\t  ");
+        _builder_1.append(");");
+        _builder_1.newLineIfNotEmpty();
+        return _builder_1.toString();
+      } else {
+        if ((linkState instanceof WhatEver)) {
+          StringConcatenation _builder_2 = new StringConcatenation();
+          return _builder_2.toString();
+        } else {
+          if ((linkState instanceof ExactLink)) {
+            StringConcatenation _builder_3 = new StringConcatenation();
+            String _aILSContextVariableName_2 = this.aILSContextVariableName(ap, sp);
+            _builder_3.append(_aILSContextVariableName_2);
+            _builder_3.append(": ");
+            String _name_4 = sp.getLinkState().getLinkState().eClass().getName();
+            _builder_3.append(_name_4);
+            _builder_3.append(", ");
+            String _aILSContextExactLinkAgentVariableName = this.aILSContextExactLinkAgentVariableName(ap, sp);
+            _builder_3.append(_aILSContextExactLinkAgentVariableName);
+            _builder_3.append(": java String, ");
+            String _aILSContextExactLinkSiteVariableName = this.aILSContextExactLinkSiteVariableName(ap, sp);
+            _builder_3.append(_aILSContextExactLinkSiteVariableName);
+            _builder_3.append(": java String");
+            return _builder_3.toString();
+          } else {
+            StringConcatenation _builder_4 = new StringConcatenation();
+            _builder_4.append("AgentInstance.linkStates(");
+            String _name_5 = ap.getAgent().getName();
+            _builder_4.append(_name_5);
+            _builder_4.append(", ");
+            String _aILSVariableName_6 = this.aILSVariableName(ap, sp);
+            _builder_4.append(_aILSVariableName_6);
+            _builder_4.append(");");
+            _builder_4.newLineIfNotEmpty();
+            _builder_4.append("\t\t\t\t\t  ");
+            _builder_4.append("AgentInstanceLinkState.site.name(");
+            String _aILSVariableName_7 = this.aILSVariableName(ap, sp);
+            _builder_4.append(_aILSVariableName_7, "\t\t\t\t\t  ");
+            _builder_4.append(", ");
+            String _aILSNameVariableName_4 = this.aILSNameVariableName(ap, sp);
+            _builder_4.append(_aILSNameVariableName_4, "\t\t\t\t\t  ");
+            _builder_4.append(");");
+            _builder_4.newLineIfNotEmpty();
+            _builder_4.append("\t\t\t\t\t  ");
+            _builder_4.append("check (");
+            _builder_4.newLine();
+            _builder_4.append("\t\t\t\t\t  \t");
+            String _aILSNameVariableName_5 = this.aILSNameVariableName(ap, sp);
+            _builder_4.append(_aILSNameVariableName_5, "\t\t\t\t\t  \t");
+            _builder_4.append(".matches(\"");
+            String _name_6 = sp.getSite().getName();
+            _builder_4.append(_name_6, "\t\t\t\t\t  \t");
+            _builder_4.append("\")");
+            _builder_4.newLineIfNotEmpty();
+            _builder_4.append("\t\t\t\t\t  ");
+            _builder_4.append(");");
+            _builder_4.newLine();
+            _builder_4.append("\t\t\t\t\t  ");
+            _builder_4.append("AgentInstanceLinkState.linkState.linkState(");
+            String _aILSVariableName_8 = this.aILSVariableName(ap, sp);
+            _builder_4.append(_aILSVariableName_8, "\t\t\t\t\t  ");
+            _builder_4.append(", ");
+            String _aILSContextVariableName_3 = this.aILSContextVariableName(ap, sp);
+            _builder_4.append(_aILSContextVariableName_3, "\t\t\t\t\t  ");
+            _builder_4.append(");");
+            _builder_4.newLineIfNotEmpty();
+            _builder_4.append("\t\t\t\t\t  ");
+            _builder_4.append("IndexedLink.state(");
+            String _aILSVariableName_9 = this.aILSVariableName(ap, sp);
+            _builder_4.append(_aILSVariableName_9, "\t\t\t\t\t  ");
+            _builder_4.append(", ");
+            String _aILSContextIndexedLinkVariableName = this.aILSContextIndexedLinkVariableName(ap, sp);
+            _builder_4.append(_aILSContextIndexedLinkVariableName, "\t\t\t\t\t  ");
+            _builder_4.append(");");
+            _builder_4.newLineIfNotEmpty();
+            _builder_4.append("\t\t\t\t\t  ");
+            _builder_4.append("check (");
+            _builder_4.newLine();
+            _builder_4.append("\t\t\t\t\t  \t");
+            String _aILSContextIndexedLinkVariableName_1 = this.aILSContextIndexedLinkVariableName(ap, sp);
+            _builder_4.append(_aILSContextIndexedLinkVariableName_1, "\t\t\t\t\t  \t");
+            _builder_4.append(".matches(\"");
+            String _otherIndexedLinkVariableName = this.getOtherIndexedLinkVariableName(ap, sp);
+            _builder_4.append(_otherIndexedLinkVariableName, "\t\t\t\t\t  \t");
+            _builder_4.append("\")");
+            _builder_4.newLineIfNotEmpty();
+            _builder_4.append("\t\t\t\t\t  ");
+            _builder_4.append(");");
+            _builder_4.newLine();
+            return _builder_4.toString();
+          }
+        }
+      }
+    }
+  }
+  
+  public String getOtherIndexedLinkVariableName(final AgentPattern ap, final SitePattern sp) {
+    LinkState _linkState = sp.getLinkState().getLinkState();
+    final IndexedLink iLink = ((IndexedLink) _linkState);
+    Rule rule = ((Rule) null);
+    EObject eObj = iLink.eContainer();
+    while (((!(eObj instanceof Rule)) && (eObj != null))) {
+      eObj = eObj.eContainer();
+    }
+    if ((eObj instanceof Rule)) {
+      rule = ((Rule)eObj);
+    }
+    List<IndexedLink> candidates = EcoreUtil2.<IndexedLink>getAllContentsOfType(rule, IndexedLink.class);
+    for (final IndexedLink cand : candidates) {
+      {
+        final IndexedLink candidate = ((IndexedLink) cand);
+        if (((!candidate.equals(iLink)) && iLink.getState().equals(candidate.getState()))) {
+          AgentPattern agentPattern = ((AgentPattern) null);
+          SitePattern sitePattern = ((SitePattern) null);
+          EObject eObj2 = iLink.eContainer();
+          while (((!(eObj2 instanceof SitePattern)) && (eObj2 != null))) {
+            eObj2 = eObj2.eContainer();
+          }
+          if ((eObj2 instanceof SitePattern)) {
+            sitePattern = ((SitePattern) eObj2);
+          }
+          while (((!(eObj2 instanceof AgentPattern)) && (eObj2 != null))) {
+            eObj2 = eObj2.eContainer();
+          }
+          if ((eObj2 instanceof AgentPattern)) {
+            agentPattern = ((AgentPattern) eObj2);
+          }
+          if (((agentPattern != null) && (sitePattern != null))) {
+            return this.aILSContextIndexedLinkVariableName(agentPattern, sitePattern);
+          }
+          StringConcatenation _builder = new StringConcatenation();
+          return _builder.toString();
+        }
+      }
+    }
+    StringConcatenation _builder = new StringConcatenation();
+    return _builder.toString();
+  }
+  
   public String generateAgentPatternContext(final AgentPattern ap) {
     StringConcatenation _builder = new StringConcatenation();
     String _name = ap.getAgent().getName();
     _builder.append(_name);
     _builder.append(": AgentInstance, ");
-    String _name_1 = ap.getAgent().getName();
-    String _plus = ("Agent_" + _name_1);
-    String _plus_1 = (_plus + "_Name");
-    _builder.append(_plus_1);
+    String _agentNameVariableName = this.agentNameVariableName(ap);
+    _builder.append(_agentNameVariableName);
     _builder.append(": java String, ");
     String _generateSitePatternContext = this.generateSitePatternContext(ap);
     _builder.append(_generateSitePatternContext);
@@ -220,50 +392,163 @@ public class PatternTemplate {
           _builder.appendImmediate(", ", "");
         }
         _builder.append(" ");
-        String _name = ap.getAgent().getName();
-        String _plus = (_name + "_");
-        String _name_1 = sp.getSite().getName();
-        String _plus_1 = (_plus + _name_1);
-        _builder.append(_plus_1);
-        _builder.append("ILS: AgentInstanceLinkState, ");
-        String _name_2 = ap.getAgent().getName();
-        String _plus_2 = (_name_2 + "_");
-        String _name_3 = sp.getSite().getName();
-        String _plus_3 = (_plus_2 + _name_3);
-        _builder.append(_plus_3);
-        _builder.append("_ILS_name: java String, ");
-        String _name_4 = ap.getAgent().getName();
-        String _plus_4 = (_name_4 + "_");
-        String _name_5 = sp.getSite().getName();
-        String _plus_5 = (_plus_4 + _name_5);
-        _builder.append(_plus_5);
-        _builder.append("_ILS_state: ");
-        String _name_6 = sp.getLinkState().getLinkState().eClass().getName();
-        _builder.append(_name_6);
+        String _agentInstanceLinkState = this.agentInstanceLinkState(ap, sp);
+        _builder.append(_agentInstanceLinkState);
+        _builder.append(", ");
+        String _agentInstanceLinkStateName = this.agentInstanceLinkStateName(ap, sp);
+        _builder.append(_agentInstanceLinkStateName);
+        _builder.append(", ");
+        String _agentInstanceLinkStateContext = this.agentInstanceLinkStateContext(ap, sp);
+        _builder.append(_agentInstanceLinkStateContext);
       }
     }
     return _builder.toString();
   }
   
-  /**
-   * def generateLinkStateParameter(AgentPattern ap, SitePattern sp) {
-   * var param = ap.agent.name+"."+sp.site.name+ ".ILS.state: "
-   * val s = sp.linkState.linkState
-   * if(s instanceof LimitLink) {
-   * val ll = s as LimitLink
-   * param  += "java Integer"
-   * }else if(s instanceof ExactLink) {
-   * 
-   * }
-   * }
-   */
-  public Pattern patternFromPatternAssignment(final PatternAssignment pa) {
-    if ((pa instanceof AssignFromPattern)) {
-      final AssignFromPattern afp = ((AssignFromPattern) pa);
-      return afp.getPattern();
+  public String agentInstanceLinkState(final AgentPattern ap, final SitePattern sp) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _aILSVariableName = this.aILSVariableName(ap, sp);
+    _builder.append(_aILSVariableName);
+    _builder.append(": AgentInstanceLinkState");
+    return _builder.toString();
+  }
+  
+  public String agentInstanceLinkStateName(final AgentPattern ap, final SitePattern sp) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _aILSNameVariableName = this.aILSNameVariableName(ap, sp);
+    _builder.append(_aILSNameVariableName);
+    _builder.append(": java String");
+    return _builder.toString();
+  }
+  
+  public String agentInstanceLinkStateContext(final AgentPattern ap, final SitePattern sp) {
+    return this.linkStateConext(ap, sp);
+  }
+  
+  public String linkStateConext(final AgentPattern ap, final SitePattern sp) {
+    LinkState _linkState = sp.getLinkState().getLinkState();
+    final LinkState linkState = ((LinkState) _linkState);
+    if ((linkState instanceof FreeLink)) {
+      StringConcatenation _builder = new StringConcatenation();
+      String _aILSContextVariableName = this.aILSContextVariableName(ap, sp);
+      _builder.append(_aILSContextVariableName);
+      _builder.append(": ");
+      String _name = sp.getLinkState().getLinkState().eClass().getName();
+      _builder.append(_name);
+      return _builder.toString();
     } else {
-      final AssignFromVariable afv = ((AssignFromVariable) pa);
-      return afv.getPatternVar().getPattern();
+      if ((linkState instanceof SemiLink)) {
+        StringConcatenation _builder_1 = new StringConcatenation();
+        String _aILSContextVariableName_1 = this.aILSContextVariableName(ap, sp);
+        _builder_1.append(_aILSContextVariableName_1);
+        _builder_1.append(": ");
+        String _name_1 = sp.getLinkState().getLinkState().eClass().getName();
+        _builder_1.append(_name_1);
+        return _builder_1.toString();
+      } else {
+        if ((linkState instanceof WhatEver)) {
+          StringConcatenation _builder_2 = new StringConcatenation();
+          return _builder_2.toString();
+        } else {
+          if ((linkState instanceof ExactLink)) {
+            StringConcatenation _builder_3 = new StringConcatenation();
+            String _aILSContextVariableName_2 = this.aILSContextVariableName(ap, sp);
+            _builder_3.append(_aILSContextVariableName_2);
+            _builder_3.append(": ");
+            String _name_2 = sp.getLinkState().getLinkState().eClass().getName();
+            _builder_3.append(_name_2);
+            _builder_3.append(", ");
+            String _aILSContextExactLinkAgentVariableName = this.aILSContextExactLinkAgentVariableName(ap, sp);
+            _builder_3.append(_aILSContextExactLinkAgentVariableName);
+            _builder_3.append(": java String, ");
+            String _aILSContextExactLinkSiteVariableName = this.aILSContextExactLinkSiteVariableName(ap, sp);
+            _builder_3.append(_aILSContextExactLinkSiteVariableName);
+            _builder_3.append(": java String");
+            return _builder_3.toString();
+          } else {
+            StringConcatenation _builder_4 = new StringConcatenation();
+            String _aILSContextVariableName_3 = this.aILSContextVariableName(ap, sp);
+            _builder_4.append(_aILSContextVariableName_3);
+            _builder_4.append(": ");
+            String _name_3 = sp.getLinkState().getLinkState().eClass().getName();
+            _builder_4.append(_name_3);
+            _builder_4.append(", ");
+            String _aILSContextIndexedLinkVariableName = this.aILSContextIndexedLinkVariableName(ap, sp);
+            _builder_4.append(_aILSContextIndexedLinkVariableName);
+            _builder_4.append(": java String");
+            return _builder_4.toString();
+          }
+        }
+      }
     }
+  }
+  
+  public String agentNameVariableName(final AgentPattern ap) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _name = ap.getAgent().getName();
+    String _plus = ("Agent_" + _name);
+    String _plus_1 = (_plus + "_Name");
+    _builder.append(_plus_1);
+    return _builder.toString();
+  }
+  
+  public String aILSVariableName(final AgentPattern ap, final SitePattern sp) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _name = ap.getAgent().getName();
+    String _plus = (_name + "_");
+    String _name_1 = sp.getSite().getName();
+    String _plus_1 = (_plus + _name_1);
+    _builder.append(_plus_1);
+    _builder.append("_ILS");
+    return _builder.toString();
+  }
+  
+  public String aILSNameVariableName(final AgentPattern ap, final SitePattern sp) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _aILSVariableName = this.aILSVariableName(ap, sp);
+    _builder.append(_aILSVariableName);
+    _builder.append("_name");
+    return _builder.toString();
+  }
+  
+  public String aILSContextVariableName(final AgentPattern ap, final SitePattern sp) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _aILSVariableName = this.aILSVariableName(ap, sp);
+    _builder.append(_aILSVariableName);
+    _builder.append("_state");
+    return _builder.toString();
+  }
+  
+  public String aILSContextExactLinkAgentVariableName(final AgentPattern ap, final SitePattern sp) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _aILSVariableName = this.aILSVariableName(ap, sp);
+    _builder.append(_aILSVariableName);
+    _builder.append("_");
+    String _name = sp.getLinkState().getLinkState().eClass().getName();
+    _builder.append(_name);
+    _builder.append("_agentName");
+    return _builder.toString();
+  }
+  
+  public String aILSContextIndexedLinkVariableName(final AgentPattern ap, final SitePattern sp) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _aILSVariableName = this.aILSVariableName(ap, sp);
+    _builder.append(_aILSVariableName);
+    _builder.append("_");
+    String _name = sp.getLinkState().getLinkState().eClass().getName();
+    _builder.append(_name);
+    _builder.append("_index");
+    return _builder.toString();
+  }
+  
+  public String aILSContextExactLinkSiteVariableName(final AgentPattern ap, final SitePattern sp) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _aILSVariableName = this.aILSVariableName(ap, sp);
+    _builder.append(_aILSVariableName);
+    _builder.append("_");
+    String _name = sp.getLinkState().getLinkState().eClass().getName();
+    _builder.append(_name);
+    _builder.append("_siteName");
+    return _builder.toString();
   }
 }

@@ -3,6 +3,7 @@ ModelID test2
 
 agent A(x , c )
 agent B(x ) 
+agent C(x{u,p}, c{u,p} )
 
 /* Variables */ 
 var on_rate = 0.0001
@@ -11,6 +12,9 @@ var mod_rate = 1.0
  
 /* Initial conditions */
 init init1 4 { A(),B() } 
+init init2 4 { A(x[1]), B(x[1])}
+init init3 2 { C(x{u}[free])}
+init init4 2 { A(x[1]), C(x{p}[1])} 
 
 /* Rules */
 rule AtoB { A(x[free]), B(x[free]) } <-> { A(x[1]), B(x[1])} @ [on_rate, off_rate]

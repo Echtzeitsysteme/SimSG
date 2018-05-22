@@ -3,8 +3,17 @@ Bundle-ManifestVersion: 2
 Bundle-Name: biochemsimulation.viatraquery
 Bundle-SymbolicName: biochemsimulation.viatraquery;singleton:=true
 Bundle-Version: 0.0.1.qualifier
-Export-Package: manual.queries,
-  manual.queries.util,
+Export-Package: manual.queries;
+   uses:="org.eclipse.viatra.query.runtime.api,
+    org.eclipse.viatra.query.runtime.matchers.tuple,
+    manual.queries.util,
+    org.eclipse.viatra.query.runtime.api.impl,
+    biochemsimulation.reactionrules.reactionRules",
+  manual.queries.util;
+   uses:="org.eclipse.viatra.query.runtime.api,
+    org.eclipse.viatra.query.runtime.api.impl,
+    manual.queries,
+    biochemsimulation.reactionrules.reactionRules",
   patterngenerator,
   patterngenerator.util
 Require-Bundle: biochemsimulation.reactionrules,
@@ -15,5 +24,6 @@ Require-Bundle: biochemsimulation.reactionrules,
 Bundle-RequiredExecutionEnvironment: JavaSE-9
 Import-Package: org.apache.log4j,
   org.eclipse.emf.ecore.xmi,
-  org.eclipse.emf.ecore.xmi.impl
+  org.eclipse.emf.ecore.xmi.impl,
+  org.eclipse.xtext.util
 Automatic-Module-Name: biochemsimulation.viatraquery

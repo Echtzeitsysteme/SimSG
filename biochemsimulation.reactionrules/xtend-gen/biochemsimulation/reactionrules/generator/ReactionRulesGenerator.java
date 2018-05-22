@@ -31,6 +31,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.xtext.generator.AbstractGenerator;
@@ -76,14 +77,14 @@ public class ReactionRulesGenerator extends AbstractGenerator {
     final Integer n = Integer.valueOf(initial.getCount());
     if ((content instanceof AssignFromPattern)) {
       final AssignFromPattern c = ((AssignFromPattern) content);
-      this.agentInstancesFromPattern(resource, c.getPattern(), (n).intValue());
+      this.agentInstancesFromPattern(resource, c.getPattern(), (n).intValue(), initial.getName());
     } else {
       final AssignFromVariable va = ((AssignFromVariable) content);
-      this.agentInstancesFromPattern(resource, va.getPatternVar().getPattern(), (n).intValue());
+      this.agentInstancesFromPattern(resource, va.getPatternVar().getPattern(), (n).intValue(), initial.getName());
     }
   }
   
-  public void agentInstancesFromPattern(final Resource resource, final Pattern pattern, final int n) {
+  public void agentInstancesFromPattern(final Resource resource, final Pattern pattern, final int n, final String prefix) {
     EObject _get = resource.getContents().get(0);
     ReactionRuleModelImpl model = ((ReactionRuleModelImpl) _get);
     final ReactionRulesFactory factory = ReactionRulesFactoryImpl.init();
@@ -92,38 +93,44 @@ public class ReactionRulesGenerator extends AbstractGenerator {
       EList<AgentPattern> _agentPatterns = pattern.getAgentPatterns();
       for (final AgentPattern agentPattern : _agentPatterns) {
         {
-          final AgentPattern ap = ((AgentPattern) agentPattern);
-          final Agent agent = ap.getAgent();
+          AgentPattern ap = ((AgentPattern) agentPattern);
+          Agent agent = ap.getAgent();
           AgentInstance agentI = factory.createAgentInstance();
           String _name = agent.getName();
-          String _plus = (_name + ".Instance@#");
-          String _plus_1 = (_plus + i);
-          agentI.setName(_plus_1);
+          String _plus = ((prefix + ":") + _name);
+          String _plus_1 = (_plus + ".Instance@#");
+          String _plus_2 = (_plus_1 + i);
+          agentI.setName(_plus_2);
           agentI.setAgent(agent);
           EList<SitePattern> _sitePatterns = ap.getSitePatterns().getSitePatterns();
           for (final SitePattern sitePattern : _sitePatterns) {
             {
-              final Site site = sitePattern.getSite();
-              final LinkState oldLinkState = sitePattern.getLinkState();
-              final SiteState oldSiteState = sitePattern.getState();
-              LinkState newLinkState = factory.createLinkState();
-              AgentInstanceLinkState aiLinkState = factory.createAgentInstanceLinkState();
-              aiLinkState.setSite(site);
+              Site _site = sitePattern.getSite();
+              Site site = ((Site) _site);
+              LinkState _linkState = sitePattern.getLinkState();
+              LinkState oldLinkState = ((LinkState) _linkState);
+              SiteState _state = sitePattern.getState();
+              SiteState oldSiteState = ((SiteState) _state);
+              LinkState _createLinkState = factory.createLinkState();
+              LinkState newLinkState = ((LinkState) _createLinkState);
+              AgentInstanceLinkState _createAgentInstanceLinkState = factory.createAgentInstanceLinkState();
+              AgentInstanceLinkState aiLinkState = ((AgentInstanceLinkState) _createAgentInstanceLinkState);
+              AgentInstanceSiteState aiSiteState = factory.createAgentInstanceSiteState();
               if ((oldLinkState != null)) {
-                newLinkState.setLinkState(oldLinkState.getLinkState());
+                newLinkState.setLinkState(EcoreUtil.<LinkState>copy(oldLinkState.getLinkState()));
               } else {
                 newLinkState.setLinkState(factory.createFreeLink());
               }
-              aiLinkState.setLinkState(newLinkState);
-              agentI.getLinkStates().add(aiLinkState);
               if ((oldSiteState != null)) {
-                SiteState newSiteState = factory.createSiteState();
-                newSiteState.setState(oldSiteState.getState());
-                AgentInstanceSiteState aiSiteState = factory.createAgentInstanceSiteState();
-                aiSiteState.setSite(site);
-                aiSiteState.setSiteState(newSiteState);
-                agentI.getSiteStates().add(aiSiteState);
+                aiSiteState.setSiteState(EcoreUtil.<SiteState>copy(oldSiteState));
+              } else {
+                aiSiteState.setSiteState(factory.createSiteState());
               }
+              aiLinkState.setSite(site);
+              aiLinkState.setLinkState(newLinkState);
+              aiSiteState.setSite(site);
+              agentI.getLinkStates().add(aiLinkState);
+              agentI.getSiteStates().add(aiSiteState);
             }
           }
           int _size = ap.getSitePatterns().getSitePatterns().size();

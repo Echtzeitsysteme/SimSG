@@ -22,6 +22,11 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import biochemsimulation.reactionrules.reactionRules.LinkState
+import biochemsimulation.reactionrules.reactionRules.SiteState
+import biochemsimulation.reactionrules.reactionRules.AgentInstanceLinkState
+import biochemsimulation.reactionrules.reactionRules.Site
+import org.eclipse.emf.ecore.util.EcoreUtil
 
 /**
  * Generates code from your model files on save.
@@ -50,52 +55,52 @@ class ReactionRulesGenerator extends AbstractGenerator {
 		val n = Integer.valueOf(initial.count)
 		if(content instanceof AssignFromPattern) {
 			val c = content as AssignFromPattern
-			agentInstancesFromPattern(resource, c.pattern, n)
+			agentInstancesFromPattern(resource, c.pattern, n, initial.name)
 		}else {
 			val va = content as AssignFromVariable
-			agentInstancesFromPattern(resource, va.patternVar.pattern, n)
+			agentInstancesFromPattern(resource, va.patternVar.pattern, n, initial.name)
 		}
 	}
 	
-	def agentInstancesFromPattern(Resource resource, Pattern pattern, int n){
+	def agentInstancesFromPattern(Resource resource, Pattern pattern, int n, String prefix){
 		var model = resource.getContents().get(0) as ReactionRuleModelImpl
 		val factory = ReactionRulesFactoryImpl.init()
 		for(i : 0 ..< n){
 			for(agentPattern : pattern.agentPatterns) {
-				val ap = agentPattern as AgentPattern
-				val agent = ap.agent
+				var ap = agentPattern as AgentPattern
+				var agent = ap.agent
 				var agentI = factory.createAgentInstance
-				agentI.name = agent.name+".Instance@#"+i
+				agentI.name = prefix+":"+agent.name+".Instance@#"+i
 				agentI.agent = agent
 				for(sitePattern : ap.sitePatterns.sitePatterns) {
-					val site = sitePattern.site
-					val oldLinkState = sitePattern.linkState
-					val oldSiteState = sitePattern.state
+					var site = sitePattern.site as Site
+					var oldLinkState = sitePattern.linkState as LinkState
+					var oldSiteState = sitePattern.state as SiteState
 					
-					var newLinkState = factory.createLinkState
-					var aiLinkState = factory.createAgentInstanceLinkState
-					aiLinkState.site = site
+					var newLinkState = factory.createLinkState as LinkState
+					var aiLinkState = factory.createAgentInstanceLinkState as AgentInstanceLinkState
+
+					var aiSiteState = factory.createAgentInstanceSiteState
 					
 					if(oldLinkState !== null) {
-						newLinkState.linkState = oldLinkState.linkState
+						newLinkState.linkState = EcoreUtil.copy(oldLinkState.linkState)
 					} else {
 						newLinkState.linkState = factory.createFreeLink
 					}
 					
-					aiLinkState.linkState = newLinkState
-					agentI.linkStates.add(aiLinkState)
-					
 					if(oldSiteState !== null) {
-						var newSiteState = factory.createSiteState
-						newSiteState.state = oldSiteState.state
-						var aiSiteState = factory.createAgentInstanceSiteState
-					
-						aiSiteState.site = site
-						aiSiteState.siteState = newSiteState
-					
-					
-						agentI.siteStates.add(aiSiteState)
+						aiSiteState.siteState = EcoreUtil.copy(oldSiteState)
+					} else {
+						aiSiteState.siteState = factory.createSiteState
 					}
+					
+					aiLinkState.site = site
+					aiLinkState.linkState = newLinkState
+					
+					aiSiteState.site = site
+					
+					agentI.linkStates.add(aiLinkState)
+					agentI.siteStates.add(aiSiteState)
 					
 					
 				}
