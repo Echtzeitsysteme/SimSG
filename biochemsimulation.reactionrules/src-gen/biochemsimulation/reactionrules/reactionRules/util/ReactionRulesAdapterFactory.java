@@ -266,9 +266,9 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
         return createWhatEverAdapter();
       }
       @Override
-      public Adapter caseLimitLink(LimitLink object)
+      public Adapter caseIndexedLink(IndexedLink object)
       {
-        return createLimitLinkAdapter();
+        return createIndexedLinkAdapter();
       }
       @Override
       public Adapter caseExactLink(ExactLink object)
@@ -868,16 +868,16 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.LimitLink <em>Limit Link</em>}'.
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.IndexedLink <em>Indexed Link</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see biochemsimulation.reactionrules.reactionRules.LimitLink
+   * @see biochemsimulation.reactionrules.reactionRules.IndexedLink
    * @generated
    */
-  public Adapter createLimitLinkAdapter()
+  public Adapter createIndexedLinkAdapter()
   {
     return null;
   }

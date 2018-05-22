@@ -10,8 +10,8 @@ var off_rate = 0.1
 var mod_rate = 1.0
  
 /* Initial conditions */
-init init1 4 { A(),B() }
+init init1 4 { A(),B() } 
 
 /* Rules */
-rule AtoB { A(x[free]), B(x[free]) } <-> { A(x[1]), B(x[1]) } @ [on_rate, off_rate]
+rule AtoB { A(x[free]), B(x[free]) } <-> { A(x[1]), B(x[1])} @ [on_rate, off_rate]
          

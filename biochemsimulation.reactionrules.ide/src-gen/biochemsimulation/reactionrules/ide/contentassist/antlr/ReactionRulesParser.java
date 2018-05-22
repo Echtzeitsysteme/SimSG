@@ -62,7 +62,7 @@ public class ReactionRulesParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSemiLinkAccess().getGroup(), "rule__SemiLink__Group__0");
 					put(grammarAccess.getFreeLinkAccess().getGroup(), "rule__FreeLink__Group__0");
 					put(grammarAccess.getWhatEverAccess().getGroup(), "rule__WhatEver__Group__0");
-					put(grammarAccess.getLimitLinkAccess().getGroup(), "rule__LimitLink__Group__0");
+					put(grammarAccess.getIndexedLinkAccess().getGroup(), "rule__IndexedLink__Group__0");
 					put(grammarAccess.getExactLinkAgentAccess().getGroup(), "rule__ExactLinkAgent__Group__0");
 					put(grammarAccess.getExactLinkSiteAccess().getGroup(), "rule__ExactLinkSite__Group__0");
 					put(grammarAccess.getExactLinkAccess().getGroup(), "rule__ExactLink__Group__0");
@@ -70,7 +70,6 @@ public class ReactionRulesParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLinkStateAccess().getGroup(), "rule__LinkState__Group__0");
 					put(grammarAccess.getSitePatternAccess().getGroup(), "rule__SitePattern__Group__0");
 					put(grammarAccess.getSitePatternAccess().getGroup_2(), "rule__SitePattern__Group_2__0");
-					put(grammarAccess.getSitePatternAccess().getGroup_3(), "rule__SitePattern__Group_3__0");
 					put(grammarAccess.getSitePatternsAccess().getGroup(), "rule__SitePatterns__Group__0");
 					put(grammarAccess.getSitePatternsAccess().getGroup_1(), "rule__SitePatterns__Group_1__0");
 					put(grammarAccess.getSitePatternsAccess().getGroup_1_1(), "rule__SitePatterns__Group_1_1__0");
@@ -118,7 +117,7 @@ public class ReactionRulesParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSemiLinkAccess().getNameAssignment_1(), "rule__SemiLink__NameAssignment_1");
 					put(grammarAccess.getFreeLinkAccess().getNameAssignment_1(), "rule__FreeLink__NameAssignment_1");
 					put(grammarAccess.getWhatEverAccess().getNameAssignment_1(), "rule__WhatEver__NameAssignment_1");
-					put(grammarAccess.getLimitLinkAccess().getStateAssignment_1(), "rule__LimitLink__StateAssignment_1");
+					put(grammarAccess.getIndexedLinkAccess().getStateAssignment_1(), "rule__IndexedLink__StateAssignment_1");
 					put(grammarAccess.getExactLinkAgentAccess().getAgentAssignment_1(), "rule__ExactLinkAgent__AgentAssignment_1");
 					put(grammarAccess.getExactLinkSiteAccess().getSiteAssignment_1(), "rule__ExactLinkSite__SiteAssignment_1");
 					put(grammarAccess.getExactLinkAccess().getLinkAgentAssignment_1(), "rule__ExactLink__LinkAgentAssignment_1");
@@ -127,7 +126,7 @@ public class ReactionRulesParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLinkStateAccess().getLinkStateAssignment_1(), "rule__LinkState__LinkStateAssignment_1");
 					put(grammarAccess.getSitePatternAccess().getSiteAssignment_1(), "rule__SitePattern__SiteAssignment_1");
 					put(grammarAccess.getSitePatternAccess().getStateAssignment_2_1(), "rule__SitePattern__StateAssignment_2_1");
-					put(grammarAccess.getSitePatternAccess().getLinkStateAssignment_3_1(), "rule__SitePattern__LinkStateAssignment_3_1");
+					put(grammarAccess.getSitePatternAccess().getLinkStateAssignment_4(), "rule__SitePattern__LinkStateAssignment_4");
 					put(grammarAccess.getSitePatternsAccess().getSitePatternsAssignment_1_0(), "rule__SitePatterns__SitePatternsAssignment_1_0");
 					put(grammarAccess.getSitePatternsAccess().getSitePatternsAssignment_1_1_1(), "rule__SitePatterns__SitePatternsAssignment_1_1_1");
 					put(grammarAccess.getAgentPatternAccess().getAgentAssignment_1(), "rule__AgentPattern__AgentAssignment_1");

@@ -16,6 +16,7 @@ import biochemsimulation.reactionrules.reactionRules.RuleBody
 import biochemsimulation.reactionrules.reactionRules.AgentPattern
 import biochemsimulation.reactionrules.reactionRules.SitePattern
 import java.util.HashSet
+import biochemsimulation.reactionrules.reactionRules.IndexedLink
 
 /**
  * This class contains custom validation rules. 
@@ -203,6 +204,27 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 			if(!siteSet.contains(spSite)) {
 				error('This Agent does not have a site with ID='+spSite.name, ReactionRulesPackage.Literals.AGENT_PATTERN__SITE_PATTERNS)
 			}
+		}
+	}
+	
+	@Check
+	def checkIndexedLinkConstraint(IndexedLink indexedLink) {
+		val rootElement = EcoreUtil2.getRootContainer(indexedLink) 
+		var candidates = EcoreUtil2.getAllContentsOfType(rootElement, IndexedLink);
+		var c = 1
+		val thisNum = Integer.valueOf(indexedLink.state)
+		for(cnd : candidates) {
+			val candidate = cnd as IndexedLink
+			val cNum = Integer.valueOf(candidate.state)
+			if(cNum == thisNum && !candidate.equals(indexedLink)) {
+				c++
+			}
+			if(c>2){
+				error('This indexed link refers to more than two end-points aka. sites.', ReactionRulesPackage.Literals.INDEXED_LINK__STATE)
+			}
+		}
+		if(c<2) {
+			error('This indexed link must refer to exactly two end-points aka. sites.', ReactionRulesPackage.Literals.INDEXED_LINK__STATE)
 		}
 	}
 }

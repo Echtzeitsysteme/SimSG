@@ -168,8 +168,8 @@ WhatEver returns LinkState :
 	name = WHATEVER_LINK
 ;
 
-LimitLink returns LinkState :
-	{LimitLink}
+IndexedLink returns LinkState :
+	{IndexedLink}
 	state = UnsignedInteger
 ;
 
@@ -197,14 +197,14 @@ SiteState:
 
 LinkState:
 	{LinkState}
-	 linkState = (SemiLink | FreeLink | ExactLink | LimitLink | WhatEver) 
+	 linkState = (SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver) 
 ;
 
 SitePattern returns SitePattern:
 	{SitePattern}
 	site = [Site] 
 	('{' state = SiteState '}')?
-	('[' linkState = LinkState ']')?
+	'[' linkState = LinkState ']'
 ;
 
 SitePatterns returns SitePatterns:

@@ -130,8 +130,8 @@
     <genClasses ecoreClass="ReactionRules.ecore#//WhatEver">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//WhatEver/name"/>
     </genClasses>
-    <genClasses ecoreClass="ReactionRules.ecore#//LimitLink">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//LimitLink/state"/>
+    <genClasses ecoreClass="ReactionRules.ecore#//IndexedLink">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//IndexedLink/state"/>
     </genClasses>
     <genClasses ecoreClass="ReactionRules.ecore#//ExactLink">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//ExactLink/linkAgent"/>

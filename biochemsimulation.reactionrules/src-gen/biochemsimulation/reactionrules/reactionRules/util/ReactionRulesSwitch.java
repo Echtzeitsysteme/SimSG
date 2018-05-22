@@ -355,11 +355,11 @@ public class ReactionRulesSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ReactionRulesPackage.LIMIT_LINK:
+      case ReactionRulesPackage.INDEXED_LINK:
       {
-        LimitLink limitLink = (LimitLink)theEObject;
-        T result = caseLimitLink(limitLink);
-        if (result == null) result = caseLinkState(limitLink);
+        IndexedLink indexedLink = (IndexedLink)theEObject;
+        T result = caseIndexedLink(indexedLink);
+        if (result == null) result = caseLinkState(indexedLink);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -984,17 +984,17 @@ public class ReactionRulesSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Limit Link</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Indexed Link</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Limit Link</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Indexed Link</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseLimitLink(LimitLink object)
+  public T caseIndexedLink(IndexedLink object)
   {
     return null;
   }

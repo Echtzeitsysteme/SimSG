@@ -811,22 +811,22 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		//WHATEVER_LINK
 		public RuleCall getNameWHATEVER_LINKTerminalRuleCall_1_0() { return cNameWHATEVER_LINKTerminalRuleCall_1_0; }
 	}
-	public class LimitLinkElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.LimitLink");
+	public class IndexedLinkElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.IndexedLink");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cLimitLinkAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cIndexedLinkAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cStateAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cStateUnsignedIntegerParserRuleCall_1_0 = (RuleCall)cStateAssignment_1.eContents().get(0);
 		
-		//LimitLink LinkState:
-		//	{LimitLink} state=UnsignedInteger;
+		//IndexedLink LinkState:
+		//	{IndexedLink} state=UnsignedInteger;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{LimitLink} state=UnsignedInteger
+		//{IndexedLink} state=UnsignedInteger
 		public Group getGroup() { return cGroup; }
 		
-		//{LimitLink}
-		public Action getLimitLinkAction_0() { return cLimitLinkAction_0; }
+		//{IndexedLink}
+		public Action getIndexedLinkAction_0() { return cIndexedLinkAction_0; }
 		
 		//state=UnsignedInteger
 		public Assignment getStateAssignment_1() { return cStateAssignment_1; }
@@ -961,23 +961,23 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cLinkStateSemiLinkParserRuleCall_1_0_0 = (RuleCall)cLinkStateAlternatives_1_0.eContents().get(0);
 		private final RuleCall cLinkStateFreeLinkParserRuleCall_1_0_1 = (RuleCall)cLinkStateAlternatives_1_0.eContents().get(1);
 		private final RuleCall cLinkStateExactLinkParserRuleCall_1_0_2 = (RuleCall)cLinkStateAlternatives_1_0.eContents().get(2);
-		private final RuleCall cLinkStateLimitLinkParserRuleCall_1_0_3 = (RuleCall)cLinkStateAlternatives_1_0.eContents().get(3);
+		private final RuleCall cLinkStateIndexedLinkParserRuleCall_1_0_3 = (RuleCall)cLinkStateAlternatives_1_0.eContents().get(3);
 		private final RuleCall cLinkStateWhatEverParserRuleCall_1_0_4 = (RuleCall)cLinkStateAlternatives_1_0.eContents().get(4);
 		
 		//LinkState:
-		//	{LinkState} linkState=(SemiLink | FreeLink | ExactLink | LimitLink | WhatEver);
+		//	{LinkState} linkState=(SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver);
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{LinkState} linkState=(SemiLink | FreeLink | ExactLink | LimitLink | WhatEver)
+		//{LinkState} linkState=(SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver)
 		public Group getGroup() { return cGroup; }
 		
 		//{LinkState}
 		public Action getLinkStateAction_0() { return cLinkStateAction_0; }
 		
-		//linkState=(SemiLink | FreeLink | ExactLink | LimitLink | WhatEver)
+		//linkState=(SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver)
 		public Assignment getLinkStateAssignment_1() { return cLinkStateAssignment_1; }
 		
-		//(SemiLink | FreeLink | ExactLink | LimitLink | WhatEver)
+		//(SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver)
 		public Alternatives getLinkStateAlternatives_1_0() { return cLinkStateAlternatives_1_0; }
 		
 		//SemiLink
@@ -989,8 +989,8 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		//ExactLink
 		public RuleCall getLinkStateExactLinkParserRuleCall_1_0_2() { return cLinkStateExactLinkParserRuleCall_1_0_2; }
 		
-		//LimitLink
-		public RuleCall getLinkStateLimitLinkParserRuleCall_1_0_3() { return cLinkStateLimitLinkParserRuleCall_1_0_3; }
+		//IndexedLink
+		public RuleCall getLinkStateIndexedLinkParserRuleCall_1_0_3() { return cLinkStateIndexedLinkParserRuleCall_1_0_3; }
 		
 		//WhatEver
 		public RuleCall getLinkStateWhatEverParserRuleCall_1_0_4() { return cLinkStateWhatEverParserRuleCall_1_0_4; }
@@ -1007,17 +1007,17 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cStateAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cStateSiteStateParserRuleCall_2_1_0 = (RuleCall)cStateAssignment_2_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cLeftSquareBracketKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cLinkStateAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cLinkStateLinkStateParserRuleCall_3_1_0 = (RuleCall)cLinkStateAssignment_3_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
+		private final Keyword cLeftSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cLinkStateAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cLinkStateLinkStateParserRuleCall_4_0 = (RuleCall)cLinkStateAssignment_4.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//SitePattern:
-		//	{SitePattern} site=[Site] ('{' state=SiteState '}')? ('[' linkState=LinkState ']')?;
+		//	{SitePattern} site=[Site] ('{' state=SiteState '}')?
+		//	'[' linkState=LinkState ']';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SitePattern} site=[Site] ('{' state=SiteState '}')? ('[' linkState=LinkState ']')?
+		//{SitePattern} site=[Site] ('{' state=SiteState '}')? '[' linkState=LinkState ']'
 		public Group getGroup() { return cGroup; }
 		
 		//{SitePattern}
@@ -1047,20 +1047,17 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_2_2() { return cRightCurlyBracketKeyword_2_2; }
 		
-		//('[' linkState=LinkState ']')?
-		public Group getGroup_3() { return cGroup_3; }
-		
 		//'['
-		public Keyword getLeftSquareBracketKeyword_3_0() { return cLeftSquareBracketKeyword_3_0; }
+		public Keyword getLeftSquareBracketKeyword_3() { return cLeftSquareBracketKeyword_3; }
 		
 		//linkState=LinkState
-		public Assignment getLinkStateAssignment_3_1() { return cLinkStateAssignment_3_1; }
+		public Assignment getLinkStateAssignment_4() { return cLinkStateAssignment_4; }
 		
 		//LinkState
-		public RuleCall getLinkStateLinkStateParserRuleCall_3_1_0() { return cLinkStateLinkStateParserRuleCall_3_1_0; }
+		public RuleCall getLinkStateLinkStateParserRuleCall_4_0() { return cLinkStateLinkStateParserRuleCall_4_0; }
 		
 		//']'
-		public Keyword getRightSquareBracketKeyword_3_2() { return cRightSquareBracketKeyword_3_2; }
+		public Keyword getRightSquareBracketKeyword_5() { return cRightSquareBracketKeyword_5; }
 	}
 	public class SitePatternsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.SitePatterns");
@@ -1579,7 +1576,7 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	private final SemiLinkElements pSemiLink;
 	private final FreeLinkElements pFreeLink;
 	private final WhatEverElements pWhatEver;
-	private final LimitLinkElements pLimitLink;
+	private final IndexedLinkElements pIndexedLink;
 	private final ExactLinkAgentElements pExactLinkAgent;
 	private final ExactLinkSiteElements pExactLinkSite;
 	private final ExactLinkElements pExactLink;
@@ -1644,7 +1641,7 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		this.pSemiLink = new SemiLinkElements();
 		this.pFreeLink = new FreeLinkElements();
 		this.pWhatEver = new WhatEverElements();
-		this.pLimitLink = new LimitLinkElements();
+		this.pIndexedLink = new IndexedLinkElements();
 		this.pExactLinkAgent = new ExactLinkAgentElements();
 		this.pExactLinkSite = new ExactLinkSiteElements();
 		this.pExactLink = new ExactLinkElements();
@@ -2029,14 +2026,14 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		return getWhatEverAccess().getRule();
 	}
 	
-	//LimitLink LinkState:
-	//	{LimitLink} state=UnsignedInteger;
-	public LimitLinkElements getLimitLinkAccess() {
-		return pLimitLink;
+	//IndexedLink LinkState:
+	//	{IndexedLink} state=UnsignedInteger;
+	public IndexedLinkElements getIndexedLinkAccess() {
+		return pIndexedLink;
 	}
 	
-	public ParserRule getLimitLinkRule() {
-		return getLimitLinkAccess().getRule();
+	public ParserRule getIndexedLinkRule() {
+		return getIndexedLinkAccess().getRule();
 	}
 	
 	//ExactLinkAgent:
@@ -2082,7 +2079,7 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//LinkState:
-	//	{LinkState} linkState=(SemiLink | FreeLink | ExactLink | LimitLink | WhatEver);
+	//	{LinkState} linkState=(SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver);
 	public LinkStateElements getLinkStateAccess() {
 		return pLinkState;
 	}
@@ -2092,7 +2089,8 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//SitePattern:
-	//	{SitePattern} site=[Site] ('{' state=SiteState '}')? ('[' linkState=LinkState ']')?;
+	//	{SitePattern} site=[Site] ('{' state=SiteState '}')?
+	//	'[' linkState=LinkState ']';
 	public SitePatternElements getSitePatternAccess() {
 		return pSitePattern;
 	}

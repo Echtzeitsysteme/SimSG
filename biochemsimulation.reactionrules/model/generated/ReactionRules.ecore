@@ -155,7 +155,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="WhatEver" eSuperTypes="#//LinkState">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LimitLink" eSuperTypes="#//LinkState">
+  <eClassifiers xsi:type="ecore:EClass" name="IndexedLink" eSuperTypes="#//LinkState">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExactLink" eSuperTypes="#//LinkState">

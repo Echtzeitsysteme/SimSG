@@ -2195,20 +2195,20 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
     // $ANTLR end "ruleWhatEver"
 
 
-    // $ANTLR start "entryRuleLimitLink"
-    // InternalReactionRules.g:760:1: entryRuleLimitLink : ruleLimitLink EOF ;
-    public final void entryRuleLimitLink() throws RecognitionException {
+    // $ANTLR start "entryRuleIndexedLink"
+    // InternalReactionRules.g:760:1: entryRuleIndexedLink : ruleIndexedLink EOF ;
+    public final void entryRuleIndexedLink() throws RecognitionException {
         try {
-            // InternalReactionRules.g:761:1: ( ruleLimitLink EOF )
-            // InternalReactionRules.g:762:1: ruleLimitLink EOF
+            // InternalReactionRules.g:761:1: ( ruleIndexedLink EOF )
+            // InternalReactionRules.g:762:1: ruleIndexedLink EOF
             {
-             before(grammarAccess.getLimitLinkRule()); 
+             before(grammarAccess.getIndexedLinkRule()); 
             pushFollow(FOLLOW_1);
-            ruleLimitLink();
+            ruleIndexedLink();
 
             state._fsp--;
 
-             after(grammarAccess.getLimitLinkRule()); 
+             after(grammarAccess.getIndexedLinkRule()); 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -2222,35 +2222,35 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "entryRuleLimitLink"
+    // $ANTLR end "entryRuleIndexedLink"
 
 
-    // $ANTLR start "ruleLimitLink"
-    // InternalReactionRules.g:769:1: ruleLimitLink : ( ( rule__LimitLink__Group__0 ) ) ;
-    public final void ruleLimitLink() throws RecognitionException {
+    // $ANTLR start "ruleIndexedLink"
+    // InternalReactionRules.g:769:1: ruleIndexedLink : ( ( rule__IndexedLink__Group__0 ) ) ;
+    public final void ruleIndexedLink() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:773:2: ( ( ( rule__LimitLink__Group__0 ) ) )
-            // InternalReactionRules.g:774:2: ( ( rule__LimitLink__Group__0 ) )
+            // InternalReactionRules.g:773:2: ( ( ( rule__IndexedLink__Group__0 ) ) )
+            // InternalReactionRules.g:774:2: ( ( rule__IndexedLink__Group__0 ) )
             {
-            // InternalReactionRules.g:774:2: ( ( rule__LimitLink__Group__0 ) )
-            // InternalReactionRules.g:775:3: ( rule__LimitLink__Group__0 )
+            // InternalReactionRules.g:774:2: ( ( rule__IndexedLink__Group__0 ) )
+            // InternalReactionRules.g:775:3: ( rule__IndexedLink__Group__0 )
             {
-             before(grammarAccess.getLimitLinkAccess().getGroup()); 
-            // InternalReactionRules.g:776:3: ( rule__LimitLink__Group__0 )
-            // InternalReactionRules.g:776:4: rule__LimitLink__Group__0
+             before(grammarAccess.getIndexedLinkAccess().getGroup()); 
+            // InternalReactionRules.g:776:3: ( rule__IndexedLink__Group__0 )
+            // InternalReactionRules.g:776:4: rule__IndexedLink__Group__0
             {
             pushFollow(FOLLOW_2);
-            rule__LimitLink__Group__0();
+            rule__IndexedLink__Group__0();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getLimitLinkAccess().getGroup()); 
+             after(grammarAccess.getIndexedLinkAccess().getGroup()); 
 
             }
 
@@ -2269,7 +2269,7 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "ruleLimitLink"
+    // $ANTLR end "ruleIndexedLink"
 
 
     // $ANTLR start "entryRuleExactLinkAgent"
@@ -4183,13 +4183,13 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__LinkState__LinkStateAlternatives_1_0"
-    // InternalReactionRules.g:1373:1: rule__LinkState__LinkStateAlternatives_1_0 : ( ( ruleSemiLink ) | ( ruleFreeLink ) | ( ruleExactLink ) | ( ruleLimitLink ) | ( ruleWhatEver ) );
+    // InternalReactionRules.g:1373:1: rule__LinkState__LinkStateAlternatives_1_0 : ( ( ruleSemiLink ) | ( ruleFreeLink ) | ( ruleExactLink ) | ( ruleIndexedLink ) | ( ruleWhatEver ) );
     public final void rule__LinkState__LinkStateAlternatives_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:1377:1: ( ( ruleSemiLink ) | ( ruleFreeLink ) | ( ruleExactLink ) | ( ruleLimitLink ) | ( ruleWhatEver ) )
+            // InternalReactionRules.g:1377:1: ( ( ruleSemiLink ) | ( ruleFreeLink ) | ( ruleExactLink ) | ( ruleIndexedLink ) | ( ruleWhatEver ) )
             int alt5=5;
             switch ( input.LA(1) ) {
             case RULE_SEMI_LINK:
@@ -4283,18 +4283,18 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
                     }
                     break;
                 case 4 :
-                    // InternalReactionRules.g:1396:2: ( ruleLimitLink )
+                    // InternalReactionRules.g:1396:2: ( ruleIndexedLink )
                     {
-                    // InternalReactionRules.g:1396:2: ( ruleLimitLink )
-                    // InternalReactionRules.g:1397:3: ruleLimitLink
+                    // InternalReactionRules.g:1396:2: ( ruleIndexedLink )
+                    // InternalReactionRules.g:1397:3: ruleIndexedLink
                     {
-                     before(grammarAccess.getLinkStateAccess().getLinkStateLimitLinkParserRuleCall_1_0_3()); 
+                     before(grammarAccess.getLinkStateAccess().getLinkStateIndexedLinkParserRuleCall_1_0_3()); 
                     pushFollow(FOLLOW_2);
-                    ruleLimitLink();
+                    ruleIndexedLink();
 
                     state._fsp--;
 
-                     after(grammarAccess.getLinkStateAccess().getLinkStateLimitLinkParserRuleCall_1_0_3()); 
+                     after(grammarAccess.getLinkStateAccess().getLinkStateIndexedLinkParserRuleCall_1_0_3()); 
 
                     }
 
@@ -10043,23 +10043,23 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
     // $ANTLR end "rule__WhatEver__Group__1__Impl"
 
 
-    // $ANTLR start "rule__LimitLink__Group__0"
-    // InternalReactionRules.g:3317:1: rule__LimitLink__Group__0 : rule__LimitLink__Group__0__Impl rule__LimitLink__Group__1 ;
-    public final void rule__LimitLink__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__IndexedLink__Group__0"
+    // InternalReactionRules.g:3317:1: rule__IndexedLink__Group__0 : rule__IndexedLink__Group__0__Impl rule__IndexedLink__Group__1 ;
+    public final void rule__IndexedLink__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:3321:1: ( rule__LimitLink__Group__0__Impl rule__LimitLink__Group__1 )
-            // InternalReactionRules.g:3322:2: rule__LimitLink__Group__0__Impl rule__LimitLink__Group__1
+            // InternalReactionRules.g:3321:1: ( rule__IndexedLink__Group__0__Impl rule__IndexedLink__Group__1 )
+            // InternalReactionRules.g:3322:2: rule__IndexedLink__Group__0__Impl rule__IndexedLink__Group__1
             {
             pushFollow(FOLLOW_11);
-            rule__LimitLink__Group__0__Impl();
+            rule__IndexedLink__Group__0__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__LimitLink__Group__1();
+            rule__IndexedLink__Group__1();
 
             state._fsp--;
 
@@ -10078,12 +10078,12 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__LimitLink__Group__0"
+    // $ANTLR end "rule__IndexedLink__Group__0"
 
 
-    // $ANTLR start "rule__LimitLink__Group__0__Impl"
-    // InternalReactionRules.g:3329:1: rule__LimitLink__Group__0__Impl : ( () ) ;
-    public final void rule__LimitLink__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__IndexedLink__Group__0__Impl"
+    // InternalReactionRules.g:3329:1: rule__IndexedLink__Group__0__Impl : ( () ) ;
+    public final void rule__IndexedLink__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -10094,13 +10094,13 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
             // InternalReactionRules.g:3334:1: ( () )
             // InternalReactionRules.g:3335:2: ()
             {
-             before(grammarAccess.getLimitLinkAccess().getLimitLinkAction_0()); 
+             before(grammarAccess.getIndexedLinkAccess().getIndexedLinkAction_0()); 
             // InternalReactionRules.g:3336:2: ()
             // InternalReactionRules.g:3336:3: 
             {
             }
 
-             after(grammarAccess.getLimitLinkAccess().getLimitLinkAction_0()); 
+             after(grammarAccess.getIndexedLinkAccess().getIndexedLinkAction_0()); 
 
             }
 
@@ -10115,21 +10115,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__LimitLink__Group__0__Impl"
+    // $ANTLR end "rule__IndexedLink__Group__0__Impl"
 
 
-    // $ANTLR start "rule__LimitLink__Group__1"
-    // InternalReactionRules.g:3344:1: rule__LimitLink__Group__1 : rule__LimitLink__Group__1__Impl ;
-    public final void rule__LimitLink__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__IndexedLink__Group__1"
+    // InternalReactionRules.g:3344:1: rule__IndexedLink__Group__1 : rule__IndexedLink__Group__1__Impl ;
+    public final void rule__IndexedLink__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:3348:1: ( rule__LimitLink__Group__1__Impl )
-            // InternalReactionRules.g:3349:2: rule__LimitLink__Group__1__Impl
+            // InternalReactionRules.g:3348:1: ( rule__IndexedLink__Group__1__Impl )
+            // InternalReactionRules.g:3349:2: rule__IndexedLink__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__LimitLink__Group__1__Impl();
+            rule__IndexedLink__Group__1__Impl();
 
             state._fsp--;
 
@@ -10148,35 +10148,35 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__LimitLink__Group__1"
+    // $ANTLR end "rule__IndexedLink__Group__1"
 
 
-    // $ANTLR start "rule__LimitLink__Group__1__Impl"
-    // InternalReactionRules.g:3355:1: rule__LimitLink__Group__1__Impl : ( ( rule__LimitLink__StateAssignment_1 ) ) ;
-    public final void rule__LimitLink__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__IndexedLink__Group__1__Impl"
+    // InternalReactionRules.g:3355:1: rule__IndexedLink__Group__1__Impl : ( ( rule__IndexedLink__StateAssignment_1 ) ) ;
+    public final void rule__IndexedLink__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:3359:1: ( ( ( rule__LimitLink__StateAssignment_1 ) ) )
-            // InternalReactionRules.g:3360:1: ( ( rule__LimitLink__StateAssignment_1 ) )
+            // InternalReactionRules.g:3359:1: ( ( ( rule__IndexedLink__StateAssignment_1 ) ) )
+            // InternalReactionRules.g:3360:1: ( ( rule__IndexedLink__StateAssignment_1 ) )
             {
-            // InternalReactionRules.g:3360:1: ( ( rule__LimitLink__StateAssignment_1 ) )
-            // InternalReactionRules.g:3361:2: ( rule__LimitLink__StateAssignment_1 )
+            // InternalReactionRules.g:3360:1: ( ( rule__IndexedLink__StateAssignment_1 ) )
+            // InternalReactionRules.g:3361:2: ( rule__IndexedLink__StateAssignment_1 )
             {
-             before(grammarAccess.getLimitLinkAccess().getStateAssignment_1()); 
-            // InternalReactionRules.g:3362:2: ( rule__LimitLink__StateAssignment_1 )
-            // InternalReactionRules.g:3362:3: rule__LimitLink__StateAssignment_1
+             before(grammarAccess.getIndexedLinkAccess().getStateAssignment_1()); 
+            // InternalReactionRules.g:3362:2: ( rule__IndexedLink__StateAssignment_1 )
+            // InternalReactionRules.g:3362:3: rule__IndexedLink__StateAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__LimitLink__StateAssignment_1();
+            rule__IndexedLink__StateAssignment_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getLimitLinkAccess().getStateAssignment_1()); 
+             after(grammarAccess.getIndexedLinkAccess().getStateAssignment_1()); 
 
             }
 
@@ -10195,7 +10195,7 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__LimitLink__Group__1__Impl"
+    // $ANTLR end "rule__IndexedLink__Group__1__Impl"
 
 
     // $ANTLR start "rule__ExactLinkAgent__Group__0"
@@ -11390,17 +11390,22 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SitePattern__Group__3"
-    // InternalReactionRules.g:3776:1: rule__SitePattern__Group__3 : rule__SitePattern__Group__3__Impl ;
+    // InternalReactionRules.g:3776:1: rule__SitePattern__Group__3 : rule__SitePattern__Group__3__Impl rule__SitePattern__Group__4 ;
     public final void rule__SitePattern__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:3780:1: ( rule__SitePattern__Group__3__Impl )
-            // InternalReactionRules.g:3781:2: rule__SitePattern__Group__3__Impl
+            // InternalReactionRules.g:3780:1: ( rule__SitePattern__Group__3__Impl rule__SitePattern__Group__4 )
+            // InternalReactionRules.g:3781:2: rule__SitePattern__Group__3__Impl rule__SitePattern__Group__4
             {
-            pushFollow(FOLLOW_2);
+            pushFollow(FOLLOW_10);
             rule__SitePattern__Group__3__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__SitePattern__Group__4();
 
             state._fsp--;
 
@@ -11423,42 +11428,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SitePattern__Group__3__Impl"
-    // InternalReactionRules.g:3787:1: rule__SitePattern__Group__3__Impl : ( ( rule__SitePattern__Group_3__0 )? ) ;
+    // InternalReactionRules.g:3788:1: rule__SitePattern__Group__3__Impl : ( '[' ) ;
     public final void rule__SitePattern__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:3791:1: ( ( ( rule__SitePattern__Group_3__0 )? ) )
-            // InternalReactionRules.g:3792:1: ( ( rule__SitePattern__Group_3__0 )? )
+            // InternalReactionRules.g:3792:1: ( ( '[' ) )
+            // InternalReactionRules.g:3793:1: ( '[' )
             {
-            // InternalReactionRules.g:3792:1: ( ( rule__SitePattern__Group_3__0 )? )
-            // InternalReactionRules.g:3793:2: ( rule__SitePattern__Group_3__0 )?
+            // InternalReactionRules.g:3793:1: ( '[' )
+            // InternalReactionRules.g:3794:2: '['
             {
-             before(grammarAccess.getSitePatternAccess().getGroup_3()); 
-            // InternalReactionRules.g:3794:2: ( rule__SitePattern__Group_3__0 )?
-            int alt19=2;
-            int LA19_0 = input.LA(1);
-
-            if ( (LA19_0==32) ) {
-                alt19=1;
-            }
-            switch (alt19) {
-                case 1 :
-                    // InternalReactionRules.g:3794:3: rule__SitePattern__Group_3__0
-                    {
-                    pushFollow(FOLLOW_2);
-                    rule__SitePattern__Group_3__0();
-
-                    state._fsp--;
-
-
-                    }
-                    break;
-
-            }
-
-             after(grammarAccess.getSitePatternAccess().getGroup_3()); 
+             before(grammarAccess.getSitePatternAccess().getLeftSquareBracketKeyword_3()); 
+            match(input,32,FOLLOW_2); 
+             after(grammarAccess.getSitePatternAccess().getLeftSquareBracketKeyword_3()); 
 
             }
 
@@ -11480,15 +11464,170 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
     // $ANTLR end "rule__SitePattern__Group__3__Impl"
 
 
+    // $ANTLR start "rule__SitePattern__Group__4"
+    // InternalReactionRules.g:3803:1: rule__SitePattern__Group__4 : rule__SitePattern__Group__4__Impl rule__SitePattern__Group__5 ;
+    public final void rule__SitePattern__Group__4() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalReactionRules.g:3807:1: ( rule__SitePattern__Group__4__Impl rule__SitePattern__Group__5 )
+            // InternalReactionRules.g:3808:2: rule__SitePattern__Group__4__Impl rule__SitePattern__Group__5
+            {
+            pushFollow(FOLLOW_24);
+            rule__SitePattern__Group__4__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_2);
+            rule__SitePattern__Group__5();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__SitePattern__Group__4"
+
+
+    // $ANTLR start "rule__SitePattern__Group__4__Impl"
+    // InternalReactionRules.g:3815:1: rule__SitePattern__Group__4__Impl : ( ( rule__SitePattern__LinkStateAssignment_4 ) ) ;
+    public final void rule__SitePattern__Group__4__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalReactionRules.g:3819:1: ( ( ( rule__SitePattern__LinkStateAssignment_4 ) ) )
+            // InternalReactionRules.g:3820:1: ( ( rule__SitePattern__LinkStateAssignment_4 ) )
+            {
+            // InternalReactionRules.g:3820:1: ( ( rule__SitePattern__LinkStateAssignment_4 ) )
+            // InternalReactionRules.g:3821:2: ( rule__SitePattern__LinkStateAssignment_4 )
+            {
+             before(grammarAccess.getSitePatternAccess().getLinkStateAssignment_4()); 
+            // InternalReactionRules.g:3822:2: ( rule__SitePattern__LinkStateAssignment_4 )
+            // InternalReactionRules.g:3822:3: rule__SitePattern__LinkStateAssignment_4
+            {
+            pushFollow(FOLLOW_2);
+            rule__SitePattern__LinkStateAssignment_4();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getSitePatternAccess().getLinkStateAssignment_4()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__SitePattern__Group__4__Impl"
+
+
+    // $ANTLR start "rule__SitePattern__Group__5"
+    // InternalReactionRules.g:3830:1: rule__SitePattern__Group__5 : rule__SitePattern__Group__5__Impl ;
+    public final void rule__SitePattern__Group__5() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalReactionRules.g:3834:1: ( rule__SitePattern__Group__5__Impl )
+            // InternalReactionRules.g:3835:2: rule__SitePattern__Group__5__Impl
+            {
+            pushFollow(FOLLOW_2);
+            rule__SitePattern__Group__5__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__SitePattern__Group__5"
+
+
+    // $ANTLR start "rule__SitePattern__Group__5__Impl"
+    // InternalReactionRules.g:3841:1: rule__SitePattern__Group__5__Impl : ( ']' ) ;
+    public final void rule__SitePattern__Group__5__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalReactionRules.g:3845:1: ( ( ']' ) )
+            // InternalReactionRules.g:3846:1: ( ']' )
+            {
+            // InternalReactionRules.g:3846:1: ( ']' )
+            // InternalReactionRules.g:3847:2: ']'
+            {
+             before(grammarAccess.getSitePatternAccess().getRightSquareBracketKeyword_5()); 
+            match(input,33,FOLLOW_2); 
+             after(grammarAccess.getSitePatternAccess().getRightSquareBracketKeyword_5()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__SitePattern__Group__5__Impl"
+
+
     // $ANTLR start "rule__SitePattern__Group_2__0"
-    // InternalReactionRules.g:3803:1: rule__SitePattern__Group_2__0 : rule__SitePattern__Group_2__0__Impl rule__SitePattern__Group_2__1 ;
+    // InternalReactionRules.g:3857:1: rule__SitePattern__Group_2__0 : rule__SitePattern__Group_2__0__Impl rule__SitePattern__Group_2__1 ;
     public final void rule__SitePattern__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:3807:1: ( rule__SitePattern__Group_2__0__Impl rule__SitePattern__Group_2__1 )
-            // InternalReactionRules.g:3808:2: rule__SitePattern__Group_2__0__Impl rule__SitePattern__Group_2__1
+            // InternalReactionRules.g:3861:1: ( rule__SitePattern__Group_2__0__Impl rule__SitePattern__Group_2__1 )
+            // InternalReactionRules.g:3862:2: rule__SitePattern__Group_2__0__Impl rule__SitePattern__Group_2__1
             {
             pushFollow(FOLLOW_7);
             rule__SitePattern__Group_2__0__Impl();
@@ -11519,17 +11658,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SitePattern__Group_2__0__Impl"
-    // InternalReactionRules.g:3815:1: rule__SitePattern__Group_2__0__Impl : ( '{' ) ;
+    // InternalReactionRules.g:3869:1: rule__SitePattern__Group_2__0__Impl : ( '{' ) ;
     public final void rule__SitePattern__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:3819:1: ( ( '{' ) )
-            // InternalReactionRules.g:3820:1: ( '{' )
+            // InternalReactionRules.g:3873:1: ( ( '{' ) )
+            // InternalReactionRules.g:3874:1: ( '{' )
             {
-            // InternalReactionRules.g:3820:1: ( '{' )
-            // InternalReactionRules.g:3821:2: '{'
+            // InternalReactionRules.g:3874:1: ( '{' )
+            // InternalReactionRules.g:3875:2: '{'
             {
              before(grammarAccess.getSitePatternAccess().getLeftCurlyBracketKeyword_2_0()); 
             match(input,24,FOLLOW_2); 
@@ -11556,16 +11695,16 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SitePattern__Group_2__1"
-    // InternalReactionRules.g:3830:1: rule__SitePattern__Group_2__1 : rule__SitePattern__Group_2__1__Impl rule__SitePattern__Group_2__2 ;
+    // InternalReactionRules.g:3884:1: rule__SitePattern__Group_2__1 : rule__SitePattern__Group_2__1__Impl rule__SitePattern__Group_2__2 ;
     public final void rule__SitePattern__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:3834:1: ( rule__SitePattern__Group_2__1__Impl rule__SitePattern__Group_2__2 )
-            // InternalReactionRules.g:3835:2: rule__SitePattern__Group_2__1__Impl rule__SitePattern__Group_2__2
+            // InternalReactionRules.g:3888:1: ( rule__SitePattern__Group_2__1__Impl rule__SitePattern__Group_2__2 )
+            // InternalReactionRules.g:3889:2: rule__SitePattern__Group_2__1__Impl rule__SitePattern__Group_2__2
             {
-            pushFollow(FOLLOW_24);
+            pushFollow(FOLLOW_25);
             rule__SitePattern__Group_2__1__Impl();
 
             state._fsp--;
@@ -11594,21 +11733,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SitePattern__Group_2__1__Impl"
-    // InternalReactionRules.g:3842:1: rule__SitePattern__Group_2__1__Impl : ( ( rule__SitePattern__StateAssignment_2_1 ) ) ;
+    // InternalReactionRules.g:3896:1: rule__SitePattern__Group_2__1__Impl : ( ( rule__SitePattern__StateAssignment_2_1 ) ) ;
     public final void rule__SitePattern__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:3846:1: ( ( ( rule__SitePattern__StateAssignment_2_1 ) ) )
-            // InternalReactionRules.g:3847:1: ( ( rule__SitePattern__StateAssignment_2_1 ) )
+            // InternalReactionRules.g:3900:1: ( ( ( rule__SitePattern__StateAssignment_2_1 ) ) )
+            // InternalReactionRules.g:3901:1: ( ( rule__SitePattern__StateAssignment_2_1 ) )
             {
-            // InternalReactionRules.g:3847:1: ( ( rule__SitePattern__StateAssignment_2_1 ) )
-            // InternalReactionRules.g:3848:2: ( rule__SitePattern__StateAssignment_2_1 )
+            // InternalReactionRules.g:3901:1: ( ( rule__SitePattern__StateAssignment_2_1 ) )
+            // InternalReactionRules.g:3902:2: ( rule__SitePattern__StateAssignment_2_1 )
             {
              before(grammarAccess.getSitePatternAccess().getStateAssignment_2_1()); 
-            // InternalReactionRules.g:3849:2: ( rule__SitePattern__StateAssignment_2_1 )
-            // InternalReactionRules.g:3849:3: rule__SitePattern__StateAssignment_2_1
+            // InternalReactionRules.g:3903:2: ( rule__SitePattern__StateAssignment_2_1 )
+            // InternalReactionRules.g:3903:3: rule__SitePattern__StateAssignment_2_1
             {
             pushFollow(FOLLOW_2);
             rule__SitePattern__StateAssignment_2_1();
@@ -11641,14 +11780,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SitePattern__Group_2__2"
-    // InternalReactionRules.g:3857:1: rule__SitePattern__Group_2__2 : rule__SitePattern__Group_2__2__Impl ;
+    // InternalReactionRules.g:3911:1: rule__SitePattern__Group_2__2 : rule__SitePattern__Group_2__2__Impl ;
     public final void rule__SitePattern__Group_2__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:3861:1: ( rule__SitePattern__Group_2__2__Impl )
-            // InternalReactionRules.g:3862:2: rule__SitePattern__Group_2__2__Impl
+            // InternalReactionRules.g:3915:1: ( rule__SitePattern__Group_2__2__Impl )
+            // InternalReactionRules.g:3916:2: rule__SitePattern__Group_2__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__SitePattern__Group_2__2__Impl();
@@ -11674,17 +11813,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SitePattern__Group_2__2__Impl"
-    // InternalReactionRules.g:3868:1: rule__SitePattern__Group_2__2__Impl : ( '}' ) ;
+    // InternalReactionRules.g:3922:1: rule__SitePattern__Group_2__2__Impl : ( '}' ) ;
     public final void rule__SitePattern__Group_2__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:3872:1: ( ( '}' ) )
-            // InternalReactionRules.g:3873:1: ( '}' )
+            // InternalReactionRules.g:3926:1: ( ( '}' ) )
+            // InternalReactionRules.g:3927:1: ( '}' )
             {
-            // InternalReactionRules.g:3873:1: ( '}' )
-            // InternalReactionRules.g:3874:2: '}'
+            // InternalReactionRules.g:3927:1: ( '}' )
+            // InternalReactionRules.g:3928:2: '}'
             {
              before(grammarAccess.getSitePatternAccess().getRightCurlyBracketKeyword_2_2()); 
             match(input,25,FOLLOW_2); 
@@ -11710,245 +11849,15 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
     // $ANTLR end "rule__SitePattern__Group_2__2__Impl"
 
 
-    // $ANTLR start "rule__SitePattern__Group_3__0"
-    // InternalReactionRules.g:3884:1: rule__SitePattern__Group_3__0 : rule__SitePattern__Group_3__0__Impl rule__SitePattern__Group_3__1 ;
-    public final void rule__SitePattern__Group_3__0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalReactionRules.g:3888:1: ( rule__SitePattern__Group_3__0__Impl rule__SitePattern__Group_3__1 )
-            // InternalReactionRules.g:3889:2: rule__SitePattern__Group_3__0__Impl rule__SitePattern__Group_3__1
-            {
-            pushFollow(FOLLOW_10);
-            rule__SitePattern__Group_3__0__Impl();
-
-            state._fsp--;
-
-            pushFollow(FOLLOW_2);
-            rule__SitePattern__Group_3__1();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__SitePattern__Group_3__0"
-
-
-    // $ANTLR start "rule__SitePattern__Group_3__0__Impl"
-    // InternalReactionRules.g:3896:1: rule__SitePattern__Group_3__0__Impl : ( '[' ) ;
-    public final void rule__SitePattern__Group_3__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalReactionRules.g:3900:1: ( ( '[' ) )
-            // InternalReactionRules.g:3901:1: ( '[' )
-            {
-            // InternalReactionRules.g:3901:1: ( '[' )
-            // InternalReactionRules.g:3902:2: '['
-            {
-             before(grammarAccess.getSitePatternAccess().getLeftSquareBracketKeyword_3_0()); 
-            match(input,32,FOLLOW_2); 
-             after(grammarAccess.getSitePatternAccess().getLeftSquareBracketKeyword_3_0()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__SitePattern__Group_3__0__Impl"
-
-
-    // $ANTLR start "rule__SitePattern__Group_3__1"
-    // InternalReactionRules.g:3911:1: rule__SitePattern__Group_3__1 : rule__SitePattern__Group_3__1__Impl rule__SitePattern__Group_3__2 ;
-    public final void rule__SitePattern__Group_3__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalReactionRules.g:3915:1: ( rule__SitePattern__Group_3__1__Impl rule__SitePattern__Group_3__2 )
-            // InternalReactionRules.g:3916:2: rule__SitePattern__Group_3__1__Impl rule__SitePattern__Group_3__2
-            {
-            pushFollow(FOLLOW_25);
-            rule__SitePattern__Group_3__1__Impl();
-
-            state._fsp--;
-
-            pushFollow(FOLLOW_2);
-            rule__SitePattern__Group_3__2();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__SitePattern__Group_3__1"
-
-
-    // $ANTLR start "rule__SitePattern__Group_3__1__Impl"
-    // InternalReactionRules.g:3923:1: rule__SitePattern__Group_3__1__Impl : ( ( rule__SitePattern__LinkStateAssignment_3_1 ) ) ;
-    public final void rule__SitePattern__Group_3__1__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalReactionRules.g:3927:1: ( ( ( rule__SitePattern__LinkStateAssignment_3_1 ) ) )
-            // InternalReactionRules.g:3928:1: ( ( rule__SitePattern__LinkStateAssignment_3_1 ) )
-            {
-            // InternalReactionRules.g:3928:1: ( ( rule__SitePattern__LinkStateAssignment_3_1 ) )
-            // InternalReactionRules.g:3929:2: ( rule__SitePattern__LinkStateAssignment_3_1 )
-            {
-             before(grammarAccess.getSitePatternAccess().getLinkStateAssignment_3_1()); 
-            // InternalReactionRules.g:3930:2: ( rule__SitePattern__LinkStateAssignment_3_1 )
-            // InternalReactionRules.g:3930:3: rule__SitePattern__LinkStateAssignment_3_1
-            {
-            pushFollow(FOLLOW_2);
-            rule__SitePattern__LinkStateAssignment_3_1();
-
-            state._fsp--;
-
-
-            }
-
-             after(grammarAccess.getSitePatternAccess().getLinkStateAssignment_3_1()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__SitePattern__Group_3__1__Impl"
-
-
-    // $ANTLR start "rule__SitePattern__Group_3__2"
-    // InternalReactionRules.g:3938:1: rule__SitePattern__Group_3__2 : rule__SitePattern__Group_3__2__Impl ;
-    public final void rule__SitePattern__Group_3__2() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalReactionRules.g:3942:1: ( rule__SitePattern__Group_3__2__Impl )
-            // InternalReactionRules.g:3943:2: rule__SitePattern__Group_3__2__Impl
-            {
-            pushFollow(FOLLOW_2);
-            rule__SitePattern__Group_3__2__Impl();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__SitePattern__Group_3__2"
-
-
-    // $ANTLR start "rule__SitePattern__Group_3__2__Impl"
-    // InternalReactionRules.g:3949:1: rule__SitePattern__Group_3__2__Impl : ( ']' ) ;
-    public final void rule__SitePattern__Group_3__2__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-        	
-        try {
-            // InternalReactionRules.g:3953:1: ( ( ']' ) )
-            // InternalReactionRules.g:3954:1: ( ']' )
-            {
-            // InternalReactionRules.g:3954:1: ( ']' )
-            // InternalReactionRules.g:3955:2: ']'
-            {
-             before(grammarAccess.getSitePatternAccess().getRightSquareBracketKeyword_3_2()); 
-            match(input,33,FOLLOW_2); 
-             after(grammarAccess.getSitePatternAccess().getRightSquareBracketKeyword_3_2()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__SitePattern__Group_3__2__Impl"
-
-
     // $ANTLR start "rule__SitePatterns__Group__0"
-    // InternalReactionRules.g:3965:1: rule__SitePatterns__Group__0 : rule__SitePatterns__Group__0__Impl rule__SitePatterns__Group__1 ;
+    // InternalReactionRules.g:3938:1: rule__SitePatterns__Group__0 : rule__SitePatterns__Group__0__Impl rule__SitePatterns__Group__1 ;
     public final void rule__SitePatterns__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:3969:1: ( rule__SitePatterns__Group__0__Impl rule__SitePatterns__Group__1 )
-            // InternalReactionRules.g:3970:2: rule__SitePatterns__Group__0__Impl rule__SitePatterns__Group__1
+            // InternalReactionRules.g:3942:1: ( rule__SitePatterns__Group__0__Impl rule__SitePatterns__Group__1 )
+            // InternalReactionRules.g:3943:2: rule__SitePatterns__Group__0__Impl rule__SitePatterns__Group__1
             {
             pushFollow(FOLLOW_7);
             rule__SitePatterns__Group__0__Impl();
@@ -11979,21 +11888,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SitePatterns__Group__0__Impl"
-    // InternalReactionRules.g:3977:1: rule__SitePatterns__Group__0__Impl : ( () ) ;
+    // InternalReactionRules.g:3950:1: rule__SitePatterns__Group__0__Impl : ( () ) ;
     public final void rule__SitePatterns__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:3981:1: ( ( () ) )
-            // InternalReactionRules.g:3982:1: ( () )
+            // InternalReactionRules.g:3954:1: ( ( () ) )
+            // InternalReactionRules.g:3955:1: ( () )
             {
-            // InternalReactionRules.g:3982:1: ( () )
-            // InternalReactionRules.g:3983:2: ()
+            // InternalReactionRules.g:3955:1: ( () )
+            // InternalReactionRules.g:3956:2: ()
             {
              before(grammarAccess.getSitePatternsAccess().getSitePatternsAction_0()); 
-            // InternalReactionRules.g:3984:2: ()
-            // InternalReactionRules.g:3984:3: 
+            // InternalReactionRules.g:3957:2: ()
+            // InternalReactionRules.g:3957:3: 
             {
             }
 
@@ -12016,14 +11925,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SitePatterns__Group__1"
-    // InternalReactionRules.g:3992:1: rule__SitePatterns__Group__1 : rule__SitePatterns__Group__1__Impl ;
+    // InternalReactionRules.g:3965:1: rule__SitePatterns__Group__1 : rule__SitePatterns__Group__1__Impl ;
     public final void rule__SitePatterns__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:3996:1: ( rule__SitePatterns__Group__1__Impl )
-            // InternalReactionRules.g:3997:2: rule__SitePatterns__Group__1__Impl
+            // InternalReactionRules.g:3969:1: ( rule__SitePatterns__Group__1__Impl )
+            // InternalReactionRules.g:3970:2: rule__SitePatterns__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__SitePatterns__Group__1__Impl();
@@ -12049,29 +11958,29 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SitePatterns__Group__1__Impl"
-    // InternalReactionRules.g:4003:1: rule__SitePatterns__Group__1__Impl : ( ( rule__SitePatterns__Group_1__0 )? ) ;
+    // InternalReactionRules.g:3976:1: rule__SitePatterns__Group__1__Impl : ( ( rule__SitePatterns__Group_1__0 )? ) ;
     public final void rule__SitePatterns__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4007:1: ( ( ( rule__SitePatterns__Group_1__0 )? ) )
-            // InternalReactionRules.g:4008:1: ( ( rule__SitePatterns__Group_1__0 )? )
+            // InternalReactionRules.g:3980:1: ( ( ( rule__SitePatterns__Group_1__0 )? ) )
+            // InternalReactionRules.g:3981:1: ( ( rule__SitePatterns__Group_1__0 )? )
             {
-            // InternalReactionRules.g:4008:1: ( ( rule__SitePatterns__Group_1__0 )? )
-            // InternalReactionRules.g:4009:2: ( rule__SitePatterns__Group_1__0 )?
+            // InternalReactionRules.g:3981:1: ( ( rule__SitePatterns__Group_1__0 )? )
+            // InternalReactionRules.g:3982:2: ( rule__SitePatterns__Group_1__0 )?
             {
              before(grammarAccess.getSitePatternsAccess().getGroup_1()); 
-            // InternalReactionRules.g:4010:2: ( rule__SitePatterns__Group_1__0 )?
-            int alt20=2;
-            int LA20_0 = input.LA(1);
+            // InternalReactionRules.g:3983:2: ( rule__SitePatterns__Group_1__0 )?
+            int alt19=2;
+            int LA19_0 = input.LA(1);
 
-            if ( (LA20_0==RULE_ID) ) {
-                alt20=1;
+            if ( (LA19_0==RULE_ID) ) {
+                alt19=1;
             }
-            switch (alt20) {
+            switch (alt19) {
                 case 1 :
-                    // InternalReactionRules.g:4010:3: rule__SitePatterns__Group_1__0
+                    // InternalReactionRules.g:3983:3: rule__SitePatterns__Group_1__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__SitePatterns__Group_1__0();
@@ -12107,14 +12016,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SitePatterns__Group_1__0"
-    // InternalReactionRules.g:4019:1: rule__SitePatterns__Group_1__0 : rule__SitePatterns__Group_1__0__Impl rule__SitePatterns__Group_1__1 ;
+    // InternalReactionRules.g:3992:1: rule__SitePatterns__Group_1__0 : rule__SitePatterns__Group_1__0__Impl rule__SitePatterns__Group_1__1 ;
     public final void rule__SitePatterns__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4023:1: ( rule__SitePatterns__Group_1__0__Impl rule__SitePatterns__Group_1__1 )
-            // InternalReactionRules.g:4024:2: rule__SitePatterns__Group_1__0__Impl rule__SitePatterns__Group_1__1
+            // InternalReactionRules.g:3996:1: ( rule__SitePatterns__Group_1__0__Impl rule__SitePatterns__Group_1__1 )
+            // InternalReactionRules.g:3997:2: rule__SitePatterns__Group_1__0__Impl rule__SitePatterns__Group_1__1
             {
             pushFollow(FOLLOW_26);
             rule__SitePatterns__Group_1__0__Impl();
@@ -12145,21 +12054,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SitePatterns__Group_1__0__Impl"
-    // InternalReactionRules.g:4031:1: rule__SitePatterns__Group_1__0__Impl : ( ( rule__SitePatterns__SitePatternsAssignment_1_0 ) ) ;
+    // InternalReactionRules.g:4004:1: rule__SitePatterns__Group_1__0__Impl : ( ( rule__SitePatterns__SitePatternsAssignment_1_0 ) ) ;
     public final void rule__SitePatterns__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4035:1: ( ( ( rule__SitePatterns__SitePatternsAssignment_1_0 ) ) )
-            // InternalReactionRules.g:4036:1: ( ( rule__SitePatterns__SitePatternsAssignment_1_0 ) )
+            // InternalReactionRules.g:4008:1: ( ( ( rule__SitePatterns__SitePatternsAssignment_1_0 ) ) )
+            // InternalReactionRules.g:4009:1: ( ( rule__SitePatterns__SitePatternsAssignment_1_0 ) )
             {
-            // InternalReactionRules.g:4036:1: ( ( rule__SitePatterns__SitePatternsAssignment_1_0 ) )
-            // InternalReactionRules.g:4037:2: ( rule__SitePatterns__SitePatternsAssignment_1_0 )
+            // InternalReactionRules.g:4009:1: ( ( rule__SitePatterns__SitePatternsAssignment_1_0 ) )
+            // InternalReactionRules.g:4010:2: ( rule__SitePatterns__SitePatternsAssignment_1_0 )
             {
              before(grammarAccess.getSitePatternsAccess().getSitePatternsAssignment_1_0()); 
-            // InternalReactionRules.g:4038:2: ( rule__SitePatterns__SitePatternsAssignment_1_0 )
-            // InternalReactionRules.g:4038:3: rule__SitePatterns__SitePatternsAssignment_1_0
+            // InternalReactionRules.g:4011:2: ( rule__SitePatterns__SitePatternsAssignment_1_0 )
+            // InternalReactionRules.g:4011:3: rule__SitePatterns__SitePatternsAssignment_1_0
             {
             pushFollow(FOLLOW_2);
             rule__SitePatterns__SitePatternsAssignment_1_0();
@@ -12192,14 +12101,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SitePatterns__Group_1__1"
-    // InternalReactionRules.g:4046:1: rule__SitePatterns__Group_1__1 : rule__SitePatterns__Group_1__1__Impl ;
+    // InternalReactionRules.g:4019:1: rule__SitePatterns__Group_1__1 : rule__SitePatterns__Group_1__1__Impl ;
     public final void rule__SitePatterns__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4050:1: ( rule__SitePatterns__Group_1__1__Impl )
-            // InternalReactionRules.g:4051:2: rule__SitePatterns__Group_1__1__Impl
+            // InternalReactionRules.g:4023:1: ( rule__SitePatterns__Group_1__1__Impl )
+            // InternalReactionRules.g:4024:2: rule__SitePatterns__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__SitePatterns__Group_1__1__Impl();
@@ -12225,33 +12134,33 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SitePatterns__Group_1__1__Impl"
-    // InternalReactionRules.g:4057:1: rule__SitePatterns__Group_1__1__Impl : ( ( rule__SitePatterns__Group_1_1__0 )* ) ;
+    // InternalReactionRules.g:4030:1: rule__SitePatterns__Group_1__1__Impl : ( ( rule__SitePatterns__Group_1_1__0 )* ) ;
     public final void rule__SitePatterns__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4061:1: ( ( ( rule__SitePatterns__Group_1_1__0 )* ) )
-            // InternalReactionRules.g:4062:1: ( ( rule__SitePatterns__Group_1_1__0 )* )
+            // InternalReactionRules.g:4034:1: ( ( ( rule__SitePatterns__Group_1_1__0 )* ) )
+            // InternalReactionRules.g:4035:1: ( ( rule__SitePatterns__Group_1_1__0 )* )
             {
-            // InternalReactionRules.g:4062:1: ( ( rule__SitePatterns__Group_1_1__0 )* )
-            // InternalReactionRules.g:4063:2: ( rule__SitePatterns__Group_1_1__0 )*
+            // InternalReactionRules.g:4035:1: ( ( rule__SitePatterns__Group_1_1__0 )* )
+            // InternalReactionRules.g:4036:2: ( rule__SitePatterns__Group_1_1__0 )*
             {
              before(grammarAccess.getSitePatternsAccess().getGroup_1_1()); 
-            // InternalReactionRules.g:4064:2: ( rule__SitePatterns__Group_1_1__0 )*
-            loop21:
+            // InternalReactionRules.g:4037:2: ( rule__SitePatterns__Group_1_1__0 )*
+            loop20:
             do {
-                int alt21=2;
-                int LA21_0 = input.LA(1);
+                int alt20=2;
+                int LA20_0 = input.LA(1);
 
-                if ( (LA21_0==26) ) {
-                    alt21=1;
+                if ( (LA20_0==26) ) {
+                    alt20=1;
                 }
 
 
-                switch (alt21) {
+                switch (alt20) {
             	case 1 :
-            	    // InternalReactionRules.g:4064:3: rule__SitePatterns__Group_1_1__0
+            	    // InternalReactionRules.g:4037:3: rule__SitePatterns__Group_1_1__0
             	    {
             	    pushFollow(FOLLOW_17);
             	    rule__SitePatterns__Group_1_1__0();
@@ -12263,7 +12172,7 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
             	    break;
 
             	default :
-            	    break loop21;
+            	    break loop20;
                 }
             } while (true);
 
@@ -12290,14 +12199,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SitePatterns__Group_1_1__0"
-    // InternalReactionRules.g:4073:1: rule__SitePatterns__Group_1_1__0 : rule__SitePatterns__Group_1_1__0__Impl rule__SitePatterns__Group_1_1__1 ;
+    // InternalReactionRules.g:4046:1: rule__SitePatterns__Group_1_1__0 : rule__SitePatterns__Group_1_1__0__Impl rule__SitePatterns__Group_1_1__1 ;
     public final void rule__SitePatterns__Group_1_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4077:1: ( rule__SitePatterns__Group_1_1__0__Impl rule__SitePatterns__Group_1_1__1 )
-            // InternalReactionRules.g:4078:2: rule__SitePatterns__Group_1_1__0__Impl rule__SitePatterns__Group_1_1__1
+            // InternalReactionRules.g:4050:1: ( rule__SitePatterns__Group_1_1__0__Impl rule__SitePatterns__Group_1_1__1 )
+            // InternalReactionRules.g:4051:2: rule__SitePatterns__Group_1_1__0__Impl rule__SitePatterns__Group_1_1__1
             {
             pushFollow(FOLLOW_7);
             rule__SitePatterns__Group_1_1__0__Impl();
@@ -12328,17 +12237,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SitePatterns__Group_1_1__0__Impl"
-    // InternalReactionRules.g:4085:1: rule__SitePatterns__Group_1_1__0__Impl : ( ',' ) ;
+    // InternalReactionRules.g:4058:1: rule__SitePatterns__Group_1_1__0__Impl : ( ',' ) ;
     public final void rule__SitePatterns__Group_1_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4089:1: ( ( ',' ) )
-            // InternalReactionRules.g:4090:1: ( ',' )
+            // InternalReactionRules.g:4062:1: ( ( ',' ) )
+            // InternalReactionRules.g:4063:1: ( ',' )
             {
-            // InternalReactionRules.g:4090:1: ( ',' )
-            // InternalReactionRules.g:4091:2: ','
+            // InternalReactionRules.g:4063:1: ( ',' )
+            // InternalReactionRules.g:4064:2: ','
             {
              before(grammarAccess.getSitePatternsAccess().getCommaKeyword_1_1_0()); 
             match(input,26,FOLLOW_2); 
@@ -12365,14 +12274,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SitePatterns__Group_1_1__1"
-    // InternalReactionRules.g:4100:1: rule__SitePatterns__Group_1_1__1 : rule__SitePatterns__Group_1_1__1__Impl ;
+    // InternalReactionRules.g:4073:1: rule__SitePatterns__Group_1_1__1 : rule__SitePatterns__Group_1_1__1__Impl ;
     public final void rule__SitePatterns__Group_1_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4104:1: ( rule__SitePatterns__Group_1_1__1__Impl )
-            // InternalReactionRules.g:4105:2: rule__SitePatterns__Group_1_1__1__Impl
+            // InternalReactionRules.g:4077:1: ( rule__SitePatterns__Group_1_1__1__Impl )
+            // InternalReactionRules.g:4078:2: rule__SitePatterns__Group_1_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__SitePatterns__Group_1_1__1__Impl();
@@ -12398,21 +12307,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SitePatterns__Group_1_1__1__Impl"
-    // InternalReactionRules.g:4111:1: rule__SitePatterns__Group_1_1__1__Impl : ( ( rule__SitePatterns__SitePatternsAssignment_1_1_1 ) ) ;
+    // InternalReactionRules.g:4084:1: rule__SitePatterns__Group_1_1__1__Impl : ( ( rule__SitePatterns__SitePatternsAssignment_1_1_1 ) ) ;
     public final void rule__SitePatterns__Group_1_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4115:1: ( ( ( rule__SitePatterns__SitePatternsAssignment_1_1_1 ) ) )
-            // InternalReactionRules.g:4116:1: ( ( rule__SitePatterns__SitePatternsAssignment_1_1_1 ) )
+            // InternalReactionRules.g:4088:1: ( ( ( rule__SitePatterns__SitePatternsAssignment_1_1_1 ) ) )
+            // InternalReactionRules.g:4089:1: ( ( rule__SitePatterns__SitePatternsAssignment_1_1_1 ) )
             {
-            // InternalReactionRules.g:4116:1: ( ( rule__SitePatterns__SitePatternsAssignment_1_1_1 ) )
-            // InternalReactionRules.g:4117:2: ( rule__SitePatterns__SitePatternsAssignment_1_1_1 )
+            // InternalReactionRules.g:4089:1: ( ( rule__SitePatterns__SitePatternsAssignment_1_1_1 ) )
+            // InternalReactionRules.g:4090:2: ( rule__SitePatterns__SitePatternsAssignment_1_1_1 )
             {
              before(grammarAccess.getSitePatternsAccess().getSitePatternsAssignment_1_1_1()); 
-            // InternalReactionRules.g:4118:2: ( rule__SitePatterns__SitePatternsAssignment_1_1_1 )
-            // InternalReactionRules.g:4118:3: rule__SitePatterns__SitePatternsAssignment_1_1_1
+            // InternalReactionRules.g:4091:2: ( rule__SitePatterns__SitePatternsAssignment_1_1_1 )
+            // InternalReactionRules.g:4091:3: rule__SitePatterns__SitePatternsAssignment_1_1_1
             {
             pushFollow(FOLLOW_2);
             rule__SitePatterns__SitePatternsAssignment_1_1_1();
@@ -12445,14 +12354,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AgentPattern__Group__0"
-    // InternalReactionRules.g:4127:1: rule__AgentPattern__Group__0 : rule__AgentPattern__Group__0__Impl rule__AgentPattern__Group__1 ;
+    // InternalReactionRules.g:4100:1: rule__AgentPattern__Group__0 : rule__AgentPattern__Group__0__Impl rule__AgentPattern__Group__1 ;
     public final void rule__AgentPattern__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4131:1: ( rule__AgentPattern__Group__0__Impl rule__AgentPattern__Group__1 )
-            // InternalReactionRules.g:4132:2: rule__AgentPattern__Group__0__Impl rule__AgentPattern__Group__1
+            // InternalReactionRules.g:4104:1: ( rule__AgentPattern__Group__0__Impl rule__AgentPattern__Group__1 )
+            // InternalReactionRules.g:4105:2: rule__AgentPattern__Group__0__Impl rule__AgentPattern__Group__1
             {
             pushFollow(FOLLOW_7);
             rule__AgentPattern__Group__0__Impl();
@@ -12483,21 +12392,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AgentPattern__Group__0__Impl"
-    // InternalReactionRules.g:4139:1: rule__AgentPattern__Group__0__Impl : ( () ) ;
+    // InternalReactionRules.g:4112:1: rule__AgentPattern__Group__0__Impl : ( () ) ;
     public final void rule__AgentPattern__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4143:1: ( ( () ) )
-            // InternalReactionRules.g:4144:1: ( () )
+            // InternalReactionRules.g:4116:1: ( ( () ) )
+            // InternalReactionRules.g:4117:1: ( () )
             {
-            // InternalReactionRules.g:4144:1: ( () )
-            // InternalReactionRules.g:4145:2: ()
+            // InternalReactionRules.g:4117:1: ( () )
+            // InternalReactionRules.g:4118:2: ()
             {
              before(grammarAccess.getAgentPatternAccess().getAgentPatternAction_0()); 
-            // InternalReactionRules.g:4146:2: ()
-            // InternalReactionRules.g:4146:3: 
+            // InternalReactionRules.g:4119:2: ()
+            // InternalReactionRules.g:4119:3: 
             {
             }
 
@@ -12520,14 +12429,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AgentPattern__Group__1"
-    // InternalReactionRules.g:4154:1: rule__AgentPattern__Group__1 : rule__AgentPattern__Group__1__Impl rule__AgentPattern__Group__2 ;
+    // InternalReactionRules.g:4127:1: rule__AgentPattern__Group__1 : rule__AgentPattern__Group__1__Impl rule__AgentPattern__Group__2 ;
     public final void rule__AgentPattern__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4158:1: ( rule__AgentPattern__Group__1__Impl rule__AgentPattern__Group__2 )
-            // InternalReactionRules.g:4159:2: rule__AgentPattern__Group__1__Impl rule__AgentPattern__Group__2
+            // InternalReactionRules.g:4131:1: ( rule__AgentPattern__Group__1__Impl rule__AgentPattern__Group__2 )
+            // InternalReactionRules.g:4132:2: rule__AgentPattern__Group__1__Impl rule__AgentPattern__Group__2
             {
             pushFollow(FOLLOW_18);
             rule__AgentPattern__Group__1__Impl();
@@ -12558,21 +12467,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AgentPattern__Group__1__Impl"
-    // InternalReactionRules.g:4166:1: rule__AgentPattern__Group__1__Impl : ( ( rule__AgentPattern__AgentAssignment_1 ) ) ;
+    // InternalReactionRules.g:4139:1: rule__AgentPattern__Group__1__Impl : ( ( rule__AgentPattern__AgentAssignment_1 ) ) ;
     public final void rule__AgentPattern__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4170:1: ( ( ( rule__AgentPattern__AgentAssignment_1 ) ) )
-            // InternalReactionRules.g:4171:1: ( ( rule__AgentPattern__AgentAssignment_1 ) )
+            // InternalReactionRules.g:4143:1: ( ( ( rule__AgentPattern__AgentAssignment_1 ) ) )
+            // InternalReactionRules.g:4144:1: ( ( rule__AgentPattern__AgentAssignment_1 ) )
             {
-            // InternalReactionRules.g:4171:1: ( ( rule__AgentPattern__AgentAssignment_1 ) )
-            // InternalReactionRules.g:4172:2: ( rule__AgentPattern__AgentAssignment_1 )
+            // InternalReactionRules.g:4144:1: ( ( rule__AgentPattern__AgentAssignment_1 ) )
+            // InternalReactionRules.g:4145:2: ( rule__AgentPattern__AgentAssignment_1 )
             {
              before(grammarAccess.getAgentPatternAccess().getAgentAssignment_1()); 
-            // InternalReactionRules.g:4173:2: ( rule__AgentPattern__AgentAssignment_1 )
-            // InternalReactionRules.g:4173:3: rule__AgentPattern__AgentAssignment_1
+            // InternalReactionRules.g:4146:2: ( rule__AgentPattern__AgentAssignment_1 )
+            // InternalReactionRules.g:4146:3: rule__AgentPattern__AgentAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__AgentPattern__AgentAssignment_1();
@@ -12605,14 +12514,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AgentPattern__Group__2"
-    // InternalReactionRules.g:4181:1: rule__AgentPattern__Group__2 : rule__AgentPattern__Group__2__Impl rule__AgentPattern__Group__3 ;
+    // InternalReactionRules.g:4154:1: rule__AgentPattern__Group__2 : rule__AgentPattern__Group__2__Impl rule__AgentPattern__Group__3 ;
     public final void rule__AgentPattern__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4185:1: ( rule__AgentPattern__Group__2__Impl rule__AgentPattern__Group__3 )
-            // InternalReactionRules.g:4186:2: rule__AgentPattern__Group__2__Impl rule__AgentPattern__Group__3
+            // InternalReactionRules.g:4158:1: ( rule__AgentPattern__Group__2__Impl rule__AgentPattern__Group__3 )
+            // InternalReactionRules.g:4159:2: rule__AgentPattern__Group__2__Impl rule__AgentPattern__Group__3
             {
             pushFollow(FOLLOW_7);
             rule__AgentPattern__Group__2__Impl();
@@ -12643,17 +12552,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AgentPattern__Group__2__Impl"
-    // InternalReactionRules.g:4193:1: rule__AgentPattern__Group__2__Impl : ( '(' ) ;
+    // InternalReactionRules.g:4166:1: rule__AgentPattern__Group__2__Impl : ( '(' ) ;
     public final void rule__AgentPattern__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4197:1: ( ( '(' ) )
-            // InternalReactionRules.g:4198:1: ( '(' )
+            // InternalReactionRules.g:4170:1: ( ( '(' ) )
+            // InternalReactionRules.g:4171:1: ( '(' )
             {
-            // InternalReactionRules.g:4198:1: ( '(' )
-            // InternalReactionRules.g:4199:2: '('
+            // InternalReactionRules.g:4171:1: ( '(' )
+            // InternalReactionRules.g:4172:2: '('
             {
              before(grammarAccess.getAgentPatternAccess().getLeftParenthesisKeyword_2()); 
             match(input,27,FOLLOW_2); 
@@ -12680,14 +12589,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AgentPattern__Group__3"
-    // InternalReactionRules.g:4208:1: rule__AgentPattern__Group__3 : rule__AgentPattern__Group__3__Impl rule__AgentPattern__Group__4 ;
+    // InternalReactionRules.g:4181:1: rule__AgentPattern__Group__3 : rule__AgentPattern__Group__3__Impl rule__AgentPattern__Group__4 ;
     public final void rule__AgentPattern__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4212:1: ( rule__AgentPattern__Group__3__Impl rule__AgentPattern__Group__4 )
-            // InternalReactionRules.g:4213:2: rule__AgentPattern__Group__3__Impl rule__AgentPattern__Group__4
+            // InternalReactionRules.g:4185:1: ( rule__AgentPattern__Group__3__Impl rule__AgentPattern__Group__4 )
+            // InternalReactionRules.g:4186:2: rule__AgentPattern__Group__3__Impl rule__AgentPattern__Group__4
             {
             pushFollow(FOLLOW_27);
             rule__AgentPattern__Group__3__Impl();
@@ -12718,21 +12627,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AgentPattern__Group__3__Impl"
-    // InternalReactionRules.g:4220:1: rule__AgentPattern__Group__3__Impl : ( ( rule__AgentPattern__SitePatternsAssignment_3 ) ) ;
+    // InternalReactionRules.g:4193:1: rule__AgentPattern__Group__3__Impl : ( ( rule__AgentPattern__SitePatternsAssignment_3 ) ) ;
     public final void rule__AgentPattern__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4224:1: ( ( ( rule__AgentPattern__SitePatternsAssignment_3 ) ) )
-            // InternalReactionRules.g:4225:1: ( ( rule__AgentPattern__SitePatternsAssignment_3 ) )
+            // InternalReactionRules.g:4197:1: ( ( ( rule__AgentPattern__SitePatternsAssignment_3 ) ) )
+            // InternalReactionRules.g:4198:1: ( ( rule__AgentPattern__SitePatternsAssignment_3 ) )
             {
-            // InternalReactionRules.g:4225:1: ( ( rule__AgentPattern__SitePatternsAssignment_3 ) )
-            // InternalReactionRules.g:4226:2: ( rule__AgentPattern__SitePatternsAssignment_3 )
+            // InternalReactionRules.g:4198:1: ( ( rule__AgentPattern__SitePatternsAssignment_3 ) )
+            // InternalReactionRules.g:4199:2: ( rule__AgentPattern__SitePatternsAssignment_3 )
             {
              before(grammarAccess.getAgentPatternAccess().getSitePatternsAssignment_3()); 
-            // InternalReactionRules.g:4227:2: ( rule__AgentPattern__SitePatternsAssignment_3 )
-            // InternalReactionRules.g:4227:3: rule__AgentPattern__SitePatternsAssignment_3
+            // InternalReactionRules.g:4200:2: ( rule__AgentPattern__SitePatternsAssignment_3 )
+            // InternalReactionRules.g:4200:3: rule__AgentPattern__SitePatternsAssignment_3
             {
             pushFollow(FOLLOW_2);
             rule__AgentPattern__SitePatternsAssignment_3();
@@ -12765,14 +12674,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AgentPattern__Group__4"
-    // InternalReactionRules.g:4235:1: rule__AgentPattern__Group__4 : rule__AgentPattern__Group__4__Impl ;
+    // InternalReactionRules.g:4208:1: rule__AgentPattern__Group__4 : rule__AgentPattern__Group__4__Impl ;
     public final void rule__AgentPattern__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4239:1: ( rule__AgentPattern__Group__4__Impl )
-            // InternalReactionRules.g:4240:2: rule__AgentPattern__Group__4__Impl
+            // InternalReactionRules.g:4212:1: ( rule__AgentPattern__Group__4__Impl )
+            // InternalReactionRules.g:4213:2: rule__AgentPattern__Group__4__Impl
             {
             pushFollow(FOLLOW_2);
             rule__AgentPattern__Group__4__Impl();
@@ -12798,17 +12707,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AgentPattern__Group__4__Impl"
-    // InternalReactionRules.g:4246:1: rule__AgentPattern__Group__4__Impl : ( ')' ) ;
+    // InternalReactionRules.g:4219:1: rule__AgentPattern__Group__4__Impl : ( ')' ) ;
     public final void rule__AgentPattern__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4250:1: ( ( ')' ) )
-            // InternalReactionRules.g:4251:1: ( ')' )
+            // InternalReactionRules.g:4223:1: ( ( ')' ) )
+            // InternalReactionRules.g:4224:1: ( ')' )
             {
-            // InternalReactionRules.g:4251:1: ( ')' )
-            // InternalReactionRules.g:4252:2: ')'
+            // InternalReactionRules.g:4224:1: ( ')' )
+            // InternalReactionRules.g:4225:2: ')'
             {
              before(grammarAccess.getAgentPatternAccess().getRightParenthesisKeyword_4()); 
             match(input,28,FOLLOW_2); 
@@ -12835,14 +12744,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Pattern__Group__0"
-    // InternalReactionRules.g:4262:1: rule__Pattern__Group__0 : rule__Pattern__Group__0__Impl rule__Pattern__Group__1 ;
+    // InternalReactionRules.g:4235:1: rule__Pattern__Group__0 : rule__Pattern__Group__0__Impl rule__Pattern__Group__1 ;
     public final void rule__Pattern__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4266:1: ( rule__Pattern__Group__0__Impl rule__Pattern__Group__1 )
-            // InternalReactionRules.g:4267:2: rule__Pattern__Group__0__Impl rule__Pattern__Group__1
+            // InternalReactionRules.g:4239:1: ( rule__Pattern__Group__0__Impl rule__Pattern__Group__1 )
+            // InternalReactionRules.g:4240:2: rule__Pattern__Group__0__Impl rule__Pattern__Group__1
             {
             pushFollow(FOLLOW_15);
             rule__Pattern__Group__0__Impl();
@@ -12873,21 +12782,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Pattern__Group__0__Impl"
-    // InternalReactionRules.g:4274:1: rule__Pattern__Group__0__Impl : ( () ) ;
+    // InternalReactionRules.g:4247:1: rule__Pattern__Group__0__Impl : ( () ) ;
     public final void rule__Pattern__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4278:1: ( ( () ) )
-            // InternalReactionRules.g:4279:1: ( () )
+            // InternalReactionRules.g:4251:1: ( ( () ) )
+            // InternalReactionRules.g:4252:1: ( () )
             {
-            // InternalReactionRules.g:4279:1: ( () )
-            // InternalReactionRules.g:4280:2: ()
+            // InternalReactionRules.g:4252:1: ( () )
+            // InternalReactionRules.g:4253:2: ()
             {
              before(grammarAccess.getPatternAccess().getPatternAction_0()); 
-            // InternalReactionRules.g:4281:2: ()
-            // InternalReactionRules.g:4281:3: 
+            // InternalReactionRules.g:4254:2: ()
+            // InternalReactionRules.g:4254:3: 
             {
             }
 
@@ -12910,14 +12819,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Pattern__Group__1"
-    // InternalReactionRules.g:4289:1: rule__Pattern__Group__1 : rule__Pattern__Group__1__Impl rule__Pattern__Group__2 ;
+    // InternalReactionRules.g:4262:1: rule__Pattern__Group__1 : rule__Pattern__Group__1__Impl rule__Pattern__Group__2 ;
     public final void rule__Pattern__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4293:1: ( rule__Pattern__Group__1__Impl rule__Pattern__Group__2 )
-            // InternalReactionRules.g:4294:2: rule__Pattern__Group__1__Impl rule__Pattern__Group__2
+            // InternalReactionRules.g:4266:1: ( rule__Pattern__Group__1__Impl rule__Pattern__Group__2 )
+            // InternalReactionRules.g:4267:2: rule__Pattern__Group__1__Impl rule__Pattern__Group__2
             {
             pushFollow(FOLLOW_28);
             rule__Pattern__Group__1__Impl();
@@ -12948,17 +12857,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Pattern__Group__1__Impl"
-    // InternalReactionRules.g:4301:1: rule__Pattern__Group__1__Impl : ( '{' ) ;
+    // InternalReactionRules.g:4274:1: rule__Pattern__Group__1__Impl : ( '{' ) ;
     public final void rule__Pattern__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4305:1: ( ( '{' ) )
-            // InternalReactionRules.g:4306:1: ( '{' )
+            // InternalReactionRules.g:4278:1: ( ( '{' ) )
+            // InternalReactionRules.g:4279:1: ( '{' )
             {
-            // InternalReactionRules.g:4306:1: ( '{' )
-            // InternalReactionRules.g:4307:2: '{'
+            // InternalReactionRules.g:4279:1: ( '{' )
+            // InternalReactionRules.g:4280:2: '{'
             {
              before(grammarAccess.getPatternAccess().getLeftCurlyBracketKeyword_1()); 
             match(input,24,FOLLOW_2); 
@@ -12985,14 +12894,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Pattern__Group__2"
-    // InternalReactionRules.g:4316:1: rule__Pattern__Group__2 : rule__Pattern__Group__2__Impl rule__Pattern__Group__3 ;
+    // InternalReactionRules.g:4289:1: rule__Pattern__Group__2 : rule__Pattern__Group__2__Impl rule__Pattern__Group__3 ;
     public final void rule__Pattern__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4320:1: ( rule__Pattern__Group__2__Impl rule__Pattern__Group__3 )
-            // InternalReactionRules.g:4321:2: rule__Pattern__Group__2__Impl rule__Pattern__Group__3
+            // InternalReactionRules.g:4293:1: ( rule__Pattern__Group__2__Impl rule__Pattern__Group__3 )
+            // InternalReactionRules.g:4294:2: rule__Pattern__Group__2__Impl rule__Pattern__Group__3
             {
             pushFollow(FOLLOW_28);
             rule__Pattern__Group__2__Impl();
@@ -13023,29 +12932,29 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Pattern__Group__2__Impl"
-    // InternalReactionRules.g:4328:1: rule__Pattern__Group__2__Impl : ( ( rule__Pattern__Group_2__0 )? ) ;
+    // InternalReactionRules.g:4301:1: rule__Pattern__Group__2__Impl : ( ( rule__Pattern__Group_2__0 )? ) ;
     public final void rule__Pattern__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4332:1: ( ( ( rule__Pattern__Group_2__0 )? ) )
-            // InternalReactionRules.g:4333:1: ( ( rule__Pattern__Group_2__0 )? )
+            // InternalReactionRules.g:4305:1: ( ( ( rule__Pattern__Group_2__0 )? ) )
+            // InternalReactionRules.g:4306:1: ( ( rule__Pattern__Group_2__0 )? )
             {
-            // InternalReactionRules.g:4333:1: ( ( rule__Pattern__Group_2__0 )? )
-            // InternalReactionRules.g:4334:2: ( rule__Pattern__Group_2__0 )?
+            // InternalReactionRules.g:4306:1: ( ( rule__Pattern__Group_2__0 )? )
+            // InternalReactionRules.g:4307:2: ( rule__Pattern__Group_2__0 )?
             {
              before(grammarAccess.getPatternAccess().getGroup_2()); 
-            // InternalReactionRules.g:4335:2: ( rule__Pattern__Group_2__0 )?
-            int alt22=2;
-            int LA22_0 = input.LA(1);
+            // InternalReactionRules.g:4308:2: ( rule__Pattern__Group_2__0 )?
+            int alt21=2;
+            int LA21_0 = input.LA(1);
 
-            if ( (LA22_0==RULE_ID) ) {
-                alt22=1;
+            if ( (LA21_0==RULE_ID) ) {
+                alt21=1;
             }
-            switch (alt22) {
+            switch (alt21) {
                 case 1 :
-                    // InternalReactionRules.g:4335:3: rule__Pattern__Group_2__0
+                    // InternalReactionRules.g:4308:3: rule__Pattern__Group_2__0
                     {
                     pushFollow(FOLLOW_2);
                     rule__Pattern__Group_2__0();
@@ -13081,14 +12990,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Pattern__Group__3"
-    // InternalReactionRules.g:4343:1: rule__Pattern__Group__3 : rule__Pattern__Group__3__Impl ;
+    // InternalReactionRules.g:4316:1: rule__Pattern__Group__3 : rule__Pattern__Group__3__Impl ;
     public final void rule__Pattern__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4347:1: ( rule__Pattern__Group__3__Impl )
-            // InternalReactionRules.g:4348:2: rule__Pattern__Group__3__Impl
+            // InternalReactionRules.g:4320:1: ( rule__Pattern__Group__3__Impl )
+            // InternalReactionRules.g:4321:2: rule__Pattern__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Pattern__Group__3__Impl();
@@ -13114,17 +13023,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Pattern__Group__3__Impl"
-    // InternalReactionRules.g:4354:1: rule__Pattern__Group__3__Impl : ( '}' ) ;
+    // InternalReactionRules.g:4327:1: rule__Pattern__Group__3__Impl : ( '}' ) ;
     public final void rule__Pattern__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4358:1: ( ( '}' ) )
-            // InternalReactionRules.g:4359:1: ( '}' )
+            // InternalReactionRules.g:4331:1: ( ( '}' ) )
+            // InternalReactionRules.g:4332:1: ( '}' )
             {
-            // InternalReactionRules.g:4359:1: ( '}' )
-            // InternalReactionRules.g:4360:2: '}'
+            // InternalReactionRules.g:4332:1: ( '}' )
+            // InternalReactionRules.g:4333:2: '}'
             {
              before(grammarAccess.getPatternAccess().getRightCurlyBracketKeyword_3()); 
             match(input,25,FOLLOW_2); 
@@ -13151,14 +13060,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Pattern__Group_2__0"
-    // InternalReactionRules.g:4370:1: rule__Pattern__Group_2__0 : rule__Pattern__Group_2__0__Impl rule__Pattern__Group_2__1 ;
+    // InternalReactionRules.g:4343:1: rule__Pattern__Group_2__0 : rule__Pattern__Group_2__0__Impl rule__Pattern__Group_2__1 ;
     public final void rule__Pattern__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4374:1: ( rule__Pattern__Group_2__0__Impl rule__Pattern__Group_2__1 )
-            // InternalReactionRules.g:4375:2: rule__Pattern__Group_2__0__Impl rule__Pattern__Group_2__1
+            // InternalReactionRules.g:4347:1: ( rule__Pattern__Group_2__0__Impl rule__Pattern__Group_2__1 )
+            // InternalReactionRules.g:4348:2: rule__Pattern__Group_2__0__Impl rule__Pattern__Group_2__1
             {
             pushFollow(FOLLOW_26);
             rule__Pattern__Group_2__0__Impl();
@@ -13189,21 +13098,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Pattern__Group_2__0__Impl"
-    // InternalReactionRules.g:4382:1: rule__Pattern__Group_2__0__Impl : ( ( rule__Pattern__AgentPatternsAssignment_2_0 ) ) ;
+    // InternalReactionRules.g:4355:1: rule__Pattern__Group_2__0__Impl : ( ( rule__Pattern__AgentPatternsAssignment_2_0 ) ) ;
     public final void rule__Pattern__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4386:1: ( ( ( rule__Pattern__AgentPatternsAssignment_2_0 ) ) )
-            // InternalReactionRules.g:4387:1: ( ( rule__Pattern__AgentPatternsAssignment_2_0 ) )
+            // InternalReactionRules.g:4359:1: ( ( ( rule__Pattern__AgentPatternsAssignment_2_0 ) ) )
+            // InternalReactionRules.g:4360:1: ( ( rule__Pattern__AgentPatternsAssignment_2_0 ) )
             {
-            // InternalReactionRules.g:4387:1: ( ( rule__Pattern__AgentPatternsAssignment_2_0 ) )
-            // InternalReactionRules.g:4388:2: ( rule__Pattern__AgentPatternsAssignment_2_0 )
+            // InternalReactionRules.g:4360:1: ( ( rule__Pattern__AgentPatternsAssignment_2_0 ) )
+            // InternalReactionRules.g:4361:2: ( rule__Pattern__AgentPatternsAssignment_2_0 )
             {
              before(grammarAccess.getPatternAccess().getAgentPatternsAssignment_2_0()); 
-            // InternalReactionRules.g:4389:2: ( rule__Pattern__AgentPatternsAssignment_2_0 )
-            // InternalReactionRules.g:4389:3: rule__Pattern__AgentPatternsAssignment_2_0
+            // InternalReactionRules.g:4362:2: ( rule__Pattern__AgentPatternsAssignment_2_0 )
+            // InternalReactionRules.g:4362:3: rule__Pattern__AgentPatternsAssignment_2_0
             {
             pushFollow(FOLLOW_2);
             rule__Pattern__AgentPatternsAssignment_2_0();
@@ -13236,14 +13145,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Pattern__Group_2__1"
-    // InternalReactionRules.g:4397:1: rule__Pattern__Group_2__1 : rule__Pattern__Group_2__1__Impl ;
+    // InternalReactionRules.g:4370:1: rule__Pattern__Group_2__1 : rule__Pattern__Group_2__1__Impl ;
     public final void rule__Pattern__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4401:1: ( rule__Pattern__Group_2__1__Impl )
-            // InternalReactionRules.g:4402:2: rule__Pattern__Group_2__1__Impl
+            // InternalReactionRules.g:4374:1: ( rule__Pattern__Group_2__1__Impl )
+            // InternalReactionRules.g:4375:2: rule__Pattern__Group_2__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Pattern__Group_2__1__Impl();
@@ -13269,33 +13178,33 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Pattern__Group_2__1__Impl"
-    // InternalReactionRules.g:4408:1: rule__Pattern__Group_2__1__Impl : ( ( rule__Pattern__Group_2_1__0 )* ) ;
+    // InternalReactionRules.g:4381:1: rule__Pattern__Group_2__1__Impl : ( ( rule__Pattern__Group_2_1__0 )* ) ;
     public final void rule__Pattern__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4412:1: ( ( ( rule__Pattern__Group_2_1__0 )* ) )
-            // InternalReactionRules.g:4413:1: ( ( rule__Pattern__Group_2_1__0 )* )
+            // InternalReactionRules.g:4385:1: ( ( ( rule__Pattern__Group_2_1__0 )* ) )
+            // InternalReactionRules.g:4386:1: ( ( rule__Pattern__Group_2_1__0 )* )
             {
-            // InternalReactionRules.g:4413:1: ( ( rule__Pattern__Group_2_1__0 )* )
-            // InternalReactionRules.g:4414:2: ( rule__Pattern__Group_2_1__0 )*
+            // InternalReactionRules.g:4386:1: ( ( rule__Pattern__Group_2_1__0 )* )
+            // InternalReactionRules.g:4387:2: ( rule__Pattern__Group_2_1__0 )*
             {
              before(grammarAccess.getPatternAccess().getGroup_2_1()); 
-            // InternalReactionRules.g:4415:2: ( rule__Pattern__Group_2_1__0 )*
-            loop23:
+            // InternalReactionRules.g:4388:2: ( rule__Pattern__Group_2_1__0 )*
+            loop22:
             do {
-                int alt23=2;
-                int LA23_0 = input.LA(1);
+                int alt22=2;
+                int LA22_0 = input.LA(1);
 
-                if ( (LA23_0==26) ) {
-                    alt23=1;
+                if ( (LA22_0==26) ) {
+                    alt22=1;
                 }
 
 
-                switch (alt23) {
+                switch (alt22) {
             	case 1 :
-            	    // InternalReactionRules.g:4415:3: rule__Pattern__Group_2_1__0
+            	    // InternalReactionRules.g:4388:3: rule__Pattern__Group_2_1__0
             	    {
             	    pushFollow(FOLLOW_17);
             	    rule__Pattern__Group_2_1__0();
@@ -13307,7 +13216,7 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
             	    break;
 
             	default :
-            	    break loop23;
+            	    break loop22;
                 }
             } while (true);
 
@@ -13334,14 +13243,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Pattern__Group_2_1__0"
-    // InternalReactionRules.g:4424:1: rule__Pattern__Group_2_1__0 : rule__Pattern__Group_2_1__0__Impl rule__Pattern__Group_2_1__1 ;
+    // InternalReactionRules.g:4397:1: rule__Pattern__Group_2_1__0 : rule__Pattern__Group_2_1__0__Impl rule__Pattern__Group_2_1__1 ;
     public final void rule__Pattern__Group_2_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4428:1: ( rule__Pattern__Group_2_1__0__Impl rule__Pattern__Group_2_1__1 )
-            // InternalReactionRules.g:4429:2: rule__Pattern__Group_2_1__0__Impl rule__Pattern__Group_2_1__1
+            // InternalReactionRules.g:4401:1: ( rule__Pattern__Group_2_1__0__Impl rule__Pattern__Group_2_1__1 )
+            // InternalReactionRules.g:4402:2: rule__Pattern__Group_2_1__0__Impl rule__Pattern__Group_2_1__1
             {
             pushFollow(FOLLOW_7);
             rule__Pattern__Group_2_1__0__Impl();
@@ -13372,17 +13281,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Pattern__Group_2_1__0__Impl"
-    // InternalReactionRules.g:4436:1: rule__Pattern__Group_2_1__0__Impl : ( ',' ) ;
+    // InternalReactionRules.g:4409:1: rule__Pattern__Group_2_1__0__Impl : ( ',' ) ;
     public final void rule__Pattern__Group_2_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4440:1: ( ( ',' ) )
-            // InternalReactionRules.g:4441:1: ( ',' )
+            // InternalReactionRules.g:4413:1: ( ( ',' ) )
+            // InternalReactionRules.g:4414:1: ( ',' )
             {
-            // InternalReactionRules.g:4441:1: ( ',' )
-            // InternalReactionRules.g:4442:2: ','
+            // InternalReactionRules.g:4414:1: ( ',' )
+            // InternalReactionRules.g:4415:2: ','
             {
              before(grammarAccess.getPatternAccess().getCommaKeyword_2_1_0()); 
             match(input,26,FOLLOW_2); 
@@ -13409,14 +13318,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Pattern__Group_2_1__1"
-    // InternalReactionRules.g:4451:1: rule__Pattern__Group_2_1__1 : rule__Pattern__Group_2_1__1__Impl ;
+    // InternalReactionRules.g:4424:1: rule__Pattern__Group_2_1__1 : rule__Pattern__Group_2_1__1__Impl ;
     public final void rule__Pattern__Group_2_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4455:1: ( rule__Pattern__Group_2_1__1__Impl )
-            // InternalReactionRules.g:4456:2: rule__Pattern__Group_2_1__1__Impl
+            // InternalReactionRules.g:4428:1: ( rule__Pattern__Group_2_1__1__Impl )
+            // InternalReactionRules.g:4429:2: rule__Pattern__Group_2_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Pattern__Group_2_1__1__Impl();
@@ -13442,21 +13351,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Pattern__Group_2_1__1__Impl"
-    // InternalReactionRules.g:4462:1: rule__Pattern__Group_2_1__1__Impl : ( ( rule__Pattern__AgentPatternsAssignment_2_1_1 ) ) ;
+    // InternalReactionRules.g:4435:1: rule__Pattern__Group_2_1__1__Impl : ( ( rule__Pattern__AgentPatternsAssignment_2_1_1 ) ) ;
     public final void rule__Pattern__Group_2_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4466:1: ( ( ( rule__Pattern__AgentPatternsAssignment_2_1_1 ) ) )
-            // InternalReactionRules.g:4467:1: ( ( rule__Pattern__AgentPatternsAssignment_2_1_1 ) )
+            // InternalReactionRules.g:4439:1: ( ( ( rule__Pattern__AgentPatternsAssignment_2_1_1 ) ) )
+            // InternalReactionRules.g:4440:1: ( ( rule__Pattern__AgentPatternsAssignment_2_1_1 ) )
             {
-            // InternalReactionRules.g:4467:1: ( ( rule__Pattern__AgentPatternsAssignment_2_1_1 ) )
-            // InternalReactionRules.g:4468:2: ( rule__Pattern__AgentPatternsAssignment_2_1_1 )
+            // InternalReactionRules.g:4440:1: ( ( rule__Pattern__AgentPatternsAssignment_2_1_1 ) )
+            // InternalReactionRules.g:4441:2: ( rule__Pattern__AgentPatternsAssignment_2_1_1 )
             {
              before(grammarAccess.getPatternAccess().getAgentPatternsAssignment_2_1_1()); 
-            // InternalReactionRules.g:4469:2: ( rule__Pattern__AgentPatternsAssignment_2_1_1 )
-            // InternalReactionRules.g:4469:3: rule__Pattern__AgentPatternsAssignment_2_1_1
+            // InternalReactionRules.g:4442:2: ( rule__Pattern__AgentPatternsAssignment_2_1_1 )
+            // InternalReactionRules.g:4442:3: rule__Pattern__AgentPatternsAssignment_2_1_1
             {
             pushFollow(FOLLOW_2);
             rule__Pattern__AgentPatternsAssignment_2_1_1();
@@ -13489,14 +13398,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Observation__Group__0"
-    // InternalReactionRules.g:4478:1: rule__Observation__Group__0 : rule__Observation__Group__0__Impl rule__Observation__Group__1 ;
+    // InternalReactionRules.g:4451:1: rule__Observation__Group__0 : rule__Observation__Group__0__Impl rule__Observation__Group__1 ;
     public final void rule__Observation__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4482:1: ( rule__Observation__Group__0__Impl rule__Observation__Group__1 )
-            // InternalReactionRules.g:4483:2: rule__Observation__Group__0__Impl rule__Observation__Group__1
+            // InternalReactionRules.g:4455:1: ( rule__Observation__Group__0__Impl rule__Observation__Group__1 )
+            // InternalReactionRules.g:4456:2: rule__Observation__Group__0__Impl rule__Observation__Group__1
             {
             pushFollow(FOLLOW_7);
             rule__Observation__Group__0__Impl();
@@ -13527,17 +13436,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Observation__Group__0__Impl"
-    // InternalReactionRules.g:4490:1: rule__Observation__Group__0__Impl : ( 'obs' ) ;
+    // InternalReactionRules.g:4463:1: rule__Observation__Group__0__Impl : ( 'obs' ) ;
     public final void rule__Observation__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4494:1: ( ( 'obs' ) )
-            // InternalReactionRules.g:4495:1: ( 'obs' )
+            // InternalReactionRules.g:4467:1: ( ( 'obs' ) )
+            // InternalReactionRules.g:4468:1: ( 'obs' )
             {
-            // InternalReactionRules.g:4495:1: ( 'obs' )
-            // InternalReactionRules.g:4496:2: 'obs'
+            // InternalReactionRules.g:4468:1: ( 'obs' )
+            // InternalReactionRules.g:4469:2: 'obs'
             {
              before(grammarAccess.getObservationAccess().getObsKeyword_0()); 
             match(input,34,FOLLOW_2); 
@@ -13564,14 +13473,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Observation__Group__1"
-    // InternalReactionRules.g:4505:1: rule__Observation__Group__1 : rule__Observation__Group__1__Impl rule__Observation__Group__2 ;
+    // InternalReactionRules.g:4478:1: rule__Observation__Group__1 : rule__Observation__Group__1__Impl rule__Observation__Group__2 ;
     public final void rule__Observation__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4509:1: ( rule__Observation__Group__1__Impl rule__Observation__Group__2 )
-            // InternalReactionRules.g:4510:2: rule__Observation__Group__1__Impl rule__Observation__Group__2
+            // InternalReactionRules.g:4482:1: ( rule__Observation__Group__1__Impl rule__Observation__Group__2 )
+            // InternalReactionRules.g:4483:2: rule__Observation__Group__1__Impl rule__Observation__Group__2
             {
             pushFollow(FOLLOW_29);
             rule__Observation__Group__1__Impl();
@@ -13602,21 +13511,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Observation__Group__1__Impl"
-    // InternalReactionRules.g:4517:1: rule__Observation__Group__1__Impl : ( ( rule__Observation__NameAssignment_1 ) ) ;
+    // InternalReactionRules.g:4490:1: rule__Observation__Group__1__Impl : ( ( rule__Observation__NameAssignment_1 ) ) ;
     public final void rule__Observation__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4521:1: ( ( ( rule__Observation__NameAssignment_1 ) ) )
-            // InternalReactionRules.g:4522:1: ( ( rule__Observation__NameAssignment_1 ) )
+            // InternalReactionRules.g:4494:1: ( ( ( rule__Observation__NameAssignment_1 ) ) )
+            // InternalReactionRules.g:4495:1: ( ( rule__Observation__NameAssignment_1 ) )
             {
-            // InternalReactionRules.g:4522:1: ( ( rule__Observation__NameAssignment_1 ) )
-            // InternalReactionRules.g:4523:2: ( rule__Observation__NameAssignment_1 )
+            // InternalReactionRules.g:4495:1: ( ( rule__Observation__NameAssignment_1 ) )
+            // InternalReactionRules.g:4496:2: ( rule__Observation__NameAssignment_1 )
             {
              before(grammarAccess.getObservationAccess().getNameAssignment_1()); 
-            // InternalReactionRules.g:4524:2: ( rule__Observation__NameAssignment_1 )
-            // InternalReactionRules.g:4524:3: rule__Observation__NameAssignment_1
+            // InternalReactionRules.g:4497:2: ( rule__Observation__NameAssignment_1 )
+            // InternalReactionRules.g:4497:3: rule__Observation__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__Observation__NameAssignment_1();
@@ -13649,14 +13558,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Observation__Group__2"
-    // InternalReactionRules.g:4532:1: rule__Observation__Group__2 : rule__Observation__Group__2__Impl ;
+    // InternalReactionRules.g:4505:1: rule__Observation__Group__2 : rule__Observation__Group__2__Impl ;
     public final void rule__Observation__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4536:1: ( rule__Observation__Group__2__Impl )
-            // InternalReactionRules.g:4537:2: rule__Observation__Group__2__Impl
+            // InternalReactionRules.g:4509:1: ( rule__Observation__Group__2__Impl )
+            // InternalReactionRules.g:4510:2: rule__Observation__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Observation__Group__2__Impl();
@@ -13682,21 +13591,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Observation__Group__2__Impl"
-    // InternalReactionRules.g:4543:1: rule__Observation__Group__2__Impl : ( ( rule__Observation__ObservationPatternAssignment_2 ) ) ;
+    // InternalReactionRules.g:4516:1: rule__Observation__Group__2__Impl : ( ( rule__Observation__ObservationPatternAssignment_2 ) ) ;
     public final void rule__Observation__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4547:1: ( ( ( rule__Observation__ObservationPatternAssignment_2 ) ) )
-            // InternalReactionRules.g:4548:1: ( ( rule__Observation__ObservationPatternAssignment_2 ) )
+            // InternalReactionRules.g:4520:1: ( ( ( rule__Observation__ObservationPatternAssignment_2 ) ) )
+            // InternalReactionRules.g:4521:1: ( ( rule__Observation__ObservationPatternAssignment_2 ) )
             {
-            // InternalReactionRules.g:4548:1: ( ( rule__Observation__ObservationPatternAssignment_2 ) )
-            // InternalReactionRules.g:4549:2: ( rule__Observation__ObservationPatternAssignment_2 )
+            // InternalReactionRules.g:4521:1: ( ( rule__Observation__ObservationPatternAssignment_2 ) )
+            // InternalReactionRules.g:4522:2: ( rule__Observation__ObservationPatternAssignment_2 )
             {
              before(grammarAccess.getObservationAccess().getObservationPatternAssignment_2()); 
-            // InternalReactionRules.g:4550:2: ( rule__Observation__ObservationPatternAssignment_2 )
-            // InternalReactionRules.g:4550:3: rule__Observation__ObservationPatternAssignment_2
+            // InternalReactionRules.g:4523:2: ( rule__Observation__ObservationPatternAssignment_2 )
+            // InternalReactionRules.g:4523:3: rule__Observation__ObservationPatternAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__Observation__ObservationPatternAssignment_2();
@@ -13729,14 +13638,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Initial__Group__0"
-    // InternalReactionRules.g:4559:1: rule__Initial__Group__0 : rule__Initial__Group__0__Impl rule__Initial__Group__1 ;
+    // InternalReactionRules.g:4532:1: rule__Initial__Group__0 : rule__Initial__Group__0__Impl rule__Initial__Group__1 ;
     public final void rule__Initial__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4563:1: ( rule__Initial__Group__0__Impl rule__Initial__Group__1 )
-            // InternalReactionRules.g:4564:2: rule__Initial__Group__0__Impl rule__Initial__Group__1
+            // InternalReactionRules.g:4536:1: ( rule__Initial__Group__0__Impl rule__Initial__Group__1 )
+            // InternalReactionRules.g:4537:2: rule__Initial__Group__0__Impl rule__Initial__Group__1
             {
             pushFollow(FOLLOW_7);
             rule__Initial__Group__0__Impl();
@@ -13767,17 +13676,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Initial__Group__0__Impl"
-    // InternalReactionRules.g:4571:1: rule__Initial__Group__0__Impl : ( 'init' ) ;
+    // InternalReactionRules.g:4544:1: rule__Initial__Group__0__Impl : ( 'init' ) ;
     public final void rule__Initial__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4575:1: ( ( 'init' ) )
-            // InternalReactionRules.g:4576:1: ( 'init' )
+            // InternalReactionRules.g:4548:1: ( ( 'init' ) )
+            // InternalReactionRules.g:4549:1: ( 'init' )
             {
-            // InternalReactionRules.g:4576:1: ( 'init' )
-            // InternalReactionRules.g:4577:2: 'init'
+            // InternalReactionRules.g:4549:1: ( 'init' )
+            // InternalReactionRules.g:4550:2: 'init'
             {
              before(grammarAccess.getInitialAccess().getInitKeyword_0()); 
             match(input,35,FOLLOW_2); 
@@ -13804,14 +13713,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Initial__Group__1"
-    // InternalReactionRules.g:4586:1: rule__Initial__Group__1 : rule__Initial__Group__1__Impl rule__Initial__Group__2 ;
+    // InternalReactionRules.g:4559:1: rule__Initial__Group__1 : rule__Initial__Group__1__Impl rule__Initial__Group__2 ;
     public final void rule__Initial__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4590:1: ( rule__Initial__Group__1__Impl rule__Initial__Group__2 )
-            // InternalReactionRules.g:4591:2: rule__Initial__Group__1__Impl rule__Initial__Group__2
+            // InternalReactionRules.g:4563:1: ( rule__Initial__Group__1__Impl rule__Initial__Group__2 )
+            // InternalReactionRules.g:4564:2: rule__Initial__Group__1__Impl rule__Initial__Group__2
             {
             pushFollow(FOLLOW_11);
             rule__Initial__Group__1__Impl();
@@ -13842,21 +13751,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Initial__Group__1__Impl"
-    // InternalReactionRules.g:4598:1: rule__Initial__Group__1__Impl : ( ( rule__Initial__NameAssignment_1 ) ) ;
+    // InternalReactionRules.g:4571:1: rule__Initial__Group__1__Impl : ( ( rule__Initial__NameAssignment_1 ) ) ;
     public final void rule__Initial__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4602:1: ( ( ( rule__Initial__NameAssignment_1 ) ) )
-            // InternalReactionRules.g:4603:1: ( ( rule__Initial__NameAssignment_1 ) )
+            // InternalReactionRules.g:4575:1: ( ( ( rule__Initial__NameAssignment_1 ) ) )
+            // InternalReactionRules.g:4576:1: ( ( rule__Initial__NameAssignment_1 ) )
             {
-            // InternalReactionRules.g:4603:1: ( ( rule__Initial__NameAssignment_1 ) )
-            // InternalReactionRules.g:4604:2: ( rule__Initial__NameAssignment_1 )
+            // InternalReactionRules.g:4576:1: ( ( rule__Initial__NameAssignment_1 ) )
+            // InternalReactionRules.g:4577:2: ( rule__Initial__NameAssignment_1 )
             {
              before(grammarAccess.getInitialAccess().getNameAssignment_1()); 
-            // InternalReactionRules.g:4605:2: ( rule__Initial__NameAssignment_1 )
-            // InternalReactionRules.g:4605:3: rule__Initial__NameAssignment_1
+            // InternalReactionRules.g:4578:2: ( rule__Initial__NameAssignment_1 )
+            // InternalReactionRules.g:4578:3: rule__Initial__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__Initial__NameAssignment_1();
@@ -13889,14 +13798,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Initial__Group__2"
-    // InternalReactionRules.g:4613:1: rule__Initial__Group__2 : rule__Initial__Group__2__Impl rule__Initial__Group__3 ;
+    // InternalReactionRules.g:4586:1: rule__Initial__Group__2 : rule__Initial__Group__2__Impl rule__Initial__Group__3 ;
     public final void rule__Initial__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4617:1: ( rule__Initial__Group__2__Impl rule__Initial__Group__3 )
-            // InternalReactionRules.g:4618:2: rule__Initial__Group__2__Impl rule__Initial__Group__3
+            // InternalReactionRules.g:4590:1: ( rule__Initial__Group__2__Impl rule__Initial__Group__3 )
+            // InternalReactionRules.g:4591:2: rule__Initial__Group__2__Impl rule__Initial__Group__3
             {
             pushFollow(FOLLOW_29);
             rule__Initial__Group__2__Impl();
@@ -13927,21 +13836,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Initial__Group__2__Impl"
-    // InternalReactionRules.g:4625:1: rule__Initial__Group__2__Impl : ( ( rule__Initial__CountAssignment_2 ) ) ;
+    // InternalReactionRules.g:4598:1: rule__Initial__Group__2__Impl : ( ( rule__Initial__CountAssignment_2 ) ) ;
     public final void rule__Initial__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4629:1: ( ( ( rule__Initial__CountAssignment_2 ) ) )
-            // InternalReactionRules.g:4630:1: ( ( rule__Initial__CountAssignment_2 ) )
+            // InternalReactionRules.g:4602:1: ( ( ( rule__Initial__CountAssignment_2 ) ) )
+            // InternalReactionRules.g:4603:1: ( ( rule__Initial__CountAssignment_2 ) )
             {
-            // InternalReactionRules.g:4630:1: ( ( rule__Initial__CountAssignment_2 ) )
-            // InternalReactionRules.g:4631:2: ( rule__Initial__CountAssignment_2 )
+            // InternalReactionRules.g:4603:1: ( ( rule__Initial__CountAssignment_2 ) )
+            // InternalReactionRules.g:4604:2: ( rule__Initial__CountAssignment_2 )
             {
              before(grammarAccess.getInitialAccess().getCountAssignment_2()); 
-            // InternalReactionRules.g:4632:2: ( rule__Initial__CountAssignment_2 )
-            // InternalReactionRules.g:4632:3: rule__Initial__CountAssignment_2
+            // InternalReactionRules.g:4605:2: ( rule__Initial__CountAssignment_2 )
+            // InternalReactionRules.g:4605:3: rule__Initial__CountAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__Initial__CountAssignment_2();
@@ -13974,14 +13883,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Initial__Group__3"
-    // InternalReactionRules.g:4640:1: rule__Initial__Group__3 : rule__Initial__Group__3__Impl ;
+    // InternalReactionRules.g:4613:1: rule__Initial__Group__3 : rule__Initial__Group__3__Impl ;
     public final void rule__Initial__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4644:1: ( rule__Initial__Group__3__Impl )
-            // InternalReactionRules.g:4645:2: rule__Initial__Group__3__Impl
+            // InternalReactionRules.g:4617:1: ( rule__Initial__Group__3__Impl )
+            // InternalReactionRules.g:4618:2: rule__Initial__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Initial__Group__3__Impl();
@@ -14007,21 +13916,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Initial__Group__3__Impl"
-    // InternalReactionRules.g:4651:1: rule__Initial__Group__3__Impl : ( ( rule__Initial__InitialPatternAssignment_3 ) ) ;
+    // InternalReactionRules.g:4624:1: rule__Initial__Group__3__Impl : ( ( rule__Initial__InitialPatternAssignment_3 ) ) ;
     public final void rule__Initial__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4655:1: ( ( ( rule__Initial__InitialPatternAssignment_3 ) ) )
-            // InternalReactionRules.g:4656:1: ( ( rule__Initial__InitialPatternAssignment_3 ) )
+            // InternalReactionRules.g:4628:1: ( ( ( rule__Initial__InitialPatternAssignment_3 ) ) )
+            // InternalReactionRules.g:4629:1: ( ( rule__Initial__InitialPatternAssignment_3 ) )
             {
-            // InternalReactionRules.g:4656:1: ( ( rule__Initial__InitialPatternAssignment_3 ) )
-            // InternalReactionRules.g:4657:2: ( rule__Initial__InitialPatternAssignment_3 )
+            // InternalReactionRules.g:4629:1: ( ( rule__Initial__InitialPatternAssignment_3 ) )
+            // InternalReactionRules.g:4630:2: ( rule__Initial__InitialPatternAssignment_3 )
             {
              before(grammarAccess.getInitialAccess().getInitialPatternAssignment_3()); 
-            // InternalReactionRules.g:4658:2: ( rule__Initial__InitialPatternAssignment_3 )
-            // InternalReactionRules.g:4658:3: rule__Initial__InitialPatternAssignment_3
+            // InternalReactionRules.g:4631:2: ( rule__Initial__InitialPatternAssignment_3 )
+            // InternalReactionRules.g:4631:3: rule__Initial__InitialPatternAssignment_3
             {
             pushFollow(FOLLOW_2);
             rule__Initial__InitialPatternAssignment_3();
@@ -14054,14 +13963,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__RuleVariables__Group__0"
-    // InternalReactionRules.g:4667:1: rule__RuleVariables__Group__0 : rule__RuleVariables__Group__0__Impl rule__RuleVariables__Group__1 ;
+    // InternalReactionRules.g:4640:1: rule__RuleVariables__Group__0 : rule__RuleVariables__Group__0__Impl rule__RuleVariables__Group__1 ;
     public final void rule__RuleVariables__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4671:1: ( rule__RuleVariables__Group__0__Impl rule__RuleVariables__Group__1 )
-            // InternalReactionRules.g:4672:2: rule__RuleVariables__Group__0__Impl rule__RuleVariables__Group__1
+            // InternalReactionRules.g:4644:1: ( rule__RuleVariables__Group__0__Impl rule__RuleVariables__Group__1 )
+            // InternalReactionRules.g:4645:2: rule__RuleVariables__Group__0__Impl rule__RuleVariables__Group__1
             {
             pushFollow(FOLLOW_26);
             rule__RuleVariables__Group__0__Impl();
@@ -14092,21 +14001,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__RuleVariables__Group__0__Impl"
-    // InternalReactionRules.g:4679:1: rule__RuleVariables__Group__0__Impl : ( ( rule__RuleVariables__VariablesAssignment_0 ) ) ;
+    // InternalReactionRules.g:4652:1: rule__RuleVariables__Group__0__Impl : ( ( rule__RuleVariables__VariablesAssignment_0 ) ) ;
     public final void rule__RuleVariables__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4683:1: ( ( ( rule__RuleVariables__VariablesAssignment_0 ) ) )
-            // InternalReactionRules.g:4684:1: ( ( rule__RuleVariables__VariablesAssignment_0 ) )
+            // InternalReactionRules.g:4656:1: ( ( ( rule__RuleVariables__VariablesAssignment_0 ) ) )
+            // InternalReactionRules.g:4657:1: ( ( rule__RuleVariables__VariablesAssignment_0 ) )
             {
-            // InternalReactionRules.g:4684:1: ( ( rule__RuleVariables__VariablesAssignment_0 ) )
-            // InternalReactionRules.g:4685:2: ( rule__RuleVariables__VariablesAssignment_0 )
+            // InternalReactionRules.g:4657:1: ( ( rule__RuleVariables__VariablesAssignment_0 ) )
+            // InternalReactionRules.g:4658:2: ( rule__RuleVariables__VariablesAssignment_0 )
             {
              before(grammarAccess.getRuleVariablesAccess().getVariablesAssignment_0()); 
-            // InternalReactionRules.g:4686:2: ( rule__RuleVariables__VariablesAssignment_0 )
-            // InternalReactionRules.g:4686:3: rule__RuleVariables__VariablesAssignment_0
+            // InternalReactionRules.g:4659:2: ( rule__RuleVariables__VariablesAssignment_0 )
+            // InternalReactionRules.g:4659:3: rule__RuleVariables__VariablesAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__RuleVariables__VariablesAssignment_0();
@@ -14139,14 +14048,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__RuleVariables__Group__1"
-    // InternalReactionRules.g:4694:1: rule__RuleVariables__Group__1 : rule__RuleVariables__Group__1__Impl ;
+    // InternalReactionRules.g:4667:1: rule__RuleVariables__Group__1 : rule__RuleVariables__Group__1__Impl ;
     public final void rule__RuleVariables__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4698:1: ( rule__RuleVariables__Group__1__Impl )
-            // InternalReactionRules.g:4699:2: rule__RuleVariables__Group__1__Impl
+            // InternalReactionRules.g:4671:1: ( rule__RuleVariables__Group__1__Impl )
+            // InternalReactionRules.g:4672:2: rule__RuleVariables__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__RuleVariables__Group__1__Impl();
@@ -14172,33 +14081,33 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__RuleVariables__Group__1__Impl"
-    // InternalReactionRules.g:4705:1: rule__RuleVariables__Group__1__Impl : ( ( rule__RuleVariables__Group_1__0 )* ) ;
+    // InternalReactionRules.g:4678:1: rule__RuleVariables__Group__1__Impl : ( ( rule__RuleVariables__Group_1__0 )* ) ;
     public final void rule__RuleVariables__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4709:1: ( ( ( rule__RuleVariables__Group_1__0 )* ) )
-            // InternalReactionRules.g:4710:1: ( ( rule__RuleVariables__Group_1__0 )* )
+            // InternalReactionRules.g:4682:1: ( ( ( rule__RuleVariables__Group_1__0 )* ) )
+            // InternalReactionRules.g:4683:1: ( ( rule__RuleVariables__Group_1__0 )* )
             {
-            // InternalReactionRules.g:4710:1: ( ( rule__RuleVariables__Group_1__0 )* )
-            // InternalReactionRules.g:4711:2: ( rule__RuleVariables__Group_1__0 )*
+            // InternalReactionRules.g:4683:1: ( ( rule__RuleVariables__Group_1__0 )* )
+            // InternalReactionRules.g:4684:2: ( rule__RuleVariables__Group_1__0 )*
             {
              before(grammarAccess.getRuleVariablesAccess().getGroup_1()); 
-            // InternalReactionRules.g:4712:2: ( rule__RuleVariables__Group_1__0 )*
-            loop24:
+            // InternalReactionRules.g:4685:2: ( rule__RuleVariables__Group_1__0 )*
+            loop23:
             do {
-                int alt24=2;
-                int LA24_0 = input.LA(1);
+                int alt23=2;
+                int LA23_0 = input.LA(1);
 
-                if ( (LA24_0==26) ) {
-                    alt24=1;
+                if ( (LA23_0==26) ) {
+                    alt23=1;
                 }
 
 
-                switch (alt24) {
+                switch (alt23) {
             	case 1 :
-            	    // InternalReactionRules.g:4712:3: rule__RuleVariables__Group_1__0
+            	    // InternalReactionRules.g:4685:3: rule__RuleVariables__Group_1__0
             	    {
             	    pushFollow(FOLLOW_17);
             	    rule__RuleVariables__Group_1__0();
@@ -14210,7 +14119,7 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
             	    break;
 
             	default :
-            	    break loop24;
+            	    break loop23;
                 }
             } while (true);
 
@@ -14237,14 +14146,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__RuleVariables__Group_1__0"
-    // InternalReactionRules.g:4721:1: rule__RuleVariables__Group_1__0 : rule__RuleVariables__Group_1__0__Impl rule__RuleVariables__Group_1__1 ;
+    // InternalReactionRules.g:4694:1: rule__RuleVariables__Group_1__0 : rule__RuleVariables__Group_1__0__Impl rule__RuleVariables__Group_1__1 ;
     public final void rule__RuleVariables__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4725:1: ( rule__RuleVariables__Group_1__0__Impl rule__RuleVariables__Group_1__1 )
-            // InternalReactionRules.g:4726:2: rule__RuleVariables__Group_1__0__Impl rule__RuleVariables__Group_1__1
+            // InternalReactionRules.g:4698:1: ( rule__RuleVariables__Group_1__0__Impl rule__RuleVariables__Group_1__1 )
+            // InternalReactionRules.g:4699:2: rule__RuleVariables__Group_1__0__Impl rule__RuleVariables__Group_1__1
             {
             pushFollow(FOLLOW_7);
             rule__RuleVariables__Group_1__0__Impl();
@@ -14275,17 +14184,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__RuleVariables__Group_1__0__Impl"
-    // InternalReactionRules.g:4733:1: rule__RuleVariables__Group_1__0__Impl : ( ',' ) ;
+    // InternalReactionRules.g:4706:1: rule__RuleVariables__Group_1__0__Impl : ( ',' ) ;
     public final void rule__RuleVariables__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4737:1: ( ( ',' ) )
-            // InternalReactionRules.g:4738:1: ( ',' )
+            // InternalReactionRules.g:4710:1: ( ( ',' ) )
+            // InternalReactionRules.g:4711:1: ( ',' )
             {
-            // InternalReactionRules.g:4738:1: ( ',' )
-            // InternalReactionRules.g:4739:2: ','
+            // InternalReactionRules.g:4711:1: ( ',' )
+            // InternalReactionRules.g:4712:2: ','
             {
              before(grammarAccess.getRuleVariablesAccess().getCommaKeyword_1_0()); 
             match(input,26,FOLLOW_2); 
@@ -14312,14 +14221,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__RuleVariables__Group_1__1"
-    // InternalReactionRules.g:4748:1: rule__RuleVariables__Group_1__1 : rule__RuleVariables__Group_1__1__Impl ;
+    // InternalReactionRules.g:4721:1: rule__RuleVariables__Group_1__1 : rule__RuleVariables__Group_1__1__Impl ;
     public final void rule__RuleVariables__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4752:1: ( rule__RuleVariables__Group_1__1__Impl )
-            // InternalReactionRules.g:4753:2: rule__RuleVariables__Group_1__1__Impl
+            // InternalReactionRules.g:4725:1: ( rule__RuleVariables__Group_1__1__Impl )
+            // InternalReactionRules.g:4726:2: rule__RuleVariables__Group_1__1__Impl
             {
             pushFollow(FOLLOW_2);
             rule__RuleVariables__Group_1__1__Impl();
@@ -14345,21 +14254,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__RuleVariables__Group_1__1__Impl"
-    // InternalReactionRules.g:4759:1: rule__RuleVariables__Group_1__1__Impl : ( ( rule__RuleVariables__VariablesAssignment_1_1 ) ) ;
+    // InternalReactionRules.g:4732:1: rule__RuleVariables__Group_1__1__Impl : ( ( rule__RuleVariables__VariablesAssignment_1_1 ) ) ;
     public final void rule__RuleVariables__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4763:1: ( ( ( rule__RuleVariables__VariablesAssignment_1_1 ) ) )
-            // InternalReactionRules.g:4764:1: ( ( rule__RuleVariables__VariablesAssignment_1_1 ) )
+            // InternalReactionRules.g:4736:1: ( ( ( rule__RuleVariables__VariablesAssignment_1_1 ) ) )
+            // InternalReactionRules.g:4737:1: ( ( rule__RuleVariables__VariablesAssignment_1_1 ) )
             {
-            // InternalReactionRules.g:4764:1: ( ( rule__RuleVariables__VariablesAssignment_1_1 ) )
-            // InternalReactionRules.g:4765:2: ( rule__RuleVariables__VariablesAssignment_1_1 )
+            // InternalReactionRules.g:4737:1: ( ( rule__RuleVariables__VariablesAssignment_1_1 ) )
+            // InternalReactionRules.g:4738:2: ( rule__RuleVariables__VariablesAssignment_1_1 )
             {
              before(grammarAccess.getRuleVariablesAccess().getVariablesAssignment_1_1()); 
-            // InternalReactionRules.g:4766:2: ( rule__RuleVariables__VariablesAssignment_1_1 )
-            // InternalReactionRules.g:4766:3: rule__RuleVariables__VariablesAssignment_1_1
+            // InternalReactionRules.g:4739:2: ( rule__RuleVariables__VariablesAssignment_1_1 )
+            // InternalReactionRules.g:4739:3: rule__RuleVariables__VariablesAssignment_1_1
             {
             pushFollow(FOLLOW_2);
             rule__RuleVariables__VariablesAssignment_1_1();
@@ -14392,14 +14301,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__UnidirectionalRule__Group__0"
-    // InternalReactionRules.g:4775:1: rule__UnidirectionalRule__Group__0 : rule__UnidirectionalRule__Group__0__Impl rule__UnidirectionalRule__Group__1 ;
+    // InternalReactionRules.g:4748:1: rule__UnidirectionalRule__Group__0 : rule__UnidirectionalRule__Group__0__Impl rule__UnidirectionalRule__Group__1 ;
     public final void rule__UnidirectionalRule__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4779:1: ( rule__UnidirectionalRule__Group__0__Impl rule__UnidirectionalRule__Group__1 )
-            // InternalReactionRules.g:4780:2: rule__UnidirectionalRule__Group__0__Impl rule__UnidirectionalRule__Group__1
+            // InternalReactionRules.g:4752:1: ( rule__UnidirectionalRule__Group__0__Impl rule__UnidirectionalRule__Group__1 )
+            // InternalReactionRules.g:4753:2: rule__UnidirectionalRule__Group__0__Impl rule__UnidirectionalRule__Group__1
             {
             pushFollow(FOLLOW_30);
             rule__UnidirectionalRule__Group__0__Impl();
@@ -14430,21 +14339,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__UnidirectionalRule__Group__0__Impl"
-    // InternalReactionRules.g:4787:1: rule__UnidirectionalRule__Group__0__Impl : ( ( rule__UnidirectionalRule__LhsAssignment_0 ) ) ;
+    // InternalReactionRules.g:4760:1: rule__UnidirectionalRule__Group__0__Impl : ( ( rule__UnidirectionalRule__LhsAssignment_0 ) ) ;
     public final void rule__UnidirectionalRule__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4791:1: ( ( ( rule__UnidirectionalRule__LhsAssignment_0 ) ) )
-            // InternalReactionRules.g:4792:1: ( ( rule__UnidirectionalRule__LhsAssignment_0 ) )
+            // InternalReactionRules.g:4764:1: ( ( ( rule__UnidirectionalRule__LhsAssignment_0 ) ) )
+            // InternalReactionRules.g:4765:1: ( ( rule__UnidirectionalRule__LhsAssignment_0 ) )
             {
-            // InternalReactionRules.g:4792:1: ( ( rule__UnidirectionalRule__LhsAssignment_0 ) )
-            // InternalReactionRules.g:4793:2: ( rule__UnidirectionalRule__LhsAssignment_0 )
+            // InternalReactionRules.g:4765:1: ( ( rule__UnidirectionalRule__LhsAssignment_0 ) )
+            // InternalReactionRules.g:4766:2: ( rule__UnidirectionalRule__LhsAssignment_0 )
             {
              before(grammarAccess.getUnidirectionalRuleAccess().getLhsAssignment_0()); 
-            // InternalReactionRules.g:4794:2: ( rule__UnidirectionalRule__LhsAssignment_0 )
-            // InternalReactionRules.g:4794:3: rule__UnidirectionalRule__LhsAssignment_0
+            // InternalReactionRules.g:4767:2: ( rule__UnidirectionalRule__LhsAssignment_0 )
+            // InternalReactionRules.g:4767:3: rule__UnidirectionalRule__LhsAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__UnidirectionalRule__LhsAssignment_0();
@@ -14477,14 +14386,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__UnidirectionalRule__Group__1"
-    // InternalReactionRules.g:4802:1: rule__UnidirectionalRule__Group__1 : rule__UnidirectionalRule__Group__1__Impl rule__UnidirectionalRule__Group__2 ;
+    // InternalReactionRules.g:4775:1: rule__UnidirectionalRule__Group__1 : rule__UnidirectionalRule__Group__1__Impl rule__UnidirectionalRule__Group__2 ;
     public final void rule__UnidirectionalRule__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4806:1: ( rule__UnidirectionalRule__Group__1__Impl rule__UnidirectionalRule__Group__2 )
-            // InternalReactionRules.g:4807:2: rule__UnidirectionalRule__Group__1__Impl rule__UnidirectionalRule__Group__2
+            // InternalReactionRules.g:4779:1: ( rule__UnidirectionalRule__Group__1__Impl rule__UnidirectionalRule__Group__2 )
+            // InternalReactionRules.g:4780:2: rule__UnidirectionalRule__Group__1__Impl rule__UnidirectionalRule__Group__2
             {
             pushFollow(FOLLOW_29);
             rule__UnidirectionalRule__Group__1__Impl();
@@ -14515,21 +14424,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__UnidirectionalRule__Group__1__Impl"
-    // InternalReactionRules.g:4814:1: rule__UnidirectionalRule__Group__1__Impl : ( ( rule__UnidirectionalRule__OperatorAssignment_1 ) ) ;
+    // InternalReactionRules.g:4787:1: rule__UnidirectionalRule__Group__1__Impl : ( ( rule__UnidirectionalRule__OperatorAssignment_1 ) ) ;
     public final void rule__UnidirectionalRule__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4818:1: ( ( ( rule__UnidirectionalRule__OperatorAssignment_1 ) ) )
-            // InternalReactionRules.g:4819:1: ( ( rule__UnidirectionalRule__OperatorAssignment_1 ) )
+            // InternalReactionRules.g:4791:1: ( ( ( rule__UnidirectionalRule__OperatorAssignment_1 ) ) )
+            // InternalReactionRules.g:4792:1: ( ( rule__UnidirectionalRule__OperatorAssignment_1 ) )
             {
-            // InternalReactionRules.g:4819:1: ( ( rule__UnidirectionalRule__OperatorAssignment_1 ) )
-            // InternalReactionRules.g:4820:2: ( rule__UnidirectionalRule__OperatorAssignment_1 )
+            // InternalReactionRules.g:4792:1: ( ( rule__UnidirectionalRule__OperatorAssignment_1 ) )
+            // InternalReactionRules.g:4793:2: ( rule__UnidirectionalRule__OperatorAssignment_1 )
             {
              before(grammarAccess.getUnidirectionalRuleAccess().getOperatorAssignment_1()); 
-            // InternalReactionRules.g:4821:2: ( rule__UnidirectionalRule__OperatorAssignment_1 )
-            // InternalReactionRules.g:4821:3: rule__UnidirectionalRule__OperatorAssignment_1
+            // InternalReactionRules.g:4794:2: ( rule__UnidirectionalRule__OperatorAssignment_1 )
+            // InternalReactionRules.g:4794:3: rule__UnidirectionalRule__OperatorAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__UnidirectionalRule__OperatorAssignment_1();
@@ -14562,14 +14471,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__UnidirectionalRule__Group__2"
-    // InternalReactionRules.g:4829:1: rule__UnidirectionalRule__Group__2 : rule__UnidirectionalRule__Group__2__Impl rule__UnidirectionalRule__Group__3 ;
+    // InternalReactionRules.g:4802:1: rule__UnidirectionalRule__Group__2 : rule__UnidirectionalRule__Group__2__Impl rule__UnidirectionalRule__Group__3 ;
     public final void rule__UnidirectionalRule__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4833:1: ( rule__UnidirectionalRule__Group__2__Impl rule__UnidirectionalRule__Group__3 )
-            // InternalReactionRules.g:4834:2: rule__UnidirectionalRule__Group__2__Impl rule__UnidirectionalRule__Group__3
+            // InternalReactionRules.g:4806:1: ( rule__UnidirectionalRule__Group__2__Impl rule__UnidirectionalRule__Group__3 )
+            // InternalReactionRules.g:4807:2: rule__UnidirectionalRule__Group__2__Impl rule__UnidirectionalRule__Group__3
             {
             pushFollow(FOLLOW_31);
             rule__UnidirectionalRule__Group__2__Impl();
@@ -14600,21 +14509,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__UnidirectionalRule__Group__2__Impl"
-    // InternalReactionRules.g:4841:1: rule__UnidirectionalRule__Group__2__Impl : ( ( rule__UnidirectionalRule__RhsAssignment_2 ) ) ;
+    // InternalReactionRules.g:4814:1: rule__UnidirectionalRule__Group__2__Impl : ( ( rule__UnidirectionalRule__RhsAssignment_2 ) ) ;
     public final void rule__UnidirectionalRule__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4845:1: ( ( ( rule__UnidirectionalRule__RhsAssignment_2 ) ) )
-            // InternalReactionRules.g:4846:1: ( ( rule__UnidirectionalRule__RhsAssignment_2 ) )
+            // InternalReactionRules.g:4818:1: ( ( ( rule__UnidirectionalRule__RhsAssignment_2 ) ) )
+            // InternalReactionRules.g:4819:1: ( ( rule__UnidirectionalRule__RhsAssignment_2 ) )
             {
-            // InternalReactionRules.g:4846:1: ( ( rule__UnidirectionalRule__RhsAssignment_2 ) )
-            // InternalReactionRules.g:4847:2: ( rule__UnidirectionalRule__RhsAssignment_2 )
+            // InternalReactionRules.g:4819:1: ( ( rule__UnidirectionalRule__RhsAssignment_2 ) )
+            // InternalReactionRules.g:4820:2: ( rule__UnidirectionalRule__RhsAssignment_2 )
             {
              before(grammarAccess.getUnidirectionalRuleAccess().getRhsAssignment_2()); 
-            // InternalReactionRules.g:4848:2: ( rule__UnidirectionalRule__RhsAssignment_2 )
-            // InternalReactionRules.g:4848:3: rule__UnidirectionalRule__RhsAssignment_2
+            // InternalReactionRules.g:4821:2: ( rule__UnidirectionalRule__RhsAssignment_2 )
+            // InternalReactionRules.g:4821:3: rule__UnidirectionalRule__RhsAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__UnidirectionalRule__RhsAssignment_2();
@@ -14647,14 +14556,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__UnidirectionalRule__Group__3"
-    // InternalReactionRules.g:4856:1: rule__UnidirectionalRule__Group__3 : rule__UnidirectionalRule__Group__3__Impl rule__UnidirectionalRule__Group__4 ;
+    // InternalReactionRules.g:4829:1: rule__UnidirectionalRule__Group__3 : rule__UnidirectionalRule__Group__3__Impl rule__UnidirectionalRule__Group__4 ;
     public final void rule__UnidirectionalRule__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4860:1: ( rule__UnidirectionalRule__Group__3__Impl rule__UnidirectionalRule__Group__4 )
-            // InternalReactionRules.g:4861:2: rule__UnidirectionalRule__Group__3__Impl rule__UnidirectionalRule__Group__4
+            // InternalReactionRules.g:4833:1: ( rule__UnidirectionalRule__Group__3__Impl rule__UnidirectionalRule__Group__4 )
+            // InternalReactionRules.g:4834:2: rule__UnidirectionalRule__Group__3__Impl rule__UnidirectionalRule__Group__4
             {
             pushFollow(FOLLOW_32);
             rule__UnidirectionalRule__Group__3__Impl();
@@ -14685,17 +14594,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__UnidirectionalRule__Group__3__Impl"
-    // InternalReactionRules.g:4868:1: rule__UnidirectionalRule__Group__3__Impl : ( RULE_AT ) ;
+    // InternalReactionRules.g:4841:1: rule__UnidirectionalRule__Group__3__Impl : ( RULE_AT ) ;
     public final void rule__UnidirectionalRule__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4872:1: ( ( RULE_AT ) )
-            // InternalReactionRules.g:4873:1: ( RULE_AT )
+            // InternalReactionRules.g:4845:1: ( ( RULE_AT ) )
+            // InternalReactionRules.g:4846:1: ( RULE_AT )
             {
-            // InternalReactionRules.g:4873:1: ( RULE_AT )
-            // InternalReactionRules.g:4874:2: RULE_AT
+            // InternalReactionRules.g:4846:1: ( RULE_AT )
+            // InternalReactionRules.g:4847:2: RULE_AT
             {
              before(grammarAccess.getUnidirectionalRuleAccess().getATTerminalRuleCall_3()); 
             match(input,RULE_AT,FOLLOW_2); 
@@ -14722,14 +14631,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__UnidirectionalRule__Group__4"
-    // InternalReactionRules.g:4883:1: rule__UnidirectionalRule__Group__4 : rule__UnidirectionalRule__Group__4__Impl rule__UnidirectionalRule__Group__5 ;
+    // InternalReactionRules.g:4856:1: rule__UnidirectionalRule__Group__4 : rule__UnidirectionalRule__Group__4__Impl rule__UnidirectionalRule__Group__5 ;
     public final void rule__UnidirectionalRule__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4887:1: ( rule__UnidirectionalRule__Group__4__Impl rule__UnidirectionalRule__Group__5 )
-            // InternalReactionRules.g:4888:2: rule__UnidirectionalRule__Group__4__Impl rule__UnidirectionalRule__Group__5
+            // InternalReactionRules.g:4860:1: ( rule__UnidirectionalRule__Group__4__Impl rule__UnidirectionalRule__Group__5 )
+            // InternalReactionRules.g:4861:2: rule__UnidirectionalRule__Group__4__Impl rule__UnidirectionalRule__Group__5
             {
             pushFollow(FOLLOW_7);
             rule__UnidirectionalRule__Group__4__Impl();
@@ -14760,17 +14669,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__UnidirectionalRule__Group__4__Impl"
-    // InternalReactionRules.g:4895:1: rule__UnidirectionalRule__Group__4__Impl : ( '[' ) ;
+    // InternalReactionRules.g:4868:1: rule__UnidirectionalRule__Group__4__Impl : ( '[' ) ;
     public final void rule__UnidirectionalRule__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4899:1: ( ( '[' ) )
-            // InternalReactionRules.g:4900:1: ( '[' )
+            // InternalReactionRules.g:4872:1: ( ( '[' ) )
+            // InternalReactionRules.g:4873:1: ( '[' )
             {
-            // InternalReactionRules.g:4900:1: ( '[' )
-            // InternalReactionRules.g:4901:2: '['
+            // InternalReactionRules.g:4873:1: ( '[' )
+            // InternalReactionRules.g:4874:2: '['
             {
              before(grammarAccess.getUnidirectionalRuleAccess().getLeftSquareBracketKeyword_4()); 
             match(input,32,FOLLOW_2); 
@@ -14797,16 +14706,16 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__UnidirectionalRule__Group__5"
-    // InternalReactionRules.g:4910:1: rule__UnidirectionalRule__Group__5 : rule__UnidirectionalRule__Group__5__Impl rule__UnidirectionalRule__Group__6 ;
+    // InternalReactionRules.g:4883:1: rule__UnidirectionalRule__Group__5 : rule__UnidirectionalRule__Group__5__Impl rule__UnidirectionalRule__Group__6 ;
     public final void rule__UnidirectionalRule__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4914:1: ( rule__UnidirectionalRule__Group__5__Impl rule__UnidirectionalRule__Group__6 )
-            // InternalReactionRules.g:4915:2: rule__UnidirectionalRule__Group__5__Impl rule__UnidirectionalRule__Group__6
+            // InternalReactionRules.g:4887:1: ( rule__UnidirectionalRule__Group__5__Impl rule__UnidirectionalRule__Group__6 )
+            // InternalReactionRules.g:4888:2: rule__UnidirectionalRule__Group__5__Impl rule__UnidirectionalRule__Group__6
             {
-            pushFollow(FOLLOW_25);
+            pushFollow(FOLLOW_24);
             rule__UnidirectionalRule__Group__5__Impl();
 
             state._fsp--;
@@ -14835,21 +14744,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__UnidirectionalRule__Group__5__Impl"
-    // InternalReactionRules.g:4922:1: rule__UnidirectionalRule__Group__5__Impl : ( ( rule__UnidirectionalRule__VariablesAssignment_5 ) ) ;
+    // InternalReactionRules.g:4895:1: rule__UnidirectionalRule__Group__5__Impl : ( ( rule__UnidirectionalRule__VariablesAssignment_5 ) ) ;
     public final void rule__UnidirectionalRule__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4926:1: ( ( ( rule__UnidirectionalRule__VariablesAssignment_5 ) ) )
-            // InternalReactionRules.g:4927:1: ( ( rule__UnidirectionalRule__VariablesAssignment_5 ) )
+            // InternalReactionRules.g:4899:1: ( ( ( rule__UnidirectionalRule__VariablesAssignment_5 ) ) )
+            // InternalReactionRules.g:4900:1: ( ( rule__UnidirectionalRule__VariablesAssignment_5 ) )
             {
-            // InternalReactionRules.g:4927:1: ( ( rule__UnidirectionalRule__VariablesAssignment_5 ) )
-            // InternalReactionRules.g:4928:2: ( rule__UnidirectionalRule__VariablesAssignment_5 )
+            // InternalReactionRules.g:4900:1: ( ( rule__UnidirectionalRule__VariablesAssignment_5 ) )
+            // InternalReactionRules.g:4901:2: ( rule__UnidirectionalRule__VariablesAssignment_5 )
             {
              before(grammarAccess.getUnidirectionalRuleAccess().getVariablesAssignment_5()); 
-            // InternalReactionRules.g:4929:2: ( rule__UnidirectionalRule__VariablesAssignment_5 )
-            // InternalReactionRules.g:4929:3: rule__UnidirectionalRule__VariablesAssignment_5
+            // InternalReactionRules.g:4902:2: ( rule__UnidirectionalRule__VariablesAssignment_5 )
+            // InternalReactionRules.g:4902:3: rule__UnidirectionalRule__VariablesAssignment_5
             {
             pushFollow(FOLLOW_2);
             rule__UnidirectionalRule__VariablesAssignment_5();
@@ -14882,14 +14791,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__UnidirectionalRule__Group__6"
-    // InternalReactionRules.g:4937:1: rule__UnidirectionalRule__Group__6 : rule__UnidirectionalRule__Group__6__Impl ;
+    // InternalReactionRules.g:4910:1: rule__UnidirectionalRule__Group__6 : rule__UnidirectionalRule__Group__6__Impl ;
     public final void rule__UnidirectionalRule__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4941:1: ( rule__UnidirectionalRule__Group__6__Impl )
-            // InternalReactionRules.g:4942:2: rule__UnidirectionalRule__Group__6__Impl
+            // InternalReactionRules.g:4914:1: ( rule__UnidirectionalRule__Group__6__Impl )
+            // InternalReactionRules.g:4915:2: rule__UnidirectionalRule__Group__6__Impl
             {
             pushFollow(FOLLOW_2);
             rule__UnidirectionalRule__Group__6__Impl();
@@ -14915,17 +14824,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__UnidirectionalRule__Group__6__Impl"
-    // InternalReactionRules.g:4948:1: rule__UnidirectionalRule__Group__6__Impl : ( ']' ) ;
+    // InternalReactionRules.g:4921:1: rule__UnidirectionalRule__Group__6__Impl : ( ']' ) ;
     public final void rule__UnidirectionalRule__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4952:1: ( ( ']' ) )
-            // InternalReactionRules.g:4953:1: ( ']' )
+            // InternalReactionRules.g:4925:1: ( ( ']' ) )
+            // InternalReactionRules.g:4926:1: ( ']' )
             {
-            // InternalReactionRules.g:4953:1: ( ']' )
-            // InternalReactionRules.g:4954:2: ']'
+            // InternalReactionRules.g:4926:1: ( ']' )
+            // InternalReactionRules.g:4927:2: ']'
             {
              before(grammarAccess.getUnidirectionalRuleAccess().getRightSquareBracketKeyword_6()); 
             match(input,33,FOLLOW_2); 
@@ -14952,14 +14861,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__BidirectionalRule__Group__0"
-    // InternalReactionRules.g:4964:1: rule__BidirectionalRule__Group__0 : rule__BidirectionalRule__Group__0__Impl rule__BidirectionalRule__Group__1 ;
+    // InternalReactionRules.g:4937:1: rule__BidirectionalRule__Group__0 : rule__BidirectionalRule__Group__0__Impl rule__BidirectionalRule__Group__1 ;
     public final void rule__BidirectionalRule__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4968:1: ( rule__BidirectionalRule__Group__0__Impl rule__BidirectionalRule__Group__1 )
-            // InternalReactionRules.g:4969:2: rule__BidirectionalRule__Group__0__Impl rule__BidirectionalRule__Group__1
+            // InternalReactionRules.g:4941:1: ( rule__BidirectionalRule__Group__0__Impl rule__BidirectionalRule__Group__1 )
+            // InternalReactionRules.g:4942:2: rule__BidirectionalRule__Group__0__Impl rule__BidirectionalRule__Group__1
             {
             pushFollow(FOLLOW_33);
             rule__BidirectionalRule__Group__0__Impl();
@@ -14990,21 +14899,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__BidirectionalRule__Group__0__Impl"
-    // InternalReactionRules.g:4976:1: rule__BidirectionalRule__Group__0__Impl : ( ( rule__BidirectionalRule__LhsAssignment_0 ) ) ;
+    // InternalReactionRules.g:4949:1: rule__BidirectionalRule__Group__0__Impl : ( ( rule__BidirectionalRule__LhsAssignment_0 ) ) ;
     public final void rule__BidirectionalRule__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4980:1: ( ( ( rule__BidirectionalRule__LhsAssignment_0 ) ) )
-            // InternalReactionRules.g:4981:1: ( ( rule__BidirectionalRule__LhsAssignment_0 ) )
+            // InternalReactionRules.g:4953:1: ( ( ( rule__BidirectionalRule__LhsAssignment_0 ) ) )
+            // InternalReactionRules.g:4954:1: ( ( rule__BidirectionalRule__LhsAssignment_0 ) )
             {
-            // InternalReactionRules.g:4981:1: ( ( rule__BidirectionalRule__LhsAssignment_0 ) )
-            // InternalReactionRules.g:4982:2: ( rule__BidirectionalRule__LhsAssignment_0 )
+            // InternalReactionRules.g:4954:1: ( ( rule__BidirectionalRule__LhsAssignment_0 ) )
+            // InternalReactionRules.g:4955:2: ( rule__BidirectionalRule__LhsAssignment_0 )
             {
              before(grammarAccess.getBidirectionalRuleAccess().getLhsAssignment_0()); 
-            // InternalReactionRules.g:4983:2: ( rule__BidirectionalRule__LhsAssignment_0 )
-            // InternalReactionRules.g:4983:3: rule__BidirectionalRule__LhsAssignment_0
+            // InternalReactionRules.g:4956:2: ( rule__BidirectionalRule__LhsAssignment_0 )
+            // InternalReactionRules.g:4956:3: rule__BidirectionalRule__LhsAssignment_0
             {
             pushFollow(FOLLOW_2);
             rule__BidirectionalRule__LhsAssignment_0();
@@ -15037,14 +14946,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__BidirectionalRule__Group__1"
-    // InternalReactionRules.g:4991:1: rule__BidirectionalRule__Group__1 : rule__BidirectionalRule__Group__1__Impl rule__BidirectionalRule__Group__2 ;
+    // InternalReactionRules.g:4964:1: rule__BidirectionalRule__Group__1 : rule__BidirectionalRule__Group__1__Impl rule__BidirectionalRule__Group__2 ;
     public final void rule__BidirectionalRule__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4995:1: ( rule__BidirectionalRule__Group__1__Impl rule__BidirectionalRule__Group__2 )
-            // InternalReactionRules.g:4996:2: rule__BidirectionalRule__Group__1__Impl rule__BidirectionalRule__Group__2
+            // InternalReactionRules.g:4968:1: ( rule__BidirectionalRule__Group__1__Impl rule__BidirectionalRule__Group__2 )
+            // InternalReactionRules.g:4969:2: rule__BidirectionalRule__Group__1__Impl rule__BidirectionalRule__Group__2
             {
             pushFollow(FOLLOW_29);
             rule__BidirectionalRule__Group__1__Impl();
@@ -15075,21 +14984,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__BidirectionalRule__Group__1__Impl"
-    // InternalReactionRules.g:5003:1: rule__BidirectionalRule__Group__1__Impl : ( ( rule__BidirectionalRule__OperatorAssignment_1 ) ) ;
+    // InternalReactionRules.g:4976:1: rule__BidirectionalRule__Group__1__Impl : ( ( rule__BidirectionalRule__OperatorAssignment_1 ) ) ;
     public final void rule__BidirectionalRule__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5007:1: ( ( ( rule__BidirectionalRule__OperatorAssignment_1 ) ) )
-            // InternalReactionRules.g:5008:1: ( ( rule__BidirectionalRule__OperatorAssignment_1 ) )
+            // InternalReactionRules.g:4980:1: ( ( ( rule__BidirectionalRule__OperatorAssignment_1 ) ) )
+            // InternalReactionRules.g:4981:1: ( ( rule__BidirectionalRule__OperatorAssignment_1 ) )
             {
-            // InternalReactionRules.g:5008:1: ( ( rule__BidirectionalRule__OperatorAssignment_1 ) )
-            // InternalReactionRules.g:5009:2: ( rule__BidirectionalRule__OperatorAssignment_1 )
+            // InternalReactionRules.g:4981:1: ( ( rule__BidirectionalRule__OperatorAssignment_1 ) )
+            // InternalReactionRules.g:4982:2: ( rule__BidirectionalRule__OperatorAssignment_1 )
             {
              before(grammarAccess.getBidirectionalRuleAccess().getOperatorAssignment_1()); 
-            // InternalReactionRules.g:5010:2: ( rule__BidirectionalRule__OperatorAssignment_1 )
-            // InternalReactionRules.g:5010:3: rule__BidirectionalRule__OperatorAssignment_1
+            // InternalReactionRules.g:4983:2: ( rule__BidirectionalRule__OperatorAssignment_1 )
+            // InternalReactionRules.g:4983:3: rule__BidirectionalRule__OperatorAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__BidirectionalRule__OperatorAssignment_1();
@@ -15122,14 +15031,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__BidirectionalRule__Group__2"
-    // InternalReactionRules.g:5018:1: rule__BidirectionalRule__Group__2 : rule__BidirectionalRule__Group__2__Impl rule__BidirectionalRule__Group__3 ;
+    // InternalReactionRules.g:4991:1: rule__BidirectionalRule__Group__2 : rule__BidirectionalRule__Group__2__Impl rule__BidirectionalRule__Group__3 ;
     public final void rule__BidirectionalRule__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5022:1: ( rule__BidirectionalRule__Group__2__Impl rule__BidirectionalRule__Group__3 )
-            // InternalReactionRules.g:5023:2: rule__BidirectionalRule__Group__2__Impl rule__BidirectionalRule__Group__3
+            // InternalReactionRules.g:4995:1: ( rule__BidirectionalRule__Group__2__Impl rule__BidirectionalRule__Group__3 )
+            // InternalReactionRules.g:4996:2: rule__BidirectionalRule__Group__2__Impl rule__BidirectionalRule__Group__3
             {
             pushFollow(FOLLOW_31);
             rule__BidirectionalRule__Group__2__Impl();
@@ -15160,21 +15069,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__BidirectionalRule__Group__2__Impl"
-    // InternalReactionRules.g:5030:1: rule__BidirectionalRule__Group__2__Impl : ( ( rule__BidirectionalRule__RhsAssignment_2 ) ) ;
+    // InternalReactionRules.g:5003:1: rule__BidirectionalRule__Group__2__Impl : ( ( rule__BidirectionalRule__RhsAssignment_2 ) ) ;
     public final void rule__BidirectionalRule__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5034:1: ( ( ( rule__BidirectionalRule__RhsAssignment_2 ) ) )
-            // InternalReactionRules.g:5035:1: ( ( rule__BidirectionalRule__RhsAssignment_2 ) )
+            // InternalReactionRules.g:5007:1: ( ( ( rule__BidirectionalRule__RhsAssignment_2 ) ) )
+            // InternalReactionRules.g:5008:1: ( ( rule__BidirectionalRule__RhsAssignment_2 ) )
             {
-            // InternalReactionRules.g:5035:1: ( ( rule__BidirectionalRule__RhsAssignment_2 ) )
-            // InternalReactionRules.g:5036:2: ( rule__BidirectionalRule__RhsAssignment_2 )
+            // InternalReactionRules.g:5008:1: ( ( rule__BidirectionalRule__RhsAssignment_2 ) )
+            // InternalReactionRules.g:5009:2: ( rule__BidirectionalRule__RhsAssignment_2 )
             {
              before(grammarAccess.getBidirectionalRuleAccess().getRhsAssignment_2()); 
-            // InternalReactionRules.g:5037:2: ( rule__BidirectionalRule__RhsAssignment_2 )
-            // InternalReactionRules.g:5037:3: rule__BidirectionalRule__RhsAssignment_2
+            // InternalReactionRules.g:5010:2: ( rule__BidirectionalRule__RhsAssignment_2 )
+            // InternalReactionRules.g:5010:3: rule__BidirectionalRule__RhsAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__BidirectionalRule__RhsAssignment_2();
@@ -15207,14 +15116,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__BidirectionalRule__Group__3"
-    // InternalReactionRules.g:5045:1: rule__BidirectionalRule__Group__3 : rule__BidirectionalRule__Group__3__Impl rule__BidirectionalRule__Group__4 ;
+    // InternalReactionRules.g:5018:1: rule__BidirectionalRule__Group__3 : rule__BidirectionalRule__Group__3__Impl rule__BidirectionalRule__Group__4 ;
     public final void rule__BidirectionalRule__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5049:1: ( rule__BidirectionalRule__Group__3__Impl rule__BidirectionalRule__Group__4 )
-            // InternalReactionRules.g:5050:2: rule__BidirectionalRule__Group__3__Impl rule__BidirectionalRule__Group__4
+            // InternalReactionRules.g:5022:1: ( rule__BidirectionalRule__Group__3__Impl rule__BidirectionalRule__Group__4 )
+            // InternalReactionRules.g:5023:2: rule__BidirectionalRule__Group__3__Impl rule__BidirectionalRule__Group__4
             {
             pushFollow(FOLLOW_32);
             rule__BidirectionalRule__Group__3__Impl();
@@ -15245,17 +15154,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__BidirectionalRule__Group__3__Impl"
-    // InternalReactionRules.g:5057:1: rule__BidirectionalRule__Group__3__Impl : ( RULE_AT ) ;
+    // InternalReactionRules.g:5030:1: rule__BidirectionalRule__Group__3__Impl : ( RULE_AT ) ;
     public final void rule__BidirectionalRule__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5061:1: ( ( RULE_AT ) )
-            // InternalReactionRules.g:5062:1: ( RULE_AT )
+            // InternalReactionRules.g:5034:1: ( ( RULE_AT ) )
+            // InternalReactionRules.g:5035:1: ( RULE_AT )
             {
-            // InternalReactionRules.g:5062:1: ( RULE_AT )
-            // InternalReactionRules.g:5063:2: RULE_AT
+            // InternalReactionRules.g:5035:1: ( RULE_AT )
+            // InternalReactionRules.g:5036:2: RULE_AT
             {
              before(grammarAccess.getBidirectionalRuleAccess().getATTerminalRuleCall_3()); 
             match(input,RULE_AT,FOLLOW_2); 
@@ -15282,14 +15191,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__BidirectionalRule__Group__4"
-    // InternalReactionRules.g:5072:1: rule__BidirectionalRule__Group__4 : rule__BidirectionalRule__Group__4__Impl rule__BidirectionalRule__Group__5 ;
+    // InternalReactionRules.g:5045:1: rule__BidirectionalRule__Group__4 : rule__BidirectionalRule__Group__4__Impl rule__BidirectionalRule__Group__5 ;
     public final void rule__BidirectionalRule__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5076:1: ( rule__BidirectionalRule__Group__4__Impl rule__BidirectionalRule__Group__5 )
-            // InternalReactionRules.g:5077:2: rule__BidirectionalRule__Group__4__Impl rule__BidirectionalRule__Group__5
+            // InternalReactionRules.g:5049:1: ( rule__BidirectionalRule__Group__4__Impl rule__BidirectionalRule__Group__5 )
+            // InternalReactionRules.g:5050:2: rule__BidirectionalRule__Group__4__Impl rule__BidirectionalRule__Group__5
             {
             pushFollow(FOLLOW_7);
             rule__BidirectionalRule__Group__4__Impl();
@@ -15320,17 +15229,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__BidirectionalRule__Group__4__Impl"
-    // InternalReactionRules.g:5084:1: rule__BidirectionalRule__Group__4__Impl : ( '[' ) ;
+    // InternalReactionRules.g:5057:1: rule__BidirectionalRule__Group__4__Impl : ( '[' ) ;
     public final void rule__BidirectionalRule__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5088:1: ( ( '[' ) )
-            // InternalReactionRules.g:5089:1: ( '[' )
+            // InternalReactionRules.g:5061:1: ( ( '[' ) )
+            // InternalReactionRules.g:5062:1: ( '[' )
             {
-            // InternalReactionRules.g:5089:1: ( '[' )
-            // InternalReactionRules.g:5090:2: '['
+            // InternalReactionRules.g:5062:1: ( '[' )
+            // InternalReactionRules.g:5063:2: '['
             {
              before(grammarAccess.getBidirectionalRuleAccess().getLeftSquareBracketKeyword_4()); 
             match(input,32,FOLLOW_2); 
@@ -15357,16 +15266,16 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__BidirectionalRule__Group__5"
-    // InternalReactionRules.g:5099:1: rule__BidirectionalRule__Group__5 : rule__BidirectionalRule__Group__5__Impl rule__BidirectionalRule__Group__6 ;
+    // InternalReactionRules.g:5072:1: rule__BidirectionalRule__Group__5 : rule__BidirectionalRule__Group__5__Impl rule__BidirectionalRule__Group__6 ;
     public final void rule__BidirectionalRule__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5103:1: ( rule__BidirectionalRule__Group__5__Impl rule__BidirectionalRule__Group__6 )
-            // InternalReactionRules.g:5104:2: rule__BidirectionalRule__Group__5__Impl rule__BidirectionalRule__Group__6
+            // InternalReactionRules.g:5076:1: ( rule__BidirectionalRule__Group__5__Impl rule__BidirectionalRule__Group__6 )
+            // InternalReactionRules.g:5077:2: rule__BidirectionalRule__Group__5__Impl rule__BidirectionalRule__Group__6
             {
-            pushFollow(FOLLOW_25);
+            pushFollow(FOLLOW_24);
             rule__BidirectionalRule__Group__5__Impl();
 
             state._fsp--;
@@ -15395,21 +15304,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__BidirectionalRule__Group__5__Impl"
-    // InternalReactionRules.g:5111:1: rule__BidirectionalRule__Group__5__Impl : ( ( rule__BidirectionalRule__VariablesAssignment_5 ) ) ;
+    // InternalReactionRules.g:5084:1: rule__BidirectionalRule__Group__5__Impl : ( ( rule__BidirectionalRule__VariablesAssignment_5 ) ) ;
     public final void rule__BidirectionalRule__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5115:1: ( ( ( rule__BidirectionalRule__VariablesAssignment_5 ) ) )
-            // InternalReactionRules.g:5116:1: ( ( rule__BidirectionalRule__VariablesAssignment_5 ) )
+            // InternalReactionRules.g:5088:1: ( ( ( rule__BidirectionalRule__VariablesAssignment_5 ) ) )
+            // InternalReactionRules.g:5089:1: ( ( rule__BidirectionalRule__VariablesAssignment_5 ) )
             {
-            // InternalReactionRules.g:5116:1: ( ( rule__BidirectionalRule__VariablesAssignment_5 ) )
-            // InternalReactionRules.g:5117:2: ( rule__BidirectionalRule__VariablesAssignment_5 )
+            // InternalReactionRules.g:5089:1: ( ( rule__BidirectionalRule__VariablesAssignment_5 ) )
+            // InternalReactionRules.g:5090:2: ( rule__BidirectionalRule__VariablesAssignment_5 )
             {
              before(grammarAccess.getBidirectionalRuleAccess().getVariablesAssignment_5()); 
-            // InternalReactionRules.g:5118:2: ( rule__BidirectionalRule__VariablesAssignment_5 )
-            // InternalReactionRules.g:5118:3: rule__BidirectionalRule__VariablesAssignment_5
+            // InternalReactionRules.g:5091:2: ( rule__BidirectionalRule__VariablesAssignment_5 )
+            // InternalReactionRules.g:5091:3: rule__BidirectionalRule__VariablesAssignment_5
             {
             pushFollow(FOLLOW_2);
             rule__BidirectionalRule__VariablesAssignment_5();
@@ -15442,14 +15351,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__BidirectionalRule__Group__6"
-    // InternalReactionRules.g:5126:1: rule__BidirectionalRule__Group__6 : rule__BidirectionalRule__Group__6__Impl ;
+    // InternalReactionRules.g:5099:1: rule__BidirectionalRule__Group__6 : rule__BidirectionalRule__Group__6__Impl ;
     public final void rule__BidirectionalRule__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5130:1: ( rule__BidirectionalRule__Group__6__Impl )
-            // InternalReactionRules.g:5131:2: rule__BidirectionalRule__Group__6__Impl
+            // InternalReactionRules.g:5103:1: ( rule__BidirectionalRule__Group__6__Impl )
+            // InternalReactionRules.g:5104:2: rule__BidirectionalRule__Group__6__Impl
             {
             pushFollow(FOLLOW_2);
             rule__BidirectionalRule__Group__6__Impl();
@@ -15475,17 +15384,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__BidirectionalRule__Group__6__Impl"
-    // InternalReactionRules.g:5137:1: rule__BidirectionalRule__Group__6__Impl : ( ']' ) ;
+    // InternalReactionRules.g:5110:1: rule__BidirectionalRule__Group__6__Impl : ( ']' ) ;
     public final void rule__BidirectionalRule__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5141:1: ( ( ']' ) )
-            // InternalReactionRules.g:5142:1: ( ']' )
+            // InternalReactionRules.g:5114:1: ( ( ']' ) )
+            // InternalReactionRules.g:5115:1: ( ']' )
             {
-            // InternalReactionRules.g:5142:1: ( ']' )
-            // InternalReactionRules.g:5143:2: ']'
+            // InternalReactionRules.g:5115:1: ( ']' )
+            // InternalReactionRules.g:5116:2: ']'
             {
              before(grammarAccess.getBidirectionalRuleAccess().getRightSquareBracketKeyword_6()); 
             match(input,33,FOLLOW_2); 
@@ -15512,14 +15421,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Rule__Group__0"
-    // InternalReactionRules.g:5153:1: rule__Rule__Group__0 : rule__Rule__Group__0__Impl rule__Rule__Group__1 ;
+    // InternalReactionRules.g:5126:1: rule__Rule__Group__0 : rule__Rule__Group__0__Impl rule__Rule__Group__1 ;
     public final void rule__Rule__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5157:1: ( rule__Rule__Group__0__Impl rule__Rule__Group__1 )
-            // InternalReactionRules.g:5158:2: rule__Rule__Group__0__Impl rule__Rule__Group__1
+            // InternalReactionRules.g:5130:1: ( rule__Rule__Group__0__Impl rule__Rule__Group__1 )
+            // InternalReactionRules.g:5131:2: rule__Rule__Group__0__Impl rule__Rule__Group__1
             {
             pushFollow(FOLLOW_7);
             rule__Rule__Group__0__Impl();
@@ -15550,17 +15459,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Rule__Group__0__Impl"
-    // InternalReactionRules.g:5165:1: rule__Rule__Group__0__Impl : ( 'rule' ) ;
+    // InternalReactionRules.g:5138:1: rule__Rule__Group__0__Impl : ( 'rule' ) ;
     public final void rule__Rule__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5169:1: ( ( 'rule' ) )
-            // InternalReactionRules.g:5170:1: ( 'rule' )
+            // InternalReactionRules.g:5142:1: ( ( 'rule' ) )
+            // InternalReactionRules.g:5143:1: ( 'rule' )
             {
-            // InternalReactionRules.g:5170:1: ( 'rule' )
-            // InternalReactionRules.g:5171:2: 'rule'
+            // InternalReactionRules.g:5143:1: ( 'rule' )
+            // InternalReactionRules.g:5144:2: 'rule'
             {
              before(grammarAccess.getRuleAccess().getRuleKeyword_0()); 
             match(input,36,FOLLOW_2); 
@@ -15587,14 +15496,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Rule__Group__1"
-    // InternalReactionRules.g:5180:1: rule__Rule__Group__1 : rule__Rule__Group__1__Impl rule__Rule__Group__2 ;
+    // InternalReactionRules.g:5153:1: rule__Rule__Group__1 : rule__Rule__Group__1__Impl rule__Rule__Group__2 ;
     public final void rule__Rule__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5184:1: ( rule__Rule__Group__1__Impl rule__Rule__Group__2 )
-            // InternalReactionRules.g:5185:2: rule__Rule__Group__1__Impl rule__Rule__Group__2
+            // InternalReactionRules.g:5157:1: ( rule__Rule__Group__1__Impl rule__Rule__Group__2 )
+            // InternalReactionRules.g:5158:2: rule__Rule__Group__1__Impl rule__Rule__Group__2
             {
             pushFollow(FOLLOW_29);
             rule__Rule__Group__1__Impl();
@@ -15625,21 +15534,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Rule__Group__1__Impl"
-    // InternalReactionRules.g:5192:1: rule__Rule__Group__1__Impl : ( ( rule__Rule__NameAssignment_1 ) ) ;
+    // InternalReactionRules.g:5165:1: rule__Rule__Group__1__Impl : ( ( rule__Rule__NameAssignment_1 ) ) ;
     public final void rule__Rule__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5196:1: ( ( ( rule__Rule__NameAssignment_1 ) ) )
-            // InternalReactionRules.g:5197:1: ( ( rule__Rule__NameAssignment_1 ) )
+            // InternalReactionRules.g:5169:1: ( ( ( rule__Rule__NameAssignment_1 ) ) )
+            // InternalReactionRules.g:5170:1: ( ( rule__Rule__NameAssignment_1 ) )
             {
-            // InternalReactionRules.g:5197:1: ( ( rule__Rule__NameAssignment_1 ) )
-            // InternalReactionRules.g:5198:2: ( rule__Rule__NameAssignment_1 )
+            // InternalReactionRules.g:5170:1: ( ( rule__Rule__NameAssignment_1 ) )
+            // InternalReactionRules.g:5171:2: ( rule__Rule__NameAssignment_1 )
             {
              before(grammarAccess.getRuleAccess().getNameAssignment_1()); 
-            // InternalReactionRules.g:5199:2: ( rule__Rule__NameAssignment_1 )
-            // InternalReactionRules.g:5199:3: rule__Rule__NameAssignment_1
+            // InternalReactionRules.g:5172:2: ( rule__Rule__NameAssignment_1 )
+            // InternalReactionRules.g:5172:3: rule__Rule__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
             rule__Rule__NameAssignment_1();
@@ -15672,14 +15581,14 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Rule__Group__2"
-    // InternalReactionRules.g:5207:1: rule__Rule__Group__2 : rule__Rule__Group__2__Impl ;
+    // InternalReactionRules.g:5180:1: rule__Rule__Group__2 : rule__Rule__Group__2__Impl ;
     public final void rule__Rule__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5211:1: ( rule__Rule__Group__2__Impl )
-            // InternalReactionRules.g:5212:2: rule__Rule__Group__2__Impl
+            // InternalReactionRules.g:5184:1: ( rule__Rule__Group__2__Impl )
+            // InternalReactionRules.g:5185:2: rule__Rule__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
             rule__Rule__Group__2__Impl();
@@ -15705,21 +15614,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Rule__Group__2__Impl"
-    // InternalReactionRules.g:5218:1: rule__Rule__Group__2__Impl : ( ( rule__Rule__RuleAssignment_2 ) ) ;
+    // InternalReactionRules.g:5191:1: rule__Rule__Group__2__Impl : ( ( rule__Rule__RuleAssignment_2 ) ) ;
     public final void rule__Rule__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5222:1: ( ( ( rule__Rule__RuleAssignment_2 ) ) )
-            // InternalReactionRules.g:5223:1: ( ( rule__Rule__RuleAssignment_2 ) )
+            // InternalReactionRules.g:5195:1: ( ( ( rule__Rule__RuleAssignment_2 ) ) )
+            // InternalReactionRules.g:5196:1: ( ( rule__Rule__RuleAssignment_2 ) )
             {
-            // InternalReactionRules.g:5223:1: ( ( rule__Rule__RuleAssignment_2 ) )
-            // InternalReactionRules.g:5224:2: ( rule__Rule__RuleAssignment_2 )
+            // InternalReactionRules.g:5196:1: ( ( rule__Rule__RuleAssignment_2 ) )
+            // InternalReactionRules.g:5197:2: ( rule__Rule__RuleAssignment_2 )
             {
              before(grammarAccess.getRuleAccess().getRuleAssignment_2()); 
-            // InternalReactionRules.g:5225:2: ( rule__Rule__RuleAssignment_2 )
-            // InternalReactionRules.g:5225:3: rule__Rule__RuleAssignment_2
+            // InternalReactionRules.g:5198:2: ( rule__Rule__RuleAssignment_2 )
+            // InternalReactionRules.g:5198:3: rule__Rule__RuleAssignment_2
             {
             pushFollow(FOLLOW_2);
             rule__Rule__RuleAssignment_2();
@@ -15752,17 +15661,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__ReactionRuleModel__ModelAssignment_0"
-    // InternalReactionRules.g:5234:1: rule__ReactionRuleModel__ModelAssignment_0 : ( ruleModel ) ;
+    // InternalReactionRules.g:5207:1: rule__ReactionRuleModel__ModelAssignment_0 : ( ruleModel ) ;
     public final void rule__ReactionRuleModel__ModelAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5238:1: ( ( ruleModel ) )
-            // InternalReactionRules.g:5239:2: ( ruleModel )
+            // InternalReactionRules.g:5211:1: ( ( ruleModel ) )
+            // InternalReactionRules.g:5212:2: ( ruleModel )
             {
-            // InternalReactionRules.g:5239:2: ( ruleModel )
-            // InternalReactionRules.g:5240:3: ruleModel
+            // InternalReactionRules.g:5212:2: ( ruleModel )
+            // InternalReactionRules.g:5213:3: ruleModel
             {
              before(grammarAccess.getReactionRuleModelAccess().getModelModelParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -15793,17 +15702,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__ReactionRuleModel__ReationContainerAssignment_1"
-    // InternalReactionRules.g:5249:1: rule__ReactionRuleModel__ReationContainerAssignment_1 : ( ruleReactionContainer ) ;
+    // InternalReactionRules.g:5222:1: rule__ReactionRuleModel__ReationContainerAssignment_1 : ( ruleReactionContainer ) ;
     public final void rule__ReactionRuleModel__ReationContainerAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5253:1: ( ( ruleReactionContainer ) )
-            // InternalReactionRules.g:5254:2: ( ruleReactionContainer )
+            // InternalReactionRules.g:5226:1: ( ( ruleReactionContainer ) )
+            // InternalReactionRules.g:5227:2: ( ruleReactionContainer )
             {
-            // InternalReactionRules.g:5254:2: ( ruleReactionContainer )
-            // InternalReactionRules.g:5255:3: ruleReactionContainer
+            // InternalReactionRules.g:5227:2: ( ruleReactionContainer )
+            // InternalReactionRules.g:5228:3: ruleReactionContainer
             {
              before(grammarAccess.getReactionRuleModelAccess().getReationContainerReactionContainerParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -15834,17 +15743,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__ReactionRuleModel__ReactionPropertiesAssignment_2"
-    // InternalReactionRules.g:5264:1: rule__ReactionRuleModel__ReactionPropertiesAssignment_2 : ( ruleReactionProperty ) ;
+    // InternalReactionRules.g:5237:1: rule__ReactionRuleModel__ReactionPropertiesAssignment_2 : ( ruleReactionProperty ) ;
     public final void rule__ReactionRuleModel__ReactionPropertiesAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5268:1: ( ( ruleReactionProperty ) )
-            // InternalReactionRules.g:5269:2: ( ruleReactionProperty )
+            // InternalReactionRules.g:5241:1: ( ( ruleReactionProperty ) )
+            // InternalReactionRules.g:5242:2: ( ruleReactionProperty )
             {
-            // InternalReactionRules.g:5269:2: ( ruleReactionProperty )
-            // InternalReactionRules.g:5270:3: ruleReactionProperty
+            // InternalReactionRules.g:5242:2: ( ruleReactionProperty )
+            // InternalReactionRules.g:5243:3: ruleReactionProperty
             {
              before(grammarAccess.getReactionRuleModelAccess().getReactionPropertiesReactionPropertyParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -15875,17 +15784,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__ModelUri__UriAssignment_1"
-    // InternalReactionRules.g:5279:1: rule__ModelUri__UriAssignment_1 : ( RULE_STRING ) ;
+    // InternalReactionRules.g:5252:1: rule__ModelUri__UriAssignment_1 : ( RULE_STRING ) ;
     public final void rule__ModelUri__UriAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5283:1: ( ( RULE_STRING ) )
-            // InternalReactionRules.g:5284:2: ( RULE_STRING )
+            // InternalReactionRules.g:5256:1: ( ( RULE_STRING ) )
+            // InternalReactionRules.g:5257:2: ( RULE_STRING )
             {
-            // InternalReactionRules.g:5284:2: ( RULE_STRING )
-            // InternalReactionRules.g:5285:3: RULE_STRING
+            // InternalReactionRules.g:5257:2: ( RULE_STRING )
+            // InternalReactionRules.g:5258:3: RULE_STRING
             {
              before(grammarAccess.getModelUriAccess().getUriSTRINGTerminalRuleCall_1_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -15912,17 +15821,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__ModelPath__PathAssignment_1"
-    // InternalReactionRules.g:5294:1: rule__ModelPath__PathAssignment_1 : ( RULE_STRING ) ;
+    // InternalReactionRules.g:5267:1: rule__ModelPath__PathAssignment_1 : ( RULE_STRING ) ;
     public final void rule__ModelPath__PathAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5298:1: ( ( RULE_STRING ) )
-            // InternalReactionRules.g:5299:2: ( RULE_STRING )
+            // InternalReactionRules.g:5271:1: ( ( RULE_STRING ) )
+            // InternalReactionRules.g:5272:2: ( RULE_STRING )
             {
-            // InternalReactionRules.g:5299:2: ( RULE_STRING )
-            // InternalReactionRules.g:5300:3: RULE_STRING
+            // InternalReactionRules.g:5272:2: ( RULE_STRING )
+            // InternalReactionRules.g:5273:3: RULE_STRING
             {
              before(grammarAccess.getModelPathAccess().getPathSTRINGTerminalRuleCall_1_0()); 
             match(input,RULE_STRING,FOLLOW_2); 
@@ -15949,17 +15858,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Model__NameAssignment_1"
-    // InternalReactionRules.g:5309:1: rule__Model__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalReactionRules.g:5282:1: rule__Model__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__Model__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5313:1: ( ( RULE_ID ) )
-            // InternalReactionRules.g:5314:2: ( RULE_ID )
+            // InternalReactionRules.g:5286:1: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5287:2: ( RULE_ID )
             {
-            // InternalReactionRules.g:5314:2: ( RULE_ID )
-            // InternalReactionRules.g:5315:3: RULE_ID
+            // InternalReactionRules.g:5287:2: ( RULE_ID )
+            // InternalReactionRules.g:5288:3: RULE_ID
             {
              before(grammarAccess.getModelAccess().getNameIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -15986,17 +15895,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Model__LocationAssignment_2"
-    // InternalReactionRules.g:5324:1: rule__Model__LocationAssignment_2 : ( ruleModelLocation ) ;
+    // InternalReactionRules.g:5297:1: rule__Model__LocationAssignment_2 : ( ruleModelLocation ) ;
     public final void rule__Model__LocationAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5328:1: ( ( ruleModelLocation ) )
-            // InternalReactionRules.g:5329:2: ( ruleModelLocation )
+            // InternalReactionRules.g:5301:1: ( ( ruleModelLocation ) )
+            // InternalReactionRules.g:5302:2: ( ruleModelLocation )
             {
-            // InternalReactionRules.g:5329:2: ( ruleModelLocation )
-            // InternalReactionRules.g:5330:3: ruleModelLocation
+            // InternalReactionRules.g:5302:2: ( ruleModelLocation )
+            // InternalReactionRules.g:5303:3: ruleModelLocation
             {
              before(grammarAccess.getModelAccess().getLocationModelLocationParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -16027,17 +15936,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__ReactionContainer__AgentInstancesAssignment_1"
-    // InternalReactionRules.g:5339:1: rule__ReactionContainer__AgentInstancesAssignment_1 : ( ruleAgentInstance ) ;
+    // InternalReactionRules.g:5312:1: rule__ReactionContainer__AgentInstancesAssignment_1 : ( ruleAgentInstance ) ;
     public final void rule__ReactionContainer__AgentInstancesAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5343:1: ( ( ruleAgentInstance ) )
-            // InternalReactionRules.g:5344:2: ( ruleAgentInstance )
+            // InternalReactionRules.g:5316:1: ( ( ruleAgentInstance ) )
+            // InternalReactionRules.g:5317:2: ( ruleAgentInstance )
             {
-            // InternalReactionRules.g:5344:2: ( ruleAgentInstance )
-            // InternalReactionRules.g:5345:3: ruleAgentInstance
+            // InternalReactionRules.g:5317:2: ( ruleAgentInstance )
+            // InternalReactionRules.g:5318:3: ruleAgentInstance
             {
              before(grammarAccess.getReactionContainerAccess().getAgentInstancesAgentInstanceParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -16068,21 +15977,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AgentInstanceSiteState__SiteAssignment_0"
-    // InternalReactionRules.g:5354:1: rule__AgentInstanceSiteState__SiteAssignment_0 : ( ( RULE_ID ) ) ;
+    // InternalReactionRules.g:5327:1: rule__AgentInstanceSiteState__SiteAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__AgentInstanceSiteState__SiteAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5358:1: ( ( ( RULE_ID ) ) )
-            // InternalReactionRules.g:5359:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5331:1: ( ( ( RULE_ID ) ) )
+            // InternalReactionRules.g:5332:2: ( ( RULE_ID ) )
             {
-            // InternalReactionRules.g:5359:2: ( ( RULE_ID ) )
-            // InternalReactionRules.g:5360:3: ( RULE_ID )
+            // InternalReactionRules.g:5332:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5333:3: ( RULE_ID )
             {
              before(grammarAccess.getAgentInstanceSiteStateAccess().getSiteSiteCrossReference_0_0()); 
-            // InternalReactionRules.g:5361:3: ( RULE_ID )
-            // InternalReactionRules.g:5362:4: RULE_ID
+            // InternalReactionRules.g:5334:3: ( RULE_ID )
+            // InternalReactionRules.g:5335:4: RULE_ID
             {
              before(grammarAccess.getAgentInstanceSiteStateAccess().getSiteSiteIDTerminalRuleCall_0_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -16113,17 +16022,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AgentInstanceSiteState__SiteStateAssignment_1"
-    // InternalReactionRules.g:5373:1: rule__AgentInstanceSiteState__SiteStateAssignment_1 : ( ruleSiteState ) ;
+    // InternalReactionRules.g:5346:1: rule__AgentInstanceSiteState__SiteStateAssignment_1 : ( ruleSiteState ) ;
     public final void rule__AgentInstanceSiteState__SiteStateAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5377:1: ( ( ruleSiteState ) )
-            // InternalReactionRules.g:5378:2: ( ruleSiteState )
+            // InternalReactionRules.g:5350:1: ( ( ruleSiteState ) )
+            // InternalReactionRules.g:5351:2: ( ruleSiteState )
             {
-            // InternalReactionRules.g:5378:2: ( ruleSiteState )
-            // InternalReactionRules.g:5379:3: ruleSiteState
+            // InternalReactionRules.g:5351:2: ( ruleSiteState )
+            // InternalReactionRules.g:5352:3: ruleSiteState
             {
              before(grammarAccess.getAgentInstanceSiteStateAccess().getSiteStateSiteStateParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -16154,21 +16063,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AgentInstanceLinkState__SiteAssignment_0"
-    // InternalReactionRules.g:5388:1: rule__AgentInstanceLinkState__SiteAssignment_0 : ( ( RULE_ID ) ) ;
+    // InternalReactionRules.g:5361:1: rule__AgentInstanceLinkState__SiteAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__AgentInstanceLinkState__SiteAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5392:1: ( ( ( RULE_ID ) ) )
-            // InternalReactionRules.g:5393:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5365:1: ( ( ( RULE_ID ) ) )
+            // InternalReactionRules.g:5366:2: ( ( RULE_ID ) )
             {
-            // InternalReactionRules.g:5393:2: ( ( RULE_ID ) )
-            // InternalReactionRules.g:5394:3: ( RULE_ID )
+            // InternalReactionRules.g:5366:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5367:3: ( RULE_ID )
             {
              before(grammarAccess.getAgentInstanceLinkStateAccess().getSiteSiteCrossReference_0_0()); 
-            // InternalReactionRules.g:5395:3: ( RULE_ID )
-            // InternalReactionRules.g:5396:4: RULE_ID
+            // InternalReactionRules.g:5368:3: ( RULE_ID )
+            // InternalReactionRules.g:5369:4: RULE_ID
             {
              before(grammarAccess.getAgentInstanceLinkStateAccess().getSiteSiteIDTerminalRuleCall_0_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -16199,17 +16108,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AgentInstanceLinkState__LinkStateAssignment_1"
-    // InternalReactionRules.g:5407:1: rule__AgentInstanceLinkState__LinkStateAssignment_1 : ( ruleLinkState ) ;
+    // InternalReactionRules.g:5380:1: rule__AgentInstanceLinkState__LinkStateAssignment_1 : ( ruleLinkState ) ;
     public final void rule__AgentInstanceLinkState__LinkStateAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5411:1: ( ( ruleLinkState ) )
-            // InternalReactionRules.g:5412:2: ( ruleLinkState )
+            // InternalReactionRules.g:5384:1: ( ( ruleLinkState ) )
+            // InternalReactionRules.g:5385:2: ( ruleLinkState )
             {
-            // InternalReactionRules.g:5412:2: ( ruleLinkState )
-            // InternalReactionRules.g:5413:3: ruleLinkState
+            // InternalReactionRules.g:5385:2: ( ruleLinkState )
+            // InternalReactionRules.g:5386:3: ruleLinkState
             {
              before(grammarAccess.getAgentInstanceLinkStateAccess().getLinkStateLinkStateParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -16240,17 +16149,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AgentInstance__NameAssignment_1"
-    // InternalReactionRules.g:5422:1: rule__AgentInstance__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalReactionRules.g:5395:1: rule__AgentInstance__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__AgentInstance__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5426:1: ( ( RULE_ID ) )
-            // InternalReactionRules.g:5427:2: ( RULE_ID )
+            // InternalReactionRules.g:5399:1: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5400:2: ( RULE_ID )
             {
-            // InternalReactionRules.g:5427:2: ( RULE_ID )
-            // InternalReactionRules.g:5428:3: RULE_ID
+            // InternalReactionRules.g:5400:2: ( RULE_ID )
+            // InternalReactionRules.g:5401:3: RULE_ID
             {
              before(grammarAccess.getAgentInstanceAccess().getNameIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -16277,21 +16186,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AgentInstance__AgentAssignment_2"
-    // InternalReactionRules.g:5437:1: rule__AgentInstance__AgentAssignment_2 : ( ( RULE_ID ) ) ;
+    // InternalReactionRules.g:5410:1: rule__AgentInstance__AgentAssignment_2 : ( ( RULE_ID ) ) ;
     public final void rule__AgentInstance__AgentAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5441:1: ( ( ( RULE_ID ) ) )
-            // InternalReactionRules.g:5442:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5414:1: ( ( ( RULE_ID ) ) )
+            // InternalReactionRules.g:5415:2: ( ( RULE_ID ) )
             {
-            // InternalReactionRules.g:5442:2: ( ( RULE_ID ) )
-            // InternalReactionRules.g:5443:3: ( RULE_ID )
+            // InternalReactionRules.g:5415:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5416:3: ( RULE_ID )
             {
              before(grammarAccess.getAgentInstanceAccess().getAgentAgentCrossReference_2_0()); 
-            // InternalReactionRules.g:5444:3: ( RULE_ID )
-            // InternalReactionRules.g:5445:4: RULE_ID
+            // InternalReactionRules.g:5417:3: ( RULE_ID )
+            // InternalReactionRules.g:5418:4: RULE_ID
             {
              before(grammarAccess.getAgentInstanceAccess().getAgentAgentIDTerminalRuleCall_2_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -16322,17 +16231,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AgentInstance__SiteStatesAssignment_3"
-    // InternalReactionRules.g:5456:1: rule__AgentInstance__SiteStatesAssignment_3 : ( ruleAgentInstanceSiteState ) ;
+    // InternalReactionRules.g:5429:1: rule__AgentInstance__SiteStatesAssignment_3 : ( ruleAgentInstanceSiteState ) ;
     public final void rule__AgentInstance__SiteStatesAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5460:1: ( ( ruleAgentInstanceSiteState ) )
-            // InternalReactionRules.g:5461:2: ( ruleAgentInstanceSiteState )
+            // InternalReactionRules.g:5433:1: ( ( ruleAgentInstanceSiteState ) )
+            // InternalReactionRules.g:5434:2: ( ruleAgentInstanceSiteState )
             {
-            // InternalReactionRules.g:5461:2: ( ruleAgentInstanceSiteState )
-            // InternalReactionRules.g:5462:3: ruleAgentInstanceSiteState
+            // InternalReactionRules.g:5434:2: ( ruleAgentInstanceSiteState )
+            // InternalReactionRules.g:5435:3: ruleAgentInstanceSiteState
             {
              before(grammarAccess.getAgentInstanceAccess().getSiteStatesAgentInstanceSiteStateParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -16363,17 +16272,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AgentInstance__LinkStatesAssignment_4"
-    // InternalReactionRules.g:5471:1: rule__AgentInstance__LinkStatesAssignment_4 : ( ruleAgentInstanceLinkState ) ;
+    // InternalReactionRules.g:5444:1: rule__AgentInstance__LinkStatesAssignment_4 : ( ruleAgentInstanceLinkState ) ;
     public final void rule__AgentInstance__LinkStatesAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5475:1: ( ( ruleAgentInstanceLinkState ) )
-            // InternalReactionRules.g:5476:2: ( ruleAgentInstanceLinkState )
+            // InternalReactionRules.g:5448:1: ( ( ruleAgentInstanceLinkState ) )
+            // InternalReactionRules.g:5449:2: ( ruleAgentInstanceLinkState )
             {
-            // InternalReactionRules.g:5476:2: ( ruleAgentInstanceLinkState )
-            // InternalReactionRules.g:5477:3: ruleAgentInstanceLinkState
+            // InternalReactionRules.g:5449:2: ( ruleAgentInstanceLinkState )
+            // InternalReactionRules.g:5450:3: ruleAgentInstanceLinkState
             {
              before(grammarAccess.getAgentInstanceAccess().getLinkStatesAgentInstanceLinkStateParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
@@ -16404,17 +16313,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__ArithmeticValue__ValueAssignment"
-    // InternalReactionRules.g:5486:1: rule__ArithmeticValue__ValueAssignment : ( ruleArithmeticType ) ;
+    // InternalReactionRules.g:5459:1: rule__ArithmeticValue__ValueAssignment : ( ruleArithmeticType ) ;
     public final void rule__ArithmeticValue__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5490:1: ( ( ruleArithmeticType ) )
-            // InternalReactionRules.g:5491:2: ( ruleArithmeticType )
+            // InternalReactionRules.g:5463:1: ( ( ruleArithmeticType ) )
+            // InternalReactionRules.g:5464:2: ( ruleArithmeticType )
             {
-            // InternalReactionRules.g:5491:2: ( ruleArithmeticType )
-            // InternalReactionRules.g:5492:3: ruleArithmeticType
+            // InternalReactionRules.g:5464:2: ( ruleArithmeticType )
+            // InternalReactionRules.g:5465:3: ruleArithmeticType
             {
              before(grammarAccess.getArithmeticValueAccess().getValueArithmeticTypeParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -16445,17 +16354,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__State__NameAssignment"
-    // InternalReactionRules.g:5501:1: rule__State__NameAssignment : ( RULE_ID ) ;
+    // InternalReactionRules.g:5474:1: rule__State__NameAssignment : ( RULE_ID ) ;
     public final void rule__State__NameAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5505:1: ( ( RULE_ID ) )
-            // InternalReactionRules.g:5506:2: ( RULE_ID )
+            // InternalReactionRules.g:5478:1: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5479:2: ( RULE_ID )
             {
-            // InternalReactionRules.g:5506:2: ( RULE_ID )
-            // InternalReactionRules.g:5507:3: RULE_ID
+            // InternalReactionRules.g:5479:2: ( RULE_ID )
+            // InternalReactionRules.g:5480:3: RULE_ID
             {
              before(grammarAccess.getStateAccess().getNameIDTerminalRuleCall_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -16482,17 +16391,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__States__StateAssignment_1_1"
-    // InternalReactionRules.g:5516:1: rule__States__StateAssignment_1_1 : ( ruleState ) ;
+    // InternalReactionRules.g:5489:1: rule__States__StateAssignment_1_1 : ( ruleState ) ;
     public final void rule__States__StateAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5520:1: ( ( ruleState ) )
-            // InternalReactionRules.g:5521:2: ( ruleState )
+            // InternalReactionRules.g:5493:1: ( ( ruleState ) )
+            // InternalReactionRules.g:5494:2: ( ruleState )
             {
-            // InternalReactionRules.g:5521:2: ( ruleState )
-            // InternalReactionRules.g:5522:3: ruleState
+            // InternalReactionRules.g:5494:2: ( ruleState )
+            // InternalReactionRules.g:5495:3: ruleState
             {
              before(grammarAccess.getStatesAccess().getStateStateParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -16523,17 +16432,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__States__StateAssignment_1_2_1"
-    // InternalReactionRules.g:5531:1: rule__States__StateAssignment_1_2_1 : ( ruleState ) ;
+    // InternalReactionRules.g:5504:1: rule__States__StateAssignment_1_2_1 : ( ruleState ) ;
     public final void rule__States__StateAssignment_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5535:1: ( ( ruleState ) )
-            // InternalReactionRules.g:5536:2: ( ruleState )
+            // InternalReactionRules.g:5508:1: ( ( ruleState ) )
+            // InternalReactionRules.g:5509:2: ( ruleState )
             {
-            // InternalReactionRules.g:5536:2: ( ruleState )
-            // InternalReactionRules.g:5537:3: ruleState
+            // InternalReactionRules.g:5509:2: ( ruleState )
+            // InternalReactionRules.g:5510:3: ruleState
             {
              before(grammarAccess.getStatesAccess().getStateStateParserRuleCall_1_2_1_0()); 
             pushFollow(FOLLOW_2);
@@ -16564,17 +16473,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Site__NameAssignment_0"
-    // InternalReactionRules.g:5546:1: rule__Site__NameAssignment_0 : ( RULE_ID ) ;
+    // InternalReactionRules.g:5519:1: rule__Site__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__Site__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5550:1: ( ( RULE_ID ) )
-            // InternalReactionRules.g:5551:2: ( RULE_ID )
+            // InternalReactionRules.g:5523:1: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5524:2: ( RULE_ID )
             {
-            // InternalReactionRules.g:5551:2: ( RULE_ID )
-            // InternalReactionRules.g:5552:3: RULE_ID
+            // InternalReactionRules.g:5524:2: ( RULE_ID )
+            // InternalReactionRules.g:5525:3: RULE_ID
             {
              before(grammarAccess.getSiteAccess().getNameIDTerminalRuleCall_0_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -16601,17 +16510,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Site__StatesAssignment_1"
-    // InternalReactionRules.g:5561:1: rule__Site__StatesAssignment_1 : ( ruleStates ) ;
+    // InternalReactionRules.g:5534:1: rule__Site__StatesAssignment_1 : ( ruleStates ) ;
     public final void rule__Site__StatesAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5565:1: ( ( ruleStates ) )
-            // InternalReactionRules.g:5566:2: ( ruleStates )
+            // InternalReactionRules.g:5538:1: ( ( ruleStates ) )
+            // InternalReactionRules.g:5539:2: ( ruleStates )
             {
-            // InternalReactionRules.g:5566:2: ( ruleStates )
-            // InternalReactionRules.g:5567:3: ruleStates
+            // InternalReactionRules.g:5539:2: ( ruleStates )
+            // InternalReactionRules.g:5540:3: ruleStates
             {
              before(grammarAccess.getSiteAccess().getStatesStatesParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -16642,17 +16551,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Sites__SitesAssignment_1_1"
-    // InternalReactionRules.g:5576:1: rule__Sites__SitesAssignment_1_1 : ( ruleSite ) ;
+    // InternalReactionRules.g:5549:1: rule__Sites__SitesAssignment_1_1 : ( ruleSite ) ;
     public final void rule__Sites__SitesAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5580:1: ( ( ruleSite ) )
-            // InternalReactionRules.g:5581:2: ( ruleSite )
+            // InternalReactionRules.g:5553:1: ( ( ruleSite ) )
+            // InternalReactionRules.g:5554:2: ( ruleSite )
             {
-            // InternalReactionRules.g:5581:2: ( ruleSite )
-            // InternalReactionRules.g:5582:3: ruleSite
+            // InternalReactionRules.g:5554:2: ( ruleSite )
+            // InternalReactionRules.g:5555:3: ruleSite
             {
              before(grammarAccess.getSitesAccess().getSitesSiteParserRuleCall_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -16683,17 +16592,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Sites__SitesAssignment_1_2_1"
-    // InternalReactionRules.g:5591:1: rule__Sites__SitesAssignment_1_2_1 : ( ruleSite ) ;
+    // InternalReactionRules.g:5564:1: rule__Sites__SitesAssignment_1_2_1 : ( ruleSite ) ;
     public final void rule__Sites__SitesAssignment_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5595:1: ( ( ruleSite ) )
-            // InternalReactionRules.g:5596:2: ( ruleSite )
+            // InternalReactionRules.g:5568:1: ( ( ruleSite ) )
+            // InternalReactionRules.g:5569:2: ( ruleSite )
             {
-            // InternalReactionRules.g:5596:2: ( ruleSite )
-            // InternalReactionRules.g:5597:3: ruleSite
+            // InternalReactionRules.g:5569:2: ( ruleSite )
+            // InternalReactionRules.g:5570:3: ruleSite
             {
              before(grammarAccess.getSitesAccess().getSitesSiteParserRuleCall_1_2_1_0()); 
             pushFollow(FOLLOW_2);
@@ -16724,17 +16633,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Agent__NameAssignment_1"
-    // InternalReactionRules.g:5606:1: rule__Agent__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalReactionRules.g:5579:1: rule__Agent__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__Agent__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5610:1: ( ( RULE_ID ) )
-            // InternalReactionRules.g:5611:2: ( RULE_ID )
+            // InternalReactionRules.g:5583:1: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5584:2: ( RULE_ID )
             {
-            // InternalReactionRules.g:5611:2: ( RULE_ID )
-            // InternalReactionRules.g:5612:3: RULE_ID
+            // InternalReactionRules.g:5584:2: ( RULE_ID )
+            // InternalReactionRules.g:5585:3: RULE_ID
             {
              before(grammarAccess.getAgentAccess().getNameIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -16761,17 +16670,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Agent__SitesAssignment_2"
-    // InternalReactionRules.g:5621:1: rule__Agent__SitesAssignment_2 : ( ruleSites ) ;
+    // InternalReactionRules.g:5594:1: rule__Agent__SitesAssignment_2 : ( ruleSites ) ;
     public final void rule__Agent__SitesAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5625:1: ( ( ruleSites ) )
-            // InternalReactionRules.g:5626:2: ( ruleSites )
+            // InternalReactionRules.g:5598:1: ( ( ruleSites ) )
+            // InternalReactionRules.g:5599:2: ( ruleSites )
             {
-            // InternalReactionRules.g:5626:2: ( ruleSites )
-            // InternalReactionRules.g:5627:3: ruleSites
+            // InternalReactionRules.g:5599:2: ( ruleSites )
+            // InternalReactionRules.g:5600:3: ruleSites
             {
              before(grammarAccess.getAgentAccess().getSitesSitesParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -16802,17 +16711,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__PatternVariable__NameAssignment_1"
-    // InternalReactionRules.g:5636:1: rule__PatternVariable__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalReactionRules.g:5609:1: rule__PatternVariable__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__PatternVariable__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5640:1: ( ( RULE_ID ) )
-            // InternalReactionRules.g:5641:2: ( RULE_ID )
+            // InternalReactionRules.g:5613:1: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5614:2: ( RULE_ID )
             {
-            // InternalReactionRules.g:5641:2: ( RULE_ID )
-            // InternalReactionRules.g:5642:3: RULE_ID
+            // InternalReactionRules.g:5614:2: ( RULE_ID )
+            // InternalReactionRules.g:5615:3: RULE_ID
             {
              before(grammarAccess.getPatternVariableAccess().getNameIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -16839,17 +16748,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__PatternVariable__PatternAssignment_3"
-    // InternalReactionRules.g:5651:1: rule__PatternVariable__PatternAssignment_3 : ( rulePattern ) ;
+    // InternalReactionRules.g:5624:1: rule__PatternVariable__PatternAssignment_3 : ( rulePattern ) ;
     public final void rule__PatternVariable__PatternAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5655:1: ( ( rulePattern ) )
-            // InternalReactionRules.g:5656:2: ( rulePattern )
+            // InternalReactionRules.g:5628:1: ( ( rulePattern ) )
+            // InternalReactionRules.g:5629:2: ( rulePattern )
             {
-            // InternalReactionRules.g:5656:2: ( rulePattern )
-            // InternalReactionRules.g:5657:3: rulePattern
+            // InternalReactionRules.g:5629:2: ( rulePattern )
+            // InternalReactionRules.g:5630:3: rulePattern
             {
              before(grammarAccess.getPatternVariableAccess().getPatternPatternParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -16880,17 +16789,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__ArithmeticVariable__NameAssignment_1"
-    // InternalReactionRules.g:5666:1: rule__ArithmeticVariable__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalReactionRules.g:5639:1: rule__ArithmeticVariable__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__ArithmeticVariable__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5670:1: ( ( RULE_ID ) )
-            // InternalReactionRules.g:5671:2: ( RULE_ID )
+            // InternalReactionRules.g:5643:1: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5644:2: ( RULE_ID )
             {
-            // InternalReactionRules.g:5671:2: ( RULE_ID )
-            // InternalReactionRules.g:5672:3: RULE_ID
+            // InternalReactionRules.g:5644:2: ( RULE_ID )
+            // InternalReactionRules.g:5645:3: RULE_ID
             {
              before(grammarAccess.getArithmeticVariableAccess().getNameIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -16917,17 +16826,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__ArithmeticVariable__ValueAssignment_3"
-    // InternalReactionRules.g:5681:1: rule__ArithmeticVariable__ValueAssignment_3 : ( ruleArithmeticValue ) ;
+    // InternalReactionRules.g:5654:1: rule__ArithmeticVariable__ValueAssignment_3 : ( ruleArithmeticValue ) ;
     public final void rule__ArithmeticVariable__ValueAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5685:1: ( ( ruleArithmeticValue ) )
-            // InternalReactionRules.g:5686:2: ( ruleArithmeticValue )
+            // InternalReactionRules.g:5658:1: ( ( ruleArithmeticValue ) )
+            // InternalReactionRules.g:5659:2: ( ruleArithmeticValue )
             {
-            // InternalReactionRules.g:5686:2: ( ruleArithmeticValue )
-            // InternalReactionRules.g:5687:3: ruleArithmeticValue
+            // InternalReactionRules.g:5659:2: ( ruleArithmeticValue )
+            // InternalReactionRules.g:5660:3: ruleArithmeticValue
             {
              before(grammarAccess.getArithmeticVariableAccess().getValueArithmeticValueParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -16958,17 +16867,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SemiLink__NameAssignment_1"
-    // InternalReactionRules.g:5696:1: rule__SemiLink__NameAssignment_1 : ( RULE_SEMI_LINK ) ;
+    // InternalReactionRules.g:5669:1: rule__SemiLink__NameAssignment_1 : ( RULE_SEMI_LINK ) ;
     public final void rule__SemiLink__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5700:1: ( ( RULE_SEMI_LINK ) )
-            // InternalReactionRules.g:5701:2: ( RULE_SEMI_LINK )
+            // InternalReactionRules.g:5673:1: ( ( RULE_SEMI_LINK ) )
+            // InternalReactionRules.g:5674:2: ( RULE_SEMI_LINK )
             {
-            // InternalReactionRules.g:5701:2: ( RULE_SEMI_LINK )
-            // InternalReactionRules.g:5702:3: RULE_SEMI_LINK
+            // InternalReactionRules.g:5674:2: ( RULE_SEMI_LINK )
+            // InternalReactionRules.g:5675:3: RULE_SEMI_LINK
             {
              before(grammarAccess.getSemiLinkAccess().getNameSEMI_LINKTerminalRuleCall_1_0()); 
             match(input,RULE_SEMI_LINK,FOLLOW_2); 
@@ -16995,17 +16904,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__FreeLink__NameAssignment_1"
-    // InternalReactionRules.g:5711:1: rule__FreeLink__NameAssignment_1 : ( RULE_FREE_LINK ) ;
+    // InternalReactionRules.g:5684:1: rule__FreeLink__NameAssignment_1 : ( RULE_FREE_LINK ) ;
     public final void rule__FreeLink__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5715:1: ( ( RULE_FREE_LINK ) )
-            // InternalReactionRules.g:5716:2: ( RULE_FREE_LINK )
+            // InternalReactionRules.g:5688:1: ( ( RULE_FREE_LINK ) )
+            // InternalReactionRules.g:5689:2: ( RULE_FREE_LINK )
             {
-            // InternalReactionRules.g:5716:2: ( RULE_FREE_LINK )
-            // InternalReactionRules.g:5717:3: RULE_FREE_LINK
+            // InternalReactionRules.g:5689:2: ( RULE_FREE_LINK )
+            // InternalReactionRules.g:5690:3: RULE_FREE_LINK
             {
              before(grammarAccess.getFreeLinkAccess().getNameFREE_LINKTerminalRuleCall_1_0()); 
             match(input,RULE_FREE_LINK,FOLLOW_2); 
@@ -17032,17 +16941,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__WhatEver__NameAssignment_1"
-    // InternalReactionRules.g:5726:1: rule__WhatEver__NameAssignment_1 : ( RULE_WHATEVER_LINK ) ;
+    // InternalReactionRules.g:5699:1: rule__WhatEver__NameAssignment_1 : ( RULE_WHATEVER_LINK ) ;
     public final void rule__WhatEver__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5730:1: ( ( RULE_WHATEVER_LINK ) )
-            // InternalReactionRules.g:5731:2: ( RULE_WHATEVER_LINK )
+            // InternalReactionRules.g:5703:1: ( ( RULE_WHATEVER_LINK ) )
+            // InternalReactionRules.g:5704:2: ( RULE_WHATEVER_LINK )
             {
-            // InternalReactionRules.g:5731:2: ( RULE_WHATEVER_LINK )
-            // InternalReactionRules.g:5732:3: RULE_WHATEVER_LINK
+            // InternalReactionRules.g:5704:2: ( RULE_WHATEVER_LINK )
+            // InternalReactionRules.g:5705:3: RULE_WHATEVER_LINK
             {
              before(grammarAccess.getWhatEverAccess().getNameWHATEVER_LINKTerminalRuleCall_1_0()); 
             match(input,RULE_WHATEVER_LINK,FOLLOW_2); 
@@ -17068,26 +16977,26 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
     // $ANTLR end "rule__WhatEver__NameAssignment_1"
 
 
-    // $ANTLR start "rule__LimitLink__StateAssignment_1"
-    // InternalReactionRules.g:5741:1: rule__LimitLink__StateAssignment_1 : ( ruleUnsignedInteger ) ;
-    public final void rule__LimitLink__StateAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__IndexedLink__StateAssignment_1"
+    // InternalReactionRules.g:5714:1: rule__IndexedLink__StateAssignment_1 : ( ruleUnsignedInteger ) ;
+    public final void rule__IndexedLink__StateAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5745:1: ( ( ruleUnsignedInteger ) )
-            // InternalReactionRules.g:5746:2: ( ruleUnsignedInteger )
+            // InternalReactionRules.g:5718:1: ( ( ruleUnsignedInteger ) )
+            // InternalReactionRules.g:5719:2: ( ruleUnsignedInteger )
             {
-            // InternalReactionRules.g:5746:2: ( ruleUnsignedInteger )
-            // InternalReactionRules.g:5747:3: ruleUnsignedInteger
+            // InternalReactionRules.g:5719:2: ( ruleUnsignedInteger )
+            // InternalReactionRules.g:5720:3: ruleUnsignedInteger
             {
-             before(grammarAccess.getLimitLinkAccess().getStateUnsignedIntegerParserRuleCall_1_0()); 
+             before(grammarAccess.getIndexedLinkAccess().getStateUnsignedIntegerParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
             ruleUnsignedInteger();
 
             state._fsp--;
 
-             after(grammarAccess.getLimitLinkAccess().getStateUnsignedIntegerParserRuleCall_1_0()); 
+             after(grammarAccess.getIndexedLinkAccess().getStateUnsignedIntegerParserRuleCall_1_0()); 
 
             }
 
@@ -17106,25 +17015,25 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__LimitLink__StateAssignment_1"
+    // $ANTLR end "rule__IndexedLink__StateAssignment_1"
 
 
     // $ANTLR start "rule__ExactLinkAgent__AgentAssignment_1"
-    // InternalReactionRules.g:5756:1: rule__ExactLinkAgent__AgentAssignment_1 : ( ( RULE_ID ) ) ;
+    // InternalReactionRules.g:5729:1: rule__ExactLinkAgent__AgentAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__ExactLinkAgent__AgentAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5760:1: ( ( ( RULE_ID ) ) )
-            // InternalReactionRules.g:5761:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5733:1: ( ( ( RULE_ID ) ) )
+            // InternalReactionRules.g:5734:2: ( ( RULE_ID ) )
             {
-            // InternalReactionRules.g:5761:2: ( ( RULE_ID ) )
-            // InternalReactionRules.g:5762:3: ( RULE_ID )
+            // InternalReactionRules.g:5734:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5735:3: ( RULE_ID )
             {
              before(grammarAccess.getExactLinkAgentAccess().getAgentAgentCrossReference_1_0()); 
-            // InternalReactionRules.g:5763:3: ( RULE_ID )
-            // InternalReactionRules.g:5764:4: RULE_ID
+            // InternalReactionRules.g:5736:3: ( RULE_ID )
+            // InternalReactionRules.g:5737:4: RULE_ID
             {
              before(grammarAccess.getExactLinkAgentAccess().getAgentAgentIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -17155,21 +17064,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__ExactLinkSite__SiteAssignment_1"
-    // InternalReactionRules.g:5775:1: rule__ExactLinkSite__SiteAssignment_1 : ( ( RULE_ID ) ) ;
+    // InternalReactionRules.g:5748:1: rule__ExactLinkSite__SiteAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__ExactLinkSite__SiteAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5779:1: ( ( ( RULE_ID ) ) )
-            // InternalReactionRules.g:5780:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5752:1: ( ( ( RULE_ID ) ) )
+            // InternalReactionRules.g:5753:2: ( ( RULE_ID ) )
             {
-            // InternalReactionRules.g:5780:2: ( ( RULE_ID ) )
-            // InternalReactionRules.g:5781:3: ( RULE_ID )
+            // InternalReactionRules.g:5753:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5754:3: ( RULE_ID )
             {
              before(grammarAccess.getExactLinkSiteAccess().getSiteSiteCrossReference_1_0()); 
-            // InternalReactionRules.g:5782:3: ( RULE_ID )
-            // InternalReactionRules.g:5783:4: RULE_ID
+            // InternalReactionRules.g:5755:3: ( RULE_ID )
+            // InternalReactionRules.g:5756:4: RULE_ID
             {
              before(grammarAccess.getExactLinkSiteAccess().getSiteSiteIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -17200,17 +17109,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__ExactLink__LinkAgentAssignment_1"
-    // InternalReactionRules.g:5794:1: rule__ExactLink__LinkAgentAssignment_1 : ( ruleExactLinkAgent ) ;
+    // InternalReactionRules.g:5767:1: rule__ExactLink__LinkAgentAssignment_1 : ( ruleExactLinkAgent ) ;
     public final void rule__ExactLink__LinkAgentAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5798:1: ( ( ruleExactLinkAgent ) )
-            // InternalReactionRules.g:5799:2: ( ruleExactLinkAgent )
+            // InternalReactionRules.g:5771:1: ( ( ruleExactLinkAgent ) )
+            // InternalReactionRules.g:5772:2: ( ruleExactLinkAgent )
             {
-            // InternalReactionRules.g:5799:2: ( ruleExactLinkAgent )
-            // InternalReactionRules.g:5800:3: ruleExactLinkAgent
+            // InternalReactionRules.g:5772:2: ( ruleExactLinkAgent )
+            // InternalReactionRules.g:5773:3: ruleExactLinkAgent
             {
              before(grammarAccess.getExactLinkAccess().getLinkAgentExactLinkAgentParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -17241,17 +17150,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__ExactLink__LinkSiteAssignment_3"
-    // InternalReactionRules.g:5809:1: rule__ExactLink__LinkSiteAssignment_3 : ( ruleExactLinkSite ) ;
+    // InternalReactionRules.g:5782:1: rule__ExactLink__LinkSiteAssignment_3 : ( ruleExactLinkSite ) ;
     public final void rule__ExactLink__LinkSiteAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5813:1: ( ( ruleExactLinkSite ) )
-            // InternalReactionRules.g:5814:2: ( ruleExactLinkSite )
+            // InternalReactionRules.g:5786:1: ( ( ruleExactLinkSite ) )
+            // InternalReactionRules.g:5787:2: ( ruleExactLinkSite )
             {
-            // InternalReactionRules.g:5814:2: ( ruleExactLinkSite )
-            // InternalReactionRules.g:5815:3: ruleExactLinkSite
+            // InternalReactionRules.g:5787:2: ( ruleExactLinkSite )
+            // InternalReactionRules.g:5788:3: ruleExactLinkSite
             {
              before(grammarAccess.getExactLinkAccess().getLinkSiteExactLinkSiteParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -17282,21 +17191,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SiteState__StateAssignment_1"
-    // InternalReactionRules.g:5824:1: rule__SiteState__StateAssignment_1 : ( ( RULE_ID ) ) ;
+    // InternalReactionRules.g:5797:1: rule__SiteState__StateAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__SiteState__StateAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5828:1: ( ( ( RULE_ID ) ) )
-            // InternalReactionRules.g:5829:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5801:1: ( ( ( RULE_ID ) ) )
+            // InternalReactionRules.g:5802:2: ( ( RULE_ID ) )
             {
-            // InternalReactionRules.g:5829:2: ( ( RULE_ID ) )
-            // InternalReactionRules.g:5830:3: ( RULE_ID )
+            // InternalReactionRules.g:5802:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5803:3: ( RULE_ID )
             {
              before(grammarAccess.getSiteStateAccess().getStateStateCrossReference_1_0()); 
-            // InternalReactionRules.g:5831:3: ( RULE_ID )
-            // InternalReactionRules.g:5832:4: RULE_ID
+            // InternalReactionRules.g:5804:3: ( RULE_ID )
+            // InternalReactionRules.g:5805:4: RULE_ID
             {
              before(grammarAccess.getSiteStateAccess().getStateStateIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -17327,21 +17236,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__LinkState__LinkStateAssignment_1"
-    // InternalReactionRules.g:5843:1: rule__LinkState__LinkStateAssignment_1 : ( ( rule__LinkState__LinkStateAlternatives_1_0 ) ) ;
+    // InternalReactionRules.g:5816:1: rule__LinkState__LinkStateAssignment_1 : ( ( rule__LinkState__LinkStateAlternatives_1_0 ) ) ;
     public final void rule__LinkState__LinkStateAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5847:1: ( ( ( rule__LinkState__LinkStateAlternatives_1_0 ) ) )
-            // InternalReactionRules.g:5848:2: ( ( rule__LinkState__LinkStateAlternatives_1_0 ) )
+            // InternalReactionRules.g:5820:1: ( ( ( rule__LinkState__LinkStateAlternatives_1_0 ) ) )
+            // InternalReactionRules.g:5821:2: ( ( rule__LinkState__LinkStateAlternatives_1_0 ) )
             {
-            // InternalReactionRules.g:5848:2: ( ( rule__LinkState__LinkStateAlternatives_1_0 ) )
-            // InternalReactionRules.g:5849:3: ( rule__LinkState__LinkStateAlternatives_1_0 )
+            // InternalReactionRules.g:5821:2: ( ( rule__LinkState__LinkStateAlternatives_1_0 ) )
+            // InternalReactionRules.g:5822:3: ( rule__LinkState__LinkStateAlternatives_1_0 )
             {
              before(grammarAccess.getLinkStateAccess().getLinkStateAlternatives_1_0()); 
-            // InternalReactionRules.g:5850:3: ( rule__LinkState__LinkStateAlternatives_1_0 )
-            // InternalReactionRules.g:5850:4: rule__LinkState__LinkStateAlternatives_1_0
+            // InternalReactionRules.g:5823:3: ( rule__LinkState__LinkStateAlternatives_1_0 )
+            // InternalReactionRules.g:5823:4: rule__LinkState__LinkStateAlternatives_1_0
             {
             pushFollow(FOLLOW_2);
             rule__LinkState__LinkStateAlternatives_1_0();
@@ -17374,21 +17283,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SitePattern__SiteAssignment_1"
-    // InternalReactionRules.g:5858:1: rule__SitePattern__SiteAssignment_1 : ( ( RULE_ID ) ) ;
+    // InternalReactionRules.g:5831:1: rule__SitePattern__SiteAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__SitePattern__SiteAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5862:1: ( ( ( RULE_ID ) ) )
-            // InternalReactionRules.g:5863:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5835:1: ( ( ( RULE_ID ) ) )
+            // InternalReactionRules.g:5836:2: ( ( RULE_ID ) )
             {
-            // InternalReactionRules.g:5863:2: ( ( RULE_ID ) )
-            // InternalReactionRules.g:5864:3: ( RULE_ID )
+            // InternalReactionRules.g:5836:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5837:3: ( RULE_ID )
             {
              before(grammarAccess.getSitePatternAccess().getSiteSiteCrossReference_1_0()); 
-            // InternalReactionRules.g:5865:3: ( RULE_ID )
-            // InternalReactionRules.g:5866:4: RULE_ID
+            // InternalReactionRules.g:5838:3: ( RULE_ID )
+            // InternalReactionRules.g:5839:4: RULE_ID
             {
              before(grammarAccess.getSitePatternAccess().getSiteSiteIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -17419,17 +17328,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SitePattern__StateAssignment_2_1"
-    // InternalReactionRules.g:5877:1: rule__SitePattern__StateAssignment_2_1 : ( ruleSiteState ) ;
+    // InternalReactionRules.g:5850:1: rule__SitePattern__StateAssignment_2_1 : ( ruleSiteState ) ;
     public final void rule__SitePattern__StateAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5881:1: ( ( ruleSiteState ) )
-            // InternalReactionRules.g:5882:2: ( ruleSiteState )
+            // InternalReactionRules.g:5854:1: ( ( ruleSiteState ) )
+            // InternalReactionRules.g:5855:2: ( ruleSiteState )
             {
-            // InternalReactionRules.g:5882:2: ( ruleSiteState )
-            // InternalReactionRules.g:5883:3: ruleSiteState
+            // InternalReactionRules.g:5855:2: ( ruleSiteState )
+            // InternalReactionRules.g:5856:3: ruleSiteState
             {
              before(grammarAccess.getSitePatternAccess().getStateSiteStateParserRuleCall_2_1_0()); 
             pushFollow(FOLLOW_2);
@@ -17459,26 +17368,26 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
     // $ANTLR end "rule__SitePattern__StateAssignment_2_1"
 
 
-    // $ANTLR start "rule__SitePattern__LinkStateAssignment_3_1"
-    // InternalReactionRules.g:5892:1: rule__SitePattern__LinkStateAssignment_3_1 : ( ruleLinkState ) ;
-    public final void rule__SitePattern__LinkStateAssignment_3_1() throws RecognitionException {
+    // $ANTLR start "rule__SitePattern__LinkStateAssignment_4"
+    // InternalReactionRules.g:5865:1: rule__SitePattern__LinkStateAssignment_4 : ( ruleLinkState ) ;
+    public final void rule__SitePattern__LinkStateAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5896:1: ( ( ruleLinkState ) )
-            // InternalReactionRules.g:5897:2: ( ruleLinkState )
+            // InternalReactionRules.g:5869:1: ( ( ruleLinkState ) )
+            // InternalReactionRules.g:5870:2: ( ruleLinkState )
             {
-            // InternalReactionRules.g:5897:2: ( ruleLinkState )
-            // InternalReactionRules.g:5898:3: ruleLinkState
+            // InternalReactionRules.g:5870:2: ( ruleLinkState )
+            // InternalReactionRules.g:5871:3: ruleLinkState
             {
-             before(grammarAccess.getSitePatternAccess().getLinkStateLinkStateParserRuleCall_3_1_0()); 
+             before(grammarAccess.getSitePatternAccess().getLinkStateLinkStateParserRuleCall_4_0()); 
             pushFollow(FOLLOW_2);
             ruleLinkState();
 
             state._fsp--;
 
-             after(grammarAccess.getSitePatternAccess().getLinkStateLinkStateParserRuleCall_3_1_0()); 
+             after(grammarAccess.getSitePatternAccess().getLinkStateLinkStateParserRuleCall_4_0()); 
 
             }
 
@@ -17497,21 +17406,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__SitePattern__LinkStateAssignment_3_1"
+    // $ANTLR end "rule__SitePattern__LinkStateAssignment_4"
 
 
     // $ANTLR start "rule__SitePatterns__SitePatternsAssignment_1_0"
-    // InternalReactionRules.g:5907:1: rule__SitePatterns__SitePatternsAssignment_1_0 : ( ruleSitePattern ) ;
+    // InternalReactionRules.g:5880:1: rule__SitePatterns__SitePatternsAssignment_1_0 : ( ruleSitePattern ) ;
     public final void rule__SitePatterns__SitePatternsAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5911:1: ( ( ruleSitePattern ) )
-            // InternalReactionRules.g:5912:2: ( ruleSitePattern )
+            // InternalReactionRules.g:5884:1: ( ( ruleSitePattern ) )
+            // InternalReactionRules.g:5885:2: ( ruleSitePattern )
             {
-            // InternalReactionRules.g:5912:2: ( ruleSitePattern )
-            // InternalReactionRules.g:5913:3: ruleSitePattern
+            // InternalReactionRules.g:5885:2: ( ruleSitePattern )
+            // InternalReactionRules.g:5886:3: ruleSitePattern
             {
              before(grammarAccess.getSitePatternsAccess().getSitePatternsSitePatternParserRuleCall_1_0_0()); 
             pushFollow(FOLLOW_2);
@@ -17542,17 +17451,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__SitePatterns__SitePatternsAssignment_1_1_1"
-    // InternalReactionRules.g:5922:1: rule__SitePatterns__SitePatternsAssignment_1_1_1 : ( ruleSitePattern ) ;
+    // InternalReactionRules.g:5895:1: rule__SitePatterns__SitePatternsAssignment_1_1_1 : ( ruleSitePattern ) ;
     public final void rule__SitePatterns__SitePatternsAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5926:1: ( ( ruleSitePattern ) )
-            // InternalReactionRules.g:5927:2: ( ruleSitePattern )
+            // InternalReactionRules.g:5899:1: ( ( ruleSitePattern ) )
+            // InternalReactionRules.g:5900:2: ( ruleSitePattern )
             {
-            // InternalReactionRules.g:5927:2: ( ruleSitePattern )
-            // InternalReactionRules.g:5928:3: ruleSitePattern
+            // InternalReactionRules.g:5900:2: ( ruleSitePattern )
+            // InternalReactionRules.g:5901:3: ruleSitePattern
             {
              before(grammarAccess.getSitePatternsAccess().getSitePatternsSitePatternParserRuleCall_1_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -17583,21 +17492,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AgentPattern__AgentAssignment_1"
-    // InternalReactionRules.g:5937:1: rule__AgentPattern__AgentAssignment_1 : ( ( RULE_ID ) ) ;
+    // InternalReactionRules.g:5910:1: rule__AgentPattern__AgentAssignment_1 : ( ( RULE_ID ) ) ;
     public final void rule__AgentPattern__AgentAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5941:1: ( ( ( RULE_ID ) ) )
-            // InternalReactionRules.g:5942:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5914:1: ( ( ( RULE_ID ) ) )
+            // InternalReactionRules.g:5915:2: ( ( RULE_ID ) )
             {
-            // InternalReactionRules.g:5942:2: ( ( RULE_ID ) )
-            // InternalReactionRules.g:5943:3: ( RULE_ID )
+            // InternalReactionRules.g:5915:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5916:3: ( RULE_ID )
             {
              before(grammarAccess.getAgentPatternAccess().getAgentAgentCrossReference_1_0()); 
-            // InternalReactionRules.g:5944:3: ( RULE_ID )
-            // InternalReactionRules.g:5945:4: RULE_ID
+            // InternalReactionRules.g:5917:3: ( RULE_ID )
+            // InternalReactionRules.g:5918:4: RULE_ID
             {
              before(grammarAccess.getAgentPatternAccess().getAgentAgentIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -17628,17 +17537,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AgentPattern__SitePatternsAssignment_3"
-    // InternalReactionRules.g:5956:1: rule__AgentPattern__SitePatternsAssignment_3 : ( ruleSitePatterns ) ;
+    // InternalReactionRules.g:5929:1: rule__AgentPattern__SitePatternsAssignment_3 : ( ruleSitePatterns ) ;
     public final void rule__AgentPattern__SitePatternsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5960:1: ( ( ruleSitePatterns ) )
-            // InternalReactionRules.g:5961:2: ( ruleSitePatterns )
+            // InternalReactionRules.g:5933:1: ( ( ruleSitePatterns ) )
+            // InternalReactionRules.g:5934:2: ( ruleSitePatterns )
             {
-            // InternalReactionRules.g:5961:2: ( ruleSitePatterns )
-            // InternalReactionRules.g:5962:3: ruleSitePatterns
+            // InternalReactionRules.g:5934:2: ( ruleSitePatterns )
+            // InternalReactionRules.g:5935:3: ruleSitePatterns
             {
              before(grammarAccess.getAgentPatternAccess().getSitePatternsSitePatternsParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -17669,17 +17578,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Pattern__AgentPatternsAssignment_2_0"
-    // InternalReactionRules.g:5971:1: rule__Pattern__AgentPatternsAssignment_2_0 : ( ruleAgentPattern ) ;
+    // InternalReactionRules.g:5944:1: rule__Pattern__AgentPatternsAssignment_2_0 : ( ruleAgentPattern ) ;
     public final void rule__Pattern__AgentPatternsAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5975:1: ( ( ruleAgentPattern ) )
-            // InternalReactionRules.g:5976:2: ( ruleAgentPattern )
+            // InternalReactionRules.g:5948:1: ( ( ruleAgentPattern ) )
+            // InternalReactionRules.g:5949:2: ( ruleAgentPattern )
             {
-            // InternalReactionRules.g:5976:2: ( ruleAgentPattern )
-            // InternalReactionRules.g:5977:3: ruleAgentPattern
+            // InternalReactionRules.g:5949:2: ( ruleAgentPattern )
+            // InternalReactionRules.g:5950:3: ruleAgentPattern
             {
              before(grammarAccess.getPatternAccess().getAgentPatternsAgentPatternParserRuleCall_2_0_0()); 
             pushFollow(FOLLOW_2);
@@ -17710,17 +17619,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Pattern__AgentPatternsAssignment_2_1_1"
-    // InternalReactionRules.g:5986:1: rule__Pattern__AgentPatternsAssignment_2_1_1 : ( ruleAgentPattern ) ;
+    // InternalReactionRules.g:5959:1: rule__Pattern__AgentPatternsAssignment_2_1_1 : ( ruleAgentPattern ) ;
     public final void rule__Pattern__AgentPatternsAssignment_2_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5990:1: ( ( ruleAgentPattern ) )
-            // InternalReactionRules.g:5991:2: ( ruleAgentPattern )
+            // InternalReactionRules.g:5963:1: ( ( ruleAgentPattern ) )
+            // InternalReactionRules.g:5964:2: ( ruleAgentPattern )
             {
-            // InternalReactionRules.g:5991:2: ( ruleAgentPattern )
-            // InternalReactionRules.g:5992:3: ruleAgentPattern
+            // InternalReactionRules.g:5964:2: ( ruleAgentPattern )
+            // InternalReactionRules.g:5965:3: ruleAgentPattern
             {
              before(grammarAccess.getPatternAccess().getAgentPatternsAgentPatternParserRuleCall_2_1_1_0()); 
             pushFollow(FOLLOW_2);
@@ -17751,17 +17660,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Observation__NameAssignment_1"
-    // InternalReactionRules.g:6001:1: rule__Observation__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalReactionRules.g:5974:1: rule__Observation__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__Observation__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:6005:1: ( ( RULE_ID ) )
-            // InternalReactionRules.g:6006:2: ( RULE_ID )
+            // InternalReactionRules.g:5978:1: ( ( RULE_ID ) )
+            // InternalReactionRules.g:5979:2: ( RULE_ID )
             {
-            // InternalReactionRules.g:6006:2: ( RULE_ID )
-            // InternalReactionRules.g:6007:3: RULE_ID
+            // InternalReactionRules.g:5979:2: ( RULE_ID )
+            // InternalReactionRules.g:5980:3: RULE_ID
             {
              before(grammarAccess.getObservationAccess().getNameIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -17788,17 +17697,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Observation__ObservationPatternAssignment_2"
-    // InternalReactionRules.g:6016:1: rule__Observation__ObservationPatternAssignment_2 : ( rulePatternAssignment ) ;
+    // InternalReactionRules.g:5989:1: rule__Observation__ObservationPatternAssignment_2 : ( rulePatternAssignment ) ;
     public final void rule__Observation__ObservationPatternAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:6020:1: ( ( rulePatternAssignment ) )
-            // InternalReactionRules.g:6021:2: ( rulePatternAssignment )
+            // InternalReactionRules.g:5993:1: ( ( rulePatternAssignment ) )
+            // InternalReactionRules.g:5994:2: ( rulePatternAssignment )
             {
-            // InternalReactionRules.g:6021:2: ( rulePatternAssignment )
-            // InternalReactionRules.g:6022:3: rulePatternAssignment
+            // InternalReactionRules.g:5994:2: ( rulePatternAssignment )
+            // InternalReactionRules.g:5995:3: rulePatternAssignment
             {
              before(grammarAccess.getObservationAccess().getObservationPatternPatternAssignmentParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -17829,17 +17738,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Initial__NameAssignment_1"
-    // InternalReactionRules.g:6031:1: rule__Initial__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalReactionRules.g:6004:1: rule__Initial__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__Initial__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:6035:1: ( ( RULE_ID ) )
-            // InternalReactionRules.g:6036:2: ( RULE_ID )
+            // InternalReactionRules.g:6008:1: ( ( RULE_ID ) )
+            // InternalReactionRules.g:6009:2: ( RULE_ID )
             {
-            // InternalReactionRules.g:6036:2: ( RULE_ID )
-            // InternalReactionRules.g:6037:3: RULE_ID
+            // InternalReactionRules.g:6009:2: ( RULE_ID )
+            // InternalReactionRules.g:6010:3: RULE_ID
             {
              before(grammarAccess.getInitialAccess().getNameIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -17866,17 +17775,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Initial__CountAssignment_2"
-    // InternalReactionRules.g:6046:1: rule__Initial__CountAssignment_2 : ( ruleUnsignedInteger ) ;
+    // InternalReactionRules.g:6019:1: rule__Initial__CountAssignment_2 : ( ruleUnsignedInteger ) ;
     public final void rule__Initial__CountAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:6050:1: ( ( ruleUnsignedInteger ) )
-            // InternalReactionRules.g:6051:2: ( ruleUnsignedInteger )
+            // InternalReactionRules.g:6023:1: ( ( ruleUnsignedInteger ) )
+            // InternalReactionRules.g:6024:2: ( ruleUnsignedInteger )
             {
-            // InternalReactionRules.g:6051:2: ( ruleUnsignedInteger )
-            // InternalReactionRules.g:6052:3: ruleUnsignedInteger
+            // InternalReactionRules.g:6024:2: ( ruleUnsignedInteger )
+            // InternalReactionRules.g:6025:3: ruleUnsignedInteger
             {
              before(grammarAccess.getInitialAccess().getCountUnsignedIntegerParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -17907,17 +17816,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Initial__InitialPatternAssignment_3"
-    // InternalReactionRules.g:6061:1: rule__Initial__InitialPatternAssignment_3 : ( rulePatternAssignment ) ;
+    // InternalReactionRules.g:6034:1: rule__Initial__InitialPatternAssignment_3 : ( rulePatternAssignment ) ;
     public final void rule__Initial__InitialPatternAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:6065:1: ( ( rulePatternAssignment ) )
-            // InternalReactionRules.g:6066:2: ( rulePatternAssignment )
+            // InternalReactionRules.g:6038:1: ( ( rulePatternAssignment ) )
+            // InternalReactionRules.g:6039:2: ( rulePatternAssignment )
             {
-            // InternalReactionRules.g:6066:2: ( rulePatternAssignment )
-            // InternalReactionRules.g:6067:3: rulePatternAssignment
+            // InternalReactionRules.g:6039:2: ( rulePatternAssignment )
+            // InternalReactionRules.g:6040:3: rulePatternAssignment
             {
              before(grammarAccess.getInitialAccess().getInitialPatternPatternAssignmentParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -17948,17 +17857,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AssignFromPattern__PatternAssignment"
-    // InternalReactionRules.g:6076:1: rule__AssignFromPattern__PatternAssignment : ( rulePattern ) ;
+    // InternalReactionRules.g:6049:1: rule__AssignFromPattern__PatternAssignment : ( rulePattern ) ;
     public final void rule__AssignFromPattern__PatternAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:6080:1: ( ( rulePattern ) )
-            // InternalReactionRules.g:6081:2: ( rulePattern )
+            // InternalReactionRules.g:6053:1: ( ( rulePattern ) )
+            // InternalReactionRules.g:6054:2: ( rulePattern )
             {
-            // InternalReactionRules.g:6081:2: ( rulePattern )
-            // InternalReactionRules.g:6082:3: rulePattern
+            // InternalReactionRules.g:6054:2: ( rulePattern )
+            // InternalReactionRules.g:6055:3: rulePattern
             {
              before(grammarAccess.getAssignFromPatternAccess().getPatternPatternParserRuleCall_0()); 
             pushFollow(FOLLOW_2);
@@ -17989,21 +17898,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__AssignFromVariable__PatternVarAssignment"
-    // InternalReactionRules.g:6091:1: rule__AssignFromVariable__PatternVarAssignment : ( ( RULE_ID ) ) ;
+    // InternalReactionRules.g:6064:1: rule__AssignFromVariable__PatternVarAssignment : ( ( RULE_ID ) ) ;
     public final void rule__AssignFromVariable__PatternVarAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:6095:1: ( ( ( RULE_ID ) ) )
-            // InternalReactionRules.g:6096:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:6068:1: ( ( ( RULE_ID ) ) )
+            // InternalReactionRules.g:6069:2: ( ( RULE_ID ) )
             {
-            // InternalReactionRules.g:6096:2: ( ( RULE_ID ) )
-            // InternalReactionRules.g:6097:3: ( RULE_ID )
+            // InternalReactionRules.g:6069:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:6070:3: ( RULE_ID )
             {
              before(grammarAccess.getAssignFromVariableAccess().getPatternVarPatternVariableCrossReference_0()); 
-            // InternalReactionRules.g:6098:3: ( RULE_ID )
-            // InternalReactionRules.g:6099:4: RULE_ID
+            // InternalReactionRules.g:6071:3: ( RULE_ID )
+            // InternalReactionRules.g:6072:4: RULE_ID
             {
              before(grammarAccess.getAssignFromVariableAccess().getPatternVarPatternVariableIDTerminalRuleCall_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -18034,21 +17943,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__RuleVariables__VariablesAssignment_0"
-    // InternalReactionRules.g:6110:1: rule__RuleVariables__VariablesAssignment_0 : ( ( RULE_ID ) ) ;
+    // InternalReactionRules.g:6083:1: rule__RuleVariables__VariablesAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__RuleVariables__VariablesAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:6114:1: ( ( ( RULE_ID ) ) )
-            // InternalReactionRules.g:6115:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:6087:1: ( ( ( RULE_ID ) ) )
+            // InternalReactionRules.g:6088:2: ( ( RULE_ID ) )
             {
-            // InternalReactionRules.g:6115:2: ( ( RULE_ID ) )
-            // InternalReactionRules.g:6116:3: ( RULE_ID )
+            // InternalReactionRules.g:6088:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:6089:3: ( RULE_ID )
             {
              before(grammarAccess.getRuleVariablesAccess().getVariablesArithmeticVariableCrossReference_0_0()); 
-            // InternalReactionRules.g:6117:3: ( RULE_ID )
-            // InternalReactionRules.g:6118:4: RULE_ID
+            // InternalReactionRules.g:6090:3: ( RULE_ID )
+            // InternalReactionRules.g:6091:4: RULE_ID
             {
              before(grammarAccess.getRuleVariablesAccess().getVariablesArithmeticVariableIDTerminalRuleCall_0_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -18079,21 +17988,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__RuleVariables__VariablesAssignment_1_1"
-    // InternalReactionRules.g:6129:1: rule__RuleVariables__VariablesAssignment_1_1 : ( ( RULE_ID ) ) ;
+    // InternalReactionRules.g:6102:1: rule__RuleVariables__VariablesAssignment_1_1 : ( ( RULE_ID ) ) ;
     public final void rule__RuleVariables__VariablesAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:6133:1: ( ( ( RULE_ID ) ) )
-            // InternalReactionRules.g:6134:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:6106:1: ( ( ( RULE_ID ) ) )
+            // InternalReactionRules.g:6107:2: ( ( RULE_ID ) )
             {
-            // InternalReactionRules.g:6134:2: ( ( RULE_ID ) )
-            // InternalReactionRules.g:6135:3: ( RULE_ID )
+            // InternalReactionRules.g:6107:2: ( ( RULE_ID ) )
+            // InternalReactionRules.g:6108:3: ( RULE_ID )
             {
              before(grammarAccess.getRuleVariablesAccess().getVariablesArithmeticVariableCrossReference_1_1_0()); 
-            // InternalReactionRules.g:6136:3: ( RULE_ID )
-            // InternalReactionRules.g:6137:4: RULE_ID
+            // InternalReactionRules.g:6109:3: ( RULE_ID )
+            // InternalReactionRules.g:6110:4: RULE_ID
             {
              before(grammarAccess.getRuleVariablesAccess().getVariablesArithmeticVariableIDTerminalRuleCall_1_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -18124,17 +18033,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__UnidirectionalRule__LhsAssignment_0"
-    // InternalReactionRules.g:6148:1: rule__UnidirectionalRule__LhsAssignment_0 : ( rulePatternAssignment ) ;
+    // InternalReactionRules.g:6121:1: rule__UnidirectionalRule__LhsAssignment_0 : ( rulePatternAssignment ) ;
     public final void rule__UnidirectionalRule__LhsAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:6152:1: ( ( rulePatternAssignment ) )
-            // InternalReactionRules.g:6153:2: ( rulePatternAssignment )
+            // InternalReactionRules.g:6125:1: ( ( rulePatternAssignment ) )
+            // InternalReactionRules.g:6126:2: ( rulePatternAssignment )
             {
-            // InternalReactionRules.g:6153:2: ( rulePatternAssignment )
-            // InternalReactionRules.g:6154:3: rulePatternAssignment
+            // InternalReactionRules.g:6126:2: ( rulePatternAssignment )
+            // InternalReactionRules.g:6127:3: rulePatternAssignment
             {
              before(grammarAccess.getUnidirectionalRuleAccess().getLhsPatternAssignmentParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -18165,17 +18074,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__UnidirectionalRule__OperatorAssignment_1"
-    // InternalReactionRules.g:6163:1: rule__UnidirectionalRule__OperatorAssignment_1 : ( RULE_UNI ) ;
+    // InternalReactionRules.g:6136:1: rule__UnidirectionalRule__OperatorAssignment_1 : ( RULE_UNI ) ;
     public final void rule__UnidirectionalRule__OperatorAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:6167:1: ( ( RULE_UNI ) )
-            // InternalReactionRules.g:6168:2: ( RULE_UNI )
+            // InternalReactionRules.g:6140:1: ( ( RULE_UNI ) )
+            // InternalReactionRules.g:6141:2: ( RULE_UNI )
             {
-            // InternalReactionRules.g:6168:2: ( RULE_UNI )
-            // InternalReactionRules.g:6169:3: RULE_UNI
+            // InternalReactionRules.g:6141:2: ( RULE_UNI )
+            // InternalReactionRules.g:6142:3: RULE_UNI
             {
              before(grammarAccess.getUnidirectionalRuleAccess().getOperatorUNITerminalRuleCall_1_0()); 
             match(input,RULE_UNI,FOLLOW_2); 
@@ -18202,17 +18111,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__UnidirectionalRule__RhsAssignment_2"
-    // InternalReactionRules.g:6178:1: rule__UnidirectionalRule__RhsAssignment_2 : ( rulePatternAssignment ) ;
+    // InternalReactionRules.g:6151:1: rule__UnidirectionalRule__RhsAssignment_2 : ( rulePatternAssignment ) ;
     public final void rule__UnidirectionalRule__RhsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:6182:1: ( ( rulePatternAssignment ) )
-            // InternalReactionRules.g:6183:2: ( rulePatternAssignment )
+            // InternalReactionRules.g:6155:1: ( ( rulePatternAssignment ) )
+            // InternalReactionRules.g:6156:2: ( rulePatternAssignment )
             {
-            // InternalReactionRules.g:6183:2: ( rulePatternAssignment )
-            // InternalReactionRules.g:6184:3: rulePatternAssignment
+            // InternalReactionRules.g:6156:2: ( rulePatternAssignment )
+            // InternalReactionRules.g:6157:3: rulePatternAssignment
             {
              before(grammarAccess.getUnidirectionalRuleAccess().getRhsPatternAssignmentParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -18243,17 +18152,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__UnidirectionalRule__VariablesAssignment_5"
-    // InternalReactionRules.g:6193:1: rule__UnidirectionalRule__VariablesAssignment_5 : ( ruleRuleVariables ) ;
+    // InternalReactionRules.g:6166:1: rule__UnidirectionalRule__VariablesAssignment_5 : ( ruleRuleVariables ) ;
     public final void rule__UnidirectionalRule__VariablesAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:6197:1: ( ( ruleRuleVariables ) )
-            // InternalReactionRules.g:6198:2: ( ruleRuleVariables )
+            // InternalReactionRules.g:6170:1: ( ( ruleRuleVariables ) )
+            // InternalReactionRules.g:6171:2: ( ruleRuleVariables )
             {
-            // InternalReactionRules.g:6198:2: ( ruleRuleVariables )
-            // InternalReactionRules.g:6199:3: ruleRuleVariables
+            // InternalReactionRules.g:6171:2: ( ruleRuleVariables )
+            // InternalReactionRules.g:6172:3: ruleRuleVariables
             {
              before(grammarAccess.getUnidirectionalRuleAccess().getVariablesRuleVariablesParserRuleCall_5_0()); 
             pushFollow(FOLLOW_2);
@@ -18284,17 +18193,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__BidirectionalRule__LhsAssignment_0"
-    // InternalReactionRules.g:6208:1: rule__BidirectionalRule__LhsAssignment_0 : ( rulePatternAssignment ) ;
+    // InternalReactionRules.g:6181:1: rule__BidirectionalRule__LhsAssignment_0 : ( rulePatternAssignment ) ;
     public final void rule__BidirectionalRule__LhsAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:6212:1: ( ( rulePatternAssignment ) )
-            // InternalReactionRules.g:6213:2: ( rulePatternAssignment )
+            // InternalReactionRules.g:6185:1: ( ( rulePatternAssignment ) )
+            // InternalReactionRules.g:6186:2: ( rulePatternAssignment )
             {
-            // InternalReactionRules.g:6213:2: ( rulePatternAssignment )
-            // InternalReactionRules.g:6214:3: rulePatternAssignment
+            // InternalReactionRules.g:6186:2: ( rulePatternAssignment )
+            // InternalReactionRules.g:6187:3: rulePatternAssignment
             {
              before(grammarAccess.getBidirectionalRuleAccess().getLhsPatternAssignmentParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -18325,17 +18234,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__BidirectionalRule__OperatorAssignment_1"
-    // InternalReactionRules.g:6223:1: rule__BidirectionalRule__OperatorAssignment_1 : ( RULE_BI ) ;
+    // InternalReactionRules.g:6196:1: rule__BidirectionalRule__OperatorAssignment_1 : ( RULE_BI ) ;
     public final void rule__BidirectionalRule__OperatorAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:6227:1: ( ( RULE_BI ) )
-            // InternalReactionRules.g:6228:2: ( RULE_BI )
+            // InternalReactionRules.g:6200:1: ( ( RULE_BI ) )
+            // InternalReactionRules.g:6201:2: ( RULE_BI )
             {
-            // InternalReactionRules.g:6228:2: ( RULE_BI )
-            // InternalReactionRules.g:6229:3: RULE_BI
+            // InternalReactionRules.g:6201:2: ( RULE_BI )
+            // InternalReactionRules.g:6202:3: RULE_BI
             {
              before(grammarAccess.getBidirectionalRuleAccess().getOperatorBITerminalRuleCall_1_0()); 
             match(input,RULE_BI,FOLLOW_2); 
@@ -18362,17 +18271,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__BidirectionalRule__RhsAssignment_2"
-    // InternalReactionRules.g:6238:1: rule__BidirectionalRule__RhsAssignment_2 : ( rulePatternAssignment ) ;
+    // InternalReactionRules.g:6211:1: rule__BidirectionalRule__RhsAssignment_2 : ( rulePatternAssignment ) ;
     public final void rule__BidirectionalRule__RhsAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:6242:1: ( ( rulePatternAssignment ) )
-            // InternalReactionRules.g:6243:2: ( rulePatternAssignment )
+            // InternalReactionRules.g:6215:1: ( ( rulePatternAssignment ) )
+            // InternalReactionRules.g:6216:2: ( rulePatternAssignment )
             {
-            // InternalReactionRules.g:6243:2: ( rulePatternAssignment )
-            // InternalReactionRules.g:6244:3: rulePatternAssignment
+            // InternalReactionRules.g:6216:2: ( rulePatternAssignment )
+            // InternalReactionRules.g:6217:3: rulePatternAssignment
             {
              before(grammarAccess.getBidirectionalRuleAccess().getRhsPatternAssignmentParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -18403,17 +18312,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__BidirectionalRule__VariablesAssignment_5"
-    // InternalReactionRules.g:6253:1: rule__BidirectionalRule__VariablesAssignment_5 : ( ruleRuleVariables ) ;
+    // InternalReactionRules.g:6226:1: rule__BidirectionalRule__VariablesAssignment_5 : ( ruleRuleVariables ) ;
     public final void rule__BidirectionalRule__VariablesAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:6257:1: ( ( ruleRuleVariables ) )
-            // InternalReactionRules.g:6258:2: ( ruleRuleVariables )
+            // InternalReactionRules.g:6230:1: ( ( ruleRuleVariables ) )
+            // InternalReactionRules.g:6231:2: ( ruleRuleVariables )
             {
-            // InternalReactionRules.g:6258:2: ( ruleRuleVariables )
-            // InternalReactionRules.g:6259:3: ruleRuleVariables
+            // InternalReactionRules.g:6231:2: ( ruleRuleVariables )
+            // InternalReactionRules.g:6232:3: ruleRuleVariables
             {
              before(grammarAccess.getBidirectionalRuleAccess().getVariablesRuleVariablesParserRuleCall_5_0()); 
             pushFollow(FOLLOW_2);
@@ -18444,17 +18353,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Rule__NameAssignment_1"
-    // InternalReactionRules.g:6268:1: rule__Rule__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalReactionRules.g:6241:1: rule__Rule__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__Rule__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:6272:1: ( ( RULE_ID ) )
-            // InternalReactionRules.g:6273:2: ( RULE_ID )
+            // InternalReactionRules.g:6245:1: ( ( RULE_ID ) )
+            // InternalReactionRules.g:6246:2: ( RULE_ID )
             {
-            // InternalReactionRules.g:6273:2: ( RULE_ID )
-            // InternalReactionRules.g:6274:3: RULE_ID
+            // InternalReactionRules.g:6246:2: ( RULE_ID )
+            // InternalReactionRules.g:6247:3: RULE_ID
             {
              before(grammarAccess.getRuleAccess().getNameIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -18481,17 +18390,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__Rule__RuleAssignment_2"
-    // InternalReactionRules.g:6283:1: rule__Rule__RuleAssignment_2 : ( ruleRuleBody ) ;
+    // InternalReactionRules.g:6256:1: rule__Rule__RuleAssignment_2 : ( ruleRuleBody ) ;
     public final void rule__Rule__RuleAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:6287:1: ( ( ruleRuleBody ) )
-            // InternalReactionRules.g:6288:2: ( ruleRuleBody )
+            // InternalReactionRules.g:6260:1: ( ( ruleRuleBody ) )
+            // InternalReactionRules.g:6261:2: ( ruleRuleBody )
             {
-            // InternalReactionRules.g:6288:2: ( ruleRuleBody )
-            // InternalReactionRules.g:6289:3: ruleRuleBody
+            // InternalReactionRules.g:6261:2: ( ruleRuleBody )
+            // InternalReactionRules.g:6262:3: ruleRuleBody
             {
              before(grammarAccess.getRuleAccess().getRuleRuleBodyParserRuleCall_2_0()); 
             pushFollow(FOLLOW_2);
@@ -18526,18 +18435,18 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
     protected DFA3 dfa3 = new DFA3(this);
     protected DFA7 dfa7 = new DFA7(this);
     static final String dfa_1s = "\12\uffff";
-    static final String dfa_2s = "\2\uffff\1\4\1\6\3\uffff\1\11\2\uffff";
-    static final String dfa_3s = "\2\4\2\27\1\uffff\1\4\1\uffff\1\5\2\uffff";
-    static final String dfa_4s = "\1\26\1\4\2\44\1\uffff\1\4\1\uffff\1\44\2\uffff";
-    static final String dfa_5s = "\4\uffff\1\2\1\uffff\1\3\1\uffff\1\4\1\1";
+    static final String dfa_2s = "\2\uffff\1\5\1\6\3\uffff\1\11\2\uffff";
+    static final String dfa_3s = "\2\4\2\27\1\4\2\uffff\1\5\2\uffff";
+    static final String dfa_4s = "\1\26\1\4\2\44\1\4\2\uffff\1\44\2\uffff";
+    static final String dfa_5s = "\5\uffff\1\2\1\3\1\uffff\1\4\1\1";
     static final String dfa_6s = "\12\uffff}>";
     static final String[] dfa_7s = {
             "\1\2\21\uffff\1\1",
             "\1\3",
-            "\1\5\5\uffff\2\4\3\uffff\3\4",
-            "\1\5\5\uffff\2\6\3\uffff\3\6",
-            "",
+            "\1\4\5\uffff\2\5\3\uffff\3\5",
+            "\1\4\5\uffff\2\6\3\uffff\3\6",
             "\1\7",
+            "",
             "",
             "\1\10\27\uffff\2\11\3\uffff\3\11",
             "",
@@ -18570,8 +18479,8 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
     }
     static final String dfa_8s = "\103\uffff";
-    static final String dfa_9s = "\2\10\1\14\1\33\1\14\2\uffff\1\10\1\30\1\31\1\10\1\4\2\10\1\31\2\41\1\27\2\41\1\30\1\33\2\32\2\10\1\4\1\10\1\41\1\31\2\41\1\27\2\41\1\30\1\31\2\32\2\10\1\4\1\10\1\41\1\31\2\41\1\27\2\41\1\30\2\32\2\10\1\4\1\41\1\31\2\41\1\27\2\41\2\32\1\10\1\41";
-    static final String dfa_10s = "\1\30\1\31\1\15\1\33\1\15\2\uffff\1\34\1\40\1\32\1\10\1\13\2\10\1\31\2\41\1\27\2\41\1\40\1\33\1\40\1\34\2\10\1\13\1\34\1\41\1\31\2\41\1\27\2\41\1\40\1\32\1\40\1\34\2\10\1\13\1\10\1\41\1\31\2\41\1\27\2\41\2\40\1\34\2\10\1\13\1\41\1\31\2\41\1\27\2\41\1\40\1\34\1\10\1\41";
+    static final String dfa_9s = "\2\10\1\14\1\33\1\14\2\uffff\1\10\1\30\1\31\1\10\1\4\1\10\1\31\2\41\1\27\2\41\1\33\1\40\1\32\3\10\1\41\1\30\1\31\1\30\1\10\1\4\1\10\1\4\1\31\2\41\1\27\2\41\1\31\2\41\1\27\2\41\1\40\1\32\1\10\1\40\1\32\2\10\2\41\1\30\1\10\1\4\1\31\2\41\1\27\2\41\1\40\1\32\1\10\1\41";
+    static final String dfa_10s = "\1\30\1\31\1\15\1\33\1\15\2\uffff\1\34\1\40\1\32\1\10\1\13\1\10\1\31\2\41\1\27\2\41\1\33\1\40\1\34\1\10\1\34\1\10\1\41\1\40\1\32\1\40\1\10\1\13\1\10\1\13\1\31\2\41\1\27\2\41\1\31\2\41\1\27\2\41\1\40\1\34\1\10\1\40\1\34\2\10\2\41\1\40\1\10\1\13\1\31\2\41\1\27\2\41\1\40\1\34\1\10\1\41";
     static final String dfa_11s = "\5\uffff\1\2\1\1\74\uffff";
     static final String dfa_12s = "\103\uffff}>";
     static final String[] dfa_13s = {
@@ -18583,63 +18492,63 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
             "",
             "",
             "\1\10\23\uffff\1\11",
-            "\1\12\1\uffff\1\14\1\uffff\1\11\3\uffff\1\13",
-            "\1\4\1\15",
-            "\1\16",
-            "\1\22\3\uffff\1\21\1\17\1\20\1\23",
+            "\1\12\7\uffff\1\13",
+            "\1\4\1\14",
+            "\1\15",
+            "\1\21\3\uffff\1\20\1\16\1\17\1\22",
+            "\1\23",
             "\1\24",
             "\1\25",
+            "\1\25",
             "\1\26",
+            "\1\25",
+            "\1\25",
             "\1\27",
-            "\1\27",
-            "\1\30",
-            "\1\27",
-            "\1\27",
-            "\1\31\1\uffff\1\14\1\uffff\1\11\3\uffff\1\32",
-            "\1\33",
-            "\1\14\1\uffff\1\11\3\uffff\1\13",
-            "\1\14\1\uffff\1\11",
+            "\1\13",
+            "\1\30\1\uffff\1\11",
+            "\1\31",
+            "\1\32\23\uffff\1\33",
             "\1\34",
-            "\1\35",
-            "\1\41\3\uffff\1\40\1\36\1\37\1\42",
-            "\1\43\23\uffff\1\44",
-            "\1\27",
-            "\1\45",
-            "\1\46",
-            "\1\46",
+            "\1\25",
+            "\1\35\7\uffff\1\36",
+            "\1\4\1\14",
+            "\1\37\7\uffff\1\40",
+            "\1\41",
+            "\1\45\3\uffff\1\44\1\42\1\43\1\46",
             "\1\47",
-            "\1\46",
-            "\1\46",
-            "\1\50\1\uffff\1\52\1\uffff\1\44\3\uffff\1\51",
-            "\1\4\1\15",
-            "\1\14\1\uffff\1\11\3\uffff\1\32",
-            "\1\14\1\uffff\1\11",
-            "\1\53",
-            "\1\54",
-            "\1\60\3\uffff\1\57\1\55\1\56\1\61",
+            "\1\53\3\uffff\1\52\1\50\1\51\1\54",
+            "\1\55",
+            "\1\56",
+            "\1\56",
+            "\1\57",
+            "\1\56",
+            "\1\56",
+            "\1\60",
+            "\1\61",
+            "\1\61",
             "\1\62",
-            "\1\46",
-            "\1\63",
+            "\1\61",
+            "\1\61",
+            "\1\36",
+            "\1\63\1\uffff\1\33",
             "\1\64",
-            "\1\64",
+            "\1\40",
+            "\1\30\1\uffff\1\11",
             "\1\65",
-            "\1\64",
-            "\1\64",
-            "\1\66\1\uffff\1\52\1\uffff\1\44\3\uffff\1\67",
-            "\1\52\1\uffff\1\44\3\uffff\1\51",
-            "\1\52\1\uffff\1\44",
-            "\1\70",
+            "\1\66",
+            "\1\56",
+            "\1\61",
+            "\1\67\7\uffff\1\70",
             "\1\71",
             "\1\75\3\uffff\1\74\1\72\1\73\1\76",
-            "\1\64",
             "\1\77",
             "\1\100",
             "\1\100",
             "\1\101",
             "\1\100",
             "\1\100",
-            "\1\52\1\uffff\1\44\3\uffff\1\67",
-            "\1\52\1\uffff\1\44",
+            "\1\70",
+            "\1\63\1\uffff\1\33",
             "\1\102",
             "\1\100"
     };
@@ -18693,8 +18602,8 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
     public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000000000000200L});
     public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000000000000400L});
     public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000000101000000L});
-    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000002000000L});
     public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000004000000L});
     public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000010000000L});
     public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000002000100L});

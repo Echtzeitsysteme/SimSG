@@ -6,6 +6,7 @@ package biochemsimulation.reactionrules.validation;
 import biochemsimulation.reactionrules.reactionRules.Agent;
 import biochemsimulation.reactionrules.reactionRules.AgentPattern;
 import biochemsimulation.reactionrules.reactionRules.ArithmeticVariable;
+import biochemsimulation.reactionrules.reactionRules.IndexedLink;
 import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.Observation;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
@@ -15,6 +16,7 @@ import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.Variable;
 import biochemsimulation.reactionrules.validation.AbstractReactionRulesValidator;
+import com.google.common.base.Objects;
 import java.util.HashSet;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
@@ -234,6 +236,29 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
           this.error(_plus, ReactionRulesPackage.Literals.AGENT_PATTERN__SITE_PATTERNS);
         }
       }
+    }
+  }
+  
+  @Check
+  public void checkIndexedLinkConstraint(final IndexedLink indexedLink) {
+    final EObject rootElement = EcoreUtil2.getRootContainer(indexedLink);
+    List<IndexedLink> candidates = EcoreUtil2.<IndexedLink>getAllContentsOfType(rootElement, IndexedLink.class);
+    int c = 1;
+    final Integer thisNum = Integer.valueOf(indexedLink.getState());
+    for (final IndexedLink cnd : candidates) {
+      {
+        final IndexedLink candidate = ((IndexedLink) cnd);
+        final Integer cNum = Integer.valueOf(candidate.getState());
+        if ((Objects.equal(cNum, thisNum) && (!candidate.equals(indexedLink)))) {
+          c++;
+        }
+        if ((c > 2)) {
+          this.error("This indexed link refers to more than two end-points aka. sites.", ReactionRulesPackage.Literals.INDEXED_LINK__STATE);
+        }
+      }
+    }
+    if ((c < 2)) {
+      this.error("This indexed link must refer to exactly two end-points aka. sites.", ReactionRulesPackage.Literals.INDEXED_LINK__STATE);
     }
   }
 }

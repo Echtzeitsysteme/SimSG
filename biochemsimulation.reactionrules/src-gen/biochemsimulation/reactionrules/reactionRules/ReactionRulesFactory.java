@@ -366,13 +366,13 @@ public interface ReactionRulesFactory extends EFactory
   WhatEver createWhatEver();
 
   /**
-   * Returns a new object of class '<em>Limit Link</em>'.
+   * Returns a new object of class '<em>Indexed Link</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Limit Link</em>'.
+   * @return a new object of class '<em>Indexed Link</em>'.
    * @generated
    */
-  LimitLink createLimitLink();
+  IndexedLink createIndexedLink();
 
   /**
    * Returns a new object of class '<em>Exact Link</em>'.

@@ -16,8 +16,8 @@ import biochemsimulation.reactionrules.reactionRules.ExactLink;
 import biochemsimulation.reactionrules.reactionRules.ExactLinkAgent;
 import biochemsimulation.reactionrules.reactionRules.ExactLinkSite;
 import biochemsimulation.reactionrules.reactionRules.FreeLink;
+import biochemsimulation.reactionrules.reactionRules.IndexedLink;
 import biochemsimulation.reactionrules.reactionRules.Initial;
-import biochemsimulation.reactionrules.reactionRules.LimitLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.Model;
 import biochemsimulation.reactionrules.reactionRules.ModelLocation;
@@ -332,7 +332,7 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass limitLinkEClass = null;
+  private EClass indexedLinkEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1299,9 +1299,9 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getLimitLink()
+  public EClass getIndexedLink()
   {
-    return limitLinkEClass;
+    return indexedLinkEClass;
   }
 
   /**
@@ -1309,9 +1309,9 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getLimitLink_State()
+  public EAttribute getIndexedLink_State()
   {
-    return (EAttribute)limitLinkEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)indexedLinkEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1501,8 +1501,8 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     whatEverEClass = createEClass(WHAT_EVER);
     createEAttribute(whatEverEClass, WHAT_EVER__NAME);
 
-    limitLinkEClass = createEClass(LIMIT_LINK);
-    createEAttribute(limitLinkEClass, LIMIT_LINK__STATE);
+    indexedLinkEClass = createEClass(INDEXED_LINK);
+    createEAttribute(indexedLinkEClass, INDEXED_LINK__STATE);
 
     exactLinkEClass = createEClass(EXACT_LINK);
     createEReference(exactLinkEClass, EXACT_LINK__LINK_AGENT);
@@ -1552,7 +1552,7 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     semiLinkEClass.getESuperTypes().add(this.getLinkState());
     freeLinkEClass.getESuperTypes().add(this.getLinkState());
     whatEverEClass.getESuperTypes().add(this.getLinkState());
-    limitLinkEClass.getESuperTypes().add(this.getLinkState());
+    indexedLinkEClass.getESuperTypes().add(this.getLinkState());
     exactLinkEClass.getESuperTypes().add(this.getLinkState());
 
     // Initialize classes and features; add operations and parameters
@@ -1683,8 +1683,8 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     initEClass(whatEverEClass, WhatEver.class, "WhatEver", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getWhatEver_Name(), ecorePackage.getEString(), "name", null, 0, 1, WhatEver.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(limitLinkEClass, LimitLink.class, "LimitLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getLimitLink_State(), ecorePackage.getEString(), "state", null, 0, 1, LimitLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(indexedLinkEClass, IndexedLink.class, "IndexedLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIndexedLink_State(), ecorePackage.getEString(), "state", null, 0, 1, IndexedLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exactLinkEClass, ExactLink.class, "ExactLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExactLink_LinkAgent(), this.getExactLinkAgent(), null, "linkAgent", null, 0, 1, ExactLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

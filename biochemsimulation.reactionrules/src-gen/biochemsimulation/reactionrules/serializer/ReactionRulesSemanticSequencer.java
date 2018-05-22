@@ -16,8 +16,8 @@ import biochemsimulation.reactionrules.reactionRules.ExactLink;
 import biochemsimulation.reactionrules.reactionRules.ExactLinkAgent;
 import biochemsimulation.reactionrules.reactionRules.ExactLinkSite;
 import biochemsimulation.reactionrules.reactionRules.FreeLink;
+import biochemsimulation.reactionrules.reactionRules.IndexedLink;
 import biochemsimulation.reactionrules.reactionRules.Initial;
-import biochemsimulation.reactionrules.reactionRules.LimitLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.Model;
 import biochemsimulation.reactionrules.reactionRules.ModelPath;
@@ -106,11 +106,11 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 			case ReactionRulesPackage.FREE_LINK:
 				sequence_FreeLink(context, (FreeLink) semanticObject); 
 				return; 
+			case ReactionRulesPackage.INDEXED_LINK:
+				sequence_IndexedLink(context, (IndexedLink) semanticObject); 
+				return; 
 			case ReactionRulesPackage.INITIAL:
 				sequence_Initial(context, (Initial) semanticObject); 
-				return; 
-			case ReactionRulesPackage.LIMIT_LINK:
-				sequence_LimitLink(context, (LimitLink) semanticObject); 
 				return; 
 			case ReactionRulesPackage.LINK_STATE:
 				sequence_LinkState(context, (LinkState) semanticObject); 
@@ -486,6 +486,24 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Contexts:
+	 *     IndexedLink returns IndexedLink
+	 *
+	 * Constraint:
+	 *     state=UnsignedInteger
+	 */
+	protected void sequence_IndexedLink(ISerializationContext context, IndexedLink semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.INDEXED_LINK__STATE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.INDEXED_LINK__STATE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getIndexedLinkAccess().getStateUnsignedIntegerParserRuleCall_1_0(), semanticObject.getState());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ReactionProperty returns Initial
 	 *     Initial returns Initial
 	 *
@@ -511,28 +529,10 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Contexts:
-	 *     LimitLink returns LimitLink
-	 *
-	 * Constraint:
-	 *     state=UnsignedInteger
-	 */
-	protected void sequence_LimitLink(ISerializationContext context, LimitLink semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.LIMIT_LINK__STATE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.LIMIT_LINK__STATE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getLimitLinkAccess().getStateUnsignedIntegerParserRuleCall_1_0(), semanticObject.getState());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     LinkState returns LinkState
 	 *
 	 * Constraint:
-	 *     (linkState=SemiLink | linkState=FreeLink | linkState=ExactLink | linkState=LimitLink | linkState=WhatEver)
+	 *     (linkState=SemiLink | linkState=FreeLink | linkState=ExactLink | linkState=IndexedLink | linkState=WhatEver)
 	 */
 	protected void sequence_LinkState(ISerializationContext context, LinkState semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -727,7 +727,7 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     SitePattern returns SitePattern
 	 *
 	 * Constraint:
-	 *     (site=[Site|ID] state=SiteState? linkState=LinkState?)
+	 *     (site=[Site|ID] state=SiteState? linkState=LinkState)
 	 */
 	protected void sequence_SitePattern(ISerializationContext context, SitePattern semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

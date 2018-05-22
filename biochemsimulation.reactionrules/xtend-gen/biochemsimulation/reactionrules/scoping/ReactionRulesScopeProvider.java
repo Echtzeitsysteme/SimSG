@@ -10,12 +10,12 @@ import biochemsimulation.reactionrules.reactionRules.ExactLinkAgent;
 import biochemsimulation.reactionrules.reactionRules.ExactLinkSite;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
+import biochemsimulation.reactionrules.reactionRules.SitePatterns;
 import biochemsimulation.reactionrules.reactionRules.SiteState;
 import biochemsimulation.reactionrules.reactionRules.State;
 import biochemsimulation.reactionrules.scoping.AbstractReactionRulesScopeProvider;
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
-import java.util.HashSet;
 import java.util.LinkedList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -145,27 +145,21 @@ public class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvid
     return new FilteringScope(existingScope, _function);
   }
   
-  public IScope sitePatternScope(final EObject context, final EReference reference) {
-    final EObject rootElement = EcoreUtil2.getRootContainer(context);
+  public FilteringScope sitePatternScope(final EObject context, final EReference reference) {
     SitePattern sitePattern = ((SitePattern) context);
-    final LinkedList<EObject> allAgentPatterns = new LinkedList<EObject>();
-    allAgentPatterns.addAll(EcoreUtil2.<AgentPattern>getAllContentsOfType(rootElement, AgentPattern.class));
     Agent agent = ((Agent) null);
-    for (final EObject agentPattern : allAgentPatterns) {
-      {
-        AgentPattern ap = ((AgentPattern) agentPattern);
-        EList<SitePattern> sp = ap.getSitePatterns().getSitePatterns();
-        int _size = sp.size();
-        HashSet<SitePattern> spSet = new HashSet<SitePattern>(_size);
-        spSet.addAll(sp);
-        boolean _contains = spSet.contains(sitePattern);
-        if (_contains) {
-          agent = ap.getAgent();
-        }
+    EObject _eContainer = sitePattern.eContainer();
+    boolean _tripleNotEquals = (_eContainer != null);
+    if (_tripleNotEquals) {
+      EObject _eContainer_1 = sitePattern.eContainer();
+      final SitePatterns sitePatterns = ((SitePatterns) _eContainer_1);
+      EObject _eContainer_2 = sitePatterns.eContainer();
+      boolean _tripleNotEquals_1 = (_eContainer_2 != null);
+      if (_tripleNotEquals_1) {
+        EObject _eContainer_3 = sitePatterns.eContainer();
+        final AgentPattern agentPattern = ((AgentPattern) _eContainer_3);
+        agent = agentPattern.getAgent();
       }
-    }
-    if ((agent == null)) {
-      return super.getScope(context, reference);
     }
     final LinkedList<EObject> relevantSites = new LinkedList<EObject>();
     relevantSites.addAll(agent.getSites().getSites());

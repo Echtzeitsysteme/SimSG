@@ -1523,15 +1523,15 @@ ruleWhatEver returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleLimitLink
-entryRuleLimitLink returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getLimitLinkRule()); }
-	iv_ruleLimitLink=ruleLimitLink
-	{ $current=$iv_ruleLimitLink.current; }
+// Entry rule entryRuleIndexedLink
+entryRuleIndexedLink returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getIndexedLinkRule()); }
+	iv_ruleIndexedLink=ruleIndexedLink
+	{ $current=$iv_ruleIndexedLink.current; }
 	EOF;
 
-// Rule LimitLink
-ruleLimitLink returns [EObject current=null]
+// Rule IndexedLink
+ruleIndexedLink returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -1542,19 +1542,19 @@ ruleLimitLink returns [EObject current=null]
 		(
 			{
 				$current = forceCreateModelElement(
-					grammarAccess.getLimitLinkAccess().getLimitLinkAction_0(),
+					grammarAccess.getIndexedLinkAccess().getIndexedLinkAction_0(),
 					$current);
 			}
 		)
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getLimitLinkAccess().getStateUnsignedIntegerParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getIndexedLinkAccess().getStateUnsignedIntegerParserRuleCall_1_0());
 				}
 				lv_state_1_0=ruleUnsignedInteger
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getLimitLinkRule());
+						$current = createModelElementForParent(grammarAccess.getIndexedLinkRule());
 					}
 					set(
 						$current,
@@ -1828,9 +1828,9 @@ ruleLinkState returns [EObject current=null]
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getLinkStateAccess().getLinkStateLimitLinkParserRuleCall_1_0_3());
+						newCompositeNode(grammarAccess.getLinkStateAccess().getLinkStateIndexedLinkParserRuleCall_1_0_3());
 					}
-					lv_linkState_1_4=ruleLimitLink
+					lv_linkState_1_4=ruleIndexedLink
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getLinkStateRule());
@@ -1839,7 +1839,7 @@ ruleLinkState returns [EObject current=null]
 							$current,
 							"linkState",
 							lv_linkState_1_4,
-							"biochemsimulation.reactionrules.ReactionRules.LimitLink");
+							"biochemsimulation.reactionrules.ReactionRules.IndexedLink");
 						afterParserOrEnumRuleCall();
 					}
 					    |
@@ -1929,35 +1929,33 @@ ruleSitePattern returns [EObject current=null]
 				newLeafNode(otherlv_4, grammarAccess.getSitePatternAccess().getRightCurlyBracketKeyword_2_2());
 			}
 		)?
+		otherlv_5='['
+		{
+			newLeafNode(otherlv_5, grammarAccess.getSitePatternAccess().getLeftSquareBracketKeyword_3());
+		}
 		(
-			otherlv_5='['
-			{
-				newLeafNode(otherlv_5, grammarAccess.getSitePatternAccess().getLeftSquareBracketKeyword_3_0());
-			}
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getSitePatternAccess().getLinkStateLinkStateParserRuleCall_3_1_0());
+				{
+					newCompositeNode(grammarAccess.getSitePatternAccess().getLinkStateLinkStateParserRuleCall_4_0());
+				}
+				lv_linkState_6_0=ruleLinkState
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getSitePatternRule());
 					}
-					lv_linkState_6_0=ruleLinkState
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getSitePatternRule());
-						}
-						set(
-							$current,
-							"linkState",
-							lv_linkState_6_0,
-							"biochemsimulation.reactionrules.ReactionRules.LinkState");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					set(
+						$current,
+						"linkState",
+						lv_linkState_6_0,
+						"biochemsimulation.reactionrules.ReactionRules.LinkState");
+					afterParserOrEnumRuleCall();
+				}
 			)
-			otherlv_7=']'
-			{
-				newLeafNode(otherlv_7, grammarAccess.getSitePatternAccess().getRightSquareBracketKeyword_3_2());
-			}
-		)?
+		)
+		otherlv_7=']'
+		{
+			newLeafNode(otherlv_7, grammarAccess.getSitePatternAccess().getRightSquareBracketKeyword_5());
+		}
 	)
 ;
 

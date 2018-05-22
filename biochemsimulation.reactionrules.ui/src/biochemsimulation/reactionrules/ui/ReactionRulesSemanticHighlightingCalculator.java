@@ -10,7 +10,7 @@ import org.eclipse.xtext.util.CancelIndicator;
 
 import biochemsimulation.reactionrules.reactionRules.ArithmeticValue;
 import biochemsimulation.reactionrules.reactionRules.ExactLink;
-import biochemsimulation.reactionrules.reactionRules.LimitLink;
+import biochemsimulation.reactionrules.reactionRules.IndexedLink;
 import biochemsimulation.reactionrules.reactionRules.RuleVariables;
 import biochemsimulation.reactionrules.reactionRules.SiteState;
 
@@ -29,7 +29,7 @@ public class ReactionRulesSemanticHighlightingCalculator implements ISemanticHig
 			EObject semanticElement = node.getSemanticElement();
 			if(grammarElement instanceof org.eclipse.xtext.impl.ActionImpl) {
 				
-				if(semanticElement instanceof LimitLink || semanticElement instanceof ExactLink) {
+				if(semanticElement instanceof IndexedLink || semanticElement instanceof ExactLink) {
 					acceptor.addPosition(node.getOffset(), node.getLength(), ReactionRulesHighlightingConfiguration.LINK_STATE_ID);
 				}
 				if(semanticElement instanceof SiteState ) {

@@ -1329,14 +1329,14 @@ public interface ReactionRulesPackage extends EPackage
   int WHAT_EVER_FEATURE_COUNT = LINK_STATE_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.LimitLinkImpl <em>Limit Link</em>}' class.
+   * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.IndexedLinkImpl <em>Indexed Link</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see biochemsimulation.reactionrules.reactionRules.impl.LimitLinkImpl
-   * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getLimitLink()
+   * @see biochemsimulation.reactionrules.reactionRules.impl.IndexedLinkImpl
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getIndexedLink()
    * @generated
    */
-  int LIMIT_LINK = 38;
+  int INDEXED_LINK = 38;
 
   /**
    * The feature id for the '<em><b>Link State</b></em>' containment reference.
@@ -1345,7 +1345,7 @@ public interface ReactionRulesPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LIMIT_LINK__LINK_STATE = LINK_STATE__LINK_STATE;
+  int INDEXED_LINK__LINK_STATE = LINK_STATE__LINK_STATE;
 
   /**
    * The feature id for the '<em><b>State</b></em>' attribute.
@@ -1354,16 +1354,16 @@ public interface ReactionRulesPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LIMIT_LINK__STATE = LINK_STATE_FEATURE_COUNT + 0;
+  int INDEXED_LINK__STATE = LINK_STATE_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Limit Link</em>' class.
+   * The number of structural features of the '<em>Indexed Link</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LIMIT_LINK_FEATURE_COUNT = LINK_STATE_FEATURE_COUNT + 1;
+  int INDEXED_LINK_FEATURE_COUNT = LINK_STATE_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.ExactLinkImpl <em>Exact Link</em>}' class.
@@ -2354,25 +2354,25 @@ public interface ReactionRulesPackage extends EPackage
   EAttribute getWhatEver_Name();
 
   /**
-   * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.LimitLink <em>Limit Link</em>}'.
+   * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.IndexedLink <em>Indexed Link</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Limit Link</em>'.
-   * @see biochemsimulation.reactionrules.reactionRules.LimitLink
+   * @return the meta object for class '<em>Indexed Link</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.IndexedLink
    * @generated
    */
-  EClass getLimitLink();
+  EClass getIndexedLink();
 
   /**
-   * Returns the meta object for the attribute '{@link biochemsimulation.reactionrules.reactionRules.LimitLink#getState <em>State</em>}'.
+   * Returns the meta object for the attribute '{@link biochemsimulation.reactionrules.reactionRules.IndexedLink#getState <em>State</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>State</em>'.
-   * @see biochemsimulation.reactionrules.reactionRules.LimitLink#getState()
-   * @see #getLimitLink()
+   * @see biochemsimulation.reactionrules.reactionRules.IndexedLink#getState()
+   * @see #getIndexedLink()
    * @generated
    */
-  EAttribute getLimitLink_State();
+  EAttribute getIndexedLink_State();
 
   /**
    * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.ExactLink <em>Exact Link</em>}'.
@@ -3218,14 +3218,14 @@ public interface ReactionRulesPackage extends EPackage
     EAttribute WHAT_EVER__NAME = eINSTANCE.getWhatEver_Name();
 
     /**
-     * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.LimitLinkImpl <em>Limit Link</em>}' class.
+     * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.IndexedLinkImpl <em>Indexed Link</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see biochemsimulation.reactionrules.reactionRules.impl.LimitLinkImpl
-     * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getLimitLink()
+     * @see biochemsimulation.reactionrules.reactionRules.impl.IndexedLinkImpl
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getIndexedLink()
      * @generated
      */
-    EClass LIMIT_LINK = eINSTANCE.getLimitLink();
+    EClass INDEXED_LINK = eINSTANCE.getIndexedLink();
 
     /**
      * The meta object literal for the '<em><b>State</b></em>' attribute feature.
@@ -3233,7 +3233,7 @@ public interface ReactionRulesPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute LIMIT_LINK__STATE = eINSTANCE.getLimitLink_State();
+    EAttribute INDEXED_LINK__STATE = eINSTANCE.getIndexedLink_State();
 
     /**
      * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.ExactLinkImpl <em>Exact Link</em>}' class.

@@ -103,7 +103,7 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
       case ReactionRulesPackage.SEMI_LINK: return createSemiLink();
       case ReactionRulesPackage.FREE_LINK: return createFreeLink();
       case ReactionRulesPackage.WHAT_EVER: return createWhatEver();
-      case ReactionRulesPackage.LIMIT_LINK: return createLimitLink();
+      case ReactionRulesPackage.INDEXED_LINK: return createIndexedLink();
       case ReactionRulesPackage.EXACT_LINK: return createExactLink();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -533,10 +533,10 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
-  public LimitLink createLimitLink()
+  public IndexedLink createIndexedLink()
   {
-    LimitLinkImpl limitLink = new LimitLinkImpl();
-    return limitLink;
+    IndexedLinkImpl indexedLink = new IndexedLinkImpl();
+    return indexedLink;
   }
 
   /**

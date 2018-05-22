@@ -17,6 +17,7 @@ import biochemsimulation.reactionrules.reactionRules.AgentPattern
 import java.util.HashSet
 import biochemsimulation.reactionrules.reactionRules.ExactLinkSite
 import biochemsimulation.reactionrules.reactionRules.ExactLinkAgent
+import biochemsimulation.reactionrules.reactionRules.SitePatterns
 
 /**
  * This class contains custom scoping description.
@@ -119,12 +120,13 @@ class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvider {
 	}
 	
 	def sitePatternScope(EObject context, EReference reference) {
-		val rootElement = EcoreUtil2.getRootContainer(context)    
+		//val rootElement = EcoreUtil2.getRootContainer(context)    
 	    var sitePattern = context as SitePattern
-	    val allAgentPatterns = new LinkedList<EObject>
-	    allAgentPatterns.addAll(EcoreUtil2.getAllContentsOfType(rootElement, AgentPattern))
+	    //val allAgentPatterns = new LinkedList<EObject>
+	    //allAgentPatterns.addAll(EcoreUtil2.getAllContentsOfType(rootElement, AgentPattern))
 	        
 	    var agent = null as Agent
+	    /*
 	    for(agentPattern : allAgentPatterns) {
 	    	var ap = agentPattern as AgentPattern
 	     	var sp = ap.sitePatterns.sitePatterns
@@ -137,7 +139,14 @@ class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvider {
 	    if(agent === null) {
 	     	return super.getScope(context, reference);
 	    }
-	        
+	    */
+	    if(sitePattern.eContainer !== null) {
+	    	val sitePatterns = sitePattern.eContainer as SitePatterns
+	    	if(sitePatterns.eContainer !== null) {
+	    		val agentPattern = sitePatterns.eContainer as AgentPattern
+	    		agent = agentPattern.agent
+	    	}
+	    } 
 	    val relevantSites = new LinkedList<EObject>
 	    relevantSites.addAll(agent.sites.sites)
 	    val existingScope = Scopes.scopeFor(relevantSites)
