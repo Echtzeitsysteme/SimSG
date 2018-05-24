@@ -28,7 +28,6 @@ import biochemsimulation.reactionrules.reactionRules.AgentInstanceLinkState
 import biochemsimulation.reactionrules.reactionRules.Site
 import org.eclipse.emf.ecore.util.EcoreUtil
 import biochemsimulation.reactionrules.reactionRules.Agent
-import biochemsimulation.reactionrules.reactionRules.ReactionRulesFactory
 import biochemsimulation.reactionrules.reactionRules.AgentInstance
 import java.util.HashMap
 import java.util.List
