@@ -14,3 +14,53 @@ pattern testR1a(a: AgentInstance, agentName: java String, siteName: java String)
 	AgentInstanceLinkState.linkState.linkState(aILS, als);
 	FreeLink(als);
 }
+
+pattern testR2(a: AgentInstance, b: AgentInstance) {
+	/*
+	AgentInstance.agent.name(a, "A");
+	AgentInstance.linkStates(a, aILS);
+	AgentInstanceLinkState.site.name(aILS, "x");
+	AgentInstanceLinkState.linkState.linkState(aILS, als);
+	IndexedLink(als);
+	
+	AgentInstance.agent.name(b, "B");
+	AgentInstance.linkStates(b, bILS);
+	AgentInstanceLinkState.site.name(bILS, "x");
+	AgentInstanceLinkState.linkState.linkState(bILS, bls);
+	IndexedLink(bls);
+	
+	AgentInstanceLinkState.site(aILS, aSite);
+	AgentInstanceLinkState.site(bILS, bSite);
+	AgentInstanceLinkState.attachedSite(aILS, bSite);
+	AgentInstanceLinkState.attachedSite(bILS, aSite);
+
+	AgentInstanceLinkState.attachedAgentInstance(aILS, b);
+	AgentInstanceLinkState.attachedAgentInstance(bILS, a);
+	* 
+	*/
+	find testR2a(a, "A", "x");
+	find testR2a(b, "B", "x");
+	find testR2b(a,b);
+	
+}
+
+pattern testR2a(a: AgentInstance, agentName: java String, siteName: java String) {
+	AgentInstance.agent.name(a, agentName);
+	AgentInstance.linkStates(a, aILS);
+	AgentInstanceLinkState.site.name(aILS, siteName);
+	AgentInstanceLinkState.linkState.linkState(aILS, als);
+	IndexedLink(als);
+}
+
+pattern testR2b(a: AgentInstance, b: AgentInstance) {
+	AgentInstance.linkStates(a, aILS);
+	AgentInstance.linkStates(b, bILS);
+	
+	AgentInstanceLinkState.site(aILS, aSite);
+	AgentInstanceLinkState.site(bILS, bSite);
+	AgentInstanceLinkState.attachedSite(aILS, bSite);
+	AgentInstanceLinkState.attachedSite(bILS, aSite);
+
+	AgentInstanceLinkState.attachedAgentInstance(aILS, b);
+	AgentInstanceLinkState.attachedAgentInstance(bILS, a);
+}

@@ -34,7 +34,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="AgentInstanceLinkState">
     <eStructuralFeatures xsi:type="ecore:EReference" name="site" eType="#//Site"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attachedSite" eType="#//Site"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attachedAgent" eType="#//AgentInstance"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attachedAgent" eType="#//Agent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attachedAgentInstance"
+        eType="#//AgentInstance"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="linkState" eType="#//LinkState"
         containment="true"/>
   </eClassifiers>

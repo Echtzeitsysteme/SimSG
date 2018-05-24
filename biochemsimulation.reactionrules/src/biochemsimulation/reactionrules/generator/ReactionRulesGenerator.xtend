@@ -27,6 +27,14 @@ import biochemsimulation.reactionrules.reactionRules.SiteState
 import biochemsimulation.reactionrules.reactionRules.AgentInstanceLinkState
 import biochemsimulation.reactionrules.reactionRules.Site
 import org.eclipse.emf.ecore.util.EcoreUtil
+import biochemsimulation.reactionrules.reactionRules.Agent
+import biochemsimulation.reactionrules.reactionRules.ReactionRulesFactory
+import biochemsimulation.reactionrules.reactionRules.AgentInstance
+import java.util.HashMap
+import java.util.List
+import biochemsimulation.reactionrules.reactionRules.IndexedLink
+import java.util.LinkedList
+import biochemsimulation.reactionrules.reactionRules.ExactLink
 
 /**
  * Generates code from your model files on save.
@@ -64,63 +72,102 @@ class ReactionRulesGenerator extends AbstractGenerator {
 	
 	def agentInstancesFromPattern(Resource resource, Pattern pattern, int n, String prefix){
 		var model = resource.getContents().get(0) as ReactionRuleModelImpl
-		val factory = ReactionRulesFactoryImpl.init()
 		for(i : 0 ..< n){
+			val linksA = new HashMap<String, List<AgentInstance>>(pattern.agentPatterns.size);
+			val linksS = new HashMap<String, List<Site>>(pattern.agentPatterns.size);
 			for(agentPattern : pattern.agentPatterns) {
 				var ap = agentPattern as AgentPattern
 				var agent = ap.agent
-				var agentI = factory.createAgentInstance
-				agentI.name = prefix+":"+agent.name+".Instance@#"+i
-				agentI.agent = agent
-				for(sitePattern : ap.sitePatterns.sitePatterns) {
-					var site = sitePattern.site as Site
-					var oldLinkState = sitePattern.linkState as LinkState
-					var oldSiteState = sitePattern.state as SiteState
-					
-					var newLinkState = factory.createLinkState as LinkState
-					var aiLinkState = factory.createAgentInstanceLinkState as AgentInstanceLinkState
-
-					var aiSiteState = factory.createAgentInstanceSiteState
-					
-					if(oldLinkState !== null) {
-						newLinkState.linkState = EcoreUtil.copy(oldLinkState.linkState)
-					} else {
-						newLinkState.linkState = factory.createFreeLink
-					}
-					
-					if(oldSiteState !== null) {
-						aiSiteState.siteState = EcoreUtil.copy(oldSiteState)
-					} else {
-						aiSiteState.siteState = factory.createSiteState
-					}
-					
-					aiLinkState.site = site
-					aiLinkState.linkState = newLinkState
-					
-					aiSiteState.site = site
-					
-					agentI.linkStates.add(aiLinkState)
-					agentI.siteStates.add(aiSiteState)
-					
-					
-				}
-				if(ap.sitePatterns.sitePatterns.size <= 0) {
-					for(site : agent.sites.sites) {
-						var aiLinkState = factory.createAgentInstanceLinkState
-						aiLinkState.site = site
-						var newLinkState = factory.createLinkState
-						newLinkState.linkState = factory.createFreeLink
-						aiLinkState.linkState = newLinkState
-						agentI.linkStates.add(aiLinkState)
-					}
-					
-				}
+				var agentI = createNewAgentInstance(agent, ap, prefix, i, linksA, linksS)
 				model.reationContainer.agentInstances.add(agentI)
-			
 			}
+			for(linkID : linksA.keySet) {
+				val lInstance = linksA.get(linkID).get(0)
+				val rInstance = linksA.get(linkID).get(1)
+				val lSite = linksS.get(linkID).get(0)
+				val rSite = linksS.get(linkID).get(1)
+				val lLinkState = lInstance.linkStates.findFirst[x | x.site.equals(lSite)]
+				val rLinkState = rInstance.linkStates.findFirst[x | x.site.equals(rSite)]
+				lLinkState.attachedAgent = rInstance.agent
+				lLinkState.attachedSite = rSite
+				rLinkState.attachedAgent = lInstance.agent
+				rLinkState.attachedSite = lSite
+				lLinkState.attachedAgentInstance = rInstance
+				rLinkState.attachedAgentInstance = lInstance
+			}
+			
 		}
 			
 		
+	}
+	
+	def createNewAgentInstance(Agent agent, AgentPattern ap, String prefix, int iteration, HashMap<String, List<AgentInstance>> linksA, HashMap<String, List<Site>> linksS) {
+		val factory = ReactionRulesFactoryImpl.init()
+		var agentI = factory.createAgentInstance
+		agentI.name = prefix+":"+agent.name+".Instance@#"+iteration
+		agentI.agent = agent
+		
+		for(sitePattern : ap.sitePatterns.sitePatterns) {
+			var site = sitePattern.site as Site
+			var oldLinkState = sitePattern.linkState as LinkState
+			var oldSiteState = sitePattern.state as SiteState
+					
+			var newLinkState = factory.createLinkState as LinkState
+			var aiLinkState = factory.createAgentInstanceLinkState as AgentInstanceLinkState
+
+			var aiSiteState = factory.createAgentInstanceSiteState
+					
+			if(oldLinkState !== null) {
+				newLinkState.linkState = EcoreUtil.copy(oldLinkState.linkState)
+				if(newLinkState.linkState instanceof IndexedLink) {
+					val link = newLinkState.linkState as IndexedLink
+					insertLinkInLinkMap(link.state, agentI, site, linksA, linksS)
+				}
+				if(newLinkState.linkState instanceof ExactLink) {
+					val link = newLinkState.linkState as ExactLink
+					aiLinkState.attachedAgent = link.linkAgent.agent
+					aiLinkState.attachedSite = link.linkSite.site
+				}
+			} else {
+				newLinkState.linkState = factory.createFreeLink
+			}
+					
+			if(oldSiteState !== null) {
+				aiSiteState.siteState = EcoreUtil.copy(oldSiteState)
+			} else {
+				aiSiteState.siteState = factory.createSiteState
+			}
+					
+			aiLinkState.site = site
+			aiLinkState.linkState = newLinkState
+					
+			aiSiteState.site = site
+					
+			agentI.linkStates.add(aiLinkState)
+			agentI.siteStates.add(aiSiteState)		
+		}
+		
+		if(ap.sitePatterns.sitePatterns.size <= 0) {
+			for(site : agent.sites.sites) {
+				var aiLinkState = factory.createAgentInstanceLinkState
+				aiLinkState.site = site
+				var newLinkState = factory.createLinkState
+				newLinkState.linkState = factory.createFreeLink
+				aiLinkState.linkState = newLinkState
+				agentI.linkStates.add(aiLinkState)
+				}	
+		}
+		
+		return agentI
+	}
+	
+	def insertLinkInLinkMap(String linkID, AgentInstance aI, Site s, HashMap<String, List<AgentInstance>> linksA, HashMap<String, List<Site>> linksS) {
+		if(!linksA.containsKey(linkID)) {
+			linksA.put(linkID, new LinkedList<AgentInstance>())
+			linksS.put(linkID, new LinkedList<Site>())
+		}
+		linksA.get(linkID).add(aI)
+		linksS.get(linkID).add(s)
 	}
 	
 	def saveResource(Resource resource) {

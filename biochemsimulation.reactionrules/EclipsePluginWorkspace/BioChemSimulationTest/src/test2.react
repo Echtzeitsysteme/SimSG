@@ -4,11 +4,11 @@ ModelID test2
 agent A(x , c )
 agent B(x ) 
 agent C(x{u,p}, c{u,p} )
-
+ 
 /* Variables */ 
 var on_rate = 0.0001
 var off_rate = 0.1 
-var mod_rate = 1.0 
+var mod_rate = 1.0
  
 /* Initial conditions */
 init init1 4 { A(),B() } 

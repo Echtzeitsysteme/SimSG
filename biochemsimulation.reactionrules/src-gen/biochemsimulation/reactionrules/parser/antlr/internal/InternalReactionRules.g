@@ -461,16 +461,29 @@ ruleAgentInstanceLinkState returns [EObject current=null]
 				}
 				otherlv_2=RULE_ID
 				{
-					newLeafNode(otherlv_2, grammarAccess.getAgentInstanceLinkStateAccess().getAttachedAgentAgentInstanceCrossReference_2_0());
+					newLeafNode(otherlv_2, grammarAccess.getAgentInstanceLinkStateAccess().getAttachedAgentAgentCrossReference_2_0());
 				}
 			)
 		)
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getAgentInstanceLinkStateAccess().getLinkStateLinkStateParserRuleCall_3_0());
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAgentInstanceLinkStateRule());
+					}
 				}
-				lv_linkState_3_0=ruleLinkState
+				otherlv_3=RULE_ID
+				{
+					newLeafNode(otherlv_3, grammarAccess.getAgentInstanceLinkStateAccess().getAttachedAgentInstanceAgentInstanceCrossReference_3_0());
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getAgentInstanceLinkStateAccess().getLinkStateLinkStateParserRuleCall_4_0());
+				}
+				lv_linkState_4_0=ruleLinkState
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getAgentInstanceLinkStateRule());
@@ -478,7 +491,7 @@ ruleAgentInstanceLinkState returns [EObject current=null]
 					set(
 						$current,
 						"linkState",
-						lv_linkState_3_0,
+						lv_linkState_4_0,
 						"biochemsimulation.reactionrules.ReactionRules.LinkState");
 					afterParserOrEnumRuleCall();
 				}

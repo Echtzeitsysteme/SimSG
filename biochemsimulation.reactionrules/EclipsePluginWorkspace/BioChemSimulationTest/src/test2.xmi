@@ -82,7 +82,7 @@
       <siteStates xmi:type="reactionRules:AgentInstanceSiteState" site="//@reactionProperties.0/@sites/@sites.0">
         <siteState xmi:type="reactionRules:SiteState"/>
       </siteStates>
-      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.0/@sites/@sites.0">
+      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.0/@sites/@sites.0" attachedSite="//@reactionProperties.1/@sites/@sites.0" attachedAgent="//@reactionProperties.1" attachedAgentInstance="//@reationContainer/@agentInstances.9">
         <linkState xmi:type="reactionRules:LinkState">
           <linkState xmi:type="reactionRules:IndexedLink" state="1"/>
         </linkState>
@@ -92,7 +92,7 @@
       <siteStates xmi:type="reactionRules:AgentInstanceSiteState" site="//@reactionProperties.1/@sites/@sites.0">
         <siteState xmi:type="reactionRules:SiteState"/>
       </siteStates>
-      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.1/@sites/@sites.0">
+      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.1/@sites/@sites.0" attachedSite="//@reactionProperties.0/@sites/@sites.0" attachedAgent="//@reactionProperties.0" attachedAgentInstance="//@reationContainer/@agentInstances.8">
         <linkState xmi:type="reactionRules:LinkState">
           <linkState xmi:type="reactionRules:IndexedLink" state="1"/>
         </linkState>
@@ -102,7 +102,7 @@
       <siteStates xmi:type="reactionRules:AgentInstanceSiteState" site="//@reactionProperties.0/@sites/@sites.0">
         <siteState xmi:type="reactionRules:SiteState"/>
       </siteStates>
-      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.0/@sites/@sites.0">
+      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.0/@sites/@sites.0" attachedSite="//@reactionProperties.1/@sites/@sites.0" attachedAgent="//@reactionProperties.1" attachedAgentInstance="//@reationContainer/@agentInstances.11">
         <linkState xmi:type="reactionRules:LinkState">
           <linkState xmi:type="reactionRules:IndexedLink" state="1"/>
         </linkState>
@@ -112,7 +112,7 @@
       <siteStates xmi:type="reactionRules:AgentInstanceSiteState" site="//@reactionProperties.1/@sites/@sites.0">
         <siteState xmi:type="reactionRules:SiteState"/>
       </siteStates>
-      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.1/@sites/@sites.0">
+      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.1/@sites/@sites.0" attachedSite="//@reactionProperties.0/@sites/@sites.0" attachedAgent="//@reactionProperties.0" attachedAgentInstance="//@reationContainer/@agentInstances.10">
         <linkState xmi:type="reactionRules:LinkState">
           <linkState xmi:type="reactionRules:IndexedLink" state="1"/>
         </linkState>
@@ -122,7 +122,7 @@
       <siteStates xmi:type="reactionRules:AgentInstanceSiteState" site="//@reactionProperties.0/@sites/@sites.0">
         <siteState xmi:type="reactionRules:SiteState"/>
       </siteStates>
-      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.0/@sites/@sites.0">
+      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.0/@sites/@sites.0" attachedSite="//@reactionProperties.1/@sites/@sites.0" attachedAgent="//@reactionProperties.1" attachedAgentInstance="//@reationContainer/@agentInstances.13">
         <linkState xmi:type="reactionRules:LinkState">
           <linkState xmi:type="reactionRules:IndexedLink" state="1"/>
         </linkState>
@@ -132,7 +132,7 @@
       <siteStates xmi:type="reactionRules:AgentInstanceSiteState" site="//@reactionProperties.1/@sites/@sites.0">
         <siteState xmi:type="reactionRules:SiteState"/>
       </siteStates>
-      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.1/@sites/@sites.0">
+      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.1/@sites/@sites.0" attachedSite="//@reactionProperties.0/@sites/@sites.0" attachedAgent="//@reactionProperties.0" attachedAgentInstance="//@reationContainer/@agentInstances.12">
         <linkState xmi:type="reactionRules:LinkState">
           <linkState xmi:type="reactionRules:IndexedLink" state="1"/>
         </linkState>
@@ -142,7 +142,7 @@
       <siteStates xmi:type="reactionRules:AgentInstanceSiteState" site="//@reactionProperties.0/@sites/@sites.0">
         <siteState xmi:type="reactionRules:SiteState"/>
       </siteStates>
-      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.0/@sites/@sites.0">
+      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.0/@sites/@sites.0" attachedSite="//@reactionProperties.1/@sites/@sites.0" attachedAgent="//@reactionProperties.1" attachedAgentInstance="//@reationContainer/@agentInstances.15">
         <linkState xmi:type="reactionRules:LinkState">
           <linkState xmi:type="reactionRules:IndexedLink" state="1"/>
         </linkState>
@@ -152,7 +152,7 @@
       <siteStates xmi:type="reactionRules:AgentInstanceSiteState" site="//@reactionProperties.1/@sites/@sites.0">
         <siteState xmi:type="reactionRules:SiteState"/>
       </siteStates>
-      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.1/@sites/@sites.0">
+      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.1/@sites/@sites.0" attachedSite="//@reactionProperties.0/@sites/@sites.0" attachedAgent="//@reactionProperties.0" attachedAgentInstance="//@reationContainer/@agentInstances.14">
         <linkState xmi:type="reactionRules:LinkState">
           <linkState xmi:type="reactionRules:IndexedLink" state="1"/>
         </linkState>
@@ -182,7 +182,7 @@
       <siteStates xmi:type="reactionRules:AgentInstanceSiteState" site="//@reactionProperties.0/@sites/@sites.0">
         <siteState xmi:type="reactionRules:SiteState"/>
       </siteStates>
-      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.0/@sites/@sites.0">
+      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.0/@sites/@sites.0" attachedSite="//@reactionProperties.2/@sites/@sites.0" attachedAgent="//@reactionProperties.2" attachedAgentInstance="//@reationContainer/@agentInstances.19">
         <linkState xmi:type="reactionRules:LinkState">
           <linkState xmi:type="reactionRules:IndexedLink" state="1"/>
         </linkState>
@@ -192,7 +192,7 @@
       <siteStates xmi:type="reactionRules:AgentInstanceSiteState" site="//@reactionProperties.2/@sites/@sites.0">
         <siteState xmi:type="reactionRules:SiteState" state="//@reactionProperties.2/@sites/@sites.0/@states/@state.1"/>
       </siteStates>
-      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.2/@sites/@sites.0">
+      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.2/@sites/@sites.0" attachedSite="//@reactionProperties.0/@sites/@sites.0" attachedAgent="//@reactionProperties.0" attachedAgentInstance="//@reationContainer/@agentInstances.18">
         <linkState xmi:type="reactionRules:LinkState">
           <linkState xmi:type="reactionRules:IndexedLink" state="1"/>
         </linkState>
@@ -202,7 +202,7 @@
       <siteStates xmi:type="reactionRules:AgentInstanceSiteState" site="//@reactionProperties.0/@sites/@sites.0">
         <siteState xmi:type="reactionRules:SiteState"/>
       </siteStates>
-      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.0/@sites/@sites.0">
+      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.0/@sites/@sites.0" attachedSite="//@reactionProperties.2/@sites/@sites.0" attachedAgent="//@reactionProperties.2" attachedAgentInstance="//@reationContainer/@agentInstances.21">
         <linkState xmi:type="reactionRules:LinkState">
           <linkState xmi:type="reactionRules:IndexedLink" state="1"/>
         </linkState>
@@ -212,7 +212,7 @@
       <siteStates xmi:type="reactionRules:AgentInstanceSiteState" site="//@reactionProperties.2/@sites/@sites.0">
         <siteState xmi:type="reactionRules:SiteState" state="//@reactionProperties.2/@sites/@sites.0/@states/@state.1"/>
       </siteStates>
-      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.2/@sites/@sites.0">
+      <linkStates xmi:type="reactionRules:AgentInstanceLinkState" site="//@reactionProperties.2/@sites/@sites.0" attachedSite="//@reactionProperties.0/@sites/@sites.0" attachedAgent="//@reactionProperties.0" attachedAgentInstance="//@reationContainer/@agentInstances.20">
         <linkState xmi:type="reactionRules:LinkState">
           <linkState xmi:type="reactionRules:IndexedLink" state="1"/>
         </linkState>
