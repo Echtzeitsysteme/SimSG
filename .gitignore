@@ -13,12 +13,16 @@
 */bin/*
 
 # Xtext
-*/src-gen/**/*.java*
+!*/src-gen/**/*.java
+*/src-gen/**/*.java._trace
 */src-gen/**/*.xtendbin
 */src-gen/**/*.xtextbin
 */xtend-gen/**/*.xtendbin
 */xtend-gen/**/*.xtextbin
-*/xtend-gen/**/*.java*
+!*/xtend-gen/**/*.java
+*/xtend-gen/**/*.java._trace
+
+
 !.gitignore
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
