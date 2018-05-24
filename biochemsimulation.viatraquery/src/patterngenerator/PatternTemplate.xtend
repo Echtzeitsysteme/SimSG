@@ -61,11 +61,10 @@ class PatternTemplate {
 		return '''
 			pattern «rule.name+"_"+suffix»(«FOR ap : pattern.agentPatterns SEPARATOR ", "» «generateAgentPatternContext(ap)»«ENDFOR») {
 				«FOR ap : pattern.agentPatterns»
-				AgentInstance.agent.name(«ap.agent.name», «agentNameVariableName(ap)»);
-				check (
-					«agentNameVariableName(ap)».matches("«ap.agent.name»")
-				);
+				AgentInstance.agent.name(«ap.agent.name», "«ap.agent.name»");
 				«FOR sp : ap.sitePatterns.sitePatterns»
+				AgentInstance.linkStates(«ap.agent.name», «aILSVariableName(ap, sp)»);
+				AgentInstanceLinkState.site.name(«aILSVariableName(ap, sp)», "«sp.site.name»");
 				«linkStatePattern(ap, sp)»
 				«ENDFOR»
 				«ENDFOR»
@@ -79,43 +78,37 @@ class PatternTemplate {
 		val linkState = sp.linkState.linkState as LinkState
 		if(linkState instanceof FreeLink) {
 			return '''
-				AgentInstance.linkStates(«ap.agent.name», «aILSVariableName(ap, sp)»);
-				AgentInstanceLinkState.site.name(«aILSVariableName(ap, sp)», «aILSNameVariableName(ap, sp)»);
-				check (
-					«aILSNameVariableName(ap, sp)».matches("«sp.site.name»")
-				);
-				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «aILSContextVariableName(ap, sp)»);
+				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «ap.agent.name»_«sp.site.name»_FL);
+				FreeLink(«ap.agent.name»_«sp.site.name»_FL);
 			'''
 		}else if(linkState instanceof SemiLink) {
 			return '''
-				AgentInstance.linkStates(«ap.agent.name», «aILSVariableName(ap, sp)»);
-				AgentInstanceLinkState.site.name(«aILSVariableName(ap, sp)», «aILSNameVariableName(ap, sp)»);
-				check (
-					«aILSNameVariableName(ap, sp)».matches("«sp.site.name»")
-				);
-				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «aILSContextVariableName(ap, sp)»);
+				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «ap.agent.name»_«sp.site.name»_SL);
+				SemiLink(«ap.agent.name»_«sp.site.name»_SL);
 			'''
+			//This is a Stub, since i don't yet know what SemiLink does exactly
 		}else if(linkState instanceof WhatEver) {
-			return ''''''
+			return '''
+				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «ap.agent.name»_«sp.site.name»_WEL);
+				WhatEver(«ap.agent.name»_«sp.site.name»_WEL);
+			'''
+			//This is a prototype, since i don't yet know how don't care links should work exactly
 		}else if(linkState instanceof ExactLink) {
-			return '''«aILSContextVariableName(ap, sp)»: «sp.linkState.linkState.eClass.name», «aILSContextExactLinkAgentVariableName(ap, sp)»: java String, «aILSContextExactLinkSiteVariableName(ap, sp)»: java String'''
+			return '''
+				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «ap.agent.name»_«sp.site.name»_EL);
+				WhatEver(«ap.agent.name»_«sp.site.name»_EL);
+			'''
+			//This is a Stub, since i don't yet know what ExactLink does exactly
 		}else {
 			return '''
-				AgentInstance.linkStates(«ap.agent.name», «aILSVariableName(ap, sp)»);
-				AgentInstanceLinkState.site.name(«aILSVariableName(ap, sp)», «aILSNameVariableName(ap, sp)»);
-				check (
-					«aILSNameVariableName(ap, sp)».matches("«sp.site.name»")
-				);
-				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «aILSContextVariableName(ap, sp)»);
-				IndexedLink.state(«aILSVariableName(ap, sp)», «aILSContextIndexedLinkVariableName(ap, sp)»);
-				check (
-					«aILSContextIndexedLinkVariableName(ap, sp)».matches("«getOtherIndexedLinkVariableName(ap, sp)»")
-				);
+				AgentInstanceLinkState.site(«aILSVariableName(ap, sp)», «ap.agent.name»_«sp.site.name»_IL);
+				AgentInstanceLinkState.attachedSite(«aILSVariableName(ap, sp)», «getOtherIndexedLinkSite(ap, sp)»);
+				AgentInstanceLinkState.attachedAgentInstance(«aILSVariableName(ap, sp)», «getOtherIndexedLinkAgent(ap, sp)»);
 			'''
 		}
 	}
 	
-	def getOtherIndexedLinkVariableName(AgentPattern ap, SitePattern sp) {
+	def getOtherIndexedLinkAgent(AgentPattern ap, SitePattern sp) {
 		val iLink = sp.linkState.linkState as IndexedLink
 		var rule = null as Rule
 		var eObj = iLink.eContainer
@@ -131,7 +124,7 @@ class PatternTemplate {
 			if(!candidate.equals(iLink) && iLink.state.equals(candidate.state)) {
 				var agentPattern = null as AgentPattern
 				var sitePattern = null as SitePattern
-				var eObj2 = iLink.eContainer
+				var eObj2 = candidate.eContainer
 				while(!(eObj2 instanceof SitePattern) && eObj2 !== null) {
 					eObj2 = eObj2.eContainer
 				}
@@ -145,7 +138,46 @@ class PatternTemplate {
 					agentPattern = eObj2 as AgentPattern
 				}
 				if(agentPattern !== null && sitePattern !== null) {
-					return aILSContextIndexedLinkVariableName(agentPattern, sitePattern)
+					return '''«agentPattern.agent.name»'''
+				}
+				return ''''''
+			}
+		}
+		return ''''''
+	}
+	
+	def getOtherIndexedLinkSite(AgentPattern ap, SitePattern sp) {
+		val iLink = sp.linkState.linkState as IndexedLink
+		var rule = null as Rule
+		var eObj = iLink.eContainer
+		while(!(eObj instanceof Rule) && eObj !== null) {
+			eObj = eObj.eContainer
+		}
+		if(eObj instanceof Rule) {
+			rule = eObj
+		}
+		var candidates = getAllIndexedLinksOfRule(rule)
+		for(cand : candidates) {
+			println(cand.toString)
+			val candidate = cand as IndexedLink
+			if(!candidate.equals(iLink) && iLink.state.equals(candidate.state)) {
+				var agentPattern = null as AgentPattern
+				var sitePattern = null as SitePattern
+				var eObj2 = candidate.eContainer
+				while(!(eObj2 instanceof SitePattern) && eObj2 !== null) {
+					eObj2 = eObj2.eContainer
+				}
+				if(eObj2 instanceof SitePattern) {
+					sitePattern = eObj2 as SitePattern
+				}
+				while(!(eObj2 instanceof AgentPattern) && eObj2 !== null) {
+					eObj2 = eObj2.eContainer
+				}
+				if(eObj2 instanceof AgentPattern) {
+					agentPattern = eObj2 as AgentPattern
+				}
+				if(agentPattern !== null && sitePattern !== null) {
+					return '''«agentPattern.agent.name»_«sitePattern.site.name»_IL'''
 				}
 				return ''''''
 			}
@@ -196,66 +228,12 @@ class PatternTemplate {
 	} 
 	
 	def generateAgentPatternContext(AgentPattern ap) {
-		return '''«ap.agent.name»: AgentInstance, «agentNameVariableName(ap)»: java String, «generateSitePatternContext(ap)»'''
+		return '''«ap.agent.name»: AgentInstance'''
 	}
 	
-	def generateSitePatternContext(AgentPattern ap) {
-		return 	'''«FOR sp : ap.sitePatterns.sitePatterns SEPARATOR ", "» «agentInstanceLinkState(ap, sp)», «agentInstanceLinkStateName(ap, sp)», «agentInstanceLinkStateContext(ap, sp)»«ENDFOR»'''
-	}
-	
-	def agentInstanceLinkState(AgentPattern ap, SitePattern sp) {
-		return '''«aILSVariableName(ap, sp)»: AgentInstanceLinkState'''
-	}
-	
-	def agentInstanceLinkStateName(AgentPattern ap, SitePattern sp) {
-		return '''«aILSNameVariableName(ap, sp)»: java String'''
-	}
-	
-	def agentInstanceLinkStateContext(AgentPattern ap, SitePattern sp) {
-		return linkStateConext(ap, sp)
-	}
-	
-	def linkStateConext(AgentPattern ap, SitePattern sp) {
-		val linkState = sp.linkState.linkState as LinkState
-		if(linkState instanceof FreeLink) {
-			return '''«aILSContextVariableName(ap, sp)»: «sp.linkState.linkState.eClass.name»'''
-		}else if(linkState instanceof SemiLink) {
-			return '''«aILSContextVariableName(ap, sp)»: «sp.linkState.linkState.eClass.name»'''
-		}else if(linkState instanceof WhatEver) {
-			return ''''''
-		}else if(linkState instanceof ExactLink) {
-			return '''«aILSContextVariableName(ap, sp)»: «sp.linkState.linkState.eClass.name», «aILSContextExactLinkAgentVariableName(ap, sp)»: java String, «aILSContextExactLinkSiteVariableName(ap, sp)»: java String'''
-		}else {
-			return '''«aILSContextVariableName(ap, sp)»: «sp.linkState.linkState.eClass.name», «aILSContextIndexedLinkVariableName(ap, sp)»: java String'''
-		}
-	}
-	
-	def agentNameVariableName(AgentPattern ap) {
-		return '''«"Agent_"+ap.agent.name+"_Name"»'''
-	}
 	
 	def aILSVariableName(AgentPattern ap, SitePattern sp) {
 		return '''«ap.agent.name+"_"+sp.site.name»_ILS'''
-	}
-	
-	def aILSNameVariableName(AgentPattern ap, SitePattern sp) {
-		return '''«aILSVariableName(ap, sp)»_name'''
-	}
-	
-	def aILSContextVariableName(AgentPattern ap, SitePattern sp) {
-		return '''«aILSVariableName(ap, sp)»_state'''
-	}
-	
-	def aILSContextExactLinkAgentVariableName(AgentPattern ap, SitePattern sp) {
-		return '''«aILSVariableName(ap, sp)»_«sp.linkState.linkState.eClass.name»_agentName'''
-	}
-	
-	def aILSContextIndexedLinkVariableName(AgentPattern ap, SitePattern sp) {
-		return '''«aILSVariableName(ap, sp)»_«sp.linkState.linkState.eClass.name»_index'''
-	}
-	
-	def aILSContextExactLinkSiteVariableName(AgentPattern ap, SitePattern sp) {
-		return '''«aILSVariableName(ap, sp)»_«sp.linkState.linkState.eClass.name»_siteName'''
 	}
 	
 }

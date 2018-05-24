@@ -8,4 +8,10 @@
       <query-specification fqn="manual.queries.testR2b"/>
     </group>
   </extension>
+  <extension id="patterngenerator.GeneratedQueryTest" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:patterngenerator.GeneratedQueryTest" id="patterngenerator.GeneratedQueryTest">
+      <query-specification fqn="patterngenerator.AtoB_lhs"/>
+      <query-specification fqn="patterngenerator.AtoB_rhs"/>
+    </group>
+  </extension>
 </plugin>

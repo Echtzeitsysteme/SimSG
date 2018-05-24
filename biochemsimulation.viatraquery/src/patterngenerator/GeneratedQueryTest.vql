@@ -1,0 +1,33 @@
+package patterngenerator
+		
+import "http://www.reactionrules.biochemsimulation/ReactionRules" as reactionRules
+
+pattern AtoB_lhs( A: AgentInstance,  B: AgentInstance) {
+	AgentInstance.agent.name(A, "A");
+	AgentInstance.linkStates(A, A_x_ILS);
+	AgentInstanceLinkState.site.name(A_x_ILS, "x");
+	AgentInstanceLinkState.linkState.linkState(A_x_ILS, A_x_FL);
+	FreeLink(A_x_FL);
+	AgentInstance.agent.name(B, "B");
+	AgentInstance.linkStates(B, B_x_ILS);
+	AgentInstanceLinkState.site.name(B_x_ILS, "x");
+	AgentInstanceLinkState.linkState.linkState(B_x_ILS, B_x_FL);
+	FreeLink(B_x_FL);
+	
+}
+pattern AtoB_rhs( A: AgentInstance,  B: AgentInstance) {
+	AgentInstance.agent.name(A, "A");
+	AgentInstance.linkStates(A, A_x_ILS);
+	AgentInstanceLinkState.site.name(A_x_ILS, "x");
+	AgentInstanceLinkState.site(A_x_ILS, A_x_IL);
+	AgentInstanceLinkState.attachedSite(A_x_ILS, B_x_IL);
+	AgentInstanceLinkState.attachedAgentInstance(A_x_ILS, B);
+	AgentInstance.agent.name(B, "B");
+	AgentInstance.linkStates(B, B_x_ILS);
+	AgentInstanceLinkState.site.name(B_x_ILS, "x");
+	AgentInstanceLinkState.site(B_x_ILS, B_x_IL);
+	AgentInstanceLinkState.attachedSite(B_x_ILS, A_x_IL);
+	AgentInstanceLinkState.attachedAgentInstance(B_x_ILS, A);
+	
+}
+
