@@ -56,6 +56,7 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
  */
 @SuppressWarnings("all")
 public class ReactionRulesGenerator extends AbstractGenerator {
+  @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     this.generateInitialConditions(resource);
     this.saveResource(resource);
@@ -64,10 +65,8 @@ public class ReactionRulesGenerator extends AbstractGenerator {
   public void generateInitialConditions(final Resource resource) {
     EObject _get = resource.getContents().get(0);
     ReactionRuleModelImpl model = ((ReactionRuleModelImpl) _get);
-    final Function1<ReactionProperty, Boolean> _function = new Function1<ReactionProperty, Boolean>() {
-      public Boolean apply(final ReactionProperty x) {
-        return Boolean.valueOf((x instanceof Initial));
-      }
+    final Function1<ReactionProperty, Boolean> _function = (ReactionProperty x) -> {
+      return Boolean.valueOf((x instanceof Initial));
     };
     Iterable<ReactionProperty> initials = IterableExtensions.<ReactionProperty>filter(model.getReactionProperties(), _function);
     for (final ReactionProperty init : initials) {
@@ -116,16 +115,12 @@ public class ReactionRulesGenerator extends AbstractGenerator {
             final AgentInstance rInstance = linksA.get(linkID).get(1);
             final Site lSite = linksS.get(linkID).get(0);
             final Site rSite = linksS.get(linkID).get(1);
-            final Function1<AgentInstanceLinkState, Boolean> _function = new Function1<AgentInstanceLinkState, Boolean>() {
-              public Boolean apply(final AgentInstanceLinkState x) {
-                return Boolean.valueOf(x.getSite().equals(lSite));
-              }
+            final Function1<AgentInstanceLinkState, Boolean> _function = (AgentInstanceLinkState x) -> {
+              return Boolean.valueOf(x.getSite().equals(lSite));
             };
             final AgentInstanceLinkState lLinkState = IterableExtensions.<AgentInstanceLinkState>findFirst(lInstance.getLinkStates(), _function);
-            final Function1<AgentInstanceLinkState, Boolean> _function_1 = new Function1<AgentInstanceLinkState, Boolean>() {
-              public Boolean apply(final AgentInstanceLinkState x) {
-                return Boolean.valueOf(x.getSite().equals(rSite));
-              }
+            final Function1<AgentInstanceLinkState, Boolean> _function_1 = (AgentInstanceLinkState x) -> {
+              return Boolean.valueOf(x.getSite().equals(rSite));
             };
             final AgentInstanceLinkState rLinkState = IterableExtensions.<AgentInstanceLinkState>findFirst(rInstance.getLinkStates(), _function_1);
             lLinkState.setAttachedAgent(rInstance.getAgent());

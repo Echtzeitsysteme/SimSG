@@ -35,6 +35,7 @@ import org.eclipse.xtext.scoping.impl.FilteringScope;
  */
 @SuppressWarnings("all")
 public class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvider {
+  @Override
   public IScope getScope(final EObject context, final EReference reference) {
     if ((context instanceof SiteState)) {
       return this.siteStateScope(context, reference);
@@ -70,11 +71,9 @@ public class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvid
     }
     EList<State> list = sitePattern.getSite().getStates().getState();
     final IScope existingScope = Scopes.scopeFor(list);
-    final Predicate<IEObjectDescription> _function = new Predicate<IEObjectDescription>() {
-      public boolean apply(final IEObjectDescription it) {
-        EObject _eObjectOrProxy = it.getEObjectOrProxy();
-        return (!Objects.equal(_eObjectOrProxy, context));
-      }
+    final Predicate<IEObjectDescription> _function = (IEObjectDescription it) -> {
+      EObject _eObjectOrProxy = it.getEObjectOrProxy();
+      return (!Objects.equal(_eObjectOrProxy, context));
     };
     return new FilteringScope(existingScope, _function);
   }
@@ -84,11 +83,9 @@ public class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvid
     final LinkedList<EObject> list = new LinkedList<EObject>();
     list.addAll(EcoreUtil2.<Agent>getAllContentsOfType(rootElement, Agent.class));
     final IScope existingScope = Scopes.scopeFor(list);
-    final Predicate<IEObjectDescription> _function = new Predicate<IEObjectDescription>() {
-      public boolean apply(final IEObjectDescription it) {
-        EObject _eObjectOrProxy = it.getEObjectOrProxy();
-        return (!Objects.equal(_eObjectOrProxy, context));
-      }
+    final Predicate<IEObjectDescription> _function = (IEObjectDescription it) -> {
+      EObject _eObjectOrProxy = it.getEObjectOrProxy();
+      return (!Objects.equal(_eObjectOrProxy, context));
     };
     return new FilteringScope(existingScope, _function);
   }
@@ -112,11 +109,9 @@ public class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvid
     }
     EList<Site> list = agent.getSites().getSites();
     final IScope existingScope = Scopes.scopeFor(list);
-    final Predicate<IEObjectDescription> _function = new Predicate<IEObjectDescription>() {
-      public boolean apply(final IEObjectDescription it) {
-        EObject _eObjectOrProxy = it.getEObjectOrProxy();
-        return (!Objects.equal(_eObjectOrProxy, context));
-      }
+    final Predicate<IEObjectDescription> _function = (IEObjectDescription it) -> {
+      EObject _eObjectOrProxy = it.getEObjectOrProxy();
+      return (!Objects.equal(_eObjectOrProxy, context));
     };
     return new FilteringScope(existingScope, _function);
   }
@@ -140,11 +135,9 @@ public class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvid
     final LinkedList<EObject> relevantSites = new LinkedList<EObject>();
     relevantSites.addAll(agent.getSites().getSites());
     final IScope existingScope = Scopes.scopeFor(relevantSites);
-    final Predicate<IEObjectDescription> _function = new Predicate<IEObjectDescription>() {
-      public boolean apply(final IEObjectDescription it) {
-        EObject _eObjectOrProxy = it.getEObjectOrProxy();
-        return (!Objects.equal(_eObjectOrProxy, context));
-      }
+    final Predicate<IEObjectDescription> _function = (IEObjectDescription it) -> {
+      EObject _eObjectOrProxy = it.getEObjectOrProxy();
+      return (!Objects.equal(_eObjectOrProxy, context));
     };
     return new FilteringScope(existingScope, _function);
   }
