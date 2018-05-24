@@ -2,36 +2,15 @@ package manual.queries
 
 import "http://www.reactionrules.biochemsimulation/ReactionRules"
 
-pattern testR1(a: AgentInstance, aILS: AgentInstanceLinkState, aN: java String, asN: java String, aLS: FreeLink, bI: AgentInstance, bILS: AgentInstanceLinkState, bN: java String, bsN: java String, bLS: FreeLink) {
-	find testR1a(a, aILS, aN, asN, aLS);
-	find testR1b(bI, bILS, bN, bsN, bLS);
-
+pattern testR1(a: AgentInstance, b: AgentInstance) {
+	find testR1a(a, "A", "x");
+	find testR1a(b, "B", "x");
 } 
 
-pattern testR1a(a: AgentInstance, aILS: AgentInstanceLinkState, aN: java String, asN: java String, aLS: FreeLink) {
-	AgentInstance.agent.name(a, aN);
-	check (
-		aN.matches("A")
-	);
+pattern testR1a(a: AgentInstance, agentName: java String, siteName: java String) {
+	AgentInstance.agent.name(a, agentName);
 	AgentInstance.linkStates(a, aILS);
-	AgentInstanceLinkState.site.name(aILS, asN);
-	check (
-		asN.matches("x")
-	);
-	AgentInstanceLinkState.linkState.linkState(aILS, aLS);
-
-}
-
-pattern testR1b(bI: AgentInstance, bILS: AgentInstanceLinkState, bN: java String, bsN: java String, bLS: FreeLink) {
-	AgentInstance.agent.name(bI, bN);
-	check (
-		bN.matches("B")
-	);
-	AgentInstance.linkStates(bI, bILS);
-	AgentInstanceLinkState.site.name(bILS, bsN);
-	check (
-		bsN.matches("x")
-	);
-	AgentInstanceLinkState.linkState.linkState(bILS, bLS);
-
+	AgentInstanceLinkState.site.name(aILS, siteName);
+	AgentInstanceLinkState.linkState.linkState(aILS, als);
+	FreeLink(als);
 }

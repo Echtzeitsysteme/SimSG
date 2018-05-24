@@ -14,8 +14,7 @@ Export-Package: manual.queries;
     org.eclipse.viatra.query.runtime.api.impl,
     manual.queries,
     biochemsimulation.reactionrules.reactionRules",
-  patterngenerator,
-  patterngenerator.util
+  patterngenerator
 Require-Bundle: biochemsimulation.reactionrules,
   org.eclipse.emf.ecore,
   org.eclipse.viatra.query.runtime,

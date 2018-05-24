@@ -40,6 +40,8 @@ AgentInstanceSiteState:
 
 AgentInstanceLinkState:
 	site = [Site]
+	attachedSite = [Site]
+	attachedAgent = [AgentInstance]
 	linkState = LinkState
 ;
 

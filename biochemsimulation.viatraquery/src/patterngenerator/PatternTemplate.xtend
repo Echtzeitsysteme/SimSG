@@ -80,7 +80,7 @@ class PatternTemplate {
 		if(linkState instanceof FreeLink) {
 			return '''
 				AgentInstance.linkStates(«ap.agent.name», «aILSVariableName(ap, sp)»);
-			   	AgentInstanceLinkState.site.name(«aILSVariableName(ap, sp)», «aILSNameVariableName(ap, sp)»);
+				AgentInstanceLinkState.site.name(«aILSVariableName(ap, sp)», «aILSNameVariableName(ap, sp)»);
 				check (
 					«aILSNameVariableName(ap, sp)».matches("«sp.site.name»")
 				);
