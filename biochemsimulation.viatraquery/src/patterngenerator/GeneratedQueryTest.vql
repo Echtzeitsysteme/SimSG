@@ -3,31 +3,90 @@ package patterngenerator
 import "http://www.reactionrules.biochemsimulation/ReactionRules" as reactionRules
 
 pattern AtoB_lhs( A: AgentInstance,  B: AgentInstance) {
+	// Agent pattern for instances of agent A
 	AgentInstance.agent.name(A, "A");
-	AgentInstance.linkStates(A, A_x_ILS);
-	AgentInstanceLinkState.site.name(A_x_ILS, "x");
-	AgentInstanceLinkState.linkState.linkState(A_x_ILS, A_x_FL);
-	FreeLink(A_x_FL);
-	AgentInstance.agent.name(B, "B");
-	AgentInstance.linkStates(B, B_x_ILS);
-	AgentInstanceLinkState.site.name(B_x_ILS, "x");
-	AgentInstanceLinkState.linkState.linkState(B_x_ILS, B_x_FL);
-	FreeLink(B_x_FL);
+		// Site patterns for site x attached to instances of agent A 
+		AgentInstance.linkStates(A, A_x_ILS);
+		AgentInstanceLinkState.site.name(A_x_ILS, "x");
+		AgentInstanceLinkState.linkState.linkState(A_x_ILS, A_x_FL);
+		FreeLink(A_x_FL);
 	
+	// Agent pattern for instances of agent B
+	AgentInstance.agent.name(B, "B");
+		// Site patterns for site x attached to instances of agent B 
+		AgentInstance.linkStates(B, B_x_ILS);
+		AgentInstanceLinkState.site.name(B_x_ILS, "x");
+		AgentInstanceLinkState.linkState.linkState(B_x_ILS, B_x_FL);
+		FreeLink(B_x_FL);
 }
+
 pattern AtoB_rhs( A: AgentInstance,  B: AgentInstance) {
+	// Agent pattern for instances of agent A
 	AgentInstance.agent.name(A, "A");
-	AgentInstance.linkStates(A, A_x_ILS);
-	AgentInstanceLinkState.site.name(A_x_ILS, "x");
-	AgentInstanceLinkState.site(A_x_ILS, A_x_IL);
-	AgentInstanceLinkState.attachedSite(A_x_ILS, B_x_IL);
-	AgentInstanceLinkState.attachedAgentInstance(A_x_ILS, B);
-	AgentInstance.agent.name(B, "B");
-	AgentInstance.linkStates(B, B_x_ILS);
-	AgentInstanceLinkState.site.name(B_x_ILS, "x");
-	AgentInstanceLinkState.site(B_x_ILS, B_x_IL);
-	AgentInstanceLinkState.attachedSite(B_x_ILS, A_x_IL);
-	AgentInstanceLinkState.attachedAgentInstance(B_x_ILS, A);
+		// Site patterns for site x attached to instances of agent A 
+		AgentInstance.linkStates(A, A_x_ILS);
+		AgentInstanceLinkState.site.name(A_x_ILS, "x");
+		AgentInstanceLinkState.linkState.linkState(A_x_ILS, A_x_IL);	
+		IndexedLink(A_x_IL);
+		AgentInstanceLinkState.site(A_x_ILS, A_x_Site);
+		AgentInstanceLinkState.attachedSite(A_x_ILS, B_x_Site);
+		AgentInstanceLinkState.attachedAgentInstance(A_x_ILS, B);
 	
+	// Agent pattern for instances of agent B
+	AgentInstance.agent.name(B, "B");
+		// Site patterns for site x attached to instances of agent B 
+		AgentInstance.linkStates(B, B_x_ILS);
+		AgentInstanceLinkState.site.name(B_x_ILS, "x");
+		AgentInstanceLinkState.linkState.linkState(B_x_ILS, B_x_IL);	
+		IndexedLink(B_x_IL);
+		AgentInstanceLinkState.site(B_x_ILS, B_x_Site);
+		AgentInstanceLinkState.attachedSite(B_x_ILS, A_x_Site);
+		AgentInstanceLinkState.attachedAgentInstance(B_x_ILS, A);
+}
+
+pattern AtoNull_lhs( A: AgentInstance,  B: AgentInstance) {
+	// Agent pattern for instances of agent A
+	AgentInstance.agent.name(A, "A");
+		// Site patterns for site x attached to instances of agent A 
+		AgentInstance.linkStates(A, A_x_ILS);
+		AgentInstanceLinkState.site.name(A_x_ILS, "x");
+	
+	// Agent pattern for instances of agent B
+	AgentInstance.agent.name(B, "B");
+		// Site patterns for site x attached to instances of agent B 
+		AgentInstance.linkStates(B, B_x_ILS);
+		AgentInstanceLinkState.site.name(B_x_ILS, "x");
+}
+
+
+pattern CtoNull_lhs( C: AgentInstance) {
+	// Agent pattern for instances of agent C
+	AgentInstance.agent.name(C, "C");
+		// Site patterns for site x attached to instances of agent C 
+		AgentInstance.linkStates(C, C_x_ILS);
+		AgentInstanceLinkState.site.name(C_x_ILS, "x");
+		AgentInstance.siteStates(C, C_x_ISS);
+		AgentInstanceSiteState.site.name(C_x_ISS, "x");
+		AgentInstanceSiteState.siteState.state.name(C_x_ISS, "u");
+}
+
+pattern CtoNull2_lhs( C: AgentInstance) {
+	// Agent pattern for instances of agent C
+	AgentInstance.agent.name(C, "C");
+		// Site patterns for site x attached to instances of agent C 
+		AgentInstance.linkStates(C, C_x_ILS);
+		AgentInstanceLinkState.site.name(C_x_ILS, "x");
+}
+
+pattern AExact_lhs( A: AgentInstance) {
+	// Agent pattern for instances of agent A
+	AgentInstance.agent.name(A, "A");
+		// Site patterns for site x attached to instances of agent A 
+		AgentInstance.linkStates(A, A_x_ILS);
+		AgentInstanceLinkState.site.name(A_x_ILS, "x");
+		AgentInstanceLinkState.linkState.linkState(A_x_ILS, A_x_EL);
+		IndexedLink(A_x_EL);
+		AgentInstanceLinkState.attachedSite.name(A_x_ILS, "x");
+		AgentInstanceLinkState.attachedAgentInstance.agent.name(A_x_ILS, "B");
 }
 

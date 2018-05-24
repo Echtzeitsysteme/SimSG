@@ -21,9 +21,11 @@ import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
 import biochemsimulation.reactionrules.reactionRules.ReactionProperty;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesFactory;
+import biochemsimulation.reactionrules.reactionRules.SemiLink;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.SiteState;
+import biochemsimulation.reactionrules.reactionRules.WhatEver;
 import biochemsimulation.reactionrules.reactionRules.impl.ReactionRuleModelImpl;
 import biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesFactoryImpl;
 import java.io.IOException;
@@ -166,12 +168,8 @@ public class ReactionRulesGenerator extends AbstractGenerator {
             final IndexedLink link = ((IndexedLink) _linkState_2);
             this.insertLinkInLinkMap(link.getState(), agentI, site, linksA, linksS);
           }
-          LinkState _linkState_3 = newLinkState.getLinkState();
-          if ((_linkState_3 instanceof ExactLink)) {
-            LinkState _linkState_4 = newLinkState.getLinkState();
-            final ExactLink link_1 = ((ExactLink) _linkState_4);
-            aiLinkState.setAttachedAgent(link_1.getLinkAgent().getAgent());
-            aiLinkState.setAttachedSite(link_1.getLinkSite().getSite());
+          if ((((newLinkState.getLinkState() instanceof WhatEver) || (newLinkState.getLinkState() instanceof ExactLink)) || (newLinkState.getLinkState() instanceof SemiLink))) {
+            newLinkState.setLinkState(factory.createFreeLink());
           }
         } else {
           newLinkState.setLinkState(factory.createFreeLink());

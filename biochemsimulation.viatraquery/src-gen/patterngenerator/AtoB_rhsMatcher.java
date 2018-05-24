@@ -30,19 +30,27 @@ import patterngenerator.util.AtoB_rhsQuerySpecification;
  * <p>Original source:
  * <code><pre>
  * pattern AtoB_rhs( A: AgentInstance,  B: AgentInstance) {
+ * 	// Agent pattern for instances of agent A
  * 	AgentInstance.agent.name(A, "A");
- * 	AgentInstance.linkStates(A, A_x_ILS);
- * 	AgentInstanceLinkState.site.name(A_x_ILS, "x");
- * 	AgentInstanceLinkState.site(A_x_ILS, A_x_IL);
- * 	AgentInstanceLinkState.attachedSite(A_x_ILS, B_x_IL);
- * 	AgentInstanceLinkState.attachedAgentInstance(A_x_ILS, B);
- * 	AgentInstance.agent.name(B, "B");
- * 	AgentInstance.linkStates(B, B_x_ILS);
- * 	AgentInstanceLinkState.site.name(B_x_ILS, "x");
- * 	AgentInstanceLinkState.site(B_x_ILS, B_x_IL);
- * 	AgentInstanceLinkState.attachedSite(B_x_ILS, A_x_IL);
- * 	AgentInstanceLinkState.attachedAgentInstance(B_x_ILS, A);
+ * 		// Site patterns for site x attached to instances of agent A 
+ * 		AgentInstance.linkStates(A, A_x_ILS);
+ * 		AgentInstanceLinkState.site.name(A_x_ILS, "x");
+ * 		AgentInstanceLinkState.linkState.linkState(A_x_ILS, A_x_IL);	
+ * 		IndexedLink(A_x_IL);
+ * 		AgentInstanceLinkState.site(A_x_ILS, A_x_Site);
+ * 		AgentInstanceLinkState.attachedSite(A_x_ILS, B_x_Site);
+ * 		AgentInstanceLinkState.attachedAgentInstance(A_x_ILS, B);
  * 	
+ * 	// Agent pattern for instances of agent B
+ * 	AgentInstance.agent.name(B, "B");
+ * 		// Site patterns for site x attached to instances of agent B 
+ * 		AgentInstance.linkStates(B, B_x_ILS);
+ * 		AgentInstanceLinkState.site.name(B_x_ILS, "x");
+ * 		AgentInstanceLinkState.linkState.linkState(B_x_ILS, B_x_IL);	
+ * 		IndexedLink(B_x_IL);
+ * 		AgentInstanceLinkState.site(B_x_ILS, B_x_Site);
+ * 		AgentInstanceLinkState.attachedSite(B_x_ILS, A_x_Site);
+ * 		AgentInstanceLinkState.attachedAgentInstance(B_x_ILS, A);
  * }
  * </pre></code>
  * 

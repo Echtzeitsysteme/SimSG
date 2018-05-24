@@ -6,10 +6,18 @@ package patterngenerator;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+import patterngenerator.AExact_lhsMatcher;
 import patterngenerator.AtoB_lhsMatcher;
 import patterngenerator.AtoB_rhsMatcher;
+import patterngenerator.AtoNull_lhsMatcher;
+import patterngenerator.CtoNull2_lhsMatcher;
+import patterngenerator.CtoNull_lhsMatcher;
+import patterngenerator.util.AExact_lhsQuerySpecification;
 import patterngenerator.util.AtoB_lhsQuerySpecification;
 import patterngenerator.util.AtoB_rhsQuerySpecification;
+import patterngenerator.util.AtoNull_lhsQuerySpecification;
+import patterngenerator.util.CtoNull2_lhsQuerySpecification;
+import patterngenerator.util.CtoNull_lhsQuerySpecification;
 
 /**
  * A pattern group formed of all public patterns defined in GeneratedQueryTest.vql.
@@ -21,6 +29,10 @@ import patterngenerator.util.AtoB_rhsQuerySpecification;
  * <p> From package patterngenerator, the group contains the definition of the following patterns: <ul>
  * <li>AtoB_lhs</li>
  * <li>AtoB_rhs</li>
+ * <li>AtoNull_lhs</li>
+ * <li>CtoNull_lhs</li>
+ * <li>CtoNull2_lhs</li>
+ * <li>AExact_lhs</li>
  * </ul>
  * 
  * @see IPatternGroup
@@ -47,6 +59,10 @@ public final class GeneratedQueryTest extends BaseGeneratedPatternGroup {
   private GeneratedQueryTest() throws ViatraQueryException {
     querySpecifications.add(AtoB_lhsQuerySpecification.instance());
     querySpecifications.add(AtoB_rhsQuerySpecification.instance());
+    querySpecifications.add(AtoNull_lhsQuerySpecification.instance());
+    querySpecifications.add(CtoNull_lhsQuerySpecification.instance());
+    querySpecifications.add(CtoNull2_lhsQuerySpecification.instance());
+    querySpecifications.add(AExact_lhsQuerySpecification.instance());
   }
   
   public AtoB_lhsQuerySpecification getAtoB_lhs() throws ViatraQueryException {
@@ -63,5 +79,37 @@ public final class GeneratedQueryTest extends BaseGeneratedPatternGroup {
   
   public AtoB_rhsMatcher getAtoB_rhs(final ViatraQueryEngine engine) throws ViatraQueryException {
     return AtoB_rhsMatcher.on(engine);
+  }
+  
+  public AtoNull_lhsQuerySpecification getAtoNull_lhs() throws ViatraQueryException {
+    return AtoNull_lhsQuerySpecification.instance();
+  }
+  
+  public AtoNull_lhsMatcher getAtoNull_lhs(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return AtoNull_lhsMatcher.on(engine);
+  }
+  
+  public CtoNull_lhsQuerySpecification getCtoNull_lhs() throws ViatraQueryException {
+    return CtoNull_lhsQuerySpecification.instance();
+  }
+  
+  public CtoNull_lhsMatcher getCtoNull_lhs(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return CtoNull_lhsMatcher.on(engine);
+  }
+  
+  public CtoNull2_lhsQuerySpecification getCtoNull2_lhs() throws ViatraQueryException {
+    return CtoNull2_lhsQuerySpecification.instance();
+  }
+  
+  public CtoNull2_lhsMatcher getCtoNull2_lhs(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return CtoNull2_lhsMatcher.on(engine);
+  }
+  
+  public AExact_lhsQuerySpecification getAExact_lhs() throws ViatraQueryException {
+    return AExact_lhsQuerySpecification.instance();
+  }
+  
+  public AExact_lhsMatcher getAExact_lhs(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return AExact_lhsMatcher.on(engine);
   }
 }

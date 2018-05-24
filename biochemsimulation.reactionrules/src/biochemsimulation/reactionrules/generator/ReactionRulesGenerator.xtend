@@ -34,6 +34,8 @@ import java.util.List
 import biochemsimulation.reactionrules.reactionRules.IndexedLink
 import java.util.LinkedList
 import biochemsimulation.reactionrules.reactionRules.ExactLink
+import biochemsimulation.reactionrules.reactionRules.WhatEver
+import biochemsimulation.reactionrules.reactionRules.SemiLink
 
 /**
  * Generates code from your model files on save.
@@ -122,10 +124,16 @@ class ReactionRulesGenerator extends AbstractGenerator {
 					val link = newLinkState.linkState as IndexedLink
 					insertLinkInLinkMap(link.state, agentI, site, linksA, linksS)
 				}
+				/*
 				if(newLinkState.linkState instanceof ExactLink) {
 					val link = newLinkState.linkState as ExactLink
 					aiLinkState.attachedAgent = link.linkAgent.agent
 					aiLinkState.attachedSite = link.linkSite.site
+				}
+				*/
+				if(newLinkState.linkState instanceof WhatEver || newLinkState.linkState instanceof ExactLink 
+					|| newLinkState.linkState instanceof SemiLink) {
+					newLinkState.linkState = factory.createFreeLink
 				}
 			} else {
 				newLinkState.linkState = factory.createFreeLink

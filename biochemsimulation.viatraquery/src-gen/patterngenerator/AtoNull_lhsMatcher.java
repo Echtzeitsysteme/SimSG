@@ -15,46 +15,42 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseMatcher;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 import org.eclipse.viatra.query.runtime.matchers.tuple.Tuple;
 import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
-import patterngenerator.AtoB_lhsMatch;
-import patterngenerator.util.AtoB_lhsQuerySpecification;
+import patterngenerator.AtoNull_lhsMatch;
+import patterngenerator.util.AtoNull_lhsQuerySpecification;
 
 /**
- * Generated pattern matcher API of the patterngenerator.AtoB_lhs pattern,
+ * Generated pattern matcher API of the patterngenerator.AtoNull_lhs pattern,
  * providing pattern-specific query methods.
  * 
  * <p>Use the pattern matcher on a given model via {@link #on(ViatraQueryEngine)},
  * e.g. in conjunction with {@link ViatraQueryEngine#on(Notifier)}.
  * 
- * <p>Matches of the pattern will be represented as {@link AtoB_lhsMatch}.
+ * <p>Matches of the pattern will be represented as {@link AtoNull_lhsMatch}.
  * 
  * <p>Original source:
  * <code><pre>
- * pattern AtoB_lhs( A: AgentInstance,  B: AgentInstance) {
+ * pattern AtoNull_lhs( A: AgentInstance,  B: AgentInstance) {
  * 	// Agent pattern for instances of agent A
  * 	AgentInstance.agent.name(A, "A");
  * 		// Site patterns for site x attached to instances of agent A 
  * 		AgentInstance.linkStates(A, A_x_ILS);
  * 		AgentInstanceLinkState.site.name(A_x_ILS, "x");
- * 		AgentInstanceLinkState.linkState.linkState(A_x_ILS, A_x_FL);
- * 		FreeLink(A_x_FL);
  * 	
  * 	// Agent pattern for instances of agent B
  * 	AgentInstance.agent.name(B, "B");
  * 		// Site patterns for site x attached to instances of agent B 
  * 		AgentInstance.linkStates(B, B_x_ILS);
  * 		AgentInstanceLinkState.site.name(B_x_ILS, "x");
- * 		AgentInstanceLinkState.linkState.linkState(B_x_ILS, B_x_FL);
- * 		FreeLink(B_x_FL);
  * }
  * </pre></code>
  * 
- * @see AtoB_lhsMatch
- *  @see AtoB_lhsProcessor
- * @see AtoB_lhsQuerySpecification
+ * @see AtoNull_lhsMatch
+ *  @see AtoNull_lhsProcessor
+ * @see AtoNull_lhsQuerySpecification
  * 
  */
 @SuppressWarnings("all")
-public class AtoB_lhsMatcher extends BaseMatcher<AtoB_lhsMatch> {
+public class AtoNull_lhsMatcher extends BaseMatcher<AtoNull_lhsMatch> {
   /**
    * Initializes the pattern matcher within an existing VIATRA Query engine.
    * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -63,11 +59,11 @@ public class AtoB_lhsMatcher extends BaseMatcher<AtoB_lhsMatch> {
    * @throws ViatraQueryException if an error occurs during pattern matcher creation
    * 
    */
-  public static AtoB_lhsMatcher on(final ViatraQueryEngine engine) throws ViatraQueryException {
+  public static AtoNull_lhsMatcher on(final ViatraQueryEngine engine) throws ViatraQueryException {
     // check if matcher already exists
-    AtoB_lhsMatcher matcher = engine.getExistingMatcher(querySpecification());
+    AtoNull_lhsMatcher matcher = engine.getExistingMatcher(querySpecification());
     if (matcher == null) {
-        matcher = (AtoB_lhsMatcher)engine.getMatcher(querySpecification());
+        matcher = (AtoNull_lhsMatcher)engine.getMatcher(querySpecification());
     }
     return matcher;
   }
@@ -78,15 +74,15 @@ public class AtoB_lhsMatcher extends BaseMatcher<AtoB_lhsMatch> {
    * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
    * 
    */
-  public static AtoB_lhsMatcher create() throws ViatraQueryException {
-    return new AtoB_lhsMatcher();
+  public static AtoNull_lhsMatcher create() throws ViatraQueryException {
+    return new AtoNull_lhsMatcher();
   }
   
   private final static int POSITION_A = 0;
   
   private final static int POSITION_B = 1;
   
-  private final static Logger LOGGER = ViatraQueryLoggingUtil.getLogger(AtoB_lhsMatcher.class);
+  private final static Logger LOGGER = ViatraQueryLoggingUtil.getLogger(AtoNull_lhsMatcher.class);
   
   /**
    * Initializes the pattern matcher within an existing VIATRA Query engine.
@@ -96,7 +92,7 @@ public class AtoB_lhsMatcher extends BaseMatcher<AtoB_lhsMatch> {
    * @throws ViatraQueryException if an error occurs during pattern matcher creation
    * 
    */
-  private AtoB_lhsMatcher() throws ViatraQueryException {
+  private AtoNull_lhsMatcher() throws ViatraQueryException {
     super(querySpecification());
   }
   
@@ -104,10 +100,10 @@ public class AtoB_lhsMatcher extends BaseMatcher<AtoB_lhsMatch> {
    * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
    * @param pA the fixed value of pattern parameter A, or null if not bound.
    * @param pB the fixed value of pattern parameter B, or null if not bound.
-   * @return matches represented as a AtoB_lhsMatch object.
+   * @return matches represented as a AtoNull_lhsMatch object.
    * 
    */
-  public Collection<AtoB_lhsMatch> getAllMatches(final AgentInstance pA, final AgentInstance pB) {
+  public Collection<AtoNull_lhsMatch> getAllMatches(final AgentInstance pA, final AgentInstance pB) {
     return rawGetAllMatches(new Object[]{pA, pB});
   }
   
@@ -116,10 +112,10 @@ public class AtoB_lhsMatcher extends BaseMatcher<AtoB_lhsMatch> {
    * Neither determinism nor randomness of selection is guaranteed.
    * @param pA the fixed value of pattern parameter A, or null if not bound.
    * @param pB the fixed value of pattern parameter B, or null if not bound.
-   * @return a match represented as a AtoB_lhsMatch object, or null if no match is found.
+   * @return a match represented as a AtoNull_lhsMatch object, or null if no match is found.
    * 
    */
-  public AtoB_lhsMatch getOneArbitraryMatch(final AgentInstance pA, final AgentInstance pB) {
+  public AtoNull_lhsMatch getOneArbitraryMatch(final AgentInstance pA, final AgentInstance pB) {
     return rawGetOneArbitraryMatch(new Object[]{pA, pB});
   }
   
@@ -153,7 +149,7 @@ public class AtoB_lhsMatcher extends BaseMatcher<AtoB_lhsMatch> {
    * @param processor the action that will process each pattern match.
    * 
    */
-  public void forEachMatch(final AgentInstance pA, final AgentInstance pB, final IMatchProcessor<? super AtoB_lhsMatch> processor) {
+  public void forEachMatch(final AgentInstance pA, final AgentInstance pB, final IMatchProcessor<? super AtoNull_lhsMatch> processor) {
     rawForEachMatch(new Object[]{pA, pB}, processor);
   }
   
@@ -166,7 +162,7 @@ public class AtoB_lhsMatcher extends BaseMatcher<AtoB_lhsMatch> {
    * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
    * 
    */
-  public boolean forOneArbitraryMatch(final AgentInstance pA, final AgentInstance pB, final IMatchProcessor<? super AtoB_lhsMatch> processor) {
+  public boolean forOneArbitraryMatch(final AgentInstance pA, final AgentInstance pB, final IMatchProcessor<? super AtoNull_lhsMatch> processor) {
     return rawForOneArbitraryMatch(new Object[]{pA, pB}, processor);
   }
   
@@ -179,8 +175,8 @@ public class AtoB_lhsMatcher extends BaseMatcher<AtoB_lhsMatch> {
    * @return the (partial) match object.
    * 
    */
-  public AtoB_lhsMatch newMatch(final AgentInstance pA, final AgentInstance pB) {
-    return AtoB_lhsMatch.newMatch(pA, pB);
+  public AtoNull_lhsMatch newMatch(final AgentInstance pA, final AgentInstance pB) {
+    return AtoNull_lhsMatch.newMatch(pA, pB);
   }
   
   /**
@@ -208,7 +204,7 @@ public class AtoB_lhsMatcher extends BaseMatcher<AtoB_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  public Set<AgentInstance> getAllValuesOfA(final AtoB_lhsMatch partialMatch) {
+  public Set<AgentInstance> getAllValuesOfA(final AtoNull_lhsMatch partialMatch) {
     return rawAccumulateAllValuesOfA(partialMatch.toArray());
   }
   
@@ -249,7 +245,7 @@ public class AtoB_lhsMatcher extends BaseMatcher<AtoB_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  public Set<AgentInstance> getAllValuesOfB(final AtoB_lhsMatch partialMatch) {
+  public Set<AgentInstance> getAllValuesOfB(final AtoNull_lhsMatch partialMatch) {
     return rawAccumulateAllValuesOfB(partialMatch.toArray());
   }
   
@@ -266,9 +262,9 @@ public class AtoB_lhsMatcher extends BaseMatcher<AtoB_lhsMatch> {
   }
   
   @Override
-  protected AtoB_lhsMatch tupleToMatch(final Tuple t) {
+  protected AtoNull_lhsMatch tupleToMatch(final Tuple t) {
     try {
-        return AtoB_lhsMatch.newMatch((AgentInstance) t.get(POSITION_A), (AgentInstance) t.get(POSITION_B));
+        return AtoNull_lhsMatch.newMatch((AgentInstance) t.get(POSITION_A), (AgentInstance) t.get(POSITION_B));
     } catch(ClassCastException e) {
         LOGGER.error("Element(s) in tuple not properly typed!",e);
         return null;
@@ -276,9 +272,9 @@ public class AtoB_lhsMatcher extends BaseMatcher<AtoB_lhsMatch> {
   }
   
   @Override
-  protected AtoB_lhsMatch arrayToMatch(final Object[] match) {
+  protected AtoNull_lhsMatch arrayToMatch(final Object[] match) {
     try {
-        return AtoB_lhsMatch.newMatch((AgentInstance) match[POSITION_A], (AgentInstance) match[POSITION_B]);
+        return AtoNull_lhsMatch.newMatch((AgentInstance) match[POSITION_A], (AgentInstance) match[POSITION_B]);
     } catch(ClassCastException e) {
         LOGGER.error("Element(s) in array not properly typed!",e);
         return null;
@@ -286,9 +282,9 @@ public class AtoB_lhsMatcher extends BaseMatcher<AtoB_lhsMatch> {
   }
   
   @Override
-  protected AtoB_lhsMatch arrayToMatchMutable(final Object[] match) {
+  protected AtoNull_lhsMatch arrayToMatchMutable(final Object[] match) {
     try {
-        return AtoB_lhsMatch.newMutableMatch((AgentInstance) match[POSITION_A], (AgentInstance) match[POSITION_B]);
+        return AtoNull_lhsMatch.newMutableMatch((AgentInstance) match[POSITION_A], (AgentInstance) match[POSITION_B]);
     } catch(ClassCastException e) {
         LOGGER.error("Element(s) in array not properly typed!",e);
         return null;
@@ -300,7 +296,7 @@ public class AtoB_lhsMatcher extends BaseMatcher<AtoB_lhsMatch> {
    * @throws ViatraQueryException if the pattern definition could not be loaded
    * 
    */
-  public static IQuerySpecification<AtoB_lhsMatcher> querySpecification() throws ViatraQueryException {
-    return AtoB_lhsQuerySpecification.instance();
+  public static IQuerySpecification<AtoNull_lhsMatcher> querySpecification() throws ViatraQueryException {
+    return AtoNull_lhsQuerySpecification.instance();
   }
 }

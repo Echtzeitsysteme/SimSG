@@ -18,4 +18,8 @@ init init4 2 { A(x[1]), C(x{p}[1])}
 
 /* Rules */
 rule AtoB { A(x[free]), B(x[free]) } <-> { A(x[1]), B(x[1])} @ [on_rate, off_rate]
+rule AtoNull { A(x[?]), B(x[?]) } <-> { } @ [on_rate, off_rate]
+rule CtoNull { C(x{u}[?]) } -> { } @ [on_rate]
+rule CtoNull2 { C(x[?]) } -> { } @ [on_rate]
+rule AExact { A(x[B.x]) } -> { } @ [on_rate]
          

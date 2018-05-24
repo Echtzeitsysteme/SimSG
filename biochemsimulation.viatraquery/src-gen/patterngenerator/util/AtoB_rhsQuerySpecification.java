@@ -134,15 +134,17 @@ public final class AtoB_rhsQuerySpecification extends BaseGeneratedEMFQuerySpeci
           PVariable var_B = body.getOrCreateVariableByName("B");
           PVariable var_A_x_ILS = body.getOrCreateVariableByName("A_x_ILS");
           PVariable var_A_x_IL = body.getOrCreateVariableByName("A_x_IL");
-          PVariable var_B_x_IL = body.getOrCreateVariableByName("B_x_IL");
+          PVariable var_A_x_Site = body.getOrCreateVariableByName("A_x_Site");
+          PVariable var_B_x_Site = body.getOrCreateVariableByName("B_x_Site");
           PVariable var_B_x_ILS = body.getOrCreateVariableByName("B_x_ILS");
+          PVariable var_B_x_IL = body.getOrCreateVariableByName("B_x_IL");
           new TypeConstraint(body, Tuples.flatTupleOf(var_A), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstance")));
           new TypeConstraint(body, Tuples.flatTupleOf(var_B), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstance")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_A, parameter_pA),
              new ExportedParameter(body, var_B, parameter_pB)
           ));
-          // 	AgentInstance.agent.name(A, "A")
+          // 	// Agent pattern for instances of agent A	AgentInstance.agent.name(A, "A")
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
           new ConstantValue(body, var__virtual_0_, "A");
           new TypeConstraint(body, Tuples.flatTupleOf(var_A), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstance")));
@@ -153,13 +155,13 @@ public final class AtoB_rhsQuerySpecification extends BaseGeneratedEMFQuerySpeci
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "ReactionProperty", "name")));
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_2_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
           new Equality(body, var__virtual_2_, var__virtual_0_);
-          // 	AgentInstance.linkStates(A, A_x_ILS)
+          // 		// Site patterns for site x attached to instances of agent A 		AgentInstance.linkStates(A, A_x_ILS)
           new TypeConstraint(body, Tuples.flatTupleOf(var_A), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstance")));
           PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
           new TypeConstraint(body, Tuples.flatTupleOf(var_A, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstance", "linkStates")));
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_3_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState")));
           new Equality(body, var__virtual_3_, var_A_x_ILS);
-          // 	AgentInstanceLinkState.site.name(A_x_ILS, "x")
+          // 		AgentInstanceLinkState.site.name(A_x_ILS, "x")
           PVariable var__virtual_4_ = body.getOrCreateVariableByName(".virtual{4}");
           new ConstantValue(body, var__virtual_4_, "x");
           new TypeConstraint(body, Tuples.flatTupleOf(var_A_x_ILS), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState")));
@@ -170,70 +172,92 @@ public final class AtoB_rhsQuerySpecification extends BaseGeneratedEMFQuerySpeci
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_5_, var__virtual_6_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "Site", "name")));
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_6_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
           new Equality(body, var__virtual_6_, var__virtual_4_);
-          // 	AgentInstanceLinkState.site(A_x_ILS, A_x_IL)
+          // 		AgentInstanceLinkState.linkState.linkState(A_x_ILS, A_x_IL)
           new TypeConstraint(body, Tuples.flatTupleOf(var_A_x_ILS), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState")));
           PVariable var__virtual_7_ = body.getOrCreateVariableByName(".virtual{7}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_A_x_ILS, var__virtual_7_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState", "site")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_7_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "Site")));
-          new Equality(body, var__virtual_7_, var_A_x_IL);
-          // 	AgentInstanceLinkState.attachedSite(A_x_ILS, B_x_IL)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_A_x_ILS), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_A_x_ILS, var__virtual_7_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState", "linkState")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_7_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "LinkState")));
           PVariable var__virtual_8_ = body.getOrCreateVariableByName(".virtual{8}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_A_x_ILS, var__virtual_8_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState", "attachedSite")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_8_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "Site")));
-          new Equality(body, var__virtual_8_, var_B_x_IL);
-          // 	AgentInstanceLinkState.attachedAgentInstance(A_x_ILS, B)
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_7_, var__virtual_8_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "LinkState", "linkState")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_8_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "LinkState")));
+          new Equality(body, var__virtual_8_, var_A_x_IL);
+          // 			IndexedLink(A_x_IL)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_A_x_IL), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "IndexedLink")));
+          // 		AgentInstanceLinkState.site(A_x_ILS, A_x_Site)
           new TypeConstraint(body, Tuples.flatTupleOf(var_A_x_ILS), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState")));
           PVariable var__virtual_9_ = body.getOrCreateVariableByName(".virtual{9}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_A_x_ILS, var__virtual_9_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState", "attachedAgentInstance")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_9_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstance")));
-          new Equality(body, var__virtual_9_, var_B);
-          // 	AgentInstance.agent.name(B, "B")
+          new TypeConstraint(body, Tuples.flatTupleOf(var_A_x_ILS, var__virtual_9_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState", "site")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_9_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "Site")));
+          new Equality(body, var__virtual_9_, var_A_x_Site);
+          // 		AgentInstanceLinkState.attachedSite(A_x_ILS, B_x_Site)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_A_x_ILS), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState")));
           PVariable var__virtual_10_ = body.getOrCreateVariableByName(".virtual{10}");
-          new ConstantValue(body, var__virtual_10_, "B");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_B), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstance")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_A_x_ILS, var__virtual_10_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState", "attachedSite")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_10_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "Site")));
+          new Equality(body, var__virtual_10_, var_B_x_Site);
+          // 		AgentInstanceLinkState.attachedAgentInstance(A_x_ILS, B)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_A_x_ILS), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState")));
           PVariable var__virtual_11_ = body.getOrCreateVariableByName(".virtual{11}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_B, var__virtual_11_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstance", "agent")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_11_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "Agent")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_A_x_ILS, var__virtual_11_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState", "attachedAgentInstance")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_11_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstance")));
+          new Equality(body, var__virtual_11_, var_B);
+          // 		// Agent pattern for instances of agent B	AgentInstance.agent.name(B, "B")
           PVariable var__virtual_12_ = body.getOrCreateVariableByName(".virtual{12}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_11_, var__virtual_12_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "ReactionProperty", "name")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_12_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
-          new Equality(body, var__virtual_12_, var__virtual_10_);
-          // 	AgentInstance.linkStates(B, B_x_ILS)
+          new ConstantValue(body, var__virtual_12_, "B");
           new TypeConstraint(body, Tuples.flatTupleOf(var_B), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstance")));
           PVariable var__virtual_13_ = body.getOrCreateVariableByName(".virtual{13}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_B, var__virtual_13_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstance", "linkStates")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_13_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState")));
-          new Equality(body, var__virtual_13_, var_B_x_ILS);
-          // 	AgentInstanceLinkState.site.name(B_x_ILS, "x")
+          new TypeConstraint(body, Tuples.flatTupleOf(var_B, var__virtual_13_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstance", "agent")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_13_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "Agent")));
           PVariable var__virtual_14_ = body.getOrCreateVariableByName(".virtual{14}");
-          new ConstantValue(body, var__virtual_14_, "x");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_B_x_ILS), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_13_, var__virtual_14_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "ReactionProperty", "name")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_14_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
+          new Equality(body, var__virtual_14_, var__virtual_12_);
+          // 		// Site patterns for site x attached to instances of agent B 		AgentInstance.linkStates(B, B_x_ILS)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_B), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstance")));
           PVariable var__virtual_15_ = body.getOrCreateVariableByName(".virtual{15}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_B_x_ILS, var__virtual_15_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState", "site")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_15_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "Site")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_B, var__virtual_15_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstance", "linkStates")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_15_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState")));
+          new Equality(body, var__virtual_15_, var_B_x_ILS);
+          // 		AgentInstanceLinkState.site.name(B_x_ILS, "x")
           PVariable var__virtual_16_ = body.getOrCreateVariableByName(".virtual{16}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_15_, var__virtual_16_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "Site", "name")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_16_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
-          new Equality(body, var__virtual_16_, var__virtual_14_);
-          // 	AgentInstanceLinkState.site(B_x_ILS, B_x_IL)
+          new ConstantValue(body, var__virtual_16_, "x");
           new TypeConstraint(body, Tuples.flatTupleOf(var_B_x_ILS), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState")));
           PVariable var__virtual_17_ = body.getOrCreateVariableByName(".virtual{17}");
           new TypeConstraint(body, Tuples.flatTupleOf(var_B_x_ILS, var__virtual_17_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState", "site")));
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_17_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "Site")));
-          new Equality(body, var__virtual_17_, var_B_x_IL);
-          // 	AgentInstanceLinkState.attachedSite(B_x_ILS, A_x_IL)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_B_x_ILS), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState")));
           PVariable var__virtual_18_ = body.getOrCreateVariableByName(".virtual{18}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_B_x_ILS, var__virtual_18_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState", "attachedSite")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_18_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "Site")));
-          new Equality(body, var__virtual_18_, var_A_x_IL);
-          // 	AgentInstanceLinkState.attachedAgentInstance(B_x_ILS, A)
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_17_, var__virtual_18_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "Site", "name")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_18_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2002/Ecore", "EString")));
+          new Equality(body, var__virtual_18_, var__virtual_16_);
+          // 		AgentInstanceLinkState.linkState.linkState(B_x_ILS, B_x_IL)
           new TypeConstraint(body, Tuples.flatTupleOf(var_B_x_ILS), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState")));
           PVariable var__virtual_19_ = body.getOrCreateVariableByName(".virtual{19}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_B_x_ILS, var__virtual_19_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState", "attachedAgentInstance")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_19_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstance")));
-          new Equality(body, var__virtual_19_, var_A);
+          new TypeConstraint(body, Tuples.flatTupleOf(var_B_x_ILS, var__virtual_19_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState", "linkState")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_19_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "LinkState")));
+          PVariable var__virtual_20_ = body.getOrCreateVariableByName(".virtual{20}");
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_19_, var__virtual_20_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "LinkState", "linkState")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_20_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "LinkState")));
+          new Equality(body, var__virtual_20_, var_B_x_IL);
+          // 			IndexedLink(B_x_IL)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_B_x_IL), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "IndexedLink")));
+          // 		AgentInstanceLinkState.site(B_x_ILS, B_x_Site)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_B_x_ILS), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState")));
+          PVariable var__virtual_21_ = body.getOrCreateVariableByName(".virtual{21}");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_B_x_ILS, var__virtual_21_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState", "site")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_21_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "Site")));
+          new Equality(body, var__virtual_21_, var_B_x_Site);
+          // 		AgentInstanceLinkState.attachedSite(B_x_ILS, A_x_Site)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_B_x_ILS), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState")));
+          PVariable var__virtual_22_ = body.getOrCreateVariableByName(".virtual{22}");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_B_x_ILS, var__virtual_22_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState", "attachedSite")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_22_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "Site")));
+          new Equality(body, var__virtual_22_, var_A_x_Site);
+          // 		AgentInstanceLinkState.attachedAgentInstance(B_x_ILS, A)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_B_x_ILS), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState")));
+          PVariable var__virtual_23_ = body.getOrCreateVariableByName(".virtual{23}");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_B_x_ILS, var__virtual_23_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstanceLinkState", "attachedAgentInstance")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_23_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "AgentInstance")));
+          new Equality(body, var__virtual_23_, var_A);
           bodies.add(body);
       }
       return bodies;

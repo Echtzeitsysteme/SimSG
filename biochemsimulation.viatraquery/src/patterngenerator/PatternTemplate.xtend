@@ -20,6 +20,7 @@ import biochemsimulation.reactionrules.reactionRules.WhatEver
 import biochemsimulation.reactionrules.reactionRules.IndexedLink
 import java.util.LinkedList
 import biochemsimulation.reactionrules.reactionRules.RuleBody
+import biochemsimulation.reactionrules.reactionRules.SiteState
 
 class PatternTemplate {
 	
@@ -40,9 +41,9 @@ class PatternTemplate {
 				import "«p.nsURI»" as «importAliases.get(p)»
 			«ENDFOR»
 			
-			«FOR r : rules»
-				«generatePatternCode(r, patternFromPatternAssignment(r.rule.lhs), "lhs")»
-				«generatePatternCode(r, patternFromPatternAssignment(r.rule.rhs), "rhs")»
+			«FOR r : rules SEPARATOR "\n"»
+				«generatePatternCode(r, patternFromPatternAssignment(r.rule.lhs), "lhs")»«if(r.rule.operator.equals("<->"))"\n"»
+				«if(r.rule.operator.equals("<->"))generatePatternCode(r, patternFromPatternAssignment(r.rule.rhs), "rhs")»
 			«ENDFOR»
 		'''
 	}
@@ -57,18 +58,23 @@ class PatternTemplate {
 		}
 	}
 	
-	def generatePatternCode(Rule rule, Pattern pattern, String suffix) {	
+	def generatePatternCode(Rule rule, Pattern pattern, String suffix) {
+		if(pattern.agentPatterns.size <= 0) {
+			return ''''''
+		}	
 		return '''
 			pattern «rule.name+"_"+suffix»(«FOR ap : pattern.agentPatterns SEPARATOR ", "» «generateAgentPatternContext(ap)»«ENDFOR») {
-				«FOR ap : pattern.agentPatterns»
+				«FOR ap : pattern.agentPatterns SEPARATOR "\n"»
+				// Agent pattern for instances of agent «ap.agent.name»
 				AgentInstance.agent.name(«ap.agent.name», "«ap.agent.name»");
-				«FOR sp : ap.sitePatterns.sitePatterns»
-				AgentInstance.linkStates(«ap.agent.name», «aILSVariableName(ap, sp)»);
-				AgentInstanceLinkState.site.name(«aILSVariableName(ap, sp)», "«sp.site.name»");
-				«linkStatePattern(ap, sp)»
+					«FOR sp : ap.sitePatterns.sitePatterns SEPARATOR "\n"»
+					// Site patterns for site «sp.site.name» attached to instances of agent «ap.agent.name» 
+					AgentInstance.linkStates(«ap.agent.name», «aILSVariableName(ap, sp)»);
+					AgentInstanceLinkState.site.name(«aILSVariableName(ap, sp)», "«sp.site.name»");
+					«linkStatePattern(ap, sp)»
+					«siteStatePattern(ap, sp)»
+					«ENDFOR»
 				«ENDFOR»
-				«ENDFOR»
-				
 			}
 		'''
 		
@@ -84,28 +90,50 @@ class PatternTemplate {
 		}else if(linkState instanceof SemiLink) {
 			return '''
 				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «ap.agent.name»_«sp.site.name»_SL);
-				SemiLink(«ap.agent.name»_«sp.site.name»_SL);
+				IndexedLink(«ap.agent.name»_«sp.site.name»_SL);
 			'''
-			//This is a Stub, since i don't yet know what SemiLink does exactly
+			/* SemiLinks are used to find occurences of agent instances of a 
+			 * certain type bound to any other agent instance at its specified site.
+			 */
 		}else if(linkState instanceof WhatEver) {
 			return '''
-				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «ap.agent.name»_«sp.site.name»_WEL);
-				WhatEver(«ap.agent.name»_«sp.site.name»_WEL);
 			'''
-			//This is a prototype, since i don't yet know how don't care links should work exactly
+			/* WhatEver is used to specify a site whose state is to be changed without 
+			 * having to mention what link state this site should have. Basically a wild card for the current link-state
+			 * of the affected site.
+			 */
 		}else if(linkState instanceof ExactLink) {
+			val eLink = linkState as ExactLink
 			return '''
 				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «ap.agent.name»_«sp.site.name»_EL);
-				WhatEver(«ap.agent.name»_«sp.site.name»_EL);
+				IndexedLink(«ap.agent.name»_«sp.site.name»_EL);
+				AgentInstanceLinkState.attachedSite.name(«aILSVariableName(ap, sp)», "«eLink.linkSite.site.name»");
+				AgentInstanceLinkState.attachedAgentInstance.agent.name(«aILSVariableName(ap, sp)», "«eLink.linkAgent.agent.name»");
 			'''
-			//This is a Stub, since i don't yet know what ExactLink does exactly
+			/* ExactLinks behave the same as SemiLinks and are used to count the occurences of agent instances with a 
+			 * certain type bound to any agent instance of the specified type and site at its specified site.
+			 */
 		}else {
 			return '''
-				AgentInstanceLinkState.site(«aILSVariableName(ap, sp)», «ap.agent.name»_«sp.site.name»_IL);
+				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «ap.agent.name»_«sp.site.name»_IL);	
+				IndexedLink(«ap.agent.name»_«sp.site.name»_IL);
+				AgentInstanceLinkState.site(«aILSVariableName(ap, sp)», «ap.agent.name»_«sp.site.name»_Site);
 				AgentInstanceLinkState.attachedSite(«aILSVariableName(ap, sp)», «getOtherIndexedLinkSite(ap, sp)»);
 				AgentInstanceLinkState.attachedAgentInstance(«aILSVariableName(ap, sp)», «getOtherIndexedLinkAgent(ap, sp)»);
 			'''
 		}
+	}
+	
+	def siteStatePattern(AgentPattern ap, SitePattern sp) {
+		val siteState = sp.state as SiteState
+		if(siteState === null) {
+			return ''''''
+		}
+		return '''
+			AgentInstance.siteStates(«ap.agent.name», «aISSVariableName(ap, sp)»);
+			AgentInstanceSiteState.site.name(«aISSVariableName(ap, sp)», "«sp.site.name»");
+			AgentInstanceSiteState.siteState.state.name(«aISSVariableName(ap, sp)», "«sp.state.state.name»");
+		'''
 	}
 	
 	def getOtherIndexedLinkAgent(AgentPattern ap, SitePattern sp) {
@@ -158,7 +186,6 @@ class PatternTemplate {
 		}
 		var candidates = getAllIndexedLinksOfRule(rule)
 		for(cand : candidates) {
-			println(cand.toString)
 			val candidate = cand as IndexedLink
 			if(!candidate.equals(iLink) && iLink.state.equals(candidate.state)) {
 				var agentPattern = null as AgentPattern
@@ -177,7 +204,7 @@ class PatternTemplate {
 					agentPattern = eObj2 as AgentPattern
 				}
 				if(agentPattern !== null && sitePattern !== null) {
-					return '''«agentPattern.agent.name»_«sitePattern.site.name»_IL'''
+					return '''«agentPattern.agent.name»_«sitePattern.site.name»_Site'''
 				}
 				return ''''''
 			}
@@ -231,9 +258,11 @@ class PatternTemplate {
 		return '''«ap.agent.name»: AgentInstance'''
 	}
 	
-	
 	def aILSVariableName(AgentPattern ap, SitePattern sp) {
 		return '''«ap.agent.name+"_"+sp.site.name»_ILS'''
+	}
+	def aISSVariableName(AgentPattern ap, SitePattern sp) {
+		return '''«ap.agent.name+"_"+sp.site.name»_ISS'''
 	}
 	
 }
