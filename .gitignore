@@ -13,8 +13,13 @@
 */bin/*
 
 # Xtext
-*/src-gen/*
-*/xtend-gen/*
+*/src-gen/**/*.java*
+*/src-gen/**/*.xtendbin
+*/src-gen/**/*.xtextbin
+*/xtend-gen/**/*.xtendbin
+*/xtend-gen/**/*.xtextbin
+*/xtend-gen/**/*.java*
+!.gitignore
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
