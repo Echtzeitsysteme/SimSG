@@ -102,7 +102,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//Observation/observationPattern"/>
     </genClasses>
     <genClasses ecoreClass="ReactionRules.ecore#//NumericFromLiteral">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//NumericFromLiteral/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//NumericFromLiteral/value"/>
     </genClasses>
     <genClasses ecoreClass="ReactionRules.ecore#//NumericFromVariable">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//NumericFromVariable/valueVar"/>
@@ -120,7 +120,7 @@
     </genClasses>
     <genClasses ecoreClass="ReactionRules.ecore#//PatternAssignment"/>
     <genClasses ecoreClass="ReactionRules.ecore#//RuleVariables">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//RuleVariables/variables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//RuleVariables/variables"/>
     </genClasses>
     <genClasses ecoreClass="ReactionRules.ecore#//RuleBody">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//RuleBody/lhs"/>

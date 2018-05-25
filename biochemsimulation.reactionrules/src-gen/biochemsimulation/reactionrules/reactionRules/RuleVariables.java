@@ -26,19 +26,19 @@ import org.eclipse.emf.ecore.EObject;
 public interface RuleVariables extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Variables</b></em>' reference list.
-   * The list contents are of type {@link biochemsimulation.reactionrules.reactionRules.ArithmeticVariable}.
+   * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
+   * The list contents are of type {@link biochemsimulation.reactionrules.reactionRules.NumericAssignment}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Variables</em>' reference list isn't clear,
+   * If the meaning of the '<em>Variables</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Variables</em>' reference list.
+   * @return the value of the '<em>Variables</em>' containment reference list.
    * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getRuleVariables_Variables()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  EList<ArithmeticVariable> getVariables();
+  EList<NumericAssignment> getVariables();
 
 } // RuleVariables

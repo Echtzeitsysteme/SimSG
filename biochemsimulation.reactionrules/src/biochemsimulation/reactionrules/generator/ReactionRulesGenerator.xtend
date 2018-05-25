@@ -78,7 +78,7 @@ class ReactionRulesGenerator extends AbstractGenerator {
 		var value = "0"
 		if(na instanceof NumericFromLiteral) {
 			val nl = na as NumericFromLiteral
-			value = nl.value
+			value = nl.value.value
 		}else {
 			val nv = na as NumericFromVariable
 			val ae = nv.valueVar.value

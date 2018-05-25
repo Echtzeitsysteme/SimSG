@@ -5772,31 +5772,31 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNumericFromLiteral"
-    // InternalReactionRules.g:2293:1: ruleNumericFromLiteral returns [EObject current=null] : ( (lv_value_0_0= ruleUnsignedInteger ) ) ;
+    // InternalReactionRules.g:2293:1: ruleNumericFromLiteral returns [EObject current=null] : ( (lv_value_0_0= ruleArithmeticValue ) ) ;
     public final EObject ruleNumericFromLiteral() throws RecognitionException {
         EObject current = null;
 
-        AntlrDatatypeRuleToken lv_value_0_0 = null;
+        EObject lv_value_0_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalReactionRules.g:2299:2: ( ( (lv_value_0_0= ruleUnsignedInteger ) ) )
-            // InternalReactionRules.g:2300:2: ( (lv_value_0_0= ruleUnsignedInteger ) )
+            // InternalReactionRules.g:2299:2: ( ( (lv_value_0_0= ruleArithmeticValue ) ) )
+            // InternalReactionRules.g:2300:2: ( (lv_value_0_0= ruleArithmeticValue ) )
             {
-            // InternalReactionRules.g:2300:2: ( (lv_value_0_0= ruleUnsignedInteger ) )
-            // InternalReactionRules.g:2301:3: (lv_value_0_0= ruleUnsignedInteger )
+            // InternalReactionRules.g:2300:2: ( (lv_value_0_0= ruleArithmeticValue ) )
+            // InternalReactionRules.g:2301:3: (lv_value_0_0= ruleArithmeticValue )
             {
-            // InternalReactionRules.g:2301:3: (lv_value_0_0= ruleUnsignedInteger )
-            // InternalReactionRules.g:2302:4: lv_value_0_0= ruleUnsignedInteger
+            // InternalReactionRules.g:2301:3: (lv_value_0_0= ruleArithmeticValue )
+            // InternalReactionRules.g:2302:4: lv_value_0_0= ruleArithmeticValue
             {
 
-            				newCompositeNode(grammarAccess.getNumericFromLiteralAccess().getValueUnsignedIntegerParserRuleCall_0());
+            				newCompositeNode(grammarAccess.getNumericFromLiteralAccess().getValueArithmeticValueParserRuleCall_0());
             			
             pushFollow(FOLLOW_2);
-            lv_value_0_0=ruleUnsignedInteger();
+            lv_value_0_0=ruleArithmeticValue();
 
             state._fsp--;
 
@@ -5808,7 +5808,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
             					current,
             					"value",
             					lv_value_0_0,
-            					"biochemsimulation.reactionrules.ReactionRules.UnsignedInteger");
+            					"biochemsimulation.reactionrules.ReactionRules.ArithmeticValue");
             				afterParserOrEnumRuleCall();
             			
 
@@ -5983,7 +5983,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
             int alt21=2;
             int LA21_0 = input.LA(1);
 
-            if ( (LA21_0==RULE_INT) ) {
+            if ( (LA21_0==RULE_INT||LA21_0==22) ) {
                 alt21=1;
             }
             else if ( (LA21_0==RULE_ID) ) {
@@ -6582,38 +6582,50 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRuleVariables"
-    // InternalReactionRules.g:2576:1: ruleRuleVariables returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) (otherlv_1= ',' ( (otherlv_2= RULE_ID ) ) )* ) ;
+    // InternalReactionRules.g:2576:1: ruleRuleVariables returns [EObject current=null] : ( ( (lv_variables_0_0= ruleNumericAssignment ) ) (otherlv_1= ',' ( (lv_variables_2_0= ruleNumericAssignment ) ) )* ) ;
     public final EObject ruleRuleVariables() throws RecognitionException {
         EObject current = null;
 
-        Token otherlv_0=null;
         Token otherlv_1=null;
-        Token otherlv_2=null;
+        EObject lv_variables_0_0 = null;
+
+        EObject lv_variables_2_0 = null;
+
 
 
         	enterRule();
 
         try {
-            // InternalReactionRules.g:2582:2: ( ( ( (otherlv_0= RULE_ID ) ) (otherlv_1= ',' ( (otherlv_2= RULE_ID ) ) )* ) )
-            // InternalReactionRules.g:2583:2: ( ( (otherlv_0= RULE_ID ) ) (otherlv_1= ',' ( (otherlv_2= RULE_ID ) ) )* )
+            // InternalReactionRules.g:2582:2: ( ( ( (lv_variables_0_0= ruleNumericAssignment ) ) (otherlv_1= ',' ( (lv_variables_2_0= ruleNumericAssignment ) ) )* ) )
+            // InternalReactionRules.g:2583:2: ( ( (lv_variables_0_0= ruleNumericAssignment ) ) (otherlv_1= ',' ( (lv_variables_2_0= ruleNumericAssignment ) ) )* )
             {
-            // InternalReactionRules.g:2583:2: ( ( (otherlv_0= RULE_ID ) ) (otherlv_1= ',' ( (otherlv_2= RULE_ID ) ) )* )
-            // InternalReactionRules.g:2584:3: ( (otherlv_0= RULE_ID ) ) (otherlv_1= ',' ( (otherlv_2= RULE_ID ) ) )*
+            // InternalReactionRules.g:2583:2: ( ( (lv_variables_0_0= ruleNumericAssignment ) ) (otherlv_1= ',' ( (lv_variables_2_0= ruleNumericAssignment ) ) )* )
+            // InternalReactionRules.g:2584:3: ( (lv_variables_0_0= ruleNumericAssignment ) ) (otherlv_1= ',' ( (lv_variables_2_0= ruleNumericAssignment ) ) )*
             {
-            // InternalReactionRules.g:2584:3: ( (otherlv_0= RULE_ID ) )
-            // InternalReactionRules.g:2585:4: (otherlv_0= RULE_ID )
+            // InternalReactionRules.g:2584:3: ( (lv_variables_0_0= ruleNumericAssignment ) )
+            // InternalReactionRules.g:2585:4: (lv_variables_0_0= ruleNumericAssignment )
             {
-            // InternalReactionRules.g:2585:4: (otherlv_0= RULE_ID )
-            // InternalReactionRules.g:2586:5: otherlv_0= RULE_ID
+            // InternalReactionRules.g:2585:4: (lv_variables_0_0= ruleNumericAssignment )
+            // InternalReactionRules.g:2586:5: lv_variables_0_0= ruleNumericAssignment
             {
+
+            					newCompositeNode(grammarAccess.getRuleVariablesAccess().getVariablesNumericAssignmentParserRuleCall_0_0());
+            				
+            pushFollow(FOLLOW_24);
+            lv_variables_0_0=ruleNumericAssignment();
+
+            state._fsp--;
+
 
             					if (current==null) {
-            						current = createModelElement(grammarAccess.getRuleVariablesRule());
+            						current = createModelElementForParent(grammarAccess.getRuleVariablesRule());
             					}
-            				
-            otherlv_0=(Token)match(input,RULE_ID,FOLLOW_24); 
-
-            					newLeafNode(otherlv_0, grammarAccess.getRuleVariablesAccess().getVariablesArithmeticVariableCrossReference_0_0());
+            					add(
+            						current,
+            						"variables",
+            						lv_variables_0_0,
+            						"biochemsimulation.reactionrules.ReactionRules.NumericAssignment");
+            					afterParserOrEnumRuleCall();
             				
 
             }
@@ -6621,7 +6633,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalReactionRules.g:2597:3: (otherlv_1= ',' ( (otherlv_2= RULE_ID ) ) )*
+            // InternalReactionRules.g:2603:3: (otherlv_1= ',' ( (lv_variables_2_0= ruleNumericAssignment ) ) )*
             loop23:
             do {
                 int alt23=2;
@@ -6634,26 +6646,36 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
                 switch (alt23) {
             	case 1 :
-            	    // InternalReactionRules.g:2598:4: otherlv_1= ',' ( (otherlv_2= RULE_ID ) )
+            	    // InternalReactionRules.g:2604:4: otherlv_1= ',' ( (lv_variables_2_0= ruleNumericAssignment ) )
             	    {
-            	    otherlv_1=(Token)match(input,26,FOLLOW_6); 
+            	    otherlv_1=(Token)match(input,26,FOLLOW_29); 
 
             	    				newLeafNode(otherlv_1, grammarAccess.getRuleVariablesAccess().getCommaKeyword_1_0());
             	    			
-            	    // InternalReactionRules.g:2602:4: ( (otherlv_2= RULE_ID ) )
-            	    // InternalReactionRules.g:2603:5: (otherlv_2= RULE_ID )
+            	    // InternalReactionRules.g:2608:4: ( (lv_variables_2_0= ruleNumericAssignment ) )
+            	    // InternalReactionRules.g:2609:5: (lv_variables_2_0= ruleNumericAssignment )
             	    {
-            	    // InternalReactionRules.g:2603:5: (otherlv_2= RULE_ID )
-            	    // InternalReactionRules.g:2604:6: otherlv_2= RULE_ID
+            	    // InternalReactionRules.g:2609:5: (lv_variables_2_0= ruleNumericAssignment )
+            	    // InternalReactionRules.g:2610:6: lv_variables_2_0= ruleNumericAssignment
             	    {
+
+            	    						newCompositeNode(grammarAccess.getRuleVariablesAccess().getVariablesNumericAssignmentParserRuleCall_1_1_0());
+            	    					
+            	    pushFollow(FOLLOW_24);
+            	    lv_variables_2_0=ruleNumericAssignment();
+
+            	    state._fsp--;
+
 
             	    						if (current==null) {
-            	    							current = createModelElement(grammarAccess.getRuleVariablesRule());
+            	    							current = createModelElementForParent(grammarAccess.getRuleVariablesRule());
             	    						}
-            	    					
-            	    otherlv_2=(Token)match(input,RULE_ID,FOLLOW_24); 
-
-            	    						newLeafNode(otherlv_2, grammarAccess.getRuleVariablesAccess().getVariablesArithmeticVariableCrossReference_1_1_0());
+            	    						add(
+            	    							current,
+            	    							"variables",
+            	    							lv_variables_2_0,
+            	    							"biochemsimulation.reactionrules.ReactionRules.NumericAssignment");
+            	    						afterParserOrEnumRuleCall();
             	    					
 
             	    }
@@ -6693,7 +6715,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleUnidirectionalRule"
-    // InternalReactionRules.g:2620:1: entryRuleUnidirectionalRule returns [EObject current=null] : iv_ruleUnidirectionalRule= ruleUnidirectionalRule EOF ;
+    // InternalReactionRules.g:2632:1: entryRuleUnidirectionalRule returns [EObject current=null] : iv_ruleUnidirectionalRule= ruleUnidirectionalRule EOF ;
     public final EObject entryRuleUnidirectionalRule() throws RecognitionException {
         EObject current = null;
 
@@ -6701,8 +6723,8 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalReactionRules.g:2620:59: (iv_ruleUnidirectionalRule= ruleUnidirectionalRule EOF )
-            // InternalReactionRules.g:2621:2: iv_ruleUnidirectionalRule= ruleUnidirectionalRule EOF
+            // InternalReactionRules.g:2632:59: (iv_ruleUnidirectionalRule= ruleUnidirectionalRule EOF )
+            // InternalReactionRules.g:2633:2: iv_ruleUnidirectionalRule= ruleUnidirectionalRule EOF
             {
              newCompositeNode(grammarAccess.getUnidirectionalRuleRule()); 
             pushFollow(FOLLOW_1);
@@ -6729,7 +6751,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUnidirectionalRule"
-    // InternalReactionRules.g:2627:1: ruleUnidirectionalRule returns [EObject current=null] : ( ( (lv_lhs_0_0= rulePatternAssignment ) ) ( (lv_operator_1_0= RULE_UNI ) ) ( (lv_rhs_2_0= rulePatternAssignment ) ) this_AT_3= RULE_AT otherlv_4= '[' ( (lv_variables_5_0= ruleRuleVariables ) ) otherlv_6= ']' ) ;
+    // InternalReactionRules.g:2639:1: ruleUnidirectionalRule returns [EObject current=null] : ( ( (lv_lhs_0_0= rulePatternAssignment ) ) ( (lv_operator_1_0= RULE_UNI ) ) ( (lv_rhs_2_0= rulePatternAssignment ) ) this_AT_3= RULE_AT otherlv_4= '[' ( (lv_variables_5_0= ruleRuleVariables ) ) otherlv_6= ']' ) ;
     public final EObject ruleUnidirectionalRule() throws RecognitionException {
         EObject current = null;
 
@@ -6748,17 +6770,17 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalReactionRules.g:2633:2: ( ( ( (lv_lhs_0_0= rulePatternAssignment ) ) ( (lv_operator_1_0= RULE_UNI ) ) ( (lv_rhs_2_0= rulePatternAssignment ) ) this_AT_3= RULE_AT otherlv_4= '[' ( (lv_variables_5_0= ruleRuleVariables ) ) otherlv_6= ']' ) )
-            // InternalReactionRules.g:2634:2: ( ( (lv_lhs_0_0= rulePatternAssignment ) ) ( (lv_operator_1_0= RULE_UNI ) ) ( (lv_rhs_2_0= rulePatternAssignment ) ) this_AT_3= RULE_AT otherlv_4= '[' ( (lv_variables_5_0= ruleRuleVariables ) ) otherlv_6= ']' )
+            // InternalReactionRules.g:2645:2: ( ( ( (lv_lhs_0_0= rulePatternAssignment ) ) ( (lv_operator_1_0= RULE_UNI ) ) ( (lv_rhs_2_0= rulePatternAssignment ) ) this_AT_3= RULE_AT otherlv_4= '[' ( (lv_variables_5_0= ruleRuleVariables ) ) otherlv_6= ']' ) )
+            // InternalReactionRules.g:2646:2: ( ( (lv_lhs_0_0= rulePatternAssignment ) ) ( (lv_operator_1_0= RULE_UNI ) ) ( (lv_rhs_2_0= rulePatternAssignment ) ) this_AT_3= RULE_AT otherlv_4= '[' ( (lv_variables_5_0= ruleRuleVariables ) ) otherlv_6= ']' )
             {
-            // InternalReactionRules.g:2634:2: ( ( (lv_lhs_0_0= rulePatternAssignment ) ) ( (lv_operator_1_0= RULE_UNI ) ) ( (lv_rhs_2_0= rulePatternAssignment ) ) this_AT_3= RULE_AT otherlv_4= '[' ( (lv_variables_5_0= ruleRuleVariables ) ) otherlv_6= ']' )
-            // InternalReactionRules.g:2635:3: ( (lv_lhs_0_0= rulePatternAssignment ) ) ( (lv_operator_1_0= RULE_UNI ) ) ( (lv_rhs_2_0= rulePatternAssignment ) ) this_AT_3= RULE_AT otherlv_4= '[' ( (lv_variables_5_0= ruleRuleVariables ) ) otherlv_6= ']'
+            // InternalReactionRules.g:2646:2: ( ( (lv_lhs_0_0= rulePatternAssignment ) ) ( (lv_operator_1_0= RULE_UNI ) ) ( (lv_rhs_2_0= rulePatternAssignment ) ) this_AT_3= RULE_AT otherlv_4= '[' ( (lv_variables_5_0= ruleRuleVariables ) ) otherlv_6= ']' )
+            // InternalReactionRules.g:2647:3: ( (lv_lhs_0_0= rulePatternAssignment ) ) ( (lv_operator_1_0= RULE_UNI ) ) ( (lv_rhs_2_0= rulePatternAssignment ) ) this_AT_3= RULE_AT otherlv_4= '[' ( (lv_variables_5_0= ruleRuleVariables ) ) otherlv_6= ']'
             {
-            // InternalReactionRules.g:2635:3: ( (lv_lhs_0_0= rulePatternAssignment ) )
-            // InternalReactionRules.g:2636:4: (lv_lhs_0_0= rulePatternAssignment )
+            // InternalReactionRules.g:2647:3: ( (lv_lhs_0_0= rulePatternAssignment ) )
+            // InternalReactionRules.g:2648:4: (lv_lhs_0_0= rulePatternAssignment )
             {
-            // InternalReactionRules.g:2636:4: (lv_lhs_0_0= rulePatternAssignment )
-            // InternalReactionRules.g:2637:5: lv_lhs_0_0= rulePatternAssignment
+            // InternalReactionRules.g:2648:4: (lv_lhs_0_0= rulePatternAssignment )
+            // InternalReactionRules.g:2649:5: lv_lhs_0_0= rulePatternAssignment
             {
 
             					newCompositeNode(grammarAccess.getUnidirectionalRuleAccess().getLhsPatternAssignmentParserRuleCall_0_0());
@@ -6785,11 +6807,11 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalReactionRules.g:2654:3: ( (lv_operator_1_0= RULE_UNI ) )
-            // InternalReactionRules.g:2655:4: (lv_operator_1_0= RULE_UNI )
+            // InternalReactionRules.g:2666:3: ( (lv_operator_1_0= RULE_UNI ) )
+            // InternalReactionRules.g:2667:4: (lv_operator_1_0= RULE_UNI )
             {
-            // InternalReactionRules.g:2655:4: (lv_operator_1_0= RULE_UNI )
-            // InternalReactionRules.g:2656:5: lv_operator_1_0= RULE_UNI
+            // InternalReactionRules.g:2667:4: (lv_operator_1_0= RULE_UNI )
+            // InternalReactionRules.g:2668:5: lv_operator_1_0= RULE_UNI
             {
             lv_operator_1_0=(Token)match(input,RULE_UNI,FOLLOW_28); 
 
@@ -6811,11 +6833,11 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalReactionRules.g:2672:3: ( (lv_rhs_2_0= rulePatternAssignment ) )
-            // InternalReactionRules.g:2673:4: (lv_rhs_2_0= rulePatternAssignment )
+            // InternalReactionRules.g:2684:3: ( (lv_rhs_2_0= rulePatternAssignment ) )
+            // InternalReactionRules.g:2685:4: (lv_rhs_2_0= rulePatternAssignment )
             {
-            // InternalReactionRules.g:2673:4: (lv_rhs_2_0= rulePatternAssignment )
-            // InternalReactionRules.g:2674:5: lv_rhs_2_0= rulePatternAssignment
+            // InternalReactionRules.g:2685:4: (lv_rhs_2_0= rulePatternAssignment )
+            // InternalReactionRules.g:2686:5: lv_rhs_2_0= rulePatternAssignment
             {
 
             					newCompositeNode(grammarAccess.getUnidirectionalRuleAccess().getRhsPatternAssignmentParserRuleCall_2_0());
@@ -6846,15 +6868,15 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(this_AT_3, grammarAccess.getUnidirectionalRuleAccess().getATTerminalRuleCall_3());
             		
-            otherlv_4=(Token)match(input,33,FOLLOW_6); 
+            otherlv_4=(Token)match(input,33,FOLLOW_29); 
 
             			newLeafNode(otherlv_4, grammarAccess.getUnidirectionalRuleAccess().getLeftSquareBracketKeyword_4());
             		
-            // InternalReactionRules.g:2699:3: ( (lv_variables_5_0= ruleRuleVariables ) )
-            // InternalReactionRules.g:2700:4: (lv_variables_5_0= ruleRuleVariables )
+            // InternalReactionRules.g:2711:3: ( (lv_variables_5_0= ruleRuleVariables ) )
+            // InternalReactionRules.g:2712:4: (lv_variables_5_0= ruleRuleVariables )
             {
-            // InternalReactionRules.g:2700:4: (lv_variables_5_0= ruleRuleVariables )
-            // InternalReactionRules.g:2701:5: lv_variables_5_0= ruleRuleVariables
+            // InternalReactionRules.g:2712:4: (lv_variables_5_0= ruleRuleVariables )
+            // InternalReactionRules.g:2713:5: lv_variables_5_0= ruleRuleVariables
             {
 
             					newCompositeNode(grammarAccess.getUnidirectionalRuleAccess().getVariablesRuleVariablesParserRuleCall_5_0());
@@ -6908,7 +6930,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBidirectionalRule"
-    // InternalReactionRules.g:2726:1: entryRuleBidirectionalRule returns [EObject current=null] : iv_ruleBidirectionalRule= ruleBidirectionalRule EOF ;
+    // InternalReactionRules.g:2738:1: entryRuleBidirectionalRule returns [EObject current=null] : iv_ruleBidirectionalRule= ruleBidirectionalRule EOF ;
     public final EObject entryRuleBidirectionalRule() throws RecognitionException {
         EObject current = null;
 
@@ -6916,8 +6938,8 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalReactionRules.g:2726:58: (iv_ruleBidirectionalRule= ruleBidirectionalRule EOF )
-            // InternalReactionRules.g:2727:2: iv_ruleBidirectionalRule= ruleBidirectionalRule EOF
+            // InternalReactionRules.g:2738:58: (iv_ruleBidirectionalRule= ruleBidirectionalRule EOF )
+            // InternalReactionRules.g:2739:2: iv_ruleBidirectionalRule= ruleBidirectionalRule EOF
             {
              newCompositeNode(grammarAccess.getBidirectionalRuleRule()); 
             pushFollow(FOLLOW_1);
@@ -6944,7 +6966,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBidirectionalRule"
-    // InternalReactionRules.g:2733:1: ruleBidirectionalRule returns [EObject current=null] : ( ( (lv_lhs_0_0= rulePatternAssignment ) ) ( (lv_operator_1_0= RULE_BI ) ) ( (lv_rhs_2_0= rulePatternAssignment ) ) this_AT_3= RULE_AT otherlv_4= '[' ( (lv_variables_5_0= ruleRuleVariables ) ) otherlv_6= ']' ) ;
+    // InternalReactionRules.g:2745:1: ruleBidirectionalRule returns [EObject current=null] : ( ( (lv_lhs_0_0= rulePatternAssignment ) ) ( (lv_operator_1_0= RULE_BI ) ) ( (lv_rhs_2_0= rulePatternAssignment ) ) this_AT_3= RULE_AT otherlv_4= '[' ( (lv_variables_5_0= ruleRuleVariables ) ) otherlv_6= ']' ) ;
     public final EObject ruleBidirectionalRule() throws RecognitionException {
         EObject current = null;
 
@@ -6963,17 +6985,17 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalReactionRules.g:2739:2: ( ( ( (lv_lhs_0_0= rulePatternAssignment ) ) ( (lv_operator_1_0= RULE_BI ) ) ( (lv_rhs_2_0= rulePatternAssignment ) ) this_AT_3= RULE_AT otherlv_4= '[' ( (lv_variables_5_0= ruleRuleVariables ) ) otherlv_6= ']' ) )
-            // InternalReactionRules.g:2740:2: ( ( (lv_lhs_0_0= rulePatternAssignment ) ) ( (lv_operator_1_0= RULE_BI ) ) ( (lv_rhs_2_0= rulePatternAssignment ) ) this_AT_3= RULE_AT otherlv_4= '[' ( (lv_variables_5_0= ruleRuleVariables ) ) otherlv_6= ']' )
+            // InternalReactionRules.g:2751:2: ( ( ( (lv_lhs_0_0= rulePatternAssignment ) ) ( (lv_operator_1_0= RULE_BI ) ) ( (lv_rhs_2_0= rulePatternAssignment ) ) this_AT_3= RULE_AT otherlv_4= '[' ( (lv_variables_5_0= ruleRuleVariables ) ) otherlv_6= ']' ) )
+            // InternalReactionRules.g:2752:2: ( ( (lv_lhs_0_0= rulePatternAssignment ) ) ( (lv_operator_1_0= RULE_BI ) ) ( (lv_rhs_2_0= rulePatternAssignment ) ) this_AT_3= RULE_AT otherlv_4= '[' ( (lv_variables_5_0= ruleRuleVariables ) ) otherlv_6= ']' )
             {
-            // InternalReactionRules.g:2740:2: ( ( (lv_lhs_0_0= rulePatternAssignment ) ) ( (lv_operator_1_0= RULE_BI ) ) ( (lv_rhs_2_0= rulePatternAssignment ) ) this_AT_3= RULE_AT otherlv_4= '[' ( (lv_variables_5_0= ruleRuleVariables ) ) otherlv_6= ']' )
-            // InternalReactionRules.g:2741:3: ( (lv_lhs_0_0= rulePatternAssignment ) ) ( (lv_operator_1_0= RULE_BI ) ) ( (lv_rhs_2_0= rulePatternAssignment ) ) this_AT_3= RULE_AT otherlv_4= '[' ( (lv_variables_5_0= ruleRuleVariables ) ) otherlv_6= ']'
+            // InternalReactionRules.g:2752:2: ( ( (lv_lhs_0_0= rulePatternAssignment ) ) ( (lv_operator_1_0= RULE_BI ) ) ( (lv_rhs_2_0= rulePatternAssignment ) ) this_AT_3= RULE_AT otherlv_4= '[' ( (lv_variables_5_0= ruleRuleVariables ) ) otherlv_6= ']' )
+            // InternalReactionRules.g:2753:3: ( (lv_lhs_0_0= rulePatternAssignment ) ) ( (lv_operator_1_0= RULE_BI ) ) ( (lv_rhs_2_0= rulePatternAssignment ) ) this_AT_3= RULE_AT otherlv_4= '[' ( (lv_variables_5_0= ruleRuleVariables ) ) otherlv_6= ']'
             {
-            // InternalReactionRules.g:2741:3: ( (lv_lhs_0_0= rulePatternAssignment ) )
-            // InternalReactionRules.g:2742:4: (lv_lhs_0_0= rulePatternAssignment )
+            // InternalReactionRules.g:2753:3: ( (lv_lhs_0_0= rulePatternAssignment ) )
+            // InternalReactionRules.g:2754:4: (lv_lhs_0_0= rulePatternAssignment )
             {
-            // InternalReactionRules.g:2742:4: (lv_lhs_0_0= rulePatternAssignment )
-            // InternalReactionRules.g:2743:5: lv_lhs_0_0= rulePatternAssignment
+            // InternalReactionRules.g:2754:4: (lv_lhs_0_0= rulePatternAssignment )
+            // InternalReactionRules.g:2755:5: lv_lhs_0_0= rulePatternAssignment
             {
 
             					newCompositeNode(grammarAccess.getBidirectionalRuleAccess().getLhsPatternAssignmentParserRuleCall_0_0());
@@ -7000,11 +7022,11 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalReactionRules.g:2760:3: ( (lv_operator_1_0= RULE_BI ) )
-            // InternalReactionRules.g:2761:4: (lv_operator_1_0= RULE_BI )
+            // InternalReactionRules.g:2772:3: ( (lv_operator_1_0= RULE_BI ) )
+            // InternalReactionRules.g:2773:4: (lv_operator_1_0= RULE_BI )
             {
-            // InternalReactionRules.g:2761:4: (lv_operator_1_0= RULE_BI )
-            // InternalReactionRules.g:2762:5: lv_operator_1_0= RULE_BI
+            // InternalReactionRules.g:2773:4: (lv_operator_1_0= RULE_BI )
+            // InternalReactionRules.g:2774:5: lv_operator_1_0= RULE_BI
             {
             lv_operator_1_0=(Token)match(input,RULE_BI,FOLLOW_28); 
 
@@ -7026,11 +7048,11 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalReactionRules.g:2778:3: ( (lv_rhs_2_0= rulePatternAssignment ) )
-            // InternalReactionRules.g:2779:4: (lv_rhs_2_0= rulePatternAssignment )
+            // InternalReactionRules.g:2790:3: ( (lv_rhs_2_0= rulePatternAssignment ) )
+            // InternalReactionRules.g:2791:4: (lv_rhs_2_0= rulePatternAssignment )
             {
-            // InternalReactionRules.g:2779:4: (lv_rhs_2_0= rulePatternAssignment )
-            // InternalReactionRules.g:2780:5: lv_rhs_2_0= rulePatternAssignment
+            // InternalReactionRules.g:2791:4: (lv_rhs_2_0= rulePatternAssignment )
+            // InternalReactionRules.g:2792:5: lv_rhs_2_0= rulePatternAssignment
             {
 
             					newCompositeNode(grammarAccess.getBidirectionalRuleAccess().getRhsPatternAssignmentParserRuleCall_2_0());
@@ -7061,15 +7083,15 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(this_AT_3, grammarAccess.getBidirectionalRuleAccess().getATTerminalRuleCall_3());
             		
-            otherlv_4=(Token)match(input,33,FOLLOW_6); 
+            otherlv_4=(Token)match(input,33,FOLLOW_29); 
 
             			newLeafNode(otherlv_4, grammarAccess.getBidirectionalRuleAccess().getLeftSquareBracketKeyword_4());
             		
-            // InternalReactionRules.g:2805:3: ( (lv_variables_5_0= ruleRuleVariables ) )
-            // InternalReactionRules.g:2806:4: (lv_variables_5_0= ruleRuleVariables )
+            // InternalReactionRules.g:2817:3: ( (lv_variables_5_0= ruleRuleVariables ) )
+            // InternalReactionRules.g:2818:4: (lv_variables_5_0= ruleRuleVariables )
             {
-            // InternalReactionRules.g:2806:4: (lv_variables_5_0= ruleRuleVariables )
-            // InternalReactionRules.g:2807:5: lv_variables_5_0= ruleRuleVariables
+            // InternalReactionRules.g:2818:4: (lv_variables_5_0= ruleRuleVariables )
+            // InternalReactionRules.g:2819:5: lv_variables_5_0= ruleRuleVariables
             {
 
             					newCompositeNode(grammarAccess.getBidirectionalRuleAccess().getVariablesRuleVariablesParserRuleCall_5_0());
@@ -7123,7 +7145,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleRuleBody"
-    // InternalReactionRules.g:2832:1: entryRuleRuleBody returns [EObject current=null] : iv_ruleRuleBody= ruleRuleBody EOF ;
+    // InternalReactionRules.g:2844:1: entryRuleRuleBody returns [EObject current=null] : iv_ruleRuleBody= ruleRuleBody EOF ;
     public final EObject entryRuleRuleBody() throws RecognitionException {
         EObject current = null;
 
@@ -7131,8 +7153,8 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalReactionRules.g:2832:49: (iv_ruleRuleBody= ruleRuleBody EOF )
-            // InternalReactionRules.g:2833:2: iv_ruleRuleBody= ruleRuleBody EOF
+            // InternalReactionRules.g:2844:49: (iv_ruleRuleBody= ruleRuleBody EOF )
+            // InternalReactionRules.g:2845:2: iv_ruleRuleBody= ruleRuleBody EOF
             {
              newCompositeNode(grammarAccess.getRuleBodyRule()); 
             pushFollow(FOLLOW_1);
@@ -7159,7 +7181,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRuleBody"
-    // InternalReactionRules.g:2839:1: ruleRuleBody returns [EObject current=null] : (this_UnidirectionalRule_0= ruleUnidirectionalRule | this_BidirectionalRule_1= ruleBidirectionalRule ) ;
+    // InternalReactionRules.g:2851:1: ruleRuleBody returns [EObject current=null] : (this_UnidirectionalRule_0= ruleUnidirectionalRule | this_BidirectionalRule_1= ruleBidirectionalRule ) ;
     public final EObject ruleRuleBody() throws RecognitionException {
         EObject current = null;
 
@@ -7172,15 +7194,15 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalReactionRules.g:2845:2: ( (this_UnidirectionalRule_0= ruleUnidirectionalRule | this_BidirectionalRule_1= ruleBidirectionalRule ) )
-            // InternalReactionRules.g:2846:2: (this_UnidirectionalRule_0= ruleUnidirectionalRule | this_BidirectionalRule_1= ruleBidirectionalRule )
+            // InternalReactionRules.g:2857:2: ( (this_UnidirectionalRule_0= ruleUnidirectionalRule | this_BidirectionalRule_1= ruleBidirectionalRule ) )
+            // InternalReactionRules.g:2858:2: (this_UnidirectionalRule_0= ruleUnidirectionalRule | this_BidirectionalRule_1= ruleBidirectionalRule )
             {
-            // InternalReactionRules.g:2846:2: (this_UnidirectionalRule_0= ruleUnidirectionalRule | this_BidirectionalRule_1= ruleBidirectionalRule )
+            // InternalReactionRules.g:2858:2: (this_UnidirectionalRule_0= ruleUnidirectionalRule | this_BidirectionalRule_1= ruleBidirectionalRule )
             int alt24=2;
             alt24 = dfa24.predict(input);
             switch (alt24) {
                 case 1 :
-                    // InternalReactionRules.g:2847:3: this_UnidirectionalRule_0= ruleUnidirectionalRule
+                    // InternalReactionRules.g:2859:3: this_UnidirectionalRule_0= ruleUnidirectionalRule
                     {
 
                     			newCompositeNode(grammarAccess.getRuleBodyAccess().getUnidirectionalRuleParserRuleCall_0());
@@ -7198,7 +7220,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalReactionRules.g:2856:3: this_BidirectionalRule_1= ruleBidirectionalRule
+                    // InternalReactionRules.g:2868:3: this_BidirectionalRule_1= ruleBidirectionalRule
                     {
 
                     			newCompositeNode(grammarAccess.getRuleBodyAccess().getBidirectionalRuleParserRuleCall_1());
@@ -7238,7 +7260,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleRule"
-    // InternalReactionRules.g:2868:1: entryRuleRule returns [EObject current=null] : iv_ruleRule= ruleRule EOF ;
+    // InternalReactionRules.g:2880:1: entryRuleRule returns [EObject current=null] : iv_ruleRule= ruleRule EOF ;
     public final EObject entryRuleRule() throws RecognitionException {
         EObject current = null;
 
@@ -7246,8 +7268,8 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalReactionRules.g:2868:45: (iv_ruleRule= ruleRule EOF )
-            // InternalReactionRules.g:2869:2: iv_ruleRule= ruleRule EOF
+            // InternalReactionRules.g:2880:45: (iv_ruleRule= ruleRule EOF )
+            // InternalReactionRules.g:2881:2: iv_ruleRule= ruleRule EOF
             {
              newCompositeNode(grammarAccess.getRuleRule()); 
             pushFollow(FOLLOW_1);
@@ -7274,7 +7296,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRule"
-    // InternalReactionRules.g:2875:1: ruleRule returns [EObject current=null] : (otherlv_0= 'rule' ( (lv_name_1_0= RULE_ID ) ) ( (lv_rule_2_0= ruleRuleBody ) ) ) ;
+    // InternalReactionRules.g:2887:1: ruleRule returns [EObject current=null] : (otherlv_0= 'rule' ( (lv_name_1_0= RULE_ID ) ) ( (lv_rule_2_0= ruleRuleBody ) ) ) ;
     public final EObject ruleRule() throws RecognitionException {
         EObject current = null;
 
@@ -7287,21 +7309,21 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalReactionRules.g:2881:2: ( (otherlv_0= 'rule' ( (lv_name_1_0= RULE_ID ) ) ( (lv_rule_2_0= ruleRuleBody ) ) ) )
-            // InternalReactionRules.g:2882:2: (otherlv_0= 'rule' ( (lv_name_1_0= RULE_ID ) ) ( (lv_rule_2_0= ruleRuleBody ) ) )
+            // InternalReactionRules.g:2893:2: ( (otherlv_0= 'rule' ( (lv_name_1_0= RULE_ID ) ) ( (lv_rule_2_0= ruleRuleBody ) ) ) )
+            // InternalReactionRules.g:2894:2: (otherlv_0= 'rule' ( (lv_name_1_0= RULE_ID ) ) ( (lv_rule_2_0= ruleRuleBody ) ) )
             {
-            // InternalReactionRules.g:2882:2: (otherlv_0= 'rule' ( (lv_name_1_0= RULE_ID ) ) ( (lv_rule_2_0= ruleRuleBody ) ) )
-            // InternalReactionRules.g:2883:3: otherlv_0= 'rule' ( (lv_name_1_0= RULE_ID ) ) ( (lv_rule_2_0= ruleRuleBody ) )
+            // InternalReactionRules.g:2894:2: (otherlv_0= 'rule' ( (lv_name_1_0= RULE_ID ) ) ( (lv_rule_2_0= ruleRuleBody ) ) )
+            // InternalReactionRules.g:2895:3: otherlv_0= 'rule' ( (lv_name_1_0= RULE_ID ) ) ( (lv_rule_2_0= ruleRuleBody ) )
             {
             otherlv_0=(Token)match(input,37,FOLLOW_6); 
 
             			newLeafNode(otherlv_0, grammarAccess.getRuleAccess().getRuleKeyword_0());
             		
-            // InternalReactionRules.g:2887:3: ( (lv_name_1_0= RULE_ID ) )
-            // InternalReactionRules.g:2888:4: (lv_name_1_0= RULE_ID )
+            // InternalReactionRules.g:2899:3: ( (lv_name_1_0= RULE_ID ) )
+            // InternalReactionRules.g:2900:4: (lv_name_1_0= RULE_ID )
             {
-            // InternalReactionRules.g:2888:4: (lv_name_1_0= RULE_ID )
-            // InternalReactionRules.g:2889:5: lv_name_1_0= RULE_ID
+            // InternalReactionRules.g:2900:4: (lv_name_1_0= RULE_ID )
+            // InternalReactionRules.g:2901:5: lv_name_1_0= RULE_ID
             {
             lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_28); 
 
@@ -7323,11 +7345,11 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalReactionRules.g:2905:3: ( (lv_rule_2_0= ruleRuleBody ) )
-            // InternalReactionRules.g:2906:4: (lv_rule_2_0= ruleRuleBody )
+            // InternalReactionRules.g:2917:3: ( (lv_rule_2_0= ruleRuleBody ) )
+            // InternalReactionRules.g:2918:4: (lv_rule_2_0= ruleRuleBody )
             {
-            // InternalReactionRules.g:2906:4: (lv_rule_2_0= ruleRuleBody )
-            // InternalReactionRules.g:2907:5: lv_rule_2_0= ruleRuleBody
+            // InternalReactionRules.g:2918:4: (lv_rule_2_0= ruleRuleBody )
+            // InternalReactionRules.g:2919:5: lv_rule_2_0= ruleRuleBody
             {
 
             					newCompositeNode(grammarAccess.getRuleAccess().getRuleRuleBodyParserRuleCall_2_0());
@@ -7382,19 +7404,19 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
     protected DFA24 dfa24 = new DFA24(this);
     static final String dfa_1s = "\12\uffff";
     static final String dfa_2s = "\2\uffff\1\4\1\6\3\uffff\1\10\2\uffff";
-    static final String dfa_3s = "\2\6\2\27\1\uffff\1\6\1\uffff\1\7\2\uffff";
+    static final String dfa_3s = "\2\6\2\5\1\uffff\1\6\1\uffff\1\5\2\uffff";
     static final String dfa_4s = "\1\26\1\6\2\45\1\uffff\1\6\1\uffff\1\45\2\uffff";
     static final String dfa_5s = "\4\uffff\1\2\1\uffff\1\3\1\uffff\1\1\1\4";
     static final String dfa_6s = "\12\uffff}>";
     static final String[] dfa_7s = {
             "\1\2\17\uffff\1\1",
             "\1\3",
-            "\1\5\6\uffff\2\4\3\uffff\3\4",
-            "\1\5\6\uffff\2\6\3\uffff\3\6",
+            "\1\4\21\uffff\1\5\1\uffff\2\4\3\uffff\2\4\2\uffff\4\4",
+            "\1\6\21\uffff\1\5\1\uffff\2\6\3\uffff\2\6\2\uffff\4\6",
             "",
             "\1\7",
             "",
-            "\1\11\26\uffff\2\10\3\uffff\3\10",
+            "\1\10\1\uffff\1\11\21\uffff\2\10\3\uffff\2\10\2\uffff\4\10",
             "",
             ""
     };
@@ -7427,14 +7449,14 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
     static final String dfa_8s = "\103\uffff";
     static final String dfa_9s = "\2\5\1\13\1\34\1\13\2\uffff\1\5\1\31\1\32\3\5\1\33\2\42\1\27\2\42\1\34\1\41\1\32\3\5\1\42\1\31\1\32\1\31\4\5\1\33\2\42\1\27\2\42\1\33\2\42\1\27\2\42\1\41\1\32\1\5\1\41\1\32\2\5\2\42\1\31\2\5\1\33\2\42\1\27\2\42\1\41\1\32\1\5\1\42";
     static final String dfa_10s = "\1\31\1\33\1\15\1\34\1\15\2\uffff\1\35\1\41\1\33\1\5\1\12\1\5\1\33\2\42\1\27\2\42\1\34\1\41\1\35\1\5\1\35\1\5\1\42\1\41\1\33\1\41\1\5\1\12\1\5\1\12\1\33\2\42\1\27\2\42\1\33\2\42\1\27\2\42\1\41\1\35\1\5\1\41\1\35\2\5\2\42\1\41\1\5\1\12\1\33\2\42\1\27\2\42\1\41\1\35\1\5\1\42";
-    static final String dfa_11s = "\5\uffff\1\2\1\1\74\uffff";
+    static final String dfa_11s = "\5\uffff\1\1\1\2\74\uffff";
     static final String dfa_12s = "\103\uffff}>";
     static final String[] dfa_13s = {
             "\1\2\23\uffff\1\1",
             "\1\3\25\uffff\1\4",
-            "\1\6\1\uffff\1\5",
+            "\1\5\1\uffff\1\6",
             "\1\7",
-            "\1\6\1\uffff\1\5",
+            "\1\5\1\uffff\1\6",
             "",
             "",
             "\1\10\27\uffff\1\11",
@@ -7520,7 +7542,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
             this.transition = dfa_13;
         }
         public String getDescription() {
-            return "2846:2: (this_UnidirectionalRule_0= ruleUnidirectionalRule | this_BidirectionalRule_1= ruleBidirectionalRule )";
+            return "2858:2: (this_UnidirectionalRule_0= ruleUnidirectionalRule | this_BidirectionalRule_1= ruleBidirectionalRule )";
         }
     }
  
@@ -7553,7 +7575,7 @@ public class InternalReactionRulesParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000000020000000L});
     public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000008000020L});
     public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000002000020L});
-    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000000000060L});
+    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000000400060L});
     public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000000001000L});
     public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000000002000L});

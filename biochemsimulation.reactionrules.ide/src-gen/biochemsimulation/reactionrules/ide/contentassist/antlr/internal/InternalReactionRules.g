@@ -6262,9 +6262,9 @@ rule__NumericFromLiteral__ValueAssignment
 	}
 :
 	(
-		{ before(grammarAccess.getNumericFromLiteralAccess().getValueUnsignedIntegerParserRuleCall_0()); }
-		ruleUnsignedInteger
-		{ after(grammarAccess.getNumericFromLiteralAccess().getValueUnsignedIntegerParserRuleCall_0()); }
+		{ before(grammarAccess.getNumericFromLiteralAccess().getValueArithmeticValueParserRuleCall_0()); }
+		ruleArithmeticValue
+		{ after(grammarAccess.getNumericFromLiteralAccess().getValueArithmeticValueParserRuleCall_0()); }
 	)
 ;
 finally {
@@ -6375,13 +6375,9 @@ rule__RuleVariables__VariablesAssignment_0
 	}
 :
 	(
-		{ before(grammarAccess.getRuleVariablesAccess().getVariablesArithmeticVariableCrossReference_0_0()); }
-		(
-			{ before(grammarAccess.getRuleVariablesAccess().getVariablesArithmeticVariableIDTerminalRuleCall_0_0_1()); }
-			RULE_ID
-			{ after(grammarAccess.getRuleVariablesAccess().getVariablesArithmeticVariableIDTerminalRuleCall_0_0_1()); }
-		)
-		{ after(grammarAccess.getRuleVariablesAccess().getVariablesArithmeticVariableCrossReference_0_0()); }
+		{ before(grammarAccess.getRuleVariablesAccess().getVariablesNumericAssignmentParserRuleCall_0_0()); }
+		ruleNumericAssignment
+		{ after(grammarAccess.getRuleVariablesAccess().getVariablesNumericAssignmentParserRuleCall_0_0()); }
 	)
 ;
 finally {
@@ -6394,13 +6390,9 @@ rule__RuleVariables__VariablesAssignment_1_1
 	}
 :
 	(
-		{ before(grammarAccess.getRuleVariablesAccess().getVariablesArithmeticVariableCrossReference_1_1_0()); }
-		(
-			{ before(grammarAccess.getRuleVariablesAccess().getVariablesArithmeticVariableIDTerminalRuleCall_1_1_0_1()); }
-			RULE_ID
-			{ after(grammarAccess.getRuleVariablesAccess().getVariablesArithmeticVariableIDTerminalRuleCall_1_1_0_1()); }
-		)
-		{ after(grammarAccess.getRuleVariablesAccess().getVariablesArithmeticVariableCrossReference_1_1_0()); }
+		{ before(grammarAccess.getRuleVariablesAccess().getVariablesNumericAssignmentParserRuleCall_1_1_0()); }
+		ruleNumericAssignment
+		{ after(grammarAccess.getRuleVariablesAccess().getVariablesNumericAssignmentParserRuleCall_1_1_0()); }
 	)
 ;
 finally {

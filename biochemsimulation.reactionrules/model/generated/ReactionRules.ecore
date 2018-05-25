@@ -121,7 +121,8 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NumericFromLiteral" eSuperTypes="#//NumericAssignment">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//ArithmeticValue"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NumericFromVariable" eSuperTypes="#//NumericAssignment">
     <eStructuralFeatures xsi:type="ecore:EReference" name="valueVar" eType="#//ArithmeticVariable"/>
@@ -142,8 +143,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternAssignment"/>
   <eClassifiers xsi:type="ecore:EClass" name="RuleVariables">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" unique="false"
-        upperBound="-1" eType="#//ArithmeticVariable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
+        eType="#//NumericAssignment" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RuleBody">
     <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" eType="#//PatternAssignment"

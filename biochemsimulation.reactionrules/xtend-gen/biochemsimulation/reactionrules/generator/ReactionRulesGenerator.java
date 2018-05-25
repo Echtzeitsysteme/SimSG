@@ -99,7 +99,7 @@ public class ReactionRulesGenerator extends AbstractGenerator {
     String value = "0";
     if ((na instanceof NumericFromLiteral)) {
       final NumericFromLiteral nl = ((NumericFromLiteral) na);
-      value = nl.getValue();
+      value = nl.getValue().getValue();
     } else {
       final NumericFromVariable nv = ((NumericFromVariable) na);
       final ArithmeticValue ae = nv.getValueVar().getValue();

@@ -3,19 +3,23 @@
  */
 package biochemsimulation.reactionrules.reactionRules.impl;
 
-import biochemsimulation.reactionrules.reactionRules.ArithmeticVariable;
+import biochemsimulation.reactionrules.reactionRules.NumericAssignment;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 import biochemsimulation.reactionrules.reactionRules.RuleVariables;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,14 +37,14 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 public class RuleVariablesImpl extends MinimalEObjectImpl.Container implements RuleVariables
 {
   /**
-   * The cached value of the '{@link #getVariables() <em>Variables</em>}' reference list.
+   * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getVariables()
    * @generated
    * @ordered
    */
-  protected EList<ArithmeticVariable> variables;
+  protected EList<NumericAssignment> variables;
 
   /**
    * <!-- begin-user-doc -->
@@ -68,13 +72,29 @@ public class RuleVariablesImpl extends MinimalEObjectImpl.Container implements R
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ArithmeticVariable> getVariables()
+  public EList<NumericAssignment> getVariables()
   {
     if (variables == null)
     {
-      variables = new EObjectResolvingEList<ArithmeticVariable>(ArithmeticVariable.class, this, ReactionRulesPackage.RULE_VARIABLES__VARIABLES);
+      variables = new EObjectContainmentEList<NumericAssignment>(NumericAssignment.class, this, ReactionRulesPackage.RULE_VARIABLES__VARIABLES);
     }
     return variables;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case ReactionRulesPackage.RULE_VARIABLES__VARIABLES:
+        return ((InternalEList<?>)getVariables()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -106,7 +126,7 @@ public class RuleVariablesImpl extends MinimalEObjectImpl.Container implements R
     {
       case ReactionRulesPackage.RULE_VARIABLES__VARIABLES:
         getVariables().clear();
-        getVariables().addAll((Collection<? extends ArithmeticVariable>)newValue);
+        getVariables().addAll((Collection<? extends NumericAssignment>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

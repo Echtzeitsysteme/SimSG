@@ -1133,9 +1133,9 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getNumericFromLiteral_Value()
+  public EReference getNumericFromLiteral_Value()
   {
-    return (EAttribute)numericFromLiteralEClass.getEStructuralFeatures().get(0);
+    return (EReference)numericFromLiteralEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1576,7 +1576,7 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     createEReference(observationEClass, OBSERVATION__OBSERVATION_PATTERN);
 
     numericFromLiteralEClass = createEClass(NUMERIC_FROM_LITERAL);
-    createEAttribute(numericFromLiteralEClass, NUMERIC_FROM_LITERAL__VALUE);
+    createEReference(numericFromLiteralEClass, NUMERIC_FROM_LITERAL__VALUE);
 
     numericFromVariableEClass = createEClass(NUMERIC_FROM_VARIABLE);
     createEReference(numericFromVariableEClass, NUMERIC_FROM_VARIABLE__VALUE_VAR);
@@ -1771,7 +1771,7 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     initEReference(getObservation_ObservationPattern(), this.getPatternAssignment(), null, "observationPattern", null, 0, 1, Observation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(numericFromLiteralEClass, NumericFromLiteral.class, "NumericFromLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getNumericFromLiteral_Value(), ecorePackage.getEString(), "value", null, 0, 1, NumericFromLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNumericFromLiteral_Value(), this.getArithmeticValue(), null, "value", null, 0, 1, NumericFromLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(numericFromVariableEClass, NumericFromVariable.class, "NumericFromVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNumericFromVariable_ValueVar(), this.getArithmeticVariable(), null, "valueVar", null, 0, 1, NumericFromVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1791,7 +1791,7 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     initEClass(patternAssignmentEClass, PatternAssignment.class, "PatternAssignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(ruleVariablesEClass, RuleVariables.class, "RuleVariables", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRuleVariables_Variables(), this.getArithmeticVariable(), null, "variables", null, 0, -1, RuleVariables.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRuleVariables_Variables(), this.getNumericAssignment(), null, "variables", null, 0, -1, RuleVariables.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(ruleBodyEClass, RuleBody.class, "RuleBody", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRuleBody_Lhs(), this.getPatternAssignment(), null, "lhs", null, 0, 1, RuleBody.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -612,7 +612,7 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     NumericAssignment returns NumericFromLiteral
 	 *
 	 * Constraint:
-	 *     value=UnsignedInteger
+	 *     value=ArithmeticValue
 	 */
 	protected void sequence_NumericFromLiteral(ISerializationContext context, NumericFromLiteral semanticObject) {
 		if (errorAcceptor != null) {
@@ -620,7 +620,7 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.NUMERIC_FROM_LITERAL__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getNumericFromLiteralAccess().getValueUnsignedIntegerParserRuleCall_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getNumericFromLiteralAccess().getValueArithmeticValueParserRuleCall_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -730,7 +730,7 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     RuleVariables returns RuleVariables
 	 *
 	 * Constraint:
-	 *     (variables+=[ArithmeticVariable|ID] variables+=[ArithmeticVariable|ID]*)
+	 *     (variables+=NumericAssignment variables+=NumericAssignment*)
 	 */
 	protected void sequence_RuleVariables(ISerializationContext context, RuleVariables semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

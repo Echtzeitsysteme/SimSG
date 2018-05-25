@@ -1033,7 +1033,7 @@ public interface ReactionRulesPackage extends EPackage
   int NUMERIC_FROM_LITERAL = 28;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1210,7 +1210,7 @@ public interface ReactionRulesPackage extends EPackage
   int RULE_VARIABLES = 35;
 
   /**
-   * The feature id for the '<em><b>Variables</b></em>' reference list.
+   * The feature id for the '<em><b>Variables</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -2256,15 +2256,15 @@ public interface ReactionRulesPackage extends EPackage
   EClass getNumericFromLiteral();
 
   /**
-   * Returns the meta object for the attribute '{@link biochemsimulation.reactionrules.reactionRules.NumericFromLiteral#getValue <em>Value</em>}'.
+   * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.NumericFromLiteral#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Value</em>'.
+   * @return the meta object for the containment reference '<em>Value</em>'.
    * @see biochemsimulation.reactionrules.reactionRules.NumericFromLiteral#getValue()
    * @see #getNumericFromLiteral()
    * @generated
    */
-  EAttribute getNumericFromLiteral_Value();
+  EReference getNumericFromLiteral_Value();
 
   /**
    * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.NumericFromVariable <em>Numeric From Variable</em>}'.
@@ -2392,10 +2392,10 @@ public interface ReactionRulesPackage extends EPackage
   EClass getRuleVariables();
 
   /**
-   * Returns the meta object for the reference list '{@link biochemsimulation.reactionrules.reactionRules.RuleVariables#getVariables <em>Variables</em>}'.
+   * Returns the meta object for the containment reference list '{@link biochemsimulation.reactionrules.reactionRules.RuleVariables#getVariables <em>Variables</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Variables</em>'.
+   * @return the meta object for the containment reference list '<em>Variables</em>'.
    * @see biochemsimulation.reactionrules.reactionRules.RuleVariables#getVariables()
    * @see #getRuleVariables()
    * @generated
@@ -3235,12 +3235,12 @@ public interface ReactionRulesPackage extends EPackage
     EClass NUMERIC_FROM_LITERAL = eINSTANCE.getNumericFromLiteral();
 
     /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute NUMERIC_FROM_LITERAL__VALUE = eINSTANCE.getNumericFromLiteral_Value();
+    EReference NUMERIC_FROM_LITERAL__VALUE = eINSTANCE.getNumericFromLiteral_Value();
 
     /**
      * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.NumericFromVariableImpl <em>Numeric From Variable</em>}' class.
@@ -3353,7 +3353,7 @@ public interface ReactionRulesPackage extends EPackage
     EClass RULE_VARIABLES = eINSTANCE.getRuleVariables();
 
     /**
-     * The meta object literal for the '<em><b>Variables</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Variables</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

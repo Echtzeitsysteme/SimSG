@@ -233,7 +233,7 @@ Observation returns Observation:
 ;
 
 NumericFromLiteral:
-	value = UnsignedInteger
+	value = ArithmeticValue
 ;
 
 NumericFromVariable:
@@ -264,7 +264,7 @@ PatternAssignment:
 ;
 
 RuleVariables returns RuleVariables:
-	variables += [ArithmeticVariable] (',' variables += [ArithmeticVariable])*
+	variables += NumericAssignment (',' variables += NumericAssignment)*
 ;
 
 UnidirectionalRule returns RuleBody:

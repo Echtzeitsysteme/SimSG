@@ -20,6 +20,8 @@ import biochemsimulation.reactionrules.reactionRules.IndexedLink
 import biochemsimulation.reactionrules.reactionRules.NumericFromVariable
 import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral
 import biochemsimulation.reactionrules.reactionRules.ArithmeticVariable
+import biochemsimulation.reactionrules.reactionRules.ArithmeticValue
+import biochemsimulation.reactionrules.reactionRules.NumericAssignment
 
 /**
  * This class contains custom validation rules. 
@@ -94,10 +96,17 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 	@Check
 	def checkInitialCountInteger(Initial initial) {
 		val countVar = initial.count
+		var arithVal = null as ArithmeticValue
 		if(countVar instanceof NumericFromVariable) {
 			val numVar = countVar as NumericFromVariable
-			val arithVal = numVar.valueVar.value
-			if(!arithVal.value.matches("^(\\d)*$")) {
+			arithVal = numVar.valueVar.value
+			
+		}else {
+			val numLit = countVar as NumericFromLiteral
+			arithVal = numLit.value
+		}
+		
+		if(!arithVal.value.matches("^(\\d)*$")) {
 				error('Initial count variable must be of type unsigned integer.', null)
 			}else {
 				val num = Integer.valueOf(arithVal.value)
@@ -105,13 +114,6 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 					warning('Initial count variables equal to 0 will lead to zero instantiated agents.', null)
 				}
 			}
-		}else {
-			val numLiteral = countVar as NumericFromLiteral
-			val num = Integer.valueOf(numLiteral.value)
-			if(num==0) {
-				warning('Initial count variables equal to 0 will lead to zero instantiated agents.', null)
-			}
-		}
 				
 	}
 	
@@ -217,8 +219,13 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 			}
 		}
 		for(variable : variables) {
-			var value = variable.value.value
-			if(!checkArithmeticVariableFormat(variable)) {
+			var value = valueOfNumericAssignment(variable)
+			if(value.contains(" ")) {
+				error('Arithmetic variables may not contain any whitespaces!', ReactionRulesPackage.Literals.RULE_BODY__VARIABLES)
+				return
+			}
+			if(!value.matches("^(-)?(\\d)+(\\.)(\\d)+E(-|\\+)(\\d)+$") && !value.matches("^(-)?(\\d)*$") && !value.matches("^(-)?(\\d)+(\\.)(\\d)+$")) {
+				error('Given expression does not adhere to any known number format.', ReactionRulesPackage.Literals.RULE_BODY__VARIABLES)
 				return
 			}
 			var numValue = Double.valueOf(value)
@@ -229,6 +236,19 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 				warning('Uni-Directional rules with rates equal to 0 will be inactive.', ReactionRulesPackage.Literals.RULE_BODY__VARIABLES)
 			}
 		}		
+	}
+	
+	def valueOfNumericAssignment(NumericAssignment na){
+		var value = "0"
+		if(na instanceof NumericFromLiteral) {
+			val nl = na as NumericFromLiteral
+			value = nl.value.value
+		}else {
+			val nv = na as NumericFromVariable
+			val ae = nv.valueVar.value
+			value = ae.value
+		}
+		return value
 	}
 	
 	@Check

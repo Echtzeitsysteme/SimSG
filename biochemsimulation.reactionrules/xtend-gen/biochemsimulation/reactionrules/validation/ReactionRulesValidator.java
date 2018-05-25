@@ -108,23 +108,21 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
   @Check
   public void checkInitialCountInteger(final Initial initial) {
     final NumericAssignment countVar = initial.getCount();
+    ArithmeticValue arithVal = ((ArithmeticValue) null);
     if ((countVar instanceof NumericFromVariable)) {
       final NumericFromVariable numVar = ((NumericFromVariable) countVar);
-      final ArithmeticValue arithVal = numVar.getValueVar().getValue();
-      boolean _matches = arithVal.getValue().matches("^(\\d)*$");
-      boolean _not = (!_matches);
-      if (_not) {
-        this.error("Initial count variable must be of type unsigned integer.", null);
-      } else {
-        final Integer num = Integer.valueOf(arithVal.getValue());
-        if (((num).intValue() == 0)) {
-          this.warning("Initial count variables equal to 0 will lead to zero instantiated agents.", null);
-        }
-      }
+      arithVal = numVar.getValueVar().getValue();
     } else {
-      final NumericFromLiteral numLiteral = ((NumericFromLiteral) countVar);
-      final Integer num_1 = Integer.valueOf(numLiteral.getValue());
-      if (((num_1).intValue() == 0)) {
+      final NumericFromLiteral numLit = ((NumericFromLiteral) countVar);
+      arithVal = numLit.getValue();
+    }
+    boolean _matches = arithVal.getValue().matches("^(\\d)*$");
+    boolean _not = (!_matches);
+    if (_not) {
+      this.error("Initial count variable must be of type unsigned integer.", null);
+    } else {
+      final Integer num = Integer.valueOf(arithVal.getValue());
+      if (((num).intValue() == 0)) {
         this.warning("Initial count variables equal to 0 will lead to zero instantiated agents.", null);
       }
     }
@@ -227,7 +225,7 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
   @Check
   public void checkRuleVariables(final RuleBody ruleBody) {
     String op = ruleBody.getOperator();
-    EList<ArithmeticVariable> variables = ruleBody.getVariables().getVariables();
+    EList<NumericAssignment> variables = ruleBody.getVariables().getVariables();
     boolean _equals = op.equals("<->");
     if (_equals) {
       int _size = variables.size();
@@ -242,12 +240,16 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
         this.error("Uni-Directional rules must have one reaction rate variable.", ReactionRulesPackage.Literals.RULE_BODY__VARIABLES);
       }
     }
-    for (final ArithmeticVariable variable : variables) {
+    for (final NumericAssignment variable : variables) {
       {
-        String value = variable.getValue().getValue();
-        boolean _checkArithmeticVariableFormat = this.checkArithmeticVariableFormat(variable);
-        boolean _not = (!_checkArithmeticVariableFormat);
-        if (_not) {
+        String value = this.valueOfNumericAssignment(variable);
+        boolean _contains = value.contains(" ");
+        if (_contains) {
+          this.error("Arithmetic variables may not contain any whitespaces!", ReactionRulesPackage.Literals.RULE_BODY__VARIABLES);
+          return;
+        }
+        if ((((!value.matches("^(-)?(\\d)+(\\.)(\\d)+E(-|\\+)(\\d)+$")) && (!value.matches("^(-)?(\\d)*$"))) && (!value.matches("^(-)?(\\d)+(\\.)(\\d)+$")))) {
+          this.error("Given expression does not adhere to any known number format.", ReactionRulesPackage.Literals.RULE_BODY__VARIABLES);
           return;
         }
         Double numValue = Double.valueOf(value);
@@ -259,6 +261,19 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
         }
       }
     }
+  }
+  
+  public String valueOfNumericAssignment(final NumericAssignment na) {
+    String value = "0";
+    if ((na instanceof NumericFromLiteral)) {
+      final NumericFromLiteral nl = ((NumericFromLiteral) na);
+      value = nl.getValue().getValue();
+    } else {
+      final NumericFromVariable nv = ((NumericFromVariable) na);
+      final ArithmeticValue ae = nv.getValueVar().getValue();
+      value = ae.getValue();
+    }
+    return value;
   }
   
   @Check

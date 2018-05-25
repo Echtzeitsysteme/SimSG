@@ -2300,9 +2300,9 @@ ruleNumericFromLiteral returns [EObject current=null]
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getNumericFromLiteralAccess().getValueUnsignedIntegerParserRuleCall_0());
+				newCompositeNode(grammarAccess.getNumericFromLiteralAccess().getValueArithmeticValueParserRuleCall_0());
 			}
-			lv_value_0_0=ruleUnsignedInteger
+			lv_value_0_0=ruleArithmeticValue
 			{
 				if ($current==null) {
 					$current = createModelElementForParent(grammarAccess.getNumericFromLiteralRule());
@@ -2311,7 +2311,7 @@ ruleNumericFromLiteral returns [EObject current=null]
 					$current,
 					"value",
 					lv_value_0_0,
-					"biochemsimulation.reactionrules.ReactionRules.UnsignedInteger");
+					"biochemsimulation.reactionrules.ReactionRules.ArithmeticValue");
 				afterParserOrEnumRuleCall();
 			}
 		)
@@ -2584,13 +2584,19 @@ ruleRuleVariables returns [EObject current=null]
 		(
 			(
 				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getRuleVariablesRule());
-					}
+					newCompositeNode(grammarAccess.getRuleVariablesAccess().getVariablesNumericAssignmentParserRuleCall_0_0());
 				}
-				otherlv_0=RULE_ID
+				lv_variables_0_0=ruleNumericAssignment
 				{
-					newLeafNode(otherlv_0, grammarAccess.getRuleVariablesAccess().getVariablesArithmeticVariableCrossReference_0_0());
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getRuleVariablesRule());
+					}
+					add(
+						$current,
+						"variables",
+						lv_variables_0_0,
+						"biochemsimulation.reactionrules.ReactionRules.NumericAssignment");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
@@ -2602,13 +2608,19 @@ ruleRuleVariables returns [EObject current=null]
 			(
 				(
 					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getRuleVariablesRule());
-						}
+						newCompositeNode(grammarAccess.getRuleVariablesAccess().getVariablesNumericAssignmentParserRuleCall_1_1_0());
 					}
-					otherlv_2=RULE_ID
+					lv_variables_2_0=ruleNumericAssignment
 					{
-						newLeafNode(otherlv_2, grammarAccess.getRuleVariablesAccess().getVariablesArithmeticVariableCrossReference_1_1_0());
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getRuleVariablesRule());
+						}
+						add(
+							$current,
+							"variables",
+							lv_variables_2_0,
+							"biochemsimulation.reactionrules.ReactionRules.NumericAssignment");
+						afterParserOrEnumRuleCall();
 					}
 				)
 			)
