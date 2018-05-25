@@ -93,6 +93,9 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
       case ReactionRulesPackage.AGENT_PATTERN: return createAgentPattern();
       case ReactionRulesPackage.PATTERN: return createPattern();
       case ReactionRulesPackage.OBSERVATION: return createObservation();
+      case ReactionRulesPackage.NUMERIC_FROM_LITERAL: return createNumericFromLiteral();
+      case ReactionRulesPackage.NUMERIC_FROM_VARIABLE: return createNumericFromVariable();
+      case ReactionRulesPackage.NUMERIC_ASSIGNMENT: return createNumericAssignment();
       case ReactionRulesPackage.INITIAL: return createInitial();
       case ReactionRulesPackage.ASSIGN_FROM_PATTERN: return createAssignFromPattern();
       case ReactionRulesPackage.ASSIGN_FROM_VARIABLE: return createAssignFromVariable();
@@ -416,6 +419,39 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
   {
     ObservationImpl observation = new ObservationImpl();
     return observation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NumericFromLiteral createNumericFromLiteral()
+  {
+    NumericFromLiteralImpl numericFromLiteral = new NumericFromLiteralImpl();
+    return numericFromLiteral;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NumericFromVariable createNumericFromVariable()
+  {
+    NumericFromVariableImpl numericFromVariable = new NumericFromVariableImpl();
+    return numericFromVariable;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NumericAssignment createNumericAssignment()
+  {
+    NumericAssignmentImpl numericAssignment = new NumericAssignmentImpl();
+    return numericAssignment;
   }
 
   /**

@@ -36,6 +36,9 @@ import java.util.LinkedList
 import biochemsimulation.reactionrules.reactionRules.ExactLink
 import biochemsimulation.reactionrules.reactionRules.WhatEver
 import biochemsimulation.reactionrules.reactionRules.SemiLink
+import biochemsimulation.reactionrules.reactionRules.NumericAssignment
+import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral
+import biochemsimulation.reactionrules.reactionRules.NumericFromVariable
 
 /**
  * Generates code from your model files on save.
@@ -61,7 +64,7 @@ class ReactionRulesGenerator extends AbstractGenerator {
 	
 	def agentInstancesFromInitial(Resource resource, Initial initial) {
 		val content = initial.initialPattern
-		val n = Integer.valueOf(initial.count)
+		val n = valueOfNumericAssignment(initial.count)
 		if(content instanceof AssignFromPattern) {
 			val c = content as AssignFromPattern
 			agentInstancesFromPattern(resource, c.pattern, n, initial.name)
@@ -69,6 +72,19 @@ class ReactionRulesGenerator extends AbstractGenerator {
 			val va = content as AssignFromVariable
 			agentInstancesFromPattern(resource, va.patternVar.pattern, n, initial.name)
 		}
+	}
+	
+	def valueOfNumericAssignment(NumericAssignment na){
+		var value = "0"
+		if(na instanceof NumericFromLiteral) {
+			val nl = na as NumericFromLiteral
+			value = nl.value
+		}else {
+			val nv = na as NumericFromVariable
+			val ae = nv.valueVar.value
+			value = ae.value
+		}
+		return Integer.valueOf(value)
 	}
 	
 	def agentInstancesFromPattern(Resource resource, Pattern pattern, int n, String prefix){
@@ -80,7 +96,7 @@ class ReactionRulesGenerator extends AbstractGenerator {
 				var ap = agentPattern as AgentPattern
 				var agent = ap.agent
 				var agentI = createNewAgentInstance(agent, ap, prefix, i, linksA, linksS)
-				model.reationContainer.agentInstances.add(agentI)
+				model.reactionContainer.agentInstances.add(agentI)
 			}
 			for(linkID : linksA.keySet) {
 				val lInstance = linksA.get(linkID).get(0)
@@ -124,13 +140,6 @@ class ReactionRulesGenerator extends AbstractGenerator {
 					val link = newLinkState.linkState as IndexedLink
 					insertLinkInLinkMap(link.state, agentI, site, linksA, linksS)
 				}
-				/*
-				if(newLinkState.linkState instanceof ExactLink) {
-					val link = newLinkState.linkState as ExactLink
-					aiLinkState.attachedAgent = link.linkAgent.agent
-					aiLinkState.attachedSite = link.linkSite.site
-				}
-				*/
 				if(newLinkState.linkState instanceof WhatEver || newLinkState.linkState instanceof ExactLink 
 					|| newLinkState.linkState instanceof SemiLink) {
 					newLinkState.linkState = factory.createFreeLink

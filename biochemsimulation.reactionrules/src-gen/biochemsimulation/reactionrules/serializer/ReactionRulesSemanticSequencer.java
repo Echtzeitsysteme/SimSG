@@ -22,6 +22,8 @@ import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.Model;
 import biochemsimulation.reactionrules.reactionRules.ModelPath;
 import biochemsimulation.reactionrules.reactionRules.ModelUri;
+import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral;
+import biochemsimulation.reactionrules.reactionRules.NumericFromVariable;
 import biochemsimulation.reactionrules.reactionRules.Observation;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.PatternVariable;
@@ -123,6 +125,12 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 				return; 
 			case ReactionRulesPackage.MODEL_URI:
 				sequence_ModelUri(context, (ModelUri) semanticObject); 
+				return; 
+			case ReactionRulesPackage.NUMERIC_FROM_LITERAL:
+				sequence_NumericFromLiteral(context, (NumericFromLiteral) semanticObject); 
+				return; 
+			case ReactionRulesPackage.NUMERIC_FROM_VARIABLE:
+				sequence_NumericFromVariable(context, (NumericFromVariable) semanticObject); 
 				return; 
 			case ReactionRulesPackage.OBSERVATION:
 				sequence_Observation(context, (Observation) semanticObject); 
@@ -517,7 +525,7 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     Initial returns Initial
 	 *
 	 * Constraint:
-	 *     (name=ID count=UnsignedInteger initialPattern=PatternAssignment)
+	 *     (name=ID count=NumericAssignment initialPattern=PatternAssignment)
 	 */
 	protected void sequence_Initial(ISerializationContext context, Initial semanticObject) {
 		if (errorAcceptor != null) {
@@ -530,7 +538,7 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getInitialAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getInitialAccess().getCountUnsignedIntegerParserRuleCall_2_0(), semanticObject.getCount());
+		feeder.accept(grammarAccess.getInitialAccess().getCountNumericAssignmentParserRuleCall_2_0(), semanticObject.getCount());
 		feeder.accept(grammarAccess.getInitialAccess().getInitialPatternPatternAssignmentParserRuleCall_3_0(), semanticObject.getInitialPattern());
 		feeder.finish();
 	}
@@ -595,6 +603,44 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     NumericFromLiteral returns NumericFromLiteral
+	 *     NumericAssignment returns NumericFromLiteral
+	 *
+	 * Constraint:
+	 *     value=UnsignedInteger
+	 */
+	protected void sequence_NumericFromLiteral(ISerializationContext context, NumericFromLiteral semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.NUMERIC_FROM_LITERAL__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.NUMERIC_FROM_LITERAL__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getNumericFromLiteralAccess().getValueUnsignedIntegerParserRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     NumericFromVariable returns NumericFromVariable
+	 *     NumericAssignment returns NumericFromVariable
+	 *
+	 * Constraint:
+	 *     valueVar=[ArithmeticVariable|ID]
+	 */
+	protected void sequence_NumericFromVariable(ISerializationContext context, NumericFromVariable semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.NUMERIC_FROM_VARIABLE__VALUE_VAR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.NUMERIC_FROM_VARIABLE__VALUE_VAR));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getNumericFromVariableAccess().getValueVarArithmeticVariableIDTerminalRuleCall_0_1(), semanticObject.eGet(ReactionRulesPackage.Literals.NUMERIC_FROM_VARIABLE__VALUE_VAR, false));
+		feeder.finish();
 	}
 	
 	
@@ -672,7 +718,7 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     ReactionRuleModel returns ReactionRuleModel
 	 *
 	 * Constraint:
-	 *     (model=Model reationContainer=ReactionContainer reactionProperties+=ReactionProperty*)
+	 *     (model=Model reactionContainer=ReactionContainer reactionProperties+=ReactionProperty*)
 	 */
 	protected void sequence_ReactionRuleModel(ISerializationContext context, ReactionRuleModel semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

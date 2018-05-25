@@ -4,6 +4,7 @@
 package biochemsimulation.reactionrules.reactionRules.impl;
 
 import biochemsimulation.reactionrules.reactionRules.Initial;
+import biochemsimulation.reactionrules.reactionRules.NumericAssignment;
 import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 
@@ -32,24 +33,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 public class InitialImpl extends ReactionPropertyImpl implements Initial
 {
   /**
-   * The default value of the '{@link #getCount() <em>Count</em>}' attribute.
+   * The cached value of the '{@link #getCount() <em>Count</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getCount()
    * @generated
    * @ordered
    */
-  protected static final String COUNT_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getCount() <em>Count</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getCount()
-   * @generated
-   * @ordered
-   */
-  protected String count = COUNT_EDEFAULT;
+  protected NumericAssignment count;
 
   /**
    * The cached value of the '{@link #getInitialPattern() <em>Initial Pattern</em>}' containment reference.
@@ -87,7 +78,7 @@ public class InitialImpl extends ReactionPropertyImpl implements Initial
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getCount()
+  public NumericAssignment getCount()
   {
     return count;
   }
@@ -97,12 +88,37 @@ public class InitialImpl extends ReactionPropertyImpl implements Initial
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setCount(String newCount)
+  public NotificationChain basicSetCount(NumericAssignment newCount, NotificationChain msgs)
   {
-    String oldCount = count;
+    NumericAssignment oldCount = count;
     count = newCount;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.INITIAL__COUNT, oldCount, count));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.INITIAL__COUNT, oldCount, newCount);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setCount(NumericAssignment newCount)
+  {
+    if (newCount != count)
+    {
+      NotificationChain msgs = null;
+      if (count != null)
+        msgs = ((InternalEObject)count).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.INITIAL__COUNT, null, msgs);
+      if (newCount != null)
+        msgs = ((InternalEObject)newCount).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.INITIAL__COUNT, null, msgs);
+      msgs = basicSetCount(newCount, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.INITIAL__COUNT, newCount, newCount));
   }
 
   /**
@@ -163,6 +179,8 @@ public class InitialImpl extends ReactionPropertyImpl implements Initial
   {
     switch (featureID)
     {
+      case ReactionRulesPackage.INITIAL__COUNT:
+        return basicSetCount(null, msgs);
       case ReactionRulesPackage.INITIAL__INITIAL_PATTERN:
         return basicSetInitialPattern(null, msgs);
     }
@@ -198,7 +216,7 @@ public class InitialImpl extends ReactionPropertyImpl implements Initial
     switch (featureID)
     {
       case ReactionRulesPackage.INITIAL__COUNT:
-        setCount((String)newValue);
+        setCount((NumericAssignment)newValue);
         return;
       case ReactionRulesPackage.INITIAL__INITIAL_PATTERN:
         setInitialPattern((PatternAssignment)newValue);
@@ -218,7 +236,7 @@ public class InitialImpl extends ReactionPropertyImpl implements Initial
     switch (featureID)
     {
       case ReactionRulesPackage.INITIAL__COUNT:
-        setCount(COUNT_EDEFAULT);
+        setCount((NumericAssignment)null);
         return;
       case ReactionRulesPackage.INITIAL__INITIAL_PATTERN:
         setInitialPattern((PatternAssignment)null);
@@ -238,28 +256,11 @@ public class InitialImpl extends ReactionPropertyImpl implements Initial
     switch (featureID)
     {
       case ReactionRulesPackage.INITIAL__COUNT:
-        return COUNT_EDEFAULT == null ? count != null : !COUNT_EDEFAULT.equals(count);
+        return count != null;
       case ReactionRulesPackage.INITIAL__INITIAL_PATTERN:
         return initialPattern != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (count: ");
-    result.append(count);
-    result.append(')');
-    return result.toString();
   }
 
 } //InitialImpl

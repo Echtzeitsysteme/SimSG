@@ -216,6 +216,21 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
         return createObservationAdapter();
       }
       @Override
+      public Adapter caseNumericFromLiteral(NumericFromLiteral object)
+      {
+        return createNumericFromLiteralAdapter();
+      }
+      @Override
+      public Adapter caseNumericFromVariable(NumericFromVariable object)
+      {
+        return createNumericFromVariableAdapter();
+      }
+      @Override
+      public Adapter caseNumericAssignment(NumericAssignment object)
+      {
+        return createNumericAssignmentAdapter();
+      }
+      @Override
       public Adapter caseInitial(Initial object)
       {
         return createInitialAdapter();
@@ -713,6 +728,51 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createObservationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.NumericFromLiteral <em>Numeric From Literal</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.NumericFromLiteral
+   * @generated
+   */
+  public Adapter createNumericFromLiteralAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.NumericFromVariable <em>Numeric From Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.NumericFromVariable
+   * @generated
+   */
+  public Adapter createNumericFromVariableAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.NumericAssignment <em>Numeric Assignment</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.NumericAssignment
+   * @generated
+   */
+  public Adapter createNumericAssignmentAdapter()
   {
     return null;
   }

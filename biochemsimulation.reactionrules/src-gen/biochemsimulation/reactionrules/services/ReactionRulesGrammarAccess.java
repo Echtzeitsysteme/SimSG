@@ -29,18 +29,18 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cModelAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cModelModelParserRuleCall_0_0 = (RuleCall)cModelAssignment_0.eContents().get(0);
-		private final Assignment cReationContainerAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cReationContainerReactionContainerParserRuleCall_1_0 = (RuleCall)cReationContainerAssignment_1.eContents().get(0);
+		private final Assignment cReactionContainerAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cReactionContainerReactionContainerParserRuleCall_1_0 = (RuleCall)cReactionContainerAssignment_1.eContents().get(0);
 		private final Assignment cReactionPropertiesAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cReactionPropertiesReactionPropertyParserRuleCall_2_0 = (RuleCall)cReactionPropertiesAssignment_2.eContents().get(0);
 		
 		//ReactionRuleModel:
 		//	model=Model
-		//	reationContainer=ReactionContainer
+		//	reactionContainer=ReactionContainer
 		//	reactionProperties+=ReactionProperty*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//model=Model reationContainer=ReactionContainer reactionProperties+=ReactionProperty*
+		//model=Model reactionContainer=ReactionContainer reactionProperties+=ReactionProperty*
 		public Group getGroup() { return cGroup; }
 		
 		//model=Model
@@ -49,11 +49,11 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		//Model
 		public RuleCall getModelModelParserRuleCall_0_0() { return cModelModelParserRuleCall_0_0; }
 		
-		//reationContainer=ReactionContainer
-		public Assignment getReationContainerAssignment_1() { return cReationContainerAssignment_1; }
+		//reactionContainer=ReactionContainer
+		public Assignment getReactionContainerAssignment_1() { return cReactionContainerAssignment_1; }
 		
 		//ReactionContainer
-		public RuleCall getReationContainerReactionContainerParserRuleCall_1_0() { return cReationContainerReactionContainerParserRuleCall_1_0; }
+		public RuleCall getReactionContainerReactionContainerParserRuleCall_1_0() { return cReactionContainerReactionContainerParserRuleCall_1_0; }
 		
 		//reactionProperties+=ReactionProperty*
 		public Assignment getReactionPropertiesAssignment_2() { return cReactionPropertiesAssignment_2; }
@@ -402,14 +402,16 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFullStopKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final RuleCall cINTTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		private final RuleCall cEXPONENTTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		private final Keyword cHyphenMinusKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Alternatives cAlternatives_5 = (Alternatives)cGroup.eContents().get(5);
+		private final Keyword cHyphenMinusKeyword_5_0 = (Keyword)cAlternatives_5.eContents().get(0);
+		private final Keyword cPlusSignKeyword_5_1 = (Keyword)cAlternatives_5.eContents().get(1);
 		private final RuleCall cINTTerminalRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
 		
 		//ScientificFloat hidden():
-		//	'-'? INT '.' INT EXPONENT '-'? INT;
+		//	'-'? INT '.' INT EXPONENT ('-' | '+') INT;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'-'? INT '.' INT EXPONENT '-'? INT
+		//'-'? INT '.' INT EXPONENT ('-' | '+') INT
 		public Group getGroup() { return cGroup; }
 		
 		//'-'?
@@ -427,8 +429,14 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		//EXPONENT
 		public RuleCall getEXPONENTTerminalRuleCall_4() { return cEXPONENTTerminalRuleCall_4; }
 		
-		//'-'?
-		public Keyword getHyphenMinusKeyword_5() { return cHyphenMinusKeyword_5; }
+		//'-' | '+'
+		public Alternatives getAlternatives_5() { return cAlternatives_5; }
+		
+		//'-'
+		public Keyword getHyphenMinusKeyword_5_0() { return cHyphenMinusKeyword_5_0; }
+		
+		//'+'
+		public Keyword getPlusSignKeyword_5_1() { return cPlusSignKeyword_5_1; }
 		
 		//INT
 		public RuleCall getINTTerminalRuleCall_6() { return cINTTerminalRuleCall_6; }
@@ -1267,6 +1275,59 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		//PatternAssignment
 		public RuleCall getObservationPatternPatternAssignmentParserRuleCall_2_0() { return cObservationPatternPatternAssignmentParserRuleCall_2_0; }
 	}
+	public class NumericFromLiteralElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.NumericFromLiteral");
+		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cValueUnsignedIntegerParserRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		
+		//NumericFromLiteral:
+		//	value=UnsignedInteger;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//value=UnsignedInteger
+		public Assignment getValueAssignment() { return cValueAssignment; }
+		
+		//UnsignedInteger
+		public RuleCall getValueUnsignedIntegerParserRuleCall_0() { return cValueUnsignedIntegerParserRuleCall_0; }
+	}
+	public class NumericFromVariableElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.NumericFromVariable");
+		private final Assignment cValueVarAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cValueVarArithmeticVariableCrossReference_0 = (CrossReference)cValueVarAssignment.eContents().get(0);
+		private final RuleCall cValueVarArithmeticVariableIDTerminalRuleCall_0_1 = (RuleCall)cValueVarArithmeticVariableCrossReference_0.eContents().get(1);
+		
+		//NumericFromVariable:
+		//	valueVar=[ArithmeticVariable];
+		@Override public ParserRule getRule() { return rule; }
+		
+		//valueVar=[ArithmeticVariable]
+		public Assignment getValueVarAssignment() { return cValueVarAssignment; }
+		
+		//[ArithmeticVariable]
+		public CrossReference getValueVarArithmeticVariableCrossReference_0() { return cValueVarArithmeticVariableCrossReference_0; }
+		
+		//ID
+		public RuleCall getValueVarArithmeticVariableIDTerminalRuleCall_0_1() { return cValueVarArithmeticVariableIDTerminalRuleCall_0_1; }
+	}
+	public class NumericAssignmentElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.NumericAssignment");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cNumericFromLiteralParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cNumericFromVariableParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//NumericAssignment:
+		//	NumericFromLiteral | NumericFromVariable;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//NumericFromLiteral | NumericFromVariable
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//NumericFromLiteral
+		public RuleCall getNumericFromLiteralParserRuleCall_0() { return cNumericFromLiteralParserRuleCall_0; }
+		
+		//NumericFromVariable
+		public RuleCall getNumericFromVariableParserRuleCall_1() { return cNumericFromVariableParserRuleCall_1; }
+	}
 	public class InitialElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.Initial");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1274,18 +1335,18 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Assignment cCountAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cCountUnsignedIntegerParserRuleCall_2_0 = (RuleCall)cCountAssignment_2.eContents().get(0);
+		private final RuleCall cCountNumericAssignmentParserRuleCall_2_0 = (RuleCall)cCountAssignment_2.eContents().get(0);
 		private final Assignment cInitialPatternAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cInitialPatternPatternAssignmentParserRuleCall_3_0 = (RuleCall)cInitialPatternAssignment_3.eContents().get(0);
 		
 		//Initial:
 		//	'init'
 		//	name=ID
-		//	count=UnsignedInteger
+		//	count=NumericAssignment
 		//	initialPattern=PatternAssignment;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'init' name=ID count=UnsignedInteger initialPattern=PatternAssignment
+		//'init' name=ID count=NumericAssignment initialPattern=PatternAssignment
 		public Group getGroup() { return cGroup; }
 		
 		//'init'
@@ -1297,11 +1358,11 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
-		//count=UnsignedInteger
+		//count=NumericAssignment
 		public Assignment getCountAssignment_2() { return cCountAssignment_2; }
 		
-		//UnsignedInteger
-		public RuleCall getCountUnsignedIntegerParserRuleCall_2_0() { return cCountUnsignedIntegerParserRuleCall_2_0; }
+		//NumericAssignment
+		public RuleCall getCountNumericAssignmentParserRuleCall_2_0() { return cCountNumericAssignmentParserRuleCall_2_0; }
 		
 		//initialPattern=PatternAssignment
 		public Assignment getInitialPatternAssignment_3() { return cInitialPatternAssignment_3; }
@@ -1623,6 +1684,9 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	private final AgentPatternElements pAgentPattern;
 	private final PatternElements pPattern;
 	private final ObservationElements pObservation;
+	private final NumericFromLiteralElements pNumericFromLiteral;
+	private final NumericFromVariableElements pNumericFromVariable;
+	private final NumericAssignmentElements pNumericAssignment;
 	private final InitialElements pInitial;
 	private final AssignFromPatternElements pAssignFromPattern;
 	private final AssignFromVariableElements pAssignFromVariable;
@@ -1688,6 +1752,9 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		this.pAgentPattern = new AgentPatternElements();
 		this.pPattern = new PatternElements();
 		this.pObservation = new ObservationElements();
+		this.pNumericFromLiteral = new NumericFromLiteralElements();
+		this.pNumericFromVariable = new NumericFromVariableElements();
+		this.pNumericAssignment = new NumericAssignmentElements();
 		this.pInitial = new InitialElements();
 		this.pAssignFromPattern = new AssignFromPatternElements();
 		this.pAssignFromVariable = new AssignFromVariableElements();
@@ -1728,7 +1795,7 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//ReactionRuleModel:
 	//	model=Model
-	//	reationContainer=ReactionContainer
+	//	reactionContainer=ReactionContainer
 	//	reactionProperties+=ReactionProperty*;
 	public ReactionRuleModelElements getReactionRuleModelAccess() {
 		return pReactionRuleModel;
@@ -1894,7 +1961,7 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ScientificFloat hidden():
-	//	'-'? INT '.' INT EXPONENT '-'? INT;
+	//	'-'? INT '.' INT EXPONENT ('-' | '+') INT;
 	public ScientificFloatElements getScientificFloatAccess() {
 		return pScientificFloat;
 	}
@@ -2179,10 +2246,40 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		return getObservationAccess().getRule();
 	}
 	
+	//NumericFromLiteral:
+	//	value=UnsignedInteger;
+	public NumericFromLiteralElements getNumericFromLiteralAccess() {
+		return pNumericFromLiteral;
+	}
+	
+	public ParserRule getNumericFromLiteralRule() {
+		return getNumericFromLiteralAccess().getRule();
+	}
+	
+	//NumericFromVariable:
+	//	valueVar=[ArithmeticVariable];
+	public NumericFromVariableElements getNumericFromVariableAccess() {
+		return pNumericFromVariable;
+	}
+	
+	public ParserRule getNumericFromVariableRule() {
+		return getNumericFromVariableAccess().getRule();
+	}
+	
+	//NumericAssignment:
+	//	NumericFromLiteral | NumericFromVariable;
+	public NumericAssignmentElements getNumericAssignmentAccess() {
+		return pNumericAssignment;
+	}
+	
+	public ParserRule getNumericAssignmentRule() {
+		return getNumericAssignmentAccess().getRule();
+	}
+	
 	//Initial:
 	//	'init'
 	//	name=ID
-	//	count=UnsignedInteger
+	//	count=NumericAssignment
 	//	initialPattern=PatternAssignment;
 	public InitialElements getInitialAccess() {
 		return pInitial;

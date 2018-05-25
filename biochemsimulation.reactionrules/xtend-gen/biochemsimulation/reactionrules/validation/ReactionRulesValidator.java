@@ -5,9 +5,13 @@ package biochemsimulation.reactionrules.validation;
 
 import biochemsimulation.reactionrules.reactionRules.Agent;
 import biochemsimulation.reactionrules.reactionRules.AgentPattern;
+import biochemsimulation.reactionrules.reactionRules.ArithmeticValue;
 import biochemsimulation.reactionrules.reactionRules.ArithmeticVariable;
 import biochemsimulation.reactionrules.reactionRules.IndexedLink;
 import biochemsimulation.reactionrules.reactionRules.Initial;
+import biochemsimulation.reactionrules.reactionRules.NumericAssignment;
+import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral;
+import biochemsimulation.reactionrules.reactionRules.NumericFromVariable;
 import biochemsimulation.reactionrules.reactionRules.Observation;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 import biochemsimulation.reactionrules.reactionRules.Rule;
@@ -72,6 +76,16 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
   }
   
   @Check
+  public boolean checkArithmeticVariableFormat(final ArithmeticVariable aVar) {
+    boolean _contains = aVar.getValue().getValue().contains(" ");
+    if (_contains) {
+      this.error("Arithmetic variables may not contain any whitespaces!", null);
+      return false;
+    }
+    return true;
+  }
+  
+  @Check
   public void checkInitialIdUnique(final Initial initial) {
     final EObject rootElement = EcoreUtil2.getRootContainer(initial);
     List<Initial> candidates = EcoreUtil2.<Initial>getAllContentsOfType(rootElement, Initial.class);
@@ -87,6 +101,31 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
           this.error("Initial IDs must be unique.", null);
           c = 1;
         }
+      }
+    }
+  }
+  
+  @Check
+  public void checkInitialCountInteger(final Initial initial) {
+    final NumericAssignment countVar = initial.getCount();
+    if ((countVar instanceof NumericFromVariable)) {
+      final NumericFromVariable numVar = ((NumericFromVariable) countVar);
+      final ArithmeticValue arithVal = numVar.getValueVar().getValue();
+      boolean _matches = arithVal.getValue().matches("^(\\d)*$");
+      boolean _not = (!_matches);
+      if (_not) {
+        this.error("Initial count variable must be of type unsigned integer.", null);
+      } else {
+        final Integer num = Integer.valueOf(arithVal.getValue());
+        if (((num).intValue() == 0)) {
+          this.warning("Initial count variables equal to 0 will lead to zero instantiated agents.", null);
+        }
+      }
+    } else {
+      final NumericFromLiteral numLiteral = ((NumericFromLiteral) countVar);
+      final Integer num_1 = Integer.valueOf(numLiteral.getValue());
+      if (((num_1).intValue() == 0)) {
+        this.warning("Initial count variables equal to 0 will lead to zero instantiated agents.", null);
       }
     }
   }
@@ -206,6 +245,11 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
     for (final ArithmeticVariable variable : variables) {
       {
         String value = variable.getValue().getValue();
+        boolean _checkArithmeticVariableFormat = this.checkArithmeticVariableFormat(variable);
+        boolean _not = (!_checkArithmeticVariableFormat);
+        if (_not) {
+          return;
+        }
         Double numValue = Double.valueOf(value);
         if (((numValue).doubleValue() < 0)) {
           this.error("Uni-Directional rules must have positive reaction rates.", ReactionRulesPackage.Literals.RULE_BODY__VARIABLES);

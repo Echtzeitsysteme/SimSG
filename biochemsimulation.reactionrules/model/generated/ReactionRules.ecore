@@ -5,7 +5,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ReactionRuleModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="model" eType="#//Model"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="reationContainer" eType="#//ReactionContainer"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reactionContainer" eType="#//ReactionContainer"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="reactionProperties" upperBound="-1"
         eType="#//ReactionProperty" containment="true"/>
@@ -120,8 +120,16 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="observationPattern" eType="#//PatternAssignment"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NumericFromLiteral" eSuperTypes="#//NumericAssignment">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NumericFromVariable" eSuperTypes="#//NumericAssignment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueVar" eType="#//ArithmeticVariable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NumericAssignment"/>
   <eClassifiers xsi:type="ecore:EClass" name="Initial" eSuperTypes="#//ReactionProperty">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="count" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="count" eType="#//NumericAssignment"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initialPattern" eType="#//PatternAssignment"
         containment="true"/>
   </eClassifiers>

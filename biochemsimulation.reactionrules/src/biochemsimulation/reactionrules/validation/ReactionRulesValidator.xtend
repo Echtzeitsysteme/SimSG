@@ -17,6 +17,9 @@ import biochemsimulation.reactionrules.reactionRules.AgentPattern
 import biochemsimulation.reactionrules.reactionRules.SitePattern
 import java.util.HashSet
 import biochemsimulation.reactionrules.reactionRules.IndexedLink
+import biochemsimulation.reactionrules.reactionRules.NumericFromVariable
+import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral
+import biochemsimulation.reactionrules.reactionRules.ArithmeticVariable
 
 /**
  * This class contains custom validation rules. 
@@ -62,6 +65,15 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 	}
 	
 	@Check
+	def checkArithmeticVariableFormat(ArithmeticVariable aVar) {
+		if(aVar.value.value.contains(" ")) {
+			error('Arithmetic variables may not contain any whitespaces!', null)
+			return false
+		}
+		return true
+	}
+	
+	@Check
 	def checkInitialIdUnique(Initial initial) {
 		val rootElement = EcoreUtil2.getRootContainer(initial)
 		var candidates = EcoreUtil2.getAllContentsOfType(rootElement, Initial);
@@ -74,6 +86,30 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 			if(c>1) {
 				error('Initial IDs must be unique.', null)
 				c = 1;
+			}
+		}
+				
+	}
+	
+	@Check
+	def checkInitialCountInteger(Initial initial) {
+		val countVar = initial.count
+		if(countVar instanceof NumericFromVariable) {
+			val numVar = countVar as NumericFromVariable
+			val arithVal = numVar.valueVar.value
+			if(!arithVal.value.matches("^(\\d)*$")) {
+				error('Initial count variable must be of type unsigned integer.', null)
+			}else {
+				val num = Integer.valueOf(arithVal.value)
+				if(num==0) {
+					warning('Initial count variables equal to 0 will lead to zero instantiated agents.', null)
+				}
+			}
+		}else {
+			val numLiteral = countVar as NumericFromLiteral
+			val num = Integer.valueOf(numLiteral.value)
+			if(num==0) {
+				warning('Initial count variables equal to 0 will lead to zero instantiated agents.', null)
 			}
 		}
 				
@@ -166,6 +202,7 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 				
 	}
 	
+	
 	@Check
 	def checkRuleVariables(RuleBody ruleBody) {
 		var op = ruleBody.operator
@@ -181,6 +218,9 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 		}
 		for(variable : variables) {
 			var value = variable.value.value
+			if(!checkArithmeticVariableFormat(variable)) {
+				return
+			}
 			var numValue = Double.valueOf(value)
 			if(numValue < 0) {
 				error('Uni-Directional rules must have positive reaction rates.', ReactionRulesPackage.Literals.RULE_BODY__VARIABLES)
@@ -234,4 +274,5 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 			error('This indexed link must refer to exactly two end-points aka. sites.', ReactionRulesPackage.Literals.INDEXED_LINK__STATE)
 		}
 	}
+	
 }

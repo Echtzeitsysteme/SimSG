@@ -276,6 +276,33 @@ public interface ReactionRulesFactory extends EFactory
   Observation createObservation();
 
   /**
+   * Returns a new object of class '<em>Numeric From Literal</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Numeric From Literal</em>'.
+   * @generated
+   */
+  NumericFromLiteral createNumericFromLiteral();
+
+  /**
+   * Returns a new object of class '<em>Numeric From Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Numeric From Variable</em>'.
+   * @generated
+   */
+  NumericFromVariable createNumericFromVariable();
+
+  /**
+   * Returns a new object of class '<em>Numeric Assignment</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Numeric Assignment</em>'.
+   * @generated
+   */
+  NumericAssignment createNumericAssignment();
+
+  /**
    * Returns a new object of class '<em>Initial</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

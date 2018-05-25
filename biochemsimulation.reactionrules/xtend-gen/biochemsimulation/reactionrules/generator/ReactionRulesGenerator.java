@@ -8,6 +8,7 @@ import biochemsimulation.reactionrules.reactionRules.AgentInstance;
 import biochemsimulation.reactionrules.reactionRules.AgentInstanceLinkState;
 import biochemsimulation.reactionrules.reactionRules.AgentInstanceSiteState;
 import biochemsimulation.reactionrules.reactionRules.AgentPattern;
+import biochemsimulation.reactionrules.reactionRules.ArithmeticValue;
 import biochemsimulation.reactionrules.reactionRules.AssignFromPattern;
 import biochemsimulation.reactionrules.reactionRules.AssignFromVariable;
 import biochemsimulation.reactionrules.reactionRules.ExactLink;
@@ -17,6 +18,9 @@ import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.ModelLocation;
 import biochemsimulation.reactionrules.reactionRules.ModelPath;
 import biochemsimulation.reactionrules.reactionRules.ModelUri;
+import biochemsimulation.reactionrules.reactionRules.NumericAssignment;
+import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral;
+import biochemsimulation.reactionrules.reactionRules.NumericFromVariable;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
 import biochemsimulation.reactionrules.reactionRules.ReactionProperty;
@@ -81,7 +85,7 @@ public class ReactionRulesGenerator extends AbstractGenerator {
   
   public void agentInstancesFromInitial(final Resource resource, final Initial initial) {
     final PatternAssignment content = initial.getInitialPattern();
-    final Integer n = Integer.valueOf(initial.getCount());
+    final Integer n = this.valueOfNumericAssignment(initial.getCount());
     if ((content instanceof AssignFromPattern)) {
       final AssignFromPattern c = ((AssignFromPattern) content);
       this.agentInstancesFromPattern(resource, c.getPattern(), (n).intValue(), initial.getName());
@@ -89,6 +93,19 @@ public class ReactionRulesGenerator extends AbstractGenerator {
       final AssignFromVariable va = ((AssignFromVariable) content);
       this.agentInstancesFromPattern(resource, va.getPatternVar().getPattern(), (n).intValue(), initial.getName());
     }
+  }
+  
+  public Integer valueOfNumericAssignment(final NumericAssignment na) {
+    String value = "0";
+    if ((na instanceof NumericFromLiteral)) {
+      final NumericFromLiteral nl = ((NumericFromLiteral) na);
+      value = nl.getValue();
+    } else {
+      final NumericFromVariable nv = ((NumericFromVariable) na);
+      final ArithmeticValue ae = nv.getValueVar().getValue();
+      value = ae.getValue();
+    }
+    return Integer.valueOf(value);
   }
   
   public void agentInstancesFromPattern(final Resource resource, final Pattern pattern, final int n, final String prefix) {
@@ -107,7 +124,7 @@ public class ReactionRulesGenerator extends AbstractGenerator {
             AgentPattern ap = ((AgentPattern) agentPattern);
             Agent agent = ap.getAgent();
             AgentInstance agentI = this.createNewAgentInstance(agent, ap, prefix, (i).intValue(), linksA, linksS);
-            model.getReationContainer().getAgentInstances().add(agentI);
+            model.getReactionContainer().getAgentInstances().add(agentI);
           }
         }
         Set<String> _keySet = linksA.keySet();

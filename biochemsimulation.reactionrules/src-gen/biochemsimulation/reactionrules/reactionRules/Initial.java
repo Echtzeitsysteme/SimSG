@@ -24,30 +24,30 @@ package biochemsimulation.reactionrules.reactionRules;
 public interface Initial extends ReactionProperty
 {
   /**
-   * Returns the value of the '<em><b>Count</b></em>' attribute.
+   * Returns the value of the '<em><b>Count</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Count</em>' attribute isn't clear,
+   * If the meaning of the '<em>Count</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Count</em>' attribute.
-   * @see #setCount(String)
+   * @return the value of the '<em>Count</em>' containment reference.
+   * @see #setCount(NumericAssignment)
    * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getInitial_Count()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getCount();
+  NumericAssignment getCount();
 
   /**
-   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.Initial#getCount <em>Count</em>}' attribute.
+   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.Initial#getCount <em>Count</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Count</em>' attribute.
+   * @param value the new value of the '<em>Count</em>' containment reference.
    * @see #getCount()
    * @generated
    */
-  void setCount(String value);
+  void setCount(NumericAssignment value);
 
   /**
    * Returns the value of the '<em><b>Initial Pattern</b></em>' containment reference.

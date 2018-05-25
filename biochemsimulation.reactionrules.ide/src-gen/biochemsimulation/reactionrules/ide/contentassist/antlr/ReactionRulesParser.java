@@ -33,9 +33,11 @@ public class ReactionRulesParser extends AbstractContentAssistParser {
 				{
 					put(grammarAccess.getModelLocationAccess().getAlternatives(), "rule__ModelLocation__Alternatives");
 					put(grammarAccess.getReactionPropertyAccess().getAlternatives(), "rule__ReactionProperty__Alternatives");
+					put(grammarAccess.getScientificFloatAccess().getAlternatives_5(), "rule__ScientificFloat__Alternatives_5");
 					put(grammarAccess.getArithmeticTypeAccess().getAlternatives(), "rule__ArithmeticType__Alternatives");
 					put(grammarAccess.getVariableAccess().getAlternatives(), "rule__Variable__Alternatives");
 					put(grammarAccess.getLinkStateAccess().getLinkStateAlternatives_1_0(), "rule__LinkState__LinkStateAlternatives_1_0");
+					put(grammarAccess.getNumericAssignmentAccess().getAlternatives(), "rule__NumericAssignment__Alternatives");
 					put(grammarAccess.getPatternAssignmentAccess().getAlternatives(), "rule__PatternAssignment__Alternatives");
 					put(grammarAccess.getRuleBodyAccess().getAlternatives(), "rule__RuleBody__Alternatives");
 					put(grammarAccess.getReactionRuleModelAccess().getGroup(), "rule__ReactionRuleModel__Group__0");
@@ -85,7 +87,7 @@ public class ReactionRulesParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBidirectionalRuleAccess().getGroup(), "rule__BidirectionalRule__Group__0");
 					put(grammarAccess.getRuleAccess().getGroup(), "rule__Rule__Group__0");
 					put(grammarAccess.getReactionRuleModelAccess().getModelAssignment_0(), "rule__ReactionRuleModel__ModelAssignment_0");
-					put(grammarAccess.getReactionRuleModelAccess().getReationContainerAssignment_1(), "rule__ReactionRuleModel__ReationContainerAssignment_1");
+					put(grammarAccess.getReactionRuleModelAccess().getReactionContainerAssignment_1(), "rule__ReactionRuleModel__ReactionContainerAssignment_1");
 					put(grammarAccess.getReactionRuleModelAccess().getReactionPropertiesAssignment_2(), "rule__ReactionRuleModel__ReactionPropertiesAssignment_2");
 					put(grammarAccess.getModelUriAccess().getUriAssignment_1(), "rule__ModelUri__UriAssignment_1");
 					put(grammarAccess.getModelPathAccess().getPathAssignment_1(), "rule__ModelPath__PathAssignment_1");
@@ -138,6 +140,8 @@ public class ReactionRulesParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPatternAccess().getAgentPatternsAssignment_2_1_1(), "rule__Pattern__AgentPatternsAssignment_2_1_1");
 					put(grammarAccess.getObservationAccess().getNameAssignment_1(), "rule__Observation__NameAssignment_1");
 					put(grammarAccess.getObservationAccess().getObservationPatternAssignment_2(), "rule__Observation__ObservationPatternAssignment_2");
+					put(grammarAccess.getNumericFromLiteralAccess().getValueAssignment(), "rule__NumericFromLiteral__ValueAssignment");
+					put(grammarAccess.getNumericFromVariableAccess().getValueVarAssignment(), "rule__NumericFromVariable__ValueVarAssignment");
 					put(grammarAccess.getInitialAccess().getNameAssignment_1(), "rule__Initial__NameAssignment_1");
 					put(grammarAccess.getInitialAccess().getCountAssignment_2(), "rule__Initial__CountAssignment_2");
 					put(grammarAccess.getInitialAccess().getInitialPatternAssignment_3(), "rule__Initial__InitialPatternAssignment_3");

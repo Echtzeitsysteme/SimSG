@@ -4,7 +4,7 @@ generate reactionRules "http://www.reactionrules.biochemsimulation/ReactionRules
 
 ReactionRuleModel:
 	model = Model
-	reationContainer = ReactionContainer
+	reactionContainer = ReactionContainer
 	(reactionProperties+=ReactionProperty)*
 ;
 
@@ -94,7 +94,7 @@ Float hidden():
 ;
 
 ScientificFloat hidden():
-	('-')?INT '.' INT EXPONENT('-')?INT
+	('-')?INT'.'INT EXPONENT('-' | '+')INT
 ;
 
 UnsignedInteger  hidden():
@@ -232,10 +232,22 @@ Observation returns Observation:
 	observationPattern = PatternAssignment
 ;
 
+NumericFromLiteral:
+	value = UnsignedInteger
+;
+
+NumericFromVariable:
+	valueVar = [ArithmeticVariable]
+;
+
+NumericAssignment:
+	NumericFromLiteral | NumericFromVariable
+;
+
 Initial returns Initial:
 	'init'
 	name = ID
-	count = UnsignedInteger
+	count = NumericAssignment
 	initialPattern = PatternAssignment
 ;
 

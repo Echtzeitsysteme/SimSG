@@ -23,6 +23,9 @@ import biochemsimulation.reactionrules.reactionRules.Model;
 import biochemsimulation.reactionrules.reactionRules.ModelLocation;
 import biochemsimulation.reactionrules.reactionRules.ModelPath;
 import biochemsimulation.reactionrules.reactionRules.ModelUri;
+import biochemsimulation.reactionrules.reactionRules.NumericAssignment;
+import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral;
+import biochemsimulation.reactionrules.reactionRules.NumericFromVariable;
 import biochemsimulation.reactionrules.reactionRules.Observation;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
@@ -262,6 +265,27 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass numericFromLiteralEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass numericFromVariableEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass numericAssignmentEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass initialEClass = null;
 
   /**
@@ -429,7 +453,7 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getReactionRuleModel_ReationContainer()
+  public EReference getReactionRuleModel_ReactionContainer()
   {
     return (EReference)reactionRuleModelEClass.getEStructuralFeatures().get(1);
   }
@@ -1099,6 +1123,56 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getNumericFromLiteral()
+  {
+    return numericFromLiteralEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getNumericFromLiteral_Value()
+  {
+    return (EAttribute)numericFromLiteralEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getNumericFromVariable()
+  {
+    return numericFromVariableEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getNumericFromVariable_ValueVar()
+  {
+    return (EReference)numericFromVariableEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getNumericAssignment()
+  {
+    return numericAssignmentEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getInitial()
   {
     return initialEClass;
@@ -1109,9 +1183,9 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getInitial_Count()
+  public EReference getInitial_Count()
   {
-    return (EAttribute)initialEClass.getEStructuralFeatures().get(0);
+    return (EReference)initialEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1406,7 +1480,7 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     // Create classes and their features
     reactionRuleModelEClass = createEClass(REACTION_RULE_MODEL);
     createEReference(reactionRuleModelEClass, REACTION_RULE_MODEL__MODEL);
-    createEReference(reactionRuleModelEClass, REACTION_RULE_MODEL__REATION_CONTAINER);
+    createEReference(reactionRuleModelEClass, REACTION_RULE_MODEL__REACTION_CONTAINER);
     createEReference(reactionRuleModelEClass, REACTION_RULE_MODEL__REACTION_PROPERTIES);
 
     modelUriEClass = createEClass(MODEL_URI);
@@ -1501,8 +1575,16 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     observationEClass = createEClass(OBSERVATION);
     createEReference(observationEClass, OBSERVATION__OBSERVATION_PATTERN);
 
+    numericFromLiteralEClass = createEClass(NUMERIC_FROM_LITERAL);
+    createEAttribute(numericFromLiteralEClass, NUMERIC_FROM_LITERAL__VALUE);
+
+    numericFromVariableEClass = createEClass(NUMERIC_FROM_VARIABLE);
+    createEReference(numericFromVariableEClass, NUMERIC_FROM_VARIABLE__VALUE_VAR);
+
+    numericAssignmentEClass = createEClass(NUMERIC_ASSIGNMENT);
+
     initialEClass = createEClass(INITIAL);
-    createEAttribute(initialEClass, INITIAL__COUNT);
+    createEReference(initialEClass, INITIAL__COUNT);
     createEReference(initialEClass, INITIAL__INITIAL_PATTERN);
 
     assignFromPatternEClass = createEClass(ASSIGN_FROM_PATTERN);
@@ -1578,6 +1660,8 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     arithmeticVariableEClass.getESuperTypes().add(this.getVariable());
     variableEClass.getESuperTypes().add(this.getReactionProperty());
     observationEClass.getESuperTypes().add(this.getReactionProperty());
+    numericFromLiteralEClass.getESuperTypes().add(this.getNumericAssignment());
+    numericFromVariableEClass.getESuperTypes().add(this.getNumericAssignment());
     initialEClass.getESuperTypes().add(this.getReactionProperty());
     assignFromPatternEClass.getESuperTypes().add(this.getPatternAssignment());
     assignFromVariableEClass.getESuperTypes().add(this.getPatternAssignment());
@@ -1591,7 +1675,7 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     // Initialize classes and features; add operations and parameters
     initEClass(reactionRuleModelEClass, ReactionRuleModel.class, "ReactionRuleModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getReactionRuleModel_Model(), this.getModel(), null, "model", null, 0, 1, ReactionRuleModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getReactionRuleModel_ReationContainer(), this.getReactionContainer(), null, "reationContainer", null, 0, 1, ReactionRuleModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getReactionRuleModel_ReactionContainer(), this.getReactionContainer(), null, "reactionContainer", null, 0, 1, ReactionRuleModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getReactionRuleModel_ReactionProperties(), this.getReactionProperty(), null, "reactionProperties", null, 0, -1, ReactionRuleModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(modelUriEClass, ModelUri.class, "ModelUri", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1686,8 +1770,16 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     initEClass(observationEClass, Observation.class, "Observation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getObservation_ObservationPattern(), this.getPatternAssignment(), null, "observationPattern", null, 0, 1, Observation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(numericFromLiteralEClass, NumericFromLiteral.class, "NumericFromLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getNumericFromLiteral_Value(), ecorePackage.getEString(), "value", null, 0, 1, NumericFromLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(numericFromVariableEClass, NumericFromVariable.class, "NumericFromVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getNumericFromVariable_ValueVar(), this.getArithmeticVariable(), null, "valueVar", null, 0, 1, NumericFromVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(numericAssignmentEClass, NumericAssignment.class, "NumericAssignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
     initEClass(initialEClass, Initial.class, "Initial", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getInitial_Count(), ecorePackage.getEString(), "count", null, 0, 1, Initial.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getInitial_Count(), this.getNumericAssignment(), null, "count", null, 0, 1, Initial.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getInitial_InitialPattern(), this.getPatternAssignment(), null, "initialPattern", null, 0, 1, Initial.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(assignFromPatternEClass, AssignFromPattern.class, "AssignFromPattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

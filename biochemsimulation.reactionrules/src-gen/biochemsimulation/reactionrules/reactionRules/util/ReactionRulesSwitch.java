@@ -278,6 +278,29 @@ public class ReactionRulesSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ReactionRulesPackage.NUMERIC_FROM_LITERAL:
+      {
+        NumericFromLiteral numericFromLiteral = (NumericFromLiteral)theEObject;
+        T result = caseNumericFromLiteral(numericFromLiteral);
+        if (result == null) result = caseNumericAssignment(numericFromLiteral);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReactionRulesPackage.NUMERIC_FROM_VARIABLE:
+      {
+        NumericFromVariable numericFromVariable = (NumericFromVariable)theEObject;
+        T result = caseNumericFromVariable(numericFromVariable);
+        if (result == null) result = caseNumericAssignment(numericFromVariable);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReactionRulesPackage.NUMERIC_ASSIGNMENT:
+      {
+        NumericAssignment numericAssignment = (NumericAssignment)theEObject;
+        T result = caseNumericAssignment(numericAssignment);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ReactionRulesPackage.INITIAL:
       {
         Initial initial = (Initial)theEObject;
@@ -819,6 +842,54 @@ public class ReactionRulesSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseObservation(Observation object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Numeric From Literal</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Numeric From Literal</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNumericFromLiteral(NumericFromLiteral object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Numeric From Variable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Numeric From Variable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNumericFromVariable(NumericFromVariable object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Numeric Assignment</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Numeric Assignment</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNumericAssignment(NumericAssignment object)
   {
     return null;
   }
