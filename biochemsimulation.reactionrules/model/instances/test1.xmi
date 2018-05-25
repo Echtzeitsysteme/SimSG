@@ -339,7 +339,9 @@
     </observationPattern>
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:Initial" name="init1">
-    <count xmi:type="reactionRules:NumericFromLiteral" value="4"/>
+    <count xmi:type="reactionRules:NumericFromLiteral">
+      <value xmi:type="reactionRules:ArithmeticValue" value="4"/>
+    </count>
     <initialPattern xmi:type="reactionRules:AssignFromPattern">
       <pattern xmi:type="reactionRules:Pattern">
         <agentPatterns xmi:type="reactionRules:AgentPattern" agent="//@reactionProperties.0">
@@ -352,7 +354,9 @@
     </initialPattern>
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:Initial" name="init2">
-    <count xmi:type="reactionRules:NumericFromLiteral" value="4"/>
+    <count xmi:type="reactionRules:NumericFromLiteral">
+      <value xmi:type="reactionRules:ArithmeticValue" value="4"/>
+    </count>
     <initialPattern xmi:type="reactionRules:AssignFromPattern">
       <pattern xmi:type="reactionRules:Pattern">
         <agentPatterns xmi:type="reactionRules:AgentPattern" agent="//@reactionProperties.2">
@@ -420,7 +424,10 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="reactionRules:RuleVariables" variables="//@reactionProperties.4 //@reactionProperties.5"/>
+      <variables xmi:type="reactionRules:RuleVariables">
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.4"/>
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.5"/>
+      </variables>
     </rule>
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:Rule" name="ABtoC">
@@ -481,7 +488,9 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="reactionRules:RuleVariables" variables="//@reactionProperties.4"/>
+      <variables xmi:type="reactionRules:RuleVariables">
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.4"/>
+      </variables>
     </rule>
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:Rule" name="modX1">
@@ -532,7 +541,9 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="reactionRules:RuleVariables" variables="//@reactionProperties.6"/>
+      <variables xmi:type="reactionRules:RuleVariables">
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.6"/>
+      </variables>
     </rule>
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:Rule" name="AtoC">
@@ -605,7 +616,9 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="reactionRules:RuleVariables" variables="//@reactionProperties.4"/>
+      <variables xmi:type="reactionRules:RuleVariables">
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.4"/>
+      </variables>
     </rule>
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:Rule" name="modX2">
@@ -678,7 +691,9 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="reactionRules:RuleVariables" variables="//@reactionProperties.6"/>
+      <variables xmi:type="reactionRules:RuleVariables">
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.6"/>
+      </variables>
     </rule>
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:Rule" name="varTest">
@@ -697,7 +712,10 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="reactionRules:RuleVariables" variables="//@reactionProperties.4 //@reactionProperties.5"/>
+      <variables xmi:type="reactionRules:RuleVariables">
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.4"/>
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.5"/>
+      </variables>
     </rule>
   </reactionProperties>
 </reactionRules:ReactionRuleModel>

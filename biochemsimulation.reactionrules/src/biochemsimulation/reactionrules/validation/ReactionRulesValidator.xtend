@@ -22,6 +22,13 @@ import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral
 import biochemsimulation.reactionrules.reactionRules.ArithmeticVariable
 import biochemsimulation.reactionrules.reactionRules.ArithmeticValue
 import biochemsimulation.reactionrules.reactionRules.NumericAssignment
+import biochemsimulation.reactionrules.reactionRules.PatternAssignment
+import biochemsimulation.reactionrules.reactionRules.Pattern
+import biochemsimulation.reactionrules.reactionRules.AssignFromPattern
+import biochemsimulation.reactionrules.reactionRules.AssignFromVariable
+import biochemsimulation.reactionrules.reactionRules.SemiLink
+import biochemsimulation.reactionrules.reactionRules.WhatEver
+import biochemsimulation.reactionrules.reactionRules.ExactLink
 
 /**
  * This class contains custom validation rules. 
@@ -107,14 +114,37 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 		}
 		
 		if(!arithVal.value.matches("^(\\d)*$")) {
-				error('Initial count variable must be of type unsigned integer.', null)
-			}else {
-				val num = Integer.valueOf(arithVal.value)
-				if(num==0) {
-					warning('Initial count variables equal to 0 will lead to zero instantiated agents.', null)
+			error('Initial count variable must be of type unsigned integer.', null)
+		}else {
+			val num = Integer.valueOf(arithVal.value)
+			if(num==0) {
+				warning('Initial count variables equal to 0 will lead to zero instantiated agents.', null)
+			}
+		}
+				
+	}
+	
+	@Check
+	def checkInitialIllegalLinkStates(Initial initial) {
+		val pattern = patternFromPatternAssignment(initial.initialPattern)
+		for(ap : pattern.agentPatterns) {
+			for(sp : ap.sitePatterns.sitePatterns) {
+				val linkState = sp.linkState.linkState
+				if(linkState instanceof SemiLink || linkState instanceof WhatEver || linkState instanceof ExactLink) {
+					error('Illegal initial link state! A pattern may only be instantiated with link states of Type: FreeLink("free"), IndexedLink("INT")', null)
 				}
 			}
-				
+		}
+	}
+	
+	def Pattern patternFromPatternAssignment(PatternAssignment pa) {
+		if(pa instanceof AssignFromPattern) {
+			val afp = pa as AssignFromPattern
+			return afp.pattern
+		}else {
+			val afv = pa as AssignFromVariable
+			return afv.patternVar.pattern
+		}
 	}
 	
 	@Check
@@ -220,21 +250,25 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 		}
 		for(variable : variables) {
 			var value = valueOfNumericAssignment(variable)
+			var faulty = false;
 			if(value.contains(" ")) {
 				error('Arithmetic variables may not contain any whitespaces!', ReactionRulesPackage.Literals.RULE_BODY__VARIABLES)
-				return
+				faulty = true;
 			}
 			if(!value.matches("^(-)?(\\d)+(\\.)(\\d)+E(-|\\+)(\\d)+$") && !value.matches("^(-)?(\\d)*$") && !value.matches("^(-)?(\\d)+(\\.)(\\d)+$")) {
 				error('Given expression does not adhere to any known number format.', ReactionRulesPackage.Literals.RULE_BODY__VARIABLES)
-				return
+				faulty = true;
 			}
-			var numValue = Double.valueOf(value)
-			if(numValue < 0) {
-				error('Uni-Directional rules must have positive reaction rates.', ReactionRulesPackage.Literals.RULE_BODY__VARIABLES)
+			if(!faulty) {
+				var numValue = Double.valueOf(value)
+				if(numValue < 0) {
+					error('Uni-Directional rules must have positive reaction rates.', ReactionRulesPackage.Literals.RULE_BODY__VARIABLES)
+				}
+				if(numValue == 0) {
+					warning('Uni-Directional rules with rates equal to 0 will be inactive.', ReactionRulesPackage.Literals.RULE_BODY__VARIABLES)
+				}
 			}
-			if(numValue == 0) {
-				warning('Uni-Directional rules with rates equal to 0 will be inactive.', ReactionRulesPackage.Literals.RULE_BODY__VARIABLES)
-			}
+			
 		}		
 	}
 	
@@ -269,15 +303,15 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 	
 	@Check
 	def checkIndexedLinkConstraint(IndexedLink indexedLink) {
-		var rule = null as Rule
+		var pattern = null as Pattern
 		var eObj = indexedLink.eContainer
-		while(!(eObj instanceof Rule) && eObj !== null) {
+		while(!(eObj instanceof Pattern) && eObj !== null) {
 			eObj = eObj.eContainer
 		}
-		if(eObj instanceof Rule) {
-			rule = eObj
+		if(eObj instanceof Pattern) {
+			pattern = eObj
 		}
-		var candidates = EcoreUtil2.getAllContentsOfType(rule, IndexedLink);
+		var candidates = EcoreUtil2.getAllContentsOfType(pattern, IndexedLink);
 		var c = 1
 		val thisNum = Integer.valueOf(indexedLink.state)
 		for(cnd : candidates) {

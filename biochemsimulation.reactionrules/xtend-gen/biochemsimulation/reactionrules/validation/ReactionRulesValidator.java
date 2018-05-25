@@ -7,18 +7,26 @@ import biochemsimulation.reactionrules.reactionRules.Agent;
 import biochemsimulation.reactionrules.reactionRules.AgentPattern;
 import biochemsimulation.reactionrules.reactionRules.ArithmeticValue;
 import biochemsimulation.reactionrules.reactionRules.ArithmeticVariable;
+import biochemsimulation.reactionrules.reactionRules.AssignFromPattern;
+import biochemsimulation.reactionrules.reactionRules.AssignFromVariable;
+import biochemsimulation.reactionrules.reactionRules.ExactLink;
 import biochemsimulation.reactionrules.reactionRules.IndexedLink;
 import biochemsimulation.reactionrules.reactionRules.Initial;
+import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.NumericAssignment;
 import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral;
 import biochemsimulation.reactionrules.reactionRules.NumericFromVariable;
 import biochemsimulation.reactionrules.reactionRules.Observation;
+import biochemsimulation.reactionrules.reactionRules.Pattern;
+import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 import biochemsimulation.reactionrules.reactionRules.Rule;
 import biochemsimulation.reactionrules.reactionRules.RuleBody;
+import biochemsimulation.reactionrules.reactionRules.SemiLink;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.Variable;
+import biochemsimulation.reactionrules.reactionRules.WhatEver;
 import biochemsimulation.reactionrules.validation.AbstractReactionRulesValidator;
 import com.google.common.base.Objects;
 import java.util.HashSet;
@@ -125,6 +133,33 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
       if (((num).intValue() == 0)) {
         this.warning("Initial count variables equal to 0 will lead to zero instantiated agents.", null);
       }
+    }
+  }
+  
+  @Check
+  public void checkInitialIllegalLinkStates(final Initial initial) {
+    final Pattern pattern = this.patternFromPatternAssignment(initial.getInitialPattern());
+    EList<AgentPattern> _agentPatterns = pattern.getAgentPatterns();
+    for (final AgentPattern ap : _agentPatterns) {
+      EList<SitePattern> _sitePatterns = ap.getSitePatterns().getSitePatterns();
+      for (final SitePattern sp : _sitePatterns) {
+        {
+          final LinkState linkState = sp.getLinkState().getLinkState();
+          if ((((linkState instanceof SemiLink) || (linkState instanceof WhatEver)) || (linkState instanceof ExactLink))) {
+            this.error("Illegal initial link state! A pattern may only be instantiated with link states of Type: FreeLink(\"free\"), IndexedLink(\"INT\")", null);
+          }
+        }
+      }
+    }
+  }
+  
+  public Pattern patternFromPatternAssignment(final PatternAssignment pa) {
+    if ((pa instanceof AssignFromPattern)) {
+      final AssignFromPattern afp = ((AssignFromPattern) pa);
+      return afp.getPattern();
+    } else {
+      final AssignFromVariable afv = ((AssignFromVariable) pa);
+      return afv.getPatternVar().getPattern();
     }
   }
   
@@ -243,21 +278,24 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
     for (final NumericAssignment variable : variables) {
       {
         String value = this.valueOfNumericAssignment(variable);
+        boolean faulty = false;
         boolean _contains = value.contains(" ");
         if (_contains) {
           this.error("Arithmetic variables may not contain any whitespaces!", ReactionRulesPackage.Literals.RULE_BODY__VARIABLES);
-          return;
+          faulty = true;
         }
         if ((((!value.matches("^(-)?(\\d)+(\\.)(\\d)+E(-|\\+)(\\d)+$")) && (!value.matches("^(-)?(\\d)*$"))) && (!value.matches("^(-)?(\\d)+(\\.)(\\d)+$")))) {
           this.error("Given expression does not adhere to any known number format.", ReactionRulesPackage.Literals.RULE_BODY__VARIABLES);
-          return;
+          faulty = true;
         }
-        Double numValue = Double.valueOf(value);
-        if (((numValue).doubleValue() < 0)) {
-          this.error("Uni-Directional rules must have positive reaction rates.", ReactionRulesPackage.Literals.RULE_BODY__VARIABLES);
-        }
-        if (((numValue).doubleValue() == 0)) {
-          this.warning("Uni-Directional rules with rates equal to 0 will be inactive.", ReactionRulesPackage.Literals.RULE_BODY__VARIABLES);
+        if ((!faulty)) {
+          Double numValue = Double.valueOf(value);
+          if (((numValue).doubleValue() < 0)) {
+            this.error("Uni-Directional rules must have positive reaction rates.", ReactionRulesPackage.Literals.RULE_BODY__VARIABLES);
+          }
+          if (((numValue).doubleValue() == 0)) {
+            this.warning("Uni-Directional rules with rates equal to 0 will be inactive.", ReactionRulesPackage.Literals.RULE_BODY__VARIABLES);
+          }
         }
       }
     }
@@ -300,15 +338,15 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
   
   @Check
   public void checkIndexedLinkConstraint(final IndexedLink indexedLink) {
-    Rule rule = ((Rule) null);
+    Pattern pattern = ((Pattern) null);
     EObject eObj = indexedLink.eContainer();
-    while (((!(eObj instanceof Rule)) && (eObj != null))) {
+    while (((!(eObj instanceof Pattern)) && (eObj != null))) {
       eObj = eObj.eContainer();
     }
-    if ((eObj instanceof Rule)) {
-      rule = ((Rule)eObj);
+    if ((eObj instanceof Pattern)) {
+      pattern = ((Pattern)eObj);
     }
-    List<IndexedLink> candidates = EcoreUtil2.<IndexedLink>getAllContentsOfType(rule, IndexedLink.class);
+    List<IndexedLink> candidates = EcoreUtil2.<IndexedLink>getAllContentsOfType(pattern, IndexedLink.class);
     int c = 1;
     final Integer thisNum = Integer.valueOf(indexedLink.getState());
     for (final IndexedLink cnd : candidates) {

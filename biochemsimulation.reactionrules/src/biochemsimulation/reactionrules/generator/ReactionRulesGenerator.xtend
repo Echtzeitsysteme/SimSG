@@ -39,6 +39,7 @@ import biochemsimulation.reactionrules.reactionRules.SemiLink
 import biochemsimulation.reactionrules.reactionRules.NumericAssignment
 import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral
 import biochemsimulation.reactionrules.reactionRules.NumericFromVariable
+import biochemsimulation.reactionrules.reactionRules.ReactionRulesFactory
 
 /**
  * Generates code from your model files on save.
@@ -89,14 +90,17 @@ class ReactionRulesGenerator extends AbstractGenerator {
 	
 	def agentInstancesFromPattern(Resource resource, Pattern pattern, int n, String prefix){
 		var model = resource.getContents().get(0) as ReactionRuleModelImpl
+		val factory = ReactionRulesFactoryImpl.init()
 		for(i : 0 ..< n){
 			val linksA = new HashMap<String, List<AgentInstance>>(pattern.agentPatterns.size);
 			val linksS = new HashMap<String, List<Site>>(pattern.agentPatterns.size);
 			for(agentPattern : pattern.agentPatterns) {
 				var ap = agentPattern as AgentPattern
 				var agent = ap.agent
-				var agentI = createNewAgentInstance(agent, ap, prefix, i, linksA, linksS)
+				var agentI = factory.createAgentInstance 
 				model.reactionContainer.agentInstances.add(agentI)
+				createNewAgentInstance(agentI, factory, agent, agentPattern, prefix, i, linksA, linksS)
+				
 			}
 			for(linkID : linksA.keySet) {
 				val lInstance = linksA.get(linkID).get(0)
@@ -118,9 +122,8 @@ class ReactionRulesGenerator extends AbstractGenerator {
 		
 	}
 	
-	def createNewAgentInstance(Agent agent, AgentPattern ap, String prefix, int iteration, HashMap<String, List<AgentInstance>> linksA, HashMap<String, List<Site>> linksS) {
-		val factory = ReactionRulesFactoryImpl.init()
-		var agentI = factory.createAgentInstance
+	def createNewAgentInstance(AgentInstance agentI, ReactionRulesFactory factory, Agent agent, AgentPattern ap, String prefix, int iteration, HashMap<String, List<AgentInstance>> linksA, HashMap<String, List<Site>> linksS) {
+		
 		agentI.name = prefix+":"+agent.name+".Instance@#"+iteration
 		agentI.agent = agent
 		
@@ -133,6 +136,9 @@ class ReactionRulesGenerator extends AbstractGenerator {
 			var aiLinkState = factory.createAgentInstanceLinkState as AgentInstanceLinkState
 
 			var aiSiteState = factory.createAgentInstanceSiteState
+			
+			agentI.linkStates.add(aiLinkState)
+			agentI.siteStates.add(aiSiteState)
 					
 			if(oldLinkState !== null) {
 				newLinkState.linkState = EcoreUtil.copy(oldLinkState.linkState)
@@ -152,15 +158,19 @@ class ReactionRulesGenerator extends AbstractGenerator {
 				aiSiteState.siteState = EcoreUtil.copy(oldSiteState)
 			} else {
 				aiSiteState.siteState = factory.createSiteState
+				if(site.states.state !== null) {
+					if(site.states.state.size() >= 1) {
+						aiSiteState.siteState.state = site.states.state.get(0)
+					}
+				}
+				
 			}
 					
 			aiLinkState.site = site
 			aiLinkState.linkState = newLinkState
 					
 			aiSiteState.site = site
-					
-			agentI.linkStates.add(aiLinkState)
-			agentI.siteStates.add(aiSiteState)		
+						
 		}
 		
 		if(ap.sitePatterns.sitePatterns.size <= 0) {
@@ -171,7 +181,18 @@ class ReactionRulesGenerator extends AbstractGenerator {
 				newLinkState.linkState = factory.createFreeLink
 				aiLinkState.linkState = newLinkState
 				agentI.linkStates.add(aiLinkState)
-				}	
+				
+				if(site.states.state !== null) {
+					if(site.states.state.size() >= 1) {
+						var aiSiteState = factory.createAgentInstanceSiteState
+						agentI.siteStates.add(aiSiteState)
+						aiSiteState.site = site
+						aiSiteState.siteState = factory.createSiteState
+						aiSiteState.siteState.state = site.states.state.get(0)
+					} 
+					
+				}
+			}	
 		}
 		
 		return agentI

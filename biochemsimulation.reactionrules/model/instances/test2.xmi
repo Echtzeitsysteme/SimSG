@@ -262,7 +262,9 @@
     <value xmi:type="reactionRules:ArithmeticValue" value="1.0"/>
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:Initial" name="init1">
-    <count xmi:type="reactionRules:NumericFromLiteral" value="4"/>
+    <count xmi:type="reactionRules:NumericFromLiteral">
+      <value xmi:type="reactionRules:ArithmeticValue" value="4"/>
+    </count>
     <initialPattern xmi:type="reactionRules:AssignFromPattern">
       <pattern xmi:type="reactionRules:Pattern">
         <agentPatterns xmi:type="reactionRules:AgentPattern" agent="//@reactionProperties.0">
@@ -275,7 +277,9 @@
     </initialPattern>
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:Initial" name="init2">
-    <count xmi:type="reactionRules:NumericFromLiteral" value="4"/>
+    <count xmi:type="reactionRules:NumericFromLiteral">
+      <value xmi:type="reactionRules:ArithmeticValue" value="4"/>
+    </count>
     <initialPattern xmi:type="reactionRules:AssignFromPattern">
       <pattern xmi:type="reactionRules:Pattern">
         <agentPatterns xmi:type="reactionRules:AgentPattern" agent="//@reactionProperties.0">
@@ -300,7 +304,9 @@
     </initialPattern>
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:Initial" name="init3">
-    <count xmi:type="reactionRules:NumericFromLiteral" value="2"/>
+    <count xmi:type="reactionRules:NumericFromLiteral">
+      <value xmi:type="reactionRules:ArithmeticValue" value="2"/>
+    </count>
     <initialPattern xmi:type="reactionRules:AssignFromPattern">
       <pattern xmi:type="reactionRules:Pattern">
         <agentPatterns xmi:type="reactionRules:AgentPattern" agent="//@reactionProperties.2">
@@ -317,7 +323,9 @@
     </initialPattern>
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:Initial" name="init4">
-    <count xmi:type="reactionRules:NumericFromLiteral" value="2"/>
+    <count xmi:type="reactionRules:NumericFromLiteral">
+      <value xmi:type="reactionRules:ArithmeticValue" value="2"/>
+    </count>
     <initialPattern xmi:type="reactionRules:AssignFromPattern">
       <pattern xmi:type="reactionRules:Pattern">
         <agentPatterns xmi:type="reactionRules:AgentPattern" agent="//@reactionProperties.0">
@@ -388,7 +396,10 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="reactionRules:RuleVariables" variables="//@reactionProperties.3 //@reactionProperties.4"/>
+      <variables xmi:type="reactionRules:RuleVariables">
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.3"/>
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.4"/>
+      </variables>
     </rule>
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:Rule" name="AtoNull">
@@ -418,7 +429,10 @@
       <rhs xmi:type="reactionRules:AssignFromPattern">
         <pattern xmi:type="reactionRules:Pattern"/>
       </rhs>
-      <variables xmi:type="reactionRules:RuleVariables" variables="//@reactionProperties.3 //@reactionProperties.4"/>
+      <variables xmi:type="reactionRules:RuleVariables">
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.3"/>
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.4"/>
+      </variables>
     </rule>
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:Rule" name="CtoNull">
@@ -440,7 +454,9 @@
       <rhs xmi:type="reactionRules:AssignFromPattern">
         <pattern xmi:type="reactionRules:Pattern"/>
       </rhs>
-      <variables xmi:type="reactionRules:RuleVariables" variables="//@reactionProperties.3"/>
+      <variables xmi:type="reactionRules:RuleVariables">
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.3"/>
+      </variables>
     </rule>
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:Rule" name="CtoNull2">
@@ -461,7 +477,9 @@
       <rhs xmi:type="reactionRules:AssignFromPattern">
         <pattern xmi:type="reactionRules:Pattern"/>
       </rhs>
-      <variables xmi:type="reactionRules:RuleVariables" variables="//@reactionProperties.3"/>
+      <variables xmi:type="reactionRules:RuleVariables">
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.3"/>
+      </variables>
     </rule>
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:Rule" name="AExact">
@@ -485,7 +503,9 @@
       <rhs xmi:type="reactionRules:AssignFromPattern">
         <pattern xmi:type="reactionRules:Pattern"/>
       </rhs>
-      <variables xmi:type="reactionRules:RuleVariables" variables="//@reactionProperties.3"/>
+      <variables xmi:type="reactionRules:RuleVariables">
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.3"/>
+      </variables>
     </rule>
   </reactionProperties>
 </reactionRules:ReactionRuleModel>

@@ -29,6 +29,7 @@ import biochemsimulation.reactionrules.reactionRules.SemiLink;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.SiteState;
+import biochemsimulation.reactionrules.reactionRules.State;
 import biochemsimulation.reactionrules.reactionRules.WhatEver;
 import biochemsimulation.reactionrules.reactionRules.impl.ReactionRuleModelImpl;
 import biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesFactoryImpl;
@@ -111,6 +112,7 @@ public class ReactionRulesGenerator extends AbstractGenerator {
   public void agentInstancesFromPattern(final Resource resource, final Pattern pattern, final int n, final String prefix) {
     EObject _get = resource.getContents().get(0);
     ReactionRuleModelImpl model = ((ReactionRuleModelImpl) _get);
+    final ReactionRulesFactory factory = ReactionRulesFactoryImpl.init();
     ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, n, true);
     for (final Integer i : _doubleDotLessThan) {
       {
@@ -123,8 +125,9 @@ public class ReactionRulesGenerator extends AbstractGenerator {
           {
             AgentPattern ap = ((AgentPattern) agentPattern);
             Agent agent = ap.getAgent();
-            AgentInstance agentI = this.createNewAgentInstance(agent, ap, prefix, (i).intValue(), linksA, linksS);
+            AgentInstance agentI = factory.createAgentInstance();
             model.getReactionContainer().getAgentInstances().add(agentI);
+            this.createNewAgentInstance(agentI, factory, agent, agentPattern, prefix, (i).intValue(), linksA, linksS);
           }
         }
         Set<String> _keySet = linksA.keySet();
@@ -154,9 +157,7 @@ public class ReactionRulesGenerator extends AbstractGenerator {
     }
   }
   
-  public AgentInstance createNewAgentInstance(final Agent agent, final AgentPattern ap, final String prefix, final int iteration, final HashMap<String, List<AgentInstance>> linksA, final HashMap<String, List<Site>> linksS) {
-    final ReactionRulesFactory factory = ReactionRulesFactoryImpl.init();
-    AgentInstance agentI = factory.createAgentInstance();
+  public AgentInstance createNewAgentInstance(final AgentInstance agentI, final ReactionRulesFactory factory, final Agent agent, final AgentPattern ap, final String prefix, final int iteration, final HashMap<String, List<AgentInstance>> linksA, final HashMap<String, List<Site>> linksS) {
     String _name = agent.getName();
     String _plus = ((prefix + ":") + _name);
     String _plus_1 = (_plus + ".Instance@#");
@@ -177,6 +178,8 @@ public class ReactionRulesGenerator extends AbstractGenerator {
         AgentInstanceLinkState _createAgentInstanceLinkState = factory.createAgentInstanceLinkState();
         AgentInstanceLinkState aiLinkState = ((AgentInstanceLinkState) _createAgentInstanceLinkState);
         AgentInstanceSiteState aiSiteState = factory.createAgentInstanceSiteState();
+        agentI.getLinkStates().add(aiLinkState);
+        agentI.getSiteStates().add(aiSiteState);
         if ((oldLinkState != null)) {
           newLinkState.setLinkState(EcoreUtil.<LinkState>copy(oldLinkState.getLinkState()));
           LinkState _linkState_1 = newLinkState.getLinkState();
@@ -195,12 +198,20 @@ public class ReactionRulesGenerator extends AbstractGenerator {
           aiSiteState.setSiteState(EcoreUtil.<SiteState>copy(oldSiteState));
         } else {
           aiSiteState.setSiteState(factory.createSiteState());
+          EList<State> _state_1 = site.getStates().getState();
+          boolean _tripleNotEquals = (_state_1 != null);
+          if (_tripleNotEquals) {
+            int _size = site.getStates().getState().size();
+            boolean _greaterEqualsThan = (_size >= 1);
+            if (_greaterEqualsThan) {
+              SiteState _siteState = aiSiteState.getSiteState();
+              _siteState.setState(site.getStates().getState().get(0));
+            }
+          }
         }
         aiLinkState.setSite(site);
         aiLinkState.setLinkState(newLinkState);
         aiSiteState.setSite(site);
-        agentI.getLinkStates().add(aiLinkState);
-        agentI.getSiteStates().add(aiSiteState);
       }
     }
     int _size = ap.getSitePatterns().getSitePatterns().size();
@@ -215,6 +226,20 @@ public class ReactionRulesGenerator extends AbstractGenerator {
           newLinkState.setLinkState(factory.createFreeLink());
           aiLinkState.setLinkState(newLinkState);
           agentI.getLinkStates().add(aiLinkState);
+          EList<State> _state = site.getStates().getState();
+          boolean _tripleNotEquals = (_state != null);
+          if (_tripleNotEquals) {
+            int _size_1 = site.getStates().getState().size();
+            boolean _greaterEqualsThan = (_size_1 >= 1);
+            if (_greaterEqualsThan) {
+              AgentInstanceSiteState aiSiteState = factory.createAgentInstanceSiteState();
+              agentI.getSiteStates().add(aiSiteState);
+              aiSiteState.setSite(site);
+              aiSiteState.setSiteState(factory.createSiteState());
+              SiteState _siteState = aiSiteState.getSiteState();
+              _siteState.setState(site.getStates().getState().get(0));
+            }
+          }
         }
       }
     }
