@@ -12,7 +12,9 @@ import biochemsimulation.reactionrules.reactionRules.ArithmeticValue;
 import biochemsimulation.reactionrules.reactionRules.ExactLink;
 import biochemsimulation.reactionrules.reactionRules.IndexedLink;
 import biochemsimulation.reactionrules.reactionRules.RuleVariables;
+import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.SiteState;
+import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern;
 
 public class ReactionRulesSemanticHighlightingCalculator implements ISemanticHighlightingCalculator{
@@ -56,8 +58,18 @@ public class ReactionRulesSemanticHighlightingCalculator implements ISemanticHig
 			if(semanticElement instanceof VoidAgentPattern ) {
 				
 				if(grammarElement instanceof org.eclipse.xtext.impl.RuleCallImpl ) {
-					acceptor.addPosition(node.getOffset(), node.getLength(), ReactionRulesHighlightingConfiguration.VOID_AGENT_PATTERN_ID);
+					acceptor.addPosition(node.getOffset(), node.getLength(), ReactionRulesHighlightingConfiguration.AGENT_PATTERN_ID);
 				}
+			}
+			
+			if(semanticElement instanceof ValidAgentPattern ) {
+				ValidAgentPattern vap = (ValidAgentPattern)semanticElement;
+				acceptor.addPosition(node.getOffset(), vap.getAgent().getName().length(), ReactionRulesHighlightingConfiguration.AGENT_PATTERN_ID);
+			}
+			
+			if(semanticElement instanceof SitePattern ) {
+				SitePattern sp = (SitePattern)semanticElement;
+				acceptor.addPosition(node.getOffset(), sp.getSite().getName().length(), ReactionRulesHighlightingConfiguration.SITE_PATTERN_ID);
 			}
 		
 		}

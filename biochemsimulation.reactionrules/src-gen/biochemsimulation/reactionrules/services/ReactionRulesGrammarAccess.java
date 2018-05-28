@@ -973,71 +973,89 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.SiteState");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cSiteStateAction_0 = (Action)cGroup.eContents().get(0);
-		private final Assignment cStateAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cStateStateCrossReference_1_0 = (CrossReference)cStateAssignment_1.eContents().get(0);
-		private final RuleCall cStateStateIDTerminalRuleCall_1_0_1 = (RuleCall)cStateStateCrossReference_1_0.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cStateAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cStateStateCrossReference_2_0 = (CrossReference)cStateAssignment_2.eContents().get(0);
+		private final RuleCall cStateStateIDTerminalRuleCall_2_0_1 = (RuleCall)cStateStateCrossReference_2_0.eContents().get(1);
+		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//SiteState:
-		//	{SiteState} state=[State];
+		//	{SiteState}
+		//	'{' state=[State] '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SiteState} state=[State]
+		//{SiteState} '{' state=[State] '}'
 		public Group getGroup() { return cGroup; }
 		
 		//{SiteState}
 		public Action getSiteStateAction_0() { return cSiteStateAction_0; }
 		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
+		
 		//state=[State]
-		public Assignment getStateAssignment_1() { return cStateAssignment_1; }
+		public Assignment getStateAssignment_2() { return cStateAssignment_2; }
 		
 		//[State]
-		public CrossReference getStateStateCrossReference_1_0() { return cStateStateCrossReference_1_0; }
+		public CrossReference getStateStateCrossReference_2_0() { return cStateStateCrossReference_2_0; }
 		
 		//ID
-		public RuleCall getStateStateIDTerminalRuleCall_1_0_1() { return cStateStateIDTerminalRuleCall_1_0_1; }
+		public RuleCall getStateStateIDTerminalRuleCall_2_0_1() { return cStateStateIDTerminalRuleCall_2_0_1; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 	}
 	public class LinkStateElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.LinkState");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cLinkStateAction_0 = (Action)cGroup.eContents().get(0);
-		private final Assignment cLinkStateAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final Alternatives cLinkStateAlternatives_1_0 = (Alternatives)cLinkStateAssignment_1.eContents().get(0);
-		private final RuleCall cLinkStateSemiLinkParserRuleCall_1_0_0 = (RuleCall)cLinkStateAlternatives_1_0.eContents().get(0);
-		private final RuleCall cLinkStateFreeLinkParserRuleCall_1_0_1 = (RuleCall)cLinkStateAlternatives_1_0.eContents().get(1);
-		private final RuleCall cLinkStateExactLinkParserRuleCall_1_0_2 = (RuleCall)cLinkStateAlternatives_1_0.eContents().get(2);
-		private final RuleCall cLinkStateIndexedLinkParserRuleCall_1_0_3 = (RuleCall)cLinkStateAlternatives_1_0.eContents().get(3);
-		private final RuleCall cLinkStateWhatEverParserRuleCall_1_0_4 = (RuleCall)cLinkStateAlternatives_1_0.eContents().get(4);
+		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cLinkStateAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cLinkStateAlternatives_2_0 = (Alternatives)cLinkStateAssignment_2.eContents().get(0);
+		private final RuleCall cLinkStateSemiLinkParserRuleCall_2_0_0 = (RuleCall)cLinkStateAlternatives_2_0.eContents().get(0);
+		private final RuleCall cLinkStateFreeLinkParserRuleCall_2_0_1 = (RuleCall)cLinkStateAlternatives_2_0.eContents().get(1);
+		private final RuleCall cLinkStateExactLinkParserRuleCall_2_0_2 = (RuleCall)cLinkStateAlternatives_2_0.eContents().get(2);
+		private final RuleCall cLinkStateIndexedLinkParserRuleCall_2_0_3 = (RuleCall)cLinkStateAlternatives_2_0.eContents().get(3);
+		private final RuleCall cLinkStateWhatEverParserRuleCall_2_0_4 = (RuleCall)cLinkStateAlternatives_2_0.eContents().get(4);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//LinkState:
-		//	{LinkState} linkState=(SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver);
+		//	{LinkState}
+		//	'[' linkState=(SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver) ']';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{LinkState} linkState=(SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver)
+		//{LinkState} '[' linkState=(SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver) ']'
 		public Group getGroup() { return cGroup; }
 		
 		//{LinkState}
 		public Action getLinkStateAction_0() { return cLinkStateAction_0; }
 		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
+		
 		//linkState=(SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver)
-		public Assignment getLinkStateAssignment_1() { return cLinkStateAssignment_1; }
+		public Assignment getLinkStateAssignment_2() { return cLinkStateAssignment_2; }
 		
 		//(SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver)
-		public Alternatives getLinkStateAlternatives_1_0() { return cLinkStateAlternatives_1_0; }
+		public Alternatives getLinkStateAlternatives_2_0() { return cLinkStateAlternatives_2_0; }
 		
 		//SemiLink
-		public RuleCall getLinkStateSemiLinkParserRuleCall_1_0_0() { return cLinkStateSemiLinkParserRuleCall_1_0_0; }
+		public RuleCall getLinkStateSemiLinkParserRuleCall_2_0_0() { return cLinkStateSemiLinkParserRuleCall_2_0_0; }
 		
 		//FreeLink
-		public RuleCall getLinkStateFreeLinkParserRuleCall_1_0_1() { return cLinkStateFreeLinkParserRuleCall_1_0_1; }
+		public RuleCall getLinkStateFreeLinkParserRuleCall_2_0_1() { return cLinkStateFreeLinkParserRuleCall_2_0_1; }
 		
 		//ExactLink
-		public RuleCall getLinkStateExactLinkParserRuleCall_1_0_2() { return cLinkStateExactLinkParserRuleCall_1_0_2; }
+		public RuleCall getLinkStateExactLinkParserRuleCall_2_0_2() { return cLinkStateExactLinkParserRuleCall_2_0_2; }
 		
 		//IndexedLink
-		public RuleCall getLinkStateIndexedLinkParserRuleCall_1_0_3() { return cLinkStateIndexedLinkParserRuleCall_1_0_3; }
+		public RuleCall getLinkStateIndexedLinkParserRuleCall_2_0_3() { return cLinkStateIndexedLinkParserRuleCall_2_0_3; }
 		
 		//WhatEver
-		public RuleCall getLinkStateWhatEverParserRuleCall_1_0_4() { return cLinkStateWhatEverParserRuleCall_1_0_4; }
+		public RuleCall getLinkStateWhatEverParserRuleCall_2_0_4() { return cLinkStateWhatEverParserRuleCall_2_0_4; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
 	}
 	public class SitePatternElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.SitePattern");
@@ -1046,22 +1064,17 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSiteAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cSiteSiteCrossReference_1_0 = (CrossReference)cSiteAssignment_1.eContents().get(0);
 		private final RuleCall cSiteSiteIDTerminalRuleCall_1_0_1 = (RuleCall)cSiteSiteCrossReference_1_0.eContents().get(1);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cLeftCurlyBracketKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cStateAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cStateSiteStateParserRuleCall_2_1_0 = (RuleCall)cStateAssignment_2_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
-		private final Keyword cLeftSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cLinkStateAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cLinkStateLinkStateParserRuleCall_4_0 = (RuleCall)cLinkStateAssignment_4.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cStateAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cStateSiteStateParserRuleCall_2_0 = (RuleCall)cStateAssignment_2.eContents().get(0);
+		private final Assignment cLinkStateAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cLinkStateLinkStateParserRuleCall_3_0 = (RuleCall)cLinkStateAssignment_3.eContents().get(0);
 		
 		//SitePattern:
-		//	{SitePattern} site=[Site] ('{' state=SiteState '}')?
-		//	'[' linkState=LinkState ']';
+		//	{SitePattern} site=[Site] state=SiteState?
+		//	linkState=LinkState;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SitePattern} site=[Site] ('{' state=SiteState '}')? '[' linkState=LinkState ']'
+		//{SitePattern} site=[Site] state=SiteState? linkState=LinkState
 		public Group getGroup() { return cGroup; }
 		
 		//{SitePattern}
@@ -1076,75 +1089,69 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getSiteSiteIDTerminalRuleCall_1_0_1() { return cSiteSiteIDTerminalRuleCall_1_0_1; }
 		
-		//('{' state=SiteState '}')?
-		public Group getGroup_2() { return cGroup_2; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_2_0() { return cLeftCurlyBracketKeyword_2_0; }
-		
-		//state=SiteState
-		public Assignment getStateAssignment_2_1() { return cStateAssignment_2_1; }
+		//state=SiteState?
+		public Assignment getStateAssignment_2() { return cStateAssignment_2; }
 		
 		//SiteState
-		public RuleCall getStateSiteStateParserRuleCall_2_1_0() { return cStateSiteStateParserRuleCall_2_1_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_2_2() { return cRightCurlyBracketKeyword_2_2; }
-		
-		//'['
-		public Keyword getLeftSquareBracketKeyword_3() { return cLeftSquareBracketKeyword_3; }
+		public RuleCall getStateSiteStateParserRuleCall_2_0() { return cStateSiteStateParserRuleCall_2_0; }
 		
 		//linkState=LinkState
-		public Assignment getLinkStateAssignment_4() { return cLinkStateAssignment_4; }
+		public Assignment getLinkStateAssignment_3() { return cLinkStateAssignment_3; }
 		
 		//LinkState
-		public RuleCall getLinkStateLinkStateParserRuleCall_4_0() { return cLinkStateLinkStateParserRuleCall_4_0; }
-		
-		//']'
-		public Keyword getRightSquareBracketKeyword_5() { return cRightSquareBracketKeyword_5; }
+		public RuleCall getLinkStateLinkStateParserRuleCall_3_0() { return cLinkStateLinkStateParserRuleCall_3_0; }
 	}
 	public class SitePatternsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.SitePatterns");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cSitePatternsAction_0 = (Action)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Assignment cSitePatternsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final RuleCall cSitePatternsSitePatternParserRuleCall_1_0_0 = (RuleCall)cSitePatternsAssignment_1_0.eContents().get(0);
-		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
-		private final Keyword cCommaKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
-		private final Assignment cSitePatternsAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
-		private final RuleCall cSitePatternsSitePatternParserRuleCall_1_1_1_0 = (RuleCall)cSitePatternsAssignment_1_1_1.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Assignment cSitePatternsAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final RuleCall cSitePatternsSitePatternParserRuleCall_2_0_0 = (RuleCall)cSitePatternsAssignment_2_0.eContents().get(0);
+		private final Group cGroup_2_1 = (Group)cGroup_2.eContents().get(1);
+		private final Keyword cCommaKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
+		private final Assignment cSitePatternsAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
+		private final RuleCall cSitePatternsSitePatternParserRuleCall_2_1_1_0 = (RuleCall)cSitePatternsAssignment_2_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//SitePatterns:
-		//	{SitePatterns} (sitePatterns+=SitePattern (',' sitePatterns+=SitePattern)*)?;
+		//	{SitePatterns}
+		//	'(' (sitePatterns+=SitePattern (',' sitePatterns+=SitePattern)*)? ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SitePatterns} (sitePatterns+=SitePattern (',' sitePatterns+=SitePattern)*)?
+		//{SitePatterns} '(' (sitePatterns+=SitePattern (',' sitePatterns+=SitePattern)*)? ')'
 		public Group getGroup() { return cGroup; }
 		
 		//{SitePatterns}
 		public Action getSitePatternsAction_0() { return cSitePatternsAction_0; }
 		
+		//'('
+		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
+		
 		//(sitePatterns+=SitePattern (',' sitePatterns+=SitePattern)*)?
-		public Group getGroup_1() { return cGroup_1; }
+		public Group getGroup_2() { return cGroup_2; }
 		
 		//sitePatterns+=SitePattern
-		public Assignment getSitePatternsAssignment_1_0() { return cSitePatternsAssignment_1_0; }
+		public Assignment getSitePatternsAssignment_2_0() { return cSitePatternsAssignment_2_0; }
 		
 		//SitePattern
-		public RuleCall getSitePatternsSitePatternParserRuleCall_1_0_0() { return cSitePatternsSitePatternParserRuleCall_1_0_0; }
+		public RuleCall getSitePatternsSitePatternParserRuleCall_2_0_0() { return cSitePatternsSitePatternParserRuleCall_2_0_0; }
 		
 		//(',' sitePatterns+=SitePattern)*
-		public Group getGroup_1_1() { return cGroup_1_1; }
+		public Group getGroup_2_1() { return cGroup_2_1; }
 		
 		//','
-		public Keyword getCommaKeyword_1_1_0() { return cCommaKeyword_1_1_0; }
+		public Keyword getCommaKeyword_2_1_0() { return cCommaKeyword_2_1_0; }
 		
 		//sitePatterns+=SitePattern
-		public Assignment getSitePatternsAssignment_1_1_1() { return cSitePatternsAssignment_1_1_1; }
+		public Assignment getSitePatternsAssignment_2_1_1() { return cSitePatternsAssignment_2_1_1; }
 		
 		//SitePattern
-		public RuleCall getSitePatternsSitePatternParserRuleCall_1_1_1_0() { return cSitePatternsSitePatternParserRuleCall_1_1_1_0; }
+		public RuleCall getSitePatternsSitePatternParserRuleCall_2_1_1_0() { return cSitePatternsSitePatternParserRuleCall_2_1_1_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
 	}
 	public class ValidAgentPatternElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.ValidAgentPattern");
@@ -1153,17 +1160,14 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cAgentAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cAgentAgentCrossReference_1_0 = (CrossReference)cAgentAssignment_1.eContents().get(0);
 		private final RuleCall cAgentAgentIDTerminalRuleCall_1_0_1 = (RuleCall)cAgentAgentCrossReference_1_0.eContents().get(1);
-		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cSitePatternsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cSitePatternsSitePatternsParserRuleCall_3_0 = (RuleCall)cSitePatternsAssignment_3.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cSitePatternsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cSitePatternsSitePatternsParserRuleCall_2_0 = (RuleCall)cSitePatternsAssignment_2.eContents().get(0);
 		
 		//ValidAgentPattern:
-		//	{ValidAgentPattern} agent=[Agent]
-		//	'(' sitePatterns=SitePatterns ')';
+		//	{ValidAgentPattern} agent=[Agent] sitePatterns=SitePatterns;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{ValidAgentPattern} agent=[Agent] '(' sitePatterns=SitePatterns ')'
+		//{ValidAgentPattern} agent=[Agent] sitePatterns=SitePatterns
 		public Group getGroup() { return cGroup; }
 		
 		//{ValidAgentPattern}
@@ -1178,17 +1182,11 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getAgentAgentIDTerminalRuleCall_1_0_1() { return cAgentAgentIDTerminalRuleCall_1_0_1; }
 		
-		//'('
-		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
-		
 		//sitePatterns=SitePatterns
-		public Assignment getSitePatternsAssignment_3() { return cSitePatternsAssignment_3; }
+		public Assignment getSitePatternsAssignment_2() { return cSitePatternsAssignment_2; }
 		
 		//SitePatterns
-		public RuleCall getSitePatternsSitePatternsParserRuleCall_3_0() { return cSitePatternsSitePatternsParserRuleCall_3_0; }
-		
-		//')'
-		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
+		public RuleCall getSitePatternsSitePatternsParserRuleCall_2_0() { return cSitePatternsSitePatternsParserRuleCall_2_0; }
 	}
 	public class VoidAgentPatternElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.VoidAgentPattern");
@@ -2210,7 +2208,8 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//SiteState:
-	//	{SiteState} state=[State];
+	//	{SiteState}
+	//	'{' state=[State] '}';
 	public SiteStateElements getSiteStateAccess() {
 		return pSiteState;
 	}
@@ -2220,7 +2219,8 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//LinkState:
-	//	{LinkState} linkState=(SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver);
+	//	{LinkState}
+	//	'[' linkState=(SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver) ']';
 	public LinkStateElements getLinkStateAccess() {
 		return pLinkState;
 	}
@@ -2230,8 +2230,8 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//SitePattern:
-	//	{SitePattern} site=[Site] ('{' state=SiteState '}')?
-	//	'[' linkState=LinkState ']';
+	//	{SitePattern} site=[Site] state=SiteState?
+	//	linkState=LinkState;
 	public SitePatternElements getSitePatternAccess() {
 		return pSitePattern;
 	}
@@ -2241,7 +2241,8 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//SitePatterns:
-	//	{SitePatterns} (sitePatterns+=SitePattern (',' sitePatterns+=SitePattern)*)?;
+	//	{SitePatterns}
+	//	'(' (sitePatterns+=SitePattern (',' sitePatterns+=SitePattern)*)? ')';
 	public SitePatternsElements getSitePatternsAccess() {
 		return pSitePatterns;
 	}
@@ -2251,8 +2252,7 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	//ValidAgentPattern:
-	//	{ValidAgentPattern} agent=[Agent]
-	//	'(' sitePatterns=SitePatterns ')';
+	//	{ValidAgentPattern} agent=[Agent] sitePatterns=SitePatterns;
 	public ValidAgentPatternElements getValidAgentPatternAccess() {
 		return pValidAgentPattern;
 	}

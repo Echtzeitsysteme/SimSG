@@ -797,7 +797,7 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.SITE_STATE__STATE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getSiteStateAccess().getStateStateIDTerminalRuleCall_1_0_1(), semanticObject.eGet(ReactionRulesPackage.Literals.SITE_STATE__STATE, false));
+		feeder.accept(grammarAccess.getSiteStateAccess().getStateStateIDTerminalRuleCall_2_0_1(), semanticObject.eGet(ReactionRulesPackage.Literals.SITE_STATE__STATE, false));
 		feeder.finish();
 	}
 	
@@ -909,7 +909,7 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getValidAgentPatternAccess().getAgentAgentIDTerminalRuleCall_1_0_1(), semanticObject.eGet(ReactionRulesPackage.Literals.VALID_AGENT_PATTERN__AGENT, false));
-		feeder.accept(grammarAccess.getValidAgentPatternAccess().getSitePatternsSitePatternsParserRuleCall_3_0(), semanticObject.getSitePatterns());
+		feeder.accept(grammarAccess.getValidAgentPatternAccess().getSitePatternsSitePatternsParserRuleCall_2_0(), semanticObject.getSitePatterns());
 		feeder.finish();
 	}
 	

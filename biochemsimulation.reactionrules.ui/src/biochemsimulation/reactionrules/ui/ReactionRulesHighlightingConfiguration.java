@@ -12,7 +12,8 @@ public class ReactionRulesHighlightingConfiguration extends DefaultHighlightingC
 	public static final String STATE_ID = "state";
 	public static final String RULE_OPERATOR_ID = "rule_operator";
 	public static final String RULE_VARIABLES_ID = "rule_variables";
-	public static final String VOID_AGENT_PATTERN_ID = "void_agent_pattern";
+	public static final String AGENT_PATTERN_ID = "agent_pattern";
+	public static final String SITE_PATTERN_ID = "site_pattern";
 	
 	@Override
     public void configure(IHighlightingConfigurationAcceptor acceptor) {
@@ -21,7 +22,8 @@ public class ReactionRulesHighlightingConfiguration extends DefaultHighlightingC
         acceptor.acceptDefaultHighlighting(RULE_OPERATOR_ID, "Rule_Operator", ruleOperatorTextStyle());
         acceptor.acceptDefaultHighlighting(RULE_VARIABLES_ID, "Rule_Variables", ruleVariablesTextStyle());
         acceptor.acceptDefaultHighlighting(STATE_ID, "State", stateTextStyle());
-        acceptor.acceptDefaultHighlighting(VOID_AGENT_PATTERN_ID, "Void_Agent_Pattern", voidAgentPatternTextStyle());
+        acceptor.acceptDefaultHighlighting(AGENT_PATTERN_ID, "Agent_Pattern", agentPatternTextStyle());
+        acceptor.acceptDefaultHighlighting(SITE_PATTERN_ID, "Site_Pattern", sitePatternTextStyle());
     }
 	
 	protected TextStyle stateTextStyle() {
@@ -51,9 +53,16 @@ public class ReactionRulesHighlightingConfiguration extends DefaultHighlightingC
         return textStyle;
 	}
 	
-	protected TextStyle voidAgentPatternTextStyle() {
+	protected TextStyle agentPatternTextStyle() {
 		TextStyle textStyle = new TextStyle();
 		textStyle.setColor(new RGB(0, 51, 204));
+		textStyle.setStyle(SWT.BOLD);
+        return textStyle;
+	}
+	
+	protected TextStyle sitePatternTextStyle() {
+		TextStyle textStyle = new TextStyle();
+		textStyle.setColor(new RGB(0, 153, 51));
 		textStyle.setStyle(SWT.BOLD);
         return textStyle;
 	}

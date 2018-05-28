@@ -199,30 +199,30 @@ ExactLink returns LinkState :
 
 SiteState:
 	{SiteState}
-	state = [State]
+	'{' state = [State] '}'
 ;
 
 LinkState:
 	{LinkState}
-	 linkState = (SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver) 
+	 '['linkState = (SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver)']'
 ;
 
 SitePattern returns SitePattern:
 	{SitePattern}
-	site = [Site] 
-	('{' state = SiteState '}')?
-	'[' linkState = LinkState ']'
+	site = [Site]
+	(state = SiteState)?
+	linkState = LinkState 
 ;
 
 SitePatterns returns SitePatterns:
 	{SitePatterns}
-	(sitePatterns += SitePattern (',' sitePatterns += SitePattern)* )?
+	'('(sitePatterns += SitePattern (',' sitePatterns += SitePattern)* )?')'
 ;
 
 ValidAgentPattern returns ValidAgentPattern:
 	{ValidAgentPattern}
 	agent = [Agent]
-	'('sitePatterns = SitePatterns')'
+	sitePatterns = SitePatterns
 ;
 
 VoidAgentPattern returns VoidAgentPattern:

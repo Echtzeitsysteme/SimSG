@@ -1782,6 +1782,10 @@ ruleSiteState returns [EObject current=null]
 					$current);
 			}
 		)
+		otherlv_1='{'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getSiteStateAccess().getLeftCurlyBracketKeyword_1());
+		}
 		(
 			(
 				{
@@ -1789,12 +1793,16 @@ ruleSiteState returns [EObject current=null]
 						$current = createModelElement(grammarAccess.getSiteStateRule());
 					}
 				}
-				otherlv_1=RULE_ID
+				otherlv_2=RULE_ID
 				{
-					newLeafNode(otherlv_1, grammarAccess.getSiteStateAccess().getStateStateCrossReference_1_0());
+					newLeafNode(otherlv_2, grammarAccess.getSiteStateAccess().getStateStateCrossReference_2_0());
 				}
 			)
 		)
+		otherlv_3='}'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getSiteStateAccess().getRightCurlyBracketKeyword_3());
+		}
 	)
 ;
 
@@ -1821,13 +1829,17 @@ ruleLinkState returns [EObject current=null]
 					$current);
 			}
 		)
+		otherlv_1='['
+		{
+			newLeafNode(otherlv_1, grammarAccess.getLinkStateAccess().getLeftSquareBracketKeyword_1());
+		}
 		(
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getLinkStateAccess().getLinkStateSemiLinkParserRuleCall_1_0_0());
+						newCompositeNode(grammarAccess.getLinkStateAccess().getLinkStateSemiLinkParserRuleCall_2_0_0());
 					}
-					lv_linkState_1_1=ruleSemiLink
+					lv_linkState_2_1=ruleSemiLink
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getLinkStateRule());
@@ -1835,15 +1847,15 @@ ruleLinkState returns [EObject current=null]
 						set(
 							$current,
 							"linkState",
-							lv_linkState_1_1,
+							lv_linkState_2_1,
 							"biochemsimulation.reactionrules.ReactionRules.SemiLink");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getLinkStateAccess().getLinkStateFreeLinkParserRuleCall_1_0_1());
+						newCompositeNode(grammarAccess.getLinkStateAccess().getLinkStateFreeLinkParserRuleCall_2_0_1());
 					}
-					lv_linkState_1_2=ruleFreeLink
+					lv_linkState_2_2=ruleFreeLink
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getLinkStateRule());
@@ -1851,15 +1863,15 @@ ruleLinkState returns [EObject current=null]
 						set(
 							$current,
 							"linkState",
-							lv_linkState_1_2,
+							lv_linkState_2_2,
 							"biochemsimulation.reactionrules.ReactionRules.FreeLink");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getLinkStateAccess().getLinkStateExactLinkParserRuleCall_1_0_2());
+						newCompositeNode(grammarAccess.getLinkStateAccess().getLinkStateExactLinkParserRuleCall_2_0_2());
 					}
-					lv_linkState_1_3=ruleExactLink
+					lv_linkState_2_3=ruleExactLink
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getLinkStateRule());
@@ -1867,15 +1879,15 @@ ruleLinkState returns [EObject current=null]
 						set(
 							$current,
 							"linkState",
-							lv_linkState_1_3,
+							lv_linkState_2_3,
 							"biochemsimulation.reactionrules.ReactionRules.ExactLink");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getLinkStateAccess().getLinkStateIndexedLinkParserRuleCall_1_0_3());
+						newCompositeNode(grammarAccess.getLinkStateAccess().getLinkStateIndexedLinkParserRuleCall_2_0_3());
 					}
-					lv_linkState_1_4=ruleIndexedLink
+					lv_linkState_2_4=ruleIndexedLink
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getLinkStateRule());
@@ -1883,15 +1895,15 @@ ruleLinkState returns [EObject current=null]
 						set(
 							$current,
 							"linkState",
-							lv_linkState_1_4,
+							lv_linkState_2_4,
 							"biochemsimulation.reactionrules.ReactionRules.IndexedLink");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getLinkStateAccess().getLinkStateWhatEverParserRuleCall_1_0_4());
+						newCompositeNode(grammarAccess.getLinkStateAccess().getLinkStateWhatEverParserRuleCall_2_0_4());
 					}
-					lv_linkState_1_5=ruleWhatEver
+					lv_linkState_2_5=ruleWhatEver
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getLinkStateRule());
@@ -1899,13 +1911,17 @@ ruleLinkState returns [EObject current=null]
 						set(
 							$current,
 							"linkState",
-							lv_linkState_1_5,
+							lv_linkState_2_5,
 							"biochemsimulation.reactionrules.ReactionRules.WhatEver");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)
+		otherlv_3=']'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getLinkStateAccess().getRightSquareBracketKeyword_3());
+		}
 	)
 ;
 
@@ -1946,44 +1962,30 @@ ruleSitePattern returns [EObject current=null]
 			)
 		)
 		(
-			otherlv_2='{'
-			{
-				newLeafNode(otherlv_2, grammarAccess.getSitePatternAccess().getLeftCurlyBracketKeyword_2_0());
-			}
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getSitePatternAccess().getStateSiteStateParserRuleCall_2_1_0());
+				{
+					newCompositeNode(grammarAccess.getSitePatternAccess().getStateSiteStateParserRuleCall_2_0());
+				}
+				lv_state_2_0=ruleSiteState
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getSitePatternRule());
 					}
-					lv_state_3_0=ruleSiteState
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getSitePatternRule());
-						}
-						set(
-							$current,
-							"state",
-							lv_state_3_0,
-							"biochemsimulation.reactionrules.ReactionRules.SiteState");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					set(
+						$current,
+						"state",
+						lv_state_2_0,
+						"biochemsimulation.reactionrules.ReactionRules.SiteState");
+					afterParserOrEnumRuleCall();
+				}
 			)
-			otherlv_4='}'
-			{
-				newLeafNode(otherlv_4, grammarAccess.getSitePatternAccess().getRightCurlyBracketKeyword_2_2());
-			}
 		)?
-		otherlv_5='['
-		{
-			newLeafNode(otherlv_5, grammarAccess.getSitePatternAccess().getLeftSquareBracketKeyword_3());
-		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getSitePatternAccess().getLinkStateLinkStateParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getSitePatternAccess().getLinkStateLinkStateParserRuleCall_3_0());
 				}
-				lv_linkState_6_0=ruleLinkState
+				lv_linkState_3_0=ruleLinkState
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getSitePatternRule());
@@ -1991,16 +1993,12 @@ ruleSitePattern returns [EObject current=null]
 					set(
 						$current,
 						"linkState",
-						lv_linkState_6_0,
+						lv_linkState_3_0,
 						"biochemsimulation.reactionrules.ReactionRules.LinkState");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_7=']'
-		{
-			newLeafNode(otherlv_7, grammarAccess.getSitePatternAccess().getRightSquareBracketKeyword_5());
-		}
 	)
 ;
 
@@ -2027,13 +2025,17 @@ ruleSitePatterns returns [EObject current=null]
 					$current);
 			}
 		)
+		otherlv_1='('
+		{
+			newLeafNode(otherlv_1, grammarAccess.getSitePatternsAccess().getLeftParenthesisKeyword_1());
+		}
 		(
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getSitePatternsAccess().getSitePatternsSitePatternParserRuleCall_1_0_0());
+						newCompositeNode(grammarAccess.getSitePatternsAccess().getSitePatternsSitePatternParserRuleCall_2_0_0());
 					}
-					lv_sitePatterns_1_0=ruleSitePattern
+					lv_sitePatterns_2_0=ruleSitePattern
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getSitePatternsRule());
@@ -2041,23 +2043,23 @@ ruleSitePatterns returns [EObject current=null]
 						add(
 							$current,
 							"sitePatterns",
-							lv_sitePatterns_1_0,
+							lv_sitePatterns_2_0,
 							"biochemsimulation.reactionrules.ReactionRules.SitePattern");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 			(
-				otherlv_2=','
+				otherlv_3=','
 				{
-					newLeafNode(otherlv_2, grammarAccess.getSitePatternsAccess().getCommaKeyword_1_1_0());
+					newLeafNode(otherlv_3, grammarAccess.getSitePatternsAccess().getCommaKeyword_2_1_0());
 				}
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getSitePatternsAccess().getSitePatternsSitePatternParserRuleCall_1_1_1_0());
+							newCompositeNode(grammarAccess.getSitePatternsAccess().getSitePatternsSitePatternParserRuleCall_2_1_1_0());
 						}
-						lv_sitePatterns_3_0=ruleSitePattern
+						lv_sitePatterns_4_0=ruleSitePattern
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getSitePatternsRule());
@@ -2065,7 +2067,7 @@ ruleSitePatterns returns [EObject current=null]
 							add(
 								$current,
 								"sitePatterns",
-								lv_sitePatterns_3_0,
+								lv_sitePatterns_4_0,
 								"biochemsimulation.reactionrules.ReactionRules.SitePattern");
 							afterParserOrEnumRuleCall();
 						}
@@ -2073,6 +2075,10 @@ ruleSitePatterns returns [EObject current=null]
 				)
 			)*
 		)?
+		otherlv_5=')'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getSitePatternsAccess().getRightParenthesisKeyword_3());
+		}
 	)
 ;
 
@@ -2112,16 +2118,12 @@ ruleValidAgentPattern returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_2='('
-		{
-			newLeafNode(otherlv_2, grammarAccess.getValidAgentPatternAccess().getLeftParenthesisKeyword_2());
-		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getValidAgentPatternAccess().getSitePatternsSitePatternsParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getValidAgentPatternAccess().getSitePatternsSitePatternsParserRuleCall_2_0());
 				}
-				lv_sitePatterns_3_0=ruleSitePatterns
+				lv_sitePatterns_2_0=ruleSitePatterns
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getValidAgentPatternRule());
@@ -2129,16 +2131,12 @@ ruleValidAgentPattern returns [EObject current=null]
 					set(
 						$current,
 						"sitePatterns",
-						lv_sitePatterns_3_0,
+						lv_sitePatterns_2_0,
 						"biochemsimulation.reactionrules.ReactionRules.SitePatterns");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_4=')'
-		{
-			newLeafNode(otherlv_4, grammarAccess.getValidAgentPatternAccess().getRightParenthesisKeyword_4());
-		}
 	)
 ;
 
