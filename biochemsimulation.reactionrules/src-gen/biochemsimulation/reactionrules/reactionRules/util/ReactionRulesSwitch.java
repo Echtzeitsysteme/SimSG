@@ -256,6 +256,22 @@ public class ReactionRulesSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ReactionRulesPackage.VALID_AGENT_PATTERN:
+      {
+        ValidAgentPattern validAgentPattern = (ValidAgentPattern)theEObject;
+        T result = caseValidAgentPattern(validAgentPattern);
+        if (result == null) result = caseAgentPattern(validAgentPattern);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReactionRulesPackage.VOID_AGENT_PATTERN:
+      {
+        VoidAgentPattern voidAgentPattern = (VoidAgentPattern)theEObject;
+        T result = caseVoidAgentPattern(voidAgentPattern);
+        if (result == null) result = caseAgentPattern(voidAgentPattern);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ReactionRulesPackage.AGENT_PATTERN:
       {
         AgentPattern agentPattern = (AgentPattern)theEObject;
@@ -794,6 +810,38 @@ public class ReactionRulesSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseSitePatterns(SitePatterns object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Valid Agent Pattern</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Valid Agent Pattern</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseValidAgentPattern(ValidAgentPattern object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Void Agent Pattern</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Void Agent Pattern</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseVoidAgentPattern(VoidAgentPattern object)
   {
     return null;
   }

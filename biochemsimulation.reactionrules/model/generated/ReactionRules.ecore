@@ -107,11 +107,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="sitePatterns" upperBound="-1"
         eType="#//SitePattern" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AgentPattern">
+  <eClassifiers xsi:type="ecore:EClass" name="ValidAgentPattern" eSuperTypes="#//AgentPattern">
     <eStructuralFeatures xsi:type="ecore:EReference" name="agent" eType="#//Agent"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sitePatterns" eType="#//SitePatterns"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VoidAgentPattern" eSuperTypes="#//AgentPattern">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pattern" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AgentPattern"/>
   <eClassifiers xsi:type="ecore:EClass" name="Pattern">
     <eStructuralFeatures xsi:type="ecore:EReference" name="agentPatterns" upperBound="-1"
         eType="#//AgentPattern" containment="true"/>

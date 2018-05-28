@@ -43,4 +43,4 @@ rule modX2 { A(x[free], c[1]), C(x1{p}[free], x2{u}[1]) } ->
          { A(x[free], c[free]), C(x1{p}[free], x2{p}[free]) } @ [mod_rate]
          
 // new rule features, i.e. assign patterns from pattern variables 
-rule varTest pattern <-> { A(x[?]) } @ [on_rate, off_rate]
+rule varTest pattern <-> { A(x[?]), void } @ [on_rate, off_rate]

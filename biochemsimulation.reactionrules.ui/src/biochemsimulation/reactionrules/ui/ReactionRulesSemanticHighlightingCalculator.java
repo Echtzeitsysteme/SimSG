@@ -13,6 +13,7 @@ import biochemsimulation.reactionrules.reactionRules.ExactLink;
 import biochemsimulation.reactionrules.reactionRules.IndexedLink;
 import biochemsimulation.reactionrules.reactionRules.RuleVariables;
 import biochemsimulation.reactionrules.reactionRules.SiteState;
+import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern;
 
 public class ReactionRulesSemanticHighlightingCalculator implements ISemanticHighlightingCalculator{
 	
@@ -49,6 +50,13 @@ public class ReactionRulesSemanticHighlightingCalculator implements ISemanticHig
 				
 				if(grammarElement instanceof org.eclipse.xtext.impl.RuleCallImpl ) {
 					acceptor.addPosition(node.getOffset(), node.getLength(), ReactionRulesHighlightingConfiguration.RULE_VARIABLES_ID);
+				}
+			}
+			
+			if(semanticElement instanceof VoidAgentPattern ) {
+				
+				if(grammarElement instanceof org.eclipse.xtext.impl.RuleCallImpl ) {
+					acceptor.addPosition(node.getOffset(), node.getLength(), ReactionRulesHighlightingConfiguration.VOID_AGENT_PATTERN_ID);
 				}
 			}
 		

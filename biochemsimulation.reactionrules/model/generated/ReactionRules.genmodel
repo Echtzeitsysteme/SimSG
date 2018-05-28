@@ -91,10 +91,14 @@
     <genClasses ecoreClass="ReactionRules.ecore#//SitePatterns">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//SitePatterns/sitePatterns"/>
     </genClasses>
-    <genClasses ecoreClass="ReactionRules.ecore#//AgentPattern">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//AgentPattern/agent"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//AgentPattern/sitePatterns"/>
+    <genClasses ecoreClass="ReactionRules.ecore#//ValidAgentPattern">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//ValidAgentPattern/agent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//ValidAgentPattern/sitePatterns"/>
     </genClasses>
+    <genClasses ecoreClass="ReactionRules.ecore#//VoidAgentPattern">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//VoidAgentPattern/pattern"/>
+    </genClasses>
+    <genClasses ecoreClass="ReactionRules.ecore#//AgentPattern"/>
     <genClasses ecoreClass="ReactionRules.ecore#//Pattern">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//Pattern/agentPatterns"/>
     </genClasses>

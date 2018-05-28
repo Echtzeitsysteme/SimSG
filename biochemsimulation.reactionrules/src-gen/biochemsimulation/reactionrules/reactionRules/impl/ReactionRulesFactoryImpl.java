@@ -90,6 +90,8 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
       case ReactionRulesPackage.SITE_STATE: return createSiteState();
       case ReactionRulesPackage.SITE_PATTERN: return createSitePattern();
       case ReactionRulesPackage.SITE_PATTERNS: return createSitePatterns();
+      case ReactionRulesPackage.VALID_AGENT_PATTERN: return createValidAgentPattern();
+      case ReactionRulesPackage.VOID_AGENT_PATTERN: return createVoidAgentPattern();
       case ReactionRulesPackage.AGENT_PATTERN: return createAgentPattern();
       case ReactionRulesPackage.PATTERN: return createPattern();
       case ReactionRulesPackage.OBSERVATION: return createObservation();
@@ -386,6 +388,28 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
   {
     SitePatternsImpl sitePatterns = new SitePatternsImpl();
     return sitePatterns;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ValidAgentPattern createValidAgentPattern()
+  {
+    ValidAgentPatternImpl validAgentPattern = new ValidAgentPatternImpl();
+    return validAgentPattern;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public VoidAgentPattern createVoidAgentPattern()
+  {
+    VoidAgentPatternImpl voidAgentPattern = new VoidAgentPatternImpl();
+    return voidAgentPattern;
   }
 
   /**

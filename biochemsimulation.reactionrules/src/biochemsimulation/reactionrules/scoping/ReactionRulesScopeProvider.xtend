@@ -13,10 +13,10 @@ import biochemsimulation.reactionrules.reactionRules.SitePattern
 import biochemsimulation.reactionrules.reactionRules.ExactLink
 import java.util.LinkedList
 import biochemsimulation.reactionrules.reactionRules.SiteState
-import biochemsimulation.reactionrules.reactionRules.AgentPattern
 import biochemsimulation.reactionrules.reactionRules.ExactLinkSite
 import biochemsimulation.reactionrules.reactionRules.ExactLinkAgent
 import biochemsimulation.reactionrules.reactionRules.SitePatterns
+import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern
 
 /**
  * This class contains custom scoping description.
@@ -101,7 +101,7 @@ class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvider {
 	    if(sitePattern.eContainer !== null) {
 	    	val sitePatterns = sitePattern.eContainer as SitePatterns
 	    	if(sitePatterns.eContainer !== null) {
-	    		val agentPattern = sitePatterns.eContainer as AgentPattern
+	    		val agentPattern = sitePatterns.eContainer as ValidAgentPattern
 	    		agent = agentPattern.agent
 	    	}
 	    } 

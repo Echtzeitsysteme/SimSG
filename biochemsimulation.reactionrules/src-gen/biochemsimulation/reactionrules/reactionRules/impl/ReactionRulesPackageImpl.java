@@ -46,7 +46,9 @@ import biochemsimulation.reactionrules.reactionRules.SiteState;
 import biochemsimulation.reactionrules.reactionRules.Sites;
 import biochemsimulation.reactionrules.reactionRules.State;
 import biochemsimulation.reactionrules.reactionRules.States;
+import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.Variable;
+import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.WhatEver;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -238,6 +240,20 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * @generated
    */
   private EClass sitePatternsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass validAgentPatternEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass voidAgentPatternEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1053,29 +1069,59 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getValidAgentPattern()
+  {
+    return validAgentPatternEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getValidAgentPattern_Agent()
+  {
+    return (EReference)validAgentPatternEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getValidAgentPattern_SitePatterns()
+  {
+    return (EReference)validAgentPatternEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getVoidAgentPattern()
+  {
+    return voidAgentPatternEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getVoidAgentPattern_Pattern()
+  {
+    return (EAttribute)voidAgentPatternEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getAgentPattern()
   {
     return agentPatternEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAgentPattern_Agent()
-  {
-    return (EReference)agentPatternEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAgentPattern_SitePatterns()
-  {
-    return (EReference)agentPatternEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1565,9 +1611,14 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     sitePatternsEClass = createEClass(SITE_PATTERNS);
     createEReference(sitePatternsEClass, SITE_PATTERNS__SITE_PATTERNS);
 
+    validAgentPatternEClass = createEClass(VALID_AGENT_PATTERN);
+    createEReference(validAgentPatternEClass, VALID_AGENT_PATTERN__AGENT);
+    createEReference(validAgentPatternEClass, VALID_AGENT_PATTERN__SITE_PATTERNS);
+
+    voidAgentPatternEClass = createEClass(VOID_AGENT_PATTERN);
+    createEAttribute(voidAgentPatternEClass, VOID_AGENT_PATTERN__PATTERN);
+
     agentPatternEClass = createEClass(AGENT_PATTERN);
-    createEReference(agentPatternEClass, AGENT_PATTERN__AGENT);
-    createEReference(agentPatternEClass, AGENT_PATTERN__SITE_PATTERNS);
 
     patternEClass = createEClass(PATTERN);
     createEReference(patternEClass, PATTERN__AGENT_PATTERNS);
@@ -1659,6 +1710,8 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     patternVariableEClass.getESuperTypes().add(this.getVariable());
     arithmeticVariableEClass.getESuperTypes().add(this.getVariable());
     variableEClass.getESuperTypes().add(this.getReactionProperty());
+    validAgentPatternEClass.getESuperTypes().add(this.getAgentPattern());
+    voidAgentPatternEClass.getESuperTypes().add(this.getAgentPattern());
     observationEClass.getESuperTypes().add(this.getReactionProperty());
     numericFromLiteralEClass.getESuperTypes().add(this.getNumericAssignment());
     numericFromVariableEClass.getESuperTypes().add(this.getNumericAssignment());
@@ -1760,9 +1813,14 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     initEClass(sitePatternsEClass, SitePatterns.class, "SitePatterns", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getSitePatterns_SitePatterns(), this.getSitePattern(), null, "sitePatterns", null, 0, -1, SitePatterns.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(validAgentPatternEClass, ValidAgentPattern.class, "ValidAgentPattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getValidAgentPattern_Agent(), this.getAgent(), null, "agent", null, 0, 1, ValidAgentPattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getValidAgentPattern_SitePatterns(), this.getSitePatterns(), null, "sitePatterns", null, 0, 1, ValidAgentPattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(voidAgentPatternEClass, VoidAgentPattern.class, "VoidAgentPattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getVoidAgentPattern_Pattern(), ecorePackage.getEString(), "pattern", null, 0, 1, VoidAgentPattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(agentPatternEClass, AgentPattern.class, "AgentPattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAgentPattern_Agent(), this.getAgent(), null, "agent", null, 0, 1, AgentPattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAgentPattern_SitePatterns(), this.getSitePatterns(), null, "sitePatterns", null, 0, 1, AgentPattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(patternEClass, Pattern.class, "Pattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPattern_AgentPatterns(), this.getAgentPattern(), null, "agentPatterns", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

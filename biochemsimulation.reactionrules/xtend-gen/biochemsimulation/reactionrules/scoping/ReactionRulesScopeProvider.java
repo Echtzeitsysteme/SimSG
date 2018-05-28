@@ -4,7 +4,6 @@
 package biochemsimulation.reactionrules.scoping;
 
 import biochemsimulation.reactionrules.reactionRules.Agent;
-import biochemsimulation.reactionrules.reactionRules.AgentPattern;
 import biochemsimulation.reactionrules.reactionRules.ExactLink;
 import biochemsimulation.reactionrules.reactionRules.ExactLinkAgent;
 import biochemsimulation.reactionrules.reactionRules.ExactLinkSite;
@@ -14,6 +13,7 @@ import biochemsimulation.reactionrules.reactionRules.SitePatterns;
 import biochemsimulation.reactionrules.reactionRules.SiteState;
 import biochemsimulation.reactionrules.reactionRules.State;
 import biochemsimulation.reactionrules.reactionRules.States;
+import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.scoping.AbstractReactionRulesScopeProvider;
 import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
@@ -128,7 +128,7 @@ public class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvid
       boolean _tripleNotEquals_1 = (_eContainer_2 != null);
       if (_tripleNotEquals_1) {
         EObject _eContainer_3 = sitePatterns.eContainer();
-        final AgentPattern agentPattern = ((AgentPattern) _eContainer_3);
+        final ValidAgentPattern agentPattern = ((ValidAgentPattern) _eContainer_3);
         agent = agentPattern.getAgent();
       }
     }

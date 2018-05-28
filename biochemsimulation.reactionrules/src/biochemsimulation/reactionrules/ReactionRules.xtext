@@ -68,6 +68,10 @@ terminal UNI:
 	'->'
 ;
 
+terminal VOID_PATTERN:
+	'void'
+;
+
 terminal SEMI_LINK:
 	'semi'
 ;
@@ -215,10 +219,18 @@ SitePatterns returns SitePatterns:
 	(sitePatterns += SitePattern (',' sitePatterns += SitePattern)* )?
 ;
 
-AgentPattern returns AgentPattern:
-	{AgentPattern}
+ValidAgentPattern returns ValidAgentPattern:
+	{ValidAgentPattern}
 	agent = [Agent]
 	'('sitePatterns = SitePatterns')'
+;
+
+VoidAgentPattern returns VoidAgentPattern:
+	pattern = VOID_PATTERN
+;
+
+AgentPattern:
+	ValidAgentPattern | VoidAgentPattern 
 ;
 
 Pattern returns Pattern:

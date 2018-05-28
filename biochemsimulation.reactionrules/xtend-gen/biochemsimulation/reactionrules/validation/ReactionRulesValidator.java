@@ -25,6 +25,7 @@ import biochemsimulation.reactionrules.reactionRules.RuleBody;
 import biochemsimulation.reactionrules.reactionRules.SemiLink;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
+import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.Variable;
 import biochemsimulation.reactionrules.reactionRules.WhatEver;
 import biochemsimulation.reactionrules.validation.AbstractReactionRulesValidator;
@@ -141,12 +142,15 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
     final Pattern pattern = this.patternFromPatternAssignment(initial.getInitialPattern());
     EList<AgentPattern> _agentPatterns = pattern.getAgentPatterns();
     for (final AgentPattern ap : _agentPatterns) {
-      EList<SitePattern> _sitePatterns = ap.getSitePatterns().getSitePatterns();
-      for (final SitePattern sp : _sitePatterns) {
-        {
-          final LinkState linkState = sp.getLinkState().getLinkState();
-          if ((((linkState instanceof SemiLink) || (linkState instanceof WhatEver)) || (linkState instanceof ExactLink))) {
-            this.error("Illegal initial link state! A pattern may only be instantiated with link states of Type: FreeLink(\"free\"), IndexedLink(\"INT\")", null);
+      if ((ap instanceof ValidAgentPattern)) {
+        final ValidAgentPattern vap = ((ValidAgentPattern) ap);
+        EList<SitePattern> _sitePatterns = vap.getSitePatterns().getSitePatterns();
+        for (final SitePattern sp : _sitePatterns) {
+          {
+            final LinkState linkState = sp.getLinkState().getLinkState();
+            if ((((linkState instanceof SemiLink) || (linkState instanceof WhatEver)) || (linkState instanceof ExactLink))) {
+              this.error("Illegal initial link state! A pattern may only be instantiated with link states of Type: FreeLink(\"free\"), IndexedLink(\"INT\")", null);
+            }
           }
         }
       }
@@ -301,6 +305,21 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
     }
   }
   
+  @Check
+  public void checkRuleNumberOfArgs(final RuleBody ruleBody) {
+    final Pattern lhs = this.patternFromPatternAssignment(ruleBody.getLhs());
+    final Pattern rhs = this.patternFromPatternAssignment(ruleBody.getRhs());
+    int _size = lhs.getAgentPatterns().size();
+    int _size_1 = rhs.getAgentPatterns().size();
+    boolean _notEquals = (_size != _size_1);
+    if (_notEquals) {
+      this.error("Number of arguments on the left hand side of the rule, must match number of arguments on the right hand side.", 
+        ReactionRulesPackage.Literals.RULE_BODY__LHS);
+      this.error("Number of arguments on the right hand side of the rule, must match number of arguments on the left hand side.", 
+        ReactionRulesPackage.Literals.RULE_BODY__RHS);
+    }
+  }
+  
   public String valueOfNumericAssignment(final NumericAssignment na) {
     String value = "0";
     if ((na instanceof NumericFromLiteral)) {
@@ -315,7 +334,7 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
   }
   
   @Check
-  public void checkAgentPatternSites(final AgentPattern agentPattern) {
+  public void checkAgentPatternSites(final ValidAgentPattern agentPattern) {
     List<SitePattern> candidates = EcoreUtil2.<SitePattern>getAllContentsOfType(agentPattern, SitePattern.class);
     EList<Site> sites = agentPattern.getAgent().getSites().getSites();
     int _size = sites.size();
@@ -330,7 +349,7 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
         if (_not) {
           String _name = spSite.getName();
           String _plus = ("This Agent does not have a site with ID=" + _name);
-          this.error(_plus, ReactionRulesPackage.Literals.AGENT_PATTERN__SITE_PATTERNS);
+          this.error(_plus, ReactionRulesPackage.Literals.VALID_AGENT_PATTERN__SITE_PATTERNS);
         }
       }
     }

@@ -14,12 +14,12 @@ import java.util.ArrayList;
 public class InternalReactionRulesLexer extends Lexer {
     public static final int RULE_FREE_LINK=9;
     public static final int RULE_STRING=4;
-    public static final int RULE_AT=12;
+    public static final int RULE_AT=13;
     public static final int RULE_WHATEVER_LINK=10;
-    public static final int RULE_SL_COMMENT=15;
+    public static final int RULE_SL_COMMENT=16;
     public static final int T__19=19;
     public static final int T__37=37;
-    public static final int T__18=18;
+    public static final int T__38=38;
     public static final int RULE_SEMI_LINK=8;
     public static final int T__33=33;
     public static final int T__34=34;
@@ -27,21 +27,22 @@ public class InternalReactionRulesLexer extends Lexer {
     public static final int T__36=36;
     public static final int EOF=-1;
     public static final int T__30=30;
+    public static final int RULE_VOID_PATTERN=11;
     public static final int T__31=31;
     public static final int T__32=32;
     public static final int RULE_ID=5;
-    public static final int RULE_WS=16;
-    public static final int RULE_ANY_OTHER=17;
-    public static final int RULE_BI=13;
+    public static final int RULE_WS=17;
+    public static final int RULE_ANY_OTHER=18;
+    public static final int RULE_BI=14;
     public static final int RULE_EXPONENT=7;
     public static final int T__26=26;
     public static final int T__27=27;
     public static final int T__28=28;
     public static final int RULE_INT=6;
-    public static final int RULE_UNI=11;
+    public static final int RULE_UNI=12;
     public static final int T__29=29;
     public static final int T__22=22;
-    public static final int RULE_ML_COMMENT=14;
+    public static final int RULE_ML_COMMENT=15;
     public static final int T__23=23;
     public static final int T__24=24;
     public static final int T__25=25;
@@ -61,36 +62,15 @@ public class InternalReactionRulesLexer extends Lexer {
     }
     public String getGrammarFileName() { return "InternalReactionRules.g"; }
 
-    // $ANTLR start "T__18"
-    public final void mT__18() throws RecognitionException {
-        try {
-            int _type = T__18;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:11:7: ( 'URI' )
-            // InternalReactionRules.g:11:9: 'URI'
-            {
-            match("URI"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__18"
-
     // $ANTLR start "T__19"
     public final void mT__19() throws RecognitionException {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:12:7: ( 'PATH' )
-            // InternalReactionRules.g:12:9: 'PATH'
+            // InternalReactionRules.g:11:7: ( 'URI' )
+            // InternalReactionRules.g:11:9: 'URI'
             {
-            match("PATH"); 
+            match("URI"); 
 
 
             }
@@ -108,10 +88,10 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:13:7: ( 'ModelID' )
-            // InternalReactionRules.g:13:9: 'ModelID'
+            // InternalReactionRules.g:12:7: ( 'PATH' )
+            // InternalReactionRules.g:12:9: 'PATH'
             {
-            match("ModelID"); 
+            match("PATH"); 
 
 
             }
@@ -129,10 +109,10 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:14:7: ( 'AgentInstance' )
-            // InternalReactionRules.g:14:9: 'AgentInstance'
+            // InternalReactionRules.g:13:7: ( 'ModelID' )
+            // InternalReactionRules.g:13:9: 'ModelID'
             {
-            match("AgentInstance"); 
+            match("ModelID"); 
 
 
             }
@@ -150,10 +130,11 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:15:7: ( '-' )
-            // InternalReactionRules.g:15:9: '-'
+            // InternalReactionRules.g:14:7: ( 'AgentInstance' )
+            // InternalReactionRules.g:14:9: 'AgentInstance'
             {
-            match('-'); 
+            match("AgentInstance"); 
+
 
             }
 
@@ -170,10 +151,10 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:16:7: ( '.' )
-            // InternalReactionRules.g:16:9: '.'
+            // InternalReactionRules.g:15:7: ( '-' )
+            // InternalReactionRules.g:15:9: '-'
             {
-            match('.'); 
+            match('-'); 
 
             }
 
@@ -190,10 +171,10 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:17:7: ( '+' )
-            // InternalReactionRules.g:17:9: '+'
+            // InternalReactionRules.g:16:7: ( '.' )
+            // InternalReactionRules.g:16:9: '.'
             {
-            match('+'); 
+            match('.'); 
 
             }
 
@@ -210,10 +191,10 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:18:7: ( '{' )
-            // InternalReactionRules.g:18:9: '{'
+            // InternalReactionRules.g:17:7: ( '+' )
+            // InternalReactionRules.g:17:9: '+'
             {
-            match('{'); 
+            match('+'); 
 
             }
 
@@ -230,10 +211,10 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:19:7: ( ',' )
-            // InternalReactionRules.g:19:9: ','
+            // InternalReactionRules.g:18:7: ( '{' )
+            // InternalReactionRules.g:18:9: '{'
             {
-            match(','); 
+            match('{'); 
 
             }
 
@@ -250,10 +231,10 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:20:7: ( '}' )
-            // InternalReactionRules.g:20:9: '}'
+            // InternalReactionRules.g:19:7: ( ',' )
+            // InternalReactionRules.g:19:9: ','
             {
-            match('}'); 
+            match(','); 
 
             }
 
@@ -270,10 +251,10 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:21:7: ( '(' )
-            // InternalReactionRules.g:21:9: '('
+            // InternalReactionRules.g:20:7: ( '}' )
+            // InternalReactionRules.g:20:9: '}'
             {
-            match('('); 
+            match('}'); 
 
             }
 
@@ -290,10 +271,10 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:22:7: ( ')' )
-            // InternalReactionRules.g:22:9: ')'
+            // InternalReactionRules.g:21:7: ( '(' )
+            // InternalReactionRules.g:21:9: '('
             {
-            match(')'); 
+            match('('); 
 
             }
 
@@ -310,11 +291,10 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:23:7: ( 'agent' )
-            // InternalReactionRules.g:23:9: 'agent'
+            // InternalReactionRules.g:22:7: ( ')' )
+            // InternalReactionRules.g:22:9: ')'
             {
-            match("agent"); 
-
+            match(')'); 
 
             }
 
@@ -331,10 +311,10 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:24:7: ( 'var' )
-            // InternalReactionRules.g:24:9: 'var'
+            // InternalReactionRules.g:23:7: ( 'agent' )
+            // InternalReactionRules.g:23:9: 'agent'
             {
-            match("var"); 
+            match("agent"); 
 
 
             }
@@ -352,10 +332,11 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:25:7: ( '=' )
-            // InternalReactionRules.g:25:9: '='
+            // InternalReactionRules.g:24:7: ( 'var' )
+            // InternalReactionRules.g:24:9: 'var'
             {
-            match('='); 
+            match("var"); 
+
 
             }
 
@@ -372,10 +353,10 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:26:7: ( '[' )
-            // InternalReactionRules.g:26:9: '['
+            // InternalReactionRules.g:25:7: ( '=' )
+            // InternalReactionRules.g:25:9: '='
             {
-            match('['); 
+            match('='); 
 
             }
 
@@ -392,10 +373,10 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:27:7: ( ']' )
-            // InternalReactionRules.g:27:9: ']'
+            // InternalReactionRules.g:26:7: ( '[' )
+            // InternalReactionRules.g:26:9: '['
             {
-            match(']'); 
+            match('['); 
 
             }
 
@@ -412,11 +393,10 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:28:7: ( 'obs' )
-            // InternalReactionRules.g:28:9: 'obs'
+            // InternalReactionRules.g:27:7: ( ']' )
+            // InternalReactionRules.g:27:9: ']'
             {
-            match("obs"); 
-
+            match(']'); 
 
             }
 
@@ -433,10 +413,10 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:29:7: ( 'init' )
-            // InternalReactionRules.g:29:9: 'init'
+            // InternalReactionRules.g:28:7: ( 'obs' )
+            // InternalReactionRules.g:28:9: 'obs'
             {
-            match("init"); 
+            match("obs"); 
 
 
             }
@@ -454,6 +434,27 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalReactionRules.g:29:7: ( 'init' )
+            // InternalReactionRules.g:29:9: 'init'
+            {
+            match("init"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__37"
+
+    // $ANTLR start "T__38"
+    public final void mT__38() throws RecognitionException {
+        try {
+            int _type = T__38;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
             // InternalReactionRules.g:30:7: ( 'rule' )
             // InternalReactionRules.g:30:9: 'rule'
             {
@@ -468,15 +469,15 @@ public class InternalReactionRulesLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "T__37"
+    // $ANTLR end "T__38"
 
     // $ANTLR start "RULE_AT"
     public final void mRULE_AT() throws RecognitionException {
         try {
             int _type = RULE_AT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:2939:9: ( '@' )
-            // InternalReactionRules.g:2939:11: '@'
+            // InternalReactionRules.g:3010:9: ( '@' )
+            // InternalReactionRules.g:3010:11: '@'
             {
             match('@'); 
 
@@ -495,8 +496,8 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = RULE_BI;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:2941:9: ( '<->' )
-            // InternalReactionRules.g:2941:11: '<->'
+            // InternalReactionRules.g:3012:9: ( '<->' )
+            // InternalReactionRules.g:3012:11: '<->'
             {
             match("<->"); 
 
@@ -516,8 +517,8 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = RULE_UNI;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:2943:10: ( '->' )
-            // InternalReactionRules.g:2943:12: '->'
+            // InternalReactionRules.g:3014:10: ( '->' )
+            // InternalReactionRules.g:3014:12: '->'
             {
             match("->"); 
 
@@ -532,13 +533,34 @@ public class InternalReactionRulesLexer extends Lexer {
     }
     // $ANTLR end "RULE_UNI"
 
+    // $ANTLR start "RULE_VOID_PATTERN"
+    public final void mRULE_VOID_PATTERN() throws RecognitionException {
+        try {
+            int _type = RULE_VOID_PATTERN;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalReactionRules.g:3016:19: ( 'void' )
+            // InternalReactionRules.g:3016:21: 'void'
+            {
+            match("void"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_VOID_PATTERN"
+
     // $ANTLR start "RULE_SEMI_LINK"
     public final void mRULE_SEMI_LINK() throws RecognitionException {
         try {
             int _type = RULE_SEMI_LINK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:2945:16: ( 'semi' )
-            // InternalReactionRules.g:2945:18: 'semi'
+            // InternalReactionRules.g:3018:16: ( 'semi' )
+            // InternalReactionRules.g:3018:18: 'semi'
             {
             match("semi"); 
 
@@ -558,8 +580,8 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = RULE_FREE_LINK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:2947:16: ( 'free' )
-            // InternalReactionRules.g:2947:18: 'free'
+            // InternalReactionRules.g:3020:16: ( 'free' )
+            // InternalReactionRules.g:3020:18: 'free'
             {
             match("free"); 
 
@@ -579,8 +601,8 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = RULE_WHATEVER_LINK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:2949:20: ( '?' )
-            // InternalReactionRules.g:2949:22: '?'
+            // InternalReactionRules.g:3022:20: ( '?' )
+            // InternalReactionRules.g:3022:22: '?'
             {
             match('?'); 
 
@@ -599,8 +621,8 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = RULE_EXPONENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:2951:15: ( 'E' )
-            // InternalReactionRules.g:2951:17: 'E'
+            // InternalReactionRules.g:3024:15: ( 'E' )
+            // InternalReactionRules.g:3024:17: 'E'
             {
             match('E'); 
 
@@ -619,11 +641,11 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:2953:10: ( '0' .. '9' ( '0' .. '9' )* )
-            // InternalReactionRules.g:2953:12: '0' .. '9' ( '0' .. '9' )*
+            // InternalReactionRules.g:3026:10: ( '0' .. '9' ( '0' .. '9' )* )
+            // InternalReactionRules.g:3026:12: '0' .. '9' ( '0' .. '9' )*
             {
             matchRange('0','9'); 
-            // InternalReactionRules.g:2953:21: ( '0' .. '9' )*
+            // InternalReactionRules.g:3026:21: ( '0' .. '9' )*
             loop1:
             do {
                 int alt1=2;
@@ -636,7 +658,7 @@ public class InternalReactionRulesLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // InternalReactionRules.g:2953:22: '0' .. '9'
+            	    // InternalReactionRules.g:3026:22: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -664,10 +686,10 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:2955:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalReactionRules.g:2955:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalReactionRules.g:3028:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalReactionRules.g:3028:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // InternalReactionRules.g:2955:11: ( '^' )?
+            // InternalReactionRules.g:3028:11: ( '^' )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -676,7 +698,7 @@ public class InternalReactionRulesLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // InternalReactionRules.g:2955:11: '^'
+                    // InternalReactionRules.g:3028:11: '^'
                     {
                     match('^'); 
 
@@ -694,7 +716,7 @@ public class InternalReactionRulesLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalReactionRules.g:2955:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalReactionRules.g:3028:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop3:
             do {
                 int alt3=2;
@@ -743,10 +765,10 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:2957:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // InternalReactionRules.g:2957:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalReactionRules.g:3030:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // InternalReactionRules.g:3030:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // InternalReactionRules.g:2957:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalReactionRules.g:3030:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -764,10 +786,10 @@ public class InternalReactionRulesLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // InternalReactionRules.g:2957:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // InternalReactionRules.g:3030:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // InternalReactionRules.g:2957:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // InternalReactionRules.g:3030:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -783,7 +805,7 @@ public class InternalReactionRulesLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // InternalReactionRules.g:2957:21: '\\\\' .
+                    	    // InternalReactionRules.g:3030:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -791,7 +813,7 @@ public class InternalReactionRulesLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalReactionRules.g:2957:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // InternalReactionRules.g:3030:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -816,10 +838,10 @@ public class InternalReactionRulesLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // InternalReactionRules.g:2957:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // InternalReactionRules.g:3030:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // InternalReactionRules.g:2957:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // InternalReactionRules.g:3030:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -835,7 +857,7 @@ public class InternalReactionRulesLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // InternalReactionRules.g:2957:54: '\\\\' .
+                    	    // InternalReactionRules.g:3030:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -843,7 +865,7 @@ public class InternalReactionRulesLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalReactionRules.g:2957:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // InternalReactionRules.g:3030:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -886,12 +908,12 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:2959:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // InternalReactionRules.g:2959:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // InternalReactionRules.g:3032:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalReactionRules.g:3032:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // InternalReactionRules.g:2959:24: ( options {greedy=false; } : . )*
+            // InternalReactionRules.g:3032:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -916,7 +938,7 @@ public class InternalReactionRulesLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // InternalReactionRules.g:2959:52: .
+            	    // InternalReactionRules.g:3032:52: .
             	    {
             	    matchAny(); 
 
@@ -946,12 +968,12 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:2961:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // InternalReactionRules.g:2961:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalReactionRules.g:3034:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalReactionRules.g:3034:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // InternalReactionRules.g:2961:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalReactionRules.g:3034:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -964,7 +986,7 @@ public class InternalReactionRulesLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // InternalReactionRules.g:2961:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalReactionRules.g:3034:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -984,7 +1006,7 @@ public class InternalReactionRulesLexer extends Lexer {
                 }
             } while (true);
 
-            // InternalReactionRules.g:2961:40: ( ( '\\r' )? '\\n' )?
+            // InternalReactionRules.g:3034:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -993,9 +1015,9 @@ public class InternalReactionRulesLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // InternalReactionRules.g:2961:41: ( '\\r' )? '\\n'
+                    // InternalReactionRules.g:3034:41: ( '\\r' )? '\\n'
                     {
-                    // InternalReactionRules.g:2961:41: ( '\\r' )?
+                    // InternalReactionRules.g:3034:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -1004,7 +1026,7 @@ public class InternalReactionRulesLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // InternalReactionRules.g:2961:41: '\\r'
+                            // InternalReactionRules.g:3034:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1036,10 +1058,10 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:2963:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalReactionRules.g:2963:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalReactionRules.g:3036:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalReactionRules.g:3036:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // InternalReactionRules.g:2963:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalReactionRules.g:3036:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -1093,8 +1115,8 @@ public class InternalReactionRulesLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalReactionRules.g:2965:16: ( . )
-            // InternalReactionRules.g:2965:18: .
+            // InternalReactionRules.g:3038:16: ( . )
+            // InternalReactionRules.g:3038:18: .
             {
             matchAny(); 
 
@@ -1109,147 +1131,147 @@ public class InternalReactionRulesLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // InternalReactionRules.g:1:8: ( T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | RULE_AT | RULE_BI | RULE_UNI | RULE_SEMI_LINK | RULE_FREE_LINK | RULE_WHATEVER_LINK | RULE_EXPONENT | RULE_INT | RULE_ID | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt12=34;
+        // InternalReactionRules.g:1:8: ( T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | RULE_AT | RULE_BI | RULE_UNI | RULE_VOID_PATTERN | RULE_SEMI_LINK | RULE_FREE_LINK | RULE_WHATEVER_LINK | RULE_EXPONENT | RULE_INT | RULE_ID | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt12=35;
         alt12 = dfa12.predict(input);
         switch (alt12) {
             case 1 :
-                // InternalReactionRules.g:1:10: T__18
-                {
-                mT__18(); 
-
-                }
-                break;
-            case 2 :
-                // InternalReactionRules.g:1:16: T__19
+                // InternalReactionRules.g:1:10: T__19
                 {
                 mT__19(); 
 
                 }
                 break;
-            case 3 :
-                // InternalReactionRules.g:1:22: T__20
+            case 2 :
+                // InternalReactionRules.g:1:16: T__20
                 {
                 mT__20(); 
 
                 }
                 break;
-            case 4 :
-                // InternalReactionRules.g:1:28: T__21
+            case 3 :
+                // InternalReactionRules.g:1:22: T__21
                 {
                 mT__21(); 
 
                 }
                 break;
-            case 5 :
-                // InternalReactionRules.g:1:34: T__22
+            case 4 :
+                // InternalReactionRules.g:1:28: T__22
                 {
                 mT__22(); 
 
                 }
                 break;
-            case 6 :
-                // InternalReactionRules.g:1:40: T__23
+            case 5 :
+                // InternalReactionRules.g:1:34: T__23
                 {
                 mT__23(); 
 
                 }
                 break;
-            case 7 :
-                // InternalReactionRules.g:1:46: T__24
+            case 6 :
+                // InternalReactionRules.g:1:40: T__24
                 {
                 mT__24(); 
 
                 }
                 break;
-            case 8 :
-                // InternalReactionRules.g:1:52: T__25
+            case 7 :
+                // InternalReactionRules.g:1:46: T__25
                 {
                 mT__25(); 
 
                 }
                 break;
-            case 9 :
-                // InternalReactionRules.g:1:58: T__26
+            case 8 :
+                // InternalReactionRules.g:1:52: T__26
                 {
                 mT__26(); 
 
                 }
                 break;
-            case 10 :
-                // InternalReactionRules.g:1:64: T__27
+            case 9 :
+                // InternalReactionRules.g:1:58: T__27
                 {
                 mT__27(); 
 
                 }
                 break;
-            case 11 :
-                // InternalReactionRules.g:1:70: T__28
+            case 10 :
+                // InternalReactionRules.g:1:64: T__28
                 {
                 mT__28(); 
 
                 }
                 break;
-            case 12 :
-                // InternalReactionRules.g:1:76: T__29
+            case 11 :
+                // InternalReactionRules.g:1:70: T__29
                 {
                 mT__29(); 
 
                 }
                 break;
-            case 13 :
-                // InternalReactionRules.g:1:82: T__30
+            case 12 :
+                // InternalReactionRules.g:1:76: T__30
                 {
                 mT__30(); 
 
                 }
                 break;
-            case 14 :
-                // InternalReactionRules.g:1:88: T__31
+            case 13 :
+                // InternalReactionRules.g:1:82: T__31
                 {
                 mT__31(); 
 
                 }
                 break;
-            case 15 :
-                // InternalReactionRules.g:1:94: T__32
+            case 14 :
+                // InternalReactionRules.g:1:88: T__32
                 {
                 mT__32(); 
 
                 }
                 break;
-            case 16 :
-                // InternalReactionRules.g:1:100: T__33
+            case 15 :
+                // InternalReactionRules.g:1:94: T__33
                 {
                 mT__33(); 
 
                 }
                 break;
-            case 17 :
-                // InternalReactionRules.g:1:106: T__34
+            case 16 :
+                // InternalReactionRules.g:1:100: T__34
                 {
                 mT__34(); 
 
                 }
                 break;
-            case 18 :
-                // InternalReactionRules.g:1:112: T__35
+            case 17 :
+                // InternalReactionRules.g:1:106: T__35
                 {
                 mT__35(); 
 
                 }
                 break;
-            case 19 :
-                // InternalReactionRules.g:1:118: T__36
+            case 18 :
+                // InternalReactionRules.g:1:112: T__36
                 {
                 mT__36(); 
 
                 }
                 break;
-            case 20 :
-                // InternalReactionRules.g:1:124: T__37
+            case 19 :
+                // InternalReactionRules.g:1:118: T__37
                 {
                 mT__37(); 
+
+                }
+                break;
+            case 20 :
+                // InternalReactionRules.g:1:124: T__38
+                {
+                mT__38(); 
 
                 }
                 break;
@@ -1275,77 +1297,84 @@ public class InternalReactionRulesLexer extends Lexer {
                 }
                 break;
             case 24 :
-                // InternalReactionRules.g:1:155: RULE_SEMI_LINK
+                // InternalReactionRules.g:1:155: RULE_VOID_PATTERN
+                {
+                mRULE_VOID_PATTERN(); 
+
+                }
+                break;
+            case 25 :
+                // InternalReactionRules.g:1:173: RULE_SEMI_LINK
                 {
                 mRULE_SEMI_LINK(); 
 
                 }
                 break;
-            case 25 :
-                // InternalReactionRules.g:1:170: RULE_FREE_LINK
+            case 26 :
+                // InternalReactionRules.g:1:188: RULE_FREE_LINK
                 {
                 mRULE_FREE_LINK(); 
 
                 }
                 break;
-            case 26 :
-                // InternalReactionRules.g:1:185: RULE_WHATEVER_LINK
+            case 27 :
+                // InternalReactionRules.g:1:203: RULE_WHATEVER_LINK
                 {
                 mRULE_WHATEVER_LINK(); 
 
                 }
                 break;
-            case 27 :
-                // InternalReactionRules.g:1:204: RULE_EXPONENT
+            case 28 :
+                // InternalReactionRules.g:1:222: RULE_EXPONENT
                 {
                 mRULE_EXPONENT(); 
 
                 }
                 break;
-            case 28 :
-                // InternalReactionRules.g:1:218: RULE_INT
+            case 29 :
+                // InternalReactionRules.g:1:236: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 29 :
-                // InternalReactionRules.g:1:227: RULE_ID
+            case 30 :
+                // InternalReactionRules.g:1:245: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 30 :
-                // InternalReactionRules.g:1:235: RULE_STRING
+            case 31 :
+                // InternalReactionRules.g:1:253: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 31 :
-                // InternalReactionRules.g:1:247: RULE_ML_COMMENT
+            case 32 :
+                // InternalReactionRules.g:1:265: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 32 :
-                // InternalReactionRules.g:1:263: RULE_SL_COMMENT
+            case 33 :
+                // InternalReactionRules.g:1:281: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 33 :
-                // InternalReactionRules.g:1:279: RULE_WS
+            case 34 :
+                // InternalReactionRules.g:1:297: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 34 :
-                // InternalReactionRules.g:1:287: RULE_ANY_OTHER
+            case 35 :
+                // InternalReactionRules.g:1:305: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -1359,17 +1388,17 @@ public class InternalReactionRulesLexer extends Lexer {
 
     protected DFA12 dfa12 = new DFA12(this);
     static final String DFA12_eotS =
-        "\1\uffff\4\44\1\51\7\uffff\2\44\3\uffff\3\44\1\uffff\1\42\2\44\1\uffff\1\76\1\uffff\1\42\1\uffff\3\42\2\uffff\1\44\1\uffff\3\44\11\uffff\2\44\3\uffff\3\44\2\uffff\2\44\7\uffff\1\117\4\44\1\124\1\125\4\44\1\uffff\1\132\3\44\2\uffff\1\136\1\137\1\140\1\141\1\uffff\2\44\1\144\4\uffff\2\44\1\uffff\1\147\1\44\1\uffff\5\44\1\156\1\uffff";
+        "\1\uffff\4\44\1\51\7\uffff\2\44\3\uffff\3\44\1\uffff\1\42\2\44\1\uffff\1\77\1\uffff\1\42\1\uffff\3\42\2\uffff\1\44\1\uffff\3\44\11\uffff\3\44\3\uffff\3\44\2\uffff\2\44\7\uffff\1\121\4\44\1\126\1\44\1\130\4\44\1\uffff\1\135\3\44\1\uffff\1\141\1\uffff\1\142\1\143\1\144\1\145\1\uffff\2\44\1\150\5\uffff\2\44\1\uffff\1\153\1\44\1\uffff\5\44\1\162\1\uffff";
     static final String DFA12_eofS =
-        "\157\uffff";
+        "\163\uffff";
     static final String DFA12_minS =
-        "\1\0\1\122\1\101\1\157\1\147\1\76\7\uffff\1\147\1\141\3\uffff\1\142\1\156\1\165\1\uffff\1\55\1\145\1\162\1\uffff\1\60\1\uffff\1\101\1\uffff\2\0\1\52\2\uffff\1\111\1\uffff\1\124\1\144\1\145\11\uffff\1\145\1\162\3\uffff\1\163\1\151\1\154\2\uffff\1\155\1\145\7\uffff\1\60\1\110\1\145\2\156\2\60\1\164\1\145\1\151\1\145\1\uffff\1\60\1\154\2\164\2\uffff\4\60\1\uffff\2\111\1\60\4\uffff\1\104\1\156\1\uffff\1\60\1\163\1\uffff\1\164\1\141\1\156\1\143\1\145\1\60\1\uffff";
+        "\1\0\1\122\1\101\1\157\1\147\1\76\7\uffff\1\147\1\141\3\uffff\1\142\1\156\1\165\1\uffff\1\55\1\145\1\162\1\uffff\1\60\1\uffff\1\101\1\uffff\2\0\1\52\2\uffff\1\111\1\uffff\1\124\1\144\1\145\11\uffff\1\145\1\162\1\151\3\uffff\1\163\1\151\1\154\2\uffff\1\155\1\145\7\uffff\1\60\1\110\1\145\2\156\1\60\1\144\1\60\1\164\1\145\1\151\1\145\1\uffff\1\60\1\154\2\164\1\uffff\1\60\1\uffff\4\60\1\uffff\2\111\1\60\5\uffff\1\104\1\156\1\uffff\1\60\1\163\1\uffff\1\164\1\141\1\156\1\143\1\145\1\60\1\uffff";
     static final String DFA12_maxS =
-        "\1\uffff\1\122\1\101\1\157\1\147\1\76\7\uffff\1\147\1\141\3\uffff\1\142\1\156\1\165\1\uffff\1\55\1\145\1\162\1\uffff\1\172\1\uffff\1\172\1\uffff\2\uffff\1\57\2\uffff\1\111\1\uffff\1\124\1\144\1\145\11\uffff\1\145\1\162\3\uffff\1\163\1\151\1\154\2\uffff\1\155\1\145\7\uffff\1\172\1\110\1\145\2\156\2\172\1\164\1\145\1\151\1\145\1\uffff\1\172\1\154\2\164\2\uffff\4\172\1\uffff\2\111\1\172\4\uffff\1\104\1\156\1\uffff\1\172\1\163\1\uffff\1\164\1\141\1\156\1\143\1\145\1\172\1\uffff";
+        "\1\uffff\1\122\1\101\1\157\1\147\1\76\7\uffff\1\147\1\157\3\uffff\1\142\1\156\1\165\1\uffff\1\55\1\145\1\162\1\uffff\1\172\1\uffff\1\172\1\uffff\2\uffff\1\57\2\uffff\1\111\1\uffff\1\124\1\144\1\145\11\uffff\1\145\1\162\1\151\3\uffff\1\163\1\151\1\154\2\uffff\1\155\1\145\7\uffff\1\172\1\110\1\145\2\156\1\172\1\144\1\172\1\164\1\145\1\151\1\145\1\uffff\1\172\1\154\2\164\1\uffff\1\172\1\uffff\4\172\1\uffff\2\111\1\172\5\uffff\1\104\1\156\1\uffff\1\172\1\163\1\uffff\1\164\1\141\1\156\1\143\1\145\1\172\1\uffff";
     static final String DFA12_acceptS =
-        "\6\uffff\1\6\1\7\1\10\1\11\1\12\1\13\1\14\2\uffff\1\17\1\20\1\21\3\uffff\1\25\3\uffff\1\32\1\uffff\1\34\1\uffff\1\35\3\uffff\1\41\1\42\1\uffff\1\35\3\uffff\1\27\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\2\uffff\1\17\1\20\1\21\3\uffff\1\25\1\26\2\uffff\1\32\1\33\1\34\1\36\1\37\1\40\1\41\13\uffff\1\1\4\uffff\1\16\1\22\4\uffff\1\2\3\uffff\1\23\1\24\1\30\1\31\2\uffff\1\15\2\uffff\1\3\6\uffff\1\4";
+        "\6\uffff\1\6\1\7\1\10\1\11\1\12\1\13\1\14\2\uffff\1\17\1\20\1\21\3\uffff\1\25\3\uffff\1\33\1\uffff\1\35\1\uffff\1\36\3\uffff\1\42\1\43\1\uffff\1\36\3\uffff\1\27\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\3\uffff\1\17\1\20\1\21\3\uffff\1\25\1\26\2\uffff\1\33\1\34\1\35\1\37\1\40\1\41\1\42\14\uffff\1\1\4\uffff\1\16\1\uffff\1\22\4\uffff\1\2\3\uffff\1\30\1\23\1\24\1\31\1\32\2\uffff\1\15\2\uffff\1\3\6\uffff\1\4";
     static final String DFA12_specialS =
-        "\1\1\35\uffff\1\2\1\0\117\uffff}>";
+        "\1\0\35\uffff\1\2\1\1\123\uffff}>";
     static final String[] DFA12_transitionS = {
             "\11\42\2\41\2\42\1\41\22\42\1\41\1\42\1\36\4\42\1\37\1\13\1\14\1\42\1\7\1\11\1\5\1\6\1\40\12\33\2\42\1\26\1\17\1\42\1\31\1\25\1\4\3\35\1\32\7\35\1\3\2\35\1\2\4\35\1\1\5\35\1\20\1\42\1\21\1\34\1\35\1\42\1\15\4\35\1\30\2\35\1\23\5\35\1\22\2\35\1\24\1\27\2\35\1\16\4\35\1\10\1\42\1\12\uff82\42",
             "\1\43",
@@ -1385,101 +1414,105 @@ public class InternalReactionRulesLexer extends Lexer {
             "",
             "",
             "\1\61",
-            "\1\62",
+            "\1\62\15\uffff\1\63",
             "",
             "",
             "",
-            "\1\66",
             "\1\67",
             "\1\70",
+            "\1\71",
             "",
-            "\1\72",
             "\1\73",
             "\1\74",
+            "\1\75",
             "",
             "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             "",
             "\32\44\4\uffff\1\44\1\uffff\32\44",
             "",
-            "\0\100",
-            "\0\100",
-            "\1\101\4\uffff\1\102",
+            "\0\101",
+            "\0\101",
+            "\1\102\4\uffff\1\103",
             "",
-            "",
-            "\1\104",
             "",
             "\1\105",
+            "",
             "\1\106",
             "\1\107",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\110",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\111",
-            "",
-            "",
-            "",
             "\1\112",
             "\1\113",
+            "",
+            "",
+            "",
             "\1\114",
-            "",
-            "",
             "\1\115",
             "\1\116",
             "",
             "",
+            "\1\117",
+            "\1\120",
+            "",
+            "",
             "",
             "",
             "",
             "",
             "",
             "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
-            "\1\120",
-            "\1\121",
             "\1\122",
             "\1\123",
+            "\1\124",
+            "\1\125",
             "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
-            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
-            "\1\126",
             "\1\127",
-            "\1\130",
-            "\1\131",
-            "",
             "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
+            "\1\131",
+            "\1\132",
             "\1\133",
             "\1\134",
-            "\1\135",
             "",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
+            "\1\136",
+            "\1\137",
+            "\1\140",
+            "",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             "",
             "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             "",
-            "\1\142",
-            "\1\143",
-            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
-            "",
-            "",
-            "",
-            "",
-            "\1\145",
             "\1\146",
-            "",
+            "\1\147",
             "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
-            "\1\150",
+            "",
+            "",
+            "",
+            "",
             "",
             "\1\151",
             "\1\152",
-            "\1\153",
+            "",
+            "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             "\1\154",
+            "",
             "\1\155",
+            "\1\156",
+            "\1\157",
+            "\1\160",
+            "\1\161",
             "\12\44\7\uffff\32\44\4\uffff\1\44\1\uffff\32\44",
             ""
     };
@@ -1514,23 +1547,13 @@ public class InternalReactionRulesLexer extends Lexer {
             this.transition = DFA12_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | RULE_AT | RULE_BI | RULE_UNI | RULE_SEMI_LINK | RULE_FREE_LINK | RULE_WHATEVER_LINK | RULE_EXPONENT | RULE_INT | RULE_ID | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | RULE_AT | RULE_BI | RULE_UNI | RULE_VOID_PATTERN | RULE_SEMI_LINK | RULE_FREE_LINK | RULE_WHATEVER_LINK | RULE_EXPONENT | RULE_INT | RULE_ID | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA12_31 = input.LA(1);
-
-                        s = -1;
-                        if ( ((LA12_31>='\u0000' && LA12_31<='\uFFFF')) ) {s = 64;}
-
-                        else s = 34;
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
                         int LA12_0 = input.LA(1);
 
                         s = -1;
@@ -1604,11 +1627,21 @@ public class InternalReactionRulesLexer extends Lexer {
 
                         if ( s>=0 ) return s;
                         break;
+                    case 1 : 
+                        int LA12_31 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA12_31>='\u0000' && LA12_31<='\uFFFF')) ) {s = 65;}
+
+                        else s = 34;
+
+                        if ( s>=0 ) return s;
+                        break;
                     case 2 : 
                         int LA12_30 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA12_30>='\u0000' && LA12_30<='\uFFFF')) ) {s = 64;}
+                        if ( ((LA12_30>='\u0000' && LA12_30<='\uFFFF')) ) {s = 65;}
 
                         else s = 34;
 

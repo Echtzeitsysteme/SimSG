@@ -20,9 +20,9 @@ init init5 1 { D() }
 
 /* Rules */
 rule AtoB { A(x[free]), B(x[free]) } <-> { A(x[1]), B(x[1])} @ [on_rate, off_rate]
-rule AtoNull { A(x[?]), B(x[?]) } <-> { } @ [on_rate, off_rate]
-rule CtoNull { C(x{u}[?]) } -> { } @ [on_rate]
-rule CtoNull2 { C(x[?]) } -> { } @ [on_rate]
-rule AExact { A(x[B.x]) } -> { } @ [on_rate]
-rule bla { A(x[semi]) } -> { } @ [on_rate]
+rule AtoNull { A(x[?]), B(x[?]) } <-> { void, void } @ [on_rate, off_rate]
+rule CtoNull { C(x{u}[?]) } -> { void } @ [on_rate]
+rule CtoNull2 { C(x[?]) } -> { void } @ [on_rate]
+rule AExact { A(x[B.x]) } -> { void } @ [on_rate]
+rule bla { A(x[semi]) } -> { void } @ [on_rate] 
 //rule blubb { D(c[free]), D(c[free])} -> {} @ [on_rate]

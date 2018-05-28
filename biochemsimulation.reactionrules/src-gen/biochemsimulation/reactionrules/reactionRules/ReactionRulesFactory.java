@@ -249,6 +249,24 @@ public interface ReactionRulesFactory extends EFactory
   SitePatterns createSitePatterns();
 
   /**
+   * Returns a new object of class '<em>Valid Agent Pattern</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Valid Agent Pattern</em>'.
+   * @generated
+   */
+  ValidAgentPattern createValidAgentPattern();
+
+  /**
+   * Returns a new object of class '<em>Void Agent Pattern</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Void Agent Pattern</em>'.
+   * @generated
+   */
+  VoidAgentPattern createVoidAgentPattern();
+
+  /**
    * Returns a new object of class '<em>Agent Pattern</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

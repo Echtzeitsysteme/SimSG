@@ -40,6 +40,7 @@ import biochemsimulation.reactionrules.reactionRules.NumericAssignment
 import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral
 import biochemsimulation.reactionrules.reactionRules.NumericFromVariable
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesFactory
+import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern
 
 /**
  * Generates code from your model files on save.
@@ -95,11 +96,15 @@ class ReactionRulesGenerator extends AbstractGenerator {
 			val linksA = new HashMap<String, List<AgentInstance>>(pattern.agentPatterns.size);
 			val linksS = new HashMap<String, List<Site>>(pattern.agentPatterns.size);
 			for(agentPattern : pattern.agentPatterns) {
-				var ap = agentPattern as AgentPattern
-				var agent = ap.agent
-				var agentI = factory.createAgentInstance 
-				model.reactionContainer.agentInstances.add(agentI)
-				createNewAgentInstance(agentI, factory, agent, agentPattern, prefix, i, linksA, linksS)
+				val ap = agentPattern as AgentPattern
+				if(ap instanceof ValidAgentPattern) {
+					val vap = agentPattern as ValidAgentPattern
+					var agent = vap.agent
+					var agentI = factory.createAgentInstance 
+					model.reactionContainer.agentInstances.add(agentI)
+					createNewAgentInstance(agentI, factory, agent, vap, prefix, i, linksA, linksS)
+				}
+				
 				
 			}
 			for(linkID : linksA.keySet) {
@@ -122,7 +127,7 @@ class ReactionRulesGenerator extends AbstractGenerator {
 		
 	}
 	
-	def createNewAgentInstance(AgentInstance agentI, ReactionRulesFactory factory, Agent agent, AgentPattern ap, String prefix, int iteration, HashMap<String, List<AgentInstance>> linksA, HashMap<String, List<Site>> linksS) {
+	def createNewAgentInstance(AgentInstance agentI, ReactionRulesFactory factory, Agent agent, ValidAgentPattern ap, String prefix, int iteration, HashMap<String, List<AgentInstance>> linksA, HashMap<String, List<Site>> linksS) {
 		
 		agentI.name = prefix+":"+agent.name+".Instance@#"+iteration
 		agentI.agent = agent

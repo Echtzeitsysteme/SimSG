@@ -15,6 +15,7 @@ import biochemsimulation.reactionrules.reactionRules.SemiLink;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.SitePatterns;
 import biochemsimulation.reactionrules.reactionRules.SiteState;
+import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.WhatEver;
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -60,25 +61,52 @@ public class PatternTemplate {
         } else {
           _builder.appendImmediate("\n", "");
         }
-        String _generatePatternCode = this.generatePatternCode(r, this.patternFromPatternAssignment(r.getRule().getLhs()), "lhs");
-        _builder.append(_generatePatternCode);
         String _xifexpression = null;
-        boolean _equals = r.getRule().getOperator().equals("<->");
-        if (_equals) {
-          _xifexpression = "\n";
+        boolean _isPatternEmpty = this.isPatternEmpty(this.patternFromPatternAssignment(r.getRule().getLhs()));
+        boolean _not = (!_isPatternEmpty);
+        if (_not) {
+          _xifexpression = this.generatePatternCode(r, this.patternFromPatternAssignment(r.getRule().getLhs()), "lhs");
         }
         _builder.append(_xifexpression);
-        _builder.newLineIfNotEmpty();
         String _xifexpression_1 = null;
-        boolean _equals_1 = r.getRule().getOperator().equals("<->");
-        if (_equals_1) {
-          _xifexpression_1 = this.generatePatternCode(r, this.patternFromPatternAssignment(r.getRule().getRhs()), "rhs");
+        boolean _equals = r.getRule().getOperator().equals("<->");
+        if (_equals) {
+          _xifexpression_1 = "\n";
         }
         _builder.append(_xifexpression_1);
+        _builder.newLineIfNotEmpty();
+        String _xifexpression_2 = null;
+        boolean _equals_1 = r.getRule().getOperator().equals("<->");
+        if (_equals_1) {
+          String _xifexpression_3 = null;
+          boolean _isPatternEmpty_1 = this.isPatternEmpty(this.patternFromPatternAssignment(r.getRule().getRhs()));
+          boolean _not_1 = (!_isPatternEmpty_1);
+          if (_not_1) {
+            _xifexpression_3 = this.generatePatternCode(r, this.patternFromPatternAssignment(r.getRule().getRhs()), "rhs");
+          }
+          _xifexpression_2 = _xifexpression_3;
+        }
+        _builder.append(_xifexpression_2);
         _builder.newLineIfNotEmpty();
       }
     }
     return _builder.toString();
+  }
+  
+  public boolean isPatternEmpty(final Pattern p) {
+    int _size = p.getAgentPatterns().size();
+    boolean _lessThan = (_size < 1);
+    if (_lessThan) {
+      return true;
+    } else {
+      EList<AgentPattern> _agentPatterns = p.getAgentPatterns();
+      for (final AgentPattern ap : _agentPatterns) {
+        if ((ap instanceof ValidAgentPattern)) {
+          return false;
+        }
+      }
+    }
+    return true;
   }
   
   public Pattern patternFromPatternAssignment(final PatternAssignment pa) {
@@ -106,9 +134,9 @@ public class PatternTemplate {
     _builder_1.append(_plus_1);
     _builder_1.append("(");
     {
-      EList<AgentPattern> _agentPatterns = pattern.getAgentPatterns();
+      LinkedList<ValidAgentPattern> _validAgentPatterns = this.getValidAgentPatterns(pattern.getAgentPatterns());
       boolean _hasElements = false;
-      for(final AgentPattern ap : _agentPatterns) {
+      for(final ValidAgentPattern ap : _validAgentPatterns) {
         if (!_hasElements) {
           _hasElements = true;
         } else {
@@ -122,9 +150,9 @@ public class PatternTemplate {
     _builder_1.append(") {");
     _builder_1.newLineIfNotEmpty();
     {
-      EList<AgentPattern> _agentPatterns_1 = pattern.getAgentPatterns();
+      LinkedList<ValidAgentPattern> _validAgentPatterns_1 = this.getValidAgentPatterns(pattern.getAgentPatterns());
       boolean _hasElements_1 = false;
-      for(final AgentPattern ap_1 : _agentPatterns_1) {
+      for(final ValidAgentPattern ap_1 : _validAgentPatterns_1) {
         if (!_hasElements_1) {
           _hasElements_1 = true;
         } else {
@@ -202,7 +230,18 @@ public class PatternTemplate {
     return _builder_1.toString();
   }
   
-  public String linkStatePattern(final AgentPattern ap, final SitePattern sp) {
+  public LinkedList<ValidAgentPattern> getValidAgentPatterns(final EList<AgentPattern> aps) {
+    final LinkedList<ValidAgentPattern> list = new LinkedList<ValidAgentPattern>();
+    for (final AgentPattern ap : aps) {
+      if ((ap instanceof ValidAgentPattern)) {
+        final ValidAgentPattern vap = ((ValidAgentPattern) ap);
+        list.add(vap);
+      }
+    }
+    return list;
+  }
+  
+  public String linkStatePattern(final ValidAgentPattern ap, final SitePattern sp) {
     LinkState _linkState = sp.getLinkState().getLinkState();
     final LinkState linkState = ((LinkState) _linkState);
     if ((linkState instanceof FreeLink)) {
@@ -349,7 +388,7 @@ public class PatternTemplate {
     }
   }
   
-  public String siteStatePattern(final AgentPattern ap, final SitePattern sp) {
+  public String siteStatePattern(final ValidAgentPattern ap, final SitePattern sp) {
     SiteState _state = sp.getState();
     final SiteState siteState = ((SiteState) _state);
     if ((siteState == null)) {
@@ -384,7 +423,7 @@ public class PatternTemplate {
     return _builder_1.toString();
   }
   
-  public String getOtherIndexedLinkAgent(final AgentPattern ap, final SitePattern sp) {
+  public String getOtherIndexedLinkAgent(final ValidAgentPattern ap, final SitePattern sp) {
     LinkState _linkState = sp.getLinkState().getLinkState();
     final IndexedLink iLink = ((IndexedLink) _linkState);
     Rule rule = ((Rule) null);
@@ -400,7 +439,7 @@ public class PatternTemplate {
       {
         final IndexedLink candidate = ((IndexedLink) cand);
         if (((!candidate.equals(iLink)) && iLink.getState().equals(candidate.getState()))) {
-          AgentPattern agentPattern = ((AgentPattern) null);
+          ValidAgentPattern agentPattern = ((ValidAgentPattern) null);
           SitePattern sitePattern = ((SitePattern) null);
           EObject eObj2 = candidate.eContainer();
           while (((!(eObj2 instanceof SitePattern)) && (eObj2 != null))) {
@@ -409,11 +448,11 @@ public class PatternTemplate {
           if ((eObj2 instanceof SitePattern)) {
             sitePattern = ((SitePattern) eObj2);
           }
-          while (((!(eObj2 instanceof AgentPattern)) && (eObj2 != null))) {
+          while (((!(eObj2 instanceof ValidAgentPattern)) && (eObj2 != null))) {
             eObj2 = eObj2.eContainer();
           }
-          if ((eObj2 instanceof AgentPattern)) {
-            agentPattern = ((AgentPattern) eObj2);
+          if ((eObj2 instanceof ValidAgentPattern)) {
+            agentPattern = ((ValidAgentPattern) eObj2);
           }
           if (((agentPattern != null) && (sitePattern != null))) {
             StringConcatenation _builder = new StringConcatenation();
@@ -446,7 +485,7 @@ public class PatternTemplate {
       {
         final IndexedLink candidate = ((IndexedLink) cand);
         if (((!candidate.equals(iLink)) && iLink.getState().equals(candidate.getState()))) {
-          AgentPattern agentPattern = ((AgentPattern) null);
+          ValidAgentPattern agentPattern = ((ValidAgentPattern) null);
           SitePattern sitePattern = ((SitePattern) null);
           EObject eObj2 = candidate.eContainer();
           while (((!(eObj2 instanceof SitePattern)) && (eObj2 != null))) {
@@ -455,11 +494,11 @@ public class PatternTemplate {
           if ((eObj2 instanceof SitePattern)) {
             sitePattern = ((SitePattern) eObj2);
           }
-          while (((!(eObj2 instanceof AgentPattern)) && (eObj2 != null))) {
+          while (((!(eObj2 instanceof ValidAgentPattern)) && (eObj2 != null))) {
             eObj2 = eObj2.eContainer();
           }
-          if ((eObj2 instanceof AgentPattern)) {
-            agentPattern = ((AgentPattern) eObj2);
+          if ((eObj2 instanceof ValidAgentPattern)) {
+            agentPattern = ((ValidAgentPattern) eObj2);
           }
           if (((agentPattern != null) && (sitePattern != null))) {
             StringConcatenation _builder = new StringConcatenation();
@@ -511,10 +550,13 @@ public class PatternTemplate {
     }
     LinkedList<SitePattern> sitePatterns = new LinkedList<SitePattern>();
     for (final AgentPattern aPattern : agentPatterns) {
-      SitePatterns _sitePatterns = aPattern.getSitePatterns();
-      boolean _tripleNotEquals_2 = (_sitePatterns != null);
-      if (_tripleNotEquals_2) {
-        sitePatterns.addAll(aPattern.getSitePatterns().getSitePatterns());
+      if ((aPattern instanceof ValidAgentPattern)) {
+        final ValidAgentPattern vaPattern = ((ValidAgentPattern) aPattern);
+        SitePatterns _sitePatterns = vaPattern.getSitePatterns();
+        boolean _tripleNotEquals_2 = (_sitePatterns != null);
+        if (_tripleNotEquals_2) {
+          sitePatterns.addAll(vaPattern.getSitePatterns().getSitePatterns());
+        }
       }
     }
     for (final SitePattern sPattern : sitePatterns) {
@@ -532,7 +574,7 @@ public class PatternTemplate {
     return out;
   }
   
-  public String generateAgentPatternContext(final AgentPattern ap) {
+  public String generateAgentPatternContext(final ValidAgentPattern ap) {
     StringConcatenation _builder = new StringConcatenation();
     String _name = ap.getAgent().getName();
     _builder.append(_name);
@@ -540,7 +582,7 @@ public class PatternTemplate {
     return _builder.toString();
   }
   
-  public String aILSVariableName(final AgentPattern ap, final SitePattern sp) {
+  public String aILSVariableName(final ValidAgentPattern ap, final SitePattern sp) {
     StringConcatenation _builder = new StringConcatenation();
     String _name = ap.getAgent().getName();
     String _plus = (_name + "_");
@@ -551,7 +593,7 @@ public class PatternTemplate {
     return _builder.toString();
   }
   
-  public String aISSVariableName(final AgentPattern ap, final SitePattern sp) {
+  public String aISSVariableName(final ValidAgentPattern ap, final SitePattern sp) {
     StringConcatenation _builder = new StringConcatenation();
     String _name = ap.getAgent().getName();
     String _plus = (_name + "_");

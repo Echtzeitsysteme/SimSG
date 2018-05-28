@@ -3,56 +3,22 @@
  */
 package biochemsimulation.reactionrules.reactionRules.impl;
 
-import biochemsimulation.reactionrules.reactionRules.Agent;
 import biochemsimulation.reactionrules.reactionRules.AgentPattern;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
-import biochemsimulation.reactionrules.reactionRules.SitePatterns;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Agent Pattern</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
- * <ul>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.AgentPatternImpl#getAgent <em>Agent</em>}</li>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.AgentPatternImpl#getSitePatterns <em>Site Patterns</em>}</li>
- * </ul>
  *
  * @generated
  */
 public class AgentPatternImpl extends MinimalEObjectImpl.Container implements AgentPattern
 {
-  /**
-   * The cached value of the '{@link #getAgent() <em>Agent</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getAgent()
-   * @generated
-   * @ordered
-   */
-  protected Agent agent;
-
-  /**
-   * The cached value of the '{@link #getSitePatterns() <em>Site Patterns</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSitePatterns()
-   * @generated
-   * @ordered
-   */
-  protected SitePatterns sitePatterns;
-
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -72,190 +38,6 @@ public class AgentPatternImpl extends MinimalEObjectImpl.Container implements Ag
   protected EClass eStaticClass()
   {
     return ReactionRulesPackage.Literals.AGENT_PATTERN;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Agent getAgent()
-  {
-    if (agent != null && agent.eIsProxy())
-    {
-      InternalEObject oldAgent = (InternalEObject)agent;
-      agent = (Agent)eResolveProxy(oldAgent);
-      if (agent != oldAgent)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReactionRulesPackage.AGENT_PATTERN__AGENT, oldAgent, agent));
-      }
-    }
-    return agent;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Agent basicGetAgent()
-  {
-    return agent;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setAgent(Agent newAgent)
-  {
-    Agent oldAgent = agent;
-    agent = newAgent;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.AGENT_PATTERN__AGENT, oldAgent, agent));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public SitePatterns getSitePatterns()
-  {
-    return sitePatterns;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetSitePatterns(SitePatterns newSitePatterns, NotificationChain msgs)
-  {
-    SitePatterns oldSitePatterns = sitePatterns;
-    sitePatterns = newSitePatterns;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.AGENT_PATTERN__SITE_PATTERNS, oldSitePatterns, newSitePatterns);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setSitePatterns(SitePatterns newSitePatterns)
-  {
-    if (newSitePatterns != sitePatterns)
-    {
-      NotificationChain msgs = null;
-      if (sitePatterns != null)
-        msgs = ((InternalEObject)sitePatterns).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.AGENT_PATTERN__SITE_PATTERNS, null, msgs);
-      if (newSitePatterns != null)
-        msgs = ((InternalEObject)newSitePatterns).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.AGENT_PATTERN__SITE_PATTERNS, null, msgs);
-      msgs = basicSetSitePatterns(newSitePatterns, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.AGENT_PATTERN__SITE_PATTERNS, newSitePatterns, newSitePatterns));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case ReactionRulesPackage.AGENT_PATTERN__SITE_PATTERNS:
-        return basicSetSitePatterns(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
-    switch (featureID)
-    {
-      case ReactionRulesPackage.AGENT_PATTERN__AGENT:
-        if (resolve) return getAgent();
-        return basicGetAgent();
-      case ReactionRulesPackage.AGENT_PATTERN__SITE_PATTERNS:
-        return getSitePatterns();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
-    switch (featureID)
-    {
-      case ReactionRulesPackage.AGENT_PATTERN__AGENT:
-        setAgent((Agent)newValue);
-        return;
-      case ReactionRulesPackage.AGENT_PATTERN__SITE_PATTERNS:
-        setSitePatterns((SitePatterns)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID)
-  {
-    switch (featureID)
-    {
-      case ReactionRulesPackage.AGENT_PATTERN__AGENT:
-        setAgent((Agent)null);
-        return;
-      case ReactionRulesPackage.AGENT_PATTERN__SITE_PATTERNS:
-        setSitePatterns((SitePatterns)null);
-        return;
-    }
-    super.eUnset(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
-    switch (featureID)
-    {
-      case ReactionRulesPackage.AGENT_PATTERN__AGENT:
-        return agent != null;
-      case ReactionRulesPackage.AGENT_PATTERN__SITE_PATTERNS:
-        return sitePatterns != null;
-    }
-    return super.eIsSet(featureID);
   }
 
 } //AgentPatternImpl

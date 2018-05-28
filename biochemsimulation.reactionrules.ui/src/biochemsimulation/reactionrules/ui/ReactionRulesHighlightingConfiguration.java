@@ -12,6 +12,7 @@ public class ReactionRulesHighlightingConfiguration extends DefaultHighlightingC
 	public static final String STATE_ID = "state";
 	public static final String RULE_OPERATOR_ID = "rule_operator";
 	public static final String RULE_VARIABLES_ID = "rule_variables";
+	public static final String VOID_AGENT_PATTERN_ID = "void_agent_pattern";
 	
 	@Override
     public void configure(IHighlightingConfigurationAcceptor acceptor) {
@@ -20,6 +21,7 @@ public class ReactionRulesHighlightingConfiguration extends DefaultHighlightingC
         acceptor.acceptDefaultHighlighting(RULE_OPERATOR_ID, "Rule_Operator", ruleOperatorTextStyle());
         acceptor.acceptDefaultHighlighting(RULE_VARIABLES_ID, "Rule_Variables", ruleVariablesTextStyle());
         acceptor.acceptDefaultHighlighting(STATE_ID, "State", stateTextStyle());
+        acceptor.acceptDefaultHighlighting(VOID_AGENT_PATTERN_ID, "Void_Agent_Pattern", voidAgentPatternTextStyle());
     }
 	
 	protected TextStyle stateTextStyle() {
@@ -46,6 +48,13 @@ public class ReactionRulesHighlightingConfiguration extends DefaultHighlightingC
 	protected TextStyle ruleVariablesTextStyle() {
 		TextStyle textStyle = new TextStyle();
 		textStyle.setBackgroundColor(new RGB(159, 223, 191));
+        return textStyle;
+	}
+	
+	protected TextStyle voidAgentPatternTextStyle() {
+		TextStyle textStyle = new TextStyle();
+		textStyle.setColor(new RGB(0, 51, 204));
+		textStyle.setStyle(SWT.BOLD);
         return textStyle;
 	}
 

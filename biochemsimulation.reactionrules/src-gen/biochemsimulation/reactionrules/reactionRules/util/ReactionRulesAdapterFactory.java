@@ -201,6 +201,16 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
         return createSitePatternsAdapter();
       }
       @Override
+      public Adapter caseValidAgentPattern(ValidAgentPattern object)
+      {
+        return createValidAgentPatternAdapter();
+      }
+      @Override
+      public Adapter caseVoidAgentPattern(VoidAgentPattern object)
+      {
+        return createVoidAgentPatternAdapter();
+      }
+      @Override
       public Adapter caseAgentPattern(AgentPattern object)
       {
         return createAgentPatternAdapter();
@@ -683,6 +693,36 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createSitePatternsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.ValidAgentPattern <em>Valid Agent Pattern</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.ValidAgentPattern
+   * @generated
+   */
+  public Adapter createValidAgentPatternAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.VoidAgentPattern <em>Void Agent Pattern</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.VoidAgentPattern
+   * @generated
+   */
+  public Adapter createVoidAgentPatternAdapter()
   {
     return null;
   }

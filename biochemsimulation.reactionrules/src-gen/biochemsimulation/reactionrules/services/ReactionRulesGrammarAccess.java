@@ -1146,10 +1146,10 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		//SitePattern
 		public RuleCall getSitePatternsSitePatternParserRuleCall_1_1_1_0() { return cSitePatternsSitePatternParserRuleCall_1_1_1_0; }
 	}
-	public class AgentPatternElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.AgentPattern");
+	public class ValidAgentPatternElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.ValidAgentPattern");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cAgentPatternAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cValidAgentPatternAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cAgentAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cAgentAgentCrossReference_1_0 = (CrossReference)cAgentAssignment_1.eContents().get(0);
 		private final RuleCall cAgentAgentIDTerminalRuleCall_1_0_1 = (RuleCall)cAgentAgentCrossReference_1_0.eContents().get(1);
@@ -1158,16 +1158,16 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSitePatternsSitePatternsParserRuleCall_3_0 = (RuleCall)cSitePatternsAssignment_3.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
-		//AgentPattern:
-		//	{AgentPattern} agent=[Agent]
+		//ValidAgentPattern:
+		//	{ValidAgentPattern} agent=[Agent]
 		//	'(' sitePatterns=SitePatterns ')';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{AgentPattern} agent=[Agent] '(' sitePatterns=SitePatterns ')'
+		//{ValidAgentPattern} agent=[Agent] '(' sitePatterns=SitePatterns ')'
 		public Group getGroup() { return cGroup; }
 		
-		//{AgentPattern}
-		public Action getAgentPatternAction_0() { return cAgentPatternAction_0; }
+		//{ValidAgentPattern}
+		public Action getValidAgentPatternAction_0() { return cValidAgentPatternAction_0; }
 		
 		//agent=[Agent]
 		public Assignment getAgentAssignment_1() { return cAgentAssignment_1; }
@@ -1189,6 +1189,40 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//')'
 		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
+	}
+	public class VoidAgentPatternElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.VoidAgentPattern");
+		private final Assignment cPatternAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cPatternVOID_PATTERNTerminalRuleCall_0 = (RuleCall)cPatternAssignment.eContents().get(0);
+		
+		//VoidAgentPattern:
+		//	pattern=VOID_PATTERN;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//pattern=VOID_PATTERN
+		public Assignment getPatternAssignment() { return cPatternAssignment; }
+		
+		//VOID_PATTERN
+		public RuleCall getPatternVOID_PATTERNTerminalRuleCall_0() { return cPatternVOID_PATTERNTerminalRuleCall_0; }
+	}
+	public class AgentPatternElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.AgentPattern");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cValidAgentPatternParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cVoidAgentPatternParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//AgentPattern:
+		//	ValidAgentPattern | VoidAgentPattern;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//ValidAgentPattern | VoidAgentPattern
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//ValidAgentPattern
+		public RuleCall getValidAgentPatternParserRuleCall_0() { return cValidAgentPatternParserRuleCall_0; }
+		
+		//VoidAgentPattern
+		public RuleCall getVoidAgentPatternParserRuleCall_1() { return cVoidAgentPatternParserRuleCall_1; }
 	}
 	public class PatternElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.Pattern");
@@ -1643,6 +1677,7 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	private final TerminalRule tAT;
 	private final TerminalRule tBI;
 	private final TerminalRule tUNI;
+	private final TerminalRule tVOID_PATTERN;
 	private final TerminalRule tSEMI_LINK;
 	private final TerminalRule tFREE_LINK;
 	private final TerminalRule tWHATEVER_LINK;
@@ -1673,6 +1708,8 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	private final LinkStateElements pLinkState;
 	private final SitePatternElements pSitePattern;
 	private final SitePatternsElements pSitePatterns;
+	private final ValidAgentPatternElements pValidAgentPattern;
+	private final VoidAgentPatternElements pVoidAgentPattern;
 	private final AgentPatternElements pAgentPattern;
 	private final PatternElements pPattern;
 	private final ObservationElements pObservation;
@@ -1711,6 +1748,7 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		this.tAT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.AT");
 		this.tBI = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.BI");
 		this.tUNI = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.UNI");
+		this.tVOID_PATTERN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.VOID_PATTERN");
 		this.tSEMI_LINK = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.SEMI_LINK");
 		this.tFREE_LINK = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.FREE_LINK");
 		this.tWHATEVER_LINK = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.WHATEVER_LINK");
@@ -1741,6 +1779,8 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		this.pLinkState = new LinkStateElements();
 		this.pSitePattern = new SitePatternElements();
 		this.pSitePatterns = new SitePatternsElements();
+		this.pValidAgentPattern = new ValidAgentPatternElements();
+		this.pVoidAgentPattern = new VoidAgentPatternElements();
 		this.pAgentPattern = new AgentPatternElements();
 		this.pPattern = new PatternElements();
 		this.pObservation = new ObservationElements();
@@ -1910,6 +1950,12 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	//	'->';
 	public TerminalRule getUNIRule() {
 		return tUNI;
+	}
+	
+	//terminal VOID_PATTERN:
+	//	'void';
+	public TerminalRule getVOID_PATTERNRule() {
+		return tVOID_PATTERN;
 	}
 	
 	//terminal SEMI_LINK:
@@ -2204,9 +2250,29 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		return getSitePatternsAccess().getRule();
 	}
 	
-	//AgentPattern:
-	//	{AgentPattern} agent=[Agent]
+	//ValidAgentPattern:
+	//	{ValidAgentPattern} agent=[Agent]
 	//	'(' sitePatterns=SitePatterns ')';
+	public ValidAgentPatternElements getValidAgentPatternAccess() {
+		return pValidAgentPattern;
+	}
+	
+	public ParserRule getValidAgentPatternRule() {
+		return getValidAgentPatternAccess().getRule();
+	}
+	
+	//VoidAgentPattern:
+	//	pattern=VOID_PATTERN;
+	public VoidAgentPatternElements getVoidAgentPatternAccess() {
+		return pVoidAgentPattern;
+	}
+	
+	public ParserRule getVoidAgentPatternRule() {
+		return getVoidAgentPatternAccess().getRule();
+	}
+	
+	//AgentPattern:
+	//	ValidAgentPattern | VoidAgentPattern;
 	public AgentPatternElements getAgentPatternAccess() {
 		return pAgentPattern;
 	}

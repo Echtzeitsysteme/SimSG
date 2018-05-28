@@ -909,25 +909,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getAgentPattern()
    * @generated
    */
-  int AGENT_PATTERN = 25;
-
-  /**
-   * The feature id for the '<em><b>Agent</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int AGENT_PATTERN__AGENT = 0;
-
-  /**
-   * The feature id for the '<em><b>Site Patterns</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int AGENT_PATTERN__SITE_PATTERNS = 1;
+  int AGENT_PATTERN = 27;
 
   /**
    * The number of structural features of the '<em>Agent Pattern</em>' class.
@@ -936,7 +918,72 @@ public interface ReactionRulesPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AGENT_PATTERN_FEATURE_COUNT = 2;
+  int AGENT_PATTERN_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.ValidAgentPatternImpl <em>Valid Agent Pattern</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ValidAgentPatternImpl
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getValidAgentPattern()
+   * @generated
+   */
+  int VALID_AGENT_PATTERN = 25;
+
+  /**
+   * The feature id for the '<em><b>Agent</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALID_AGENT_PATTERN__AGENT = AGENT_PATTERN_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Site Patterns</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALID_AGENT_PATTERN__SITE_PATTERNS = AGENT_PATTERN_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Valid Agent Pattern</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VALID_AGENT_PATTERN_FEATURE_COUNT = AGENT_PATTERN_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.VoidAgentPatternImpl <em>Void Agent Pattern</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see biochemsimulation.reactionrules.reactionRules.impl.VoidAgentPatternImpl
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getVoidAgentPattern()
+   * @generated
+   */
+  int VOID_AGENT_PATTERN = 26;
+
+  /**
+   * The feature id for the '<em><b>Pattern</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VOID_AGENT_PATTERN__PATTERN = AGENT_PATTERN_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Void Agent Pattern</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VOID_AGENT_PATTERN_FEATURE_COUNT = AGENT_PATTERN_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.PatternImpl <em>Pattern</em>}' class.
@@ -946,7 +993,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getPattern()
    * @generated
    */
-  int PATTERN = 26;
+  int PATTERN = 28;
 
   /**
    * The feature id for the '<em><b>Agent Patterns</b></em>' containment reference list.
@@ -974,7 +1021,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getObservation()
    * @generated
    */
-  int OBSERVATION = 27;
+  int OBSERVATION = 29;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1011,7 +1058,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getNumericAssignment()
    * @generated
    */
-  int NUMERIC_ASSIGNMENT = 30;
+  int NUMERIC_ASSIGNMENT = 32;
 
   /**
    * The number of structural features of the '<em>Numeric Assignment</em>' class.
@@ -1030,7 +1077,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getNumericFromLiteral()
    * @generated
    */
-  int NUMERIC_FROM_LITERAL = 28;
+  int NUMERIC_FROM_LITERAL = 30;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -1058,7 +1105,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getNumericFromVariable()
    * @generated
    */
-  int NUMERIC_FROM_VARIABLE = 29;
+  int NUMERIC_FROM_VARIABLE = 31;
 
   /**
    * The feature id for the '<em><b>Value Var</b></em>' reference.
@@ -1086,7 +1133,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getInitial()
    * @generated
    */
-  int INITIAL = 31;
+  int INITIAL = 33;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1132,7 +1179,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getPatternAssignment()
    * @generated
    */
-  int PATTERN_ASSIGNMENT = 34;
+  int PATTERN_ASSIGNMENT = 36;
 
   /**
    * The number of structural features of the '<em>Pattern Assignment</em>' class.
@@ -1151,7 +1198,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getAssignFromPattern()
    * @generated
    */
-  int ASSIGN_FROM_PATTERN = 32;
+  int ASSIGN_FROM_PATTERN = 34;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' containment reference.
@@ -1179,7 +1226,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getAssignFromVariable()
    * @generated
    */
-  int ASSIGN_FROM_VARIABLE = 33;
+  int ASSIGN_FROM_VARIABLE = 35;
 
   /**
    * The feature id for the '<em><b>Pattern Var</b></em>' reference.
@@ -1207,7 +1254,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getRuleVariables()
    * @generated
    */
-  int RULE_VARIABLES = 35;
+  int RULE_VARIABLES = 37;
 
   /**
    * The feature id for the '<em><b>Variables</b></em>' containment reference list.
@@ -1235,7 +1282,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getRuleBody()
    * @generated
    */
-  int RULE_BODY = 36;
+  int RULE_BODY = 38;
 
   /**
    * The feature id for the '<em><b>Lhs</b></em>' containment reference.
@@ -1290,7 +1337,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getRule()
    * @generated
    */
-  int RULE = 37;
+  int RULE = 39;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1327,7 +1374,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getSemiLink()
    * @generated
    */
-  int SEMI_LINK = 38;
+  int SEMI_LINK = 40;
 
   /**
    * The feature id for the '<em><b>Link State</b></em>' containment reference.
@@ -1364,7 +1411,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getFreeLink()
    * @generated
    */
-  int FREE_LINK = 39;
+  int FREE_LINK = 41;
 
   /**
    * The feature id for the '<em><b>Link State</b></em>' containment reference.
@@ -1401,7 +1448,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getWhatEver()
    * @generated
    */
-  int WHAT_EVER = 40;
+  int WHAT_EVER = 42;
 
   /**
    * The feature id for the '<em><b>Link State</b></em>' containment reference.
@@ -1438,7 +1485,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getIndexedLink()
    * @generated
    */
-  int INDEXED_LINK = 41;
+  int INDEXED_LINK = 43;
 
   /**
    * The feature id for the '<em><b>Link State</b></em>' containment reference.
@@ -1475,7 +1522,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getExactLink()
    * @generated
    */
-  int EXACT_LINK = 42;
+  int EXACT_LINK = 44;
 
   /**
    * The feature id for the '<em><b>Link State</b></em>' containment reference.
@@ -2172,6 +2219,59 @@ public interface ReactionRulesPackage extends EPackage
   EReference getSitePatterns_SitePatterns();
 
   /**
+   * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.ValidAgentPattern <em>Valid Agent Pattern</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Valid Agent Pattern</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.ValidAgentPattern
+   * @generated
+   */
+  EClass getValidAgentPattern();
+
+  /**
+   * Returns the meta object for the reference '{@link biochemsimulation.reactionrules.reactionRules.ValidAgentPattern#getAgent <em>Agent</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Agent</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.ValidAgentPattern#getAgent()
+   * @see #getValidAgentPattern()
+   * @generated
+   */
+  EReference getValidAgentPattern_Agent();
+
+  /**
+   * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.ValidAgentPattern#getSitePatterns <em>Site Patterns</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Site Patterns</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.ValidAgentPattern#getSitePatterns()
+   * @see #getValidAgentPattern()
+   * @generated
+   */
+  EReference getValidAgentPattern_SitePatterns();
+
+  /**
+   * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.VoidAgentPattern <em>Void Agent Pattern</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Void Agent Pattern</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.VoidAgentPattern
+   * @generated
+   */
+  EClass getVoidAgentPattern();
+
+  /**
+   * Returns the meta object for the attribute '{@link biochemsimulation.reactionrules.reactionRules.VoidAgentPattern#getPattern <em>Pattern</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Pattern</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.VoidAgentPattern#getPattern()
+   * @see #getVoidAgentPattern()
+   * @generated
+   */
+  EAttribute getVoidAgentPattern_Pattern();
+
+  /**
    * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.AgentPattern <em>Agent Pattern</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2180,28 +2280,6 @@ public interface ReactionRulesPackage extends EPackage
    * @generated
    */
   EClass getAgentPattern();
-
-  /**
-   * Returns the meta object for the reference '{@link biochemsimulation.reactionrules.reactionRules.AgentPattern#getAgent <em>Agent</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Agent</em>'.
-   * @see biochemsimulation.reactionrules.reactionRules.AgentPattern#getAgent()
-   * @see #getAgentPattern()
-   * @generated
-   */
-  EReference getAgentPattern_Agent();
-
-  /**
-   * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.AgentPattern#getSitePatterns <em>Site Patterns</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Site Patterns</em>'.
-   * @see biochemsimulation.reactionrules.reactionRules.AgentPattern#getSitePatterns()
-   * @see #getAgentPattern()
-   * @generated
-   */
-  EReference getAgentPattern_SitePatterns();
 
   /**
    * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.Pattern <em>Pattern</em>}'.
@@ -3163,6 +3241,50 @@ public interface ReactionRulesPackage extends EPackage
     EReference SITE_PATTERNS__SITE_PATTERNS = eINSTANCE.getSitePatterns_SitePatterns();
 
     /**
+     * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.ValidAgentPatternImpl <em>Valid Agent Pattern</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ValidAgentPatternImpl
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getValidAgentPattern()
+     * @generated
+     */
+    EClass VALID_AGENT_PATTERN = eINSTANCE.getValidAgentPattern();
+
+    /**
+     * The meta object literal for the '<em><b>Agent</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference VALID_AGENT_PATTERN__AGENT = eINSTANCE.getValidAgentPattern_Agent();
+
+    /**
+     * The meta object literal for the '<em><b>Site Patterns</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference VALID_AGENT_PATTERN__SITE_PATTERNS = eINSTANCE.getValidAgentPattern_SitePatterns();
+
+    /**
+     * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.VoidAgentPatternImpl <em>Void Agent Pattern</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see biochemsimulation.reactionrules.reactionRules.impl.VoidAgentPatternImpl
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getVoidAgentPattern()
+     * @generated
+     */
+    EClass VOID_AGENT_PATTERN = eINSTANCE.getVoidAgentPattern();
+
+    /**
+     * The meta object literal for the '<em><b>Pattern</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VOID_AGENT_PATTERN__PATTERN = eINSTANCE.getVoidAgentPattern_Pattern();
+
+    /**
      * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.AgentPatternImpl <em>Agent Pattern</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3171,22 +3293,6 @@ public interface ReactionRulesPackage extends EPackage
      * @generated
      */
     EClass AGENT_PATTERN = eINSTANCE.getAgentPattern();
-
-    /**
-     * The meta object literal for the '<em><b>Agent</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference AGENT_PATTERN__AGENT = eINSTANCE.getAgentPattern_Agent();
-
-    /**
-     * The meta object literal for the '<em><b>Site Patterns</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference AGENT_PATTERN__SITE_PATTERNS = eINSTANCE.getAgentPattern_SitePatterns();
 
     /**
      * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.PatternImpl <em>Pattern</em>}' class.

@@ -30,6 +30,7 @@ import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.SiteState;
 import biochemsimulation.reactionrules.reactionRules.State;
+import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.WhatEver;
 import biochemsimulation.reactionrules.reactionRules.impl.ReactionRuleModelImpl;
 import biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesFactoryImpl;
@@ -123,11 +124,14 @@ public class ReactionRulesGenerator extends AbstractGenerator {
         EList<AgentPattern> _agentPatterns = pattern.getAgentPatterns();
         for (final AgentPattern agentPattern : _agentPatterns) {
           {
-            AgentPattern ap = ((AgentPattern) agentPattern);
-            Agent agent = ap.getAgent();
-            AgentInstance agentI = factory.createAgentInstance();
-            model.getReactionContainer().getAgentInstances().add(agentI);
-            this.createNewAgentInstance(agentI, factory, agent, agentPattern, prefix, (i).intValue(), linksA, linksS);
+            final AgentPattern ap = ((AgentPattern) agentPattern);
+            if ((ap instanceof ValidAgentPattern)) {
+              final ValidAgentPattern vap = ((ValidAgentPattern) agentPattern);
+              Agent agent = vap.getAgent();
+              AgentInstance agentI = factory.createAgentInstance();
+              model.getReactionContainer().getAgentInstances().add(agentI);
+              this.createNewAgentInstance(agentI, factory, agent, vap, prefix, (i).intValue(), linksA, linksS);
+            }
           }
         }
         Set<String> _keySet = linksA.keySet();
@@ -157,7 +161,7 @@ public class ReactionRulesGenerator extends AbstractGenerator {
     }
   }
   
-  public AgentInstance createNewAgentInstance(final AgentInstance agentI, final ReactionRulesFactory factory, final Agent agent, final AgentPattern ap, final String prefix, final int iteration, final HashMap<String, List<AgentInstance>> linksA, final HashMap<String, List<Site>> linksS) {
+  public AgentInstance createNewAgentInstance(final AgentInstance agentI, final ReactionRulesFactory factory, final Agent agent, final ValidAgentPattern ap, final String prefix, final int iteration, final HashMap<String, List<AgentInstance>> linksA, final HashMap<String, List<Site>> linksS) {
     String _name = agent.getName();
     String _plus = ((prefix + ":") + _name);
     String _plus_1 = (_plus + ".Instance@#");

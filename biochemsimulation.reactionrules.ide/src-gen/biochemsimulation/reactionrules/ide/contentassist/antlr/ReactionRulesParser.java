@@ -37,6 +37,7 @@ public class ReactionRulesParser extends AbstractContentAssistParser {
 					put(grammarAccess.getArithmeticTypeAccess().getAlternatives(), "rule__ArithmeticType__Alternatives");
 					put(grammarAccess.getVariableAccess().getAlternatives(), "rule__Variable__Alternatives");
 					put(grammarAccess.getLinkStateAccess().getLinkStateAlternatives_1_0(), "rule__LinkState__LinkStateAlternatives_1_0");
+					put(grammarAccess.getAgentPatternAccess().getAlternatives(), "rule__AgentPattern__Alternatives");
 					put(grammarAccess.getNumericAssignmentAccess().getAlternatives(), "rule__NumericAssignment__Alternatives");
 					put(grammarAccess.getPatternAssignmentAccess().getAlternatives(), "rule__PatternAssignment__Alternatives");
 					put(grammarAccess.getRuleBodyAccess().getAlternatives(), "rule__RuleBody__Alternatives");
@@ -75,7 +76,7 @@ public class ReactionRulesParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSitePatternsAccess().getGroup(), "rule__SitePatterns__Group__0");
 					put(grammarAccess.getSitePatternsAccess().getGroup_1(), "rule__SitePatterns__Group_1__0");
 					put(grammarAccess.getSitePatternsAccess().getGroup_1_1(), "rule__SitePatterns__Group_1_1__0");
-					put(grammarAccess.getAgentPatternAccess().getGroup(), "rule__AgentPattern__Group__0");
+					put(grammarAccess.getValidAgentPatternAccess().getGroup(), "rule__ValidAgentPattern__Group__0");
 					put(grammarAccess.getPatternAccess().getGroup(), "rule__Pattern__Group__0");
 					put(grammarAccess.getPatternAccess().getGroup_2(), "rule__Pattern__Group_2__0");
 					put(grammarAccess.getPatternAccess().getGroup_2_1(), "rule__Pattern__Group_2_1__0");
@@ -134,8 +135,9 @@ public class ReactionRulesParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSitePatternAccess().getLinkStateAssignment_4(), "rule__SitePattern__LinkStateAssignment_4");
 					put(grammarAccess.getSitePatternsAccess().getSitePatternsAssignment_1_0(), "rule__SitePatterns__SitePatternsAssignment_1_0");
 					put(grammarAccess.getSitePatternsAccess().getSitePatternsAssignment_1_1_1(), "rule__SitePatterns__SitePatternsAssignment_1_1_1");
-					put(grammarAccess.getAgentPatternAccess().getAgentAssignment_1(), "rule__AgentPattern__AgentAssignment_1");
-					put(grammarAccess.getAgentPatternAccess().getSitePatternsAssignment_3(), "rule__AgentPattern__SitePatternsAssignment_3");
+					put(grammarAccess.getValidAgentPatternAccess().getAgentAssignment_1(), "rule__ValidAgentPattern__AgentAssignment_1");
+					put(grammarAccess.getValidAgentPatternAccess().getSitePatternsAssignment_3(), "rule__ValidAgentPattern__SitePatternsAssignment_3");
+					put(grammarAccess.getVoidAgentPatternAccess().getPatternAssignment(), "rule__VoidAgentPattern__PatternAssignment");
 					put(grammarAccess.getPatternAccess().getAgentPatternsAssignment_2_0(), "rule__Pattern__AgentPatternsAssignment_2_0");
 					put(grammarAccess.getPatternAccess().getAgentPatternsAssignment_2_1_1(), "rule__Pattern__AgentPatternsAssignment_2_1_1");
 					put(grammarAccess.getObservationAccess().getNameAssignment_1(), "rule__Observation__NameAssignment_1");

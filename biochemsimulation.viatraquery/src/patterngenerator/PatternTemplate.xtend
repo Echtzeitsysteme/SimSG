@@ -21,6 +21,8 @@ import biochemsimulation.reactionrules.reactionRules.IndexedLink
 import java.util.LinkedList
 import biochemsimulation.reactionrules.reactionRules.RuleBody
 import biochemsimulation.reactionrules.reactionRules.SiteState
+import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern
+import org.eclipse.emf.common.util.EList
 
 class PatternTemplate {
 	
@@ -42,10 +44,23 @@ class PatternTemplate {
 			«ENDFOR»
 			
 			«FOR r : rules SEPARATOR "\n"»
-				«generatePatternCode(r, patternFromPatternAssignment(r.rule.lhs), "lhs")»«if(r.rule.operator.equals("<->"))"\n"»
-				«if(r.rule.operator.equals("<->"))generatePatternCode(r, patternFromPatternAssignment(r.rule.rhs), "rhs")»
+				«if(!isPatternEmpty(patternFromPatternAssignment(r.rule.lhs)))generatePatternCode(r, patternFromPatternAssignment(r.rule.lhs), "lhs")»«if(r.rule.operator.equals("<->"))"\n"»
+				«if(r.rule.operator.equals("<->"))if(!isPatternEmpty(patternFromPatternAssignment(r.rule.rhs)))generatePatternCode(r, patternFromPatternAssignment(r.rule.rhs), "rhs")»
 			«ENDFOR»
 		'''
+	}
+	
+	def boolean isPatternEmpty(Pattern p) {
+		if(p.agentPatterns.size() < 1) {
+			return true;
+		}else {
+			for(ap : p.agentPatterns) {
+				if(ap instanceof ValidAgentPattern) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 	
 	def Pattern patternFromPatternAssignment(PatternAssignment pa) {
@@ -63,8 +78,8 @@ class PatternTemplate {
 			return ''''''
 		}	
 		return '''
-			pattern «rule.name+"_"+suffix»(«FOR ap : pattern.agentPatterns SEPARATOR ", "» «generateAgentPatternContext(ap)»«ENDFOR») {
-				«FOR ap : pattern.agentPatterns SEPARATOR "\n"»
+			pattern «rule.name+"_"+suffix»(«FOR ap : getValidAgentPatterns(pattern.agentPatterns) SEPARATOR ", "» «generateAgentPatternContext(ap)»«ENDFOR») {
+				«FOR ap : getValidAgentPatterns(pattern.agentPatterns) SEPARATOR "\n"»
 				// Agent pattern for instances of agent «ap.agent.name»
 				AgentInstance.agent.name(«ap.agent.name», "«ap.agent.name»");
 					«FOR sp : ap.sitePatterns.sitePatterns SEPARATOR "\n"»
@@ -80,7 +95,18 @@ class PatternTemplate {
 		
 	}
 	
-	def linkStatePattern(AgentPattern ap, SitePattern sp) {
+	def getValidAgentPatterns(EList<AgentPattern> aps) {
+		val list = new LinkedList<ValidAgentPattern>()
+		for(ap : aps) {
+			if(ap instanceof ValidAgentPattern) {
+				val vap = ap as ValidAgentPattern
+				list.add(vap)
+			}
+		}
+		return list
+	}
+	
+	def linkStatePattern(ValidAgentPattern ap, SitePattern sp) {
 		val linkState = sp.linkState.linkState as LinkState
 		if(linkState instanceof FreeLink) {
 			return '''
@@ -124,7 +150,7 @@ class PatternTemplate {
 		}
 	}
 	
-	def siteStatePattern(AgentPattern ap, SitePattern sp) {
+	def siteStatePattern(ValidAgentPattern ap, SitePattern sp) {
 		val siteState = sp.state as SiteState
 		if(siteState === null) {
 			return ''''''
@@ -136,7 +162,7 @@ class PatternTemplate {
 		'''
 	}
 	
-	def getOtherIndexedLinkAgent(AgentPattern ap, SitePattern sp) {
+	def getOtherIndexedLinkAgent(ValidAgentPattern ap, SitePattern sp) {
 		val iLink = sp.linkState.linkState as IndexedLink
 		var rule = null as Rule
 		var eObj = iLink.eContainer
@@ -150,7 +176,7 @@ class PatternTemplate {
 		for(cand : candidates) {
 			val candidate = cand as IndexedLink
 			if(!candidate.equals(iLink) && iLink.state.equals(candidate.state)) {
-				var agentPattern = null as AgentPattern
+				var agentPattern = null as ValidAgentPattern
 				var sitePattern = null as SitePattern
 				var eObj2 = candidate.eContainer
 				while(!(eObj2 instanceof SitePattern) && eObj2 !== null) {
@@ -159,11 +185,11 @@ class PatternTemplate {
 				if(eObj2 instanceof SitePattern) {
 					sitePattern = eObj2 as SitePattern
 				}
-				while(!(eObj2 instanceof AgentPattern) && eObj2 !== null) {
+				while(!(eObj2 instanceof ValidAgentPattern) && eObj2 !== null) {
 					eObj2 = eObj2.eContainer
 				}
-				if(eObj2 instanceof AgentPattern) {
-					agentPattern = eObj2 as AgentPattern
+				if(eObj2 instanceof ValidAgentPattern) {
+					agentPattern = eObj2 as ValidAgentPattern
 				}
 				if(agentPattern !== null && sitePattern !== null) {
 					return '''«agentPattern.agent.name»'''
@@ -188,7 +214,7 @@ class PatternTemplate {
 		for(cand : candidates) {
 			val candidate = cand as IndexedLink
 			if(!candidate.equals(iLink) && iLink.state.equals(candidate.state)) {
-				var agentPattern = null as AgentPattern
+				var agentPattern = null as ValidAgentPattern
 				var sitePattern = null as SitePattern
 				var eObj2 = candidate.eContainer
 				while(!(eObj2 instanceof SitePattern) && eObj2 !== null) {
@@ -197,11 +223,11 @@ class PatternTemplate {
 				if(eObj2 instanceof SitePattern) {
 					sitePattern = eObj2 as SitePattern
 				}
-				while(!(eObj2 instanceof AgentPattern) && eObj2 !== null) {
+				while(!(eObj2 instanceof ValidAgentPattern) && eObj2 !== null) {
 					eObj2 = eObj2.eContainer
 				}
-				if(eObj2 instanceof AgentPattern) {
-					agentPattern = eObj2 as AgentPattern
+				if(eObj2 instanceof ValidAgentPattern) {
+					agentPattern = eObj2 as ValidAgentPattern
 				}
 				if(agentPattern !== null && sitePattern !== null) {
 					return '''«agentPattern.agent.name»_«sitePattern.site.name»_Site'''
@@ -238,9 +264,13 @@ class PatternTemplate {
 		}
 		var sitePatterns = new LinkedList<SitePattern>()
 		for(aPattern : agentPatterns) {
-			if(aPattern.sitePatterns !== null) {
-				sitePatterns.addAll(aPattern.sitePatterns.sitePatterns)
+			if(aPattern instanceof ValidAgentPattern) {
+				val vaPattern = aPattern as ValidAgentPattern
+				if(vaPattern.sitePatterns !== null) {
+					sitePatterns.addAll(vaPattern.sitePatterns.sitePatterns)
+				}
 			}
+			
 		}
 		for(sPattern : sitePatterns) {
 			if(sPattern.linkState !== null) {
@@ -254,14 +284,14 @@ class PatternTemplate {
 		
 	} 
 	
-	def generateAgentPatternContext(AgentPattern ap) {
+	def generateAgentPatternContext(ValidAgentPattern ap) {
 		return '''«ap.agent.name»: AgentInstance'''
 	}
 	
-	def aILSVariableName(AgentPattern ap, SitePattern sp) {
+	def aILSVariableName(ValidAgentPattern ap, SitePattern sp) {
 		return '''«ap.agent.name+"_"+sp.site.name»_ILS'''
 	}
-	def aISSVariableName(AgentPattern ap, SitePattern sp) {
+	def aISSVariableName(ValidAgentPattern ap, SitePattern sp) {
 		return '''«ap.agent.name+"_"+sp.site.name»_ISS'''
 	}
 	

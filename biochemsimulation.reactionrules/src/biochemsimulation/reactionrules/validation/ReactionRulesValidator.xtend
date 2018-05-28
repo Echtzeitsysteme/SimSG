@@ -13,7 +13,6 @@ import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.xtext.validation.Check
 import biochemsimulation.reactionrules.reactionRules.Initial
 import biochemsimulation.reactionrules.reactionRules.RuleBody
-import biochemsimulation.reactionrules.reactionRules.AgentPattern
 import biochemsimulation.reactionrules.reactionRules.SitePattern
 import java.util.HashSet
 import biochemsimulation.reactionrules.reactionRules.IndexedLink
@@ -29,6 +28,7 @@ import biochemsimulation.reactionrules.reactionRules.AssignFromVariable
 import biochemsimulation.reactionrules.reactionRules.SemiLink
 import biochemsimulation.reactionrules.reactionRules.WhatEver
 import biochemsimulation.reactionrules.reactionRules.ExactLink
+import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern
 
 /**
  * This class contains custom validation rules. 
@@ -128,12 +128,16 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 	def checkInitialIllegalLinkStates(Initial initial) {
 		val pattern = patternFromPatternAssignment(initial.initialPattern)
 		for(ap : pattern.agentPatterns) {
-			for(sp : ap.sitePatterns.sitePatterns) {
-				val linkState = sp.linkState.linkState
-				if(linkState instanceof SemiLink || linkState instanceof WhatEver || linkState instanceof ExactLink) {
-					error('Illegal initial link state! A pattern may only be instantiated with link states of Type: FreeLink("free"), IndexedLink("INT")', null)
+			if(ap instanceof ValidAgentPattern) {
+				val vap = ap  as ValidAgentPattern
+				for(sp : vap.sitePatterns.sitePatterns) {
+					val linkState = sp.linkState.linkState
+					if(linkState instanceof SemiLink || linkState instanceof WhatEver || linkState instanceof ExactLink) {
+						error('Illegal initial link state! A pattern may only be instantiated with link states of Type: FreeLink("free"), IndexedLink("INT")', null)
+					}
 				}
 			}
+			
 		}
 	}
 	
@@ -272,6 +276,20 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 		}		
 	}
 	
+	@Check
+	def checkRuleNumberOfArgs(RuleBody ruleBody) {
+		val lhs = patternFromPatternAssignment(ruleBody.lhs)
+		val rhs = patternFromPatternAssignment(ruleBody.rhs)
+		if(lhs.agentPatterns.size != rhs.agentPatterns.size) {
+			error('Number of arguments on the left hand side of the rule, must match number of arguments on the right hand side.', 
+				ReactionRulesPackage.Literals.RULE_BODY__LHS
+			)
+			error('Number of arguments on the right hand side of the rule, must match number of arguments on the left hand side.', 
+				ReactionRulesPackage.Literals.RULE_BODY__RHS
+			)
+		}
+	}
+	
 	def valueOfNumericAssignment(NumericAssignment na){
 		var value = "0"
 		if(na instanceof NumericFromLiteral) {
@@ -286,7 +304,7 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 	}
 	
 	@Check
-	def checkAgentPatternSites(AgentPattern agentPattern) {
+	def checkAgentPatternSites(ValidAgentPattern agentPattern) {
 		var candidates = EcoreUtil2.getAllContentsOfType(agentPattern, SitePattern);
 		var sites = agentPattern.agent.sites.sites
 		var siteSet = new HashSet<Site>(sites.size())
@@ -296,7 +314,7 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 			var sp = candidate as SitePattern
 			var spSite = sp.site
 			if(!siteSet.contains(spSite)) {
-				error('This Agent does not have a site with ID='+spSite.name, ReactionRulesPackage.Literals.AGENT_PATTERN__SITE_PATTERNS)
+				error('This Agent does not have a site with ID='+spSite.name, ReactionRulesPackage.Literals.VALID_AGENT_PATTERN__SITE_PATTERNS)
 			}
 		}
 	}
