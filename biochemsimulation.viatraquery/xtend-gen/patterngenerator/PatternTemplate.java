@@ -18,6 +18,8 @@ import biochemsimulation.reactionrules.reactionRules.SiteState;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.WhatEver;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Set;
@@ -25,13 +27,22 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class PatternTemplate {
   private LinkedHashMap<EPackage, String> importAliases;
   
+  private HashMap<AgentPattern, String> agentPatternVariables;
+  
+  private HashMap<Pattern, Set<String>> patternVariableNames;
+  
   public PatternTemplate(final LinkedHashMap<EPackage, String> importAliases) {
     this.importAliases = importAliases;
+    HashMap<AgentPattern, String> _hashMap = new HashMap<AgentPattern, String>();
+    this.agentPatternVariables = _hashMap;
+    HashMap<Pattern, Set<String>> _hashMap_1 = new HashMap<Pattern, Set<String>>();
+    this.patternVariableNames = _hashMap_1;
   }
   
   public String generatePatternCode(final Collection<Rule> rules) {
@@ -160,16 +171,16 @@ public class PatternTemplate {
         }
         _builder_1.append("\t");
         _builder_1.append("// Agent pattern for instances of agent ");
-        String _name_1 = ap_1.getAgent().getName();
-        _builder_1.append(_name_1, "\t");
+        String _uniqueAgentPatternVarId = this.getUniqueAgentPatternVarId(ap_1);
+        _builder_1.append(_uniqueAgentPatternVarId, "\t");
         _builder_1.newLineIfNotEmpty();
         _builder_1.append("\t");
         _builder_1.append("AgentInstance.agent.name(");
-        String _name_2 = ap_1.getAgent().getName();
-        _builder_1.append(_name_2, "\t");
+        String _uniqueAgentPatternVarId_1 = this.getUniqueAgentPatternVarId(ap_1);
+        _builder_1.append(_uniqueAgentPatternVarId_1, "\t");
         _builder_1.append(", \"");
-        String _name_3 = ap_1.getAgent().getName();
-        _builder_1.append(_name_3, "\t");
+        String _name_1 = ap_1.getAgent().getName();
+        _builder_1.append(_name_1, "\t");
         _builder_1.append("\");");
         _builder_1.newLineIfNotEmpty();
         {
@@ -184,18 +195,18 @@ public class PatternTemplate {
             _builder_1.append("\t");
             _builder_1.append("\t");
             _builder_1.append("// Site patterns for site ");
-            String _name_4 = sp.getSite().getName();
-            _builder_1.append(_name_4, "\t\t");
+            String _name_2 = sp.getSite().getName();
+            _builder_1.append(_name_2, "\t\t");
             _builder_1.append(" attached to instances of agent ");
-            String _name_5 = ap_1.getAgent().getName();
-            _builder_1.append(_name_5, "\t\t");
+            String _uniqueAgentPatternVarId_2 = this.getUniqueAgentPatternVarId(ap_1);
+            _builder_1.append(_uniqueAgentPatternVarId_2, "\t\t");
             _builder_1.append(" ");
             _builder_1.newLineIfNotEmpty();
             _builder_1.append("\t");
             _builder_1.append("\t");
             _builder_1.append("AgentInstance.linkStates(");
-            String _name_6 = ap_1.getAgent().getName();
-            _builder_1.append(_name_6, "\t\t");
+            String _uniqueAgentPatternVarId_3 = this.getUniqueAgentPatternVarId(ap_1);
+            _builder_1.append(_uniqueAgentPatternVarId_3, "\t\t");
             _builder_1.append(", ");
             String _aILSVariableName = this.aILSVariableName(ap_1, sp);
             _builder_1.append(_aILSVariableName, "\t\t");
@@ -207,8 +218,8 @@ public class PatternTemplate {
             String _aILSVariableName_1 = this.aILSVariableName(ap_1, sp);
             _builder_1.append(_aILSVariableName_1, "\t\t");
             _builder_1.append(", \"");
-            String _name_7 = sp.getSite().getName();
-            _builder_1.append(_name_7, "\t\t");
+            String _name_3 = sp.getSite().getName();
+            _builder_1.append(_name_3, "\t\t");
             _builder_1.append("\");");
             _builder_1.newLineIfNotEmpty();
             _builder_1.append("\t");
@@ -250,19 +261,19 @@ public class PatternTemplate {
       String _aILSVariableName = this.aILSVariableName(ap, sp);
       _builder.append(_aILSVariableName);
       _builder.append(", ");
-      String _name = ap.getAgent().getName();
-      _builder.append(_name);
+      String _uniqueAgentPatternVarId = this.getUniqueAgentPatternVarId(ap);
+      _builder.append(_uniqueAgentPatternVarId);
       _builder.append("_");
-      String _name_1 = sp.getSite().getName();
-      _builder.append(_name_1);
+      String _name = sp.getSite().getName();
+      _builder.append(_name);
       _builder.append("_FL);");
       _builder.newLineIfNotEmpty();
       _builder.append("FreeLink(");
-      String _name_2 = ap.getAgent().getName();
-      _builder.append(_name_2);
+      String _uniqueAgentPatternVarId_1 = this.getUniqueAgentPatternVarId(ap);
+      _builder.append(_uniqueAgentPatternVarId_1);
       _builder.append("_");
-      String _name_3 = sp.getSite().getName();
-      _builder.append(_name_3);
+      String _name_1 = sp.getSite().getName();
+      _builder.append(_name_1);
       _builder.append("_FL);");
       _builder.newLineIfNotEmpty();
       return _builder.toString();
@@ -273,19 +284,19 @@ public class PatternTemplate {
         String _aILSVariableName_1 = this.aILSVariableName(ap, sp);
         _builder_1.append(_aILSVariableName_1);
         _builder_1.append(", ");
-        String _name_4 = ap.getAgent().getName();
-        _builder_1.append(_name_4);
+        String _uniqueAgentPatternVarId_2 = this.getUniqueAgentPatternVarId(ap);
+        _builder_1.append(_uniqueAgentPatternVarId_2);
         _builder_1.append("_");
-        String _name_5 = sp.getSite().getName();
-        _builder_1.append(_name_5);
+        String _name_2 = sp.getSite().getName();
+        _builder_1.append(_name_2);
         _builder_1.append("_SL);");
         _builder_1.newLineIfNotEmpty();
         _builder_1.append("IndexedLink(");
-        String _name_6 = ap.getAgent().getName();
-        _builder_1.append(_name_6);
+        String _uniqueAgentPatternVarId_3 = this.getUniqueAgentPatternVarId(ap);
+        _builder_1.append(_uniqueAgentPatternVarId_3);
         _builder_1.append("_");
-        String _name_7 = sp.getSite().getName();
-        _builder_1.append(_name_7);
+        String _name_3 = sp.getSite().getName();
+        _builder_1.append(_name_3);
         _builder_1.append("_SL);");
         _builder_1.newLineIfNotEmpty();
         return _builder_1.toString();
@@ -301,35 +312,35 @@ public class PatternTemplate {
             String _aILSVariableName_2 = this.aILSVariableName(ap, sp);
             _builder_3.append(_aILSVariableName_2);
             _builder_3.append(", ");
-            String _name_8 = ap.getAgent().getName();
-            _builder_3.append(_name_8);
+            String _uniqueAgentPatternVarId_4 = this.getUniqueAgentPatternVarId(ap);
+            _builder_3.append(_uniqueAgentPatternVarId_4);
             _builder_3.append("_");
-            String _name_9 = sp.getSite().getName();
-            _builder_3.append(_name_9);
+            String _name_4 = sp.getSite().getName();
+            _builder_3.append(_name_4);
             _builder_3.append("_EL);");
             _builder_3.newLineIfNotEmpty();
             _builder_3.append("IndexedLink(");
-            String _name_10 = ap.getAgent().getName();
-            _builder_3.append(_name_10);
+            String _uniqueAgentPatternVarId_5 = this.getUniqueAgentPatternVarId(ap);
+            _builder_3.append(_uniqueAgentPatternVarId_5);
             _builder_3.append("_");
-            String _name_11 = sp.getSite().getName();
-            _builder_3.append(_name_11);
+            String _name_5 = sp.getSite().getName();
+            _builder_3.append(_name_5);
             _builder_3.append("_EL);");
             _builder_3.newLineIfNotEmpty();
             _builder_3.append("AgentInstanceLinkState.attachedSite.name(");
             String _aILSVariableName_3 = this.aILSVariableName(ap, sp);
             _builder_3.append(_aILSVariableName_3);
             _builder_3.append(", \"");
-            String _name_12 = eLink.getLinkSite().getSite().getName();
-            _builder_3.append(_name_12);
+            String _name_6 = eLink.getLinkSite().getSite().getName();
+            _builder_3.append(_name_6);
             _builder_3.append("\");");
             _builder_3.newLineIfNotEmpty();
             _builder_3.append("AgentInstanceLinkState.attachedAgentInstance.agent.name(");
             String _aILSVariableName_4 = this.aILSVariableName(ap, sp);
             _builder_3.append(_aILSVariableName_4);
             _builder_3.append(", \"");
-            String _name_13 = eLink.getLinkAgent().getAgent().getName();
-            _builder_3.append(_name_13);
+            String _name_7 = eLink.getLinkAgent().getAgent().getName();
+            _builder_3.append(_name_7);
             _builder_3.append("\");");
             _builder_3.newLineIfNotEmpty();
             return _builder_3.toString();
@@ -339,30 +350,30 @@ public class PatternTemplate {
             String _aILSVariableName_5 = this.aILSVariableName(ap, sp);
             _builder_4.append(_aILSVariableName_5);
             _builder_4.append(", ");
-            String _name_14 = ap.getAgent().getName();
-            _builder_4.append(_name_14);
+            String _uniqueAgentPatternVarId_6 = this.getUniqueAgentPatternVarId(ap);
+            _builder_4.append(_uniqueAgentPatternVarId_6);
             _builder_4.append("_");
-            String _name_15 = sp.getSite().getName();
-            _builder_4.append(_name_15);
+            String _name_8 = sp.getSite().getName();
+            _builder_4.append(_name_8);
             _builder_4.append("_IL);\t");
             _builder_4.newLineIfNotEmpty();
             _builder_4.append("IndexedLink(");
-            String _name_16 = ap.getAgent().getName();
-            _builder_4.append(_name_16);
+            String _name_9 = ap.getAgent().getName();
+            _builder_4.append(_name_9);
             _builder_4.append("_");
-            String _name_17 = sp.getSite().getName();
-            _builder_4.append(_name_17);
+            String _name_10 = sp.getSite().getName();
+            _builder_4.append(_name_10);
             _builder_4.append("_IL);");
             _builder_4.newLineIfNotEmpty();
             _builder_4.append("AgentInstanceLinkState.site(");
             String _aILSVariableName_6 = this.aILSVariableName(ap, sp);
             _builder_4.append(_aILSVariableName_6);
             _builder_4.append(", ");
-            String _name_18 = ap.getAgent().getName();
-            _builder_4.append(_name_18);
+            String _name_11 = ap.getAgent().getName();
+            _builder_4.append(_name_11);
             _builder_4.append("_");
-            String _name_19 = sp.getSite().getName();
-            _builder_4.append(_name_19);
+            String _name_12 = sp.getSite().getName();
+            _builder_4.append(_name_12);
             _builder_4.append("_Site);");
             _builder_4.newLineIfNotEmpty();
             _builder_4.append("AgentInstanceLinkState.attachedSite(");
@@ -397,8 +408,8 @@ public class PatternTemplate {
     }
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("AgentInstance.siteStates(");
-    String _name = ap.getAgent().getName();
-    _builder_1.append(_name);
+    String _uniqueAgentPatternVarId = this.getUniqueAgentPatternVarId(ap);
+    _builder_1.append(_uniqueAgentPatternVarId);
     _builder_1.append(", ");
     String _aISSVariableName = this.aISSVariableName(ap, sp);
     _builder_1.append(_aISSVariableName);
@@ -408,16 +419,16 @@ public class PatternTemplate {
     String _aISSVariableName_1 = this.aISSVariableName(ap, sp);
     _builder_1.append(_aISSVariableName_1);
     _builder_1.append(", \"");
-    String _name_1 = sp.getSite().getName();
-    _builder_1.append(_name_1);
+    String _name = sp.getSite().getName();
+    _builder_1.append(_name);
     _builder_1.append("\");");
     _builder_1.newLineIfNotEmpty();
     _builder_1.append("AgentInstanceSiteState.siteState.state.name(");
     String _aISSVariableName_2 = this.aISSVariableName(ap, sp);
     _builder_1.append(_aISSVariableName_2);
     _builder_1.append(", \"");
-    String _name_2 = sp.getState().getState().getName();
-    _builder_1.append(_name_2);
+    String _name_1 = sp.getState().getState().getName();
+    _builder_1.append(_name_1);
     _builder_1.append("\");");
     _builder_1.newLineIfNotEmpty();
     return _builder_1.toString();
@@ -456,8 +467,8 @@ public class PatternTemplate {
           }
           if (((agentPattern != null) && (sitePattern != null))) {
             StringConcatenation _builder = new StringConcatenation();
-            String _name = agentPattern.getAgent().getName();
-            _builder.append(_name);
+            String _uniqueAgentPatternVarId = this.getUniqueAgentPatternVarId(agentPattern);
+            _builder.append(_uniqueAgentPatternVarId);
             return _builder.toString();
           }
           StringConcatenation _builder_1 = new StringConcatenation();
@@ -502,11 +513,11 @@ public class PatternTemplate {
           }
           if (((agentPattern != null) && (sitePattern != null))) {
             StringConcatenation _builder = new StringConcatenation();
-            String _name = agentPattern.getAgent().getName();
-            _builder.append(_name);
+            String _uniqueAgentPatternVarId = this.getUniqueAgentPatternVarId(agentPattern);
+            _builder.append(_uniqueAgentPatternVarId);
             _builder.append("_");
-            String _name_1 = sitePattern.getSite().getName();
-            _builder.append(_name_1);
+            String _name = sitePattern.getSite().getName();
+            _builder.append(_name);
             _builder.append("_Site");
             return _builder.toString();
           }
@@ -576,18 +587,18 @@ public class PatternTemplate {
   
   public String generateAgentPatternContext(final ValidAgentPattern ap) {
     StringConcatenation _builder = new StringConcatenation();
-    String _name = ap.getAgent().getName();
-    _builder.append(_name);
+    String _uniqueAgentPatternVarId = this.getUniqueAgentPatternVarId(ap);
+    _builder.append(_uniqueAgentPatternVarId);
     _builder.append(": AgentInstance");
     return _builder.toString();
   }
   
   public String aILSVariableName(final ValidAgentPattern ap, final SitePattern sp) {
     StringConcatenation _builder = new StringConcatenation();
-    String _name = ap.getAgent().getName();
-    String _plus = (_name + "_");
-    String _name_1 = sp.getSite().getName();
-    String _plus_1 = (_plus + _name_1);
+    String _uniqueAgentPatternVarId = this.getUniqueAgentPatternVarId(ap);
+    String _plus = (_uniqueAgentPatternVarId + "_");
+    String _name = sp.getSite().getName();
+    String _plus_1 = (_plus + _name);
     _builder.append(_plus_1);
     _builder.append("_ILS");
     return _builder.toString();
@@ -595,12 +606,61 @@ public class PatternTemplate {
   
   public String aISSVariableName(final ValidAgentPattern ap, final SitePattern sp) {
     StringConcatenation _builder = new StringConcatenation();
-    String _name = ap.getAgent().getName();
-    String _plus = (_name + "_");
-    String _name_1 = sp.getSite().getName();
-    String _plus_1 = (_plus + _name_1);
+    String _uniqueAgentPatternVarId = this.getUniqueAgentPatternVarId(ap);
+    String _plus = (_uniqueAgentPatternVarId + "_");
+    String _name = sp.getSite().getName();
+    String _plus_1 = (_plus + _name);
     _builder.append(_plus_1);
     _builder.append("_ISS");
     return _builder.toString();
+  }
+  
+  public String getUniqueAgentPatternVarId(final ValidAgentPattern ap) {
+    String name = "";
+    boolean _containsKey = this.agentPatternVariables.containsKey(ap);
+    if (_containsKey) {
+      name = this.agentPatternVariables.get(ap);
+    } else {
+      EObject _eContainer = ap.eContainer();
+      final Pattern pattern = ((Pattern) _eContainer);
+      Set<String> varNameSet = ((Set<String>) null);
+      boolean _containsKey_1 = this.patternVariableNames.containsKey(pattern);
+      if (_containsKey_1) {
+        varNameSet = this.patternVariableNames.get(pattern);
+        name = ap.getAgent().getName();
+        int c = 1;
+        while (varNameSet.contains(name)) {
+          {
+            String _name = ap.getAgent().getName();
+            String _plus = (_name + Integer.valueOf(c));
+            name = _plus;
+            c++;
+          }
+        }
+        varNameSet.add(name);
+        Set<String> _get = this.patternVariableNames.get(pattern);
+        for (final String e : _get) {
+          int _hashCode = ap.hashCode();
+          String _plus = ("ID " + Integer.valueOf(_hashCode));
+          String _plus_1 = (_plus + " set contains: ");
+          String _plus_2 = (_plus_1 + e);
+          InputOutput.<String>println(_plus_2);
+        }
+        this.agentPatternVariables.put(ap, name);
+      } else {
+        name = ap.getAgent().getName();
+        HashSet<String> _hashSet = new HashSet<String>();
+        varNameSet = _hashSet;
+        varNameSet.add(name);
+        this.patternVariableNames.put(pattern, varNameSet);
+        this.agentPatternVariables.put(ap, name);
+      }
+    }
+    int _hashCode_1 = ap.hashCode();
+    String _plus_3 = ("ID: " + Integer.valueOf(_hashCode_1));
+    String _plus_4 = (_plus_3 + ", uName: ");
+    String _plus_5 = (_plus_4 + name);
+    InputOutput.<String>println(_plus_5);
+    return name;
   }
 }

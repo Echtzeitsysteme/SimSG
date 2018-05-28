@@ -100,3 +100,21 @@ pattern bla_lhs( A: AgentInstance) {
 		IndexedLink(A_x_SL);
 }
 
+pattern blubb_lhs( D: AgentInstance,  D1: AgentInstance) {
+	// Agent pattern for instances of agent D
+	AgentInstance.agent.name(D, "D");
+		// Site patterns for site c attached to instances of agent D 
+		AgentInstance.linkStates(D, D_c_ILS);
+		AgentInstanceLinkState.site.name(D_c_ILS, "c");
+		AgentInstanceLinkState.linkState.linkState(D_c_ILS, D_c_FL);
+		FreeLink(D_c_FL);
+	
+	// Agent pattern for instances of agent D1
+	AgentInstance.agent.name(D1, "D");
+		// Site patterns for site c attached to instances of agent D1 
+		AgentInstance.linkStates(D1, D1_c_ILS);
+		AgentInstanceLinkState.site.name(D1_c_ILS, "c");
+		AgentInstanceLinkState.linkState.linkState(D1_c_ILS, D1_c_FL);
+		FreeLink(D1_c_FL);
+}
+

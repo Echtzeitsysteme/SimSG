@@ -23,16 +23,22 @@ import biochemsimulation.reactionrules.reactionRules.RuleBody
 import biochemsimulation.reactionrules.reactionRules.SiteState
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern
 import org.eclipse.emf.common.util.EList
+import java.util.HashMap
+import java.util.Set
+import java.util.HashSet
 
 class PatternTemplate {
 	
 	private LinkedHashMap<EPackage, String> importAliases;
-	
+	private HashMap<AgentPattern, String> agentPatternVariables;
+	private HashMap<Pattern, Set<String>> patternVariableNames;
 	//private List<String> keywords = Arrays.asList("package", "pattern");
 	
 	
 	new(LinkedHashMap<EPackage, String> importAliases) {
 		this.importAliases = importAliases;
+		agentPatternVariables = new HashMap
+		patternVariableNames = new HashMap
 	}
 
 	def generatePatternCode(Collection<Rule> rules) {
@@ -80,11 +86,11 @@ class PatternTemplate {
 		return '''
 			pattern «rule.name+"_"+suffix»(«FOR ap : getValidAgentPatterns(pattern.agentPatterns) SEPARATOR ", "» «generateAgentPatternContext(ap)»«ENDFOR») {
 				«FOR ap : getValidAgentPatterns(pattern.agentPatterns) SEPARATOR "\n"»
-				// Agent pattern for instances of agent «ap.agent.name»
-				AgentInstance.agent.name(«ap.agent.name», "«ap.agent.name»");
+				// Agent pattern for instances of agent «getUniqueAgentPatternVarId(ap)»
+				AgentInstance.agent.name(«getUniqueAgentPatternVarId(ap)», "«ap.agent.name»");
 					«FOR sp : ap.sitePatterns.sitePatterns SEPARATOR "\n"»
-					// Site patterns for site «sp.site.name» attached to instances of agent «ap.agent.name» 
-					AgentInstance.linkStates(«ap.agent.name», «aILSVariableName(ap, sp)»);
+					// Site patterns for site «sp.site.name» attached to instances of agent «getUniqueAgentPatternVarId(ap)» 
+					AgentInstance.linkStates(«getUniqueAgentPatternVarId(ap)», «aILSVariableName(ap, sp)»);
 					AgentInstanceLinkState.site.name(«aILSVariableName(ap, sp)», "«sp.site.name»");
 					«linkStatePattern(ap, sp)»
 					«siteStatePattern(ap, sp)»
@@ -110,13 +116,13 @@ class PatternTemplate {
 		val linkState = sp.linkState.linkState as LinkState
 		if(linkState instanceof FreeLink) {
 			return '''
-				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «ap.agent.name»_«sp.site.name»_FL);
-				FreeLink(«ap.agent.name»_«sp.site.name»_FL);
+				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «getUniqueAgentPatternVarId(ap)»_«sp.site.name»_FL);
+				FreeLink(«getUniqueAgentPatternVarId(ap)»_«sp.site.name»_FL);
 			'''
 		}else if(linkState instanceof SemiLink) {
 			return '''
-				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «ap.agent.name»_«sp.site.name»_SL);
-				IndexedLink(«ap.agent.name»_«sp.site.name»_SL);
+				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «getUniqueAgentPatternVarId(ap)»_«sp.site.name»_SL);
+				IndexedLink(«getUniqueAgentPatternVarId(ap)»_«sp.site.name»_SL);
 			'''
 			/* SemiLinks are used to find occurences of agent instances of a 
 			 * certain type bound to any other agent instance at its specified site.
@@ -131,8 +137,8 @@ class PatternTemplate {
 		}else if(linkState instanceof ExactLink) {
 			val eLink = linkState as ExactLink
 			return '''
-				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «ap.agent.name»_«sp.site.name»_EL);
-				IndexedLink(«ap.agent.name»_«sp.site.name»_EL);
+				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «getUniqueAgentPatternVarId(ap)»_«sp.site.name»_EL);
+				IndexedLink(«getUniqueAgentPatternVarId(ap)»_«sp.site.name»_EL);
 				AgentInstanceLinkState.attachedSite.name(«aILSVariableName(ap, sp)», "«eLink.linkSite.site.name»");
 				AgentInstanceLinkState.attachedAgentInstance.agent.name(«aILSVariableName(ap, sp)», "«eLink.linkAgent.agent.name»");
 			'''
@@ -141,7 +147,7 @@ class PatternTemplate {
 			 */
 		}else {
 			return '''
-				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «ap.agent.name»_«sp.site.name»_IL);	
+				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «getUniqueAgentPatternVarId(ap)»_«sp.site.name»_IL);	
 				IndexedLink(«ap.agent.name»_«sp.site.name»_IL);
 				AgentInstanceLinkState.site(«aILSVariableName(ap, sp)», «ap.agent.name»_«sp.site.name»_Site);
 				AgentInstanceLinkState.attachedSite(«aILSVariableName(ap, sp)», «getOtherIndexedLinkSite(ap, sp)»);
@@ -156,7 +162,7 @@ class PatternTemplate {
 			return ''''''
 		}
 		return '''
-			AgentInstance.siteStates(«ap.agent.name», «aISSVariableName(ap, sp)»);
+			AgentInstance.siteStates(«getUniqueAgentPatternVarId(ap)», «aISSVariableName(ap, sp)»);
 			AgentInstanceSiteState.site.name(«aISSVariableName(ap, sp)», "«sp.site.name»");
 			AgentInstanceSiteState.siteState.state.name(«aISSVariableName(ap, sp)», "«sp.state.state.name»");
 		'''
@@ -192,7 +198,7 @@ class PatternTemplate {
 					agentPattern = eObj2 as ValidAgentPattern
 				}
 				if(agentPattern !== null && sitePattern !== null) {
-					return '''«agentPattern.agent.name»'''
+					return '''«getUniqueAgentPatternVarId(agentPattern)»'''
 				}
 				return ''''''
 			}
@@ -230,7 +236,7 @@ class PatternTemplate {
 					agentPattern = eObj2 as ValidAgentPattern
 				}
 				if(agentPattern !== null && sitePattern !== null) {
-					return '''«agentPattern.agent.name»_«sitePattern.site.name»_Site'''
+					return '''«getUniqueAgentPatternVarId(agentPattern)»_«sitePattern.site.name»_Site'''
 				}
 				return ''''''
 			}
@@ -285,14 +291,47 @@ class PatternTemplate {
 	} 
 	
 	def generateAgentPatternContext(ValidAgentPattern ap) {
-		return '''«ap.agent.name»: AgentInstance'''
+		return '''«getUniqueAgentPatternVarId(ap)»: AgentInstance'''
 	}
 	
 	def aILSVariableName(ValidAgentPattern ap, SitePattern sp) {
-		return '''«ap.agent.name+"_"+sp.site.name»_ILS'''
+		return '''«getUniqueAgentPatternVarId(ap)+"_"+sp.site.name»_ILS'''
 	}
 	def aISSVariableName(ValidAgentPattern ap, SitePattern sp) {
-		return '''«ap.agent.name+"_"+sp.site.name»_ISS'''
+		return '''«getUniqueAgentPatternVarId(ap)+"_"+sp.site.name»_ISS'''
+	}
+	
+	def String getUniqueAgentPatternVarId(ValidAgentPattern ap) {
+		var name = ""
+		if(agentPatternVariables.containsKey(ap)) {
+			name = agentPatternVariables.get(ap)
+		}else {
+			val pattern = ap.eContainer as Pattern
+			var varNameSet = null as Set<String>
+			if(patternVariableNames.containsKey(pattern)) {
+				varNameSet = patternVariableNames.get(pattern)
+				name = ap.agent.name
+				var c = 1
+				while(varNameSet.contains(name)) {
+					name = ap.agent.name+c
+					c++
+				}
+				varNameSet.add(name)
+				for(e : patternVariableNames.get(pattern)) {
+					println("ID "+ap.hashCode+" set contains: "+e )
+				}
+				agentPatternVariables.put(ap, name)
+				
+			}else {
+				name = ap.agent.name
+				varNameSet = new HashSet<String>
+				varNameSet.add(name)
+				patternVariableNames.put(pattern, varNameSet)
+				agentPatternVariables.put(ap, name)
+			}
+		}
+		println("ID: "+ap.hashCode+", uName: "+name)
+		return name
 	}
 	
 }

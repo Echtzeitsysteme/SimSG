@@ -17,6 +17,7 @@
       <query-specification fqn="patterngenerator.CtoNull2_lhs"/>
       <query-specification fqn="patterngenerator.AExact_lhs"/>
       <query-specification fqn="patterngenerator.bla_lhs"/>
+      <query-specification fqn="patterngenerator.blubb_lhs"/>
     </group>
   </extension>
 </plugin>
