@@ -2,3 +2,11 @@
 /AtoB_lhsQuerySpecification.java
 /AtoB_rhsProcessor.java
 /AtoB_rhsQuerySpecification.java
+/AtoNull_lhsProcessor.java
+/AtoNull_lhsQuerySpecification.java
+/CtoNull2_lhsProcessor.java
+/CtoNull2_lhsQuerySpecification.java
+/CtoNull_lhsProcessor.java
+/CtoNull_lhsQuerySpecification.java
+/AExact_lhsProcessor.java
+/AExact_lhsQuerySpecification.java

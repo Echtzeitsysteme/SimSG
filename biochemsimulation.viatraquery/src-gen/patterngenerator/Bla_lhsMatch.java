@@ -10,28 +10,28 @@ import java.util.Objects;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.eclipse.viatra.query.runtime.api.impl.BasePatternMatch;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
-import patterngenerator.util.AExact_lhsQuerySpecification;
+import patterngenerator.util.Bla_lhsQuerySpecification;
 
 /**
- * Pattern-specific match representation of the patterngenerator.AExact_lhs pattern,
- * to be used in conjunction with {@link AExact_lhsMatcher}.
+ * Pattern-specific match representation of the patterngenerator.bla_lhs pattern,
+ * to be used in conjunction with {@link Bla_lhsMatcher}.
  * 
  * <p>Class fields correspond to parameters of the pattern. Fields with value null are considered unassigned.
  * Each instance is a (possibly partial) substitution of pattern parameters,
  * usable to represent a match of the pattern in the result of a query,
  * or to specify the bound (fixed) input parameters when issuing a query.
  * 
- * @see AExact_lhsMatcher
- *  @see AExact_lhsProcessor
+ * @see Bla_lhsMatcher
+ *  @see Bla_lhsProcessor
  * 
  */
 @SuppressWarnings("all")
-public abstract class AExact_lhsMatch extends BasePatternMatch {
+public abstract class Bla_lhsMatch extends BasePatternMatch {
   private AgentInstance fA;
   
   private static List<String> parameterNames = makeImmutableList("A");
   
-  private AExact_lhsMatch(final AgentInstance pA) {
+  private Bla_lhsMatch(final AgentInstance pA) {
     this.fA = pA;
   }
   
@@ -62,12 +62,12 @@ public abstract class AExact_lhsMatch extends BasePatternMatch {
   
   @Override
   public String patternName() {
-    return "patterngenerator.AExact_lhs";
+    return "patterngenerator.bla_lhs";
   }
   
   @Override
   public List<String> parameterNames() {
-    return AExact_lhsMatch.parameterNames;
+    return Bla_lhsMatch.parameterNames;
   }
   
   @Override
@@ -76,7 +76,7 @@ public abstract class AExact_lhsMatch extends BasePatternMatch {
   }
   
   @Override
-  public AExact_lhsMatch toImmutable() {
+  public Bla_lhsMatch toImmutable() {
     return isMutable() ? newMatch(fA) : this;
   }
   
@@ -99,8 +99,8 @@ public abstract class AExact_lhsMatch extends BasePatternMatch {
     if (obj == null) {
         return false;
     }
-    if ((obj instanceof AExact_lhsMatch)) {
-        AExact_lhsMatch other = (AExact_lhsMatch) obj;
+    if ((obj instanceof Bla_lhsMatch)) {
+        Bla_lhsMatch other = (Bla_lhsMatch) obj;
         return Objects.equals(fA, other.fA);
     } else {
         // this should be infrequent
@@ -113,9 +113,9 @@ public abstract class AExact_lhsMatch extends BasePatternMatch {
   }
   
   @Override
-  public AExact_lhsQuerySpecification specification() {
+  public Bla_lhsQuerySpecification specification() {
     try {
-        return AExact_lhsQuerySpecification.instance();
+        return Bla_lhsQuerySpecification.instance();
     } catch (ViatraQueryException ex) {
          // This cannot happen, as the match object can only be instantiated if the query specification exists
          throw new IllegalStateException (ex);
@@ -129,7 +129,7 @@ public abstract class AExact_lhsMatch extends BasePatternMatch {
    * @return the empty match.
    * 
    */
-  public static AExact_lhsMatch newEmptyMatch() {
+  public static Bla_lhsMatch newEmptyMatch() {
     return new Mutable(null);
   }
   
@@ -141,7 +141,7 @@ public abstract class AExact_lhsMatch extends BasePatternMatch {
    * @return the new, mutable (partial) match object.
    * 
    */
-  public static AExact_lhsMatch newMutableMatch(final AgentInstance pA) {
+  public static Bla_lhsMatch newMutableMatch(final AgentInstance pA) {
     return new Mutable(pA);
   }
   
@@ -153,11 +153,11 @@ public abstract class AExact_lhsMatch extends BasePatternMatch {
    * @return the (partial) match object.
    * 
    */
-  public static AExact_lhsMatch newMatch(final AgentInstance pA) {
+  public static Bla_lhsMatch newMatch(final AgentInstance pA) {
     return new Immutable(pA);
   }
   
-  private static final class Mutable extends AExact_lhsMatch {
+  private static final class Mutable extends Bla_lhsMatch {
     Mutable(final AgentInstance pA) {
       super(pA);
     }
@@ -168,7 +168,7 @@ public abstract class AExact_lhsMatch extends BasePatternMatch {
     }
   }
   
-  private static final class Immutable extends AExact_lhsMatch {
+  private static final class Immutable extends Bla_lhsMatch {
     Immutable(final AgentInstance pA) {
       super(pA);
     }

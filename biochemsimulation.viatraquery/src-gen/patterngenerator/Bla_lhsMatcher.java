@@ -15,40 +15,38 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseMatcher;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 import org.eclipse.viatra.query.runtime.matchers.tuple.Tuple;
 import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
-import patterngenerator.AExact_lhsMatch;
-import patterngenerator.util.AExact_lhsQuerySpecification;
+import patterngenerator.Bla_lhsMatch;
+import patterngenerator.util.Bla_lhsQuerySpecification;
 
 /**
- * Generated pattern matcher API of the patterngenerator.AExact_lhs pattern,
+ * Generated pattern matcher API of the patterngenerator.bla_lhs pattern,
  * providing pattern-specific query methods.
  * 
  * <p>Use the pattern matcher on a given model via {@link #on(ViatraQueryEngine)},
  * e.g. in conjunction with {@link ViatraQueryEngine#on(Notifier)}.
  * 
- * <p>Matches of the pattern will be represented as {@link AExact_lhsMatch}.
+ * <p>Matches of the pattern will be represented as {@link Bla_lhsMatch}.
  * 
  * <p>Original source:
  * <code><pre>
- * pattern AExact_lhs( A: AgentInstance) {
+ * pattern bla_lhs( A: AgentInstance) {
  * 	// Agent pattern for instances of agent A
  * 	AgentInstance.agent.name(A, "A");
  * 		// Site patterns for site x attached to instances of agent A 
  * 		AgentInstance.linkStates(A, A_x_ILS);
  * 		AgentInstanceLinkState.site.name(A_x_ILS, "x");
- * 		AgentInstanceLinkState.linkState.linkState(A_x_ILS, A_x_EL);
- * 		IndexedLink(A_x_EL);
- * 		AgentInstanceLinkState.attachedSite.name(A_x_ILS, "x");
- * 		AgentInstanceLinkState.attachedAgentInstance.agent.name(A_x_ILS, "B");
+ * 		AgentInstanceLinkState.linkState.linkState(A_x_ILS, A_x_SL);
+ * 		IndexedLink(A_x_SL);
  * }
  * </pre></code>
  * 
- * @see AExact_lhsMatch
- *  @see AExact_lhsProcessor
- * @see AExact_lhsQuerySpecification
+ * @see Bla_lhsMatch
+ *  @see Bla_lhsProcessor
+ * @see Bla_lhsQuerySpecification
  * 
  */
 @SuppressWarnings("all")
-public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
+public class Bla_lhsMatcher extends BaseMatcher<Bla_lhsMatch> {
   /**
    * Initializes the pattern matcher within an existing VIATRA Query engine.
    * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -57,11 +55,11 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
    * @throws ViatraQueryException if an error occurs during pattern matcher creation
    * 
    */
-  public static AExact_lhsMatcher on(final ViatraQueryEngine engine) throws ViatraQueryException {
+  public static Bla_lhsMatcher on(final ViatraQueryEngine engine) throws ViatraQueryException {
     // check if matcher already exists
-    AExact_lhsMatcher matcher = engine.getExistingMatcher(querySpecification());
+    Bla_lhsMatcher matcher = engine.getExistingMatcher(querySpecification());
     if (matcher == null) {
-        matcher = (AExact_lhsMatcher)engine.getMatcher(querySpecification());
+        matcher = (Bla_lhsMatcher)engine.getMatcher(querySpecification());
     }
     return matcher;
   }
@@ -72,13 +70,13 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
    * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
    * 
    */
-  public static AExact_lhsMatcher create() throws ViatraQueryException {
-    return new AExact_lhsMatcher();
+  public static Bla_lhsMatcher create() throws ViatraQueryException {
+    return new Bla_lhsMatcher();
   }
   
   private final static int POSITION_A = 0;
   
-  private final static Logger LOGGER = ViatraQueryLoggingUtil.getLogger(AExact_lhsMatcher.class);
+  private final static Logger LOGGER = ViatraQueryLoggingUtil.getLogger(Bla_lhsMatcher.class);
   
   /**
    * Initializes the pattern matcher within an existing VIATRA Query engine.
@@ -88,17 +86,17 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
    * @throws ViatraQueryException if an error occurs during pattern matcher creation
    * 
    */
-  private AExact_lhsMatcher() throws ViatraQueryException {
+  private Bla_lhsMatcher() throws ViatraQueryException {
     super(querySpecification());
   }
   
   /**
    * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
    * @param pA the fixed value of pattern parameter A, or null if not bound.
-   * @return matches represented as a AExact_lhsMatch object.
+   * @return matches represented as a Bla_lhsMatch object.
    * 
    */
-  public Collection<AExact_lhsMatch> getAllMatches(final AgentInstance pA) {
+  public Collection<Bla_lhsMatch> getAllMatches(final AgentInstance pA) {
     return rawGetAllMatches(new Object[]{pA});
   }
   
@@ -106,10 +104,10 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
    * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
    * Neither determinism nor randomness of selection is guaranteed.
    * @param pA the fixed value of pattern parameter A, or null if not bound.
-   * @return a match represented as a AExact_lhsMatch object, or null if no match is found.
+   * @return a match represented as a Bla_lhsMatch object, or null if no match is found.
    * 
    */
-  public AExact_lhsMatch getOneArbitraryMatch(final AgentInstance pA) {
+  public Bla_lhsMatch getOneArbitraryMatch(final AgentInstance pA) {
     return rawGetOneArbitraryMatch(new Object[]{pA});
   }
   
@@ -140,7 +138,7 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
    * @param processor the action that will process each pattern match.
    * 
    */
-  public void forEachMatch(final AgentInstance pA, final IMatchProcessor<? super AExact_lhsMatch> processor) {
+  public void forEachMatch(final AgentInstance pA, final IMatchProcessor<? super Bla_lhsMatch> processor) {
     rawForEachMatch(new Object[]{pA}, processor);
   }
   
@@ -152,7 +150,7 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
    * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
    * 
    */
-  public boolean forOneArbitraryMatch(final AgentInstance pA, final IMatchProcessor<? super AExact_lhsMatch> processor) {
+  public boolean forOneArbitraryMatch(final AgentInstance pA, final IMatchProcessor<? super Bla_lhsMatch> processor) {
     return rawForOneArbitraryMatch(new Object[]{pA}, processor);
   }
   
@@ -164,8 +162,8 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
    * @return the (partial) match object.
    * 
    */
-  public AExact_lhsMatch newMatch(final AgentInstance pA) {
-    return AExact_lhsMatch.newMatch(pA);
+  public Bla_lhsMatch newMatch(final AgentInstance pA) {
+    return Bla_lhsMatch.newMatch(pA);
   }
   
   /**
@@ -189,9 +187,9 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
   }
   
   @Override
-  protected AExact_lhsMatch tupleToMatch(final Tuple t) {
+  protected Bla_lhsMatch tupleToMatch(final Tuple t) {
     try {
-        return AExact_lhsMatch.newMatch((AgentInstance) t.get(POSITION_A));
+        return Bla_lhsMatch.newMatch((AgentInstance) t.get(POSITION_A));
     } catch(ClassCastException e) {
         LOGGER.error("Element(s) in tuple not properly typed!",e);
         return null;
@@ -199,9 +197,9 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
   }
   
   @Override
-  protected AExact_lhsMatch arrayToMatch(final Object[] match) {
+  protected Bla_lhsMatch arrayToMatch(final Object[] match) {
     try {
-        return AExact_lhsMatch.newMatch((AgentInstance) match[POSITION_A]);
+        return Bla_lhsMatch.newMatch((AgentInstance) match[POSITION_A]);
     } catch(ClassCastException e) {
         LOGGER.error("Element(s) in array not properly typed!",e);
         return null;
@@ -209,9 +207,9 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
   }
   
   @Override
-  protected AExact_lhsMatch arrayToMatchMutable(final Object[] match) {
+  protected Bla_lhsMatch arrayToMatchMutable(final Object[] match) {
     try {
-        return AExact_lhsMatch.newMutableMatch((AgentInstance) match[POSITION_A]);
+        return Bla_lhsMatch.newMutableMatch((AgentInstance) match[POSITION_A]);
     } catch(ClassCastException e) {
         LOGGER.error("Element(s) in array not properly typed!",e);
         return null;
@@ -223,7 +221,7 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
    * @throws ViatraQueryException if the pattern definition could not be loaded
    * 
    */
-  public static IQuerySpecification<AExact_lhsMatcher> querySpecification() throws ViatraQueryException {
-    return AExact_lhsQuerySpecification.instance();
+  public static IQuerySpecification<Bla_lhsMatcher> querySpecification() throws ViatraQueryException {
+    return Bla_lhsQuerySpecification.instance();
   }
 }

@@ -90,3 +90,13 @@ pattern AExact_lhs( A: AgentInstance) {
 		AgentInstanceLinkState.attachedAgentInstance.agent.name(A_x_ILS, "B");
 }
 
+pattern bla_lhs( A: AgentInstance) {
+	// Agent pattern for instances of agent A
+	AgentInstance.agent.name(A, "A");
+		// Site patterns for site x attached to instances of agent A 
+		AgentInstance.linkStates(A, A_x_ILS);
+		AgentInstanceLinkState.site.name(A_x_ILS, "x");
+		AgentInstanceLinkState.linkState.linkState(A_x_ILS, A_x_SL);
+		IndexedLink(A_x_SL);
+}
+

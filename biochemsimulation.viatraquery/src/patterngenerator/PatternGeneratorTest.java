@@ -28,7 +28,8 @@ public class PatternGeneratorTest {
 	public static ReactionRuleModelImpl loadModel() throws Exception {
 		// Initialize the model
         ReactionRulesPackage.eINSTANCE.eClass();
-        URI uri = URI.createURI("/eclipse/modeling-oxygen/eclipse/../../../Eclipse Workspaces/BioChemSimulation/biochemsimulation.reactionrules/model/instances/test2.xmi");
+        //URI uri = URI.createURI("/eclipse/modeling-oxygen/eclipse/../../../Eclipse Workspaces/BioChemSimulation/biochemsimulation.reactionrules/model/instances/test2.xmi");
+        URI uri = URI.createURI("/Users/Basti/Documents/BioChemSimulation/biochemsimulation.reactionrules/model/instances/test2.xmi");
         Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ReactionRules", new XMIResourceFactoryImpl());
         ResourceSet rs = new ResourceSetImpl();
         rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());

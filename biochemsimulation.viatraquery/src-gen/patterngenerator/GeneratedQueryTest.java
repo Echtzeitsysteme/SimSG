@@ -10,12 +10,14 @@ import patterngenerator.AExact_lhsMatcher;
 import patterngenerator.AtoB_lhsMatcher;
 import patterngenerator.AtoB_rhsMatcher;
 import patterngenerator.AtoNull_lhsMatcher;
+import patterngenerator.Bla_lhsMatcher;
 import patterngenerator.CtoNull2_lhsMatcher;
 import patterngenerator.CtoNull_lhsMatcher;
 import patterngenerator.util.AExact_lhsQuerySpecification;
 import patterngenerator.util.AtoB_lhsQuerySpecification;
 import patterngenerator.util.AtoB_rhsQuerySpecification;
 import patterngenerator.util.AtoNull_lhsQuerySpecification;
+import patterngenerator.util.Bla_lhsQuerySpecification;
 import patterngenerator.util.CtoNull2_lhsQuerySpecification;
 import patterngenerator.util.CtoNull_lhsQuerySpecification;
 
@@ -33,6 +35,7 @@ import patterngenerator.util.CtoNull_lhsQuerySpecification;
  * <li>CtoNull_lhs</li>
  * <li>CtoNull2_lhs</li>
  * <li>AExact_lhs</li>
+ * <li>bla_lhs</li>
  * </ul>
  * 
  * @see IPatternGroup
@@ -63,6 +66,7 @@ public final class GeneratedQueryTest extends BaseGeneratedPatternGroup {
     querySpecifications.add(CtoNull_lhsQuerySpecification.instance());
     querySpecifications.add(CtoNull2_lhsQuerySpecification.instance());
     querySpecifications.add(AExact_lhsQuerySpecification.instance());
+    querySpecifications.add(Bla_lhsQuerySpecification.instance());
   }
   
   public AtoB_lhsQuerySpecification getAtoB_lhs() throws ViatraQueryException {
@@ -111,5 +115,13 @@ public final class GeneratedQueryTest extends BaseGeneratedPatternGroup {
   
   public AExact_lhsMatcher getAExact_lhs(final ViatraQueryEngine engine) throws ViatraQueryException {
     return AExact_lhsMatcher.on(engine);
+  }
+  
+  public Bla_lhsQuerySpecification getBla_lhs() throws ViatraQueryException {
+    return Bla_lhsQuerySpecification.instance();
+  }
+  
+  public Bla_lhsMatcher getBla_lhs(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return Bla_lhsMatcher.on(engine);
   }
 }
