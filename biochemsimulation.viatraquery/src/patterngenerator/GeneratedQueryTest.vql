@@ -116,6 +116,6 @@ pattern blubb_lhs( D: AgentInstance,  D1: AgentInstance) {
 		AgentInstanceLinkState.site.name(D1_c_ILS, "c");
 		AgentInstanceLinkState.linkState.linkState(D1_c_ILS, D1_c_FL);
 		FreeLink(D1_c_FL);
-	 D != D1;
+	 D1 != D;
 }
 
