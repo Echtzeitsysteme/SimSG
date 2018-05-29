@@ -20,6 +20,7 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
+import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Inequality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.ConstantValue;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
@@ -220,6 +221,8 @@ public final class Blubb_lhsQuerySpecification extends BaseGeneratedEMFQuerySpec
           new Equality(body, var__virtual_17_, var_D1_c_FL);
           // 		FreeLink(D1_c_FL)
           new TypeConstraint(body, Tuples.flatTupleOf(var_D1_c_FL), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactionrules.biochemsimulation/ReactionRules", "FreeLink")));
+          // 	 D != D1
+          new Inequality(body, var_D, var_D1);
           bodies.add(body);
       }
       return bodies;

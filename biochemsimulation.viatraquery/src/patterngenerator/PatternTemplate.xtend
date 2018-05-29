@@ -32,6 +32,7 @@ class PatternTemplate {
 	private LinkedHashMap<EPackage, String> importAliases;
 	private HashMap<AgentPattern, String> agentPatternVariables;
 	private HashMap<Pattern, Set<String>> patternVariableNames;
+	private HashMap<Pattern, HashMap<ValidAgentPattern, String>> agentPatterns;
 	//private List<String> keywords = Arrays.asList("package", "pattern");
 	
 	
@@ -39,6 +40,7 @@ class PatternTemplate {
 		this.importAliases = importAliases;
 		agentPatternVariables = new HashMap
 		patternVariableNames = new HashMap
+		agentPatterns = new HashMap
 	}
 
 	def generatePatternCode(Collection<Rule> rules) {
@@ -96,9 +98,35 @@ class PatternTemplate {
 					«siteStatePattern(ap, sp)»
 					«ENDFOR»
 				«ENDFOR»
+				«generateInjectivityConstraints(pattern)»
 			}
 		'''
 		
+	}
+	
+	def generateInjectivityConstraints(Pattern pattern) {
+		val constraints = new HashMap<String, String>
+		val patterns = agentPatterns.get(pattern)
+		val keySet = patterns.keySet
+		for(current : keySet) {
+			val currentType = current.agent.name
+			for(candidate : keySet) {
+				if(!current.equals(candidate)) {
+					val candidateType = candidate.agent.name
+					if(currentType.equals(candidateType)) {
+						val constrain1 = patterns.get(current) + " != " + patterns.get(candidate) + ";"
+						val constrain2 = patterns.get(candidate) + " != " + patterns.get(current) + ";"
+						val key = Math.max(constrain1.hashCode, constrain2.hashCode).toString
+						if(!constraints.containsKey(key)) {
+							constraints.put(key, constrain1)
+						}
+					}
+				}
+			}
+		}
+		return '''
+			«FOR cnst : constraints.keySet SEPARATOR "\n"» «constraints.get(cnst)»«ENDFOR»
+		'''
 	}
 	
 	def getValidAgentPatterns(EList<AgentPattern> aps) {
@@ -317,9 +345,6 @@ class PatternTemplate {
 					c++
 				}
 				varNameSet.add(name)
-				for(e : patternVariableNames.get(pattern)) {
-					println("ID "+ap.hashCode+" set contains: "+e )
-				}
 				agentPatternVariables.put(ap, name)
 				
 			}else {
@@ -329,8 +354,19 @@ class PatternTemplate {
 				patternVariableNames.put(pattern, varNameSet)
 				agentPatternVariables.put(ap, name)
 			}
+			
+			var patterns = null as HashMap<ValidAgentPattern, String>
+			if(agentPatterns.containsKey(pattern)) {
+				patterns = agentPatterns.get(pattern)
+				if(!patterns.containsKey(ap)) {
+					patterns.put(ap, name)
+				}
+			}else {
+				patterns = new HashMap
+				patterns.put(ap, name)
+				agentPatterns.put(pattern, patterns)
+			}
 		}
-		println("ID: "+ap.hashCode+", uName: "+name)
 		return name
 	}
 	

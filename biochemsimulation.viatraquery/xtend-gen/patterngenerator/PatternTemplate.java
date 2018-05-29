@@ -27,7 +27,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class PatternTemplate {
@@ -37,12 +36,16 @@ public class PatternTemplate {
   
   private HashMap<Pattern, Set<String>> patternVariableNames;
   
+  private HashMap<Pattern, HashMap<ValidAgentPattern, String>> agentPatterns;
+  
   public PatternTemplate(final LinkedHashMap<EPackage, String> importAliases) {
     this.importAliases = importAliases;
     HashMap<AgentPattern, String> _hashMap = new HashMap<AgentPattern, String>();
     this.agentPatternVariables = _hashMap;
     HashMap<Pattern, Set<String>> _hashMap_1 = new HashMap<Pattern, Set<String>>();
     this.patternVariableNames = _hashMap_1;
+    HashMap<Pattern, HashMap<ValidAgentPattern, String>> _hashMap_2 = new HashMap<Pattern, HashMap<ValidAgentPattern, String>>();
+    this.agentPatterns = _hashMap_2;
   }
   
   public String generatePatternCode(final Collection<Rule> rules) {
@@ -236,9 +239,67 @@ public class PatternTemplate {
         }
       }
     }
+    _builder_1.append("\t");
+    String _generateInjectivityConstraints = this.generateInjectivityConstraints(pattern);
+    _builder_1.append(_generateInjectivityConstraints, "\t");
+    _builder_1.newLineIfNotEmpty();
     _builder_1.append("}");
     _builder_1.newLine();
     return _builder_1.toString();
+  }
+  
+  public String generateInjectivityConstraints(final Pattern pattern) {
+    final HashMap<String, String> constraints = new HashMap<String, String>();
+    final HashMap<ValidAgentPattern, String> patterns = this.agentPatterns.get(pattern);
+    final Set<ValidAgentPattern> keySet = patterns.keySet();
+    for (final ValidAgentPattern current : keySet) {
+      {
+        final String currentType = current.getAgent().getName();
+        for (final ValidAgentPattern candidate : keySet) {
+          boolean _equals = current.equals(candidate);
+          boolean _not = (!_equals);
+          if (_not) {
+            final String candidateType = candidate.getAgent().getName();
+            boolean _equals_1 = currentType.equals(candidateType);
+            if (_equals_1) {
+              String _get = patterns.get(current);
+              String _plus = (_get + " != ");
+              String _get_1 = patterns.get(candidate);
+              String _plus_1 = (_plus + _get_1);
+              final String constrain1 = (_plus_1 + ";");
+              String _get_2 = patterns.get(candidate);
+              String _plus_2 = (_get_2 + " != ");
+              String _get_3 = patterns.get(current);
+              String _plus_3 = (_plus_2 + _get_3);
+              final String constrain2 = (_plus_3 + ";");
+              final String key = Integer.valueOf(Math.max(constrain1.hashCode(), constrain2.hashCode())).toString();
+              boolean _containsKey = constraints.containsKey(key);
+              boolean _not_1 = (!_containsKey);
+              if (_not_1) {
+                constraints.put(key, constrain1);
+              }
+            }
+          }
+        }
+      }
+    }
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      Set<String> _keySet = constraints.keySet();
+      boolean _hasElements = false;
+      for(final String cnst : _keySet) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate("\n", "");
+        }
+        _builder.append(" ");
+        String _get = constraints.get(cnst);
+        _builder.append(_get);
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    return _builder.toString();
   }
   
   public LinkedList<ValidAgentPattern> getValidAgentPatterns(final EList<AgentPattern> aps) {
@@ -638,14 +699,6 @@ public class PatternTemplate {
           }
         }
         varNameSet.add(name);
-        Set<String> _get = this.patternVariableNames.get(pattern);
-        for (final String e : _get) {
-          int _hashCode = ap.hashCode();
-          String _plus = ("ID " + Integer.valueOf(_hashCode));
-          String _plus_1 = (_plus + " set contains: ");
-          String _plus_2 = (_plus_1 + e);
-          InputOutput.<String>println(_plus_2);
-        }
         this.agentPatternVariables.put(ap, name);
       } else {
         name = ap.getAgent().getName();
@@ -655,12 +708,22 @@ public class PatternTemplate {
         this.patternVariableNames.put(pattern, varNameSet);
         this.agentPatternVariables.put(ap, name);
       }
+      HashMap<ValidAgentPattern, String> patterns = ((HashMap<ValidAgentPattern, String>) null);
+      boolean _containsKey_2 = this.agentPatterns.containsKey(pattern);
+      if (_containsKey_2) {
+        patterns = this.agentPatterns.get(pattern);
+        boolean _containsKey_3 = patterns.containsKey(ap);
+        boolean _not = (!_containsKey_3);
+        if (_not) {
+          patterns.put(ap, name);
+        }
+      } else {
+        HashMap<ValidAgentPattern, String> _hashMap = new HashMap<ValidAgentPattern, String>();
+        patterns = _hashMap;
+        patterns.put(ap, name);
+        this.agentPatterns.put(pattern, patterns);
+      }
     }
-    int _hashCode_1 = ap.hashCode();
-    String _plus_3 = ("ID: " + Integer.valueOf(_hashCode_1));
-    String _plus_4 = (_plus_3 + ", uName: ");
-    String _plus_5 = (_plus_4 + name);
-    InputOutput.<String>println(_plus_5);
     return name;
   }
 }

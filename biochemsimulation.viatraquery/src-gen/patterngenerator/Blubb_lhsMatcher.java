@@ -45,6 +45,7 @@ import patterngenerator.util.Blubb_lhsQuerySpecification;
  * 		AgentInstanceLinkState.site.name(D1_c_ILS, "c");
  * 		AgentInstanceLinkState.linkState.linkState(D1_c_ILS, D1_c_FL);
  * 		FreeLink(D1_c_FL);
+ * 	 D != D1;
  * }
  * </pre></code>
  * 
