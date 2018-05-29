@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="reactioncontainer" nsURI="http://www.example.org/reactioncontainer"
+    nsPrefix="reactioncontainer">
+  <eClassifiers xsi:type="ecore:EClass" name="ReactionContainer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="agent" upperBound="-1"
+        eType="#//Agent" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Agent">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="site" upperBound="-1" eType="#//Site"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Site">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkstate" upperBound="-1"
+        eType="#//LinkState" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sitestate" eType="#//SiteState"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="agent" lowerBound="1" eType="#//Agent"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SiteState">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LinkState" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="site1" lowerBound="1" eType="#//Site"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Free" eSuperTypes="#//LinkState"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Bound" eSuperTypes="#//LinkState">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="site2" lowerBound="1" eType="#//Site"/>
+  </eClassifiers>
+</ecore:EPackage>
