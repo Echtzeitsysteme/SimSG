@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
+import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactioncontainer.ReactioncontainerFactory;
 import biochemsimulation.reactioncontainer.SimAgent;
 import biochemsimulation.reactionrules.reactionRules.Initial;
@@ -46,7 +47,7 @@ public class AgentTemplate {
 		}
 	}
 	
-	public SimAgent createInstance(ReactioncontainerFactory factory) {
+	public SimAgent createInstance(ReactioncontainerFactory factory, ReactionContainer container) {
 		SimAgent newAgent = factory.createSimAgent();
 		currentNumOfInstances++;
 		// missing name
@@ -54,7 +55,7 @@ public class AgentTemplate {
 		newAgent.setName(generateAgentInstanceName(currentNumOfInstances, type, init.getName()));
 		
 		for(SiteTemplate st : siteTemplates) {
-			newAgent.getSimSite().add(st.createInstance(factory, newAgent));
+			newAgent.getSimSites().add(st.createInstance(factory, container, newAgent));
 		}
 		
 		return newAgent;

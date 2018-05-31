@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link biochemsimulation.reactioncontainer.ReactionContainer#getSimAgent <em>Sim Agent</em>}</li>
+ *   <li>{@link biochemsimulation.reactioncontainer.ReactionContainer#getSimLinkStates <em>Sim Link States</em>}</li>
  * </ul>
  *
  * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getReactionContainer()
@@ -38,5 +39,21 @@ public interface ReactionContainer extends EObject {
 	 * @generated
 	 */
 	EList<SimAgent> getSimAgent();
+
+	/**
+	 * Returns the value of the '<em><b>Sim Link States</b></em>' containment reference list.
+	 * The list contents are of type {@link biochemsimulation.reactioncontainer.SimLinkState}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sim Link States</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sim Link States</em>' containment reference list.
+	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getReactionContainer_SimLinkStates()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<SimLinkState> getSimLinkStates();
 
 } // ReactionContainer

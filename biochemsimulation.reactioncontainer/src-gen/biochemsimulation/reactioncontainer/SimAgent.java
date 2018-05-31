@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link biochemsimulation.reactioncontainer.SimAgent#getName <em>Name</em>}</li>
  *   <li>{@link biochemsimulation.reactioncontainer.SimAgent#getType <em>Type</em>}</li>
- *   <li>{@link biochemsimulation.reactioncontainer.SimAgent#getSimSite <em>Sim Site</em>}</li>
+ *   <li>{@link biochemsimulation.reactioncontainer.SimAgent#getSimSites <em>Sim Sites</em>}</li>
  * </ul>
  *
  * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimAgent()
@@ -78,19 +78,19 @@ public interface SimAgent extends EObject {
 	void setType(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Sim Site</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Sim Sites</b></em>' containment reference list.
 	 * The list contents are of type {@link biochemsimulation.reactioncontainer.SimSite}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sim Site</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Sim Sites</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sim Site</em>' containment reference list.
-	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimAgent_SimSite()
+	 * @return the value of the '<em>Sim Sites</em>' containment reference list.
+	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimAgent_SimSites()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<SimSite> getSimSite();
+	EList<SimSite> getSimSites();
 
 } // SimAgent

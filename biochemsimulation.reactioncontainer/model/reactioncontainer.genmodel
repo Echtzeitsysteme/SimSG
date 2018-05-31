@@ -13,17 +13,18 @@
       ecorePackage="reactioncontainer.ecore#/">
     <genClasses ecoreClass="reactioncontainer.ecore#//ReactionContainer">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference reactioncontainer.ecore#//ReactionContainer/simAgent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference reactioncontainer.ecore#//ReactionContainer/simLinkStates"/>
     </genClasses>
     <genClasses ecoreClass="reactioncontainer.ecore#//SimAgent">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute reactioncontainer.ecore#//SimAgent/Name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute reactioncontainer.ecore#//SimAgent/Type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference reactioncontainer.ecore#//SimAgent/simSite"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference reactioncontainer.ecore#//SimAgent/simSites"/>
     </genClasses>
     <genClasses ecoreClass="reactioncontainer.ecore#//SimSite">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute reactioncontainer.ecore#//SimSite/Type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference reactioncontainer.ecore#//SimSite/simLinkstate"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference reactioncontainer.ecore#//SimSite/simSiteState"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference reactioncontainer.ecore#//SimSite/simAgent"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference reactioncontainer.ecore#//SimSite/simLinkState"/>
     </genClasses>
     <genClasses ecoreClass="reactioncontainer.ecore#//SimSiteState">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute reactioncontainer.ecore#//SimSiteState/Type"/>

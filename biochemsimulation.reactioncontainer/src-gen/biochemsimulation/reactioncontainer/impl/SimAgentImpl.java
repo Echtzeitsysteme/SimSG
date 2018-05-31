@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link biochemsimulation.reactioncontainer.impl.SimAgentImpl#getName <em>Name</em>}</li>
  *   <li>{@link biochemsimulation.reactioncontainer.impl.SimAgentImpl#getType <em>Type</em>}</li>
- *   <li>{@link biochemsimulation.reactioncontainer.impl.SimAgentImpl#getSimSite <em>Sim Site</em>}</li>
+ *   <li>{@link biochemsimulation.reactioncontainer.impl.SimAgentImpl#getSimSites <em>Sim Sites</em>}</li>
  * </ul>
  *
  * @generated
@@ -79,14 +79,14 @@ public class SimAgentImpl extends MinimalEObjectImpl.Container implements SimAge
 	protected String type = TYPE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSimSite() <em>Sim Site</em>}' containment reference list.
+	 * The cached value of the '{@link #getSimSites() <em>Sim Sites</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSimSite()
+	 * @see #getSimSites()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<SimSite> simSite;
+	protected EList<SimSite> simSites;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -156,12 +156,12 @@ public class SimAgentImpl extends MinimalEObjectImpl.Container implements SimAge
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<SimSite> getSimSite() {
-		if (simSite == null) {
-			simSite = new EObjectContainmentEList<SimSite>(SimSite.class, this,
-					ReactioncontainerPackage.SIM_AGENT__SIM_SITE);
+	public EList<SimSite> getSimSites() {
+		if (simSites == null) {
+			simSites = new EObjectContainmentEList<SimSite>(SimSite.class, this,
+					ReactioncontainerPackage.SIM_AGENT__SIM_SITES);
 		}
-		return simSite;
+		return simSites;
 	}
 
 	/**
@@ -172,8 +172,8 @@ public class SimAgentImpl extends MinimalEObjectImpl.Container implements SimAge
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SIM_AGENT__SIM_SITE:
-			return ((InternalEList<?>) getSimSite()).basicRemove(otherEnd, msgs);
+		case ReactioncontainerPackage.SIM_AGENT__SIM_SITES:
+			return ((InternalEList<?>) getSimSites()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -190,8 +190,8 @@ public class SimAgentImpl extends MinimalEObjectImpl.Container implements SimAge
 			return getName();
 		case ReactioncontainerPackage.SIM_AGENT__TYPE:
 			return getType();
-		case ReactioncontainerPackage.SIM_AGENT__SIM_SITE:
-			return getSimSite();
+		case ReactioncontainerPackage.SIM_AGENT__SIM_SITES:
+			return getSimSites();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -211,9 +211,9 @@ public class SimAgentImpl extends MinimalEObjectImpl.Container implements SimAge
 		case ReactioncontainerPackage.SIM_AGENT__TYPE:
 			setType((String) newValue);
 			return;
-		case ReactioncontainerPackage.SIM_AGENT__SIM_SITE:
-			getSimSite().clear();
-			getSimSite().addAll((Collection<? extends SimSite>) newValue);
+		case ReactioncontainerPackage.SIM_AGENT__SIM_SITES:
+			getSimSites().clear();
+			getSimSites().addAll((Collection<? extends SimSite>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -233,8 +233,8 @@ public class SimAgentImpl extends MinimalEObjectImpl.Container implements SimAge
 		case ReactioncontainerPackage.SIM_AGENT__TYPE:
 			setType(TYPE_EDEFAULT);
 			return;
-		case ReactioncontainerPackage.SIM_AGENT__SIM_SITE:
-			getSimSite().clear();
+		case ReactioncontainerPackage.SIM_AGENT__SIM_SITES:
+			getSimSites().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -252,8 +252,8 @@ public class SimAgentImpl extends MinimalEObjectImpl.Container implements SimAge
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case ReactioncontainerPackage.SIM_AGENT__TYPE:
 			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-		case ReactioncontainerPackage.SIM_AGENT__SIM_SITE:
-			return simSite != null && !simSite.isEmpty();
+		case ReactioncontainerPackage.SIM_AGENT__SIM_SITES:
+			return simSites != null && !simSites.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

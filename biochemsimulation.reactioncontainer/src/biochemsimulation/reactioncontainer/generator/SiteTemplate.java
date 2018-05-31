@@ -2,6 +2,7 @@ package biochemsimulation.reactioncontainer.generator;
 
 import java.util.HashSet;
 
+import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactioncontainer.ReactioncontainerFactory;
 import biochemsimulation.reactioncontainer.SimAgent;
 import biochemsimulation.reactioncontainer.SimSite;
@@ -83,7 +84,7 @@ public class SiteTemplate {
 		}
 	}
 	
-	public SimSite createInstance(ReactioncontainerFactory factory, SimAgent agent) {
+	public SimSite createInstance(ReactioncontainerFactory factory, ReactionContainer container, SimAgent agent) {
 		SimSite newSite = factory.createSimSite();
 		// missing name
 		newSite.setType(type);
@@ -96,7 +97,7 @@ public class SiteTemplate {
 		}
 		
 		for(LinkStateTemplate lst : linkStates) {
-			newSite.setSimLinkstate(lst.createInstance(factory, newSite));
+			newSite.setSimLinkState(lst.createInstance(factory, container, newSite));
 		}
 		return newSite;
 	}

@@ -38,7 +38,7 @@ public interface ReactioncontainerPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.example.org/reactioncontainer";
+	String eNS_URI = "http://www.reactioncontainer.biochemsimulation.org/reactioncontainer";
 
 	/**
 	 * The package namespace name.
@@ -76,13 +76,22 @@ public interface ReactioncontainerPackage extends EPackage {
 	int REACTION_CONTAINER__SIM_AGENT = 0;
 
 	/**
+	 * The feature id for the '<em><b>Sim Link States</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REACTION_CONTAINER__SIM_LINK_STATES = 1;
+
+	/**
 	 * The number of structural features of the '<em>Reaction Container</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REACTION_CONTAINER_FEATURE_COUNT = 1;
+	int REACTION_CONTAINER_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Reaction Container</em>' class.
@@ -122,13 +131,13 @@ public interface ReactioncontainerPackage extends EPackage {
 	int SIM_AGENT__TYPE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Sim Site</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Sim Sites</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIM_AGENT__SIM_SITE = 2;
+	int SIM_AGENT__SIM_SITES = 2;
 
 	/**
 	 * The number of structural features of the '<em>Sim Agent</em>' class.
@@ -168,22 +177,13 @@ public interface ReactioncontainerPackage extends EPackage {
 	int SIM_SITE__TYPE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Sim Linkstate</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIM_SITE__SIM_LINKSTATE = 1;
-
-	/**
 	 * The feature id for the '<em><b>Sim Site State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIM_SITE__SIM_SITE_STATE = 2;
+	int SIM_SITE__SIM_SITE_STATE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Sim Agent</b></em>' reference.
@@ -192,7 +192,16 @@ public interface ReactioncontainerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIM_SITE__SIM_AGENT = 3;
+	int SIM_SITE__SIM_AGENT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Sim Link State</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIM_SITE__SIM_LINK_STATE = 3;
 
 	/**
 	 * The number of structural features of the '<em>Sim Site</em>' class.
@@ -391,6 +400,17 @@ public interface ReactioncontainerPackage extends EPackage {
 	EReference getReactionContainer_SimAgent();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link biochemsimulation.reactioncontainer.ReactionContainer#getSimLinkStates <em>Sim Link States</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Sim Link States</em>'.
+	 * @see biochemsimulation.reactioncontainer.ReactionContainer#getSimLinkStates()
+	 * @see #getReactionContainer()
+	 * @generated
+	 */
+	EReference getReactionContainer_SimLinkStates();
+
+	/**
 	 * Returns the meta object for class '{@link biochemsimulation.reactioncontainer.SimAgent <em>Sim Agent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -423,15 +443,15 @@ public interface ReactioncontainerPackage extends EPackage {
 	EAttribute getSimAgent_Type();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link biochemsimulation.reactioncontainer.SimAgent#getSimSite <em>Sim Site</em>}'.
+	 * Returns the meta object for the containment reference list '{@link biochemsimulation.reactioncontainer.SimAgent#getSimSites <em>Sim Sites</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Sim Site</em>'.
-	 * @see biochemsimulation.reactioncontainer.SimAgent#getSimSite()
+	 * @return the meta object for the containment reference list '<em>Sim Sites</em>'.
+	 * @see biochemsimulation.reactioncontainer.SimAgent#getSimSites()
 	 * @see #getSimAgent()
 	 * @generated
 	 */
-	EReference getSimAgent_SimSite();
+	EReference getSimAgent_SimSites();
 
 	/**
 	 * Returns the meta object for class '{@link biochemsimulation.reactioncontainer.SimSite <em>Sim Site</em>}'.
@@ -455,17 +475,6 @@ public interface ReactioncontainerPackage extends EPackage {
 	EAttribute getSimSite_Type();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link biochemsimulation.reactioncontainer.SimSite#getSimLinkstate <em>Sim Linkstate</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Sim Linkstate</em>'.
-	 * @see biochemsimulation.reactioncontainer.SimSite#getSimLinkstate()
-	 * @see #getSimSite()
-	 * @generated
-	 */
-	EReference getSimSite_SimLinkstate();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link biochemsimulation.reactioncontainer.SimSite#getSimSiteState <em>Sim Site State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -486,6 +495,17 @@ public interface ReactioncontainerPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSimSite_SimAgent();
+
+	/**
+	 * Returns the meta object for the reference '{@link biochemsimulation.reactioncontainer.SimSite#getSimLinkState <em>Sim Link State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Sim Link State</em>'.
+	 * @see biochemsimulation.reactioncontainer.SimSite#getSimLinkState()
+	 * @see #getSimSite()
+	 * @generated
+	 */
+	EReference getSimSite_SimLinkState();
 
 	/**
 	 * Returns the meta object for class '{@link biochemsimulation.reactioncontainer.SimSiteState <em>Sim Site State</em>}'.
@@ -602,6 +622,14 @@ public interface ReactioncontainerPackage extends EPackage {
 		EReference REACTION_CONTAINER__SIM_AGENT = eINSTANCE.getReactionContainer_SimAgent();
 
 		/**
+		 * The meta object literal for the '<em><b>Sim Link States</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference REACTION_CONTAINER__SIM_LINK_STATES = eINSTANCE.getReactionContainer_SimLinkStates();
+
+		/**
 		 * The meta object literal for the '{@link biochemsimulation.reactioncontainer.impl.SimAgentImpl <em>Sim Agent</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -628,12 +656,12 @@ public interface ReactioncontainerPackage extends EPackage {
 		EAttribute SIM_AGENT__TYPE = eINSTANCE.getSimAgent_Type();
 
 		/**
-		 * The meta object literal for the '<em><b>Sim Site</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Sim Sites</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SIM_AGENT__SIM_SITE = eINSTANCE.getSimAgent_SimSite();
+		EReference SIM_AGENT__SIM_SITES = eINSTANCE.getSimAgent_SimSites();
 
 		/**
 		 * The meta object literal for the '{@link biochemsimulation.reactioncontainer.impl.SimSiteImpl <em>Sim Site</em>}' class.
@@ -654,14 +682,6 @@ public interface ReactioncontainerPackage extends EPackage {
 		EAttribute SIM_SITE__TYPE = eINSTANCE.getSimSite_Type();
 
 		/**
-		 * The meta object literal for the '<em><b>Sim Linkstate</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SIM_SITE__SIM_LINKSTATE = eINSTANCE.getSimSite_SimLinkstate();
-
-		/**
 		 * The meta object literal for the '<em><b>Sim Site State</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -676,6 +696,14 @@ public interface ReactioncontainerPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SIM_SITE__SIM_AGENT = eINSTANCE.getSimSite_SimAgent();
+
+		/**
+		 * The meta object literal for the '<em><b>Sim Link State</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SIM_SITE__SIM_LINK_STATE = eINSTANCE.getSimSite_SimLinkState();
 
 		/**
 		 * The meta object literal for the '{@link biochemsimulation.reactioncontainer.impl.SimSiteStateImpl <em>Sim Site State</em>}' class.

@@ -14,9 +14,9 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link biochemsimulation.reactioncontainer.SimSite#getType <em>Type</em>}</li>
- *   <li>{@link biochemsimulation.reactioncontainer.SimSite#getSimLinkstate <em>Sim Linkstate</em>}</li>
  *   <li>{@link biochemsimulation.reactioncontainer.SimSite#getSimSiteState <em>Sim Site State</em>}</li>
  *   <li>{@link biochemsimulation.reactioncontainer.SimSite#getSimAgent <em>Sim Agent</em>}</li>
+ *   <li>{@link biochemsimulation.reactioncontainer.SimSite#getSimLinkState <em>Sim Link State</em>}</li>
  * </ul>
  *
  * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimSite()
@@ -49,32 +49,6 @@ public interface SimSite extends EObject {
 	 * @generated
 	 */
 	void setType(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Sim Linkstate</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Sim Linkstate</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sim Linkstate</em>' containment reference.
-	 * @see #setSimLinkstate(SimLinkState)
-	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimSite_SimLinkstate()
-	 * @model containment="true"
-	 * @generated
-	 */
-	SimLinkState getSimLinkstate();
-
-	/**
-	 * Sets the value of the '{@link biochemsimulation.reactioncontainer.SimSite#getSimLinkstate <em>Sim Linkstate</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sim Linkstate</em>' containment reference.
-	 * @see #getSimLinkstate()
-	 * @generated
-	 */
-	void setSimLinkstate(SimLinkState value);
 
 	/**
 	 * Returns the value of the '<em><b>Sim Site State</b></em>' containment reference.
@@ -127,5 +101,31 @@ public interface SimSite extends EObject {
 	 * @generated
 	 */
 	void setSimAgent(SimAgent value);
+
+	/**
+	 * Returns the value of the '<em><b>Sim Link State</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sim Link State</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sim Link State</em>' reference.
+	 * @see #setSimLinkState(SimLinkState)
+	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimSite_SimLinkState()
+	 * @model
+	 * @generated
+	 */
+	SimLinkState getSimLinkState();
+
+	/**
+	 * Sets the value of the '{@link biochemsimulation.reactioncontainer.SimSite#getSimLinkState <em>Sim Link State</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Sim Link State</em>' reference.
+	 * @see #getSimLinkState()
+	 * @generated
+	 */
+	void setSimLinkState(SimLinkState value);
 
 } // SimSite

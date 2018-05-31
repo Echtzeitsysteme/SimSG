@@ -2,6 +2,7 @@ package biochemsimulation.reactioncontainer.generator;
 
 import java.util.HashMap;
 
+import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactioncontainer.ReactioncontainerFactory;
 import biochemsimulation.reactioncontainer.SimBound;
 import biochemsimulation.reactioncontainer.SimLinkState;
@@ -48,21 +49,18 @@ public class BoundStateTemplate implements LinkStateTemplate {
 	}
 	
 	@Override
-	public SimLinkState createInstance(ReactioncontainerFactory factory, SimSite site) {
+	public SimLinkState createInstance(ReactioncontainerFactory factory, ReactionContainer container, SimSite site) {
 		String thisAgentsName = AgentTemplate.generateAgentInstanceName(at.getCurrentCount(), at.getType(), at.getVariableName());
 		String otherAgentsName = AgentTemplate.generateAgentInstanceName(at.getCurrentCount(), otherType, at.getVariableName());
 		if(halfBoundLinks.containsKey(otherAgentsName)) {
 			SimBound oldLinkState = (SimBound)halfBoundLinks.get(otherAgentsName);
-			SimBound newLinkState = factory.createSimBound();
-			newLinkState.setSimSite1(oldLinkState.getSimSite1());
-			newLinkState.setSimSite2(site);
 			oldLinkState.setSimSite2(site);
-			return newLinkState;
+			return oldLinkState;
 		}else {
 			SimBound newLinkState = factory.createSimBound();
 			newLinkState.setSimSite1(site);
 			halfBoundLinks.put(thisAgentsName, newLinkState);
-			halfBoundLinkSites.put(thisAgentsName, site);
+			container.getSimLinkStates().add(newLinkState);
 			return newLinkState;
 		}
 		

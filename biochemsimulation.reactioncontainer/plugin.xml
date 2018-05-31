@@ -9,7 +9,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated reactioncontainer -->
       <package
-            uri="http://www.example.org/reactioncontainer"
+            uri="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer"
             class="biochemsimulation.reactioncontainer.ReactioncontainerPackage"
             genModel="model/reactioncontainer.genmodel"/>
    </extension>

@@ -114,22 +114,22 @@ public class ReactionContainerGenerator {
 		ReactionContainer containerModel = factory.createReactionContainer();
 		for(AgentTemplate at : templates) {
 			for(int i = 0; i<at.getCount(); i++) {
-				containerModel.getSimAgent().add(at.createInstance(factory));
+				containerModel.getSimAgent().add(at.createInstance(factory, containerModel));
 			}
 		}
 		
 		for(SimAgent sa : containerModel.getSimAgent()) {
 			System.out.println("For Agent: "+sa.getName());
-			for(SimSite sss : sa.getSimSite()) {
+			for(SimSite sss : sa.getSimSites()) {
 				System.out.println("New SimSite stats:");
 				System.out.println("SimAgent_Name: "+sss.getSimAgent().getName());
 				System.out.println("SimAgent_Type: "+sss.getType());
 				//System.out.println("SimSite_Type: "+sss.getSimSiteState().getType());
-				System.out.println("SimAgent_Name of Site1: "+sss.getSimLinkstate().getSimSite1().getSimAgent().getName());
-				if(sss.getSimLinkstate() instanceof SimBound) {
-					SimBound saglkjn = (SimBound)sss.getSimLinkstate();
+				System.out.println("SimAgent_Name of Site1: "+sss.getSimLinkState().getSimSite1().getSimAgent().getName());
+				if(sss.getSimLinkState() instanceof SimBound) {
+					SimBound saglkjn = (SimBound)sss.getSimLinkState();
 					if(saglkjn.getSimSite2()!=null) {
-						System.out.println("SimAgent_Name of Site2: "+((SimBound)sss.getSimLinkstate()).getSimSite2().getSimAgent().getName());
+						System.out.println("SimAgent_Name of Site2: "+((SimBound)sss.getSimLinkState()).getSimSite2().getSimAgent().getName());
 					}
 				}
 					
