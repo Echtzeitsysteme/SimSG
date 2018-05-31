@@ -4,9 +4,6 @@
 package biochemsimulation.reactionrules.reactionRules.impl;
 
 import biochemsimulation.reactionrules.reactionRules.Agent;
-import biochemsimulation.reactionrules.reactionRules.AgentInstance;
-import biochemsimulation.reactionrules.reactionRules.AgentInstanceLinkState;
-import biochemsimulation.reactionrules.reactionRules.AgentInstanceSiteState;
 import biochemsimulation.reactionrules.reactionRules.AgentPattern;
 import biochemsimulation.reactionrules.reactionRules.ArithmeticValue;
 import biochemsimulation.reactionrules.reactionRules.ArithmeticVariable;
@@ -20,9 +17,6 @@ import biochemsimulation.reactionrules.reactionRules.IndexedLink;
 import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.Model;
-import biochemsimulation.reactionrules.reactionRules.ModelLocation;
-import biochemsimulation.reactionrules.reactionRules.ModelPath;
-import biochemsimulation.reactionrules.reactionRules.ModelUri;
 import biochemsimulation.reactionrules.reactionRules.NumericAssignment;
 import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral;
 import biochemsimulation.reactionrules.reactionRules.NumericFromVariable;
@@ -30,7 +24,6 @@ import biochemsimulation.reactionrules.reactionRules.Observation;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
 import biochemsimulation.reactionrules.reactionRules.PatternVariable;
-import biochemsimulation.reactionrules.reactionRules.ReactionContainer;
 import biochemsimulation.reactionrules.reactionRules.ReactionProperty;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesFactory;
@@ -78,56 +71,7 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass modelUriEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass modelPathEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass modelLocationEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass modelEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass reactionContainerEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass agentInstanceSiteStateEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass agentInstanceLinkStateEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass agentInstanceEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -469,69 +413,9 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getReactionRuleModel_ReactionContainer()
-  {
-    return (EReference)reactionRuleModelEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getReactionRuleModel_ReactionProperties()
   {
-    return (EReference)reactionRuleModelEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getModelUri()
-  {
-    return modelUriEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getModelUri_Uri()
-  {
-    return (EAttribute)modelUriEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getModelPath()
-  {
-    return modelPathEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getModelPath_Path()
-  {
-    return (EAttribute)modelPathEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getModelLocation()
-  {
-    return modelLocationEClass;
+    return (EReference)reactionRuleModelEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -552,176 +436,6 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
   public EAttribute getModel_Name()
   {
     return (EAttribute)modelEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getModel_Location()
-  {
-    return (EReference)modelEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getReactionContainer()
-  {
-    return reactionContainerEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getReactionContainer_AgentInstances()
-  {
-    return (EReference)reactionContainerEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getAgentInstanceSiteState()
-  {
-    return agentInstanceSiteStateEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAgentInstanceSiteState_Site()
-  {
-    return (EReference)agentInstanceSiteStateEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAgentInstanceSiteState_SiteState()
-  {
-    return (EReference)agentInstanceSiteStateEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getAgentInstanceLinkState()
-  {
-    return agentInstanceLinkStateEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAgentInstanceLinkState_Site()
-  {
-    return (EReference)agentInstanceLinkStateEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAgentInstanceLinkState_AttachedSite()
-  {
-    return (EReference)agentInstanceLinkStateEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAgentInstanceLinkState_AttachedAgent()
-  {
-    return (EReference)agentInstanceLinkStateEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAgentInstanceLinkState_AttachedAgentInstance()
-  {
-    return (EReference)agentInstanceLinkStateEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAgentInstanceLinkState_LinkState()
-  {
-    return (EReference)agentInstanceLinkStateEClass.getEStructuralFeatures().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getAgentInstance()
-  {
-    return agentInstanceEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getAgentInstance_Name()
-  {
-    return (EAttribute)agentInstanceEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAgentInstance_Agent()
-  {
-    return (EReference)agentInstanceEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAgentInstance_SiteStates()
-  {
-    return (EReference)agentInstanceEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAgentInstance_LinkStates()
-  {
-    return (EReference)agentInstanceEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1526,40 +1240,10 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     // Create classes and their features
     reactionRuleModelEClass = createEClass(REACTION_RULE_MODEL);
     createEReference(reactionRuleModelEClass, REACTION_RULE_MODEL__MODEL);
-    createEReference(reactionRuleModelEClass, REACTION_RULE_MODEL__REACTION_CONTAINER);
     createEReference(reactionRuleModelEClass, REACTION_RULE_MODEL__REACTION_PROPERTIES);
-
-    modelUriEClass = createEClass(MODEL_URI);
-    createEAttribute(modelUriEClass, MODEL_URI__URI);
-
-    modelPathEClass = createEClass(MODEL_PATH);
-    createEAttribute(modelPathEClass, MODEL_PATH__PATH);
-
-    modelLocationEClass = createEClass(MODEL_LOCATION);
 
     modelEClass = createEClass(MODEL);
     createEAttribute(modelEClass, MODEL__NAME);
-    createEReference(modelEClass, MODEL__LOCATION);
-
-    reactionContainerEClass = createEClass(REACTION_CONTAINER);
-    createEReference(reactionContainerEClass, REACTION_CONTAINER__AGENT_INSTANCES);
-
-    agentInstanceSiteStateEClass = createEClass(AGENT_INSTANCE_SITE_STATE);
-    createEReference(agentInstanceSiteStateEClass, AGENT_INSTANCE_SITE_STATE__SITE);
-    createEReference(agentInstanceSiteStateEClass, AGENT_INSTANCE_SITE_STATE__SITE_STATE);
-
-    agentInstanceLinkStateEClass = createEClass(AGENT_INSTANCE_LINK_STATE);
-    createEReference(agentInstanceLinkStateEClass, AGENT_INSTANCE_LINK_STATE__SITE);
-    createEReference(agentInstanceLinkStateEClass, AGENT_INSTANCE_LINK_STATE__ATTACHED_SITE);
-    createEReference(agentInstanceLinkStateEClass, AGENT_INSTANCE_LINK_STATE__ATTACHED_AGENT);
-    createEReference(agentInstanceLinkStateEClass, AGENT_INSTANCE_LINK_STATE__ATTACHED_AGENT_INSTANCE);
-    createEReference(agentInstanceLinkStateEClass, AGENT_INSTANCE_LINK_STATE__LINK_STATE);
-
-    agentInstanceEClass = createEClass(AGENT_INSTANCE);
-    createEAttribute(agentInstanceEClass, AGENT_INSTANCE__NAME);
-    createEReference(agentInstanceEClass, AGENT_INSTANCE__AGENT);
-    createEReference(agentInstanceEClass, AGENT_INSTANCE__SITE_STATES);
-    createEReference(agentInstanceEClass, AGENT_INSTANCE__LINK_STATES);
 
     reactionPropertyEClass = createEClass(REACTION_PROPERTY);
     createEAttribute(reactionPropertyEClass, REACTION_PROPERTY__NAME);
@@ -1704,8 +1388,6 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    modelUriEClass.getESuperTypes().add(this.getModelLocation());
-    modelPathEClass.getESuperTypes().add(this.getModelLocation());
     agentEClass.getESuperTypes().add(this.getReactionProperty());
     patternVariableEClass.getESuperTypes().add(this.getVariable());
     arithmeticVariableEClass.getESuperTypes().add(this.getVariable());
@@ -1728,40 +1410,10 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     // Initialize classes and features; add operations and parameters
     initEClass(reactionRuleModelEClass, ReactionRuleModel.class, "ReactionRuleModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getReactionRuleModel_Model(), this.getModel(), null, "model", null, 0, 1, ReactionRuleModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getReactionRuleModel_ReactionContainer(), this.getReactionContainer(), null, "reactionContainer", null, 0, 1, ReactionRuleModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getReactionRuleModel_ReactionProperties(), this.getReactionProperty(), null, "reactionProperties", null, 0, -1, ReactionRuleModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(modelUriEClass, ModelUri.class, "ModelUri", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getModelUri_Uri(), ecorePackage.getEString(), "uri", null, 0, 1, ModelUri.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(modelPathEClass, ModelPath.class, "ModelPath", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getModelPath_Path(), ecorePackage.getEString(), "path", null, 0, 1, ModelPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(modelLocationEClass, ModelLocation.class, "ModelLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getModel_Name(), ecorePackage.getEString(), "name", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getModel_Location(), this.getModelLocation(), null, "location", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(reactionContainerEClass, ReactionContainer.class, "ReactionContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getReactionContainer_AgentInstances(), this.getAgentInstance(), null, "agentInstances", null, 0, -1, ReactionContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(agentInstanceSiteStateEClass, AgentInstanceSiteState.class, "AgentInstanceSiteState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAgentInstanceSiteState_Site(), this.getSite(), null, "site", null, 0, 1, AgentInstanceSiteState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAgentInstanceSiteState_SiteState(), this.getSiteState(), null, "siteState", null, 0, 1, AgentInstanceSiteState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(agentInstanceLinkStateEClass, AgentInstanceLinkState.class, "AgentInstanceLinkState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAgentInstanceLinkState_Site(), this.getSite(), null, "site", null, 0, 1, AgentInstanceLinkState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAgentInstanceLinkState_AttachedSite(), this.getSite(), null, "attachedSite", null, 0, 1, AgentInstanceLinkState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAgentInstanceLinkState_AttachedAgent(), this.getAgent(), null, "attachedAgent", null, 0, 1, AgentInstanceLinkState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAgentInstanceLinkState_AttachedAgentInstance(), this.getAgentInstance(), null, "attachedAgentInstance", null, 0, 1, AgentInstanceLinkState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAgentInstanceLinkState_LinkState(), this.getLinkState(), null, "linkState", null, 0, 1, AgentInstanceLinkState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(agentInstanceEClass, AgentInstance.class, "AgentInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getAgentInstance_Name(), ecorePackage.getEString(), "name", null, 0, 1, AgentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAgentInstance_Agent(), this.getAgent(), null, "agent", null, 0, 1, AgentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAgentInstance_SiteStates(), this.getAgentInstanceSiteState(), null, "siteStates", null, 0, -1, AgentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAgentInstance_LinkStates(), this.getAgentInstanceLinkState(), null, "linkStates", null, 0, -1, AgentInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(reactionPropertyEClass, ReactionProperty.class, "ReactionProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getReactionProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, ReactionProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -15,16 +15,17 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtend.lib,
  org.eclipse.emf.common
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: biochemsimulation.reactionrules.services,
+Export-Package: biochemsimulation.reactionrules,
  biochemsimulation.reactionrules.generator,
- biochemsimulation.reactionrules,
- biochemsimulation.reactionrules.parser.antlr.internal,
- biochemsimulation.reactionrules.scoping,
- biochemsimulation.reactionrules.reactionRules.impl,
- biochemsimulation.reactionrules.serializer,
  biochemsimulation.reactionrules.parser.antlr,
- biochemsimulation.reactionrules.validation,
+ biochemsimulation.reactionrules.parser.antlr.internal,
+ biochemsimulation.reactionrules.reactionRules,
+ biochemsimulation.reactionrules.reactionRules.impl,
  biochemsimulation.reactionrules.reactionRules.util,
- biochemsimulation.reactionrules.reactionRules
+ biochemsimulation.reactionrules.scoping,
+ biochemsimulation.reactionrules.serializer,
+ biochemsimulation.reactionrules.services,
+ biochemsimulation.reactionrules.utils,
+ biochemsimulation.reactionrules.validation
 Import-Package: org.apache.log4j
 Automatic-Module-Name: biochemsimulation.reactionrules

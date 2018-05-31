@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactioncontainer.ReactionContainer#getAgent <em>Agent</em>}</li>
+ *   <li>{@link biochemsimulation.reactioncontainer.ReactionContainer#getSimAgent <em>Sim Agent</em>}</li>
  * </ul>
  *
  * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getReactionContainer()
@@ -24,19 +24,19 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ReactionContainer extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Agent</b></em>' containment reference list.
-	 * The list contents are of type {@link biochemsimulation.reactioncontainer.Agent}.
+	 * Returns the value of the '<em><b>Sim Agent</b></em>' containment reference list.
+	 * The list contents are of type {@link biochemsimulation.reactioncontainer.SimAgent}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Agent</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Sim Agent</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Agent</em>' containment reference list.
-	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getReactionContainer_Agent()
+	 * @return the value of the '<em>Sim Agent</em>' containment reference list.
+	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getReactionContainer_SimAgent()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Agent> getAgent();
+	EList<SimAgent> getSimAgent();
 
 } // ReactionContainer

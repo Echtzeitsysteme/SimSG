@@ -5,48 +5,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="ReactionRuleModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="model" eType="#//Model"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="reactionContainer" eType="#//ReactionContainer"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="reactionProperties" upperBound="-1"
         eType="#//ReactionProperty" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelUri" eSuperTypes="#//ModelLocation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelPath" eSuperTypes="#//ModelLocation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelLocation"/>
   <eClassifiers xsi:type="ecore:EClass" name="Model">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="location" eType="#//ModelLocation"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ReactionContainer">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="agentInstances" upperBound="-1"
-        eType="#//AgentInstance" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AgentInstanceSiteState">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="site" eType="#//Site"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="siteState" eType="#//SiteState"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AgentInstanceLinkState">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="site" eType="#//Site"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attachedSite" eType="#//Site"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attachedAgent" eType="#//Agent"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attachedAgentInstance"
-        eType="#//AgentInstance"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="linkState" eType="#//LinkState"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AgentInstance">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="agent" eType="#//Agent"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="siteStates" upperBound="-1"
-        eType="#//AgentInstanceSiteState" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="linkStates" upperBound="-1"
-        eType="#//AgentInstanceLinkState" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ReactionProperty">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

@@ -1,11 +1,5 @@
 package patterngenerator;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -24,14 +18,12 @@ import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.EMFPatter
 import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternModel;
 import org.eclipse.viatra.query.patternlanguage.emf.specification.SpecificationBuilder;
 import org.eclipse.viatra.query.patternlanguage.patternLanguage.Pattern;
-//import org.eclipse.viatra.query.patternlanguage.patternLanguage.Pattern;
-//import org.eclipse.viatra.query.patternlanguage.patternLanguage.PatternModel;
 import org.eclipse.viatra.query.runtime.api.AdvancedViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryMatcher;
 import org.eclipse.viatra.query.runtime.emf.EMFScope;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
-
+import biochemsimulation.reactioncontainer.generator.ReactionContainerGenerator;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 import biochemsimulation.reactionrules.reactionRules.Rule;
 import biochemsimulation.reactionrules.reactionRules.impl.ReactionRuleModelImpl;
@@ -152,6 +144,13 @@ public class PatternGeneratorTest {
 		ReactionRuleModelImpl model = (ReactionRuleModelImpl) resource.getContents().get(0);
 		return model;
 	}
+	
+	public static void generateReactionContainerModel() throws Exception {
+		URI uri = URI.createURI(
+				"/eclipse/modeling-oxygen/eclipse/../../../Eclipse Workspaces/BioChemSimulation/biochemsimulation.reactionrules/model/instances/test2.xmi");
+		ReactionContainerGenerator gen = new ReactionContainerGenerator(uri);
+		gen.doGenerate();
+	}
 
 	public static void main(String[] args) {
 		System.out.println("Loading model..");
@@ -166,6 +165,13 @@ public class PatternGeneratorTest {
 		} else {
 			System.out.println("Model loaded successfully.");
 		}
+		
+		try {
+			generateReactionContainerModel();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		List<Rule> rules = new LinkedList<Rule>();
 		for (EObject e : model.getReactionProperties()) {
@@ -175,6 +181,7 @@ public class PatternGeneratorTest {
 		}
 		LinkedHashMap<EPackage, String> imports = new LinkedHashMap<EPackage, String>();
 		imports.put(ReactionRulesPackage.eINSTANCE, "reactionRules");
+		/*
 		PatternTemplate pt = new PatternTemplate(imports);
 		String output = pt.generatePatternCode(rules);
 		System.out.println(output);
@@ -189,6 +196,7 @@ public class PatternGeneratorTest {
 		}
 		
 		System.out.println(executeDemo_GenericAPI_LoadFromEIQ());
+		*/
 
 	}
 

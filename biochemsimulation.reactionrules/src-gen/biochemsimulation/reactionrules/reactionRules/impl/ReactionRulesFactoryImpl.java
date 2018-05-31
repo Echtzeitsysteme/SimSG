@@ -66,14 +66,7 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
     switch (eClass.getClassifierID())
     {
       case ReactionRulesPackage.REACTION_RULE_MODEL: return createReactionRuleModel();
-      case ReactionRulesPackage.MODEL_URI: return createModelUri();
-      case ReactionRulesPackage.MODEL_PATH: return createModelPath();
-      case ReactionRulesPackage.MODEL_LOCATION: return createModelLocation();
       case ReactionRulesPackage.MODEL: return createModel();
-      case ReactionRulesPackage.REACTION_CONTAINER: return createReactionContainer();
-      case ReactionRulesPackage.AGENT_INSTANCE_SITE_STATE: return createAgentInstanceSiteState();
-      case ReactionRulesPackage.AGENT_INSTANCE_LINK_STATE: return createAgentInstanceLinkState();
-      case ReactionRulesPackage.AGENT_INSTANCE: return createAgentInstance();
       case ReactionRulesPackage.REACTION_PROPERTY: return createReactionProperty();
       case ReactionRulesPackage.ARITHMETIC_VALUE: return createArithmeticValue();
       case ReactionRulesPackage.STATE: return createState();
@@ -131,87 +124,10 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
-  public ModelUri createModelUri()
-  {
-    ModelUriImpl modelUri = new ModelUriImpl();
-    return modelUri;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ModelPath createModelPath()
-  {
-    ModelPathImpl modelPath = new ModelPathImpl();
-    return modelPath;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ModelLocation createModelLocation()
-  {
-    ModelLocationImpl modelLocation = new ModelLocationImpl();
-    return modelLocation;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public Model createModel()
   {
     ModelImpl model = new ModelImpl();
     return model;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ReactionContainer createReactionContainer()
-  {
-    ReactionContainerImpl reactionContainer = new ReactionContainerImpl();
-    return reactionContainer;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public AgentInstanceSiteState createAgentInstanceSiteState()
-  {
-    AgentInstanceSiteStateImpl agentInstanceSiteState = new AgentInstanceSiteStateImpl();
-    return agentInstanceSiteState;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public AgentInstanceLinkState createAgentInstanceLinkState()
-  {
-    AgentInstanceLinkStateImpl agentInstanceLinkState = new AgentInstanceLinkStateImpl();
-    return agentInstanceLinkState;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public AgentInstance createAgentInstance()
-  {
-    AgentInstanceImpl agentInstance = new AgentInstanceImpl();
-    return agentInstance;
   }
 
   /**

@@ -3,30 +3,34 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="reactioncontainer" nsURI="http://www.example.org/reactioncontainer"
     nsPrefix="reactioncontainer">
   <eClassifiers xsi:type="ecore:EClass" name="ReactionContainer">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="agent" upperBound="-1"
-        eType="#//Agent" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="simAgent" upperBound="-1"
+        eType="#//SimAgent" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Agent">
+  <eClassifiers xsi:type="ecore:EClass" name="SimAgent">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="site" upperBound="-1" eType="#//Site"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="simSite" upperBound="-1"
+        eType="#//SimSite" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SimSite">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="simLinkstate" eType="#//SimLinkState"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="simSiteState" eType="#//SimSiteState"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="simAgent" lowerBound="1"
+        eType="#//SimAgent"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Site">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="linkstate" upperBound="-1"
-        eType="#//LinkState" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sitestate" eType="#//SiteState"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="agent" lowerBound="1" eType="#//Agent"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SiteState">
+  <eClassifiers xsi:type="ecore:EClass" name="SimSiteState">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LinkState" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="site1" lowerBound="1" eType="#//Site"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SimLinkState" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="simSite1" lowerBound="1"
+        eType="#//SimSite"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Free" eSuperTypes="#//LinkState"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Bound" eSuperTypes="#//LinkState">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="site2" lowerBound="1" eType="#//Site"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SimFree" eSuperTypes="#//SimLinkState"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SimBound" eSuperTypes="#//SimLinkState">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="simSite2" lowerBound="1"
+        eType="#//SimSite"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -1,0 +1,391 @@
+/**
+ */
+package biochemsimulation.reactioncontainer.impl;
+
+import biochemsimulation.reactioncontainer.ReactioncontainerPackage;
+import biochemsimulation.reactioncontainer.SimAgent;
+import biochemsimulation.reactioncontainer.SimLinkState;
+import biochemsimulation.reactioncontainer.SimSite;
+import biochemsimulation.reactioncontainer.SimSiteState;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Sim Site</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link biochemsimulation.reactioncontainer.impl.SimSiteImpl#getType <em>Type</em>}</li>
+ *   <li>{@link biochemsimulation.reactioncontainer.impl.SimSiteImpl#getSimLinkstate <em>Sim Linkstate</em>}</li>
+ *   <li>{@link biochemsimulation.reactioncontainer.impl.SimSiteImpl#getSimSiteState <em>Sim Site State</em>}</li>
+ *   <li>{@link biochemsimulation.reactioncontainer.impl.SimSiteImpl#getSimAgent <em>Sim Agent</em>}</li>
+ * </ul>
+ *
+ * @generated
+ */
+public class SimSiteImpl extends MinimalEObjectImpl.Container implements SimSite {
+	/**
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TYPE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String type = TYPE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getSimLinkstate() <em>Sim Linkstate</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSimLinkstate()
+	 * @generated
+	 * @ordered
+	 */
+	protected SimLinkState simLinkstate;
+
+	/**
+	 * The cached value of the '{@link #getSimSiteState() <em>Sim Site State</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSimSiteState()
+	 * @generated
+	 * @ordered
+	 */
+	protected SimSiteState simSiteState;
+
+	/**
+	 * The cached value of the '{@link #getSimAgent() <em>Sim Agent</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSimAgent()
+	 * @generated
+	 * @ordered
+	 */
+	protected SimAgent simAgent;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SimSiteImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return ReactioncontainerPackage.Literals.SIM_SITE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getType() {
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setType(String newType) {
+		String oldType = type;
+		type = newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ReactioncontainerPackage.SIM_SITE__TYPE, oldType,
+					type));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SimLinkState getSimLinkstate() {
+		return simLinkstate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSimLinkstate(SimLinkState newSimLinkstate, NotificationChain msgs) {
+		SimLinkState oldSimLinkstate = simLinkstate;
+		simLinkstate = newSimLinkstate;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					ReactioncontainerPackage.SIM_SITE__SIM_LINKSTATE, oldSimLinkstate, newSimLinkstate);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSimLinkstate(SimLinkState newSimLinkstate) {
+		if (newSimLinkstate != simLinkstate) {
+			NotificationChain msgs = null;
+			if (simLinkstate != null)
+				msgs = ((InternalEObject) simLinkstate).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - ReactioncontainerPackage.SIM_SITE__SIM_LINKSTATE, null, msgs);
+			if (newSimLinkstate != null)
+				msgs = ((InternalEObject) newSimLinkstate).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - ReactioncontainerPackage.SIM_SITE__SIM_LINKSTATE, null, msgs);
+			msgs = basicSetSimLinkstate(newSimLinkstate, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ReactioncontainerPackage.SIM_SITE__SIM_LINKSTATE,
+					newSimLinkstate, newSimLinkstate));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SimSiteState getSimSiteState() {
+		return simSiteState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSimSiteState(SimSiteState newSimSiteState, NotificationChain msgs) {
+		SimSiteState oldSimSiteState = simSiteState;
+		simSiteState = newSimSiteState;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					ReactioncontainerPackage.SIM_SITE__SIM_SITE_STATE, oldSimSiteState, newSimSiteState);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSimSiteState(SimSiteState newSimSiteState) {
+		if (newSimSiteState != simSiteState) {
+			NotificationChain msgs = null;
+			if (simSiteState != null)
+				msgs = ((InternalEObject) simSiteState).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - ReactioncontainerPackage.SIM_SITE__SIM_SITE_STATE, null, msgs);
+			if (newSimSiteState != null)
+				msgs = ((InternalEObject) newSimSiteState).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - ReactioncontainerPackage.SIM_SITE__SIM_SITE_STATE, null, msgs);
+			msgs = basicSetSimSiteState(newSimSiteState, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ReactioncontainerPackage.SIM_SITE__SIM_SITE_STATE,
+					newSimSiteState, newSimSiteState));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SimAgent getSimAgent() {
+		if (simAgent != null && simAgent.eIsProxy()) {
+			InternalEObject oldSimAgent = (InternalEObject) simAgent;
+			simAgent = (SimAgent) eResolveProxy(oldSimAgent);
+			if (simAgent != oldSimAgent) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							ReactioncontainerPackage.SIM_SITE__SIM_AGENT, oldSimAgent, simAgent));
+			}
+		}
+		return simAgent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SimAgent basicGetSimAgent() {
+		return simAgent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSimAgent(SimAgent newSimAgent) {
+		SimAgent oldSimAgent = simAgent;
+		simAgent = newSimAgent;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ReactioncontainerPackage.SIM_SITE__SIM_AGENT,
+					oldSimAgent, simAgent));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case ReactioncontainerPackage.SIM_SITE__SIM_LINKSTATE:
+			return basicSetSimLinkstate(null, msgs);
+		case ReactioncontainerPackage.SIM_SITE__SIM_SITE_STATE:
+			return basicSetSimSiteState(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+		case ReactioncontainerPackage.SIM_SITE__TYPE:
+			return getType();
+		case ReactioncontainerPackage.SIM_SITE__SIM_LINKSTATE:
+			return getSimLinkstate();
+		case ReactioncontainerPackage.SIM_SITE__SIM_SITE_STATE:
+			return getSimSiteState();
+		case ReactioncontainerPackage.SIM_SITE__SIM_AGENT:
+			if (resolve)
+				return getSimAgent();
+			return basicGetSimAgent();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+		case ReactioncontainerPackage.SIM_SITE__TYPE:
+			setType((String) newValue);
+			return;
+		case ReactioncontainerPackage.SIM_SITE__SIM_LINKSTATE:
+			setSimLinkstate((SimLinkState) newValue);
+			return;
+		case ReactioncontainerPackage.SIM_SITE__SIM_SITE_STATE:
+			setSimSiteState((SimSiteState) newValue);
+			return;
+		case ReactioncontainerPackage.SIM_SITE__SIM_AGENT:
+			setSimAgent((SimAgent) newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+		case ReactioncontainerPackage.SIM_SITE__TYPE:
+			setType(TYPE_EDEFAULT);
+			return;
+		case ReactioncontainerPackage.SIM_SITE__SIM_LINKSTATE:
+			setSimLinkstate((SimLinkState) null);
+			return;
+		case ReactioncontainerPackage.SIM_SITE__SIM_SITE_STATE:
+			setSimSiteState((SimSiteState) null);
+			return;
+		case ReactioncontainerPackage.SIM_SITE__SIM_AGENT:
+			setSimAgent((SimAgent) null);
+			return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+		case ReactioncontainerPackage.SIM_SITE__TYPE:
+			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+		case ReactioncontainerPackage.SIM_SITE__SIM_LINKSTATE:
+			return simLinkstate != null;
+		case ReactioncontainerPackage.SIM_SITE__SIM_SITE_STATE:
+			return simSiteState != null;
+		case ReactioncontainerPackage.SIM_SITE__SIM_AGENT:
+			return simAgent != null;
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (Type: ");
+		result.append(type);
+		result.append(')');
+		return result.toString();
+	}
+
+} //SimSiteImpl

@@ -80,61 +80,10 @@ public class ReactionRulesSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ReactionRulesPackage.MODEL_URI:
-      {
-        ModelUri modelUri = (ModelUri)theEObject;
-        T result = caseModelUri(modelUri);
-        if (result == null) result = caseModelLocation(modelUri);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ReactionRulesPackage.MODEL_PATH:
-      {
-        ModelPath modelPath = (ModelPath)theEObject;
-        T result = caseModelPath(modelPath);
-        if (result == null) result = caseModelLocation(modelPath);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ReactionRulesPackage.MODEL_LOCATION:
-      {
-        ModelLocation modelLocation = (ModelLocation)theEObject;
-        T result = caseModelLocation(modelLocation);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case ReactionRulesPackage.MODEL:
       {
         Model model = (Model)theEObject;
         T result = caseModel(model);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ReactionRulesPackage.REACTION_CONTAINER:
-      {
-        ReactionContainer reactionContainer = (ReactionContainer)theEObject;
-        T result = caseReactionContainer(reactionContainer);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ReactionRulesPackage.AGENT_INSTANCE_SITE_STATE:
-      {
-        AgentInstanceSiteState agentInstanceSiteState = (AgentInstanceSiteState)theEObject;
-        T result = caseAgentInstanceSiteState(agentInstanceSiteState);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ReactionRulesPackage.AGENT_INSTANCE_LINK_STATE:
-      {
-        AgentInstanceLinkState agentInstanceLinkState = (AgentInstanceLinkState)theEObject;
-        T result = caseAgentInstanceLinkState(agentInstanceLinkState);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ReactionRulesPackage.AGENT_INSTANCE:
-      {
-        AgentInstance agentInstance = (AgentInstance)theEObject;
-        T result = caseAgentInstance(agentInstance);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -431,54 +380,6 @@ public class ReactionRulesSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Model Uri</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Model Uri</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseModelUri(ModelUri object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Model Path</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Model Path</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseModelPath(ModelPath object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Model Location</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Model Location</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseModelLocation(ModelLocation object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -490,70 +391,6 @@ public class ReactionRulesSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseModel(Model object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Reaction Container</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Reaction Container</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseReactionContainer(ReactionContainer object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Agent Instance Site State</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Agent Instance Site State</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseAgentInstanceSiteState(AgentInstanceSiteState object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Agent Instance Link State</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Agent Instance Link State</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseAgentInstanceLinkState(AgentInstanceLinkState object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Agent Instance</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Agent Instance</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseAgentInstance(AgentInstance object)
   {
     return null;
   }

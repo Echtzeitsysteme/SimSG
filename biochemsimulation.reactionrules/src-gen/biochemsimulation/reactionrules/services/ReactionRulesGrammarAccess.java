@@ -29,18 +29,15 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cModelAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cModelModelParserRuleCall_0_0 = (RuleCall)cModelAssignment_0.eContents().get(0);
-		private final Assignment cReactionContainerAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cReactionContainerReactionContainerParserRuleCall_1_0 = (RuleCall)cReactionContainerAssignment_1.eContents().get(0);
-		private final Assignment cReactionPropertiesAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cReactionPropertiesReactionPropertyParserRuleCall_2_0 = (RuleCall)cReactionPropertiesAssignment_2.eContents().get(0);
+		private final Assignment cReactionPropertiesAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cReactionPropertiesReactionPropertyParserRuleCall_1_0 = (RuleCall)cReactionPropertiesAssignment_1.eContents().get(0);
 		
 		//ReactionRuleModel:
 		//	model=Model
-		//	reactionContainer=ReactionContainer
 		//	reactionProperties+=ReactionProperty*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//model=Model reactionContainer=ReactionContainer reactionProperties+=ReactionProperty*
+		//model=Model reactionProperties+=ReactionProperty*
 		public Group getGroup() { return cGroup; }
 		
 		//model=Model
@@ -49,84 +46,11 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		//Model
 		public RuleCall getModelModelParserRuleCall_0_0() { return cModelModelParserRuleCall_0_0; }
 		
-		//reactionContainer=ReactionContainer
-		public Assignment getReactionContainerAssignment_1() { return cReactionContainerAssignment_1; }
-		
-		//ReactionContainer
-		public RuleCall getReactionContainerReactionContainerParserRuleCall_1_0() { return cReactionContainerReactionContainerParserRuleCall_1_0; }
-		
 		//reactionProperties+=ReactionProperty*
-		public Assignment getReactionPropertiesAssignment_2() { return cReactionPropertiesAssignment_2; }
+		public Assignment getReactionPropertiesAssignment_1() { return cReactionPropertiesAssignment_1; }
 		
 		//ReactionProperty
-		public RuleCall getReactionPropertiesReactionPropertyParserRuleCall_2_0() { return cReactionPropertiesReactionPropertyParserRuleCall_2_0; }
-	}
-	public class ModelUriElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.ModelUri");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cURIKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cUriAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cUriSTRINGTerminalRuleCall_1_0 = (RuleCall)cUriAssignment_1.eContents().get(0);
-		
-		//ModelUri:
-		//	'URI'
-		//	uri=STRING;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'URI' uri=STRING
-		public Group getGroup() { return cGroup; }
-		
-		//'URI'
-		public Keyword getURIKeyword_0() { return cURIKeyword_0; }
-		
-		//uri=STRING
-		public Assignment getUriAssignment_1() { return cUriAssignment_1; }
-		
-		//STRING
-		public RuleCall getUriSTRINGTerminalRuleCall_1_0() { return cUriSTRINGTerminalRuleCall_1_0; }
-	}
-	public class ModelPathElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.ModelPath");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cPATHKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cPathAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cPathSTRINGTerminalRuleCall_1_0 = (RuleCall)cPathAssignment_1.eContents().get(0);
-		
-		//ModelPath:
-		//	'PATH'
-		//	path=STRING;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'PATH' path=STRING
-		public Group getGroup() { return cGroup; }
-		
-		//'PATH'
-		public Keyword getPATHKeyword_0() { return cPATHKeyword_0; }
-		
-		//path=STRING
-		public Assignment getPathAssignment_1() { return cPathAssignment_1; }
-		
-		//STRING
-		public RuleCall getPathSTRINGTerminalRuleCall_1_0() { return cPathSTRINGTerminalRuleCall_1_0; }
-	}
-	public class ModelLocationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.ModelLocation");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cModelUriParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cModelPathParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		
-		//ModelLocation:
-		//	ModelUri | ModelPath;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//ModelUri | ModelPath
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//ModelUri
-		public RuleCall getModelUriParserRuleCall_0() { return cModelUriParserRuleCall_0; }
-		
-		//ModelPath
-		public RuleCall getModelPathParserRuleCall_1() { return cModelPathParserRuleCall_1; }
+		public RuleCall getReactionPropertiesReactionPropertyParserRuleCall_1_0() { return cReactionPropertiesReactionPropertyParserRuleCall_1_0; }
 	}
 	public class ModelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.Model");
@@ -134,16 +58,13 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cModelIDKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Assignment cLocationAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cLocationModelLocationParserRuleCall_2_0 = (RuleCall)cLocationAssignment_2.eContents().get(0);
 		
 		//Model:
 		//	'ModelID'
-		//	name=ID
-		//	location=ModelLocation?;
+		//	name=ID;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'ModelID' name=ID location=ModelLocation?
+		//'ModelID' name=ID
 		public Group getGroup() { return cGroup; }
 		
 		//'ModelID'
@@ -154,187 +75,6 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
-		
-		//location=ModelLocation?
-		public Assignment getLocationAssignment_2() { return cLocationAssignment_2; }
-		
-		//ModelLocation
-		public RuleCall getLocationModelLocationParserRuleCall_2_0() { return cLocationModelLocationParserRuleCall_2_0; }
-	}
-	public class ReactionContainerElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.ReactionContainer");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cReactionContainerAction_0 = (Action)cGroup.eContents().get(0);
-		private final Assignment cAgentInstancesAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cAgentInstancesAgentInstanceParserRuleCall_1_0 = (RuleCall)cAgentInstancesAssignment_1.eContents().get(0);
-		
-		//ReactionContainer:
-		//	{ReactionContainer} agentInstances+=AgentInstance*;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//{ReactionContainer} agentInstances+=AgentInstance*
-		public Group getGroup() { return cGroup; }
-		
-		//{ReactionContainer}
-		public Action getReactionContainerAction_0() { return cReactionContainerAction_0; }
-		
-		//agentInstances+=AgentInstance*
-		public Assignment getAgentInstancesAssignment_1() { return cAgentInstancesAssignment_1; }
-		
-		//AgentInstance
-		public RuleCall getAgentInstancesAgentInstanceParserRuleCall_1_0() { return cAgentInstancesAgentInstanceParserRuleCall_1_0; }
-	}
-	public class AgentInstanceSiteStateElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.AgentInstanceSiteState");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cSiteAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cSiteSiteCrossReference_0_0 = (CrossReference)cSiteAssignment_0.eContents().get(0);
-		private final RuleCall cSiteSiteIDTerminalRuleCall_0_0_1 = (RuleCall)cSiteSiteCrossReference_0_0.eContents().get(1);
-		private final Assignment cSiteStateAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cSiteStateSiteStateParserRuleCall_1_0 = (RuleCall)cSiteStateAssignment_1.eContents().get(0);
-		
-		//AgentInstanceSiteState:
-		//	site=[Site] siteState=SiteState;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//site=[Site] siteState=SiteState
-		public Group getGroup() { return cGroup; }
-		
-		//site=[Site]
-		public Assignment getSiteAssignment_0() { return cSiteAssignment_0; }
-		
-		//[Site]
-		public CrossReference getSiteSiteCrossReference_0_0() { return cSiteSiteCrossReference_0_0; }
-		
-		//ID
-		public RuleCall getSiteSiteIDTerminalRuleCall_0_0_1() { return cSiteSiteIDTerminalRuleCall_0_0_1; }
-		
-		//siteState=SiteState
-		public Assignment getSiteStateAssignment_1() { return cSiteStateAssignment_1; }
-		
-		//SiteState
-		public RuleCall getSiteStateSiteStateParserRuleCall_1_0() { return cSiteStateSiteStateParserRuleCall_1_0; }
-	}
-	public class AgentInstanceLinkStateElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.AgentInstanceLinkState");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cSiteAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cSiteSiteCrossReference_0_0 = (CrossReference)cSiteAssignment_0.eContents().get(0);
-		private final RuleCall cSiteSiteIDTerminalRuleCall_0_0_1 = (RuleCall)cSiteSiteCrossReference_0_0.eContents().get(1);
-		private final Assignment cAttachedSiteAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cAttachedSiteSiteCrossReference_1_0 = (CrossReference)cAttachedSiteAssignment_1.eContents().get(0);
-		private final RuleCall cAttachedSiteSiteIDTerminalRuleCall_1_0_1 = (RuleCall)cAttachedSiteSiteCrossReference_1_0.eContents().get(1);
-		private final Assignment cAttachedAgentAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cAttachedAgentAgentCrossReference_2_0 = (CrossReference)cAttachedAgentAssignment_2.eContents().get(0);
-		private final RuleCall cAttachedAgentAgentIDTerminalRuleCall_2_0_1 = (RuleCall)cAttachedAgentAgentCrossReference_2_0.eContents().get(1);
-		private final Assignment cAttachedAgentInstanceAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cAttachedAgentInstanceAgentInstanceCrossReference_3_0 = (CrossReference)cAttachedAgentInstanceAssignment_3.eContents().get(0);
-		private final RuleCall cAttachedAgentInstanceAgentInstanceIDTerminalRuleCall_3_0_1 = (RuleCall)cAttachedAgentInstanceAgentInstanceCrossReference_3_0.eContents().get(1);
-		private final Assignment cLinkStateAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cLinkStateLinkStateParserRuleCall_4_0 = (RuleCall)cLinkStateAssignment_4.eContents().get(0);
-		
-		//AgentInstanceLinkState:
-		//	site=[Site] attachedSite=[Site] attachedAgent=[Agent] attachedAgentInstance=[AgentInstance] linkState=LinkState;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//site=[Site] attachedSite=[Site] attachedAgent=[Agent] attachedAgentInstance=[AgentInstance] linkState=LinkState
-		public Group getGroup() { return cGroup; }
-		
-		//site=[Site]
-		public Assignment getSiteAssignment_0() { return cSiteAssignment_0; }
-		
-		//[Site]
-		public CrossReference getSiteSiteCrossReference_0_0() { return cSiteSiteCrossReference_0_0; }
-		
-		//ID
-		public RuleCall getSiteSiteIDTerminalRuleCall_0_0_1() { return cSiteSiteIDTerminalRuleCall_0_0_1; }
-		
-		//attachedSite=[Site]
-		public Assignment getAttachedSiteAssignment_1() { return cAttachedSiteAssignment_1; }
-		
-		//[Site]
-		public CrossReference getAttachedSiteSiteCrossReference_1_0() { return cAttachedSiteSiteCrossReference_1_0; }
-		
-		//ID
-		public RuleCall getAttachedSiteSiteIDTerminalRuleCall_1_0_1() { return cAttachedSiteSiteIDTerminalRuleCall_1_0_1; }
-		
-		//attachedAgent=[Agent]
-		public Assignment getAttachedAgentAssignment_2() { return cAttachedAgentAssignment_2; }
-		
-		//[Agent]
-		public CrossReference getAttachedAgentAgentCrossReference_2_0() { return cAttachedAgentAgentCrossReference_2_0; }
-		
-		//ID
-		public RuleCall getAttachedAgentAgentIDTerminalRuleCall_2_0_1() { return cAttachedAgentAgentIDTerminalRuleCall_2_0_1; }
-		
-		//attachedAgentInstance=[AgentInstance]
-		public Assignment getAttachedAgentInstanceAssignment_3() { return cAttachedAgentInstanceAssignment_3; }
-		
-		//[AgentInstance]
-		public CrossReference getAttachedAgentInstanceAgentInstanceCrossReference_3_0() { return cAttachedAgentInstanceAgentInstanceCrossReference_3_0; }
-		
-		//ID
-		public RuleCall getAttachedAgentInstanceAgentInstanceIDTerminalRuleCall_3_0_1() { return cAttachedAgentInstanceAgentInstanceIDTerminalRuleCall_3_0_1; }
-		
-		//linkState=LinkState
-		public Assignment getLinkStateAssignment_4() { return cLinkStateAssignment_4; }
-		
-		//LinkState
-		public RuleCall getLinkStateLinkStateParserRuleCall_4_0() { return cLinkStateLinkStateParserRuleCall_4_0; }
-	}
-	public class AgentInstanceElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.AgentInstance");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cAgentInstanceKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Assignment cAgentAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cAgentAgentCrossReference_2_0 = (CrossReference)cAgentAssignment_2.eContents().get(0);
-		private final RuleCall cAgentAgentIDTerminalRuleCall_2_0_1 = (RuleCall)cAgentAgentCrossReference_2_0.eContents().get(1);
-		private final Assignment cSiteStatesAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cSiteStatesAgentInstanceSiteStateParserRuleCall_3_0 = (RuleCall)cSiteStatesAssignment_3.eContents().get(0);
-		private final Assignment cLinkStatesAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cLinkStatesAgentInstanceLinkStateParserRuleCall_4_0 = (RuleCall)cLinkStatesAssignment_4.eContents().get(0);
-		
-		//AgentInstance:
-		//	'AgentInstance'
-		//	name=ID
-		//	agent=[Agent] siteStates+=AgentInstanceSiteState
-		//	linkStates+=AgentInstanceLinkState;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'AgentInstance' name=ID agent=[Agent] siteStates+=AgentInstanceSiteState linkStates+=AgentInstanceLinkState
-		public Group getGroup() { return cGroup; }
-		
-		//'AgentInstance'
-		public Keyword getAgentInstanceKeyword_0() { return cAgentInstanceKeyword_0; }
-		
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
-		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
-		
-		//agent=[Agent]
-		public Assignment getAgentAssignment_2() { return cAgentAssignment_2; }
-		
-		//[Agent]
-		public CrossReference getAgentAgentCrossReference_2_0() { return cAgentAgentCrossReference_2_0; }
-		
-		//ID
-		public RuleCall getAgentAgentIDTerminalRuleCall_2_0_1() { return cAgentAgentIDTerminalRuleCall_2_0_1; }
-		
-		//siteStates+=AgentInstanceSiteState
-		public Assignment getSiteStatesAssignment_3() { return cSiteStatesAssignment_3; }
-		
-		//AgentInstanceSiteState
-		public RuleCall getSiteStatesAgentInstanceSiteStateParserRuleCall_3_0() { return cSiteStatesAgentInstanceSiteStateParserRuleCall_3_0; }
-		
-		//linkStates+=AgentInstanceLinkState
-		public Assignment getLinkStatesAssignment_4() { return cLinkStatesAssignment_4; }
-		
-		//AgentInstanceLinkState
-		public RuleCall getLinkStatesAgentInstanceLinkStateParserRuleCall_4_0() { return cLinkStatesAgentInstanceLinkStateParserRuleCall_4_0; }
 	}
 	public class ReactionPropertyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.ReactionProperty");
@@ -1663,14 +1403,7 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	private final ReactionRuleModelElements pReactionRuleModel;
-	private final ModelUriElements pModelUri;
-	private final ModelPathElements pModelPath;
-	private final ModelLocationElements pModelLocation;
 	private final ModelElements pModel;
-	private final ReactionContainerElements pReactionContainer;
-	private final AgentInstanceSiteStateElements pAgentInstanceSiteState;
-	private final AgentInstanceLinkStateElements pAgentInstanceLinkState;
-	private final AgentInstanceElements pAgentInstance;
 	private final ReactionPropertyElements pReactionProperty;
 	private final TerminalRule tAT;
 	private final TerminalRule tBI;
@@ -1734,14 +1467,7 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pReactionRuleModel = new ReactionRuleModelElements();
-		this.pModelUri = new ModelUriElements();
-		this.pModelPath = new ModelPathElements();
-		this.pModelLocation = new ModelLocationElements();
 		this.pModel = new ModelElements();
-		this.pReactionContainer = new ReactionContainerElements();
-		this.pAgentInstanceSiteState = new AgentInstanceSiteStateElements();
-		this.pAgentInstanceLinkState = new AgentInstanceLinkStateElements();
-		this.pAgentInstance = new AgentInstanceElements();
 		this.pReactionProperty = new ReactionPropertyElements();
 		this.tAT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.AT");
 		this.tBI = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.BI");
@@ -1825,7 +1551,6 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//ReactionRuleModel:
 	//	model=Model
-	//	reactionContainer=ReactionContainer
 	//	reactionProperties+=ReactionProperty*;
 	public ReactionRuleModelElements getReactionRuleModelAccess() {
 		return pReactionRuleModel;
@@ -1835,91 +1560,15 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		return getReactionRuleModelAccess().getRule();
 	}
 	
-	//ModelUri:
-	//	'URI'
-	//	uri=STRING;
-	public ModelUriElements getModelUriAccess() {
-		return pModelUri;
-	}
-	
-	public ParserRule getModelUriRule() {
-		return getModelUriAccess().getRule();
-	}
-	
-	//ModelPath:
-	//	'PATH'
-	//	path=STRING;
-	public ModelPathElements getModelPathAccess() {
-		return pModelPath;
-	}
-	
-	public ParserRule getModelPathRule() {
-		return getModelPathAccess().getRule();
-	}
-	
-	//ModelLocation:
-	//	ModelUri | ModelPath;
-	public ModelLocationElements getModelLocationAccess() {
-		return pModelLocation;
-	}
-	
-	public ParserRule getModelLocationRule() {
-		return getModelLocationAccess().getRule();
-	}
-	
 	//Model:
 	//	'ModelID'
-	//	name=ID
-	//	location=ModelLocation?;
+	//	name=ID;
 	public ModelElements getModelAccess() {
 		return pModel;
 	}
 	
 	public ParserRule getModelRule() {
 		return getModelAccess().getRule();
-	}
-	
-	//ReactionContainer:
-	//	{ReactionContainer} agentInstances+=AgentInstance*;
-	public ReactionContainerElements getReactionContainerAccess() {
-		return pReactionContainer;
-	}
-	
-	public ParserRule getReactionContainerRule() {
-		return getReactionContainerAccess().getRule();
-	}
-	
-	//AgentInstanceSiteState:
-	//	site=[Site] siteState=SiteState;
-	public AgentInstanceSiteStateElements getAgentInstanceSiteStateAccess() {
-		return pAgentInstanceSiteState;
-	}
-	
-	public ParserRule getAgentInstanceSiteStateRule() {
-		return getAgentInstanceSiteStateAccess().getRule();
-	}
-	
-	//AgentInstanceLinkState:
-	//	site=[Site] attachedSite=[Site] attachedAgent=[Agent] attachedAgentInstance=[AgentInstance] linkState=LinkState;
-	public AgentInstanceLinkStateElements getAgentInstanceLinkStateAccess() {
-		return pAgentInstanceLinkState;
-	}
-	
-	public ParserRule getAgentInstanceLinkStateRule() {
-		return getAgentInstanceLinkStateAccess().getRule();
-	}
-	
-	//AgentInstance:
-	//	'AgentInstance'
-	//	name=ID
-	//	agent=[Agent] siteStates+=AgentInstanceSiteState
-	//	linkStates+=AgentInstanceLinkState;
-	public AgentInstanceElements getAgentInstanceAccess() {
-		return pAgentInstance;
-	}
-	
-	public ParserRule getAgentInstanceRule() {
-		return getAgentInstanceAccess().getRule();
 	}
 	
 	//ReactionProperty:

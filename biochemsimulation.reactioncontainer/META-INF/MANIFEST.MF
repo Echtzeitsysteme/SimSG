@@ -8,9 +8,12 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: biochemsimulation.reactioncontainer,
+ biochemsimulation.reactioncontainer.generator,
  biochemsimulation.reactioncontainer.impl,
  biochemsimulation.reactioncontainer.util
 Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore.xmi,
+ biochemsimulation.reactionrules
 Bundle-ActivationPolicy: lazy
 Automatic-Module-Name: biochemsimulation.reactioncontainer

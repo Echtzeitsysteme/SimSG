@@ -4,14 +4,11 @@
 package biochemsimulation.reactionrules.reactionRules.impl;
 
 import biochemsimulation.reactionrules.reactionRules.Model;
-import biochemsimulation.reactionrules.reactionRules.ModelLocation;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -25,7 +22,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.ModelImpl#getName <em>Name</em>}</li>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.ModelImpl#getLocation <em>Location</em>}</li>
  * </ul>
  *
  * @generated
@@ -51,16 +47,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getLocation() <em>Location</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getLocation()
-   * @generated
-   * @ordered
-   */
-  protected ModelLocation location;
 
   /**
    * <!-- begin-user-doc -->
@@ -111,70 +97,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * <!-- end-user-doc -->
    * @generated
    */
-  public ModelLocation getLocation()
-  {
-    return location;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetLocation(ModelLocation newLocation, NotificationChain msgs)
-  {
-    ModelLocation oldLocation = location;
-    location = newLocation;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.MODEL__LOCATION, oldLocation, newLocation);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setLocation(ModelLocation newLocation)
-  {
-    if (newLocation != location)
-    {
-      NotificationChain msgs = null;
-      if (location != null)
-        msgs = ((InternalEObject)location).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.MODEL__LOCATION, null, msgs);
-      if (newLocation != null)
-        msgs = ((InternalEObject)newLocation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.MODEL__LOCATION, null, msgs);
-      msgs = basicSetLocation(newLocation, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.MODEL__LOCATION, newLocation, newLocation));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case ReactionRulesPackage.MODEL__LOCATION:
-        return basicSetLocation(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -182,8 +104,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     {
       case ReactionRulesPackage.MODEL__NAME:
         return getName();
-      case ReactionRulesPackage.MODEL__LOCATION:
-        return getLocation();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -200,9 +120,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     {
       case ReactionRulesPackage.MODEL__NAME:
         setName((String)newValue);
-        return;
-      case ReactionRulesPackage.MODEL__LOCATION:
-        setLocation((ModelLocation)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -221,9 +138,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
       case ReactionRulesPackage.MODEL__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case ReactionRulesPackage.MODEL__LOCATION:
-        setLocation((ModelLocation)null);
-        return;
     }
     super.eUnset(featureID);
   }
@@ -240,8 +154,6 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     {
       case ReactionRulesPackage.MODEL__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case ReactionRulesPackage.MODEL__LOCATION:
-        return location != null;
     }
     return super.eIsSet(featureID);
   }

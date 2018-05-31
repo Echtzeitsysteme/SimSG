@@ -31,49 +31,49 @@ public interface ReactioncontainerFactory extends EFactory {
 	ReactionContainer createReactionContainer();
 
 	/**
-	 * Returns a new object of class '<em>Agent</em>'.
+	 * Returns a new object of class '<em>Sim Agent</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Agent</em>'.
+	 * @return a new object of class '<em>Sim Agent</em>'.
 	 * @generated
 	 */
-	Agent createAgent();
+	SimAgent createSimAgent();
 
 	/**
-	 * Returns a new object of class '<em>Site</em>'.
+	 * Returns a new object of class '<em>Sim Site</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Site</em>'.
+	 * @return a new object of class '<em>Sim Site</em>'.
 	 * @generated
 	 */
-	Site createSite();
+	SimSite createSimSite();
 
 	/**
-	 * Returns a new object of class '<em>Site State</em>'.
+	 * Returns a new object of class '<em>Sim Site State</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Site State</em>'.
+	 * @return a new object of class '<em>Sim Site State</em>'.
 	 * @generated
 	 */
-	SiteState createSiteState();
+	SimSiteState createSimSiteState();
 
 	/**
-	 * Returns a new object of class '<em>Free</em>'.
+	 * Returns a new object of class '<em>Sim Free</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Free</em>'.
+	 * @return a new object of class '<em>Sim Free</em>'.
 	 * @generated
 	 */
-	Free createFree();
+	SimFree createSimFree();
 
 	/**
-	 * Returns a new object of class '<em>Bound</em>'.
+	 * Returns a new object of class '<em>Sim Bound</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Bound</em>'.
+	 * @return a new object of class '<em>Sim Bound</em>'.
 	 * @generated
 	 */
-	Bound createBound();
+	SimBound createSimBound();
 
 	/**
 	 * Returns the package supported by this factory.

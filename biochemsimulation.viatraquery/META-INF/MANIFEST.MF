@@ -17,7 +17,9 @@ Require-Bundle: biochemsimulation.reactionrules,
   org.eclipse.collections;bundle-version="7.1.1",
   org.eclipse.collections.api;bundle-version="7.1.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Import-Package: org.apache.log4j,
-  org.eclipse.emf.ecore.xmi,
-  org.eclipse.emf.ecore.xmi.impl
+Import-Package: biochemsimulation.reactioncontainer,
+ biochemsimulation.reactioncontainer.generator,
+ org.apache.log4j,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.emf.ecore.xmi.impl
 Automatic-Module-Name: biochemsimulation.viatraquery

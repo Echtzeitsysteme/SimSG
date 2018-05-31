@@ -2,9 +2,9 @@
  */
 package biochemsimulation.reactioncontainer.impl;
 
-import biochemsimulation.reactioncontainer.Agent;
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactioncontainer.ReactioncontainerPackage;
+import biochemsimulation.reactioncontainer.SimAgent;
 
 import java.util.Collection;
 
@@ -28,21 +28,21 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactioncontainer.impl.ReactionContainerImpl#getAgent <em>Agent</em>}</li>
+ *   <li>{@link biochemsimulation.reactioncontainer.impl.ReactionContainerImpl#getSimAgent <em>Sim Agent</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class ReactionContainerImpl extends MinimalEObjectImpl.Container implements ReactionContainer {
 	/**
-	 * The cached value of the '{@link #getAgent() <em>Agent</em>}' containment reference list.
+	 * The cached value of the '{@link #getSimAgent() <em>Sim Agent</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAgent()
+	 * @see #getSimAgent()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Agent> agent;
+	protected EList<SimAgent> simAgent;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -68,12 +68,12 @@ public class ReactionContainerImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Agent> getAgent() {
-		if (agent == null) {
-			agent = new EObjectContainmentEList<Agent>(Agent.class, this,
-					ReactioncontainerPackage.REACTION_CONTAINER__AGENT);
+	public EList<SimAgent> getSimAgent() {
+		if (simAgent == null) {
+			simAgent = new EObjectContainmentEList<SimAgent>(SimAgent.class, this,
+					ReactioncontainerPackage.REACTION_CONTAINER__SIM_AGENT);
 		}
-		return agent;
+		return simAgent;
 	}
 
 	/**
@@ -84,8 +84,8 @@ public class ReactionContainerImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ReactioncontainerPackage.REACTION_CONTAINER__AGENT:
-			return ((InternalEList<?>) getAgent()).basicRemove(otherEnd, msgs);
+		case ReactioncontainerPackage.REACTION_CONTAINER__SIM_AGENT:
+			return ((InternalEList<?>) getSimAgent()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -98,8 +98,8 @@ public class ReactionContainerImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ReactioncontainerPackage.REACTION_CONTAINER__AGENT:
-			return getAgent();
+		case ReactioncontainerPackage.REACTION_CONTAINER__SIM_AGENT:
+			return getSimAgent();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -113,9 +113,9 @@ public class ReactionContainerImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ReactioncontainerPackage.REACTION_CONTAINER__AGENT:
-			getAgent().clear();
-			getAgent().addAll((Collection<? extends Agent>) newValue);
+		case ReactioncontainerPackage.REACTION_CONTAINER__SIM_AGENT:
+			getSimAgent().clear();
+			getSimAgent().addAll((Collection<? extends SimAgent>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -129,8 +129,8 @@ public class ReactionContainerImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ReactioncontainerPackage.REACTION_CONTAINER__AGENT:
-			getAgent().clear();
+		case ReactioncontainerPackage.REACTION_CONTAINER__SIM_AGENT:
+			getSimAgent().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -144,8 +144,8 @@ public class ReactionContainerImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ReactioncontainerPackage.REACTION_CONTAINER__AGENT:
-			return agent != null && !agent.isEmpty();
+		case ReactioncontainerPackage.REACTION_CONTAINER__SIM_AGENT:
+			return simAgent != null && !simAgent.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
