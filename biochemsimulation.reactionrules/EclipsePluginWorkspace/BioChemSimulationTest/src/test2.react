@@ -16,7 +16,7 @@ init init1 4 { A(),B() }
 init init2 4 { A(x[1]), B(x[1])} 
 init init3 2 { C(x{u}[free])}         
 init init4 2 { A(x[1]), C(x{p}[1])}
-init init5 2 { D() } 
+init init5 2 { D() }
 
 /* Rules */
 rule AtoB { A(x[free]), B(x[free]) } <-> { A(x[1]), B(x[1])} @ [on_rate, off_rate]
