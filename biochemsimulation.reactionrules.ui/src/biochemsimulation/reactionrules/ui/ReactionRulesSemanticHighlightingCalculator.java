@@ -9,9 +9,7 @@ import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.util.CancelIndicator;
 
 import biochemsimulation.reactionrules.reactionRules.ArithmeticValue;
-import biochemsimulation.reactionrules.reactionRules.BoundAnyLink;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
-import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.RuleVariables;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
@@ -35,7 +33,6 @@ public class ReactionRulesSemanticHighlightingCalculator implements ISemanticHig
 			
 			if(semanticElement instanceof SiteState ) {
 				if(grammarElement instanceof org.eclipse.xtext.impl.ActionImpl ) {
-					SiteState siteState = (SiteState)semanticElement;
 					acceptor.addPosition(node.getOffset()+1, node.getLength()-2, ReactionRulesHighlightingConfiguration.STATE_ID);
 				}
 				
