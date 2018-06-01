@@ -14,7 +14,7 @@ package biochemsimulation.reactioncontainer;
  *   <li>{@link biochemsimulation.reactioncontainer.SimBound#getSimSite2 <em>Sim Site2</em>}</li>
  * </ul>
  *
- * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimBound()
+ * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimBound()
  * @model
  * @generated
  */
@@ -29,7 +29,7 @@ public interface SimBound extends SimLinkState {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sim Site2</em>' reference.
 	 * @see #setSimSite2(SimSite)
-	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimBound_SimSite2()
+	 * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimBound_SimSite2()
 	 * @model required="true"
 	 * @generated
 	 */

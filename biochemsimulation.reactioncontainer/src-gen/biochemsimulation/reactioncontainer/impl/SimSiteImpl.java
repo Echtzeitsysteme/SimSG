@@ -2,7 +2,7 @@
  */
 package biochemsimulation.reactioncontainer.impl;
 
-import biochemsimulation.reactioncontainer.ReactioncontainerPackage;
+import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactioncontainer.SimAgent;
 import biochemsimulation.reactioncontainer.SimLinkState;
 import biochemsimulation.reactioncontainer.SimSite;
@@ -100,7 +100,7 @@ public class SimSiteImpl extends MinimalEObjectImpl.Container implements SimSite
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ReactioncontainerPackage.Literals.SIM_SITE;
+		return ReactionContainerPackage.Literals.SIM_SITE;
 	}
 
 	/**
@@ -121,7 +121,7 @@ public class SimSiteImpl extends MinimalEObjectImpl.Container implements SimSite
 		String oldType = type;
 		type = newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ReactioncontainerPackage.SIM_SITE__TYPE, oldType,
+			eNotify(new ENotificationImpl(this, Notification.SET, ReactionContainerPackage.SIM_SITE__TYPE, oldType,
 					type));
 	}
 
@@ -144,7 +144,7 @@ public class SimSiteImpl extends MinimalEObjectImpl.Container implements SimSite
 		simSiteState = newSimSiteState;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					ReactioncontainerPackage.SIM_SITE__SIM_SITE_STATE, oldSimSiteState, newSimSiteState);
+					ReactionContainerPackage.SIM_SITE__SIM_SITE_STATE, oldSimSiteState, newSimSiteState);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -163,15 +163,15 @@ public class SimSiteImpl extends MinimalEObjectImpl.Container implements SimSite
 			NotificationChain msgs = null;
 			if (simSiteState != null)
 				msgs = ((InternalEObject) simSiteState).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - ReactioncontainerPackage.SIM_SITE__SIM_SITE_STATE, null, msgs);
+						EOPPOSITE_FEATURE_BASE - ReactionContainerPackage.SIM_SITE__SIM_SITE_STATE, null, msgs);
 			if (newSimSiteState != null)
 				msgs = ((InternalEObject) newSimSiteState).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - ReactioncontainerPackage.SIM_SITE__SIM_SITE_STATE, null, msgs);
+						EOPPOSITE_FEATURE_BASE - ReactionContainerPackage.SIM_SITE__SIM_SITE_STATE, null, msgs);
 			msgs = basicSetSimSiteState(newSimSiteState, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ReactioncontainerPackage.SIM_SITE__SIM_SITE_STATE,
+			eNotify(new ENotificationImpl(this, Notification.SET, ReactionContainerPackage.SIM_SITE__SIM_SITE_STATE,
 					newSimSiteState, newSimSiteState));
 	}
 
@@ -187,7 +187,7 @@ public class SimSiteImpl extends MinimalEObjectImpl.Container implements SimSite
 			if (simAgent != oldSimAgent) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ReactioncontainerPackage.SIM_SITE__SIM_AGENT, oldSimAgent, simAgent));
+							ReactionContainerPackage.SIM_SITE__SIM_AGENT, oldSimAgent, simAgent));
 			}
 		}
 		return simAgent;
@@ -211,7 +211,7 @@ public class SimSiteImpl extends MinimalEObjectImpl.Container implements SimSite
 		SimAgent oldSimAgent = simAgent;
 		simAgent = newSimAgent;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ReactioncontainerPackage.SIM_SITE__SIM_AGENT,
+			eNotify(new ENotificationImpl(this, Notification.SET, ReactionContainerPackage.SIM_SITE__SIM_AGENT,
 					oldSimAgent, simAgent));
 	}
 
@@ -227,7 +227,7 @@ public class SimSiteImpl extends MinimalEObjectImpl.Container implements SimSite
 			if (simLinkState != oldSimLinkState) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ReactioncontainerPackage.SIM_SITE__SIM_LINK_STATE, oldSimLinkState, simLinkState));
+							ReactionContainerPackage.SIM_SITE__SIM_LINK_STATE, oldSimLinkState, simLinkState));
 			}
 		}
 		return simLinkState;
@@ -251,7 +251,7 @@ public class SimSiteImpl extends MinimalEObjectImpl.Container implements SimSite
 		SimLinkState oldSimLinkState = simLinkState;
 		simLinkState = newSimLinkState;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ReactioncontainerPackage.SIM_SITE__SIM_LINK_STATE,
+			eNotify(new ENotificationImpl(this, Notification.SET, ReactionContainerPackage.SIM_SITE__SIM_LINK_STATE,
 					oldSimLinkState, simLinkState));
 	}
 
@@ -263,7 +263,7 @@ public class SimSiteImpl extends MinimalEObjectImpl.Container implements SimSite
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SIM_SITE__SIM_SITE_STATE:
+		case ReactionContainerPackage.SIM_SITE__SIM_SITE_STATE:
 			return basicSetSimSiteState(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -277,15 +277,15 @@ public class SimSiteImpl extends MinimalEObjectImpl.Container implements SimSite
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SIM_SITE__TYPE:
+		case ReactionContainerPackage.SIM_SITE__TYPE:
 			return getType();
-		case ReactioncontainerPackage.SIM_SITE__SIM_SITE_STATE:
+		case ReactionContainerPackage.SIM_SITE__SIM_SITE_STATE:
 			return getSimSiteState();
-		case ReactioncontainerPackage.SIM_SITE__SIM_AGENT:
+		case ReactionContainerPackage.SIM_SITE__SIM_AGENT:
 			if (resolve)
 				return getSimAgent();
 			return basicGetSimAgent();
-		case ReactioncontainerPackage.SIM_SITE__SIM_LINK_STATE:
+		case ReactionContainerPackage.SIM_SITE__SIM_LINK_STATE:
 			if (resolve)
 				return getSimLinkState();
 			return basicGetSimLinkState();
@@ -301,16 +301,16 @@ public class SimSiteImpl extends MinimalEObjectImpl.Container implements SimSite
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SIM_SITE__TYPE:
+		case ReactionContainerPackage.SIM_SITE__TYPE:
 			setType((String) newValue);
 			return;
-		case ReactioncontainerPackage.SIM_SITE__SIM_SITE_STATE:
+		case ReactionContainerPackage.SIM_SITE__SIM_SITE_STATE:
 			setSimSiteState((SimSiteState) newValue);
 			return;
-		case ReactioncontainerPackage.SIM_SITE__SIM_AGENT:
+		case ReactionContainerPackage.SIM_SITE__SIM_AGENT:
 			setSimAgent((SimAgent) newValue);
 			return;
-		case ReactioncontainerPackage.SIM_SITE__SIM_LINK_STATE:
+		case ReactionContainerPackage.SIM_SITE__SIM_LINK_STATE:
 			setSimLinkState((SimLinkState) newValue);
 			return;
 		}
@@ -325,16 +325,16 @@ public class SimSiteImpl extends MinimalEObjectImpl.Container implements SimSite
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SIM_SITE__TYPE:
+		case ReactionContainerPackage.SIM_SITE__TYPE:
 			setType(TYPE_EDEFAULT);
 			return;
-		case ReactioncontainerPackage.SIM_SITE__SIM_SITE_STATE:
+		case ReactionContainerPackage.SIM_SITE__SIM_SITE_STATE:
 			setSimSiteState((SimSiteState) null);
 			return;
-		case ReactioncontainerPackage.SIM_SITE__SIM_AGENT:
+		case ReactionContainerPackage.SIM_SITE__SIM_AGENT:
 			setSimAgent((SimAgent) null);
 			return;
-		case ReactioncontainerPackage.SIM_SITE__SIM_LINK_STATE:
+		case ReactionContainerPackage.SIM_SITE__SIM_LINK_STATE:
 			setSimLinkState((SimLinkState) null);
 			return;
 		}
@@ -349,13 +349,13 @@ public class SimSiteImpl extends MinimalEObjectImpl.Container implements SimSite
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SIM_SITE__TYPE:
+		case ReactionContainerPackage.SIM_SITE__TYPE:
 			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-		case ReactioncontainerPackage.SIM_SITE__SIM_SITE_STATE:
+		case ReactionContainerPackage.SIM_SITE__SIM_SITE_STATE:
 			return simSiteState != null;
-		case ReactioncontainerPackage.SIM_SITE__SIM_AGENT:
+		case ReactionContainerPackage.SIM_SITE__SIM_AGENT:
 			return simAgent != null;
-		case ReactioncontainerPackage.SIM_SITE__SIM_LINK_STATE:
+		case ReactionContainerPackage.SIM_SITE__SIM_LINK_STATE:
 			return simLinkState != null;
 		}
 		return super.eIsSet(featureID);

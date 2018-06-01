@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link biochemsimulation.reactioncontainer.SimAgent#getSimSites <em>Sim Sites</em>}</li>
  * </ul>
  *
- * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimAgent()
+ * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimAgent()
  * @model
  * @generated
  */
@@ -35,7 +35,7 @@ public interface SimAgent extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimAgent_Name()
+	 * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimAgent_Name()
 	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
 	 * @generated
 	 */
@@ -61,7 +61,7 @@ public interface SimAgent extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see #setType(String)
-	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimAgent_Type()
+	 * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimAgent_Type()
 	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
 	 * @generated
 	 */
@@ -87,7 +87,7 @@ public interface SimAgent extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sim Sites</em>' containment reference list.
-	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimAgent_SimSites()
+	 * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimAgent_SimSites()
 	 * @model containment="true"
 	 * @generated
 	 */

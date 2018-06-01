@@ -1,5 +1,11 @@
 package patterngenerator;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -23,6 +29,8 @@ import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryMatcher;
 import org.eclipse.viatra.query.runtime.emf.EMFScope;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
+
+import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactioncontainer.generator.ReactionContainerGenerator;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 import biochemsimulation.reactionrules.reactionRules.Rule;
@@ -180,8 +188,9 @@ public class PatternGeneratorTest {
 			}
 		}
 		LinkedHashMap<EPackage, String> imports = new LinkedHashMap<EPackage, String>();
-		imports.put(ReactionRulesPackage.eINSTANCE, "reactionRules");
-		/*
+		//imports.put(ReactionRulesPackage.eINSTANCE, "reactionRules");
+		imports.put(ReactionContainerPackage.eINSTANCE, "reactionContainer");
+		
 		PatternTemplate pt = new PatternTemplate(imports);
 		String output = pt.generatePatternCode(rules);
 		System.out.println(output);
@@ -195,8 +204,8 @@ public class PatternGeneratorTest {
 			e1.printStackTrace();
 		}
 		
-		System.out.println(executeDemo_GenericAPI_LoadFromEIQ());
-		*/
+		//System.out.println(executeDemo_GenericAPI_LoadFromEIQ());
+		
 
 	}
 

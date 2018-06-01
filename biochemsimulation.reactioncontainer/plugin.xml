@@ -10,7 +10,7 @@
       <!-- @generated reactioncontainer -->
       <package
             uri="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer"
-            class="biochemsimulation.reactioncontainer.ReactioncontainerPackage"
+            class="biochemsimulation.reactioncontainer.ReactionContainerPackage"
             genModel="model/reactioncontainer.genmodel"/>
    </extension>
 

@@ -2,7 +2,7 @@
  */
 package biochemsimulation.reactioncontainer.impl;
 
-import biochemsimulation.reactioncontainer.ReactioncontainerPackage;
+import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactioncontainer.SimBound;
 import biochemsimulation.reactioncontainer.SimSite;
 
@@ -53,7 +53,7 @@ public class SimBoundImpl extends SimLinkStateImpl implements SimBound {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ReactioncontainerPackage.Literals.SIM_BOUND;
+		return ReactionContainerPackage.Literals.SIM_BOUND;
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class SimBoundImpl extends SimLinkStateImpl implements SimBound {
 			if (simSite2 != oldSimSite2) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ReactioncontainerPackage.SIM_BOUND__SIM_SITE2, oldSimSite2, simSite2));
+							ReactionContainerPackage.SIM_BOUND__SIM_SITE2, oldSimSite2, simSite2));
 			}
 		}
 		return simSite2;
@@ -92,7 +92,7 @@ public class SimBoundImpl extends SimLinkStateImpl implements SimBound {
 		SimSite oldSimSite2 = simSite2;
 		simSite2 = newSimSite2;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ReactioncontainerPackage.SIM_BOUND__SIM_SITE2,
+			eNotify(new ENotificationImpl(this, Notification.SET, ReactionContainerPackage.SIM_BOUND__SIM_SITE2,
 					oldSimSite2, simSite2));
 	}
 
@@ -104,7 +104,7 @@ public class SimBoundImpl extends SimLinkStateImpl implements SimBound {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SIM_BOUND__SIM_SITE2:
+		case ReactionContainerPackage.SIM_BOUND__SIM_SITE2:
 			if (resolve)
 				return getSimSite2();
 			return basicGetSimSite2();
@@ -120,7 +120,7 @@ public class SimBoundImpl extends SimLinkStateImpl implements SimBound {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SIM_BOUND__SIM_SITE2:
+		case ReactionContainerPackage.SIM_BOUND__SIM_SITE2:
 			setSimSite2((SimSite) newValue);
 			return;
 		}
@@ -135,7 +135,7 @@ public class SimBoundImpl extends SimLinkStateImpl implements SimBound {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SIM_BOUND__SIM_SITE2:
+		case ReactionContainerPackage.SIM_BOUND__SIM_SITE2:
 			setSimSite2((SimSite) null);
 			return;
 		}
@@ -150,7 +150,7 @@ public class SimBoundImpl extends SimLinkStateImpl implements SimBound {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SIM_BOUND__SIM_SITE2:
+		case ReactionContainerPackage.SIM_BOUND__SIM_SITE2:
 			return simSite2 != null;
 		}
 		return super.eIsSet(featureID);

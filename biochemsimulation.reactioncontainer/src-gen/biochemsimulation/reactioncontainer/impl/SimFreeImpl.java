@@ -2,7 +2,7 @@
  */
 package biochemsimulation.reactioncontainer.impl;
 
-import biochemsimulation.reactioncontainer.ReactioncontainerPackage;
+import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactioncontainer.SimFree;
 
 import org.eclipse.emf.ecore.EClass;
@@ -31,7 +31,7 @@ public class SimFreeImpl extends SimLinkStateImpl implements SimFree {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ReactioncontainerPackage.Literals.SIM_FREE;
+		return ReactionContainerPackage.Literals.SIM_FREE;
 	}
 
 } //SimFreeImpl

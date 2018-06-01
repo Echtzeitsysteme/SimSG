@@ -2,7 +2,7 @@
  */
 package biochemsimulation.reactioncontainer.impl;
 
-import biochemsimulation.reactioncontainer.ReactioncontainerPackage;
+import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactioncontainer.SimLinkState;
 import biochemsimulation.reactioncontainer.SimSite;
 
@@ -54,7 +54,7 @@ public abstract class SimLinkStateImpl extends MinimalEObjectImpl.Container impl
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ReactioncontainerPackage.Literals.SIM_LINK_STATE;
+		return ReactionContainerPackage.Literals.SIM_LINK_STATE;
 	}
 
 	/**
@@ -69,7 +69,7 @@ public abstract class SimLinkStateImpl extends MinimalEObjectImpl.Container impl
 			if (simSite1 != oldSimSite1) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ReactioncontainerPackage.SIM_LINK_STATE__SIM_SITE1, oldSimSite1, simSite1));
+							ReactionContainerPackage.SIM_LINK_STATE__SIM_SITE1, oldSimSite1, simSite1));
 			}
 		}
 		return simSite1;
@@ -93,7 +93,7 @@ public abstract class SimLinkStateImpl extends MinimalEObjectImpl.Container impl
 		SimSite oldSimSite1 = simSite1;
 		simSite1 = newSimSite1;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ReactioncontainerPackage.SIM_LINK_STATE__SIM_SITE1,
+			eNotify(new ENotificationImpl(this, Notification.SET, ReactionContainerPackage.SIM_LINK_STATE__SIM_SITE1,
 					oldSimSite1, simSite1));
 	}
 
@@ -105,7 +105,7 @@ public abstract class SimLinkStateImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SIM_LINK_STATE__SIM_SITE1:
+		case ReactionContainerPackage.SIM_LINK_STATE__SIM_SITE1:
 			if (resolve)
 				return getSimSite1();
 			return basicGetSimSite1();
@@ -121,7 +121,7 @@ public abstract class SimLinkStateImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SIM_LINK_STATE__SIM_SITE1:
+		case ReactionContainerPackage.SIM_LINK_STATE__SIM_SITE1:
 			setSimSite1((SimSite) newValue);
 			return;
 		}
@@ -136,7 +136,7 @@ public abstract class SimLinkStateImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SIM_LINK_STATE__SIM_SITE1:
+		case ReactionContainerPackage.SIM_LINK_STATE__SIM_SITE1:
 			setSimSite1((SimSite) null);
 			return;
 		}
@@ -151,7 +151,7 @@ public abstract class SimLinkStateImpl extends MinimalEObjectImpl.Container impl
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SIM_LINK_STATE__SIM_SITE1:
+		case ReactionContainerPackage.SIM_LINK_STATE__SIM_SITE1:
 			return simSite1 != null;
 		}
 		return super.eIsSet(featureID);

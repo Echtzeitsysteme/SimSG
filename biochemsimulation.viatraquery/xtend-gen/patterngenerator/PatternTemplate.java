@@ -67,6 +67,14 @@ public class PatternTemplate {
       }
     }
     _builder.newLine();
+    _builder.append("pattern support_BoundState(ls: SimBound) {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("SimBound(ls);");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
     {
       boolean _hasElements = false;
       for(final Rule r : rules) {
@@ -157,8 +165,8 @@ public class PatternTemplate {
           _builder_1.appendImmediate(", ", "");
         }
         _builder_1.append(" ");
-        String _generateAgentPatternContext = this.generateAgentPatternContext(ap);
-        _builder_1.append(_generateAgentPatternContext);
+        String _generateSimAgentContext = this.generateSimAgentContext(ap);
+        _builder_1.append(_generateSimAgentContext);
       }
     }
     _builder_1.append(") {");
@@ -174,13 +182,13 @@ public class PatternTemplate {
         }
         _builder_1.append("\t");
         _builder_1.append("// Agent pattern for instances of agent ");
-        String _uniqueAgentPatternVarId = this.getUniqueAgentPatternVarId(ap_1);
-        _builder_1.append(_uniqueAgentPatternVarId, "\t");
+        String _uniqueSimAgentVariableName = this.uniqueSimAgentVariableName(ap_1);
+        _builder_1.append(_uniqueSimAgentVariableName, "\t");
         _builder_1.newLineIfNotEmpty();
         _builder_1.append("\t");
-        _builder_1.append("AgentInstance.agent.name(");
-        String _uniqueAgentPatternVarId_1 = this.getUniqueAgentPatternVarId(ap_1);
-        _builder_1.append(_uniqueAgentPatternVarId_1, "\t");
+        _builder_1.append("SimAgent.Type(");
+        String _uniqueSimAgentVariableName_1 = this.uniqueSimAgentVariableName(ap_1);
+        _builder_1.append(_uniqueSimAgentVariableName_1, "\t");
         _builder_1.append(", \"");
         String _name_1 = ap_1.getAgent().getName();
         _builder_1.append(_name_1, "\t");
@@ -201,25 +209,25 @@ public class PatternTemplate {
             String _name_2 = sp.getSite().getName();
             _builder_1.append(_name_2, "\t\t");
             _builder_1.append(" attached to instances of agent ");
-            String _uniqueAgentPatternVarId_2 = this.getUniqueAgentPatternVarId(ap_1);
-            _builder_1.append(_uniqueAgentPatternVarId_2, "\t\t");
+            String _uniqueSimAgentVariableName_2 = this.uniqueSimAgentVariableName(ap_1);
+            _builder_1.append(_uniqueSimAgentVariableName_2, "\t\t");
             _builder_1.append(" ");
             _builder_1.newLineIfNotEmpty();
             _builder_1.append("\t");
             _builder_1.append("\t");
-            _builder_1.append("AgentInstance.linkStates(");
-            String _uniqueAgentPatternVarId_3 = this.getUniqueAgentPatternVarId(ap_1);
-            _builder_1.append(_uniqueAgentPatternVarId_3, "\t\t");
+            _builder_1.append("SimAgent.simSites(");
+            String _uniqueSimAgentVariableName_3 = this.uniqueSimAgentVariableName(ap_1);
+            _builder_1.append(_uniqueSimAgentVariableName_3, "\t\t");
             _builder_1.append(", ");
-            String _aILSVariableName = this.aILSVariableName(ap_1, sp);
-            _builder_1.append(_aILSVariableName, "\t\t");
+            String _simSiteVariableName = this.simSiteVariableName(ap_1, sp);
+            _builder_1.append(_simSiteVariableName, "\t\t");
             _builder_1.append(");");
             _builder_1.newLineIfNotEmpty();
             _builder_1.append("\t");
             _builder_1.append("\t");
-            _builder_1.append("AgentInstanceLinkState.site.name(");
-            String _aILSVariableName_1 = this.aILSVariableName(ap_1, sp);
-            _builder_1.append(_aILSVariableName_1, "\t\t");
+            _builder_1.append("SimSite.Type(");
+            String _simSiteVariableName_1 = this.simSiteVariableName(ap_1, sp);
+            _builder_1.append(_simSiteVariableName_1, "\t\t");
             _builder_1.append(", \"");
             String _name_3 = sp.getSite().getName();
             _builder_1.append(_name_3, "\t\t");
@@ -227,13 +235,13 @@ public class PatternTemplate {
             _builder_1.newLineIfNotEmpty();
             _builder_1.append("\t");
             _builder_1.append("\t");
-            String _linkStatePattern = this.linkStatePattern(ap_1, sp);
-            _builder_1.append(_linkStatePattern, "\t\t");
+            String _siteStatePattern = this.siteStatePattern(ap_1, sp);
+            _builder_1.append(_siteStatePattern, "\t\t");
             _builder_1.newLineIfNotEmpty();
             _builder_1.append("\t");
             _builder_1.append("\t");
-            String _siteStatePattern = this.siteStatePattern(ap_1, sp);
-            _builder_1.append(_siteStatePattern, "\t\t");
+            String _linkStatePattern = this.linkStatePattern(ap_1, sp);
+            _builder_1.append(_linkStatePattern, "\t\t");
             _builder_1.newLineIfNotEmpty();
           }
         }
@@ -318,47 +326,35 @@ public class PatternTemplate {
     final LinkState linkState = ((LinkState) _linkState);
     if ((linkState instanceof FreeLink)) {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("AgentInstanceLinkState.linkState.linkState(");
-      String _aILSVariableName = this.aILSVariableName(ap, sp);
-      _builder.append(_aILSVariableName);
+      _builder.append("SimSite.simLinkState(");
+      String _simSiteVariableName = this.simSiteVariableName(ap, sp);
+      _builder.append(_simSiteVariableName);
       _builder.append(", ");
-      String _uniqueAgentPatternVarId = this.getUniqueAgentPatternVarId(ap);
-      _builder.append(_uniqueAgentPatternVarId);
-      _builder.append("_");
-      String _name = sp.getSite().getName();
-      _builder.append(_name);
-      _builder.append("_FL);");
+      String _simLinkStateVariableName = this.simLinkStateVariableName(ap, sp);
+      _builder.append(_simLinkStateVariableName);
+      _builder.append(");");
       _builder.newLineIfNotEmpty();
-      _builder.append("FreeLink(");
-      String _uniqueAgentPatternVarId_1 = this.getUniqueAgentPatternVarId(ap);
-      _builder.append(_uniqueAgentPatternVarId_1);
-      _builder.append("_");
-      String _name_1 = sp.getSite().getName();
-      _builder.append(_name_1);
-      _builder.append("_FL);");
+      _builder.append("neg find support_BoundState(");
+      String _simLinkStateVariableName_1 = this.simLinkStateVariableName(ap, sp);
+      _builder.append(_simLinkStateVariableName_1);
+      _builder.append(");");
       _builder.newLineIfNotEmpty();
       return _builder.toString();
     } else {
       if ((linkState instanceof SemiLink)) {
         StringConcatenation _builder_1 = new StringConcatenation();
-        _builder_1.append("AgentInstanceLinkState.linkState.linkState(");
-        String _aILSVariableName_1 = this.aILSVariableName(ap, sp);
-        _builder_1.append(_aILSVariableName_1);
+        _builder_1.append("SimSite.simLinkState(");
+        String _simSiteVariableName_1 = this.simSiteVariableName(ap, sp);
+        _builder_1.append(_simSiteVariableName_1);
         _builder_1.append(", ");
-        String _uniqueAgentPatternVarId_2 = this.getUniqueAgentPatternVarId(ap);
-        _builder_1.append(_uniqueAgentPatternVarId_2);
-        _builder_1.append("_");
-        String _name_2 = sp.getSite().getName();
-        _builder_1.append(_name_2);
-        _builder_1.append("_SL);");
+        String _simLinkStateVariableName_2 = this.simLinkStateVariableName(ap, sp);
+        _builder_1.append(_simLinkStateVariableName_2);
+        _builder_1.append(");");
         _builder_1.newLineIfNotEmpty();
-        _builder_1.append("IndexedLink(");
-        String _uniqueAgentPatternVarId_3 = this.getUniqueAgentPatternVarId(ap);
-        _builder_1.append(_uniqueAgentPatternVarId_3);
-        _builder_1.append("_");
-        String _name_3 = sp.getSite().getName();
-        _builder_1.append(_name_3);
-        _builder_1.append("_SL);");
+        _builder_1.append("find support_BoundState(");
+        String _simLinkStateVariableName_3 = this.simLinkStateVariableName(ap, sp);
+        _builder_1.append(_simLinkStateVariableName_3);
+        _builder_1.append(");");
         _builder_1.newLineIfNotEmpty();
         return _builder_1.toString();
       } else {
@@ -369,89 +365,110 @@ public class PatternTemplate {
           if ((linkState instanceof ExactLink)) {
             final ExactLink eLink = ((ExactLink) linkState);
             StringConcatenation _builder_3 = new StringConcatenation();
-            _builder_3.append("AgentInstanceLinkState.linkState.linkState(");
-            String _aILSVariableName_2 = this.aILSVariableName(ap, sp);
-            _builder_3.append(_aILSVariableName_2);
+            _builder_3.append("SimSite.simLinkState(");
+            String _simSiteVariableName_2 = this.simSiteVariableName(ap, sp);
+            _builder_3.append(_simSiteVariableName_2);
             _builder_3.append(", ");
-            String _uniqueAgentPatternVarId_4 = this.getUniqueAgentPatternVarId(ap);
-            _builder_3.append(_uniqueAgentPatternVarId_4);
-            _builder_3.append("_");
-            String _name_4 = sp.getSite().getName();
-            _builder_3.append(_name_4);
-            _builder_3.append("_EL);");
+            String _simLinkStateVariableName_4 = this.simLinkStateVariableName(ap, sp);
+            _builder_3.append(_simLinkStateVariableName_4);
+            _builder_3.append(");");
             _builder_3.newLineIfNotEmpty();
-            _builder_3.append("IndexedLink(");
-            String _uniqueAgentPatternVarId_5 = this.getUniqueAgentPatternVarId(ap);
-            _builder_3.append(_uniqueAgentPatternVarId_5);
+            _builder_3.append("// Create context for other SimAgent:");
+            _builder_3.newLine();
+            _builder_3.append("SimAgent.Type(");
+            String _uniqueSimAgentVariableName = this.uniqueSimAgentVariableName(ap);
+            _builder_3.append(_uniqueSimAgentVariableName);
             _builder_3.append("_");
-            String _name_5 = sp.getSite().getName();
-            _builder_3.append(_name_5);
-            _builder_3.append("_EL);");
-            _builder_3.newLineIfNotEmpty();
-            _builder_3.append("AgentInstanceLinkState.attachedSite.name(");
-            String _aILSVariableName_3 = this.aILSVariableName(ap, sp);
-            _builder_3.append(_aILSVariableName_3);
+            String _name = eLink.getLinkAgent().getAgent().getName();
+            _builder_3.append(_name);
             _builder_3.append(", \"");
+            String _name_1 = eLink.getLinkAgent().getAgent().getName();
+            _builder_3.append(_name_1);
+            _builder_3.append("\");");
+            _builder_3.newLineIfNotEmpty();
+            _builder_3.append("SimAgent.simSites(");
+            String _uniqueSimAgentVariableName_1 = this.uniqueSimAgentVariableName(ap);
+            _builder_3.append(_uniqueSimAgentVariableName_1);
+            _builder_3.append("_");
+            String _name_2 = eLink.getLinkAgent().getAgent().getName();
+            _builder_3.append(_name_2);
+            _builder_3.append(", ");
+            String _uniqueSimAgentVariableName_2 = this.uniqueSimAgentVariableName(ap);
+            _builder_3.append(_uniqueSimAgentVariableName_2);
+            _builder_3.append("_");
+            String _name_3 = eLink.getLinkAgent().getAgent().getName();
+            _builder_3.append(_name_3);
+            _builder_3.append("_");
+            String _name_4 = eLink.getLinkSite().getSite().getName();
+            _builder_3.append(_name_4);
+            _builder_3.append(");");
+            _builder_3.newLineIfNotEmpty();
+            _builder_3.append("SimSite.Type(");
+            String _uniqueSimAgentVariableName_3 = this.uniqueSimAgentVariableName(ap);
+            _builder_3.append(_uniqueSimAgentVariableName_3);
+            _builder_3.append("_");
+            String _name_5 = eLink.getLinkAgent().getAgent().getName();
+            _builder_3.append(_name_5);
+            _builder_3.append("_");
             String _name_6 = eLink.getLinkSite().getSite().getName();
             _builder_3.append(_name_6);
-            _builder_3.append("\");");
-            _builder_3.newLineIfNotEmpty();
-            _builder_3.append("AgentInstanceLinkState.attachedAgentInstance.agent.name(");
-            String _aILSVariableName_4 = this.aILSVariableName(ap, sp);
-            _builder_3.append(_aILSVariableName_4);
             _builder_3.append(", \"");
-            String _name_7 = eLink.getLinkAgent().getAgent().getName();
+            String _name_7 = eLink.getLinkSite().getSite().getName();
             _builder_3.append(_name_7);
             _builder_3.append("\");");
+            _builder_3.newLineIfNotEmpty();
+            _builder_3.append("SimSite.simLinkState(");
+            String _uniqueSimAgentVariableName_4 = this.uniqueSimAgentVariableName(ap);
+            _builder_3.append(_uniqueSimAgentVariableName_4);
+            _builder_3.append("_");
+            String _name_8 = eLink.getLinkAgent().getAgent().getName();
+            _builder_3.append(_name_8);
+            _builder_3.append("_");
+            String _name_9 = eLink.getLinkSite().getSite().getName();
+            _builder_3.append(_name_9);
+            _builder_3.append(", ");
+            String _uniqueSimAgentVariableName_5 = this.uniqueSimAgentVariableName(ap);
+            _builder_3.append(_uniqueSimAgentVariableName_5);
+            _builder_3.append("_");
+            String _name_10 = eLink.getLinkAgent().getAgent().getName();
+            _builder_3.append(_name_10);
+            _builder_3.append("_");
+            String _name_11 = eLink.getLinkSite().getSite().getName();
+            _builder_3.append(_name_11);
+            _builder_3.append("_LS);");
+            _builder_3.newLineIfNotEmpty();
+            _builder_3.append("// check for equality");
+            _builder_3.newLine();
+            String _simLinkStateVariableName_5 = this.simLinkStateVariableName(ap, sp);
+            _builder_3.append(_simLinkStateVariableName_5);
+            _builder_3.append(" == ");
+            String _uniqueSimAgentVariableName_6 = this.uniqueSimAgentVariableName(ap);
+            _builder_3.append(_uniqueSimAgentVariableName_6);
+            _builder_3.append("_");
+            String _name_12 = eLink.getLinkAgent().getAgent().getName();
+            _builder_3.append(_name_12);
+            _builder_3.append("_");
+            String _name_13 = eLink.getLinkSite().getSite().getName();
+            _builder_3.append(_name_13);
+            _builder_3.append("_LS;");
             _builder_3.newLineIfNotEmpty();
             return _builder_3.toString();
           } else {
             StringConcatenation _builder_4 = new StringConcatenation();
-            _builder_4.append("AgentInstanceLinkState.linkState.linkState(");
-            String _aILSVariableName_5 = this.aILSVariableName(ap, sp);
-            _builder_4.append(_aILSVariableName_5);
+            _builder_4.append("SimSite.simLinkState(");
+            String _simSiteVariableName_3 = this.simSiteVariableName(ap, sp);
+            _builder_4.append(_simSiteVariableName_3);
             _builder_4.append(", ");
-            String _uniqueAgentPatternVarId_6 = this.getUniqueAgentPatternVarId(ap);
-            _builder_4.append(_uniqueAgentPatternVarId_6);
-            _builder_4.append("_");
-            String _name_8 = sp.getSite().getName();
-            _builder_4.append(_name_8);
-            _builder_4.append("_IL);\t");
-            _builder_4.newLineIfNotEmpty();
-            _builder_4.append("IndexedLink(");
-            String _name_9 = ap.getAgent().getName();
-            _builder_4.append(_name_9);
-            _builder_4.append("_");
-            String _name_10 = sp.getSite().getName();
-            _builder_4.append(_name_10);
-            _builder_4.append("_IL);");
-            _builder_4.newLineIfNotEmpty();
-            _builder_4.append("AgentInstanceLinkState.site(");
-            String _aILSVariableName_6 = this.aILSVariableName(ap, sp);
-            _builder_4.append(_aILSVariableName_6);
-            _builder_4.append(", ");
-            String _name_11 = ap.getAgent().getName();
-            _builder_4.append(_name_11);
-            _builder_4.append("_");
-            String _name_12 = sp.getSite().getName();
-            _builder_4.append(_name_12);
-            _builder_4.append("_Site);");
-            _builder_4.newLineIfNotEmpty();
-            _builder_4.append("AgentInstanceLinkState.attachedSite(");
-            String _aILSVariableName_7 = this.aILSVariableName(ap, sp);
-            _builder_4.append(_aILSVariableName_7);
-            _builder_4.append(", ");
-            String _otherIndexedLinkSite = this.getOtherIndexedLinkSite(ap, sp);
-            _builder_4.append(_otherIndexedLinkSite);
+            String _simLinkStateVariableName_6 = this.simLinkStateVariableName(ap, sp);
+            _builder_4.append(_simLinkStateVariableName_6);
             _builder_4.append(");");
             _builder_4.newLineIfNotEmpty();
-            _builder_4.append("AgentInstanceLinkState.attachedAgentInstance(");
-            String _aILSVariableName_8 = this.aILSVariableName(ap, sp);
-            _builder_4.append(_aILSVariableName_8);
-            _builder_4.append(", ");
-            String _otherIndexedLinkAgent = this.getOtherIndexedLinkAgent(ap, sp);
-            _builder_4.append(_otherIndexedLinkAgent);
-            _builder_4.append(");");
+            String _simLinkStateVariableName_7 = this.simLinkStateVariableName(ap, sp);
+            _builder_4.append(_simLinkStateVariableName_7);
+            _builder_4.append(" == ");
+            String _otherLinkStateVariableName = this.getOtherLinkStateVariableName(ap, sp);
+            _builder_4.append(_otherLinkStateVariableName);
+            _builder_4.append(";");
             _builder_4.newLineIfNotEmpty();
             return _builder_4.toString();
           }
@@ -468,31 +485,61 @@ public class PatternTemplate {
       return _builder.toString();
     }
     StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append("AgentInstance.siteStates(");
-    String _uniqueAgentPatternVarId = this.getUniqueAgentPatternVarId(ap);
-    _builder_1.append(_uniqueAgentPatternVarId);
-    _builder_1.append(", ");
-    String _aISSVariableName = this.aISSVariableName(ap, sp);
-    _builder_1.append(_aISSVariableName);
-    _builder_1.append(");");
-    _builder_1.newLineIfNotEmpty();
-    _builder_1.append("AgentInstanceSiteState.site.name(");
-    String _aISSVariableName_1 = this.aISSVariableName(ap, sp);
-    _builder_1.append(_aISSVariableName_1);
+    _builder_1.append("SimSite.simSiteState.Type(");
+    String _simSiteVariableName = this.simSiteVariableName(ap, sp);
+    _builder_1.append(_simSiteVariableName);
     _builder_1.append(", \"");
-    String _name = sp.getSite().getName();
+    String _name = siteState.getState().getName();
     _builder_1.append(_name);
     _builder_1.append("\");");
     _builder_1.newLineIfNotEmpty();
-    _builder_1.append("AgentInstanceSiteState.siteState.state.name(");
-    String _aISSVariableName_2 = this.aISSVariableName(ap, sp);
-    _builder_1.append(_aISSVariableName_2);
-    _builder_1.append(", \"");
-    String _name_1 = sp.getState().getState().getName();
-    _builder_1.append(_name_1);
-    _builder_1.append("\");");
-    _builder_1.newLineIfNotEmpty();
     return _builder_1.toString();
+  }
+  
+  public String getOtherLinkStateVariableName(final ValidAgentPattern ap, final SitePattern sp) {
+    LinkState _linkState = sp.getLinkState().getLinkState();
+    final IndexedLink iLink = ((IndexedLink) _linkState);
+    Rule rule = ((Rule) null);
+    EObject eObj = iLink.eContainer();
+    while (((!(eObj instanceof Rule)) && (eObj != null))) {
+      eObj = eObj.eContainer();
+    }
+    if ((eObj instanceof Rule)) {
+      rule = ((Rule)eObj);
+    }
+    LinkedList<IndexedLink> candidates = this.getAllIndexedLinksOfRule(rule);
+    for (final IndexedLink cand : candidates) {
+      {
+        final IndexedLink candidate = ((IndexedLink) cand);
+        if (((!candidate.equals(iLink)) && iLink.getState().equals(candidate.getState()))) {
+          ValidAgentPattern agentPattern = ((ValidAgentPattern) null);
+          SitePattern sitePattern = ((SitePattern) null);
+          EObject eObj2 = candidate.eContainer();
+          while (((!(eObj2 instanceof SitePattern)) && (eObj2 != null))) {
+            eObj2 = eObj2.eContainer();
+          }
+          if ((eObj2 instanceof SitePattern)) {
+            sitePattern = ((SitePattern) eObj2);
+          }
+          while (((!(eObj2 instanceof ValidAgentPattern)) && (eObj2 != null))) {
+            eObj2 = eObj2.eContainer();
+          }
+          if ((eObj2 instanceof ValidAgentPattern)) {
+            agentPattern = ((ValidAgentPattern) eObj2);
+          }
+          if (((agentPattern != null) && (sitePattern != null))) {
+            StringConcatenation _builder = new StringConcatenation();
+            String _simLinkStateVariableName = this.simLinkStateVariableName(agentPattern, sitePattern);
+            _builder.append(_simLinkStateVariableName);
+            return _builder.toString();
+          }
+          StringConcatenation _builder_1 = new StringConcatenation();
+          return _builder_1.toString();
+        }
+      }
+    }
+    StringConcatenation _builder = new StringConcatenation();
+    return _builder.toString();
   }
   
   public String getOtherIndexedLinkAgent(final ValidAgentPattern ap, final SitePattern sp) {
@@ -528,8 +575,8 @@ public class PatternTemplate {
           }
           if (((agentPattern != null) && (sitePattern != null))) {
             StringConcatenation _builder = new StringConcatenation();
-            String _uniqueAgentPatternVarId = this.getUniqueAgentPatternVarId(agentPattern);
-            _builder.append(_uniqueAgentPatternVarId);
+            String _uniqueSimAgentVariableName = this.uniqueSimAgentVariableName(agentPattern);
+            _builder.append(_uniqueSimAgentVariableName);
             return _builder.toString();
           }
           StringConcatenation _builder_1 = new StringConcatenation();
@@ -574,8 +621,8 @@ public class PatternTemplate {
           }
           if (((agentPattern != null) && (sitePattern != null))) {
             StringConcatenation _builder = new StringConcatenation();
-            String _uniqueAgentPatternVarId = this.getUniqueAgentPatternVarId(agentPattern);
-            _builder.append(_uniqueAgentPatternVarId);
+            String _uniqueSimAgentVariableName = this.uniqueSimAgentVariableName(agentPattern);
+            _builder.append(_uniqueSimAgentVariableName);
             _builder.append("_");
             String _name = sitePattern.getSite().getName();
             _builder.append(_name);
@@ -646,37 +693,36 @@ public class PatternTemplate {
     return out;
   }
   
-  public String generateAgentPatternContext(final ValidAgentPattern ap) {
+  public String generateSimAgentContext(final ValidAgentPattern ap) {
     StringConcatenation _builder = new StringConcatenation();
-    String _uniqueAgentPatternVarId = this.getUniqueAgentPatternVarId(ap);
-    _builder.append(_uniqueAgentPatternVarId);
-    _builder.append(": AgentInstance");
+    String _uniqueSimAgentVariableName = this.uniqueSimAgentVariableName(ap);
+    _builder.append(_uniqueSimAgentVariableName);
+    _builder.append(": SimAgent");
     return _builder.toString();
   }
   
-  public String aILSVariableName(final ValidAgentPattern ap, final SitePattern sp) {
+  public String simSiteVariableName(final ValidAgentPattern ap, final SitePattern sp) {
     StringConcatenation _builder = new StringConcatenation();
-    String _uniqueAgentPatternVarId = this.getUniqueAgentPatternVarId(ap);
-    String _plus = (_uniqueAgentPatternVarId + "_");
+    String _uniqueSimAgentVariableName = this.uniqueSimAgentVariableName(ap);
+    String _plus = (_uniqueSimAgentVariableName + "_");
     String _name = sp.getSite().getName();
     String _plus_1 = (_plus + _name);
     _builder.append(_plus_1);
-    _builder.append("_ILS");
     return _builder.toString();
   }
   
-  public String aISSVariableName(final ValidAgentPattern ap, final SitePattern sp) {
+  public String simLinkStateVariableName(final ValidAgentPattern ap, final SitePattern sp) {
     StringConcatenation _builder = new StringConcatenation();
-    String _uniqueAgentPatternVarId = this.getUniqueAgentPatternVarId(ap);
-    String _plus = (_uniqueAgentPatternVarId + "_");
+    String _uniqueSimAgentVariableName = this.uniqueSimAgentVariableName(ap);
+    String _plus = (_uniqueSimAgentVariableName + "_");
     String _name = sp.getSite().getName();
     String _plus_1 = (_plus + _name);
     _builder.append(_plus_1);
-    _builder.append("_ISS");
+    _builder.append("_LS");
     return _builder.toString();
   }
   
-  public String getUniqueAgentPatternVarId(final ValidAgentPattern ap) {
+  public String uniqueSimAgentVariableName(final ValidAgentPattern ap) {
     String name = "";
     boolean _containsKey = this.agentPatternVariables.containsKey(ap);
     if (_containsKey) {

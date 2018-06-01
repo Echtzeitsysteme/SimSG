@@ -19,17 +19,17 @@ import org.eclipse.emf.ecore.util.Switch;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage
+ * @see biochemsimulation.reactioncontainer.ReactionContainerPackage
  * @generated
  */
-public class ReactioncontainerSwitch<T> extends Switch<T> {
+public class ReactionContainerSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static ReactioncontainerPackage modelPackage;
+	protected static ReactionContainerPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -37,9 +37,9 @@ public class ReactioncontainerSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReactioncontainerSwitch() {
+	public ReactionContainerSwitch() {
 		if (modelPackage == null) {
-			modelPackage = ReactioncontainerPackage.eINSTANCE;
+			modelPackage = ReactionContainerPackage.eINSTANCE;
 		}
 	}
 
@@ -66,42 +66,42 @@ public class ReactioncontainerSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-		case ReactioncontainerPackage.REACTION_CONTAINER: {
+		case ReactionContainerPackage.REACTION_CONTAINER: {
 			ReactionContainer reactionContainer = (ReactionContainer) theEObject;
 			T result = caseReactionContainer(reactionContainer);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ReactioncontainerPackage.SIM_AGENT: {
+		case ReactionContainerPackage.SIM_AGENT: {
 			SimAgent simAgent = (SimAgent) theEObject;
 			T result = caseSimAgent(simAgent);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ReactioncontainerPackage.SIM_SITE: {
+		case ReactionContainerPackage.SIM_SITE: {
 			SimSite simSite = (SimSite) theEObject;
 			T result = caseSimSite(simSite);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ReactioncontainerPackage.SIM_SITE_STATE: {
+		case ReactionContainerPackage.SIM_SITE_STATE: {
 			SimSiteState simSiteState = (SimSiteState) theEObject;
 			T result = caseSimSiteState(simSiteState);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ReactioncontainerPackage.SIM_LINK_STATE: {
+		case ReactionContainerPackage.SIM_LINK_STATE: {
 			SimLinkState simLinkState = (SimLinkState) theEObject;
 			T result = caseSimLinkState(simLinkState);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ReactioncontainerPackage.SIM_FREE: {
+		case ReactionContainerPackage.SIM_FREE: {
 			SimFree simFree = (SimFree) theEObject;
 			T result = caseSimFree(simFree);
 			if (result == null)
@@ -110,7 +110,7 @@ public class ReactioncontainerSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ReactioncontainerPackage.SIM_BOUND: {
+		case ReactionContainerPackage.SIM_BOUND: {
 			SimBound simBound = (SimBound) theEObject;
 			T result = caseSimBound(simBound);
 			if (result == null)
@@ -245,4 +245,4 @@ public class ReactioncontainerSwitch<T> extends Switch<T> {
 		return null;
 	}
 
-} //ReactioncontainerSwitch
+} //ReactionContainerSwitch

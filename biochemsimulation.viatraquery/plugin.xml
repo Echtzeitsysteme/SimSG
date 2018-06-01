@@ -1,1 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?><plugin/>
+<?xml version="1.0" encoding="UTF-8"?><plugin>
+  <extension id="patterngenerator.GeneratedQueryTest" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:patterngenerator.GeneratedQueryTest" id="patterngenerator.GeneratedQueryTest">
+      <query-specification fqn="patterngenerator.support_BoundState"/>
+      <query-specification fqn="patterngenerator.AtoB_lhs"/>
+      <query-specification fqn="patterngenerator.AtoB_rhs"/>
+      <query-specification fqn="patterngenerator.AtoNull_lhs"/>
+      <query-specification fqn="patterngenerator.CtoNull_lhs"/>
+      <query-specification fqn="patterngenerator.CtoNull2_lhs"/>
+      <query-specification fqn="patterngenerator.AExact_lhs"/>
+      <query-specification fqn="patterngenerator.bla_lhs"/>
+      <query-specification fqn="patterngenerator.blubb_lhs"/>
+    </group>
+  </extension>
+  <extension id="patterngenerator.Spielwiese" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:patterngenerator.Spielwiese" id="patterngenerator.Spielwiese">
+      <query-specification fqn="patterngenerator.AtoB_lhs"/>
+      <query-specification fqn="patterngenerator.support_BoundState"/>
+      <query-specification fqn="patterngenerator.AtoB_rhs"/>
+      <query-specification fqn="patterngenerator.AtoNull_lhs"/>
+      <query-specification fqn="patterngenerator.CtoNull_lhs"/>
+      <query-specification fqn="patterngenerator.CtoNull2_lhs"/>
+      <query-specification fqn="patterngenerator.AExact_lhs"/>
+      <query-specification fqn="patterngenerator.bla_lhs"/>
+      <query-specification fqn="patterngenerator.blubb_lhs"/>
+    </group>
+  </extension>
+</plugin>

@@ -8,7 +8,7 @@ package biochemsimulation.reactioncontainer;
  * <!-- end-user-doc -->
  *
  *
- * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimFree()
+ * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimFree()
  * @model
  * @generated
  */

@@ -19,11 +19,11 @@ import org.eclipse.emf.ecore.EReference;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see biochemsimulation.reactioncontainer.ReactioncontainerFactory
+ * @see biochemsimulation.reactioncontainer.ReactionContainerFactory
  * @model kind="package"
  * @generated
  */
-public interface ReactioncontainerPackage extends EPackage {
+public interface ReactionContainerPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -54,14 +54,14 @@ public interface ReactioncontainerPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ReactioncontainerPackage eINSTANCE = biochemsimulation.reactioncontainer.impl.ReactioncontainerPackageImpl.init();
+	ReactionContainerPackage eINSTANCE = biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link biochemsimulation.reactioncontainer.impl.ReactionContainerImpl <em>Reaction Container</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerImpl
-	 * @see biochemsimulation.reactioncontainer.impl.ReactioncontainerPackageImpl#getReactionContainer()
+	 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getReactionContainer()
 	 * @generated
 	 */
 	int REACTION_CONTAINER = 0;
@@ -107,7 +107,7 @@ public interface ReactioncontainerPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see biochemsimulation.reactioncontainer.impl.SimAgentImpl
-	 * @see biochemsimulation.reactioncontainer.impl.ReactioncontainerPackageImpl#getSimAgent()
+	 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getSimAgent()
 	 * @generated
 	 */
 	int SIM_AGENT = 1;
@@ -162,7 +162,7 @@ public interface ReactioncontainerPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see biochemsimulation.reactioncontainer.impl.SimSiteImpl
-	 * @see biochemsimulation.reactioncontainer.impl.ReactioncontainerPackageImpl#getSimSite()
+	 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getSimSite()
 	 * @generated
 	 */
 	int SIM_SITE = 2;
@@ -226,7 +226,7 @@ public interface ReactioncontainerPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see biochemsimulation.reactioncontainer.impl.SimSiteStateImpl
-	 * @see biochemsimulation.reactioncontainer.impl.ReactioncontainerPackageImpl#getSimSiteState()
+	 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getSimSiteState()
 	 * @generated
 	 */
 	int SIM_SITE_STATE = 3;
@@ -263,7 +263,7 @@ public interface ReactioncontainerPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see biochemsimulation.reactioncontainer.impl.SimLinkStateImpl
-	 * @see biochemsimulation.reactioncontainer.impl.ReactioncontainerPackageImpl#getSimLinkState()
+	 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getSimLinkState()
 	 * @generated
 	 */
 	int SIM_LINK_STATE = 4;
@@ -300,7 +300,7 @@ public interface ReactioncontainerPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see biochemsimulation.reactioncontainer.impl.SimFreeImpl
-	 * @see biochemsimulation.reactioncontainer.impl.ReactioncontainerPackageImpl#getSimFree()
+	 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getSimFree()
 	 * @generated
 	 */
 	int SIM_FREE = 5;
@@ -337,7 +337,7 @@ public interface ReactioncontainerPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see biochemsimulation.reactioncontainer.impl.SimBoundImpl
-	 * @see biochemsimulation.reactioncontainer.impl.ReactioncontainerPackageImpl#getSimBound()
+	 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getSimBound()
 	 * @generated
 	 */
 	int SIM_BOUND = 6;
@@ -587,7 +587,7 @@ public interface ReactioncontainerPackage extends EPackage {
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
-	ReactioncontainerFactory getReactioncontainerFactory();
+	ReactionContainerFactory getReactionContainerFactory();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -608,7 +608,7 @@ public interface ReactioncontainerPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerImpl
-		 * @see biochemsimulation.reactioncontainer.impl.ReactioncontainerPackageImpl#getReactionContainer()
+		 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getReactionContainer()
 		 * @generated
 		 */
 		EClass REACTION_CONTAINER = eINSTANCE.getReactionContainer();
@@ -634,7 +634,7 @@ public interface ReactioncontainerPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see biochemsimulation.reactioncontainer.impl.SimAgentImpl
-		 * @see biochemsimulation.reactioncontainer.impl.ReactioncontainerPackageImpl#getSimAgent()
+		 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getSimAgent()
 		 * @generated
 		 */
 		EClass SIM_AGENT = eINSTANCE.getSimAgent();
@@ -668,7 +668,7 @@ public interface ReactioncontainerPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see biochemsimulation.reactioncontainer.impl.SimSiteImpl
-		 * @see biochemsimulation.reactioncontainer.impl.ReactioncontainerPackageImpl#getSimSite()
+		 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getSimSite()
 		 * @generated
 		 */
 		EClass SIM_SITE = eINSTANCE.getSimSite();
@@ -710,7 +710,7 @@ public interface ReactioncontainerPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see biochemsimulation.reactioncontainer.impl.SimSiteStateImpl
-		 * @see biochemsimulation.reactioncontainer.impl.ReactioncontainerPackageImpl#getSimSiteState()
+		 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getSimSiteState()
 		 * @generated
 		 */
 		EClass SIM_SITE_STATE = eINSTANCE.getSimSiteState();
@@ -728,7 +728,7 @@ public interface ReactioncontainerPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see biochemsimulation.reactioncontainer.impl.SimLinkStateImpl
-		 * @see biochemsimulation.reactioncontainer.impl.ReactioncontainerPackageImpl#getSimLinkState()
+		 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getSimLinkState()
 		 * @generated
 		 */
 		EClass SIM_LINK_STATE = eINSTANCE.getSimLinkState();
@@ -746,7 +746,7 @@ public interface ReactioncontainerPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see biochemsimulation.reactioncontainer.impl.SimFreeImpl
-		 * @see biochemsimulation.reactioncontainer.impl.ReactioncontainerPackageImpl#getSimFree()
+		 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getSimFree()
 		 * @generated
 		 */
 		EClass SIM_FREE = eINSTANCE.getSimFree();
@@ -756,7 +756,7 @@ public interface ReactioncontainerPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see biochemsimulation.reactioncontainer.impl.SimBoundImpl
-		 * @see biochemsimulation.reactioncontainer.impl.ReactioncontainerPackageImpl#getSimBound()
+		 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getSimBound()
 		 * @generated
 		 */
 		EClass SIM_BOUND = eINSTANCE.getSimBound();
@@ -771,4 +771,4 @@ public interface ReactioncontainerPackage extends EPackage {
 
 	}
 
-} //ReactioncontainerPackage
+} //ReactionContainerPackage

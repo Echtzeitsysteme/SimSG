@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link biochemsimulation.reactioncontainer.SimSite#getSimLinkState <em>Sim Link State</em>}</li>
  * </ul>
  *
- * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimSite()
+ * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimSite()
  * @model
  * @generated
  */
@@ -34,7 +34,7 @@ public interface SimSite extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see #setType(String)
-	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimSite_Type()
+	 * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimSite_Type()
 	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
 	 * @generated
 	 */
@@ -60,7 +60,7 @@ public interface SimSite extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sim Site State</em>' containment reference.
 	 * @see #setSimSiteState(SimSiteState)
-	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimSite_SimSiteState()
+	 * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimSite_SimSiteState()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -86,7 +86,7 @@ public interface SimSite extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sim Agent</em>' reference.
 	 * @see #setSimAgent(SimAgent)
-	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimSite_SimAgent()
+	 * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimSite_SimAgent()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -112,7 +112,7 @@ public interface SimSite extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sim Link State</em>' reference.
 	 * @see #setSimLinkState(SimLinkState)
-	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimSite_SimLinkState()
+	 * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimSite_SimLinkState()
 	 * @model
 	 * @generated
 	 */

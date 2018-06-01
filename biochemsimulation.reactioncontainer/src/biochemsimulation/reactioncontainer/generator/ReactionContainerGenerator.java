@@ -14,12 +14,12 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
-import biochemsimulation.reactioncontainer.ReactioncontainerFactory;
-import biochemsimulation.reactioncontainer.ReactioncontainerPackage;
+import biochemsimulation.reactioncontainer.ReactionContainerFactory;
+import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactioncontainer.SimAgent;
 import biochemsimulation.reactioncontainer.SimBound;
 import biochemsimulation.reactioncontainer.SimSite;
-import biochemsimulation.reactioncontainer.impl.ReactioncontainerFactoryImpl;
+import biochemsimulation.reactioncontainer.impl.ReactionContainerFactoryImpl;
 import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
@@ -34,12 +34,12 @@ public class ReactionContainerGenerator {
 	private ReactionRuleModelImpl model;
 	private boolean isInitialized;
 	
-	private ReactioncontainerFactory factory;
+	private ReactionContainerFactory factory;
 	
 	private void init() {
 		ReactionRulesPackage.eINSTANCE.eClass();
-		ReactioncontainerPackage.eINSTANCE.eClass();
-		factory = ReactioncontainerFactoryImpl.init();
+		ReactionContainerPackage.eINSTANCE.eClass();
+		factory = ReactionContainerFactoryImpl.init();
 		
 		projectPath = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
 		projectPath = projectPath.replaceFirst("/bin", "");

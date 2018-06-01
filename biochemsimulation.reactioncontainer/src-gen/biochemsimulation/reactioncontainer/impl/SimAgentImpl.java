@@ -2,7 +2,7 @@
  */
 package biochemsimulation.reactioncontainer.impl;
 
-import biochemsimulation.reactioncontainer.ReactioncontainerPackage;
+import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactioncontainer.SimAgent;
 import biochemsimulation.reactioncontainer.SimSite;
 
@@ -104,7 +104,7 @@ public class SimAgentImpl extends MinimalEObjectImpl.Container implements SimAge
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ReactioncontainerPackage.Literals.SIM_AGENT;
+		return ReactionContainerPackage.Literals.SIM_AGENT;
 	}
 
 	/**
@@ -125,7 +125,7 @@ public class SimAgentImpl extends MinimalEObjectImpl.Container implements SimAge
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ReactioncontainerPackage.SIM_AGENT__NAME, oldName,
+			eNotify(new ENotificationImpl(this, Notification.SET, ReactionContainerPackage.SIM_AGENT__NAME, oldName,
 					name));
 	}
 
@@ -147,7 +147,7 @@ public class SimAgentImpl extends MinimalEObjectImpl.Container implements SimAge
 		String oldType = type;
 		type = newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ReactioncontainerPackage.SIM_AGENT__TYPE, oldType,
+			eNotify(new ENotificationImpl(this, Notification.SET, ReactionContainerPackage.SIM_AGENT__TYPE, oldType,
 					type));
 	}
 
@@ -159,7 +159,7 @@ public class SimAgentImpl extends MinimalEObjectImpl.Container implements SimAge
 	public EList<SimSite> getSimSites() {
 		if (simSites == null) {
 			simSites = new EObjectContainmentEList<SimSite>(SimSite.class, this,
-					ReactioncontainerPackage.SIM_AGENT__SIM_SITES);
+					ReactionContainerPackage.SIM_AGENT__SIM_SITES);
 		}
 		return simSites;
 	}
@@ -172,7 +172,7 @@ public class SimAgentImpl extends MinimalEObjectImpl.Container implements SimAge
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SIM_AGENT__SIM_SITES:
+		case ReactionContainerPackage.SIM_AGENT__SIM_SITES:
 			return ((InternalEList<?>) getSimSites()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -186,11 +186,11 @@ public class SimAgentImpl extends MinimalEObjectImpl.Container implements SimAge
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SIM_AGENT__NAME:
+		case ReactionContainerPackage.SIM_AGENT__NAME:
 			return getName();
-		case ReactioncontainerPackage.SIM_AGENT__TYPE:
+		case ReactionContainerPackage.SIM_AGENT__TYPE:
 			return getType();
-		case ReactioncontainerPackage.SIM_AGENT__SIM_SITES:
+		case ReactionContainerPackage.SIM_AGENT__SIM_SITES:
 			return getSimSites();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -205,13 +205,13 @@ public class SimAgentImpl extends MinimalEObjectImpl.Container implements SimAge
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SIM_AGENT__NAME:
+		case ReactionContainerPackage.SIM_AGENT__NAME:
 			setName((String) newValue);
 			return;
-		case ReactioncontainerPackage.SIM_AGENT__TYPE:
+		case ReactionContainerPackage.SIM_AGENT__TYPE:
 			setType((String) newValue);
 			return;
-		case ReactioncontainerPackage.SIM_AGENT__SIM_SITES:
+		case ReactionContainerPackage.SIM_AGENT__SIM_SITES:
 			getSimSites().clear();
 			getSimSites().addAll((Collection<? extends SimSite>) newValue);
 			return;
@@ -227,13 +227,13 @@ public class SimAgentImpl extends MinimalEObjectImpl.Container implements SimAge
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SIM_AGENT__NAME:
+		case ReactionContainerPackage.SIM_AGENT__NAME:
 			setName(NAME_EDEFAULT);
 			return;
-		case ReactioncontainerPackage.SIM_AGENT__TYPE:
+		case ReactionContainerPackage.SIM_AGENT__TYPE:
 			setType(TYPE_EDEFAULT);
 			return;
-		case ReactioncontainerPackage.SIM_AGENT__SIM_SITES:
+		case ReactionContainerPackage.SIM_AGENT__SIM_SITES:
 			getSimSites().clear();
 			return;
 		}
@@ -248,11 +248,11 @@ public class SimAgentImpl extends MinimalEObjectImpl.Container implements SimAge
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SIM_AGENT__NAME:
+		case ReactionContainerPackage.SIM_AGENT__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case ReactioncontainerPackage.SIM_AGENT__TYPE:
+		case ReactionContainerPackage.SIM_AGENT__TYPE:
 			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-		case ReactioncontainerPackage.SIM_AGENT__SIM_SITES:
+		case ReactionContainerPackage.SIM_AGENT__SIM_SITES:
 			return simSites != null && !simSites.isEmpty();
 		}
 		return super.eIsSet(featureID);

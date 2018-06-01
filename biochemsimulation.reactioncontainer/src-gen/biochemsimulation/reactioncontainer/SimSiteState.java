@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link biochemsimulation.reactioncontainer.SimSiteState#getType <em>Type</em>}</li>
  * </ul>
  *
- * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimSiteState()
+ * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimSiteState()
  * @model
  * @generated
  */
@@ -31,7 +31,7 @@ public interface SimSiteState extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see #setType(String)
-	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimSiteState_Type()
+	 * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimSiteState_Type()
 	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
 	 * @generated
 	 */

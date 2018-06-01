@@ -3,8 +3,8 @@
 package biochemsimulation.reactioncontainer.impl;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
-import biochemsimulation.reactioncontainer.ReactioncontainerFactory;
-import biochemsimulation.reactioncontainer.ReactioncontainerPackage;
+import biochemsimulation.reactioncontainer.ReactionContainerFactory;
+import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactioncontainer.SimAgent;
 import biochemsimulation.reactioncontainer.SimBound;
 import biochemsimulation.reactioncontainer.SimFree;
@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ReactioncontainerPackageImpl extends EPackageImpl implements ReactioncontainerPackage {
+public class ReactionContainerPackageImpl extends EPackageImpl implements ReactionContainerPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -88,12 +88,12 @@ public class ReactioncontainerPackageImpl extends EPackageImpl implements Reacti
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#eNS_URI
+	 * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private ReactioncontainerPackageImpl() {
-		super(eNS_URI, ReactioncontainerFactory.eINSTANCE);
+	private ReactionContainerPackageImpl() {
+		super(eNS_URI, ReactionContainerFactory.eINSTANCE);
 	}
 
 	/**
@@ -106,7 +106,7 @@ public class ReactioncontainerPackageImpl extends EPackageImpl implements Reacti
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link ReactioncontainerPackage#eINSTANCE} when that field is accessed.
+	 * <p>This method is used to initialize {@link ReactionContainerPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -115,14 +115,14 @@ public class ReactioncontainerPackageImpl extends EPackageImpl implements Reacti
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static ReactioncontainerPackage init() {
+	public static ReactionContainerPackage init() {
 		if (isInited)
-			return (ReactioncontainerPackage) EPackage.Registry.INSTANCE.getEPackage(ReactioncontainerPackage.eNS_URI);
+			return (ReactionContainerPackage) EPackage.Registry.INSTANCE.getEPackage(ReactionContainerPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ReactioncontainerPackageImpl theReactioncontainerPackage = (ReactioncontainerPackageImpl) (EPackage.Registry.INSTANCE
-				.get(eNS_URI) instanceof ReactioncontainerPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
-						: new ReactioncontainerPackageImpl());
+		ReactionContainerPackageImpl theReactionContainerPackage = (ReactionContainerPackageImpl) (EPackage.Registry.INSTANCE
+				.get(eNS_URI) instanceof ReactionContainerPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
+						: new ReactionContainerPackageImpl());
 
 		isInited = true;
 
@@ -130,17 +130,17 @@ public class ReactioncontainerPackageImpl extends EPackageImpl implements Reacti
 		XMLTypePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
-		theReactioncontainerPackage.createPackageContents();
+		theReactionContainerPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theReactioncontainerPackage.initializePackageContents();
+		theReactionContainerPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theReactioncontainerPackage.freeze();
+		theReactionContainerPackage.freeze();
 
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(ReactioncontainerPackage.eNS_URI, theReactioncontainerPackage);
-		return theReactioncontainerPackage;
+		EPackage.Registry.INSTANCE.put(ReactionContainerPackage.eNS_URI, theReactionContainerPackage);
+		return theReactionContainerPackage;
 	}
 
 	/**
@@ -319,8 +319,8 @@ public class ReactioncontainerPackageImpl extends EPackageImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReactioncontainerFactory getReactioncontainerFactory() {
-		return (ReactioncontainerFactory) getEFactoryInstance();
+	public ReactionContainerFactory getReactionContainerFactory() {
+		return (ReactionContainerFactory) getEFactoryInstance();
 	}
 
 	/**
@@ -462,4 +462,4 @@ public class ReactioncontainerPackageImpl extends EPackageImpl implements Reacti
 		createResource(eNS_URI);
 	}
 
-} //ReactioncontainerPackageImpl
+} //ReactionContainerPackageImpl

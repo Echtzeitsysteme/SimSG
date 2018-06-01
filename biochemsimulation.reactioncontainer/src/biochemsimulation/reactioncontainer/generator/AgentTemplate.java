@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
-import biochemsimulation.reactioncontainer.ReactioncontainerFactory;
+import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.SimAgent;
 import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
@@ -47,7 +47,7 @@ public class AgentTemplate {
 		}
 	}
 	
-	public SimAgent createInstance(ReactioncontainerFactory factory, ReactionContainer container) {
+	public SimAgent createInstance(ReactionContainerFactory factory, ReactionContainer container) {
 		SimAgent newAgent = factory.createSimAgent();
 		currentNumOfInstances++;
 		// missing name

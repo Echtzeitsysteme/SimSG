@@ -18,24 +18,24 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ReactioncontainerFactoryImpl extends EFactoryImpl implements ReactioncontainerFactory {
+public class ReactionContainerFactoryImpl extends EFactoryImpl implements ReactionContainerFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ReactioncontainerFactory init() {
+	public static ReactionContainerFactory init() {
 		try {
-			ReactioncontainerFactory theReactioncontainerFactory = (ReactioncontainerFactory) EPackage.Registry.INSTANCE
-					.getEFactory(ReactioncontainerPackage.eNS_URI);
-			if (theReactioncontainerFactory != null) {
-				return theReactioncontainerFactory;
+			ReactionContainerFactory theReactionContainerFactory = (ReactionContainerFactory) EPackage.Registry.INSTANCE
+					.getEFactory(ReactionContainerPackage.eNS_URI);
+			if (theReactionContainerFactory != null) {
+				return theReactionContainerFactory;
 			}
 		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new ReactioncontainerFactoryImpl();
+		return new ReactionContainerFactoryImpl();
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class ReactioncontainerFactoryImpl extends EFactoryImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReactioncontainerFactoryImpl() {
+	public ReactionContainerFactoryImpl() {
 		super();
 	}
 
@@ -56,17 +56,17 @@ public class ReactioncontainerFactoryImpl extends EFactoryImpl implements Reacti
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case ReactioncontainerPackage.REACTION_CONTAINER:
+		case ReactionContainerPackage.REACTION_CONTAINER:
 			return createReactionContainer();
-		case ReactioncontainerPackage.SIM_AGENT:
+		case ReactionContainerPackage.SIM_AGENT:
 			return createSimAgent();
-		case ReactioncontainerPackage.SIM_SITE:
+		case ReactionContainerPackage.SIM_SITE:
 			return createSimSite();
-		case ReactioncontainerPackage.SIM_SITE_STATE:
+		case ReactionContainerPackage.SIM_SITE_STATE:
 			return createSimSiteState();
-		case ReactioncontainerPackage.SIM_FREE:
+		case ReactionContainerPackage.SIM_FREE:
 			return createSimFree();
-		case ReactioncontainerPackage.SIM_BOUND:
+		case ReactionContainerPackage.SIM_BOUND:
 			return createSimBound();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -138,8 +138,8 @@ public class ReactioncontainerFactoryImpl extends EFactoryImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReactioncontainerPackage getReactioncontainerPackage() {
-		return (ReactioncontainerPackage) getEPackage();
+	public ReactionContainerPackage getReactionContainerPackage() {
+		return (ReactionContainerPackage) getEPackage();
 	}
 
 	/**
@@ -149,8 +149,8 @@ public class ReactioncontainerFactoryImpl extends EFactoryImpl implements Reacti
 	 * @generated
 	 */
 	@Deprecated
-	public static ReactioncontainerPackage getPackage() {
-		return ReactioncontainerPackage.eINSTANCE;
+	public static ReactionContainerPackage getPackage() {
+		return ReactionContainerPackage.eINSTANCE;
 	}
 
-} //ReactioncontainerFactoryImpl
+} //ReactionContainerFactoryImpl

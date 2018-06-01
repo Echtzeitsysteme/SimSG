@@ -3,7 +3,7 @@ package biochemsimulation.reactioncontainer.generator;
 import java.util.HashSet;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
-import biochemsimulation.reactioncontainer.ReactioncontainerFactory;
+import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.SimAgent;
 import biochemsimulation.reactioncontainer.SimSite;
 import biochemsimulation.reactioncontainer.SimSiteState;
@@ -84,13 +84,13 @@ public class SiteTemplate {
 		}
 	}
 	
-	public SimSite createInstance(ReactioncontainerFactory factory, ReactionContainer container, SimAgent agent) {
+	public SimSite createInstance(ReactionContainerFactory factory, ReactionContainer container, SimAgent agent) {
 		SimSite newSite = factory.createSimSite();
 		// missing name
 		newSite.setType(type);
 		newSite.setSimAgent(agent);
 		
-		if(hasSiteState && !siteState.equals("u")) {
+		if(hasSiteState) {
 			SimSiteState newSiteState = factory.createSimSiteState();
 			newSiteState.setType(siteState);
 			newSite.setSimSiteState(newSiteState);

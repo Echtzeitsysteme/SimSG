@@ -3,17 +3,19 @@
 package biochemsimulation.reactioncontainer.impl;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
-import biochemsimulation.reactioncontainer.ReactioncontainerPackage;
+import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactioncontainer.SimAgent;
-
 import biochemsimulation.reactioncontainer.SimLinkState;
+
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -70,7 +72,7 @@ public class ReactionContainerImpl extends MinimalEObjectImpl.Container implemen
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ReactioncontainerPackage.Literals.REACTION_CONTAINER;
+		return ReactionContainerPackage.Literals.REACTION_CONTAINER;
 	}
 
 	/**
@@ -81,7 +83,7 @@ public class ReactionContainerImpl extends MinimalEObjectImpl.Container implemen
 	public EList<SimAgent> getSimAgent() {
 		if (simAgent == null) {
 			simAgent = new EObjectContainmentEList<SimAgent>(SimAgent.class, this,
-					ReactioncontainerPackage.REACTION_CONTAINER__SIM_AGENT);
+					ReactionContainerPackage.REACTION_CONTAINER__SIM_AGENT);
 		}
 		return simAgent;
 	}
@@ -94,7 +96,7 @@ public class ReactionContainerImpl extends MinimalEObjectImpl.Container implemen
 	public EList<SimLinkState> getSimLinkStates() {
 		if (simLinkStates == null) {
 			simLinkStates = new EObjectContainmentEList<SimLinkState>(SimLinkState.class, this,
-					ReactioncontainerPackage.REACTION_CONTAINER__SIM_LINK_STATES);
+					ReactionContainerPackage.REACTION_CONTAINER__SIM_LINK_STATES);
 		}
 		return simLinkStates;
 	}
@@ -107,9 +109,9 @@ public class ReactionContainerImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ReactioncontainerPackage.REACTION_CONTAINER__SIM_AGENT:
+		case ReactionContainerPackage.REACTION_CONTAINER__SIM_AGENT:
 			return ((InternalEList<?>) getSimAgent()).basicRemove(otherEnd, msgs);
-		case ReactioncontainerPackage.REACTION_CONTAINER__SIM_LINK_STATES:
+		case ReactionContainerPackage.REACTION_CONTAINER__SIM_LINK_STATES:
 			return ((InternalEList<?>) getSimLinkStates()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -123,9 +125,9 @@ public class ReactionContainerImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ReactioncontainerPackage.REACTION_CONTAINER__SIM_AGENT:
+		case ReactionContainerPackage.REACTION_CONTAINER__SIM_AGENT:
 			return getSimAgent();
-		case ReactioncontainerPackage.REACTION_CONTAINER__SIM_LINK_STATES:
+		case ReactionContainerPackage.REACTION_CONTAINER__SIM_LINK_STATES:
 			return getSimLinkStates();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -140,11 +142,11 @@ public class ReactionContainerImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ReactioncontainerPackage.REACTION_CONTAINER__SIM_AGENT:
+		case ReactionContainerPackage.REACTION_CONTAINER__SIM_AGENT:
 			getSimAgent().clear();
 			getSimAgent().addAll((Collection<? extends SimAgent>) newValue);
 			return;
-		case ReactioncontainerPackage.REACTION_CONTAINER__SIM_LINK_STATES:
+		case ReactionContainerPackage.REACTION_CONTAINER__SIM_LINK_STATES:
 			getSimLinkStates().clear();
 			getSimLinkStates().addAll((Collection<? extends SimLinkState>) newValue);
 			return;
@@ -160,10 +162,10 @@ public class ReactionContainerImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ReactioncontainerPackage.REACTION_CONTAINER__SIM_AGENT:
+		case ReactionContainerPackage.REACTION_CONTAINER__SIM_AGENT:
 			getSimAgent().clear();
 			return;
-		case ReactioncontainerPackage.REACTION_CONTAINER__SIM_LINK_STATES:
+		case ReactionContainerPackage.REACTION_CONTAINER__SIM_LINK_STATES:
 			getSimLinkStates().clear();
 			return;
 		}
@@ -178,9 +180,9 @@ public class ReactionContainerImpl extends MinimalEObjectImpl.Container implemen
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ReactioncontainerPackage.REACTION_CONTAINER__SIM_AGENT:
+		case ReactionContainerPackage.REACTION_CONTAINER__SIM_AGENT:
 			return simAgent != null && !simAgent.isEmpty();
-		case ReactioncontainerPackage.REACTION_CONTAINER__SIM_LINK_STATES:
+		case ReactionContainerPackage.REACTION_CONTAINER__SIM_LINK_STATES:
 			return simLinkStates != null && !simLinkStates.isEmpty();
 		}
 		return super.eIsSet(featureID);

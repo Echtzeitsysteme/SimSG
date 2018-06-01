@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link biochemsimulation.reactioncontainer.SimLinkState#getSimSite1 <em>Sim Site1</em>}</li>
  * </ul>
  *
- * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimLinkState()
+ * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimLinkState()
  * @model abstract="true"
  * @generated
  */
@@ -31,7 +31,7 @@ public interface SimLinkState extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sim Site1</em>' reference.
 	 * @see #setSimSite1(SimSite)
-	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSimLinkState_SimSite1()
+	 * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimLinkState_SimSite1()
 	 * @model required="true"
 	 * @generated
 	 */

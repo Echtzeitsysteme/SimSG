@@ -16,17 +16,17 @@ import org.eclipse.emf.ecore.EObject;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage
+ * @see biochemsimulation.reactioncontainer.ReactionContainerPackage
  * @generated
  */
-public class ReactioncontainerAdapterFactory extends AdapterFactoryImpl {
+public class ReactionContainerAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static ReactioncontainerPackage modelPackage;
+	protected static ReactionContainerPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -34,9 +34,9 @@ public class ReactioncontainerAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReactioncontainerAdapterFactory() {
+	public ReactionContainerAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = ReactioncontainerPackage.eINSTANCE;
+			modelPackage = ReactionContainerPackage.eINSTANCE;
 		}
 	}
 
@@ -65,7 +65,7 @@ public class ReactioncontainerAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ReactioncontainerSwitch<Adapter> modelSwitch = new ReactioncontainerSwitch<Adapter>() {
+	protected ReactionContainerSwitch<Adapter> modelSwitch = new ReactionContainerSwitch<Adapter>() {
 		@Override
 		public Adapter caseReactionContainer(ReactionContainer object) {
 			return createReactionContainerAdapter();
@@ -230,4 +230,4 @@ public class ReactioncontainerAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //ReactioncontainerAdapterFactory
+} //ReactionContainerAdapterFactory
