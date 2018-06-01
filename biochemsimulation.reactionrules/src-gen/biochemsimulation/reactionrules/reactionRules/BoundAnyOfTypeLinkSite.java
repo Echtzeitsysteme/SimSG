@@ -7,21 +7,21 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Exact Link Site</b></em>'.
+ * A representation of the model object '<em><b>Bound Any Of Type Link Site</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.ExactLinkSite#getSite <em>Site</em>}</li>
+ *   <li>{@link biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkSite#getSite <em>Site</em>}</li>
  * </ul>
  *
- * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getExactLinkSite()
+ * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getBoundAnyOfTypeLinkSite()
  * @model
  * @generated
  */
-public interface ExactLinkSite extends EObject
+public interface BoundAnyOfTypeLinkSite extends EObject
 {
   /**
    * Returns the value of the '<em><b>Site</b></em>' reference.
@@ -33,14 +33,14 @@ public interface ExactLinkSite extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Site</em>' reference.
    * @see #setSite(Site)
-   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getExactLinkSite_Site()
+   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getBoundAnyOfTypeLinkSite_Site()
    * @model
    * @generated
    */
   Site getSite();
 
   /**
-   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.ExactLinkSite#getSite <em>Site</em>}' reference.
+   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkSite#getSite <em>Site</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Site</em>' reference.
@@ -49,4 +49,4 @@ public interface ExactLinkSite extends EObject
    */
   void setSite(Site value);
 
-} // ExactLinkSite
+} // BoundAnyOfTypeLinkSite

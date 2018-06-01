@@ -78,8 +78,8 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
       case ReactionRulesPackage.ARITHMETIC_VARIABLE: return createArithmeticVariable();
       case ReactionRulesPackage.VARIABLE: return createVariable();
       case ReactionRulesPackage.LINK_STATE: return createLinkState();
-      case ReactionRulesPackage.EXACT_LINK_AGENT: return createExactLinkAgent();
-      case ReactionRulesPackage.EXACT_LINK_SITE: return createExactLinkSite();
+      case ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK_AGENT: return createBoundAnyOfTypeLinkAgent();
+      case ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK_SITE: return createBoundAnyOfTypeLinkSite();
       case ReactionRulesPackage.SITE_STATE: return createSiteState();
       case ReactionRulesPackage.SITE_PATTERN: return createSitePattern();
       case ReactionRulesPackage.SITE_PATTERNS: return createSitePatterns();
@@ -98,11 +98,11 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
       case ReactionRulesPackage.RULE_VARIABLES: return createRuleVariables();
       case ReactionRulesPackage.RULE_BODY: return createRuleBody();
       case ReactionRulesPackage.RULE: return createRule();
-      case ReactionRulesPackage.SEMI_LINK: return createSemiLink();
+      case ReactionRulesPackage.BOUND_ANY_LINK: return createBoundAnyLink();
       case ReactionRulesPackage.FREE_LINK: return createFreeLink();
       case ReactionRulesPackage.WHAT_EVER: return createWhatEver();
-      case ReactionRulesPackage.INDEXED_LINK: return createIndexedLink();
-      case ReactionRulesPackage.EXACT_LINK: return createExactLink();
+      case ReactionRulesPackage.BOUND_LINK: return createBoundLink();
+      case ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK: return createBoundAnyOfTypeLink();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -256,10 +256,10 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
-  public ExactLinkAgent createExactLinkAgent()
+  public BoundAnyOfTypeLinkAgent createBoundAnyOfTypeLinkAgent()
   {
-    ExactLinkAgentImpl exactLinkAgent = new ExactLinkAgentImpl();
-    return exactLinkAgent;
+    BoundAnyOfTypeLinkAgentImpl boundAnyOfTypeLinkAgent = new BoundAnyOfTypeLinkAgentImpl();
+    return boundAnyOfTypeLinkAgent;
   }
 
   /**
@@ -267,10 +267,10 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
-  public ExactLinkSite createExactLinkSite()
+  public BoundAnyOfTypeLinkSite createBoundAnyOfTypeLinkSite()
   {
-    ExactLinkSiteImpl exactLinkSite = new ExactLinkSiteImpl();
-    return exactLinkSite;
+    BoundAnyOfTypeLinkSiteImpl boundAnyOfTypeLinkSite = new BoundAnyOfTypeLinkSiteImpl();
+    return boundAnyOfTypeLinkSite;
   }
 
   /**
@@ -476,10 +476,10 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
-  public SemiLink createSemiLink()
+  public BoundAnyLink createBoundAnyLink()
   {
-    SemiLinkImpl semiLink = new SemiLinkImpl();
-    return semiLink;
+    BoundAnyLinkImpl boundAnyLink = new BoundAnyLinkImpl();
+    return boundAnyLink;
   }
 
   /**
@@ -509,10 +509,10 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
-  public IndexedLink createIndexedLink()
+  public BoundLink createBoundLink()
   {
-    IndexedLinkImpl indexedLink = new IndexedLinkImpl();
-    return indexedLink;
+    BoundLinkImpl boundLink = new BoundLinkImpl();
+    return boundLink;
   }
 
   /**
@@ -520,10 +520,10 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
-  public ExactLink createExactLink()
+  public BoundAnyOfTypeLink createBoundAnyOfTypeLink()
   {
-    ExactLinkImpl exactLink = new ExactLinkImpl();
-    return exactLink;
+    BoundAnyOfTypeLinkImpl boundAnyOfTypeLink = new BoundAnyOfTypeLinkImpl();
+    return boundAnyOfTypeLink;
   }
 
   /**

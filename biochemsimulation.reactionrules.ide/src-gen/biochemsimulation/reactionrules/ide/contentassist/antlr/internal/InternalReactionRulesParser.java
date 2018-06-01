@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalReactionRulesParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_EXPONENT", "RULE_AT", "RULE_ID", "RULE_SEMI_LINK", "RULE_FREE_LINK", "RULE_WHATEVER_LINK", "RULE_VOID_PATTERN", "RULE_UNI", "RULE_BI", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'-'", "'+'", "'ModelID'", "'.'", "'{'", "'}'", "','", "'('", "')'", "'agent'", "'var'", "'='", "'['", "']'", "'obs'", "'init'", "'rule'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_EXPONENT", "RULE_AT", "RULE_ID", "RULE_BOUND_LINK", "RULE_FREE_LINK", "RULE_WHATEVER_LINK", "RULE_VOID_PATTERN", "RULE_UNI", "RULE_BI", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'-'", "'+'", "'ModelID'", "'.'", "'{'", "'}'", "','", "'('", "')'", "'agent'", "'var'", "'='", "'['", "']'", "'obs'", "'init'", "'rule'"
     };
     public static final int RULE_FREE_LINK=9;
     public static final int RULE_STRING=14;
@@ -30,7 +30,6 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
     public static final int RULE_WHATEVER_LINK=10;
     public static final int RULE_SL_COMMENT=16;
     public static final int T__19=19;
-    public static final int RULE_SEMI_LINK=8;
     public static final int T__33=33;
     public static final int T__34=34;
     public static final int T__35=35;
@@ -42,6 +41,7 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
     public static final int RULE_ID=7;
     public static final int RULE_WS=17;
     public static final int RULE_ANY_OTHER=18;
+    public static final int RULE_BOUND_LINK=8;
     public static final int RULE_BI=13;
     public static final int RULE_EXPONENT=5;
     public static final int T__26=26;
@@ -1424,20 +1424,20 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
     // $ANTLR end "ruleVariable"
 
 
-    // $ANTLR start "entryRuleSemiLink"
-    // InternalReactionRules.g:510:1: entryRuleSemiLink : ruleSemiLink EOF ;
-    public final void entryRuleSemiLink() throws RecognitionException {
+    // $ANTLR start "entryRuleBoundAnyLink"
+    // InternalReactionRules.g:510:1: entryRuleBoundAnyLink : ruleBoundAnyLink EOF ;
+    public final void entryRuleBoundAnyLink() throws RecognitionException {
         try {
-            // InternalReactionRules.g:511:1: ( ruleSemiLink EOF )
-            // InternalReactionRules.g:512:1: ruleSemiLink EOF
+            // InternalReactionRules.g:511:1: ( ruleBoundAnyLink EOF )
+            // InternalReactionRules.g:512:1: ruleBoundAnyLink EOF
             {
-             before(grammarAccess.getSemiLinkRule()); 
+             before(grammarAccess.getBoundAnyLinkRule()); 
             pushFollow(FOLLOW_1);
-            ruleSemiLink();
+            ruleBoundAnyLink();
 
             state._fsp--;
 
-             after(grammarAccess.getSemiLinkRule()); 
+             after(grammarAccess.getBoundAnyLinkRule()); 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -1451,35 +1451,35 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "entryRuleSemiLink"
+    // $ANTLR end "entryRuleBoundAnyLink"
 
 
-    // $ANTLR start "ruleSemiLink"
-    // InternalReactionRules.g:519:1: ruleSemiLink : ( ( rule__SemiLink__Group__0 ) ) ;
-    public final void ruleSemiLink() throws RecognitionException {
+    // $ANTLR start "ruleBoundAnyLink"
+    // InternalReactionRules.g:519:1: ruleBoundAnyLink : ( ( rule__BoundAnyLink__Group__0 ) ) ;
+    public final void ruleBoundAnyLink() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:523:2: ( ( ( rule__SemiLink__Group__0 ) ) )
-            // InternalReactionRules.g:524:2: ( ( rule__SemiLink__Group__0 ) )
+            // InternalReactionRules.g:523:2: ( ( ( rule__BoundAnyLink__Group__0 ) ) )
+            // InternalReactionRules.g:524:2: ( ( rule__BoundAnyLink__Group__0 ) )
             {
-            // InternalReactionRules.g:524:2: ( ( rule__SemiLink__Group__0 ) )
-            // InternalReactionRules.g:525:3: ( rule__SemiLink__Group__0 )
+            // InternalReactionRules.g:524:2: ( ( rule__BoundAnyLink__Group__0 ) )
+            // InternalReactionRules.g:525:3: ( rule__BoundAnyLink__Group__0 )
             {
-             before(grammarAccess.getSemiLinkAccess().getGroup()); 
-            // InternalReactionRules.g:526:3: ( rule__SemiLink__Group__0 )
-            // InternalReactionRules.g:526:4: rule__SemiLink__Group__0
+             before(grammarAccess.getBoundAnyLinkAccess().getGroup()); 
+            // InternalReactionRules.g:526:3: ( rule__BoundAnyLink__Group__0 )
+            // InternalReactionRules.g:526:4: rule__BoundAnyLink__Group__0
             {
             pushFollow(FOLLOW_2);
-            rule__SemiLink__Group__0();
+            rule__BoundAnyLink__Group__0();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getSemiLinkAccess().getGroup()); 
+             after(grammarAccess.getBoundAnyLinkAccess().getGroup()); 
 
             }
 
@@ -1498,7 +1498,7 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "ruleSemiLink"
+    // $ANTLR end "ruleBoundAnyLink"
 
 
     // $ANTLR start "entryRuleFreeLink"
@@ -1655,20 +1655,20 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
     // $ANTLR end "ruleWhatEver"
 
 
-    // $ANTLR start "entryRuleIndexedLink"
-    // InternalReactionRules.g:585:1: entryRuleIndexedLink : ruleIndexedLink EOF ;
-    public final void entryRuleIndexedLink() throws RecognitionException {
+    // $ANTLR start "entryRuleBoundLink"
+    // InternalReactionRules.g:585:1: entryRuleBoundLink : ruleBoundLink EOF ;
+    public final void entryRuleBoundLink() throws RecognitionException {
         try {
-            // InternalReactionRules.g:586:1: ( ruleIndexedLink EOF )
-            // InternalReactionRules.g:587:1: ruleIndexedLink EOF
+            // InternalReactionRules.g:586:1: ( ruleBoundLink EOF )
+            // InternalReactionRules.g:587:1: ruleBoundLink EOF
             {
-             before(grammarAccess.getIndexedLinkRule()); 
+             before(grammarAccess.getBoundLinkRule()); 
             pushFollow(FOLLOW_1);
-            ruleIndexedLink();
+            ruleBoundLink();
 
             state._fsp--;
 
-             after(grammarAccess.getIndexedLinkRule()); 
+             after(grammarAccess.getBoundLinkRule()); 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -1682,35 +1682,35 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "entryRuleIndexedLink"
+    // $ANTLR end "entryRuleBoundLink"
 
 
-    // $ANTLR start "ruleIndexedLink"
-    // InternalReactionRules.g:594:1: ruleIndexedLink : ( ( rule__IndexedLink__Group__0 ) ) ;
-    public final void ruleIndexedLink() throws RecognitionException {
+    // $ANTLR start "ruleBoundLink"
+    // InternalReactionRules.g:594:1: ruleBoundLink : ( ( rule__BoundLink__Group__0 ) ) ;
+    public final void ruleBoundLink() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:598:2: ( ( ( rule__IndexedLink__Group__0 ) ) )
-            // InternalReactionRules.g:599:2: ( ( rule__IndexedLink__Group__0 ) )
+            // InternalReactionRules.g:598:2: ( ( ( rule__BoundLink__Group__0 ) ) )
+            // InternalReactionRules.g:599:2: ( ( rule__BoundLink__Group__0 ) )
             {
-            // InternalReactionRules.g:599:2: ( ( rule__IndexedLink__Group__0 ) )
-            // InternalReactionRules.g:600:3: ( rule__IndexedLink__Group__0 )
+            // InternalReactionRules.g:599:2: ( ( rule__BoundLink__Group__0 ) )
+            // InternalReactionRules.g:600:3: ( rule__BoundLink__Group__0 )
             {
-             before(grammarAccess.getIndexedLinkAccess().getGroup()); 
-            // InternalReactionRules.g:601:3: ( rule__IndexedLink__Group__0 )
-            // InternalReactionRules.g:601:4: rule__IndexedLink__Group__0
+             before(grammarAccess.getBoundLinkAccess().getGroup()); 
+            // InternalReactionRules.g:601:3: ( rule__BoundLink__Group__0 )
+            // InternalReactionRules.g:601:4: rule__BoundLink__Group__0
             {
             pushFollow(FOLLOW_2);
-            rule__IndexedLink__Group__0();
+            rule__BoundLink__Group__0();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getIndexedLinkAccess().getGroup()); 
+             after(grammarAccess.getBoundLinkAccess().getGroup()); 
 
             }
 
@@ -1729,23 +1729,23 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "ruleIndexedLink"
+    // $ANTLR end "ruleBoundLink"
 
 
-    // $ANTLR start "entryRuleExactLinkAgent"
-    // InternalReactionRules.g:610:1: entryRuleExactLinkAgent : ruleExactLinkAgent EOF ;
-    public final void entryRuleExactLinkAgent() throws RecognitionException {
+    // $ANTLR start "entryRuleBoundAnyOfTypeLinkAgent"
+    // InternalReactionRules.g:610:1: entryRuleBoundAnyOfTypeLinkAgent : ruleBoundAnyOfTypeLinkAgent EOF ;
+    public final void entryRuleBoundAnyOfTypeLinkAgent() throws RecognitionException {
         try {
-            // InternalReactionRules.g:611:1: ( ruleExactLinkAgent EOF )
-            // InternalReactionRules.g:612:1: ruleExactLinkAgent EOF
+            // InternalReactionRules.g:611:1: ( ruleBoundAnyOfTypeLinkAgent EOF )
+            // InternalReactionRules.g:612:1: ruleBoundAnyOfTypeLinkAgent EOF
             {
-             before(grammarAccess.getExactLinkAgentRule()); 
+             before(grammarAccess.getBoundAnyOfTypeLinkAgentRule()); 
             pushFollow(FOLLOW_1);
-            ruleExactLinkAgent();
+            ruleBoundAnyOfTypeLinkAgent();
 
             state._fsp--;
 
-             after(grammarAccess.getExactLinkAgentRule()); 
+             after(grammarAccess.getBoundAnyOfTypeLinkAgentRule()); 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -1759,35 +1759,35 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "entryRuleExactLinkAgent"
+    // $ANTLR end "entryRuleBoundAnyOfTypeLinkAgent"
 
 
-    // $ANTLR start "ruleExactLinkAgent"
-    // InternalReactionRules.g:619:1: ruleExactLinkAgent : ( ( rule__ExactLinkAgent__Group__0 ) ) ;
-    public final void ruleExactLinkAgent() throws RecognitionException {
+    // $ANTLR start "ruleBoundAnyOfTypeLinkAgent"
+    // InternalReactionRules.g:619:1: ruleBoundAnyOfTypeLinkAgent : ( ( rule__BoundAnyOfTypeLinkAgent__Group__0 ) ) ;
+    public final void ruleBoundAnyOfTypeLinkAgent() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:623:2: ( ( ( rule__ExactLinkAgent__Group__0 ) ) )
-            // InternalReactionRules.g:624:2: ( ( rule__ExactLinkAgent__Group__0 ) )
+            // InternalReactionRules.g:623:2: ( ( ( rule__BoundAnyOfTypeLinkAgent__Group__0 ) ) )
+            // InternalReactionRules.g:624:2: ( ( rule__BoundAnyOfTypeLinkAgent__Group__0 ) )
             {
-            // InternalReactionRules.g:624:2: ( ( rule__ExactLinkAgent__Group__0 ) )
-            // InternalReactionRules.g:625:3: ( rule__ExactLinkAgent__Group__0 )
+            // InternalReactionRules.g:624:2: ( ( rule__BoundAnyOfTypeLinkAgent__Group__0 ) )
+            // InternalReactionRules.g:625:3: ( rule__BoundAnyOfTypeLinkAgent__Group__0 )
             {
-             before(grammarAccess.getExactLinkAgentAccess().getGroup()); 
-            // InternalReactionRules.g:626:3: ( rule__ExactLinkAgent__Group__0 )
-            // InternalReactionRules.g:626:4: rule__ExactLinkAgent__Group__0
+             before(grammarAccess.getBoundAnyOfTypeLinkAgentAccess().getGroup()); 
+            // InternalReactionRules.g:626:3: ( rule__BoundAnyOfTypeLinkAgent__Group__0 )
+            // InternalReactionRules.g:626:4: rule__BoundAnyOfTypeLinkAgent__Group__0
             {
             pushFollow(FOLLOW_2);
-            rule__ExactLinkAgent__Group__0();
+            rule__BoundAnyOfTypeLinkAgent__Group__0();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getExactLinkAgentAccess().getGroup()); 
+             after(grammarAccess.getBoundAnyOfTypeLinkAgentAccess().getGroup()); 
 
             }
 
@@ -1806,23 +1806,23 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "ruleExactLinkAgent"
+    // $ANTLR end "ruleBoundAnyOfTypeLinkAgent"
 
 
-    // $ANTLR start "entryRuleExactLinkSite"
-    // InternalReactionRules.g:635:1: entryRuleExactLinkSite : ruleExactLinkSite EOF ;
-    public final void entryRuleExactLinkSite() throws RecognitionException {
+    // $ANTLR start "entryRuleBoundAnyOfTypeLinkSite"
+    // InternalReactionRules.g:635:1: entryRuleBoundAnyOfTypeLinkSite : ruleBoundAnyOfTypeLinkSite EOF ;
+    public final void entryRuleBoundAnyOfTypeLinkSite() throws RecognitionException {
         try {
-            // InternalReactionRules.g:636:1: ( ruleExactLinkSite EOF )
-            // InternalReactionRules.g:637:1: ruleExactLinkSite EOF
+            // InternalReactionRules.g:636:1: ( ruleBoundAnyOfTypeLinkSite EOF )
+            // InternalReactionRules.g:637:1: ruleBoundAnyOfTypeLinkSite EOF
             {
-             before(grammarAccess.getExactLinkSiteRule()); 
+             before(grammarAccess.getBoundAnyOfTypeLinkSiteRule()); 
             pushFollow(FOLLOW_1);
-            ruleExactLinkSite();
+            ruleBoundAnyOfTypeLinkSite();
 
             state._fsp--;
 
-             after(grammarAccess.getExactLinkSiteRule()); 
+             after(grammarAccess.getBoundAnyOfTypeLinkSiteRule()); 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -1836,35 +1836,35 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "entryRuleExactLinkSite"
+    // $ANTLR end "entryRuleBoundAnyOfTypeLinkSite"
 
 
-    // $ANTLR start "ruleExactLinkSite"
-    // InternalReactionRules.g:644:1: ruleExactLinkSite : ( ( rule__ExactLinkSite__Group__0 ) ) ;
-    public final void ruleExactLinkSite() throws RecognitionException {
+    // $ANTLR start "ruleBoundAnyOfTypeLinkSite"
+    // InternalReactionRules.g:644:1: ruleBoundAnyOfTypeLinkSite : ( ( rule__BoundAnyOfTypeLinkSite__Group__0 ) ) ;
+    public final void ruleBoundAnyOfTypeLinkSite() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:648:2: ( ( ( rule__ExactLinkSite__Group__0 ) ) )
-            // InternalReactionRules.g:649:2: ( ( rule__ExactLinkSite__Group__0 ) )
+            // InternalReactionRules.g:648:2: ( ( ( rule__BoundAnyOfTypeLinkSite__Group__0 ) ) )
+            // InternalReactionRules.g:649:2: ( ( rule__BoundAnyOfTypeLinkSite__Group__0 ) )
             {
-            // InternalReactionRules.g:649:2: ( ( rule__ExactLinkSite__Group__0 ) )
-            // InternalReactionRules.g:650:3: ( rule__ExactLinkSite__Group__0 )
+            // InternalReactionRules.g:649:2: ( ( rule__BoundAnyOfTypeLinkSite__Group__0 ) )
+            // InternalReactionRules.g:650:3: ( rule__BoundAnyOfTypeLinkSite__Group__0 )
             {
-             before(grammarAccess.getExactLinkSiteAccess().getGroup()); 
-            // InternalReactionRules.g:651:3: ( rule__ExactLinkSite__Group__0 )
-            // InternalReactionRules.g:651:4: rule__ExactLinkSite__Group__0
+             before(grammarAccess.getBoundAnyOfTypeLinkSiteAccess().getGroup()); 
+            // InternalReactionRules.g:651:3: ( rule__BoundAnyOfTypeLinkSite__Group__0 )
+            // InternalReactionRules.g:651:4: rule__BoundAnyOfTypeLinkSite__Group__0
             {
             pushFollow(FOLLOW_2);
-            rule__ExactLinkSite__Group__0();
+            rule__BoundAnyOfTypeLinkSite__Group__0();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getExactLinkSiteAccess().getGroup()); 
+             after(grammarAccess.getBoundAnyOfTypeLinkSiteAccess().getGroup()); 
 
             }
 
@@ -1883,23 +1883,23 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "ruleExactLinkSite"
+    // $ANTLR end "ruleBoundAnyOfTypeLinkSite"
 
 
-    // $ANTLR start "entryRuleExactLink"
-    // InternalReactionRules.g:660:1: entryRuleExactLink : ruleExactLink EOF ;
-    public final void entryRuleExactLink() throws RecognitionException {
+    // $ANTLR start "entryRuleBoundAnyOfTypeLink"
+    // InternalReactionRules.g:660:1: entryRuleBoundAnyOfTypeLink : ruleBoundAnyOfTypeLink EOF ;
+    public final void entryRuleBoundAnyOfTypeLink() throws RecognitionException {
         try {
-            // InternalReactionRules.g:661:1: ( ruleExactLink EOF )
-            // InternalReactionRules.g:662:1: ruleExactLink EOF
+            // InternalReactionRules.g:661:1: ( ruleBoundAnyOfTypeLink EOF )
+            // InternalReactionRules.g:662:1: ruleBoundAnyOfTypeLink EOF
             {
-             before(grammarAccess.getExactLinkRule()); 
+             before(grammarAccess.getBoundAnyOfTypeLinkRule()); 
             pushFollow(FOLLOW_1);
-            ruleExactLink();
+            ruleBoundAnyOfTypeLink();
 
             state._fsp--;
 
-             after(grammarAccess.getExactLinkRule()); 
+             after(grammarAccess.getBoundAnyOfTypeLinkRule()); 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -1913,35 +1913,35 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "entryRuleExactLink"
+    // $ANTLR end "entryRuleBoundAnyOfTypeLink"
 
 
-    // $ANTLR start "ruleExactLink"
-    // InternalReactionRules.g:669:1: ruleExactLink : ( ( rule__ExactLink__Group__0 ) ) ;
-    public final void ruleExactLink() throws RecognitionException {
+    // $ANTLR start "ruleBoundAnyOfTypeLink"
+    // InternalReactionRules.g:669:1: ruleBoundAnyOfTypeLink : ( ( rule__BoundAnyOfTypeLink__Group__0 ) ) ;
+    public final void ruleBoundAnyOfTypeLink() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:673:2: ( ( ( rule__ExactLink__Group__0 ) ) )
-            // InternalReactionRules.g:674:2: ( ( rule__ExactLink__Group__0 ) )
+            // InternalReactionRules.g:673:2: ( ( ( rule__BoundAnyOfTypeLink__Group__0 ) ) )
+            // InternalReactionRules.g:674:2: ( ( rule__BoundAnyOfTypeLink__Group__0 ) )
             {
-            // InternalReactionRules.g:674:2: ( ( rule__ExactLink__Group__0 ) )
-            // InternalReactionRules.g:675:3: ( rule__ExactLink__Group__0 )
+            // InternalReactionRules.g:674:2: ( ( rule__BoundAnyOfTypeLink__Group__0 ) )
+            // InternalReactionRules.g:675:3: ( rule__BoundAnyOfTypeLink__Group__0 )
             {
-             before(grammarAccess.getExactLinkAccess().getGroup()); 
-            // InternalReactionRules.g:676:3: ( rule__ExactLink__Group__0 )
-            // InternalReactionRules.g:676:4: rule__ExactLink__Group__0
+             before(grammarAccess.getBoundAnyOfTypeLinkAccess().getGroup()); 
+            // InternalReactionRules.g:676:3: ( rule__BoundAnyOfTypeLink__Group__0 )
+            // InternalReactionRules.g:676:4: rule__BoundAnyOfTypeLink__Group__0
             {
             pushFollow(FOLLOW_2);
-            rule__ExactLink__Group__0();
+            rule__BoundAnyOfTypeLink__Group__0();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getExactLinkAccess().getGroup()); 
+             after(grammarAccess.getBoundAnyOfTypeLinkAccess().getGroup()); 
 
             }
 
@@ -1960,7 +1960,7 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "ruleExactLink"
+    // $ANTLR end "ruleBoundAnyOfTypeLink"
 
 
     // $ANTLR start "entryRuleSiteState"
@@ -4020,16 +4020,16 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
 
     // $ANTLR start "rule__LinkState__LinkStateAlternatives_2_0"
-    // InternalReactionRules.g:1323:1: rule__LinkState__LinkStateAlternatives_2_0 : ( ( ruleSemiLink ) | ( ruleFreeLink ) | ( ruleExactLink ) | ( ruleIndexedLink ) | ( ruleWhatEver ) );
+    // InternalReactionRules.g:1323:1: rule__LinkState__LinkStateAlternatives_2_0 : ( ( ruleBoundAnyLink ) | ( ruleFreeLink ) | ( ruleBoundAnyOfTypeLink ) | ( ruleBoundLink ) | ( ruleWhatEver ) );
     public final void rule__LinkState__LinkStateAlternatives_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:1327:1: ( ( ruleSemiLink ) | ( ruleFreeLink ) | ( ruleExactLink ) | ( ruleIndexedLink ) | ( ruleWhatEver ) )
+            // InternalReactionRules.g:1327:1: ( ( ruleBoundAnyLink ) | ( ruleFreeLink ) | ( ruleBoundAnyOfTypeLink ) | ( ruleBoundLink ) | ( ruleWhatEver ) )
             int alt5=5;
             switch ( input.LA(1) ) {
-            case RULE_SEMI_LINK:
+            case RULE_BOUND_LINK:
                 {
                 alt5=1;
                 }
@@ -4063,18 +4063,18 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
 
             switch (alt5) {
                 case 1 :
-                    // InternalReactionRules.g:1328:2: ( ruleSemiLink )
+                    // InternalReactionRules.g:1328:2: ( ruleBoundAnyLink )
                     {
-                    // InternalReactionRules.g:1328:2: ( ruleSemiLink )
-                    // InternalReactionRules.g:1329:3: ruleSemiLink
+                    // InternalReactionRules.g:1328:2: ( ruleBoundAnyLink )
+                    // InternalReactionRules.g:1329:3: ruleBoundAnyLink
                     {
-                     before(grammarAccess.getLinkStateAccess().getLinkStateSemiLinkParserRuleCall_2_0_0()); 
+                     before(grammarAccess.getLinkStateAccess().getLinkStateBoundAnyLinkParserRuleCall_2_0_0()); 
                     pushFollow(FOLLOW_2);
-                    ruleSemiLink();
+                    ruleBoundAnyLink();
 
                     state._fsp--;
 
-                     after(grammarAccess.getLinkStateAccess().getLinkStateSemiLinkParserRuleCall_2_0_0()); 
+                     after(grammarAccess.getLinkStateAccess().getLinkStateBoundAnyLinkParserRuleCall_2_0_0()); 
 
                     }
 
@@ -4101,18 +4101,18 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
                     }
                     break;
                 case 3 :
-                    // InternalReactionRules.g:1340:2: ( ruleExactLink )
+                    // InternalReactionRules.g:1340:2: ( ruleBoundAnyOfTypeLink )
                     {
-                    // InternalReactionRules.g:1340:2: ( ruleExactLink )
-                    // InternalReactionRules.g:1341:3: ruleExactLink
+                    // InternalReactionRules.g:1340:2: ( ruleBoundAnyOfTypeLink )
+                    // InternalReactionRules.g:1341:3: ruleBoundAnyOfTypeLink
                     {
-                     before(grammarAccess.getLinkStateAccess().getLinkStateExactLinkParserRuleCall_2_0_2()); 
+                     before(grammarAccess.getLinkStateAccess().getLinkStateBoundAnyOfTypeLinkParserRuleCall_2_0_2()); 
                     pushFollow(FOLLOW_2);
-                    ruleExactLink();
+                    ruleBoundAnyOfTypeLink();
 
                     state._fsp--;
 
-                     after(grammarAccess.getLinkStateAccess().getLinkStateExactLinkParserRuleCall_2_0_2()); 
+                     after(grammarAccess.getLinkStateAccess().getLinkStateBoundAnyOfTypeLinkParserRuleCall_2_0_2()); 
 
                     }
 
@@ -4120,18 +4120,18 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
                     }
                     break;
                 case 4 :
-                    // InternalReactionRules.g:1346:2: ( ruleIndexedLink )
+                    // InternalReactionRules.g:1346:2: ( ruleBoundLink )
                     {
-                    // InternalReactionRules.g:1346:2: ( ruleIndexedLink )
-                    // InternalReactionRules.g:1347:3: ruleIndexedLink
+                    // InternalReactionRules.g:1346:2: ( ruleBoundLink )
+                    // InternalReactionRules.g:1347:3: ruleBoundLink
                     {
-                     before(grammarAccess.getLinkStateAccess().getLinkStateIndexedLinkParserRuleCall_2_0_3()); 
+                     before(grammarAccess.getLinkStateAccess().getLinkStateBoundLinkParserRuleCall_2_0_3()); 
                     pushFollow(FOLLOW_2);
-                    ruleIndexedLink();
+                    ruleBoundLink();
 
                     state._fsp--;
 
-                     after(grammarAccess.getLinkStateAccess().getLinkStateIndexedLinkParserRuleCall_2_0_3()); 
+                     after(grammarAccess.getLinkStateAccess().getLinkStateBoundLinkParserRuleCall_2_0_3()); 
 
                     }
 
@@ -8162,23 +8162,23 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
     // $ANTLR end "rule__ArithmeticVariable__Group__3__Impl"
 
 
-    // $ANTLR start "rule__SemiLink__Group__0"
-    // InternalReactionRules.g:2688:1: rule__SemiLink__Group__0 : rule__SemiLink__Group__0__Impl rule__SemiLink__Group__1 ;
-    public final void rule__SemiLink__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyLink__Group__0"
+    // InternalReactionRules.g:2688:1: rule__BoundAnyLink__Group__0 : rule__BoundAnyLink__Group__0__Impl rule__BoundAnyLink__Group__1 ;
+    public final void rule__BoundAnyLink__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:2692:1: ( rule__SemiLink__Group__0__Impl rule__SemiLink__Group__1 )
-            // InternalReactionRules.g:2693:2: rule__SemiLink__Group__0__Impl rule__SemiLink__Group__1
+            // InternalReactionRules.g:2692:1: ( rule__BoundAnyLink__Group__0__Impl rule__BoundAnyLink__Group__1 )
+            // InternalReactionRules.g:2693:2: rule__BoundAnyLink__Group__0__Impl rule__BoundAnyLink__Group__1
             {
             pushFollow(FOLLOW_17);
-            rule__SemiLink__Group__0__Impl();
+            rule__BoundAnyLink__Group__0__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__SemiLink__Group__1();
+            rule__BoundAnyLink__Group__1();
 
             state._fsp--;
 
@@ -8197,12 +8197,12 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__SemiLink__Group__0"
+    // $ANTLR end "rule__BoundAnyLink__Group__0"
 
 
-    // $ANTLR start "rule__SemiLink__Group__0__Impl"
-    // InternalReactionRules.g:2700:1: rule__SemiLink__Group__0__Impl : ( () ) ;
-    public final void rule__SemiLink__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyLink__Group__0__Impl"
+    // InternalReactionRules.g:2700:1: rule__BoundAnyLink__Group__0__Impl : ( () ) ;
+    public final void rule__BoundAnyLink__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -8213,13 +8213,13 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
             // InternalReactionRules.g:2705:1: ( () )
             // InternalReactionRules.g:2706:2: ()
             {
-             before(grammarAccess.getSemiLinkAccess().getSemiLinkAction_0()); 
+             before(grammarAccess.getBoundAnyLinkAccess().getBoundAnyLinkAction_0()); 
             // InternalReactionRules.g:2707:2: ()
             // InternalReactionRules.g:2707:3: 
             {
             }
 
-             after(grammarAccess.getSemiLinkAccess().getSemiLinkAction_0()); 
+             after(grammarAccess.getBoundAnyLinkAccess().getBoundAnyLinkAction_0()); 
 
             }
 
@@ -8234,21 +8234,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__SemiLink__Group__0__Impl"
+    // $ANTLR end "rule__BoundAnyLink__Group__0__Impl"
 
 
-    // $ANTLR start "rule__SemiLink__Group__1"
-    // InternalReactionRules.g:2715:1: rule__SemiLink__Group__1 : rule__SemiLink__Group__1__Impl ;
-    public final void rule__SemiLink__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyLink__Group__1"
+    // InternalReactionRules.g:2715:1: rule__BoundAnyLink__Group__1 : rule__BoundAnyLink__Group__1__Impl ;
+    public final void rule__BoundAnyLink__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:2719:1: ( rule__SemiLink__Group__1__Impl )
-            // InternalReactionRules.g:2720:2: rule__SemiLink__Group__1__Impl
+            // InternalReactionRules.g:2719:1: ( rule__BoundAnyLink__Group__1__Impl )
+            // InternalReactionRules.g:2720:2: rule__BoundAnyLink__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__SemiLink__Group__1__Impl();
+            rule__BoundAnyLink__Group__1__Impl();
 
             state._fsp--;
 
@@ -8267,35 +8267,35 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__SemiLink__Group__1"
+    // $ANTLR end "rule__BoundAnyLink__Group__1"
 
 
-    // $ANTLR start "rule__SemiLink__Group__1__Impl"
-    // InternalReactionRules.g:2726:1: rule__SemiLink__Group__1__Impl : ( ( rule__SemiLink__NameAssignment_1 ) ) ;
-    public final void rule__SemiLink__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyLink__Group__1__Impl"
+    // InternalReactionRules.g:2726:1: rule__BoundAnyLink__Group__1__Impl : ( ( rule__BoundAnyLink__NameAssignment_1 ) ) ;
+    public final void rule__BoundAnyLink__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:2730:1: ( ( ( rule__SemiLink__NameAssignment_1 ) ) )
-            // InternalReactionRules.g:2731:1: ( ( rule__SemiLink__NameAssignment_1 ) )
+            // InternalReactionRules.g:2730:1: ( ( ( rule__BoundAnyLink__NameAssignment_1 ) ) )
+            // InternalReactionRules.g:2731:1: ( ( rule__BoundAnyLink__NameAssignment_1 ) )
             {
-            // InternalReactionRules.g:2731:1: ( ( rule__SemiLink__NameAssignment_1 ) )
-            // InternalReactionRules.g:2732:2: ( rule__SemiLink__NameAssignment_1 )
+            // InternalReactionRules.g:2731:1: ( ( rule__BoundAnyLink__NameAssignment_1 ) )
+            // InternalReactionRules.g:2732:2: ( rule__BoundAnyLink__NameAssignment_1 )
             {
-             before(grammarAccess.getSemiLinkAccess().getNameAssignment_1()); 
-            // InternalReactionRules.g:2733:2: ( rule__SemiLink__NameAssignment_1 )
-            // InternalReactionRules.g:2733:3: rule__SemiLink__NameAssignment_1
+             before(grammarAccess.getBoundAnyLinkAccess().getNameAssignment_1()); 
+            // InternalReactionRules.g:2733:2: ( rule__BoundAnyLink__NameAssignment_1 )
+            // InternalReactionRules.g:2733:3: rule__BoundAnyLink__NameAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__SemiLink__NameAssignment_1();
+            rule__BoundAnyLink__NameAssignment_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getSemiLinkAccess().getNameAssignment_1()); 
+             after(grammarAccess.getBoundAnyLinkAccess().getNameAssignment_1()); 
 
             }
 
@@ -8314,7 +8314,7 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__SemiLink__Group__1__Impl"
+    // $ANTLR end "rule__BoundAnyLink__Group__1__Impl"
 
 
     // $ANTLR start "rule__FreeLink__Group__0"
@@ -8627,23 +8627,23 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
     // $ANTLR end "rule__WhatEver__Group__1__Impl"
 
 
-    // $ANTLR start "rule__IndexedLink__Group__0"
-    // InternalReactionRules.g:2850:1: rule__IndexedLink__Group__0 : rule__IndexedLink__Group__0__Impl rule__IndexedLink__Group__1 ;
-    public final void rule__IndexedLink__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__BoundLink__Group__0"
+    // InternalReactionRules.g:2850:1: rule__BoundLink__Group__0 : rule__BoundLink__Group__0__Impl rule__BoundLink__Group__1 ;
+    public final void rule__BoundLink__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:2854:1: ( rule__IndexedLink__Group__0__Impl rule__IndexedLink__Group__1 )
-            // InternalReactionRules.g:2855:2: rule__IndexedLink__Group__0__Impl rule__IndexedLink__Group__1
+            // InternalReactionRules.g:2854:1: ( rule__BoundLink__Group__0__Impl rule__BoundLink__Group__1 )
+            // InternalReactionRules.g:2855:2: rule__BoundLink__Group__0__Impl rule__BoundLink__Group__1
             {
             pushFollow(FOLLOW_6);
-            rule__IndexedLink__Group__0__Impl();
+            rule__BoundLink__Group__0__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__IndexedLink__Group__1();
+            rule__BoundLink__Group__1();
 
             state._fsp--;
 
@@ -8662,12 +8662,12 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__IndexedLink__Group__0"
+    // $ANTLR end "rule__BoundLink__Group__0"
 
 
-    // $ANTLR start "rule__IndexedLink__Group__0__Impl"
-    // InternalReactionRules.g:2862:1: rule__IndexedLink__Group__0__Impl : ( () ) ;
-    public final void rule__IndexedLink__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__BoundLink__Group__0__Impl"
+    // InternalReactionRules.g:2862:1: rule__BoundLink__Group__0__Impl : ( () ) ;
+    public final void rule__BoundLink__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -8678,13 +8678,13 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
             // InternalReactionRules.g:2867:1: ( () )
             // InternalReactionRules.g:2868:2: ()
             {
-             before(grammarAccess.getIndexedLinkAccess().getIndexedLinkAction_0()); 
+             before(grammarAccess.getBoundLinkAccess().getBoundLinkAction_0()); 
             // InternalReactionRules.g:2869:2: ()
             // InternalReactionRules.g:2869:3: 
             {
             }
 
-             after(grammarAccess.getIndexedLinkAccess().getIndexedLinkAction_0()); 
+             after(grammarAccess.getBoundLinkAccess().getBoundLinkAction_0()); 
 
             }
 
@@ -8699,21 +8699,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__IndexedLink__Group__0__Impl"
+    // $ANTLR end "rule__BoundLink__Group__0__Impl"
 
 
-    // $ANTLR start "rule__IndexedLink__Group__1"
-    // InternalReactionRules.g:2877:1: rule__IndexedLink__Group__1 : rule__IndexedLink__Group__1__Impl ;
-    public final void rule__IndexedLink__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__BoundLink__Group__1"
+    // InternalReactionRules.g:2877:1: rule__BoundLink__Group__1 : rule__BoundLink__Group__1__Impl ;
+    public final void rule__BoundLink__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:2881:1: ( rule__IndexedLink__Group__1__Impl )
-            // InternalReactionRules.g:2882:2: rule__IndexedLink__Group__1__Impl
+            // InternalReactionRules.g:2881:1: ( rule__BoundLink__Group__1__Impl )
+            // InternalReactionRules.g:2882:2: rule__BoundLink__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__IndexedLink__Group__1__Impl();
+            rule__BoundLink__Group__1__Impl();
 
             state._fsp--;
 
@@ -8732,35 +8732,35 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__IndexedLink__Group__1"
+    // $ANTLR end "rule__BoundLink__Group__1"
 
 
-    // $ANTLR start "rule__IndexedLink__Group__1__Impl"
-    // InternalReactionRules.g:2888:1: rule__IndexedLink__Group__1__Impl : ( ( rule__IndexedLink__StateAssignment_1 ) ) ;
-    public final void rule__IndexedLink__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__BoundLink__Group__1__Impl"
+    // InternalReactionRules.g:2888:1: rule__BoundLink__Group__1__Impl : ( ( rule__BoundLink__StateAssignment_1 ) ) ;
+    public final void rule__BoundLink__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:2892:1: ( ( ( rule__IndexedLink__StateAssignment_1 ) ) )
-            // InternalReactionRules.g:2893:1: ( ( rule__IndexedLink__StateAssignment_1 ) )
+            // InternalReactionRules.g:2892:1: ( ( ( rule__BoundLink__StateAssignment_1 ) ) )
+            // InternalReactionRules.g:2893:1: ( ( rule__BoundLink__StateAssignment_1 ) )
             {
-            // InternalReactionRules.g:2893:1: ( ( rule__IndexedLink__StateAssignment_1 ) )
-            // InternalReactionRules.g:2894:2: ( rule__IndexedLink__StateAssignment_1 )
+            // InternalReactionRules.g:2893:1: ( ( rule__BoundLink__StateAssignment_1 ) )
+            // InternalReactionRules.g:2894:2: ( rule__BoundLink__StateAssignment_1 )
             {
-             before(grammarAccess.getIndexedLinkAccess().getStateAssignment_1()); 
-            // InternalReactionRules.g:2895:2: ( rule__IndexedLink__StateAssignment_1 )
-            // InternalReactionRules.g:2895:3: rule__IndexedLink__StateAssignment_1
+             before(grammarAccess.getBoundLinkAccess().getStateAssignment_1()); 
+            // InternalReactionRules.g:2895:2: ( rule__BoundLink__StateAssignment_1 )
+            // InternalReactionRules.g:2895:3: rule__BoundLink__StateAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__IndexedLink__StateAssignment_1();
+            rule__BoundLink__StateAssignment_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getIndexedLinkAccess().getStateAssignment_1()); 
+             after(grammarAccess.getBoundLinkAccess().getStateAssignment_1()); 
 
             }
 
@@ -8779,26 +8779,26 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__IndexedLink__Group__1__Impl"
+    // $ANTLR end "rule__BoundLink__Group__1__Impl"
 
 
-    // $ANTLR start "rule__ExactLinkAgent__Group__0"
-    // InternalReactionRules.g:2904:1: rule__ExactLinkAgent__Group__0 : rule__ExactLinkAgent__Group__0__Impl rule__ExactLinkAgent__Group__1 ;
-    public final void rule__ExactLinkAgent__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyOfTypeLinkAgent__Group__0"
+    // InternalReactionRules.g:2904:1: rule__BoundAnyOfTypeLinkAgent__Group__0 : rule__BoundAnyOfTypeLinkAgent__Group__0__Impl rule__BoundAnyOfTypeLinkAgent__Group__1 ;
+    public final void rule__BoundAnyOfTypeLinkAgent__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:2908:1: ( rule__ExactLinkAgent__Group__0__Impl rule__ExactLinkAgent__Group__1 )
-            // InternalReactionRules.g:2909:2: rule__ExactLinkAgent__Group__0__Impl rule__ExactLinkAgent__Group__1
+            // InternalReactionRules.g:2908:1: ( rule__BoundAnyOfTypeLinkAgent__Group__0__Impl rule__BoundAnyOfTypeLinkAgent__Group__1 )
+            // InternalReactionRules.g:2909:2: rule__BoundAnyOfTypeLinkAgent__Group__0__Impl rule__BoundAnyOfTypeLinkAgent__Group__1
             {
             pushFollow(FOLLOW_5);
-            rule__ExactLinkAgent__Group__0__Impl();
+            rule__BoundAnyOfTypeLinkAgent__Group__0__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__ExactLinkAgent__Group__1();
+            rule__BoundAnyOfTypeLinkAgent__Group__1();
 
             state._fsp--;
 
@@ -8817,12 +8817,12 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__ExactLinkAgent__Group__0"
+    // $ANTLR end "rule__BoundAnyOfTypeLinkAgent__Group__0"
 
 
-    // $ANTLR start "rule__ExactLinkAgent__Group__0__Impl"
-    // InternalReactionRules.g:2916:1: rule__ExactLinkAgent__Group__0__Impl : ( () ) ;
-    public final void rule__ExactLinkAgent__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyOfTypeLinkAgent__Group__0__Impl"
+    // InternalReactionRules.g:2916:1: rule__BoundAnyOfTypeLinkAgent__Group__0__Impl : ( () ) ;
+    public final void rule__BoundAnyOfTypeLinkAgent__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -8833,13 +8833,13 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
             // InternalReactionRules.g:2921:1: ( () )
             // InternalReactionRules.g:2922:2: ()
             {
-             before(grammarAccess.getExactLinkAgentAccess().getExactLinkAgentAction_0()); 
+             before(grammarAccess.getBoundAnyOfTypeLinkAgentAccess().getBoundAnyOfTypeLinkAgentAction_0()); 
             // InternalReactionRules.g:2923:2: ()
             // InternalReactionRules.g:2923:3: 
             {
             }
 
-             after(grammarAccess.getExactLinkAgentAccess().getExactLinkAgentAction_0()); 
+             after(grammarAccess.getBoundAnyOfTypeLinkAgentAccess().getBoundAnyOfTypeLinkAgentAction_0()); 
 
             }
 
@@ -8854,21 +8854,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__ExactLinkAgent__Group__0__Impl"
+    // $ANTLR end "rule__BoundAnyOfTypeLinkAgent__Group__0__Impl"
 
 
-    // $ANTLR start "rule__ExactLinkAgent__Group__1"
-    // InternalReactionRules.g:2931:1: rule__ExactLinkAgent__Group__1 : rule__ExactLinkAgent__Group__1__Impl ;
-    public final void rule__ExactLinkAgent__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyOfTypeLinkAgent__Group__1"
+    // InternalReactionRules.g:2931:1: rule__BoundAnyOfTypeLinkAgent__Group__1 : rule__BoundAnyOfTypeLinkAgent__Group__1__Impl ;
+    public final void rule__BoundAnyOfTypeLinkAgent__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:2935:1: ( rule__ExactLinkAgent__Group__1__Impl )
-            // InternalReactionRules.g:2936:2: rule__ExactLinkAgent__Group__1__Impl
+            // InternalReactionRules.g:2935:1: ( rule__BoundAnyOfTypeLinkAgent__Group__1__Impl )
+            // InternalReactionRules.g:2936:2: rule__BoundAnyOfTypeLinkAgent__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__ExactLinkAgent__Group__1__Impl();
+            rule__BoundAnyOfTypeLinkAgent__Group__1__Impl();
 
             state._fsp--;
 
@@ -8887,35 +8887,35 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__ExactLinkAgent__Group__1"
+    // $ANTLR end "rule__BoundAnyOfTypeLinkAgent__Group__1"
 
 
-    // $ANTLR start "rule__ExactLinkAgent__Group__1__Impl"
-    // InternalReactionRules.g:2942:1: rule__ExactLinkAgent__Group__1__Impl : ( ( rule__ExactLinkAgent__AgentAssignment_1 ) ) ;
-    public final void rule__ExactLinkAgent__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyOfTypeLinkAgent__Group__1__Impl"
+    // InternalReactionRules.g:2942:1: rule__BoundAnyOfTypeLinkAgent__Group__1__Impl : ( ( rule__BoundAnyOfTypeLinkAgent__AgentAssignment_1 ) ) ;
+    public final void rule__BoundAnyOfTypeLinkAgent__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:2946:1: ( ( ( rule__ExactLinkAgent__AgentAssignment_1 ) ) )
-            // InternalReactionRules.g:2947:1: ( ( rule__ExactLinkAgent__AgentAssignment_1 ) )
+            // InternalReactionRules.g:2946:1: ( ( ( rule__BoundAnyOfTypeLinkAgent__AgentAssignment_1 ) ) )
+            // InternalReactionRules.g:2947:1: ( ( rule__BoundAnyOfTypeLinkAgent__AgentAssignment_1 ) )
             {
-            // InternalReactionRules.g:2947:1: ( ( rule__ExactLinkAgent__AgentAssignment_1 ) )
-            // InternalReactionRules.g:2948:2: ( rule__ExactLinkAgent__AgentAssignment_1 )
+            // InternalReactionRules.g:2947:1: ( ( rule__BoundAnyOfTypeLinkAgent__AgentAssignment_1 ) )
+            // InternalReactionRules.g:2948:2: ( rule__BoundAnyOfTypeLinkAgent__AgentAssignment_1 )
             {
-             before(grammarAccess.getExactLinkAgentAccess().getAgentAssignment_1()); 
-            // InternalReactionRules.g:2949:2: ( rule__ExactLinkAgent__AgentAssignment_1 )
-            // InternalReactionRules.g:2949:3: rule__ExactLinkAgent__AgentAssignment_1
+             before(grammarAccess.getBoundAnyOfTypeLinkAgentAccess().getAgentAssignment_1()); 
+            // InternalReactionRules.g:2949:2: ( rule__BoundAnyOfTypeLinkAgent__AgentAssignment_1 )
+            // InternalReactionRules.g:2949:3: rule__BoundAnyOfTypeLinkAgent__AgentAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__ExactLinkAgent__AgentAssignment_1();
+            rule__BoundAnyOfTypeLinkAgent__AgentAssignment_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getExactLinkAgentAccess().getAgentAssignment_1()); 
+             after(grammarAccess.getBoundAnyOfTypeLinkAgentAccess().getAgentAssignment_1()); 
 
             }
 
@@ -8934,26 +8934,26 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__ExactLinkAgent__Group__1__Impl"
+    // $ANTLR end "rule__BoundAnyOfTypeLinkAgent__Group__1__Impl"
 
 
-    // $ANTLR start "rule__ExactLinkSite__Group__0"
-    // InternalReactionRules.g:2958:1: rule__ExactLinkSite__Group__0 : rule__ExactLinkSite__Group__0__Impl rule__ExactLinkSite__Group__1 ;
-    public final void rule__ExactLinkSite__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyOfTypeLinkSite__Group__0"
+    // InternalReactionRules.g:2958:1: rule__BoundAnyOfTypeLinkSite__Group__0 : rule__BoundAnyOfTypeLinkSite__Group__0__Impl rule__BoundAnyOfTypeLinkSite__Group__1 ;
+    public final void rule__BoundAnyOfTypeLinkSite__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:2962:1: ( rule__ExactLinkSite__Group__0__Impl rule__ExactLinkSite__Group__1 )
-            // InternalReactionRules.g:2963:2: rule__ExactLinkSite__Group__0__Impl rule__ExactLinkSite__Group__1
+            // InternalReactionRules.g:2962:1: ( rule__BoundAnyOfTypeLinkSite__Group__0__Impl rule__BoundAnyOfTypeLinkSite__Group__1 )
+            // InternalReactionRules.g:2963:2: rule__BoundAnyOfTypeLinkSite__Group__0__Impl rule__BoundAnyOfTypeLinkSite__Group__1
             {
             pushFollow(FOLLOW_5);
-            rule__ExactLinkSite__Group__0__Impl();
+            rule__BoundAnyOfTypeLinkSite__Group__0__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__ExactLinkSite__Group__1();
+            rule__BoundAnyOfTypeLinkSite__Group__1();
 
             state._fsp--;
 
@@ -8972,12 +8972,12 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__ExactLinkSite__Group__0"
+    // $ANTLR end "rule__BoundAnyOfTypeLinkSite__Group__0"
 
 
-    // $ANTLR start "rule__ExactLinkSite__Group__0__Impl"
-    // InternalReactionRules.g:2970:1: rule__ExactLinkSite__Group__0__Impl : ( () ) ;
-    public final void rule__ExactLinkSite__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyOfTypeLinkSite__Group__0__Impl"
+    // InternalReactionRules.g:2970:1: rule__BoundAnyOfTypeLinkSite__Group__0__Impl : ( () ) ;
+    public final void rule__BoundAnyOfTypeLinkSite__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -8988,13 +8988,13 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
             // InternalReactionRules.g:2975:1: ( () )
             // InternalReactionRules.g:2976:2: ()
             {
-             before(grammarAccess.getExactLinkSiteAccess().getExactLinkSiteAction_0()); 
+             before(grammarAccess.getBoundAnyOfTypeLinkSiteAccess().getBoundAnyOfTypeLinkSiteAction_0()); 
             // InternalReactionRules.g:2977:2: ()
             // InternalReactionRules.g:2977:3: 
             {
             }
 
-             after(grammarAccess.getExactLinkSiteAccess().getExactLinkSiteAction_0()); 
+             after(grammarAccess.getBoundAnyOfTypeLinkSiteAccess().getBoundAnyOfTypeLinkSiteAction_0()); 
 
             }
 
@@ -9009,21 +9009,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__ExactLinkSite__Group__0__Impl"
+    // $ANTLR end "rule__BoundAnyOfTypeLinkSite__Group__0__Impl"
 
 
-    // $ANTLR start "rule__ExactLinkSite__Group__1"
-    // InternalReactionRules.g:2985:1: rule__ExactLinkSite__Group__1 : rule__ExactLinkSite__Group__1__Impl ;
-    public final void rule__ExactLinkSite__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyOfTypeLinkSite__Group__1"
+    // InternalReactionRules.g:2985:1: rule__BoundAnyOfTypeLinkSite__Group__1 : rule__BoundAnyOfTypeLinkSite__Group__1__Impl ;
+    public final void rule__BoundAnyOfTypeLinkSite__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:2989:1: ( rule__ExactLinkSite__Group__1__Impl )
-            // InternalReactionRules.g:2990:2: rule__ExactLinkSite__Group__1__Impl
+            // InternalReactionRules.g:2989:1: ( rule__BoundAnyOfTypeLinkSite__Group__1__Impl )
+            // InternalReactionRules.g:2990:2: rule__BoundAnyOfTypeLinkSite__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__ExactLinkSite__Group__1__Impl();
+            rule__BoundAnyOfTypeLinkSite__Group__1__Impl();
 
             state._fsp--;
 
@@ -9042,35 +9042,35 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__ExactLinkSite__Group__1"
+    // $ANTLR end "rule__BoundAnyOfTypeLinkSite__Group__1"
 
 
-    // $ANTLR start "rule__ExactLinkSite__Group__1__Impl"
-    // InternalReactionRules.g:2996:1: rule__ExactLinkSite__Group__1__Impl : ( ( rule__ExactLinkSite__SiteAssignment_1 ) ) ;
-    public final void rule__ExactLinkSite__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyOfTypeLinkSite__Group__1__Impl"
+    // InternalReactionRules.g:2996:1: rule__BoundAnyOfTypeLinkSite__Group__1__Impl : ( ( rule__BoundAnyOfTypeLinkSite__SiteAssignment_1 ) ) ;
+    public final void rule__BoundAnyOfTypeLinkSite__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:3000:1: ( ( ( rule__ExactLinkSite__SiteAssignment_1 ) ) )
-            // InternalReactionRules.g:3001:1: ( ( rule__ExactLinkSite__SiteAssignment_1 ) )
+            // InternalReactionRules.g:3000:1: ( ( ( rule__BoundAnyOfTypeLinkSite__SiteAssignment_1 ) ) )
+            // InternalReactionRules.g:3001:1: ( ( rule__BoundAnyOfTypeLinkSite__SiteAssignment_1 ) )
             {
-            // InternalReactionRules.g:3001:1: ( ( rule__ExactLinkSite__SiteAssignment_1 ) )
-            // InternalReactionRules.g:3002:2: ( rule__ExactLinkSite__SiteAssignment_1 )
+            // InternalReactionRules.g:3001:1: ( ( rule__BoundAnyOfTypeLinkSite__SiteAssignment_1 ) )
+            // InternalReactionRules.g:3002:2: ( rule__BoundAnyOfTypeLinkSite__SiteAssignment_1 )
             {
-             before(grammarAccess.getExactLinkSiteAccess().getSiteAssignment_1()); 
-            // InternalReactionRules.g:3003:2: ( rule__ExactLinkSite__SiteAssignment_1 )
-            // InternalReactionRules.g:3003:3: rule__ExactLinkSite__SiteAssignment_1
+             before(grammarAccess.getBoundAnyOfTypeLinkSiteAccess().getSiteAssignment_1()); 
+            // InternalReactionRules.g:3003:2: ( rule__BoundAnyOfTypeLinkSite__SiteAssignment_1 )
+            // InternalReactionRules.g:3003:3: rule__BoundAnyOfTypeLinkSite__SiteAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__ExactLinkSite__SiteAssignment_1();
+            rule__BoundAnyOfTypeLinkSite__SiteAssignment_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getExactLinkSiteAccess().getSiteAssignment_1()); 
+             after(grammarAccess.getBoundAnyOfTypeLinkSiteAccess().getSiteAssignment_1()); 
 
             }
 
@@ -9089,26 +9089,26 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__ExactLinkSite__Group__1__Impl"
+    // $ANTLR end "rule__BoundAnyOfTypeLinkSite__Group__1__Impl"
 
 
-    // $ANTLR start "rule__ExactLink__Group__0"
-    // InternalReactionRules.g:3012:1: rule__ExactLink__Group__0 : rule__ExactLink__Group__0__Impl rule__ExactLink__Group__1 ;
-    public final void rule__ExactLink__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyOfTypeLink__Group__0"
+    // InternalReactionRules.g:3012:1: rule__BoundAnyOfTypeLink__Group__0 : rule__BoundAnyOfTypeLink__Group__0__Impl rule__BoundAnyOfTypeLink__Group__1 ;
+    public final void rule__BoundAnyOfTypeLink__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:3016:1: ( rule__ExactLink__Group__0__Impl rule__ExactLink__Group__1 )
-            // InternalReactionRules.g:3017:2: rule__ExactLink__Group__0__Impl rule__ExactLink__Group__1
+            // InternalReactionRules.g:3016:1: ( rule__BoundAnyOfTypeLink__Group__0__Impl rule__BoundAnyOfTypeLink__Group__1 )
+            // InternalReactionRules.g:3017:2: rule__BoundAnyOfTypeLink__Group__0__Impl rule__BoundAnyOfTypeLink__Group__1
             {
             pushFollow(FOLLOW_5);
-            rule__ExactLink__Group__0__Impl();
+            rule__BoundAnyOfTypeLink__Group__0__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__ExactLink__Group__1();
+            rule__BoundAnyOfTypeLink__Group__1();
 
             state._fsp--;
 
@@ -9127,12 +9127,12 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__ExactLink__Group__0"
+    // $ANTLR end "rule__BoundAnyOfTypeLink__Group__0"
 
 
-    // $ANTLR start "rule__ExactLink__Group__0__Impl"
-    // InternalReactionRules.g:3024:1: rule__ExactLink__Group__0__Impl : ( () ) ;
-    public final void rule__ExactLink__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyOfTypeLink__Group__0__Impl"
+    // InternalReactionRules.g:3024:1: rule__BoundAnyOfTypeLink__Group__0__Impl : ( () ) ;
+    public final void rule__BoundAnyOfTypeLink__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -9143,13 +9143,13 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
             // InternalReactionRules.g:3029:1: ( () )
             // InternalReactionRules.g:3030:2: ()
             {
-             before(grammarAccess.getExactLinkAccess().getExactLinkAction_0()); 
+             before(grammarAccess.getBoundAnyOfTypeLinkAccess().getBoundAnyOfTypeLinkAction_0()); 
             // InternalReactionRules.g:3031:2: ()
             // InternalReactionRules.g:3031:3: 
             {
             }
 
-             after(grammarAccess.getExactLinkAccess().getExactLinkAction_0()); 
+             after(grammarAccess.getBoundAnyOfTypeLinkAccess().getBoundAnyOfTypeLinkAction_0()); 
 
             }
 
@@ -9164,26 +9164,26 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__ExactLink__Group__0__Impl"
+    // $ANTLR end "rule__BoundAnyOfTypeLink__Group__0__Impl"
 
 
-    // $ANTLR start "rule__ExactLink__Group__1"
-    // InternalReactionRules.g:3039:1: rule__ExactLink__Group__1 : rule__ExactLink__Group__1__Impl rule__ExactLink__Group__2 ;
-    public final void rule__ExactLink__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyOfTypeLink__Group__1"
+    // InternalReactionRules.g:3039:1: rule__BoundAnyOfTypeLink__Group__1 : rule__BoundAnyOfTypeLink__Group__1__Impl rule__BoundAnyOfTypeLink__Group__2 ;
+    public final void rule__BoundAnyOfTypeLink__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:3043:1: ( rule__ExactLink__Group__1__Impl rule__ExactLink__Group__2 )
-            // InternalReactionRules.g:3044:2: rule__ExactLink__Group__1__Impl rule__ExactLink__Group__2
+            // InternalReactionRules.g:3043:1: ( rule__BoundAnyOfTypeLink__Group__1__Impl rule__BoundAnyOfTypeLink__Group__2 )
+            // InternalReactionRules.g:3044:2: rule__BoundAnyOfTypeLink__Group__1__Impl rule__BoundAnyOfTypeLink__Group__2
             {
             pushFollow(FOLLOW_7);
-            rule__ExactLink__Group__1__Impl();
+            rule__BoundAnyOfTypeLink__Group__1__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__ExactLink__Group__2();
+            rule__BoundAnyOfTypeLink__Group__2();
 
             state._fsp--;
 
@@ -9202,35 +9202,35 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__ExactLink__Group__1"
+    // $ANTLR end "rule__BoundAnyOfTypeLink__Group__1"
 
 
-    // $ANTLR start "rule__ExactLink__Group__1__Impl"
-    // InternalReactionRules.g:3051:1: rule__ExactLink__Group__1__Impl : ( ( rule__ExactLink__LinkAgentAssignment_1 ) ) ;
-    public final void rule__ExactLink__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyOfTypeLink__Group__1__Impl"
+    // InternalReactionRules.g:3051:1: rule__BoundAnyOfTypeLink__Group__1__Impl : ( ( rule__BoundAnyOfTypeLink__LinkAgentAssignment_1 ) ) ;
+    public final void rule__BoundAnyOfTypeLink__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:3055:1: ( ( ( rule__ExactLink__LinkAgentAssignment_1 ) ) )
-            // InternalReactionRules.g:3056:1: ( ( rule__ExactLink__LinkAgentAssignment_1 ) )
+            // InternalReactionRules.g:3055:1: ( ( ( rule__BoundAnyOfTypeLink__LinkAgentAssignment_1 ) ) )
+            // InternalReactionRules.g:3056:1: ( ( rule__BoundAnyOfTypeLink__LinkAgentAssignment_1 ) )
             {
-            // InternalReactionRules.g:3056:1: ( ( rule__ExactLink__LinkAgentAssignment_1 ) )
-            // InternalReactionRules.g:3057:2: ( rule__ExactLink__LinkAgentAssignment_1 )
+            // InternalReactionRules.g:3056:1: ( ( rule__BoundAnyOfTypeLink__LinkAgentAssignment_1 ) )
+            // InternalReactionRules.g:3057:2: ( rule__BoundAnyOfTypeLink__LinkAgentAssignment_1 )
             {
-             before(grammarAccess.getExactLinkAccess().getLinkAgentAssignment_1()); 
-            // InternalReactionRules.g:3058:2: ( rule__ExactLink__LinkAgentAssignment_1 )
-            // InternalReactionRules.g:3058:3: rule__ExactLink__LinkAgentAssignment_1
+             before(grammarAccess.getBoundAnyOfTypeLinkAccess().getLinkAgentAssignment_1()); 
+            // InternalReactionRules.g:3058:2: ( rule__BoundAnyOfTypeLink__LinkAgentAssignment_1 )
+            // InternalReactionRules.g:3058:3: rule__BoundAnyOfTypeLink__LinkAgentAssignment_1
             {
             pushFollow(FOLLOW_2);
-            rule__ExactLink__LinkAgentAssignment_1();
+            rule__BoundAnyOfTypeLink__LinkAgentAssignment_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getExactLinkAccess().getLinkAgentAssignment_1()); 
+             after(grammarAccess.getBoundAnyOfTypeLinkAccess().getLinkAgentAssignment_1()); 
 
             }
 
@@ -9249,26 +9249,26 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__ExactLink__Group__1__Impl"
+    // $ANTLR end "rule__BoundAnyOfTypeLink__Group__1__Impl"
 
 
-    // $ANTLR start "rule__ExactLink__Group__2"
-    // InternalReactionRules.g:3066:1: rule__ExactLink__Group__2 : rule__ExactLink__Group__2__Impl rule__ExactLink__Group__3 ;
-    public final void rule__ExactLink__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyOfTypeLink__Group__2"
+    // InternalReactionRules.g:3066:1: rule__BoundAnyOfTypeLink__Group__2 : rule__BoundAnyOfTypeLink__Group__2__Impl rule__BoundAnyOfTypeLink__Group__3 ;
+    public final void rule__BoundAnyOfTypeLink__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:3070:1: ( rule__ExactLink__Group__2__Impl rule__ExactLink__Group__3 )
-            // InternalReactionRules.g:3071:2: rule__ExactLink__Group__2__Impl rule__ExactLink__Group__3
+            // InternalReactionRules.g:3070:1: ( rule__BoundAnyOfTypeLink__Group__2__Impl rule__BoundAnyOfTypeLink__Group__3 )
+            // InternalReactionRules.g:3071:2: rule__BoundAnyOfTypeLink__Group__2__Impl rule__BoundAnyOfTypeLink__Group__3
             {
             pushFollow(FOLLOW_5);
-            rule__ExactLink__Group__2__Impl();
+            rule__BoundAnyOfTypeLink__Group__2__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__ExactLink__Group__3();
+            rule__BoundAnyOfTypeLink__Group__3();
 
             state._fsp--;
 
@@ -9287,12 +9287,12 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__ExactLink__Group__2"
+    // $ANTLR end "rule__BoundAnyOfTypeLink__Group__2"
 
 
-    // $ANTLR start "rule__ExactLink__Group__2__Impl"
-    // InternalReactionRules.g:3078:1: rule__ExactLink__Group__2__Impl : ( '.' ) ;
-    public final void rule__ExactLink__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyOfTypeLink__Group__2__Impl"
+    // InternalReactionRules.g:3078:1: rule__BoundAnyOfTypeLink__Group__2__Impl : ( '.' ) ;
+    public final void rule__BoundAnyOfTypeLink__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -9303,9 +9303,9 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
             // InternalReactionRules.g:3083:1: ( '.' )
             // InternalReactionRules.g:3084:2: '.'
             {
-             before(grammarAccess.getExactLinkAccess().getFullStopKeyword_2()); 
+             before(grammarAccess.getBoundAnyOfTypeLinkAccess().getFullStopKeyword_2()); 
             match(input,22,FOLLOW_2); 
-             after(grammarAccess.getExactLinkAccess().getFullStopKeyword_2()); 
+             after(grammarAccess.getBoundAnyOfTypeLinkAccess().getFullStopKeyword_2()); 
 
             }
 
@@ -9324,21 +9324,21 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__ExactLink__Group__2__Impl"
+    // $ANTLR end "rule__BoundAnyOfTypeLink__Group__2__Impl"
 
 
-    // $ANTLR start "rule__ExactLink__Group__3"
-    // InternalReactionRules.g:3093:1: rule__ExactLink__Group__3 : rule__ExactLink__Group__3__Impl ;
-    public final void rule__ExactLink__Group__3() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyOfTypeLink__Group__3"
+    // InternalReactionRules.g:3093:1: rule__BoundAnyOfTypeLink__Group__3 : rule__BoundAnyOfTypeLink__Group__3__Impl ;
+    public final void rule__BoundAnyOfTypeLink__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:3097:1: ( rule__ExactLink__Group__3__Impl )
-            // InternalReactionRules.g:3098:2: rule__ExactLink__Group__3__Impl
+            // InternalReactionRules.g:3097:1: ( rule__BoundAnyOfTypeLink__Group__3__Impl )
+            // InternalReactionRules.g:3098:2: rule__BoundAnyOfTypeLink__Group__3__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__ExactLink__Group__3__Impl();
+            rule__BoundAnyOfTypeLink__Group__3__Impl();
 
             state._fsp--;
 
@@ -9357,35 +9357,35 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__ExactLink__Group__3"
+    // $ANTLR end "rule__BoundAnyOfTypeLink__Group__3"
 
 
-    // $ANTLR start "rule__ExactLink__Group__3__Impl"
-    // InternalReactionRules.g:3104:1: rule__ExactLink__Group__3__Impl : ( ( rule__ExactLink__LinkSiteAssignment_3 ) ) ;
-    public final void rule__ExactLink__Group__3__Impl() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyOfTypeLink__Group__3__Impl"
+    // InternalReactionRules.g:3104:1: rule__BoundAnyOfTypeLink__Group__3__Impl : ( ( rule__BoundAnyOfTypeLink__LinkSiteAssignment_3 ) ) ;
+    public final void rule__BoundAnyOfTypeLink__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:3108:1: ( ( ( rule__ExactLink__LinkSiteAssignment_3 ) ) )
-            // InternalReactionRules.g:3109:1: ( ( rule__ExactLink__LinkSiteAssignment_3 ) )
+            // InternalReactionRules.g:3108:1: ( ( ( rule__BoundAnyOfTypeLink__LinkSiteAssignment_3 ) ) )
+            // InternalReactionRules.g:3109:1: ( ( rule__BoundAnyOfTypeLink__LinkSiteAssignment_3 ) )
             {
-            // InternalReactionRules.g:3109:1: ( ( rule__ExactLink__LinkSiteAssignment_3 ) )
-            // InternalReactionRules.g:3110:2: ( rule__ExactLink__LinkSiteAssignment_3 )
+            // InternalReactionRules.g:3109:1: ( ( rule__BoundAnyOfTypeLink__LinkSiteAssignment_3 ) )
+            // InternalReactionRules.g:3110:2: ( rule__BoundAnyOfTypeLink__LinkSiteAssignment_3 )
             {
-             before(grammarAccess.getExactLinkAccess().getLinkSiteAssignment_3()); 
-            // InternalReactionRules.g:3111:2: ( rule__ExactLink__LinkSiteAssignment_3 )
-            // InternalReactionRules.g:3111:3: rule__ExactLink__LinkSiteAssignment_3
+             before(grammarAccess.getBoundAnyOfTypeLinkAccess().getLinkSiteAssignment_3()); 
+            // InternalReactionRules.g:3111:2: ( rule__BoundAnyOfTypeLink__LinkSiteAssignment_3 )
+            // InternalReactionRules.g:3111:3: rule__BoundAnyOfTypeLink__LinkSiteAssignment_3
             {
             pushFollow(FOLLOW_2);
-            rule__ExactLink__LinkSiteAssignment_3();
+            rule__BoundAnyOfTypeLink__LinkSiteAssignment_3();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getExactLinkAccess().getLinkSiteAssignment_3()); 
+             after(grammarAccess.getBoundAnyOfTypeLinkAccess().getLinkSiteAssignment_3()); 
 
             }
 
@@ -9404,7 +9404,7 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__ExactLink__Group__3__Impl"
+    // $ANTLR end "rule__BoundAnyOfTypeLink__Group__3__Impl"
 
 
     // $ANTLR start "rule__SiteState__Group__0"
@@ -14837,22 +14837,22 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
     // $ANTLR end "rule__ArithmeticVariable__ValueAssignment_3"
 
 
-    // $ANTLR start "rule__SemiLink__NameAssignment_1"
-    // InternalReactionRules.g:4968:1: rule__SemiLink__NameAssignment_1 : ( RULE_SEMI_LINK ) ;
-    public final void rule__SemiLink__NameAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyLink__NameAssignment_1"
+    // InternalReactionRules.g:4968:1: rule__BoundAnyLink__NameAssignment_1 : ( RULE_BOUND_LINK ) ;
+    public final void rule__BoundAnyLink__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:4972:1: ( ( RULE_SEMI_LINK ) )
-            // InternalReactionRules.g:4973:2: ( RULE_SEMI_LINK )
+            // InternalReactionRules.g:4972:1: ( ( RULE_BOUND_LINK ) )
+            // InternalReactionRules.g:4973:2: ( RULE_BOUND_LINK )
             {
-            // InternalReactionRules.g:4973:2: ( RULE_SEMI_LINK )
-            // InternalReactionRules.g:4974:3: RULE_SEMI_LINK
+            // InternalReactionRules.g:4973:2: ( RULE_BOUND_LINK )
+            // InternalReactionRules.g:4974:3: RULE_BOUND_LINK
             {
-             before(grammarAccess.getSemiLinkAccess().getNameSEMI_LINKTerminalRuleCall_1_0()); 
-            match(input,RULE_SEMI_LINK,FOLLOW_2); 
-             after(grammarAccess.getSemiLinkAccess().getNameSEMI_LINKTerminalRuleCall_1_0()); 
+             before(grammarAccess.getBoundAnyLinkAccess().getNameBOUND_LINKTerminalRuleCall_1_0()); 
+            match(input,RULE_BOUND_LINK,FOLLOW_2); 
+             after(grammarAccess.getBoundAnyLinkAccess().getNameBOUND_LINKTerminalRuleCall_1_0()); 
 
             }
 
@@ -14871,7 +14871,7 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__SemiLink__NameAssignment_1"
+    // $ANTLR end "rule__BoundAnyLink__NameAssignment_1"
 
 
     // $ANTLR start "rule__FreeLink__NameAssignment_1"
@@ -14948,9 +14948,9 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
     // $ANTLR end "rule__WhatEver__NameAssignment_1"
 
 
-    // $ANTLR start "rule__IndexedLink__StateAssignment_1"
-    // InternalReactionRules.g:5013:1: rule__IndexedLink__StateAssignment_1 : ( ruleUnsignedInteger ) ;
-    public final void rule__IndexedLink__StateAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__BoundLink__StateAssignment_1"
+    // InternalReactionRules.g:5013:1: rule__BoundLink__StateAssignment_1 : ( ruleUnsignedInteger ) ;
+    public final void rule__BoundLink__StateAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -14961,13 +14961,13 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
             // InternalReactionRules.g:5018:2: ( ruleUnsignedInteger )
             // InternalReactionRules.g:5019:3: ruleUnsignedInteger
             {
-             before(grammarAccess.getIndexedLinkAccess().getStateUnsignedIntegerParserRuleCall_1_0()); 
+             before(grammarAccess.getBoundLinkAccess().getStateUnsignedIntegerParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
             ruleUnsignedInteger();
 
             state._fsp--;
 
-             after(grammarAccess.getIndexedLinkAccess().getStateUnsignedIntegerParserRuleCall_1_0()); 
+             after(grammarAccess.getBoundLinkAccess().getStateUnsignedIntegerParserRuleCall_1_0()); 
 
             }
 
@@ -14986,12 +14986,12 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__IndexedLink__StateAssignment_1"
+    // $ANTLR end "rule__BoundLink__StateAssignment_1"
 
 
-    // $ANTLR start "rule__ExactLinkAgent__AgentAssignment_1"
-    // InternalReactionRules.g:5028:1: rule__ExactLinkAgent__AgentAssignment_1 : ( ( RULE_ID ) ) ;
-    public final void rule__ExactLinkAgent__AgentAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyOfTypeLinkAgent__AgentAssignment_1"
+    // InternalReactionRules.g:5028:1: rule__BoundAnyOfTypeLinkAgent__AgentAssignment_1 : ( ( RULE_ID ) ) ;
+    public final void rule__BoundAnyOfTypeLinkAgent__AgentAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -15002,17 +15002,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
             // InternalReactionRules.g:5033:2: ( ( RULE_ID ) )
             // InternalReactionRules.g:5034:3: ( RULE_ID )
             {
-             before(grammarAccess.getExactLinkAgentAccess().getAgentAgentCrossReference_1_0()); 
+             before(grammarAccess.getBoundAnyOfTypeLinkAgentAccess().getAgentAgentCrossReference_1_0()); 
             // InternalReactionRules.g:5035:3: ( RULE_ID )
             // InternalReactionRules.g:5036:4: RULE_ID
             {
-             before(grammarAccess.getExactLinkAgentAccess().getAgentAgentIDTerminalRuleCall_1_0_1()); 
+             before(grammarAccess.getBoundAnyOfTypeLinkAgentAccess().getAgentAgentIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getExactLinkAgentAccess().getAgentAgentIDTerminalRuleCall_1_0_1()); 
+             after(grammarAccess.getBoundAnyOfTypeLinkAgentAccess().getAgentAgentIDTerminalRuleCall_1_0_1()); 
 
             }
 
-             after(grammarAccess.getExactLinkAgentAccess().getAgentAgentCrossReference_1_0()); 
+             after(grammarAccess.getBoundAnyOfTypeLinkAgentAccess().getAgentAgentCrossReference_1_0()); 
 
             }
 
@@ -15031,12 +15031,12 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__ExactLinkAgent__AgentAssignment_1"
+    // $ANTLR end "rule__BoundAnyOfTypeLinkAgent__AgentAssignment_1"
 
 
-    // $ANTLR start "rule__ExactLinkSite__SiteAssignment_1"
-    // InternalReactionRules.g:5047:1: rule__ExactLinkSite__SiteAssignment_1 : ( ( RULE_ID ) ) ;
-    public final void rule__ExactLinkSite__SiteAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyOfTypeLinkSite__SiteAssignment_1"
+    // InternalReactionRules.g:5047:1: rule__BoundAnyOfTypeLinkSite__SiteAssignment_1 : ( ( RULE_ID ) ) ;
+    public final void rule__BoundAnyOfTypeLinkSite__SiteAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -15047,17 +15047,17 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
             // InternalReactionRules.g:5052:2: ( ( RULE_ID ) )
             // InternalReactionRules.g:5053:3: ( RULE_ID )
             {
-             before(grammarAccess.getExactLinkSiteAccess().getSiteSiteCrossReference_1_0()); 
+             before(grammarAccess.getBoundAnyOfTypeLinkSiteAccess().getSiteSiteCrossReference_1_0()); 
             // InternalReactionRules.g:5054:3: ( RULE_ID )
             // InternalReactionRules.g:5055:4: RULE_ID
             {
-             before(grammarAccess.getExactLinkSiteAccess().getSiteSiteIDTerminalRuleCall_1_0_1()); 
+             before(grammarAccess.getBoundAnyOfTypeLinkSiteAccess().getSiteSiteIDTerminalRuleCall_1_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getExactLinkSiteAccess().getSiteSiteIDTerminalRuleCall_1_0_1()); 
+             after(grammarAccess.getBoundAnyOfTypeLinkSiteAccess().getSiteSiteIDTerminalRuleCall_1_0_1()); 
 
             }
 
-             after(grammarAccess.getExactLinkSiteAccess().getSiteSiteCrossReference_1_0()); 
+             after(grammarAccess.getBoundAnyOfTypeLinkSiteAccess().getSiteSiteCrossReference_1_0()); 
 
             }
 
@@ -15076,29 +15076,29 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__ExactLinkSite__SiteAssignment_1"
+    // $ANTLR end "rule__BoundAnyOfTypeLinkSite__SiteAssignment_1"
 
 
-    // $ANTLR start "rule__ExactLink__LinkAgentAssignment_1"
-    // InternalReactionRules.g:5066:1: rule__ExactLink__LinkAgentAssignment_1 : ( ruleExactLinkAgent ) ;
-    public final void rule__ExactLink__LinkAgentAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyOfTypeLink__LinkAgentAssignment_1"
+    // InternalReactionRules.g:5066:1: rule__BoundAnyOfTypeLink__LinkAgentAssignment_1 : ( ruleBoundAnyOfTypeLinkAgent ) ;
+    public final void rule__BoundAnyOfTypeLink__LinkAgentAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5070:1: ( ( ruleExactLinkAgent ) )
-            // InternalReactionRules.g:5071:2: ( ruleExactLinkAgent )
+            // InternalReactionRules.g:5070:1: ( ( ruleBoundAnyOfTypeLinkAgent ) )
+            // InternalReactionRules.g:5071:2: ( ruleBoundAnyOfTypeLinkAgent )
             {
-            // InternalReactionRules.g:5071:2: ( ruleExactLinkAgent )
-            // InternalReactionRules.g:5072:3: ruleExactLinkAgent
+            // InternalReactionRules.g:5071:2: ( ruleBoundAnyOfTypeLinkAgent )
+            // InternalReactionRules.g:5072:3: ruleBoundAnyOfTypeLinkAgent
             {
-             before(grammarAccess.getExactLinkAccess().getLinkAgentExactLinkAgentParserRuleCall_1_0()); 
+             before(grammarAccess.getBoundAnyOfTypeLinkAccess().getLinkAgentBoundAnyOfTypeLinkAgentParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
-            ruleExactLinkAgent();
+            ruleBoundAnyOfTypeLinkAgent();
 
             state._fsp--;
 
-             after(grammarAccess.getExactLinkAccess().getLinkAgentExactLinkAgentParserRuleCall_1_0()); 
+             after(grammarAccess.getBoundAnyOfTypeLinkAccess().getLinkAgentBoundAnyOfTypeLinkAgentParserRuleCall_1_0()); 
 
             }
 
@@ -15117,29 +15117,29 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__ExactLink__LinkAgentAssignment_1"
+    // $ANTLR end "rule__BoundAnyOfTypeLink__LinkAgentAssignment_1"
 
 
-    // $ANTLR start "rule__ExactLink__LinkSiteAssignment_3"
-    // InternalReactionRules.g:5081:1: rule__ExactLink__LinkSiteAssignment_3 : ( ruleExactLinkSite ) ;
-    public final void rule__ExactLink__LinkSiteAssignment_3() throws RecognitionException {
+    // $ANTLR start "rule__BoundAnyOfTypeLink__LinkSiteAssignment_3"
+    // InternalReactionRules.g:5081:1: rule__BoundAnyOfTypeLink__LinkSiteAssignment_3 : ( ruleBoundAnyOfTypeLinkSite ) ;
+    public final void rule__BoundAnyOfTypeLink__LinkSiteAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalReactionRules.g:5085:1: ( ( ruleExactLinkSite ) )
-            // InternalReactionRules.g:5086:2: ( ruleExactLinkSite )
+            // InternalReactionRules.g:5085:1: ( ( ruleBoundAnyOfTypeLinkSite ) )
+            // InternalReactionRules.g:5086:2: ( ruleBoundAnyOfTypeLinkSite )
             {
-            // InternalReactionRules.g:5086:2: ( ruleExactLinkSite )
-            // InternalReactionRules.g:5087:3: ruleExactLinkSite
+            // InternalReactionRules.g:5086:2: ( ruleBoundAnyOfTypeLinkSite )
+            // InternalReactionRules.g:5087:3: ruleBoundAnyOfTypeLinkSite
             {
-             before(grammarAccess.getExactLinkAccess().getLinkSiteExactLinkSiteParserRuleCall_3_0()); 
+             before(grammarAccess.getBoundAnyOfTypeLinkAccess().getLinkSiteBoundAnyOfTypeLinkSiteParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
-            ruleExactLinkSite();
+            ruleBoundAnyOfTypeLinkSite();
 
             state._fsp--;
 
-             after(grammarAccess.getExactLinkAccess().getLinkSiteExactLinkSiteParserRuleCall_3_0()); 
+             after(grammarAccess.getBoundAnyOfTypeLinkAccess().getLinkSiteBoundAnyOfTypeLinkSiteParserRuleCall_3_0()); 
 
             }
 
@@ -15158,7 +15158,7 @@ public class InternalReactionRulesParser extends AbstractInternalContentAssistPa
         }
         return ;
     }
-    // $ANTLR end "rule__ExactLink__LinkSiteAssignment_3"
+    // $ANTLR end "rule__BoundAnyOfTypeLink__LinkSiteAssignment_3"
 
 
     // $ANTLR start "rule__SiteState__StateAssignment_2"

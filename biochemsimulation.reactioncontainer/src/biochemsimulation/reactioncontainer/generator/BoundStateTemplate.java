@@ -7,7 +7,7 @@ import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.SimBound;
 import biochemsimulation.reactioncontainer.SimLinkState;
 import biochemsimulation.reactioncontainer.SimSite;
-import biochemsimulation.reactionrules.reactionRules.IndexedLink;
+import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.utils.PatternUtils;
@@ -17,27 +17,27 @@ public class BoundStateTemplate implements LinkStateTemplate {
 	private static HashMap<String, SimLinkState> halfBoundLinks = new HashMap<String, SimLinkState>();
 	
 	private AgentTemplate at;
-	private IndexedLink il;
+	private BoundLink link;
 	private String otherType;
 	
-	BoundStateTemplate(AgentTemplate at, IndexedLink il) {
+	BoundStateTemplate(AgentTemplate at, BoundLink link) {
 		this.at = at;
-		this.il = il;
+		this.link = link;
 		searchOtherType();
 	}
 	
 	private void searchOtherType() {
 		otherType = "";
-		String index = il.getState();
+		String index = link.getState();
 		for(ValidAgentPattern ap : PatternUtils.getValidAgentPatterns(at.getPattern().getAgentPatterns())) {
 			if(ap.getAgent().getName().equals(at.getType())) {
 				continue;
 			}
 			for(SitePattern sp : ap.getSitePatterns().getSitePatterns()) {
-				if(!(sp.getLinkState().getLinkState() instanceof IndexedLink)) {
+				if(!(sp.getLinkState().getLinkState() instanceof BoundLink)) {
 					continue;
 				}
-				IndexedLink currentLink = (IndexedLink) sp.getLinkState().getLinkState();
+				BoundLink currentLink = (BoundLink) sp.getLinkState().getLinkState();
 				String currentIndex = currentLink.getState();
 				if(currentIndex.equals(index)) {
 					otherType = ap.getAgent().getName();

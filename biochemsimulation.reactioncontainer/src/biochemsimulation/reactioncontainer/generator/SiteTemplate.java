@@ -7,7 +7,7 @@ import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.SimAgent;
 import biochemsimulation.reactioncontainer.SimSite;
 import biochemsimulation.reactioncontainer.SimSiteState;
-import biochemsimulation.reactionrules.reactionRules.IndexedLink;
+import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.SiteState;
@@ -76,8 +76,8 @@ public class SiteTemplate {
 		if(sp == null) {
 			linkStates.add(new FreeStateTemplate());
 		}else {
-			if(sp.getLinkState().getLinkState() instanceof IndexedLink) {
-				linkStates.add(new BoundStateTemplate(at, (IndexedLink) sp.getLinkState().getLinkState()));
+			if(sp.getLinkState().getLinkState() instanceof BoundLink) {
+				linkStates.add(new BoundStateTemplate(at, (BoundLink) sp.getLinkState().getLinkState()));
 			}else {
 				linkStates.add(new FreeStateTemplate());
 			}

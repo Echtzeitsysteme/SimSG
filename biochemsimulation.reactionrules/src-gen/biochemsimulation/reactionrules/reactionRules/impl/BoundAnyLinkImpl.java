@@ -3,49 +3,56 @@
  */
 package biochemsimulation.reactionrules.reactionRules.impl;
 
-import biochemsimulation.reactionrules.reactionRules.Agent;
-import biochemsimulation.reactionrules.reactionRules.ExactLinkAgent;
+import biochemsimulation.reactionrules.reactionRules.BoundAnyLink;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Exact Link Agent</b></em>'.
+ * An implementation of the model object '<em><b>Bound Any Link</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.ExactLinkAgentImpl#getAgent <em>Agent</em>}</li>
+ *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.BoundAnyLinkImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ExactLinkAgentImpl extends MinimalEObjectImpl.Container implements ExactLinkAgent
+public class BoundAnyLinkImpl extends LinkStateImpl implements BoundAnyLink
 {
   /**
-   * The cached value of the '{@link #getAgent() <em>Agent</em>}' reference.
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAgent()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected Agent agent;
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected String name = NAME_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ExactLinkAgentImpl()
+  protected BoundAnyLinkImpl()
   {
     super();
   }
@@ -58,7 +65,7 @@ public class ExactLinkAgentImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return ReactionRulesPackage.Literals.EXACT_LINK_AGENT;
+    return ReactionRulesPackage.Literals.BOUND_ANY_LINK;
   }
 
   /**
@@ -66,19 +73,9 @@ public class ExactLinkAgentImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public Agent getAgent()
+  public String getName()
   {
-    if (agent != null && agent.eIsProxy())
-    {
-      InternalEObject oldAgent = (InternalEObject)agent;
-      agent = (Agent)eResolveProxy(oldAgent);
-      if (agent != oldAgent)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReactionRulesPackage.EXACT_LINK_AGENT__AGENT, oldAgent, agent));
-      }
-    }
-    return agent;
+    return name;
   }
 
   /**
@@ -86,22 +83,12 @@ public class ExactLinkAgentImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public Agent basicGetAgent()
+  public void setName(String newName)
   {
-    return agent;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setAgent(Agent newAgent)
-  {
-    Agent oldAgent = agent;
-    agent = newAgent;
+    String oldName = name;
+    name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.EXACT_LINK_AGENT__AGENT, oldAgent, agent));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.BOUND_ANY_LINK__NAME, oldName, name));
   }
 
   /**
@@ -114,9 +101,8 @@ public class ExactLinkAgentImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.EXACT_LINK_AGENT__AGENT:
-        if (resolve) return getAgent();
-        return basicGetAgent();
+      case ReactionRulesPackage.BOUND_ANY_LINK__NAME:
+        return getName();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -131,8 +117,8 @@ public class ExactLinkAgentImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.EXACT_LINK_AGENT__AGENT:
-        setAgent((Agent)newValue);
+      case ReactionRulesPackage.BOUND_ANY_LINK__NAME:
+        setName((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -148,8 +134,8 @@ public class ExactLinkAgentImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.EXACT_LINK_AGENT__AGENT:
-        setAgent((Agent)null);
+      case ReactionRulesPackage.BOUND_ANY_LINK__NAME:
+        setName(NAME_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -165,10 +151,27 @@ public class ExactLinkAgentImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.EXACT_LINK_AGENT__AGENT:
-        return agent != null;
+      case ReactionRulesPackage.BOUND_ANY_LINK__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
     return super.eIsSet(featureID);
   }
 
-} //ExactLinkAgentImpl
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (name: ");
+    result.append(name);
+    result.append(')');
+    return result.toString();
+  }
+
+} //BoundAnyLinkImpl

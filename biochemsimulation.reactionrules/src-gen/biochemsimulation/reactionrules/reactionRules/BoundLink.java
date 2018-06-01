@@ -6,21 +6,21 @@ package biochemsimulation.reactionrules.reactionRules;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Indexed Link</b></em>'.
+ * A representation of the model object '<em><b>Bound Link</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.IndexedLink#getState <em>State</em>}</li>
+ *   <li>{@link biochemsimulation.reactionrules.reactionRules.BoundLink#getState <em>State</em>}</li>
  * </ul>
  *
- * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getIndexedLink()
+ * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getBoundLink()
  * @model
  * @generated
  */
-public interface IndexedLink extends LinkState
+public interface BoundLink extends LinkState
 {
   /**
    * Returns the value of the '<em><b>State</b></em>' attribute.
@@ -32,14 +32,14 @@ public interface IndexedLink extends LinkState
    * <!-- end-user-doc -->
    * @return the value of the '<em>State</em>' attribute.
    * @see #setState(String)
-   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getIndexedLink_State()
+   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getBoundLink_State()
    * @model
    * @generated
    */
   String getState();
 
   /**
-   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.IndexedLink#getState <em>State</em>}' attribute.
+   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.BoundLink#getState <em>State</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>State</em>' attribute.
@@ -48,4 +48,4 @@ public interface IndexedLink extends LinkState
    */
   void setState(String value);
 
-} // IndexedLink
+} // BoundLink

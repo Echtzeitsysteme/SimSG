@@ -141,14 +141,14 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
         return createLinkStateAdapter();
       }
       @Override
-      public Adapter caseExactLinkAgent(ExactLinkAgent object)
+      public Adapter caseBoundAnyOfTypeLinkAgent(BoundAnyOfTypeLinkAgent object)
       {
-        return createExactLinkAgentAdapter();
+        return createBoundAnyOfTypeLinkAgentAdapter();
       }
       @Override
-      public Adapter caseExactLinkSite(ExactLinkSite object)
+      public Adapter caseBoundAnyOfTypeLinkSite(BoundAnyOfTypeLinkSite object)
       {
-        return createExactLinkSiteAdapter();
+        return createBoundAnyOfTypeLinkSiteAdapter();
       }
       @Override
       public Adapter caseSiteState(SiteState object)
@@ -241,9 +241,9 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
         return createRuleAdapter();
       }
       @Override
-      public Adapter caseSemiLink(SemiLink object)
+      public Adapter caseBoundAnyLink(BoundAnyLink object)
       {
-        return createSemiLinkAdapter();
+        return createBoundAnyLinkAdapter();
       }
       @Override
       public Adapter caseFreeLink(FreeLink object)
@@ -256,14 +256,14 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
         return createWhatEverAdapter();
       }
       @Override
-      public Adapter caseIndexedLink(IndexedLink object)
+      public Adapter caseBoundLink(BoundLink object)
       {
-        return createIndexedLinkAdapter();
+        return createBoundLinkAdapter();
       }
       @Override
-      public Adapter caseExactLink(ExactLink object)
+      public Adapter caseBoundAnyOfTypeLink(BoundAnyOfTypeLink object)
       {
-        return createExactLinkAdapter();
+        return createBoundAnyOfTypeLinkAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -483,31 +483,31 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.ExactLinkAgent <em>Exact Link Agent</em>}'.
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkAgent <em>Bound Any Of Type Link Agent</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see biochemsimulation.reactionrules.reactionRules.ExactLinkAgent
+   * @see biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkAgent
    * @generated
    */
-  public Adapter createExactLinkAgentAdapter()
+  public Adapter createBoundAnyOfTypeLinkAgentAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.ExactLinkSite <em>Exact Link Site</em>}'.
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkSite <em>Bound Any Of Type Link Site</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see biochemsimulation.reactionrules.reactionRules.ExactLinkSite
+   * @see biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkSite
    * @generated
    */
-  public Adapter createExactLinkSiteAdapter()
+  public Adapter createBoundAnyOfTypeLinkSiteAdapter()
   {
     return null;
   }
@@ -783,16 +783,16 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.SemiLink <em>Semi Link</em>}'.
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.BoundAnyLink <em>Bound Any Link</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see biochemsimulation.reactionrules.reactionRules.SemiLink
+   * @see biochemsimulation.reactionrules.reactionRules.BoundAnyLink
    * @generated
    */
-  public Adapter createSemiLinkAdapter()
+  public Adapter createBoundAnyLinkAdapter()
   {
     return null;
   }
@@ -828,31 +828,31 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.IndexedLink <em>Indexed Link</em>}'.
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.BoundLink <em>Bound Link</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see biochemsimulation.reactionrules.reactionRules.IndexedLink
+   * @see biochemsimulation.reactionrules.reactionRules.BoundLink
    * @generated
    */
-  public Adapter createIndexedLinkAdapter()
+  public Adapter createBoundLinkAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.ExactLink <em>Exact Link</em>}'.
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink <em>Bound Any Of Type Link</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see biochemsimulation.reactionrules.reactionRules.ExactLink
+   * @see biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink
    * @generated
    */
-  public Adapter createExactLinkAdapter()
+  public Adapter createBoundAnyOfTypeLinkAdapter()
   {
     return null;
   }

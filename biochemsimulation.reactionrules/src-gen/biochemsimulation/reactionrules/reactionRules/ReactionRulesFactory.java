@@ -141,22 +141,22 @@ public interface ReactionRulesFactory extends EFactory
   LinkState createLinkState();
 
   /**
-   * Returns a new object of class '<em>Exact Link Agent</em>'.
+   * Returns a new object of class '<em>Bound Any Of Type Link Agent</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Exact Link Agent</em>'.
+   * @return a new object of class '<em>Bound Any Of Type Link Agent</em>'.
    * @generated
    */
-  ExactLinkAgent createExactLinkAgent();
+  BoundAnyOfTypeLinkAgent createBoundAnyOfTypeLinkAgent();
 
   /**
-   * Returns a new object of class '<em>Exact Link Site</em>'.
+   * Returns a new object of class '<em>Bound Any Of Type Link Site</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Exact Link Site</em>'.
+   * @return a new object of class '<em>Bound Any Of Type Link Site</em>'.
    * @generated
    */
-  ExactLinkSite createExactLinkSite();
+  BoundAnyOfTypeLinkSite createBoundAnyOfTypeLinkSite();
 
   /**
    * Returns a new object of class '<em>Site State</em>'.
@@ -321,13 +321,13 @@ public interface ReactionRulesFactory extends EFactory
   Rule createRule();
 
   /**
-   * Returns a new object of class '<em>Semi Link</em>'.
+   * Returns a new object of class '<em>Bound Any Link</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Semi Link</em>'.
+   * @return a new object of class '<em>Bound Any Link</em>'.
    * @generated
    */
-  SemiLink createSemiLink();
+  BoundAnyLink createBoundAnyLink();
 
   /**
    * Returns a new object of class '<em>Free Link</em>'.
@@ -348,22 +348,22 @@ public interface ReactionRulesFactory extends EFactory
   WhatEver createWhatEver();
 
   /**
-   * Returns a new object of class '<em>Indexed Link</em>'.
+   * Returns a new object of class '<em>Bound Link</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Indexed Link</em>'.
+   * @return a new object of class '<em>Bound Link</em>'.
    * @generated
    */
-  IndexedLink createIndexedLink();
+  BoundLink createBoundLink();
 
   /**
-   * Returns a new object of class '<em>Exact Link</em>'.
+   * Returns a new object of class '<em>Bound Any Of Type Link</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Exact Link</em>'.
+   * @return a new object of class '<em>Bound Any Of Type Link</em>'.
    * @generated
    */
-  ExactLink createExactLink();
+  BoundAnyOfTypeLink createBoundAnyOfTypeLink();
 
   /**
    * Returns the package supported by this factory.

@@ -3,15 +3,15 @@ package patterngenerator;
 import biochemsimulation.reactionrules.reactionRules.AgentPattern;
 import biochemsimulation.reactionrules.reactionRules.AssignFromPattern;
 import biochemsimulation.reactionrules.reactionRules.AssignFromVariable;
-import biochemsimulation.reactionrules.reactionRules.ExactLink;
+import biochemsimulation.reactionrules.reactionRules.BoundAnyLink;
+import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
+import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.FreeLink;
-import biochemsimulation.reactionrules.reactionRules.IndexedLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
 import biochemsimulation.reactionrules.reactionRules.Rule;
 import biochemsimulation.reactionrules.reactionRules.RuleBody;
-import biochemsimulation.reactionrules.reactionRules.SemiLink;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.SitePatterns;
 import biochemsimulation.reactionrules.reactionRules.SiteState;
@@ -341,7 +341,7 @@ public class PatternTemplate {
       _builder.newLineIfNotEmpty();
       return _builder.toString();
     } else {
-      if ((linkState instanceof SemiLink)) {
+      if ((linkState instanceof BoundAnyLink)) {
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("SimSite.simLinkState(");
         String _simSiteVariableName_1 = this.simSiteVariableName(ap, sp);
@@ -362,8 +362,8 @@ public class PatternTemplate {
           StringConcatenation _builder_2 = new StringConcatenation();
           return _builder_2.toString();
         } else {
-          if ((linkState instanceof ExactLink)) {
-            final ExactLink eLink = ((ExactLink) linkState);
+          if ((linkState instanceof BoundAnyOfTypeLink)) {
+            final BoundAnyOfTypeLink eLink = ((BoundAnyOfTypeLink) linkState);
             StringConcatenation _builder_3 = new StringConcatenation();
             _builder_3.append("SimSite.simLinkState(");
             String _simSiteVariableName_2 = this.simSiteVariableName(ap, sp);
@@ -498,7 +498,7 @@ public class PatternTemplate {
   
   public String getOtherLinkStateVariableName(final ValidAgentPattern ap, final SitePattern sp) {
     LinkState _linkState = sp.getLinkState().getLinkState();
-    final IndexedLink iLink = ((IndexedLink) _linkState);
+    final BoundLink iLink = ((BoundLink) _linkState);
     Rule rule = ((Rule) null);
     EObject eObj = iLink.eContainer();
     while (((!(eObj instanceof Rule)) && (eObj != null))) {
@@ -507,10 +507,10 @@ public class PatternTemplate {
     if ((eObj instanceof Rule)) {
       rule = ((Rule)eObj);
     }
-    LinkedList<IndexedLink> candidates = this.getAllIndexedLinksOfRule(rule);
-    for (final IndexedLink cand : candidates) {
+    LinkedList<BoundLink> candidates = this.getAllBoundLinksOfRule(rule);
+    for (final BoundLink cand : candidates) {
       {
-        final IndexedLink candidate = ((IndexedLink) cand);
+        final BoundLink candidate = ((BoundLink) cand);
         if (((!candidate.equals(iLink)) && iLink.getState().equals(candidate.getState()))) {
           ValidAgentPattern agentPattern = ((ValidAgentPattern) null);
           SitePattern sitePattern = ((SitePattern) null);
@@ -542,9 +542,9 @@ public class PatternTemplate {
     return _builder.toString();
   }
   
-  public String getOtherIndexedLinkAgent(final ValidAgentPattern ap, final SitePattern sp) {
+  public String getOtherBoundLinkAgent(final ValidAgentPattern ap, final SitePattern sp) {
     LinkState _linkState = sp.getLinkState().getLinkState();
-    final IndexedLink iLink = ((IndexedLink) _linkState);
+    final BoundLink iLink = ((BoundLink) _linkState);
     Rule rule = ((Rule) null);
     EObject eObj = iLink.eContainer();
     while (((!(eObj instanceof Rule)) && (eObj != null))) {
@@ -553,10 +553,10 @@ public class PatternTemplate {
     if ((eObj instanceof Rule)) {
       rule = ((Rule)eObj);
     }
-    LinkedList<IndexedLink> candidates = this.getAllIndexedLinksOfRule(rule);
-    for (final IndexedLink cand : candidates) {
+    LinkedList<BoundLink> candidates = this.getAllBoundLinksOfRule(rule);
+    for (final BoundLink cand : candidates) {
       {
-        final IndexedLink candidate = ((IndexedLink) cand);
+        final BoundLink candidate = ((BoundLink) cand);
         if (((!candidate.equals(iLink)) && iLink.getState().equals(candidate.getState()))) {
           ValidAgentPattern agentPattern = ((ValidAgentPattern) null);
           SitePattern sitePattern = ((SitePattern) null);
@@ -588,9 +588,9 @@ public class PatternTemplate {
     return _builder.toString();
   }
   
-  public String getOtherIndexedLinkSite(final AgentPattern ap, final SitePattern sp) {
+  public String getOtherBoundLinkSite(final AgentPattern ap, final SitePattern sp) {
     LinkState _linkState = sp.getLinkState().getLinkState();
-    final IndexedLink iLink = ((IndexedLink) _linkState);
+    final BoundLink iLink = ((BoundLink) _linkState);
     Rule rule = ((Rule) null);
     EObject eObj = iLink.eContainer();
     while (((!(eObj instanceof Rule)) && (eObj != null))) {
@@ -599,10 +599,10 @@ public class PatternTemplate {
     if ((eObj instanceof Rule)) {
       rule = ((Rule)eObj);
     }
-    LinkedList<IndexedLink> candidates = this.getAllIndexedLinksOfRule(rule);
-    for (final IndexedLink cand : candidates) {
+    LinkedList<BoundLink> candidates = this.getAllBoundLinksOfRule(rule);
+    for (final BoundLink cand : candidates) {
       {
-        final IndexedLink candidate = ((IndexedLink) cand);
+        final BoundLink candidate = ((BoundLink) cand);
         if (((!candidate.equals(iLink)) && iLink.getState().equals(candidate.getState()))) {
           ValidAgentPattern agentPattern = ((ValidAgentPattern) null);
           SitePattern sitePattern = ((SitePattern) null);
@@ -638,8 +638,8 @@ public class PatternTemplate {
     return _builder.toString();
   }
   
-  public LinkedList<IndexedLink> getAllIndexedLinksOfRule(final Rule rule) {
-    LinkedList<IndexedLink> out = new LinkedList<IndexedLink>();
+  public LinkedList<BoundLink> getAllBoundLinksOfRule(final Rule rule) {
+    LinkedList<BoundLink> out = new LinkedList<BoundLink>();
     RuleBody ruleBody = ((RuleBody) null);
     RuleBody _rule = rule.getRule();
     boolean _tripleNotEquals = (_rule != null);
@@ -683,9 +683,9 @@ public class PatternTemplate {
       boolean _tripleNotEquals_3 = (_linkState != null);
       if (_tripleNotEquals_3) {
         LinkState _linkState_1 = sPattern.getLinkState().getLinkState();
-        if ((_linkState_1 instanceof IndexedLink)) {
+        if ((_linkState_1 instanceof BoundLink)) {
           LinkState _linkState_2 = sPattern.getLinkState().getLinkState();
-          final IndexedLink iLink = ((IndexedLink) _linkState_2);
+          final BoundLink iLink = ((BoundLink) _linkState_2);
           out.add(iLink);
         }
       }

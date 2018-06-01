@@ -526,28 +526,28 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		//ArithmeticVariable
 		public RuleCall getArithmeticVariableParserRuleCall_1() { return cArithmeticVariableParserRuleCall_1; }
 	}
-	public class SemiLinkElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.SemiLink");
+	public class BoundAnyLinkElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.BoundAnyLink");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cSemiLinkAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cBoundAnyLinkAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameSEMI_LINKTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final RuleCall cNameBOUND_LINKTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		
-		//SemiLink LinkState:
-		//	{SemiLink} name=SEMI_LINK;
+		//BoundAnyLink LinkState:
+		//	{BoundAnyLink} name=BOUND_LINK;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SemiLink} name=SEMI_LINK
+		//{BoundAnyLink} name=BOUND_LINK
 		public Group getGroup() { return cGroup; }
 		
-		//{SemiLink}
-		public Action getSemiLinkAction_0() { return cSemiLinkAction_0; }
+		//{BoundAnyLink}
+		public Action getBoundAnyLinkAction_0() { return cBoundAnyLinkAction_0; }
 		
-		//name=SEMI_LINK
+		//name=BOUND_LINK
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
-		//SEMI_LINK
-		public RuleCall getNameSEMI_LINKTerminalRuleCall_1_0() { return cNameSEMI_LINKTerminalRuleCall_1_0; }
+		//BOUND_LINK
+		public RuleCall getNameBOUND_LINKTerminalRuleCall_1_0() { return cNameBOUND_LINKTerminalRuleCall_1_0; }
 	}
 	public class FreeLinkElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.FreeLink");
@@ -595,22 +595,22 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		//WHATEVER_LINK
 		public RuleCall getNameWHATEVER_LINKTerminalRuleCall_1_0() { return cNameWHATEVER_LINKTerminalRuleCall_1_0; }
 	}
-	public class IndexedLinkElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.IndexedLink");
+	public class BoundLinkElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.BoundLink");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cIndexedLinkAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cBoundLinkAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cStateAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cStateUnsignedIntegerParserRuleCall_1_0 = (RuleCall)cStateAssignment_1.eContents().get(0);
 		
-		//IndexedLink LinkState:
-		//	{IndexedLink} state=UnsignedInteger;
+		//BoundLink LinkState:
+		//	{BoundLink} state=UnsignedInteger;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{IndexedLink} state=UnsignedInteger
+		//{BoundLink} state=UnsignedInteger
 		public Group getGroup() { return cGroup; }
 		
-		//{IndexedLink}
-		public Action getIndexedLinkAction_0() { return cIndexedLinkAction_0; }
+		//{BoundLink}
+		public Action getBoundLinkAction_0() { return cBoundLinkAction_0; }
 		
 		//state=UnsignedInteger
 		public Assignment getStateAssignment_1() { return cStateAssignment_1; }
@@ -618,23 +618,23 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		//UnsignedInteger
 		public RuleCall getStateUnsignedIntegerParserRuleCall_1_0() { return cStateUnsignedIntegerParserRuleCall_1_0; }
 	}
-	public class ExactLinkAgentElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.ExactLinkAgent");
+	public class BoundAnyOfTypeLinkAgentElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.BoundAnyOfTypeLinkAgent");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cExactLinkAgentAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cBoundAnyOfTypeLinkAgentAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cAgentAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cAgentAgentCrossReference_1_0 = (CrossReference)cAgentAssignment_1.eContents().get(0);
 		private final RuleCall cAgentAgentIDTerminalRuleCall_1_0_1 = (RuleCall)cAgentAgentCrossReference_1_0.eContents().get(1);
 		
-		//ExactLinkAgent:
-		//	{ExactLinkAgent} agent=[Agent];
+		//BoundAnyOfTypeLinkAgent:
+		//	{BoundAnyOfTypeLinkAgent} agent=[Agent];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{ExactLinkAgent} agent=[Agent]
+		//{BoundAnyOfTypeLinkAgent} agent=[Agent]
 		public Group getGroup() { return cGroup; }
 		
-		//{ExactLinkAgent}
-		public Action getExactLinkAgentAction_0() { return cExactLinkAgentAction_0; }
+		//{BoundAnyOfTypeLinkAgent}
+		public Action getBoundAnyOfTypeLinkAgentAction_0() { return cBoundAnyOfTypeLinkAgentAction_0; }
 		
 		//agent=[Agent]
 		public Assignment getAgentAssignment_1() { return cAgentAssignment_1; }
@@ -645,23 +645,23 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getAgentAgentIDTerminalRuleCall_1_0_1() { return cAgentAgentIDTerminalRuleCall_1_0_1; }
 	}
-	public class ExactLinkSiteElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.ExactLinkSite");
+	public class BoundAnyOfTypeLinkSiteElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.BoundAnyOfTypeLinkSite");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cExactLinkSiteAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cBoundAnyOfTypeLinkSiteAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cSiteAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cSiteSiteCrossReference_1_0 = (CrossReference)cSiteAssignment_1.eContents().get(0);
 		private final RuleCall cSiteSiteIDTerminalRuleCall_1_0_1 = (RuleCall)cSiteSiteCrossReference_1_0.eContents().get(1);
 		
-		//ExactLinkSite:
-		//	{ExactLinkSite} site=[Site];
+		//BoundAnyOfTypeLinkSite:
+		//	{BoundAnyOfTypeLinkSite} site=[Site];
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{ExactLinkSite} site=[Site]
+		//{BoundAnyOfTypeLinkSite} site=[Site]
 		public Group getGroup() { return cGroup; }
 		
-		//{ExactLinkSite}
-		public Action getExactLinkSiteAction_0() { return cExactLinkSiteAction_0; }
+		//{BoundAnyOfTypeLinkSite}
+		public Action getBoundAnyOfTypeLinkSiteAction_0() { return cBoundAnyOfTypeLinkSiteAction_0; }
 		
 		//site=[Site]
 		public Assignment getSiteAssignment_1() { return cSiteAssignment_1; }
@@ -672,42 +672,42 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getSiteSiteIDTerminalRuleCall_1_0_1() { return cSiteSiteIDTerminalRuleCall_1_0_1; }
 	}
-	public class ExactLinkElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.ExactLink");
+	public class BoundAnyOfTypeLinkElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.BoundAnyOfTypeLink");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cExactLinkAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cBoundAnyOfTypeLinkAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cLinkAgentAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cLinkAgentExactLinkAgentParserRuleCall_1_0 = (RuleCall)cLinkAgentAssignment_1.eContents().get(0);
+		private final RuleCall cLinkAgentBoundAnyOfTypeLinkAgentParserRuleCall_1_0 = (RuleCall)cLinkAgentAssignment_1.eContents().get(0);
 		private final Keyword cFullStopKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cLinkSiteAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cLinkSiteExactLinkSiteParserRuleCall_3_0 = (RuleCall)cLinkSiteAssignment_3.eContents().get(0);
+		private final RuleCall cLinkSiteBoundAnyOfTypeLinkSiteParserRuleCall_3_0 = (RuleCall)cLinkSiteAssignment_3.eContents().get(0);
 		
-		//ExactLink LinkState:
-		//	{ExactLink} linkAgent=ExactLinkAgent
+		//BoundAnyOfTypeLink LinkState:
+		//	{BoundAnyOfTypeLink} linkAgent=BoundAnyOfTypeLinkAgent
 		//	'.'
-		//	linkSite=ExactLinkSite;
+		//	linkSite=BoundAnyOfTypeLinkSite;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{ExactLink} linkAgent=ExactLinkAgent '.' linkSite=ExactLinkSite
+		//{BoundAnyOfTypeLink} linkAgent=BoundAnyOfTypeLinkAgent '.' linkSite=BoundAnyOfTypeLinkSite
 		public Group getGroup() { return cGroup; }
 		
-		//{ExactLink}
-		public Action getExactLinkAction_0() { return cExactLinkAction_0; }
+		//{BoundAnyOfTypeLink}
+		public Action getBoundAnyOfTypeLinkAction_0() { return cBoundAnyOfTypeLinkAction_0; }
 		
-		//linkAgent=ExactLinkAgent
+		//linkAgent=BoundAnyOfTypeLinkAgent
 		public Assignment getLinkAgentAssignment_1() { return cLinkAgentAssignment_1; }
 		
-		//ExactLinkAgent
-		public RuleCall getLinkAgentExactLinkAgentParserRuleCall_1_0() { return cLinkAgentExactLinkAgentParserRuleCall_1_0; }
+		//BoundAnyOfTypeLinkAgent
+		public RuleCall getLinkAgentBoundAnyOfTypeLinkAgentParserRuleCall_1_0() { return cLinkAgentBoundAnyOfTypeLinkAgentParserRuleCall_1_0; }
 		
 		//'.'
 		public Keyword getFullStopKeyword_2() { return cFullStopKeyword_2; }
 		
-		//linkSite=ExactLinkSite
+		//linkSite=BoundAnyOfTypeLinkSite
 		public Assignment getLinkSiteAssignment_3() { return cLinkSiteAssignment_3; }
 		
-		//ExactLinkSite
-		public RuleCall getLinkSiteExactLinkSiteParserRuleCall_3_0() { return cLinkSiteExactLinkSiteParserRuleCall_3_0; }
+		//BoundAnyOfTypeLinkSite
+		public RuleCall getLinkSiteBoundAnyOfTypeLinkSiteParserRuleCall_3_0() { return cLinkSiteBoundAnyOfTypeLinkSiteParserRuleCall_3_0; }
 	}
 	public class SiteStateElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.SiteState");
@@ -752,19 +752,19 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cLinkStateAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final Alternatives cLinkStateAlternatives_2_0 = (Alternatives)cLinkStateAssignment_2.eContents().get(0);
-		private final RuleCall cLinkStateSemiLinkParserRuleCall_2_0_0 = (RuleCall)cLinkStateAlternatives_2_0.eContents().get(0);
+		private final RuleCall cLinkStateBoundAnyLinkParserRuleCall_2_0_0 = (RuleCall)cLinkStateAlternatives_2_0.eContents().get(0);
 		private final RuleCall cLinkStateFreeLinkParserRuleCall_2_0_1 = (RuleCall)cLinkStateAlternatives_2_0.eContents().get(1);
-		private final RuleCall cLinkStateExactLinkParserRuleCall_2_0_2 = (RuleCall)cLinkStateAlternatives_2_0.eContents().get(2);
-		private final RuleCall cLinkStateIndexedLinkParserRuleCall_2_0_3 = (RuleCall)cLinkStateAlternatives_2_0.eContents().get(3);
+		private final RuleCall cLinkStateBoundAnyOfTypeLinkParserRuleCall_2_0_2 = (RuleCall)cLinkStateAlternatives_2_0.eContents().get(2);
+		private final RuleCall cLinkStateBoundLinkParserRuleCall_2_0_3 = (RuleCall)cLinkStateAlternatives_2_0.eContents().get(3);
 		private final RuleCall cLinkStateWhatEverParserRuleCall_2_0_4 = (RuleCall)cLinkStateAlternatives_2_0.eContents().get(4);
 		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//LinkState:
 		//	{LinkState}
-		//	'[' linkState=(SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver) ']';
+		//	'[' linkState=(BoundAnyLink | FreeLink | BoundAnyOfTypeLink | BoundLink | WhatEver) ']';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{LinkState} '[' linkState=(SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver) ']'
+		//{LinkState} '[' linkState=(BoundAnyLink | FreeLink | BoundAnyOfTypeLink | BoundLink | WhatEver) ']'
 		public Group getGroup() { return cGroup; }
 		
 		//{LinkState}
@@ -773,23 +773,23 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		//'['
 		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
 		
-		//linkState=(SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver)
+		//linkState=(BoundAnyLink | FreeLink | BoundAnyOfTypeLink | BoundLink | WhatEver)
 		public Assignment getLinkStateAssignment_2() { return cLinkStateAssignment_2; }
 		
-		//(SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver)
+		//(BoundAnyLink | FreeLink | BoundAnyOfTypeLink | BoundLink | WhatEver)
 		public Alternatives getLinkStateAlternatives_2_0() { return cLinkStateAlternatives_2_0; }
 		
-		//SemiLink
-		public RuleCall getLinkStateSemiLinkParserRuleCall_2_0_0() { return cLinkStateSemiLinkParserRuleCall_2_0_0; }
+		//BoundAnyLink
+		public RuleCall getLinkStateBoundAnyLinkParserRuleCall_2_0_0() { return cLinkStateBoundAnyLinkParserRuleCall_2_0_0; }
 		
 		//FreeLink
 		public RuleCall getLinkStateFreeLinkParserRuleCall_2_0_1() { return cLinkStateFreeLinkParserRuleCall_2_0_1; }
 		
-		//ExactLink
-		public RuleCall getLinkStateExactLinkParserRuleCall_2_0_2() { return cLinkStateExactLinkParserRuleCall_2_0_2; }
+		//BoundAnyOfTypeLink
+		public RuleCall getLinkStateBoundAnyOfTypeLinkParserRuleCall_2_0_2() { return cLinkStateBoundAnyOfTypeLinkParserRuleCall_2_0_2; }
 		
-		//IndexedLink
-		public RuleCall getLinkStateIndexedLinkParserRuleCall_2_0_3() { return cLinkStateIndexedLinkParserRuleCall_2_0_3; }
+		//BoundLink
+		public RuleCall getLinkStateBoundLinkParserRuleCall_2_0_3() { return cLinkStateBoundLinkParserRuleCall_2_0_3; }
 		
 		//WhatEver
 		public RuleCall getLinkStateWhatEverParserRuleCall_2_0_4() { return cLinkStateWhatEverParserRuleCall_2_0_4; }
@@ -1409,7 +1409,7 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	private final TerminalRule tBI;
 	private final TerminalRule tUNI;
 	private final TerminalRule tVOID_PATTERN;
-	private final TerminalRule tSEMI_LINK;
+	private final TerminalRule tBOUND_LINK;
 	private final TerminalRule tFREE_LINK;
 	private final TerminalRule tWHATEVER_LINK;
 	private final TerminalRule tEXPONENT;
@@ -1428,13 +1428,13 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	private final PatternVariableElements pPatternVariable;
 	private final ArithmeticVariableElements pArithmeticVariable;
 	private final VariableElements pVariable;
-	private final SemiLinkElements pSemiLink;
+	private final BoundAnyLinkElements pBoundAnyLink;
 	private final FreeLinkElements pFreeLink;
 	private final WhatEverElements pWhatEver;
-	private final IndexedLinkElements pIndexedLink;
-	private final ExactLinkAgentElements pExactLinkAgent;
-	private final ExactLinkSiteElements pExactLinkSite;
-	private final ExactLinkElements pExactLink;
+	private final BoundLinkElements pBoundLink;
+	private final BoundAnyOfTypeLinkAgentElements pBoundAnyOfTypeLinkAgent;
+	private final BoundAnyOfTypeLinkSiteElements pBoundAnyOfTypeLinkSite;
+	private final BoundAnyOfTypeLinkElements pBoundAnyOfTypeLink;
 	private final SiteStateElements pSiteState;
 	private final LinkStateElements pLinkState;
 	private final SitePatternElements pSitePattern;
@@ -1473,7 +1473,7 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		this.tBI = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.BI");
 		this.tUNI = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.UNI");
 		this.tVOID_PATTERN = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.VOID_PATTERN");
-		this.tSEMI_LINK = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.SEMI_LINK");
+		this.tBOUND_LINK = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.BOUND_LINK");
 		this.tFREE_LINK = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.FREE_LINK");
 		this.tWHATEVER_LINK = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.WHATEVER_LINK");
 		this.tEXPONENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.EXPONENT");
@@ -1492,13 +1492,13 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		this.pPatternVariable = new PatternVariableElements();
 		this.pArithmeticVariable = new ArithmeticVariableElements();
 		this.pVariable = new VariableElements();
-		this.pSemiLink = new SemiLinkElements();
+		this.pBoundAnyLink = new BoundAnyLinkElements();
 		this.pFreeLink = new FreeLinkElements();
 		this.pWhatEver = new WhatEverElements();
-		this.pIndexedLink = new IndexedLinkElements();
-		this.pExactLinkAgent = new ExactLinkAgentElements();
-		this.pExactLinkSite = new ExactLinkSiteElements();
-		this.pExactLink = new ExactLinkElements();
+		this.pBoundLink = new BoundLinkElements();
+		this.pBoundAnyOfTypeLinkAgent = new BoundAnyOfTypeLinkAgentElements();
+		this.pBoundAnyOfTypeLinkSite = new BoundAnyOfTypeLinkSiteElements();
+		this.pBoundAnyOfTypeLink = new BoundAnyOfTypeLinkElements();
 		this.pSiteState = new SiteStateElements();
 		this.pLinkState = new LinkStateElements();
 		this.pSitePattern = new SitePatternElements();
@@ -1605,10 +1605,10 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		return tVOID_PATTERN;
 	}
 	
-	//terminal SEMI_LINK:
-	//	'semi';
-	public TerminalRule getSEMI_LINKRule() {
-		return tSEMI_LINK;
+	//terminal BOUND_LINK:
+	//	'bound';
+	public TerminalRule getBOUND_LINKRule() {
+		return tBOUND_LINK;
 	}
 	
 	//terminal FREE_LINK:
@@ -1784,14 +1784,14 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		return getVariableAccess().getRule();
 	}
 	
-	//SemiLink LinkState:
-	//	{SemiLink} name=SEMI_LINK;
-	public SemiLinkElements getSemiLinkAccess() {
-		return pSemiLink;
+	//BoundAnyLink LinkState:
+	//	{BoundAnyLink} name=BOUND_LINK;
+	public BoundAnyLinkElements getBoundAnyLinkAccess() {
+		return pBoundAnyLink;
 	}
 	
-	public ParserRule getSemiLinkRule() {
-		return getSemiLinkAccess().getRule();
+	public ParserRule getBoundAnyLinkRule() {
+		return getBoundAnyLinkAccess().getRule();
 	}
 	
 	//FreeLink LinkState:
@@ -1814,46 +1814,46 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		return getWhatEverAccess().getRule();
 	}
 	
-	//IndexedLink LinkState:
-	//	{IndexedLink} state=UnsignedInteger;
-	public IndexedLinkElements getIndexedLinkAccess() {
-		return pIndexedLink;
+	//BoundLink LinkState:
+	//	{BoundLink} state=UnsignedInteger;
+	public BoundLinkElements getBoundLinkAccess() {
+		return pBoundLink;
 	}
 	
-	public ParserRule getIndexedLinkRule() {
-		return getIndexedLinkAccess().getRule();
+	public ParserRule getBoundLinkRule() {
+		return getBoundLinkAccess().getRule();
 	}
 	
-	//ExactLinkAgent:
-	//	{ExactLinkAgent} agent=[Agent];
-	public ExactLinkAgentElements getExactLinkAgentAccess() {
-		return pExactLinkAgent;
+	//BoundAnyOfTypeLinkAgent:
+	//	{BoundAnyOfTypeLinkAgent} agent=[Agent];
+	public BoundAnyOfTypeLinkAgentElements getBoundAnyOfTypeLinkAgentAccess() {
+		return pBoundAnyOfTypeLinkAgent;
 	}
 	
-	public ParserRule getExactLinkAgentRule() {
-		return getExactLinkAgentAccess().getRule();
+	public ParserRule getBoundAnyOfTypeLinkAgentRule() {
+		return getBoundAnyOfTypeLinkAgentAccess().getRule();
 	}
 	
-	//ExactLinkSite:
-	//	{ExactLinkSite} site=[Site];
-	public ExactLinkSiteElements getExactLinkSiteAccess() {
-		return pExactLinkSite;
+	//BoundAnyOfTypeLinkSite:
+	//	{BoundAnyOfTypeLinkSite} site=[Site];
+	public BoundAnyOfTypeLinkSiteElements getBoundAnyOfTypeLinkSiteAccess() {
+		return pBoundAnyOfTypeLinkSite;
 	}
 	
-	public ParserRule getExactLinkSiteRule() {
-		return getExactLinkSiteAccess().getRule();
+	public ParserRule getBoundAnyOfTypeLinkSiteRule() {
+		return getBoundAnyOfTypeLinkSiteAccess().getRule();
 	}
 	
-	//ExactLink LinkState:
-	//	{ExactLink} linkAgent=ExactLinkAgent
+	//BoundAnyOfTypeLink LinkState:
+	//	{BoundAnyOfTypeLink} linkAgent=BoundAnyOfTypeLinkAgent
 	//	'.'
-	//	linkSite=ExactLinkSite;
-	public ExactLinkElements getExactLinkAccess() {
-		return pExactLink;
+	//	linkSite=BoundAnyOfTypeLinkSite;
+	public BoundAnyOfTypeLinkElements getBoundAnyOfTypeLinkAccess() {
+		return pBoundAnyOfTypeLink;
 	}
 	
-	public ParserRule getExactLinkRule() {
-		return getExactLinkAccess().getRule();
+	public ParserRule getBoundAnyOfTypeLinkRule() {
+		return getBoundAnyOfTypeLinkAccess().getRule();
 	}
 	
 	//SiteState:
@@ -1869,7 +1869,7 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//LinkState:
 	//	{LinkState}
-	//	'[' linkState=(SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver) ']';
+	//	'[' linkState=(BoundAnyLink | FreeLink | BoundAnyOfTypeLink | BoundLink | WhatEver) ']';
 	public LinkStateElements getLinkStateAccess() {
 		return pLinkState;
 	}

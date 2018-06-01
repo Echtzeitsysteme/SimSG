@@ -4,9 +4,9 @@
 package biochemsimulation.reactionrules.scoping;
 
 import biochemsimulation.reactionrules.reactionRules.Agent;
-import biochemsimulation.reactionrules.reactionRules.ExactLink;
-import biochemsimulation.reactionrules.reactionRules.ExactLinkAgent;
-import biochemsimulation.reactionrules.reactionRules.ExactLinkSite;
+import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
+import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkAgent;
+import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkSite;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.SitePatterns;
@@ -40,10 +40,10 @@ public class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvid
     if ((context instanceof SiteState)) {
       return this.siteStateScope(context, reference);
     }
-    if ((context instanceof ExactLinkAgent)) {
+    if ((context instanceof BoundAnyOfTypeLinkAgent)) {
       return this.exactLinkAgentScope(context, reference);
     }
-    if ((context instanceof ExactLinkSite)) {
+    if ((context instanceof BoundAnyOfTypeLinkSite)) {
       return this.exactLinkSiteScope(context, reference);
     }
     if ((context instanceof SitePattern)) {
@@ -91,14 +91,14 @@ public class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvid
   }
   
   public IScope exactLinkSiteScope(final EObject context, final EReference reference) {
-    ExactLinkSite linkSite = ((ExactLinkSite) context);
+    BoundAnyOfTypeLinkSite linkSite = ((BoundAnyOfTypeLinkSite) context);
     Agent agent = ((Agent) null);
     EObject _eContainer = linkSite.eContainer();
     boolean _tripleNotEquals = (_eContainer != null);
     if (_tripleNotEquals) {
       EObject _eContainer_1 = linkSite.eContainer();
-      final ExactLink exactLink = ((ExactLink) _eContainer_1);
-      ExactLinkAgent _linkAgent = exactLink.getLinkAgent();
+      final BoundAnyOfTypeLink exactLink = ((BoundAnyOfTypeLink) _eContainer_1);
+      BoundAnyOfTypeLinkAgent _linkAgent = exactLink.getLinkAgent();
       boolean _tripleNotEquals_1 = (_linkAgent != null);
       if (_tripleNotEquals_1) {
         agent = exactLink.getLinkAgent().getAgent();

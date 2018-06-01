@@ -6,21 +6,21 @@ package biochemsimulation.reactionrules.reactionRules;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Semi Link</b></em>'.
+ * A representation of the model object '<em><b>Bound Any Link</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.SemiLink#getName <em>Name</em>}</li>
+ *   <li>{@link biochemsimulation.reactionrules.reactionRules.BoundAnyLink#getName <em>Name</em>}</li>
  * </ul>
  *
- * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getSemiLink()
+ * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getBoundAnyLink()
  * @model
  * @generated
  */
-public interface SemiLink extends LinkState
+public interface BoundAnyLink extends LinkState
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -32,14 +32,14 @@ public interface SemiLink extends LinkState
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
-   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getSemiLink_Name()
+   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getBoundAnyLink_Name()
    * @model
    * @generated
    */
   String getName();
 
   /**
-   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.SemiLink#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.BoundAnyLink#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Name</em>' attribute.
@@ -48,4 +48,4 @@ public interface SemiLink extends LinkState
    */
   void setName(String value);
 
-} // SemiLink
+} // BoundAnyLink

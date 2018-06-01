@@ -7,21 +7,21 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Exact Link Agent</b></em>'.
+ * A representation of the model object '<em><b>Bound Any Of Type Link Agent</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.ExactLinkAgent#getAgent <em>Agent</em>}</li>
+ *   <li>{@link biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkAgent#getAgent <em>Agent</em>}</li>
  * </ul>
  *
- * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getExactLinkAgent()
+ * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getBoundAnyOfTypeLinkAgent()
  * @model
  * @generated
  */
-public interface ExactLinkAgent extends EObject
+public interface BoundAnyOfTypeLinkAgent extends EObject
 {
   /**
    * Returns the value of the '<em><b>Agent</b></em>' reference.
@@ -33,14 +33,14 @@ public interface ExactLinkAgent extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Agent</em>' reference.
    * @see #setAgent(Agent)
-   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getExactLinkAgent_Agent()
+   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getBoundAnyOfTypeLinkAgent_Agent()
    * @model
    * @generated
    */
   Agent getAgent();
 
   /**
-   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.ExactLinkAgent#getAgent <em>Agent</em>}' reference.
+   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkAgent#getAgent <em>Agent</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Agent</em>' reference.
@@ -49,4 +49,4 @@ public interface ExactLinkAgent extends EObject
    */
   void setAgent(Agent value);
 
-} // ExactLinkAgent
+} // BoundAnyOfTypeLinkAgent

@@ -15,7 +15,7 @@ import biochemsimulation.reactionrules.reactionRules.Initial
 import biochemsimulation.reactionrules.reactionRules.RuleBody
 import biochemsimulation.reactionrules.reactionRules.SitePattern
 import java.util.HashSet
-import biochemsimulation.reactionrules.reactionRules.IndexedLink
+import biochemsimulation.reactionrules.reactionRules.BoundLink
 import biochemsimulation.reactionrules.reactionRules.NumericFromVariable
 import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral
 import biochemsimulation.reactionrules.reactionRules.ArithmeticVariable
@@ -25,9 +25,9 @@ import biochemsimulation.reactionrules.reactionRules.PatternAssignment
 import biochemsimulation.reactionrules.reactionRules.Pattern
 import biochemsimulation.reactionrules.reactionRules.AssignFromPattern
 import biochemsimulation.reactionrules.reactionRules.AssignFromVariable
-import biochemsimulation.reactionrules.reactionRules.SemiLink
+import biochemsimulation.reactionrules.reactionRules.BoundAnyLink
 import biochemsimulation.reactionrules.reactionRules.WhatEver
-import biochemsimulation.reactionrules.reactionRules.ExactLink
+import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern
 
 /**
@@ -132,7 +132,7 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 				val vap = ap  as ValidAgentPattern
 				for(sp : vap.sitePatterns.sitePatterns) {
 					val linkState = sp.linkState.linkState
-					if(linkState instanceof SemiLink || linkState instanceof WhatEver || linkState instanceof ExactLink) {
+					if(linkState instanceof BoundAnyLink || linkState instanceof WhatEver || linkState instanceof BoundAnyOfTypeLink) {
 						error('Illegal initial link state! A pattern may only be instantiated with link states of Type: FreeLink("free"), IndexedLink("INT")', null)
 					}
 				}
@@ -320,30 +320,30 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 	}
 	
 	@Check
-	def checkIndexedLinkConstraint(IndexedLink indexedLink) {
+	def checkIndexedLinkConstraint(BoundLink boundLink) {
 		var pattern = null as Pattern
-		var eObj = indexedLink.eContainer
+		var eObj = boundLink.eContainer
 		while(!(eObj instanceof Pattern) && eObj !== null) {
 			eObj = eObj.eContainer
 		}
 		if(eObj instanceof Pattern) {
 			pattern = eObj
 		}
-		var candidates = EcoreUtil2.getAllContentsOfType(pattern, IndexedLink);
+		var candidates = EcoreUtil2.getAllContentsOfType(pattern, BoundLink);
 		var c = 1
-		val thisNum = Integer.valueOf(indexedLink.state)
+		val thisNum = Integer.valueOf(boundLink.state)
 		for(cnd : candidates) {
-			val candidate = cnd as IndexedLink
+			val candidate = cnd as BoundLink
 			val cNum = Integer.valueOf(candidate.state)
-			if(cNum == thisNum && !candidate.equals(indexedLink)) {
+			if(cNum == thisNum && !candidate.equals(boundLink)) {
 				c++
 			}
 			if(c>2){
-				error('This indexed link refers to more than two end-points aka. sites.', ReactionRulesPackage.Literals.INDEXED_LINK__STATE)
+				error('This indexed link refers to more than two end-points aka. sites.', ReactionRulesPackage.Literals.BOUND_LINK__STATE)
 			}
 		}
 		if(c<2) {
-			error('This indexed link must refer to exactly two end-points aka. sites.', ReactionRulesPackage.Literals.INDEXED_LINK__STATE)
+			error('This indexed link must refer to exactly two end-points aka. sites.', ReactionRulesPackage.Literals.BOUND_LINK__STATE)
 		}
 	}
 	

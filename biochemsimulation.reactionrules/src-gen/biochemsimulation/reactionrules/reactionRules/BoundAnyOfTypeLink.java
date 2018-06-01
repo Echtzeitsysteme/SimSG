@@ -6,22 +6,22 @@ package biochemsimulation.reactionrules.reactionRules;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Exact Link</b></em>'.
+ * A representation of the model object '<em><b>Bound Any Of Type Link</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.ExactLink#getLinkAgent <em>Link Agent</em>}</li>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.ExactLink#getLinkSite <em>Link Site</em>}</li>
+ *   <li>{@link biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink#getLinkAgent <em>Link Agent</em>}</li>
+ *   <li>{@link biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink#getLinkSite <em>Link Site</em>}</li>
  * </ul>
  *
- * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getExactLink()
+ * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getBoundAnyOfTypeLink()
  * @model
  * @generated
  */
-public interface ExactLink extends LinkState
+public interface BoundAnyOfTypeLink extends LinkState
 {
   /**
    * Returns the value of the '<em><b>Link Agent</b></em>' containment reference.
@@ -32,22 +32,22 @@ public interface ExactLink extends LinkState
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Link Agent</em>' containment reference.
-   * @see #setLinkAgent(ExactLinkAgent)
-   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getExactLink_LinkAgent()
+   * @see #setLinkAgent(BoundAnyOfTypeLinkAgent)
+   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getBoundAnyOfTypeLink_LinkAgent()
    * @model containment="true"
    * @generated
    */
-  ExactLinkAgent getLinkAgent();
+  BoundAnyOfTypeLinkAgent getLinkAgent();
 
   /**
-   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.ExactLink#getLinkAgent <em>Link Agent</em>}' containment reference.
+   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink#getLinkAgent <em>Link Agent</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Link Agent</em>' containment reference.
    * @see #getLinkAgent()
    * @generated
    */
-  void setLinkAgent(ExactLinkAgent value);
+  void setLinkAgent(BoundAnyOfTypeLinkAgent value);
 
   /**
    * Returns the value of the '<em><b>Link Site</b></em>' containment reference.
@@ -58,21 +58,21 @@ public interface ExactLink extends LinkState
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Link Site</em>' containment reference.
-   * @see #setLinkSite(ExactLinkSite)
-   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getExactLink_LinkSite()
+   * @see #setLinkSite(BoundAnyOfTypeLinkSite)
+   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getBoundAnyOfTypeLink_LinkSite()
    * @model containment="true"
    * @generated
    */
-  ExactLinkSite getLinkSite();
+  BoundAnyOfTypeLinkSite getLinkSite();
 
   /**
-   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.ExactLink#getLinkSite <em>Link Site</em>}' containment reference.
+   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink#getLinkSite <em>Link Site</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Link Site</em>' containment reference.
    * @see #getLinkSite()
    * @generated
    */
-  void setLinkSite(ExactLinkSite value);
+  void setLinkSite(BoundAnyOfTypeLinkSite value);
 
-} // ExactLink
+} // BoundAnyOfTypeLink

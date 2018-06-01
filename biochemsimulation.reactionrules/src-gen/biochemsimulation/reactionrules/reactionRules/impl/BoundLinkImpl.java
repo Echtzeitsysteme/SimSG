@@ -3,7 +3,7 @@
  */
 package biochemsimulation.reactionrules.reactionRules.impl;
 
-import biochemsimulation.reactionrules.reactionRules.IndexedLink;
+import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -14,18 +14,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Indexed Link</b></em>'.
+ * An implementation of the model object '<em><b>Bound Link</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.IndexedLinkImpl#getState <em>State</em>}</li>
+ *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.BoundLinkImpl#getState <em>State</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class IndexedLinkImpl extends LinkStateImpl implements IndexedLink
+public class BoundLinkImpl extends LinkStateImpl implements BoundLink
 {
   /**
    * The default value of the '{@link #getState() <em>State</em>}' attribute.
@@ -52,7 +52,7 @@ public class IndexedLinkImpl extends LinkStateImpl implements IndexedLink
    * <!-- end-user-doc -->
    * @generated
    */
-  protected IndexedLinkImpl()
+  protected BoundLinkImpl()
   {
     super();
   }
@@ -65,7 +65,7 @@ public class IndexedLinkImpl extends LinkStateImpl implements IndexedLink
   @Override
   protected EClass eStaticClass()
   {
-    return ReactionRulesPackage.Literals.INDEXED_LINK;
+    return ReactionRulesPackage.Literals.BOUND_LINK;
   }
 
   /**
@@ -88,7 +88,7 @@ public class IndexedLinkImpl extends LinkStateImpl implements IndexedLink
     String oldState = state;
     state = newState;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.INDEXED_LINK__STATE, oldState, state));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.BOUND_LINK__STATE, oldState, state));
   }
 
   /**
@@ -101,7 +101,7 @@ public class IndexedLinkImpl extends LinkStateImpl implements IndexedLink
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.INDEXED_LINK__STATE:
+      case ReactionRulesPackage.BOUND_LINK__STATE:
         return getState();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -117,7 +117,7 @@ public class IndexedLinkImpl extends LinkStateImpl implements IndexedLink
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.INDEXED_LINK__STATE:
+      case ReactionRulesPackage.BOUND_LINK__STATE:
         setState((String)newValue);
         return;
     }
@@ -134,7 +134,7 @@ public class IndexedLinkImpl extends LinkStateImpl implements IndexedLink
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.INDEXED_LINK__STATE:
+      case ReactionRulesPackage.BOUND_LINK__STATE:
         setState(STATE_EDEFAULT);
         return;
     }
@@ -151,7 +151,7 @@ public class IndexedLinkImpl extends LinkStateImpl implements IndexedLink
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.INDEXED_LINK__STATE:
+      case ReactionRulesPackage.BOUND_LINK__STATE:
         return STATE_EDEFAULT == null ? state != null : !STATE_EDEFAULT.equals(state);
     }
     return super.eIsSet(featureID);
@@ -174,4 +174,4 @@ public class IndexedLinkImpl extends LinkStateImpl implements IndexedLink
     return result.toString();
   }
 
-} //IndexedLinkImpl
+} //BoundLinkImpl

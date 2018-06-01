@@ -45,11 +45,11 @@
     <genClasses ecoreClass="ReactionRules.ecore#//LinkState">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//LinkState/linkState"/>
     </genClasses>
-    <genClasses ecoreClass="ReactionRules.ecore#//ExactLinkAgent">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//ExactLinkAgent/agent"/>
+    <genClasses ecoreClass="ReactionRules.ecore#//BoundAnyOfTypeLinkAgent">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//BoundAnyOfTypeLinkAgent/agent"/>
     </genClasses>
-    <genClasses ecoreClass="ReactionRules.ecore#//ExactLinkSite">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//ExactLinkSite/site"/>
+    <genClasses ecoreClass="ReactionRules.ecore#//BoundAnyOfTypeLinkSite">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//BoundAnyOfTypeLinkSite/site"/>
     </genClasses>
     <genClasses ecoreClass="ReactionRules.ecore#//SiteState">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//SiteState/state"/>
@@ -106,8 +106,8 @@
     <genClasses ecoreClass="ReactionRules.ecore#//Rule">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//Rule/rule"/>
     </genClasses>
-    <genClasses ecoreClass="ReactionRules.ecore#//SemiLink">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//SemiLink/name"/>
+    <genClasses ecoreClass="ReactionRules.ecore#//BoundAnyLink">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//BoundAnyLink/name"/>
     </genClasses>
     <genClasses ecoreClass="ReactionRules.ecore#//FreeLink">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//FreeLink/name"/>
@@ -115,12 +115,12 @@
     <genClasses ecoreClass="ReactionRules.ecore#//WhatEver">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//WhatEver/name"/>
     </genClasses>
-    <genClasses ecoreClass="ReactionRules.ecore#//IndexedLink">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//IndexedLink/state"/>
+    <genClasses ecoreClass="ReactionRules.ecore#//BoundLink">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//BoundLink/state"/>
     </genClasses>
-    <genClasses ecoreClass="ReactionRules.ecore#//ExactLink">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//ExactLink/linkAgent"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//ExactLink/linkSite"/>
+    <genClasses ecoreClass="ReactionRules.ecore#//BoundAnyOfTypeLink">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//BoundAnyOfTypeLink/linkAgent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//BoundAnyOfTypeLink/linkSite"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

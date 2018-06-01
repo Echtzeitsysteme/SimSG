@@ -3,9 +3,9 @@
  */
 package biochemsimulation.reactionrules.reactionRules.impl;
 
-import biochemsimulation.reactionrules.reactionRules.ExactLinkSite;
+import biochemsimulation.reactionrules.reactionRules.Agent;
+import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkAgent;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
-import biochemsimulation.reactionrules.reactionRules.Site;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -17,35 +17,35 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Exact Link Site</b></em>'.
+ * An implementation of the model object '<em><b>Bound Any Of Type Link Agent</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.ExactLinkSiteImpl#getSite <em>Site</em>}</li>
+ *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.BoundAnyOfTypeLinkAgentImpl#getAgent <em>Agent</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ExactLinkSiteImpl extends MinimalEObjectImpl.Container implements ExactLinkSite
+public class BoundAnyOfTypeLinkAgentImpl extends MinimalEObjectImpl.Container implements BoundAnyOfTypeLinkAgent
 {
   /**
-   * The cached value of the '{@link #getSite() <em>Site</em>}' reference.
+   * The cached value of the '{@link #getAgent() <em>Agent</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getSite()
+   * @see #getAgent()
    * @generated
    * @ordered
    */
-  protected Site site;
+  protected Agent agent;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ExactLinkSiteImpl()
+  protected BoundAnyOfTypeLinkAgentImpl()
   {
     super();
   }
@@ -58,7 +58,7 @@ public class ExactLinkSiteImpl extends MinimalEObjectImpl.Container implements E
   @Override
   protected EClass eStaticClass()
   {
-    return ReactionRulesPackage.Literals.EXACT_LINK_SITE;
+    return ReactionRulesPackage.Literals.BOUND_ANY_OF_TYPE_LINK_AGENT;
   }
 
   /**
@@ -66,19 +66,19 @@ public class ExactLinkSiteImpl extends MinimalEObjectImpl.Container implements E
    * <!-- end-user-doc -->
    * @generated
    */
-  public Site getSite()
+  public Agent getAgent()
   {
-    if (site != null && site.eIsProxy())
+    if (agent != null && agent.eIsProxy())
     {
-      InternalEObject oldSite = (InternalEObject)site;
-      site = (Site)eResolveProxy(oldSite);
-      if (site != oldSite)
+      InternalEObject oldAgent = (InternalEObject)agent;
+      agent = (Agent)eResolveProxy(oldAgent);
+      if (agent != oldAgent)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReactionRulesPackage.EXACT_LINK_SITE__SITE, oldSite, site));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK_AGENT__AGENT, oldAgent, agent));
       }
     }
-    return site;
+    return agent;
   }
 
   /**
@@ -86,9 +86,9 @@ public class ExactLinkSiteImpl extends MinimalEObjectImpl.Container implements E
    * <!-- end-user-doc -->
    * @generated
    */
-  public Site basicGetSite()
+  public Agent basicGetAgent()
   {
-    return site;
+    return agent;
   }
 
   /**
@@ -96,12 +96,12 @@ public class ExactLinkSiteImpl extends MinimalEObjectImpl.Container implements E
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setSite(Site newSite)
+  public void setAgent(Agent newAgent)
   {
-    Site oldSite = site;
-    site = newSite;
+    Agent oldAgent = agent;
+    agent = newAgent;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.EXACT_LINK_SITE__SITE, oldSite, site));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK_AGENT__AGENT, oldAgent, agent));
   }
 
   /**
@@ -114,9 +114,9 @@ public class ExactLinkSiteImpl extends MinimalEObjectImpl.Container implements E
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.EXACT_LINK_SITE__SITE:
-        if (resolve) return getSite();
-        return basicGetSite();
+      case ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK_AGENT__AGENT:
+        if (resolve) return getAgent();
+        return basicGetAgent();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -131,8 +131,8 @@ public class ExactLinkSiteImpl extends MinimalEObjectImpl.Container implements E
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.EXACT_LINK_SITE__SITE:
-        setSite((Site)newValue);
+      case ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK_AGENT__AGENT:
+        setAgent((Agent)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -148,8 +148,8 @@ public class ExactLinkSiteImpl extends MinimalEObjectImpl.Container implements E
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.EXACT_LINK_SITE__SITE:
-        setSite((Site)null);
+      case ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK_AGENT__AGENT:
+        setAgent((Agent)null);
         return;
     }
     super.eUnset(featureID);
@@ -165,10 +165,10 @@ public class ExactLinkSiteImpl extends MinimalEObjectImpl.Container implements E
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.EXACT_LINK_SITE__SITE:
-        return site != null;
+      case ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK_AGENT__AGENT:
+        return agent != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //ExactLinkSiteImpl
+} //BoundAnyOfTypeLinkAgentImpl

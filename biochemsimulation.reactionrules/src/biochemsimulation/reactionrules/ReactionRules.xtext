@@ -30,8 +30,8 @@ terminal VOID_PATTERN:
 	'void'
 ;
 
-terminal SEMI_LINK:
-	'semi'
+terminal BOUND_LINK:
+	'bound'
 ;
 
 terminal FREE_LINK:
@@ -118,9 +118,9 @@ Variable:
 	PatternVariable | ArithmeticVariable
 ;
 
-SemiLink returns LinkState :
-	{SemiLink}
-	name = SEMI_LINK
+BoundAnyLink returns LinkState :
+	{BoundAnyLink}
+	name = BOUND_LINK
 ;
 
 FreeLink returns LinkState :
@@ -133,26 +133,26 @@ WhatEver returns LinkState :
 	name = WHATEVER_LINK
 ;
 
-IndexedLink returns LinkState :
-	{IndexedLink}
+BoundLink returns LinkState :
+	{BoundLink}
 	state = UnsignedInteger
 ;
 
-ExactLinkAgent returns ExactLinkAgent:
-	{ExactLinkAgent}
+BoundAnyOfTypeLinkAgent returns BoundAnyOfTypeLinkAgent:
+	{BoundAnyOfTypeLinkAgent}
 	agent = [Agent]
 ;
 
-ExactLinkSite returns ExactLinkSite:
-	{ExactLinkSite}
+BoundAnyOfTypeLinkSite returns BoundAnyOfTypeLinkSite:
+	{BoundAnyOfTypeLinkSite}
 	site = [Site]
 ;
 
-ExactLink returns LinkState :
-	{ExactLink}
-	linkAgent = ExactLinkAgent
+BoundAnyOfTypeLink returns LinkState :
+	{BoundAnyOfTypeLink}
+	linkAgent = BoundAnyOfTypeLinkAgent
 	'.'
-	linkSite = ExactLinkSite
+	linkSite = BoundAnyOfTypeLinkSite
 ;
 
 SiteState:
@@ -162,7 +162,7 @@ SiteState:
 
 LinkState:
 	{LinkState}
-	 '['linkState = (SemiLink | FreeLink | ExactLink | IndexedLink | WhatEver)']'
+	 '['linkState = (BoundAnyLink | FreeLink | BoundAnyOfTypeLink | BoundLink | WhatEver)']'
 ;
 
 SitePattern returns SitePattern:

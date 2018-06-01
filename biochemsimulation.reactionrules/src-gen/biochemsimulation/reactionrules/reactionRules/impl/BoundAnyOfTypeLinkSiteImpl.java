@@ -3,56 +3,49 @@
  */
 package biochemsimulation.reactionrules.reactionRules.impl;
 
+import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkSite;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
-import biochemsimulation.reactionrules.reactionRules.SemiLink;
+import biochemsimulation.reactionrules.reactionRules.Site;
 
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Semi Link</b></em>'.
+ * An implementation of the model object '<em><b>Bound Any Of Type Link Site</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.SemiLinkImpl#getName <em>Name</em>}</li>
+ *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.BoundAnyOfTypeLinkSiteImpl#getSite <em>Site</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SemiLinkImpl extends LinkStateImpl implements SemiLink
+public class BoundAnyOfTypeLinkSiteImpl extends MinimalEObjectImpl.Container implements BoundAnyOfTypeLinkSite
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getSite() <em>Site</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getSite()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
+  protected Site site;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected SemiLinkImpl()
+  protected BoundAnyOfTypeLinkSiteImpl()
   {
     super();
   }
@@ -65,7 +58,7 @@ public class SemiLinkImpl extends LinkStateImpl implements SemiLink
   @Override
   protected EClass eStaticClass()
   {
-    return ReactionRulesPackage.Literals.SEMI_LINK;
+    return ReactionRulesPackage.Literals.BOUND_ANY_OF_TYPE_LINK_SITE;
   }
 
   /**
@@ -73,9 +66,19 @@ public class SemiLinkImpl extends LinkStateImpl implements SemiLink
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
+  public Site getSite()
   {
-    return name;
+    if (site != null && site.eIsProxy())
+    {
+      InternalEObject oldSite = (InternalEObject)site;
+      site = (Site)eResolveProxy(oldSite);
+      if (site != oldSite)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK_SITE__SITE, oldSite, site));
+      }
+    }
+    return site;
   }
 
   /**
@@ -83,12 +86,22 @@ public class SemiLinkImpl extends LinkStateImpl implements SemiLink
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(String newName)
+  public Site basicGetSite()
   {
-    String oldName = name;
-    name = newName;
+    return site;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setSite(Site newSite)
+  {
+    Site oldSite = site;
+    site = newSite;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.SEMI_LINK__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK_SITE__SITE, oldSite, site));
   }
 
   /**
@@ -101,8 +114,9 @@ public class SemiLinkImpl extends LinkStateImpl implements SemiLink
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.SEMI_LINK__NAME:
-        return getName();
+      case ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK_SITE__SITE:
+        if (resolve) return getSite();
+        return basicGetSite();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -117,8 +131,8 @@ public class SemiLinkImpl extends LinkStateImpl implements SemiLink
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.SEMI_LINK__NAME:
-        setName((String)newValue);
+      case ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK_SITE__SITE:
+        setSite((Site)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -134,8 +148,8 @@ public class SemiLinkImpl extends LinkStateImpl implements SemiLink
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.SEMI_LINK__NAME:
-        setName(NAME_EDEFAULT);
+      case ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK_SITE__SITE:
+        setSite((Site)null);
         return;
     }
     super.eUnset(featureID);
@@ -151,27 +165,10 @@ public class SemiLinkImpl extends LinkStateImpl implements SemiLink
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.SEMI_LINK__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK_SITE__SITE:
+        return site != null;
     }
     return super.eIsSet(featureID);
   }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
-  }
-
-} //SemiLinkImpl
+} //BoundAnyOfTypeLinkSiteImpl

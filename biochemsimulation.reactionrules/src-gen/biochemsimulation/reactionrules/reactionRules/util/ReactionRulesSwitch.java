@@ -170,17 +170,17 @@ public class ReactionRulesSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ReactionRulesPackage.EXACT_LINK_AGENT:
+      case ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK_AGENT:
       {
-        ExactLinkAgent exactLinkAgent = (ExactLinkAgent)theEObject;
-        T result = caseExactLinkAgent(exactLinkAgent);
+        BoundAnyOfTypeLinkAgent boundAnyOfTypeLinkAgent = (BoundAnyOfTypeLinkAgent)theEObject;
+        T result = caseBoundAnyOfTypeLinkAgent(boundAnyOfTypeLinkAgent);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ReactionRulesPackage.EXACT_LINK_SITE:
+      case ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK_SITE:
       {
-        ExactLinkSite exactLinkSite = (ExactLinkSite)theEObject;
-        T result = caseExactLinkSite(exactLinkSite);
+        BoundAnyOfTypeLinkSite boundAnyOfTypeLinkSite = (BoundAnyOfTypeLinkSite)theEObject;
+        T result = caseBoundAnyOfTypeLinkSite(boundAnyOfTypeLinkSite);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -319,11 +319,11 @@ public class ReactionRulesSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ReactionRulesPackage.SEMI_LINK:
+      case ReactionRulesPackage.BOUND_ANY_LINK:
       {
-        SemiLink semiLink = (SemiLink)theEObject;
-        T result = caseSemiLink(semiLink);
-        if (result == null) result = caseLinkState(semiLink);
+        BoundAnyLink boundAnyLink = (BoundAnyLink)theEObject;
+        T result = caseBoundAnyLink(boundAnyLink);
+        if (result == null) result = caseLinkState(boundAnyLink);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -343,19 +343,19 @@ public class ReactionRulesSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ReactionRulesPackage.INDEXED_LINK:
+      case ReactionRulesPackage.BOUND_LINK:
       {
-        IndexedLink indexedLink = (IndexedLink)theEObject;
-        T result = caseIndexedLink(indexedLink);
-        if (result == null) result = caseLinkState(indexedLink);
+        BoundLink boundLink = (BoundLink)theEObject;
+        T result = caseBoundLink(boundLink);
+        if (result == null) result = caseLinkState(boundLink);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ReactionRulesPackage.EXACT_LINK:
+      case ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK:
       {
-        ExactLink exactLink = (ExactLink)theEObject;
-        T result = caseExactLink(exactLink);
-        if (result == null) result = caseLinkState(exactLink);
+        BoundAnyOfTypeLink boundAnyOfTypeLink = (BoundAnyOfTypeLink)theEObject;
+        T result = caseBoundAnyOfTypeLink(boundAnyOfTypeLink);
+        if (result == null) result = caseLinkState(boundAnyOfTypeLink);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -572,33 +572,33 @@ public class ReactionRulesSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Exact Link Agent</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Bound Any Of Type Link Agent</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Exact Link Agent</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Bound Any Of Type Link Agent</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseExactLinkAgent(ExactLinkAgent object)
+  public T caseBoundAnyOfTypeLinkAgent(BoundAnyOfTypeLinkAgent object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Exact Link Site</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Bound Any Of Type Link Site</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Exact Link Site</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Bound Any Of Type Link Site</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseExactLinkSite(ExactLinkSite object)
+  public T caseBoundAnyOfTypeLinkSite(BoundAnyOfTypeLinkSite object)
   {
     return null;
   }
@@ -892,17 +892,17 @@ public class ReactionRulesSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Semi Link</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Bound Any Link</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Semi Link</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Bound Any Link</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseSemiLink(SemiLink object)
+  public T caseBoundAnyLink(BoundAnyLink object)
   {
     return null;
   }
@@ -940,33 +940,33 @@ public class ReactionRulesSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Indexed Link</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Bound Link</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Indexed Link</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Bound Link</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseIndexedLink(IndexedLink object)
+  public T caseBoundLink(BoundLink object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Exact Link</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Bound Any Of Type Link</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Exact Link</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Bound Any Of Type Link</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseExactLink(ExactLink object)
+  public T caseBoundAnyOfTypeLink(BoundAnyOfTypeLink object)
   {
     return null;
   }

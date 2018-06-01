@@ -12,12 +12,12 @@ import biochemsimulation.reactionrules.reactionRules.AssignFromPattern
 import biochemsimulation.reactionrules.reactionRules.AssignFromVariable
 import biochemsimulation.reactionrules.reactionRules.AgentPattern
 import biochemsimulation.reactionrules.reactionRules.SitePattern
-import biochemsimulation.reactionrules.reactionRules.ExactLink
+import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink
 import biochemsimulation.reactionrules.reactionRules.LinkState
 import biochemsimulation.reactionrules.reactionRules.FreeLink
-import biochemsimulation.reactionrules.reactionRules.SemiLink
+import biochemsimulation.reactionrules.reactionRules.BoundAnyLink
 import biochemsimulation.reactionrules.reactionRules.WhatEver
-import biochemsimulation.reactionrules.reactionRules.IndexedLink
+import biochemsimulation.reactionrules.reactionRules.BoundLink
 import java.util.LinkedList
 import biochemsimulation.reactionrules.reactionRules.RuleBody
 import biochemsimulation.reactionrules.reactionRules.SiteState
@@ -151,7 +151,7 @@ class PatternTemplate {
 				SimSite.simLinkState(«simSiteVariableName(ap, sp)», «simLinkStateVariableName(ap ,sp)»);
 				neg find support_BoundState(«simLinkStateVariableName(ap ,sp)»);
 			'''
-		}else if(linkState instanceof SemiLink) {
+		}else if(linkState instanceof BoundAnyLink) {
 			return '''
 				SimSite.simLinkState(«simSiteVariableName(ap, sp)», «simLinkStateVariableName(ap ,sp)»);
 				find support_BoundState(«simLinkStateVariableName(ap ,sp)»);
@@ -166,8 +166,8 @@ class PatternTemplate {
 			 * having to mention what link state this site should have. Basically a wild card for the current link-state
 			 * of the affected site.
 			 */
-		}else if(linkState instanceof ExactLink) {
-			val eLink = linkState as ExactLink
+		}else if(linkState instanceof BoundAnyOfTypeLink) {
+			val eLink = linkState as BoundAnyOfTypeLink
 			return '''
 				SimSite.simLinkState(«simSiteVariableName(ap, sp)», «simLinkStateVariableName(ap ,sp)»);
 				// Create context for other SimAgent:
@@ -200,7 +200,7 @@ class PatternTemplate {
 	}
 	
 	def getOtherLinkStateVariableName(ValidAgentPattern ap, SitePattern sp) {
-		val iLink = sp.linkState.linkState as IndexedLink
+		val iLink = sp.linkState.linkState as BoundLink
 		var rule = null as Rule
 		var eObj = iLink.eContainer
 		while(!(eObj instanceof Rule) && eObj !== null) {
@@ -209,9 +209,9 @@ class PatternTemplate {
 		if(eObj instanceof Rule) {
 			rule = eObj
 		}
-		var candidates = getAllIndexedLinksOfRule(rule)
+		var candidates = getAllBoundLinksOfRule(rule)
 		for(cand : candidates) {
-			val candidate = cand as IndexedLink
+			val candidate = cand as BoundLink
 			if(!candidate.equals(iLink) && iLink.state.equals(candidate.state)) {
 				var agentPattern = null as ValidAgentPattern
 				var sitePattern = null as SitePattern
@@ -237,8 +237,8 @@ class PatternTemplate {
 		return ''''''
 	}
 	
-	def getOtherIndexedLinkAgent(ValidAgentPattern ap, SitePattern sp) {
-		val iLink = sp.linkState.linkState as IndexedLink
+	def getOtherBoundLinkAgent(ValidAgentPattern ap, SitePattern sp) {
+		val iLink = sp.linkState.linkState as BoundLink
 		var rule = null as Rule
 		var eObj = iLink.eContainer
 		while(!(eObj instanceof Rule) && eObj !== null) {
@@ -247,9 +247,9 @@ class PatternTemplate {
 		if(eObj instanceof Rule) {
 			rule = eObj
 		}
-		var candidates = getAllIndexedLinksOfRule(rule)
+		var candidates = getAllBoundLinksOfRule(rule)
 		for(cand : candidates) {
-			val candidate = cand as IndexedLink
+			val candidate = cand as BoundLink
 			if(!candidate.equals(iLink) && iLink.state.equals(candidate.state)) {
 				var agentPattern = null as ValidAgentPattern
 				var sitePattern = null as SitePattern
@@ -275,8 +275,8 @@ class PatternTemplate {
 		return ''''''
 	}
 	
-	def getOtherIndexedLinkSite(AgentPattern ap, SitePattern sp) {
-		val iLink = sp.linkState.linkState as IndexedLink
+	def getOtherBoundLinkSite(AgentPattern ap, SitePattern sp) {
+		val iLink = sp.linkState.linkState as BoundLink
 		var rule = null as Rule
 		var eObj = iLink.eContainer
 		while(!(eObj instanceof Rule) && eObj !== null) {
@@ -285,9 +285,9 @@ class PatternTemplate {
 		if(eObj instanceof Rule) {
 			rule = eObj
 		}
-		var candidates = getAllIndexedLinksOfRule(rule)
+		var candidates = getAllBoundLinksOfRule(rule)
 		for(cand : candidates) {
-			val candidate = cand as IndexedLink
+			val candidate = cand as BoundLink
 			if(!candidate.equals(iLink) && iLink.state.equals(candidate.state)) {
 				var agentPattern = null as ValidAgentPattern
 				var sitePattern = null as SitePattern
@@ -313,8 +313,8 @@ class PatternTemplate {
 		return ''''''
 	}
 	
-	def getAllIndexedLinksOfRule(Rule rule) {
-		var out = new LinkedList<IndexedLink>()
+	def getAllBoundLinksOfRule(Rule rule) {
+		var out = new LinkedList<BoundLink>()
 		var ruleBody = null as RuleBody
 		if(rule.rule !== null) {
 			ruleBody = rule.rule as RuleBody
@@ -349,8 +349,8 @@ class PatternTemplate {
 		}
 		for(sPattern : sitePatterns) {
 			if(sPattern.linkState !== null) {
-				if(sPattern.linkState.linkState instanceof IndexedLink) {
-					val iLink = sPattern.linkState.linkState as IndexedLink
+				if(sPattern.linkState.linkState instanceof BoundLink) {
+					val iLink = sPattern.linkState.linkState as BoundLink
 					out.add(iLink)
 				}
 			}

@@ -50,10 +50,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="linkState" eType="#//LinkState"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExactLinkAgent">
+  <eClassifiers xsi:type="ecore:EClass" name="BoundAnyOfTypeLinkAgent">
     <eStructuralFeatures xsi:type="ecore:EReference" name="agent" eType="#//Agent"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExactLinkSite">
+  <eClassifiers xsi:type="ecore:EClass" name="BoundAnyOfTypeLinkSite">
     <eStructuralFeatures xsi:type="ecore:EReference" name="site" eType="#//Site"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SiteState">
@@ -126,7 +126,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="rule" eType="#//RuleBody"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SemiLink" eSuperTypes="#//LinkState">
+  <eClassifiers xsi:type="ecore:EClass" name="BoundAnyLink" eSuperTypes="#//LinkState">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FreeLink" eSuperTypes="#//LinkState">
@@ -135,13 +135,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="WhatEver" eSuperTypes="#//LinkState">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IndexedLink" eSuperTypes="#//LinkState">
+  <eClassifiers xsi:type="ecore:EClass" name="BoundLink" eSuperTypes="#//LinkState">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExactLink" eSuperTypes="#//LinkState">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="linkAgent" eType="#//ExactLinkAgent"
+  <eClassifiers xsi:type="ecore:EClass" name="BoundAnyOfTypeLink" eSuperTypes="#//LinkState">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkAgent" eType="#//BoundAnyOfTypeLinkAgent"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="linkSite" eType="#//ExactLinkSite"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkSite" eType="#//BoundAnyOfTypeLinkSite"
         containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -10,13 +10,13 @@ import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.xtext.scoping.Scopes
 import org.eclipse.xtext.scoping.impl.FilteringScope
 import biochemsimulation.reactionrules.reactionRules.SitePattern
-import biochemsimulation.reactionrules.reactionRules.ExactLink
 import java.util.LinkedList
 import biochemsimulation.reactionrules.reactionRules.SiteState
-import biochemsimulation.reactionrules.reactionRules.ExactLinkSite
-import biochemsimulation.reactionrules.reactionRules.ExactLinkAgent
 import biochemsimulation.reactionrules.reactionRules.SitePatterns
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern
+import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkAgent
+import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkSite
+import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink
 
 /**
  * This class contains custom scoping description.
@@ -30,10 +30,10 @@ class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvider {
 	    if (context instanceof SiteState) {
 	        return siteStateScope(context, reference)
 	    }
-	    if (context instanceof ExactLinkAgent) {
+	    if (context instanceof BoundAnyOfTypeLinkAgent) {
 	    	return exactLinkAgentScope(context, reference)
 	    }
-	    if (context instanceof ExactLinkSite) {
+	    if (context instanceof BoundAnyOfTypeLinkSite) {
 	    	return exactLinkSiteScope(context, reference)
 	    }
 	    if (context instanceof SitePattern) {
@@ -74,11 +74,11 @@ class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvider {
 	
 	def exactLinkSiteScope(EObject context, EReference reference) {
 	    
-	    var linkSite = context as ExactLinkSite
+	    var linkSite = context as BoundAnyOfTypeLinkSite
 	   
 	    var agent = null as Agent
 	    if(linkSite.eContainer !== null) {
-	    	val exactLink = linkSite.eContainer as ExactLink
+	    	val exactLink = linkSite.eContainer as BoundAnyOfTypeLink
 	    	if(exactLink.linkAgent !== null) {
 	    		agent = exactLink.linkAgent.agent
 	    	}

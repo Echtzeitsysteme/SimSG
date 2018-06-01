@@ -9,8 +9,9 @@ import biochemsimulation.reactionrules.reactionRules.ArithmeticValue;
 import biochemsimulation.reactionrules.reactionRules.ArithmeticVariable;
 import biochemsimulation.reactionrules.reactionRules.AssignFromPattern;
 import biochemsimulation.reactionrules.reactionRules.AssignFromVariable;
-import biochemsimulation.reactionrules.reactionRules.ExactLink;
-import biochemsimulation.reactionrules.reactionRules.IndexedLink;
+import biochemsimulation.reactionrules.reactionRules.BoundAnyLink;
+import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
+import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.NumericAssignment;
@@ -22,7 +23,6 @@ import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 import biochemsimulation.reactionrules.reactionRules.Rule;
 import biochemsimulation.reactionrules.reactionRules.RuleBody;
-import biochemsimulation.reactionrules.reactionRules.SemiLink;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
@@ -148,7 +148,7 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
         for (final SitePattern sp : _sitePatterns) {
           {
             final LinkState linkState = sp.getLinkState().getLinkState();
-            if ((((linkState instanceof SemiLink) || (linkState instanceof WhatEver)) || (linkState instanceof ExactLink))) {
+            if ((((linkState instanceof BoundAnyLink) || (linkState instanceof WhatEver)) || (linkState instanceof BoundAnyOfTypeLink))) {
               this.error("Illegal initial link state! A pattern may only be instantiated with link states of Type: FreeLink(\"free\"), IndexedLink(\"INT\")", null);
             }
           }
@@ -356,32 +356,32 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
   }
   
   @Check
-  public void checkIndexedLinkConstraint(final IndexedLink indexedLink) {
+  public void checkIndexedLinkConstraint(final BoundLink boundLink) {
     Pattern pattern = ((Pattern) null);
-    EObject eObj = indexedLink.eContainer();
+    EObject eObj = boundLink.eContainer();
     while (((!(eObj instanceof Pattern)) && (eObj != null))) {
       eObj = eObj.eContainer();
     }
     if ((eObj instanceof Pattern)) {
       pattern = ((Pattern)eObj);
     }
-    List<IndexedLink> candidates = EcoreUtil2.<IndexedLink>getAllContentsOfType(pattern, IndexedLink.class);
+    List<BoundLink> candidates = EcoreUtil2.<BoundLink>getAllContentsOfType(pattern, BoundLink.class);
     int c = 1;
-    final Integer thisNum = Integer.valueOf(indexedLink.getState());
-    for (final IndexedLink cnd : candidates) {
+    final Integer thisNum = Integer.valueOf(boundLink.getState());
+    for (final BoundLink cnd : candidates) {
       {
-        final IndexedLink candidate = ((IndexedLink) cnd);
+        final BoundLink candidate = ((BoundLink) cnd);
         final Integer cNum = Integer.valueOf(candidate.getState());
-        if ((Objects.equal(cNum, thisNum) && (!candidate.equals(indexedLink)))) {
+        if ((Objects.equal(cNum, thisNum) && (!candidate.equals(boundLink)))) {
           c++;
         }
         if ((c > 2)) {
-          this.error("This indexed link refers to more than two end-points aka. sites.", ReactionRulesPackage.Literals.INDEXED_LINK__STATE);
+          this.error("This indexed link refers to more than two end-points aka. sites.", ReactionRulesPackage.Literals.BOUND_LINK__STATE);
         }
       }
     }
     if ((c < 2)) {
-      this.error("This indexed link must refer to exactly two end-points aka. sites.", ReactionRulesPackage.Literals.INDEXED_LINK__STATE);
+      this.error("This indexed link must refer to exactly two end-points aka. sites.", ReactionRulesPackage.Literals.BOUND_LINK__STATE);
     }
   }
 }

@@ -9,8 +9,10 @@ import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.util.CancelIndicator;
 
 import biochemsimulation.reactionrules.reactionRules.ArithmeticValue;
-import biochemsimulation.reactionrules.reactionRules.ExactLink;
-import biochemsimulation.reactionrules.reactionRules.IndexedLink;
+import biochemsimulation.reactionrules.reactionRules.BoundAnyLink;
+import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
+import biochemsimulation.reactionrules.reactionRules.BoundLink;
+import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.RuleVariables;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.SiteState;
@@ -30,16 +32,25 @@ public class ReactionRulesSemanticHighlightingCalculator implements ISemanticHig
 		for(INode node : parseResult.getRootNode().getAsTreeIterable()) {
 			EObject grammarElement = node.getGrammarElement();
 			EObject semanticElement = node.getSemanticElement();
-			if(grammarElement instanceof org.eclipse.xtext.impl.ActionImpl) {
-				
-				if(semanticElement instanceof IndexedLink || semanticElement instanceof ExactLink) {
-					acceptor.addPosition(node.getOffset(), node.getLength(), ReactionRulesHighlightingConfiguration.LINK_STATE_ID);
-				}
-				if(semanticElement instanceof SiteState ) {
-					acceptor.addPosition(node.getOffset(), node.getLength(), ReactionRulesHighlightingConfiguration.STATE_ID);
+			
+			if(semanticElement instanceof SiteState ) {
+				if(grammarElement instanceof org.eclipse.xtext.impl.ActionImpl ) {
+					SiteState siteState = (SiteState)semanticElement;
+					acceptor.addPosition(node.getOffset()+1, node.getLength()-2, ReactionRulesHighlightingConfiguration.STATE_ID);
 				}
 				
 			}
+			
+			if(semanticElement instanceof LinkState) {
+				if(grammarElement instanceof org.eclipse.xtext.impl.RuleCallImpl ) {
+					acceptor.addPosition(node.getOffset(), node.getLength(), ReactionRulesHighlightingConfiguration.LINK_STATE_ID);
+				}
+				if(grammarElement instanceof org.eclipse.xtext.impl.ActionImpl && semanticElement instanceof BoundAnyOfTypeLink) {
+					acceptor.addPosition(node.getOffset(), node.getLength(), ReactionRulesHighlightingConfiguration.LINK_STATE_ID);
+				}
+				
+			}
+			
 			if(semanticElement instanceof ArithmeticValue ) {
 				
 				if(grammarElement instanceof org.eclipse.xtext.impl.RuleCallImpl ) {
