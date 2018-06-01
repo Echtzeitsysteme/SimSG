@@ -126,7 +126,7 @@ public class PatternGeneratorTest {
 		// Initialize the model
 		ReactionRulesPackage.eINSTANCE.eClass();
 		URI uri = URI.createURI(
-				"/eclipse/modeling-oxygen/eclipse/../../../Eclipse Workspaces/BioChemSimulation/biochemsimulation.reactionrules/model/instances/test2.xmi");
+				"/Eclipse%20Workspaces/BioChemSimulation/biochemsimulation.reactioncontainer/model/instances/test2.xmi");
 		// URI uri =
 		// URI.createURI("/Users/Basti/Documents/BioChemSimulation/biochemsimulation.reactionrules/model/instances/test2.xmi");
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ReactionRules",
@@ -204,7 +204,7 @@ public class PatternGeneratorTest {
 			e1.printStackTrace();
 		}
 		
-		//System.out.println(executeDemo_GenericAPI_LoadFromEIQ());
+		System.out.println(executeDemo_GenericAPI_LoadFromEIQ());
 		
 
 	}

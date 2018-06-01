@@ -118,23 +118,6 @@ public class ReactionContainerGenerator {
 			}
 		}
 		
-		for(SimAgent sa : containerModel.getSimAgent()) {
-			System.out.println("For Agent: "+sa.getName());
-			for(SimSite sss : sa.getSimSites()) {
-				System.out.println("New SimSite stats:");
-				System.out.println("SimAgent_Name: "+sss.getSimAgent().getName());
-				System.out.println("SimAgent_Type: "+sss.getType());
-				//System.out.println("SimSite_Type: "+sss.getSimSiteState().getType());
-				System.out.println("SimAgent_Name of Site1: "+sss.getSimLinkState().getSimSite1().getSimAgent().getName());
-				if(sss.getSimLinkState() instanceof SimBound) {
-					SimBound saglkjn = (SimBound)sss.getSimLinkState();
-					if(saglkjn.getSimSite2()!=null) {
-						System.out.println("SimAgent_Name of Site2: "+((SimBound)sss.getSimLinkState()).getSimSite2().getSimAgent().getName());
-					}
-				}
-					
-			}
-		}
 		String uriName = "file:"+projectPath+"model/instances/"+model.getModel().getName()+".xmi";
 		System.out.println(this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath());
 		URI uri = URI.createURI(uriName);
