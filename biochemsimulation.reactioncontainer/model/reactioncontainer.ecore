@@ -7,6 +7,7 @@
         eType="#//SimAgent" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="simLinkStates" upperBound="-1"
         eType="#//SimLinkState" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SimAgent">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>

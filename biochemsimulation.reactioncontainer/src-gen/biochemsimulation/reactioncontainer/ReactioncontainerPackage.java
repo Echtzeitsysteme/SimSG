@@ -85,13 +85,22 @@ public interface ReactionContainerPackage extends EPackage {
 	int REACTION_CONTAINER__SIM_LINK_STATES = 1;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REACTION_CONTAINER__NAME = 2;
+
+	/**
 	 * The number of structural features of the '<em>Reaction Container</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REACTION_CONTAINER_FEATURE_COUNT = 2;
+	int REACTION_CONTAINER_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Reaction Container</em>' class.
@@ -374,6 +383,17 @@ public interface ReactionContainerPackage extends EPackage {
 	EReference getReactionContainer_SimLinkStates();
 
 	/**
+	 * Returns the meta object for the attribute '{@link biochemsimulation.reactioncontainer.ReactionContainer#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see biochemsimulation.reactioncontainer.ReactionContainer#getName()
+	 * @see #getReactionContainer()
+	 * @generated
+	 */
+	EAttribute getReactionContainer_Name();
+
+	/**
 	 * Returns the meta object for class '{@link biochemsimulation.reactioncontainer.SimAgent <em>Sim Agent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -581,6 +601,14 @@ public interface ReactionContainerPackage extends EPackage {
 		 * @generated
 		 */
 		EReference REACTION_CONTAINER__SIM_LINK_STATES = eINSTANCE.getReactionContainer_SimLinkStates();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REACTION_CONTAINER__NAME = eINSTANCE.getReactionContainer_Name();
 
 		/**
 		 * The meta object literal for the '{@link biochemsimulation.reactioncontainer.impl.SimAgentImpl <em>Sim Agent</em>}' class.

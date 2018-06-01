@@ -167,6 +167,15 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getReactionContainer_Name() {
+		return (EAttribute) reactionContainerEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSimAgent() {
 		return simAgentEClass;
 	}
@@ -329,6 +338,7 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 		reactionContainerEClass = createEClass(REACTION_CONTAINER);
 		createEReference(reactionContainerEClass, REACTION_CONTAINER__SIM_AGENT);
 		createEReference(reactionContainerEClass, REACTION_CONTAINER__SIM_LINK_STATES);
+		createEAttribute(reactionContainerEClass, REACTION_CONTAINER__NAME);
 
 		simAgentEClass = createEClass(SIM_AGENT);
 		createEAttribute(simAgentEClass, SIM_AGENT__NAME);
@@ -395,6 +405,9 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 		initEReference(getReactionContainer_SimLinkStates(), this.getSimLinkState(), null, "simLinkStates", null, 0, -1,
 				ReactionContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getReactionContainer_Name(), theXMLTypePackage.getString(), "Name", null, 0, 1,
+				ReactionContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(simAgentEClass, SimAgent.class, "SimAgent", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

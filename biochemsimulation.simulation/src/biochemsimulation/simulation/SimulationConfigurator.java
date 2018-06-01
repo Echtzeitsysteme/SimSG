@@ -5,11 +5,4 @@ public class SimulationConfigurator {
 		
 	}
 	
-	void loadReactionRules(String path) {
-		
-	}
-	
-	void loadReactionContainer(String path) {
-		
-	}
 }

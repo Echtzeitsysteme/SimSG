@@ -40,6 +40,10 @@
         <children xmi:type="notation:Node" xmi:id="_n_AnkGNbEeijrKUi_nMUJg" type="2003" element="_n-rQYGNbEeijrKUi_nMUJg">
           <children xmi:type="notation:Node" xmi:id="_n_Dq4GNbEeijrKUi_nMUJg" type="5007"/>
           <children xmi:type="notation:Node" xmi:id="_n_E5AGNbEeijrKUi_nMUJg" type="7004">
+            <children xmi:type="notation:Node" xmi:id="_HJspUGXKEei8s7kB-E9A-w" type="3010" element="_HJJ2wGXKEei8s7kB-E9A-w">
+              <styles xmi:type="notation:FontStyle" xmi:id="_HJspUWXKEei8s7kB-E9A-w" fontColor="2697711" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_HJspUmXKEei8s7kB-E9A-w"/>
+            </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_n_E5AWNbEeijrKUi_nMUJg"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_n_E5AmNbEeijrKUi_nMUJg"/>
           </children>
@@ -257,10 +261,18 @@
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_n-rQYGNbEeijrKUi_nMUJg" name="ReactionContainer" tooltipText="" outgoingEdges="_xAYhcGNbEeijrKUi_nMUJg _L2wG8GNcEeijrKUi_nMUJg" width="12" height="10">
       <target xmi:type="ecore:EClass" href="reactioncontainer.ecore#//ReactionContainer"/>
       <semanticElements xmi:type="ecore:EClass" href="reactioncontainer.ecore#//ReactionContainer"/>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_n-x-EGNbEeijrKUi_nMUJg" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_KPn4cGXKEei8s7kB-E9A-w" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_HJJ2wGXKEei8s7kB-E9A-w" name="Name : String" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="reactioncontainer.ecore#//ReactionContainer/Name"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="reactioncontainer.ecore#//ReactionContainer/Name"/>
+        <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_KPptoGXKEei8s7kB-E9A-w" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+      </ownedElements>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DNodeList" xmi:id="_rvZI8GNbEeijrKUi_nMUJg" name="SimAgent" tooltipText="" outgoingEdges="_-w4c4GNbEeijrKUi_nMUJg" incomingEdges="_xAYhcGNbEeijrKUi_nMUJg _cwU_IGT8Eeib_Mna3UpPQQ" width="12" height="10">
       <target xmi:type="ecore:EClass" href="reactioncontainer.ecore#//SimAgent"/>

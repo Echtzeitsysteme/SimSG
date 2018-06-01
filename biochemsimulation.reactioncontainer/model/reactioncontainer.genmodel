@@ -14,6 +14,7 @@
     <genClasses ecoreClass="reactioncontainer.ecore#//ReactionContainer">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference reactioncontainer.ecore#//ReactionContainer/simAgent"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference reactioncontainer.ecore#//ReactionContainer/simLinkStates"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute reactioncontainer.ecore#//ReactionContainer/Name"/>
     </genClasses>
     <genClasses ecoreClass="reactioncontainer.ecore#//SimAgent">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute reactioncontainer.ecore#//SimAgent/Name"/>

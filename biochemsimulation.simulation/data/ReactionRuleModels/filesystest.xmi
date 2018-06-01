@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reactionRules:ReactionRuleModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:reactionRules="http://www.reactionrules.biochemsimulation/ReactionRules" xsi:schemaLocation="http://www.reactionrules.biochemsimulation/ReactionRules java://biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage">
+  <model xmi:type="reactionRules:Model" name="filesystest"/>
+  <reactionProperties xmi:type="reactionRules:Agent" name="stuff">
+    <sites xmi:type="reactionRules:Sites"/>
+  </reactionProperties>
+</reactionRules:ReactionRuleModel>

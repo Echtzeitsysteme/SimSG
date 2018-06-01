@@ -109,6 +109,7 @@ public class ReactionContainerGenerator {
 		}
 		
 		ReactionContainer containerModel = factory.createReactionContainer();
+		containerModel.setName(model.getModel().getName());
 		for(AgentTemplate at : templates) {
 			for(int i = 0; i<at.getCount(); i++) {
 				containerModel.getSimAgent().add(at.createInstance(factory, containerModel));
