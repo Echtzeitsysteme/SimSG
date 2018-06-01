@@ -37,5 +37,13 @@
 			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
 		</accessrules>
 	</classpathentry>
+	<classpathentry kind="lib" path="F:/eclipse/modeling-oxygen/eclipse/plugins/org.eclipse.emf.ecore.xmi_2.13.0.v20170609-0707.jar" sourcepath="F:/eclipse/modeling-oxygen/eclipse/plugins/org.eclipse.emf.ecore.xmi.source_2.13.0.v20170609-0707.jar">
+		<accessrules>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/xmi/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/xmi/impl/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/xmi/util/*"/>
+			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
+		</accessrules>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

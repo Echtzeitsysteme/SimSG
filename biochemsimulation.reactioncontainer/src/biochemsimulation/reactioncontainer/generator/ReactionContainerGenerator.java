@@ -1,6 +1,5 @@
 package biochemsimulation.reactioncontainer.generator;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +18,7 @@ import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactioncontainer.impl.ReactionContainerFactoryImpl;
 import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
+import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.impl.ReactionRuleModelImpl;
@@ -63,6 +63,14 @@ public class ReactionContainerGenerator {
 		}
 	}
 	
+	public ReactionContainerGenerator(ReactionRuleModel model) {
+		init();
+		
+		modelResource = null;
+		isInitialized = model != null;
+		this.model = (ReactionRuleModelImpl) model;
+	}
+	
 	private boolean loadResource() {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ReactionRules", new XMIResourceFactoryImpl());
 		ResourceSet rs = new ResourceSetImpl();
@@ -89,7 +97,7 @@ public class ReactionContainerGenerator {
 		return false;
 	}
 	
-	public void doGenerate() throws IOException{
+	void doGenerate() throws Exception{
 		if(!isInitialized) {
 			throw new RuntimeException("ReactionContainerGenerator is uninitialized because the given resource containing the ReactionRules model could not be loaded.");
 		}
@@ -117,12 +125,45 @@ public class ReactionContainerGenerator {
 		}
 		
 		String uriName = "file:"+projectPath+"model/instances/"+model.getModel().getName()+".xmi";
-		System.out.println(this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath());
 		URI uri = URI.createURI(uriName);
 		saveModelToURI(containerModel, model.getModel().getName(), uri);
 	}
 	
-	private void saveModelToURI(EObject model, String name, URI uri){
+	public ReactionContainer doGenerate(String path, boolean saveToFile) throws Exception{
+		if(!isInitialized) {
+			throw new RuntimeException("ReactionContainerGenerator is uninitialized because the given resource containing the ReactionRules model could not be loaded.");
+		}
+		List<Initial> initials = new LinkedList<Initial>();
+		model.getReactionProperties().forEach(x -> { 
+			if(x instanceof Initial) initials.add((Initial) x); 
+			});
+		
+		List<AgentTemplate> templates = new LinkedList<AgentTemplate>();
+		for(Initial init : initials) {
+			Pattern pa = PatternUtils.patternFromPatternAssignment(init.getInitialPattern());
+			if(!PatternUtils.isPatternEmpty(pa)) {
+				for(ValidAgentPattern ap : PatternUtils.getValidAgentPatterns(pa.getAgentPatterns())) {
+					templates.add(new AgentTemplate(init, ap));
+				}
+			}
+		}
+		
+		ReactionContainer containerModel = factory.createReactionContainer();
+		containerModel.setName(model.getModel().getName());
+		for(AgentTemplate at : templates) {
+			for(int i = 0; i<at.getCount(); i++) {
+				containerModel.getSimAgent().add(at.createInstance(factory, containerModel));
+			}
+		}
+		
+		if(saveToFile) {
+			URI uri = URI.createFileURI(path);
+			saveModelToURI(containerModel, model.getModel().getName(), uri);
+		}
+		return containerModel;
+	}
+	
+	private void saveModelToURI(EObject model, String name, URI uri) throws Exception{
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( ).put( "*",
 				new XMIResourceFactoryImpl());
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -135,12 +176,9 @@ public class ReactionContainerGenerator {
 		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION,Boolean.TRUE);
 		saveOptions.put(XMIResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION, Boolean.TRUE);
 		
-		try {
-			resource.save(saveOptions);
-			System.out.println("Model saved to: "+uri.path());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		resource.save(saveOptions);
+		System.out.println("Model saved to: "+uri.path());
+
 	}
 	
 	

@@ -157,7 +157,8 @@ public class PatternGeneratorTest {
 		URI uri = URI.createURI(
 				"/eclipse/modeling-oxygen/eclipse/../../../Eclipse Workspaces/BioChemSimulation/biochemsimulation.reactionrules/model/instances/test2.xmi");
 		ReactionContainerGenerator gen = new ReactionContainerGenerator(uri);
-		gen.doGenerate();
+		String dst = "F:\\Eclipse Workspaces\\BioChemSimulation\\biochemsimulation.reactioncontainer\\model\\instances\\test2.xmi";
+		gen.doGenerate(dst, true);
 	}
 
 	public static void main(String[] args) {

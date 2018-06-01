@@ -2,22 +2,20 @@ package biochemsimulation.simulation.persistence;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
+import biochemsimulation.reactioncontainer.generator.ReactionContainerGenerator;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 
@@ -32,6 +30,9 @@ public class SimplePersistenceManager implements PersistenceManager {
 	private HashMap<String, String> reactionModelPaths;
 	private HashMap<String, String> ruleModelPaths;
 	
+	private HashMap<String, ReactionContainer> reactionModelCache;
+	private HashMap<String, ReactionRuleModel> ruleModelCache;
+	
 	private String dataFolder;
 	private String reactionModelFolder;
 	private String ruleModelFolder;
@@ -43,18 +44,61 @@ public class SimplePersistenceManager implements PersistenceManager {
 		setFolderPaths();
 		fetchExistingRuleModelPaths();
 		fetchExistingReactionModelPaths();
+		reactionModelCache = new HashMap<String, ReactionContainer>();
+		ruleModelCache = new HashMap<String, ReactionRuleModel>();
+	}
+	
+	@Override
+	public Set<String> availableReactionRuleModels() {
+		return ruleModelPaths.keySet();
 	}
 
 	@Override
-	public ReactionRuleModel loadReactionRuleModel(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public Set<String> availableReactionContainerModels() {
+		return reactionModelPaths.keySet();
 	}
 
 	@Override
-	public ReactionContainer loadReactionContainerModel(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public ReactionRuleModel loadReactionRuleModel (String name) throws Exception {
+		if(ruleModelCache.containsKey(name)) {
+			return ruleModelCache.get(name);
+		}
+		if(!ruleModelPaths.containsKey(name))
+			throw new IndexOutOfBoundsException("");
+		
+		ReactionRuleModel model = null;
+		Resource modelResource = PersistenceUtils.loadResource(ruleModelPaths.get(name));
+		
+		model = (ReactionRuleModel) modelResource.getContents().get(0);
+		ruleModelCache.put(name, model);
+		return model;
+	}
+
+	@Override
+	public ReactionContainer loadReactionContainerModel(String name, boolean generateIfNotExist) throws Exception {
+		if(reactionModelCache.containsKey(name)) {
+			return reactionModelCache.get(name);
+		}
+		boolean doesNotExist = false;
+		if(!reactionModelPaths.containsKey(name)) {
+			doesNotExist = true;
+		}
+		if(doesNotExist && !generateIfNotExist) {
+			throw new IndexOutOfBoundsException("");
+		}
+		ReactionContainer containerModel = null;
+		if(doesNotExist) {
+			ReactionRuleModel ruleModel = loadReactionRuleModel(name);
+			ReactionContainerGenerator gen = new ReactionContainerGenerator(ruleModel);
+			String path = reactionModelFolder+"/"+name+".xmi";
+			containerModel = gen.doGenerate(path, true);
+			reactionModelPaths.put(name, path);
+		}else {
+			Resource modelResource = PersistenceUtils.loadResource(reactionModelPaths.get(name));
+			containerModel = (ReactionContainer) modelResource.getContents().get(0);
+		}
+		reactionModelCache.put(name, containerModel);
+		return containerModel;
 	}
 	
 	private void setFolderPaths() {
@@ -63,8 +107,13 @@ public class SimplePersistenceManager implements PersistenceManager {
 		dataFolder = dataFolder.replaceFirst("^/", "");
 		dataFolder = dataFolder.replaceFirst("%20", " ");
 		dataFolder += "data/";
+		PersistenceUtils.createFolderIfNotExist(dataFolder);
+		
 		reactionModelFolder = dataFolder + REACTION_CONTAINER_MODELS_FOLDER;
+		PersistenceUtils.createFolderIfNotExist(reactionModelFolder);
+		
 		ruleModelFolder = dataFolder + REACTION_RULE_MODELS_FOLDER;
+		PersistenceUtils.createFolderIfNotExist(ruleModelFolder);
 	}
 	
 	private void fetchExistingRuleModelPaths() {
