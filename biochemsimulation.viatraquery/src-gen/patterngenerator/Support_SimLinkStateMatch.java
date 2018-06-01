@@ -3,93 +3,93 @@
  */
 package patterngenerator;
 
-import biochemsimulation.reactioncontainer.SimBound;
+import biochemsimulation.reactioncontainer.SimSite;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.eclipse.viatra.query.runtime.api.impl.BasePatternMatch;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
-import patterngenerator.util.Support_BoundStateQuerySpecification;
+import patterngenerator.util.Support_SimLinkStateQuerySpecification;
 
 /**
- * Pattern-specific match representation of the patterngenerator.support_BoundState pattern,
- * to be used in conjunction with {@link Support_BoundStateMatcher}.
+ * Pattern-specific match representation of the patterngenerator.support_SimLinkState pattern,
+ * to be used in conjunction with {@link Support_SimLinkStateMatcher}.
  * 
  * <p>Class fields correspond to parameters of the pattern. Fields with value null are considered unassigned.
  * Each instance is a (possibly partial) substitution of pattern parameters,
  * usable to represent a match of the pattern in the result of a query,
  * or to specify the bound (fixed) input parameters when issuing a query.
  * 
- * @see Support_BoundStateMatcher
- *  @see Support_BoundStateProcessor
+ * @see Support_SimLinkStateMatcher
+ *  @see Support_SimLinkStateProcessor
  * 
  */
 @SuppressWarnings("all")
-public abstract class Support_BoundStateMatch extends BasePatternMatch {
-  private SimBound fLs;
+public abstract class Support_SimLinkStateMatch extends BasePatternMatch {
+  private SimSite fSs;
   
-  private static List<String> parameterNames = makeImmutableList("ls");
+  private static List<String> parameterNames = makeImmutableList("ss");
   
-  private Support_BoundStateMatch(final SimBound pLs) {
-    this.fLs = pLs;
+  private Support_SimLinkStateMatch(final SimSite pSs) {
+    this.fSs = pSs;
   }
   
   @Override
   public Object get(final String parameterName) {
-    if ("ls".equals(parameterName)) return this.fLs;
+    if ("ss".equals(parameterName)) return this.fSs;
     return null;
   }
   
-  public SimBound getLs() {
-    return this.fLs;
+  public SimSite getSs() {
+    return this.fSs;
   }
   
   @Override
   public boolean set(final String parameterName, final Object newValue) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-    if ("ls".equals(parameterName) ) {
-        this.fLs = (SimBound) newValue;
+    if ("ss".equals(parameterName) ) {
+        this.fSs = (SimSite) newValue;
         return true;
     }
     return false;
   }
   
-  public void setLs(final SimBound pLs) {
+  public void setSs(final SimSite pSs) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-    this.fLs = pLs;
+    this.fSs = pSs;
   }
   
   @Override
   public String patternName() {
-    return "patterngenerator.support_BoundState";
+    return "patterngenerator.support_SimLinkState";
   }
   
   @Override
   public List<String> parameterNames() {
-    return Support_BoundStateMatch.parameterNames;
+    return Support_SimLinkStateMatch.parameterNames;
   }
   
   @Override
   public Object[] toArray() {
-    return new Object[]{fLs};
+    return new Object[]{fSs};
   }
   
   @Override
-  public Support_BoundStateMatch toImmutable() {
-    return isMutable() ? newMatch(fLs) : this;
+  public Support_SimLinkStateMatch toImmutable() {
+    return isMutable() ? newMatch(fSs) : this;
   }
   
   @Override
   public String prettyPrint() {
     StringBuilder result = new StringBuilder();
-    result.append("\"ls\"=" + prettyPrintValue(fLs));
+    result.append("\"ss\"=" + prettyPrintValue(fSs));
     return result.toString();
   }
   
   @Override
   public int hashCode() {
-    return Objects.hash(fLs);
+    return Objects.hash(fSs);
   }
   
   @Override
@@ -99,9 +99,9 @@ public abstract class Support_BoundStateMatch extends BasePatternMatch {
     if (obj == null) {
         return false;
     }
-    if ((obj instanceof Support_BoundStateMatch)) {
-        Support_BoundStateMatch other = (Support_BoundStateMatch) obj;
-        return Objects.equals(fLs, other.fLs);
+    if ((obj instanceof Support_SimLinkStateMatch)) {
+        Support_SimLinkStateMatch other = (Support_SimLinkStateMatch) obj;
+        return Objects.equals(fSs, other.fSs);
     } else {
         // this should be infrequent
         if (!(obj instanceof IPatternMatch)) {
@@ -113,9 +113,9 @@ public abstract class Support_BoundStateMatch extends BasePatternMatch {
   }
   
   @Override
-  public Support_BoundStateQuerySpecification specification() {
+  public Support_SimLinkStateQuerySpecification specification() {
     try {
-        return Support_BoundStateQuerySpecification.instance();
+        return Support_SimLinkStateQuerySpecification.instance();
     } catch (ViatraQueryException ex) {
          // This cannot happen, as the match object can only be instantiated if the query specification exists
          throw new IllegalStateException (ex);
@@ -129,7 +129,7 @@ public abstract class Support_BoundStateMatch extends BasePatternMatch {
    * @return the empty match.
    * 
    */
-  public static Support_BoundStateMatch newEmptyMatch() {
+  public static Support_SimLinkStateMatch newEmptyMatch() {
     return new Mutable(null);
   }
   
@@ -137,29 +137,29 @@ public abstract class Support_BoundStateMatch extends BasePatternMatch {
    * Returns a mutable (partial) match.
    * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
    * 
-   * @param pLs the fixed value of pattern parameter ls, or null if not bound.
+   * @param pSs the fixed value of pattern parameter ss, or null if not bound.
    * @return the new, mutable (partial) match object.
    * 
    */
-  public static Support_BoundStateMatch newMutableMatch(final SimBound pLs) {
-    return new Mutable(pLs);
+  public static Support_SimLinkStateMatch newMutableMatch(final SimSite pSs) {
+    return new Mutable(pSs);
   }
   
   /**
    * Returns a new (partial) match.
    * This can be used e.g. to call the matcher with a partial match.
    * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-   * @param pLs the fixed value of pattern parameter ls, or null if not bound.
+   * @param pSs the fixed value of pattern parameter ss, or null if not bound.
    * @return the (partial) match object.
    * 
    */
-  public static Support_BoundStateMatch newMatch(final SimBound pLs) {
-    return new Immutable(pLs);
+  public static Support_SimLinkStateMatch newMatch(final SimSite pSs) {
+    return new Immutable(pSs);
   }
   
-  private static final class Mutable extends Support_BoundStateMatch {
-    Mutable(final SimBound pLs) {
-      super(pLs);
+  private static final class Mutable extends Support_SimLinkStateMatch {
+    Mutable(final SimSite pSs) {
+      super(pSs);
     }
     
     @Override
@@ -168,9 +168,9 @@ public abstract class Support_BoundStateMatch extends BasePatternMatch {
     }
   }
   
-  private static final class Immutable extends Support_BoundStateMatch {
-    Immutable(final SimBound pLs) {
-      super(pLs);
+  private static final class Immutable extends Support_SimLinkStateMatch {
+    Immutable(final SimSite pSs) {
+      super(pSs);
     }
     
     @Override

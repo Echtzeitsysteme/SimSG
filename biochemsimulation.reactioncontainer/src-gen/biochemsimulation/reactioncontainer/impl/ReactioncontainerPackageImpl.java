@@ -7,7 +7,6 @@ import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactioncontainer.SimAgent;
 import biochemsimulation.reactioncontainer.SimBound;
-import biochemsimulation.reactioncontainer.SimFree;
 import biochemsimulation.reactioncontainer.SimLinkState;
 import biochemsimulation.reactioncontainer.SimSite;
 import biochemsimulation.reactioncontainer.SimSiteState;
@@ -62,13 +61,6 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 	 * @generated
 	 */
 	private EClass simLinkStateEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass simFreeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -292,15 +284,6 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSimFree() {
-		return simFreeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getSimBound() {
 		return simBoundEClass;
 	}
@@ -364,8 +347,6 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 		simLinkStateEClass = createEClass(SIM_LINK_STATE);
 		createEReference(simLinkStateEClass, SIM_LINK_STATE__SIM_SITE1);
 
-		simFreeEClass = createEClass(SIM_FREE);
-
 		simBoundEClass = createEClass(SIM_BOUND);
 		createEReference(simBoundEClass, SIM_BOUND__SIM_SITE2);
 	}
@@ -403,7 +384,6 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		simFreeEClass.getESuperTypes().add(this.getSimLinkState());
 		simBoundEClass.getESuperTypes().add(this.getSimLinkState());
 
 		// Initialize classes, features, and operations; add parameters
@@ -449,8 +429,6 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 		initEReference(getSimLinkState_SimSite1(), this.getSimSite(), null, "simSite1", null, 1, 1, SimLinkState.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(simFreeEClass, SimFree.class, "SimFree", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(simBoundEClass, SimBound.class, "SimBound", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

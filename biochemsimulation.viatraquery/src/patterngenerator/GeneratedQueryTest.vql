@@ -2,8 +2,8 @@ package patterngenerator
 		
 import "http://www.reactioncontainer.biochemsimulation.org/reactioncontainer" as reactionContainer
 
-pattern support_BoundState(ls: SimBound) {
-	SimBound(ls);
+pattern support_SimLinkState(ss: SimSite) {
+	SimSite.simLinkState(ss, _);
 }
 
 pattern AtoB_lhs( A: SimAgent,  B: SimAgent) {
@@ -12,16 +12,14 @@ pattern AtoB_lhs( A: SimAgent,  B: SimAgent) {
 		// Site patterns for site x attached to instances of agent A 
 		SimAgent.simSites(A, A_x);
 		SimSite.Type(A_x, "x");
-		SimSite.simLinkState(A_x, A_x_LS);
-		neg find support_BoundState(A_x_LS);
+		neg find support_SimLinkState(A_x);
 	
 	// Agent pattern for instances of agent B
 	SimAgent.Type(B, "B");
 		// Site patterns for site x attached to instances of agent B 
 		SimAgent.simSites(B, B_x);
 		SimSite.Type(B_x, "x");
-		SimSite.simLinkState(B_x, B_x_LS);
-		neg find support_BoundState(B_x_LS);
+		neg find support_SimLinkState(B_x);
 }
 
 pattern AtoB_rhs( A: SimAgent,  B: SimAgent) {
@@ -96,8 +94,7 @@ pattern bla_lhs( A: SimAgent) {
 		// Site patterns for site x attached to instances of agent A 
 		SimAgent.simSites(A, A_x);
 		SimSite.Type(A_x, "x");
-		SimSite.simLinkState(A_x, A_x_LS);
-		find support_BoundState(A_x_LS);
+		SimSite.simLinkState(A_x, _);
 }
 
 pattern blubb_lhs( D: SimAgent,  D1: SimAgent) {
@@ -106,16 +103,14 @@ pattern blubb_lhs( D: SimAgent,  D1: SimAgent) {
 		// Site patterns for site c attached to instances of agent D 
 		SimAgent.simSites(D, D_c);
 		SimSite.Type(D_c, "c");
-		SimSite.simLinkState(D_c, D_c_LS);
-		neg find support_BoundState(D_c_LS);
+		neg find support_SimLinkState(D_c);
 	
 	// Agent pattern for instances of agent D1
 	SimAgent.Type(D1, "D");
 		// Site patterns for site c attached to instances of agent D1 
 		SimAgent.simSites(D1, D1_c);
 		SimSite.Type(D1_c, "c");
-		SimSite.simLinkState(D1_c, D1_c_LS);
-		neg find support_BoundState(D1_c_LS);
-	 D1 != D;
+		neg find support_SimLinkState(D1_c);
+	 D != D1;
 }
 

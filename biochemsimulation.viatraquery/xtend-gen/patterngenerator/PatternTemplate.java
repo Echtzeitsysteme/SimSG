@@ -67,10 +67,10 @@ public class PatternTemplate {
       }
     }
     _builder.newLine();
-    _builder.append("pattern support_BoundState(ls: SimBound) {");
+    _builder.append("pattern support_SimLinkState(ss: SimSite) {");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("SimBound(ls);");
+    _builder.append("SimSite.simLinkState(ss, _);");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
@@ -326,17 +326,9 @@ public class PatternTemplate {
     final LinkState linkState = ((LinkState) _linkState);
     if ((linkState instanceof FreeLink)) {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("SimSite.simLinkState(");
+      _builder.append("neg find support_SimLinkState(");
       String _simSiteVariableName = this.simSiteVariableName(ap, sp);
       _builder.append(_simSiteVariableName);
-      _builder.append(", ");
-      String _simLinkStateVariableName = this.simLinkStateVariableName(ap, sp);
-      _builder.append(_simLinkStateVariableName);
-      _builder.append(");");
-      _builder.newLineIfNotEmpty();
-      _builder.append("neg find support_BoundState(");
-      String _simLinkStateVariableName_1 = this.simLinkStateVariableName(ap, sp);
-      _builder.append(_simLinkStateVariableName_1);
       _builder.append(");");
       _builder.newLineIfNotEmpty();
       return _builder.toString();
@@ -346,15 +338,7 @@ public class PatternTemplate {
         _builder_1.append("SimSite.simLinkState(");
         String _simSiteVariableName_1 = this.simSiteVariableName(ap, sp);
         _builder_1.append(_simSiteVariableName_1);
-        _builder_1.append(", ");
-        String _simLinkStateVariableName_2 = this.simLinkStateVariableName(ap, sp);
-        _builder_1.append(_simLinkStateVariableName_2);
-        _builder_1.append(");");
-        _builder_1.newLineIfNotEmpty();
-        _builder_1.append("find support_BoundState(");
-        String _simLinkStateVariableName_3 = this.simLinkStateVariableName(ap, sp);
-        _builder_1.append(_simLinkStateVariableName_3);
-        _builder_1.append(");");
+        _builder_1.append(", _);");
         _builder_1.newLineIfNotEmpty();
         return _builder_1.toString();
       } else {
@@ -369,8 +353,8 @@ public class PatternTemplate {
             String _simSiteVariableName_2 = this.simSiteVariableName(ap, sp);
             _builder_3.append(_simSiteVariableName_2);
             _builder_3.append(", ");
-            String _simLinkStateVariableName_4 = this.simLinkStateVariableName(ap, sp);
-            _builder_3.append(_simLinkStateVariableName_4);
+            String _simLinkStateVariableName = this.simLinkStateVariableName(ap, sp);
+            _builder_3.append(_simLinkStateVariableName);
             _builder_3.append(");");
             _builder_3.newLineIfNotEmpty();
             _builder_3.append("// Create context for other SimAgent:");
@@ -439,8 +423,8 @@ public class PatternTemplate {
             _builder_3.newLineIfNotEmpty();
             _builder_3.append("// check for equality");
             _builder_3.newLine();
-            String _simLinkStateVariableName_5 = this.simLinkStateVariableName(ap, sp);
-            _builder_3.append(_simLinkStateVariableName_5);
+            String _simLinkStateVariableName_1 = this.simLinkStateVariableName(ap, sp);
+            _builder_3.append(_simLinkStateVariableName_1);
             _builder_3.append(" == ");
             String _uniqueSimAgentVariableName_6 = this.uniqueSimAgentVariableName(ap);
             _builder_3.append(_uniqueSimAgentVariableName_6);
@@ -459,12 +443,12 @@ public class PatternTemplate {
             String _simSiteVariableName_3 = this.simSiteVariableName(ap, sp);
             _builder_4.append(_simSiteVariableName_3);
             _builder_4.append(", ");
-            String _simLinkStateVariableName_6 = this.simLinkStateVariableName(ap, sp);
-            _builder_4.append(_simLinkStateVariableName_6);
+            String _simLinkStateVariableName_2 = this.simLinkStateVariableName(ap, sp);
+            _builder_4.append(_simLinkStateVariableName_2);
             _builder_4.append(");");
             _builder_4.newLineIfNotEmpty();
-            String _simLinkStateVariableName_7 = this.simLinkStateVariableName(ap, sp);
-            _builder_4.append(_simLinkStateVariableName_7);
+            String _simLinkStateVariableName_3 = this.simLinkStateVariableName(ap, sp);
+            _builder_4.append(_simLinkStateVariableName_3);
             _builder_4.append(" == ");
             String _otherLinkStateVariableName = this.getOtherLinkStateVariableName(ap, sp);
             _builder_4.append(_otherLinkStateVariableName);

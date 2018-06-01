@@ -73,13 +73,9 @@ public class SiteTemplate {
 	}
 	
 	private void initLinkStates() {
-		if(sp == null) {
-			linkStates.add(new FreeStateTemplate());
-		}else {
+		if(sp != null) {
 			if(sp.getLinkState().getLinkState() instanceof BoundLink) {
 				linkStates.add(new BoundStateTemplate(at, (BoundLink) sp.getLinkState().getLinkState()));
-			}else {
-				linkStates.add(new FreeStateTemplate());
 			}
 		}
 	}

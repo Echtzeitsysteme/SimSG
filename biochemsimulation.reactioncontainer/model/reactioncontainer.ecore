@@ -29,7 +29,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="simSite1" lowerBound="1"
         eType="#//SimSite"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SimFree" eSuperTypes="#//SimLinkState"/>
   <eClassifiers xsi:type="ecore:EClass" name="SimBound" eSuperTypes="#//SimLinkState">
     <eStructuralFeatures xsi:type="ecore:EReference" name="simSite2" lowerBound="1"
         eType="#//SimSite"/>

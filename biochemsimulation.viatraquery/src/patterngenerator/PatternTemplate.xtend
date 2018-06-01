@@ -51,8 +51,8 @@ class PatternTemplate {
 				import "«p.nsURI»" as «importAliases.get(p)»
 			«ENDFOR»
 			
-			pattern support_BoundState(ls: SimBound) {
-				SimBound(ls);
+			pattern support_SimLinkState(ss: SimSite) {
+				SimSite.simLinkState(ss, _);
 			}
 			
 			«FOR r : rules SEPARATOR "\n"»
@@ -148,13 +148,11 @@ class PatternTemplate {
 		val linkState = sp.linkState.linkState as LinkState
 		if(linkState instanceof FreeLink) {
 			return '''
-				SimSite.simLinkState(«simSiteVariableName(ap, sp)», «simLinkStateVariableName(ap ,sp)»);
-				neg find support_BoundState(«simLinkStateVariableName(ap ,sp)»);
+				neg find support_SimLinkState(«simSiteVariableName(ap, sp)»);
 			'''
 		}else if(linkState instanceof BoundAnyLink) {
 			return '''
-				SimSite.simLinkState(«simSiteVariableName(ap, sp)», «simLinkStateVariableName(ap ,sp)»);
-				find support_BoundState(«simLinkStateVariableName(ap ,sp)»);
+				SimSite.simLinkState(«simSiteVariableName(ap, sp)», _);
 			'''
 			/* SemiLinks are used to find occurences of agent instances of a 
 			 * certain type bound to any other agent instance at its specified site.

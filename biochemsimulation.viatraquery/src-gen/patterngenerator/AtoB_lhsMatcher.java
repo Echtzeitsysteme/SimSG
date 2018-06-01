@@ -35,16 +35,14 @@ import patterngenerator.util.AtoB_lhsQuerySpecification;
  * 		// Site patterns for site x attached to instances of agent A 
  * 		SimAgent.simSites(A, A_x);
  * 		SimSite.Type(A_x, "x");
- * 		SimSite.simLinkState(A_x, A_x_LS);
- * 		neg find support_BoundState(A_x_LS);
+ * 		neg find support_SimLinkState(A_x);
  * 	
  * 	// Agent pattern for instances of agent B
  * 	SimAgent.Type(B, "B");
  * 		// Site patterns for site x attached to instances of agent B 
  * 		SimAgent.simSites(B, B_x);
  * 		SimSite.Type(B_x, "x");
- * 		SimSite.simLinkState(B_x, B_x_LS);
- * 		neg find support_BoundState(B_x_LS);
+ * 		neg find support_SimLinkState(B_x);
  * }
  * </pre></code>
  * 

@@ -30,7 +30,7 @@ import org.eclipse.viatra.query.runtime.matchers.tuple.FlatTuple;
 import org.eclipse.viatra.query.runtime.matchers.tuple.Tuples;
 import patterngenerator.AtoB_lhsMatch;
 import patterngenerator.AtoB_lhsMatcher;
-import patterngenerator.util.Support_BoundStateQuerySpecification;
+import patterngenerator.util.Support_SimLinkStateQuerySpecification;
 
 /**
  * A pattern-specific query specification that can instantiate AtoB_lhsMatcher in a type-safe way.
@@ -137,9 +137,7 @@ public final class AtoB_lhsQuerySpecification extends BaseGeneratedEMFQuerySpeci
               PVariable var_A = body.getOrCreateVariableByName("A");
               PVariable var_B = body.getOrCreateVariableByName("B");
               PVariable var_A_x = body.getOrCreateVariableByName("A_x");
-              PVariable var_A_x_LS = body.getOrCreateVariableByName("A_x_LS");
               PVariable var_B_x = body.getOrCreateVariableByName("B_x");
-              PVariable var_B_x_LS = body.getOrCreateVariableByName("B_x_LS");
               new TypeConstraint(body, Tuples.flatTupleOf(var_A), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactioncontainer.biochemsimulation.org/reactioncontainer", "SimAgent")));
               new TypeConstraint(body, Tuples.flatTupleOf(var_B), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactioncontainer.biochemsimulation.org/reactioncontainer", "SimAgent")));
               body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
@@ -168,44 +166,32 @@ public final class AtoB_lhsQuerySpecification extends BaseGeneratedEMFQuerySpeci
               new TypeConstraint(body, Tuples.flatTupleOf(var_A_x, var__virtual_4_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactioncontainer.biochemsimulation.org/reactioncontainer", "SimSite", "Type")));
               new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_4_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2003/XMLType", "String")));
               new Equality(body, var__virtual_4_, var__virtual_3_);
-              // 		SimSite.simLinkState(A_x, A_x_LS)
-              new TypeConstraint(body, Tuples.flatTupleOf(var_A_x), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactioncontainer.biochemsimulation.org/reactioncontainer", "SimSite")));
-              PVariable var__virtual_5_ = body.getOrCreateVariableByName(".virtual{5}");
-              new TypeConstraint(body, Tuples.flatTupleOf(var_A_x, var__virtual_5_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactioncontainer.biochemsimulation.org/reactioncontainer", "SimSite", "simLinkState")));
-              new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_5_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactioncontainer.biochemsimulation.org/reactioncontainer", "SimLinkState")));
-              new Equality(body, var__virtual_5_, var_A_x_LS);
-              // 		neg find support_BoundState(A_x_LS)
-              new NegativePatternCall(body, new FlatTuple(var_A_x_LS), Support_BoundStateQuerySpecification.instance().getInternalQueryRepresentation());
+              // 		neg find support_SimLinkState(A_x)
+              new NegativePatternCall(body, new FlatTuple(var_A_x), Support_SimLinkStateQuerySpecification.instance().getInternalQueryRepresentation());
               // 		// Agent pattern for instances of agent B	SimAgent.Type(B, "B")
-              PVariable var__virtual_6_ = body.getOrCreateVariableByName(".virtual{6}");
-              new ConstantValue(body, var__virtual_6_, "B");
+              PVariable var__virtual_5_ = body.getOrCreateVariableByName(".virtual{5}");
+              new ConstantValue(body, var__virtual_5_, "B");
               new TypeConstraint(body, Tuples.flatTupleOf(var_B), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactioncontainer.biochemsimulation.org/reactioncontainer", "SimAgent")));
-              PVariable var__virtual_7_ = body.getOrCreateVariableByName(".virtual{7}");
-              new TypeConstraint(body, Tuples.flatTupleOf(var_B, var__virtual_7_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactioncontainer.biochemsimulation.org/reactioncontainer", "SimAgent", "Type")));
-              new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_7_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2003/XMLType", "String")));
-              new Equality(body, var__virtual_7_, var__virtual_6_);
+              PVariable var__virtual_6_ = body.getOrCreateVariableByName(".virtual{6}");
+              new TypeConstraint(body, Tuples.flatTupleOf(var_B, var__virtual_6_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactioncontainer.biochemsimulation.org/reactioncontainer", "SimAgent", "Type")));
+              new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_6_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2003/XMLType", "String")));
+              new Equality(body, var__virtual_6_, var__virtual_5_);
               // 		// Site patterns for site x attached to instances of agent B 		SimAgent.simSites(B, B_x)
               new TypeConstraint(body, Tuples.flatTupleOf(var_B), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactioncontainer.biochemsimulation.org/reactioncontainer", "SimAgent")));
-              PVariable var__virtual_8_ = body.getOrCreateVariableByName(".virtual{8}");
-              new TypeConstraint(body, Tuples.flatTupleOf(var_B, var__virtual_8_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactioncontainer.biochemsimulation.org/reactioncontainer", "SimAgent", "simSites")));
-              new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_8_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactioncontainer.biochemsimulation.org/reactioncontainer", "SimSite")));
-              new Equality(body, var__virtual_8_, var_B_x);
+              PVariable var__virtual_7_ = body.getOrCreateVariableByName(".virtual{7}");
+              new TypeConstraint(body, Tuples.flatTupleOf(var_B, var__virtual_7_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactioncontainer.biochemsimulation.org/reactioncontainer", "SimAgent", "simSites")));
+              new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_7_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactioncontainer.biochemsimulation.org/reactioncontainer", "SimSite")));
+              new Equality(body, var__virtual_7_, var_B_x);
               // 		SimSite.Type(B_x, "x")
+              PVariable var__virtual_8_ = body.getOrCreateVariableByName(".virtual{8}");
+              new ConstantValue(body, var__virtual_8_, "x");
+              new TypeConstraint(body, Tuples.flatTupleOf(var_B_x), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactioncontainer.biochemsimulation.org/reactioncontainer", "SimSite")));
               PVariable var__virtual_9_ = body.getOrCreateVariableByName(".virtual{9}");
-              new ConstantValue(body, var__virtual_9_, "x");
-              new TypeConstraint(body, Tuples.flatTupleOf(var_B_x), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactioncontainer.biochemsimulation.org/reactioncontainer", "SimSite")));
-              PVariable var__virtual_10_ = body.getOrCreateVariableByName(".virtual{10}");
-              new TypeConstraint(body, Tuples.flatTupleOf(var_B_x, var__virtual_10_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactioncontainer.biochemsimulation.org/reactioncontainer", "SimSite", "Type")));
-              new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_10_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2003/XMLType", "String")));
-              new Equality(body, var__virtual_10_, var__virtual_9_);
-              // 		SimSite.simLinkState(B_x, B_x_LS)
-              new TypeConstraint(body, Tuples.flatTupleOf(var_B_x), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactioncontainer.biochemsimulation.org/reactioncontainer", "SimSite")));
-              PVariable var__virtual_11_ = body.getOrCreateVariableByName(".virtual{11}");
-              new TypeConstraint(body, Tuples.flatTupleOf(var_B_x, var__virtual_11_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactioncontainer.biochemsimulation.org/reactioncontainer", "SimSite", "simLinkState")));
-              new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_11_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.reactioncontainer.biochemsimulation.org/reactioncontainer", "SimLinkState")));
-              new Equality(body, var__virtual_11_, var_B_x_LS);
-              // 		neg find support_BoundState(B_x_LS)
-              new NegativePatternCall(body, new FlatTuple(var_B_x_LS), Support_BoundStateQuerySpecification.instance().getInternalQueryRepresentation());
+              new TypeConstraint(body, Tuples.flatTupleOf(var_B_x, var__virtual_9_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.reactioncontainer.biochemsimulation.org/reactioncontainer", "SimSite", "Type")));
+              new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_9_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2003/XMLType", "String")));
+              new Equality(body, var__virtual_9_, var__virtual_8_);
+              // 		neg find support_SimLinkState(B_x)
+              new NegativePatternCall(body, new FlatTuple(var_B_x), Support_SimLinkStateQuerySpecification.instance().getInternalQueryRepresentation());
               bodies.add(body);
           }
       } catch (ViatraQueryException ex) {

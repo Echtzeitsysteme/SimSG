@@ -35,8 +35,7 @@ import patterngenerator.util.Bla_lhsQuerySpecification;
  * 		// Site patterns for site x attached to instances of agent A 
  * 		SimAgent.simSites(A, A_x);
  * 		SimSite.Type(A_x, "x");
- * 		SimSite.simLinkState(A_x, A_x_LS);
- * 		find support_BoundState(A_x_LS);
+ * 		SimSite.simLinkState(A_x, _);
  * }
  * </pre></code>
  * 

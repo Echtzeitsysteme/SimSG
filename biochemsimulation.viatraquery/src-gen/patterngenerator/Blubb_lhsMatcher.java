@@ -35,17 +35,15 @@ import patterngenerator.util.Blubb_lhsQuerySpecification;
  * 		// Site patterns for site c attached to instances of agent D 
  * 		SimAgent.simSites(D, D_c);
  * 		SimSite.Type(D_c, "c");
- * 		SimSite.simLinkState(D_c, D_c_LS);
- * 		neg find support_BoundState(D_c_LS);
+ * 		neg find support_SimLinkState(D_c);
  * 	
  * 	// Agent pattern for instances of agent D1
  * 	SimAgent.Type(D1, "D");
  * 		// Site patterns for site c attached to instances of agent D1 
  * 		SimAgent.simSites(D1, D1_c);
  * 		SimSite.Type(D1_c, "c");
- * 		SimSite.simLinkState(D1_c, D1_c_LS);
- * 		neg find support_BoundState(D1_c_LS);
- * 	 D1 != D;
+ * 		neg find support_SimLinkState(D1_c);
+ * 	 D != D1;
  * }
  * </pre></code>
  * 

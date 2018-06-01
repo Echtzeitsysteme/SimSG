@@ -92,11 +92,6 @@ public class ReactionContainerAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseSimFree(SimFree object) {
-			return createSimFreeAdapter();
-		}
-
-		@Override
 		public Adapter caseSimBound(SimBound object) {
 			return createSimBoundAdapter();
 		}
@@ -187,20 +182,6 @@ public class ReactionContainerAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSimLinkStateAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link biochemsimulation.reactioncontainer.SimFree <em>Sim Free</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see biochemsimulation.reactioncontainer.SimFree
-	 * @generated
-	 */
-	public Adapter createSimFreeAdapter() {
 		return null;
 	}
 

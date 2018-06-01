@@ -58,15 +58,6 @@ public interface ReactionContainerFactory extends EFactory {
 	SimSiteState createSimSiteState();
 
 	/**
-	 * Returns a new object of class '<em>Sim Free</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Sim Free</em>'.
-	 * @generated
-	 */
-	SimFree createSimFree();
-
-	/**
 	 * Returns a new object of class '<em>Sim Bound</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

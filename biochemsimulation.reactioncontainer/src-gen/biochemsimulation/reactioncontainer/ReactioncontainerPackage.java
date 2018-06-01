@@ -296,43 +296,6 @@ public interface ReactionContainerPackage extends EPackage {
 	int SIM_LINK_STATE_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link biochemsimulation.reactioncontainer.impl.SimFreeImpl <em>Sim Free</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see biochemsimulation.reactioncontainer.impl.SimFreeImpl
-	 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getSimFree()
-	 * @generated
-	 */
-	int SIM_FREE = 5;
-
-	/**
-	 * The feature id for the '<em><b>Sim Site1</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIM_FREE__SIM_SITE1 = SIM_LINK_STATE__SIM_SITE1;
-
-	/**
-	 * The number of structural features of the '<em>Sim Free</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIM_FREE_FEATURE_COUNT = SIM_LINK_STATE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Sim Free</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIM_FREE_OPERATION_COUNT = SIM_LINK_STATE_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link biochemsimulation.reactioncontainer.impl.SimBoundImpl <em>Sim Bound</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -340,7 +303,7 @@ public interface ReactionContainerPackage extends EPackage {
 	 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getSimBound()
 	 * @generated
 	 */
-	int SIM_BOUND = 6;
+	int SIM_BOUND = 5;
 
 	/**
 	 * The feature id for the '<em><b>Sim Site1</b></em>' reference.
@@ -550,16 +513,6 @@ public interface ReactionContainerPackage extends EPackage {
 	EReference getSimLinkState_SimSite1();
 
 	/**
-	 * Returns the meta object for class '{@link biochemsimulation.reactioncontainer.SimFree <em>Sim Free</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Sim Free</em>'.
-	 * @see biochemsimulation.reactioncontainer.SimFree
-	 * @generated
-	 */
-	EClass getSimFree();
-
-	/**
 	 * Returns the meta object for class '{@link biochemsimulation.reactioncontainer.SimBound <em>Sim Bound</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -740,16 +693,6 @@ public interface ReactionContainerPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SIM_LINK_STATE__SIM_SITE1 = eINSTANCE.getSimLinkState_SimSite1();
-
-		/**
-		 * The meta object literal for the '{@link biochemsimulation.reactioncontainer.impl.SimFreeImpl <em>Sim Free</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see biochemsimulation.reactioncontainer.impl.SimFreeImpl
-		 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getSimFree()
-		 * @generated
-		 */
-		EClass SIM_FREE = eINSTANCE.getSimFree();
 
 		/**
 		 * The meta object literal for the '{@link biochemsimulation.reactioncontainer.impl.SimBoundImpl <em>Sim Bound</em>}' class.

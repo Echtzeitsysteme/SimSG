@@ -101,15 +101,6 @@ public class ReactionContainerSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ReactionContainerPackage.SIM_FREE: {
-			SimFree simFree = (SimFree) theEObject;
-			T result = caseSimFree(simFree);
-			if (result == null)
-				result = caseSimLinkState(simFree);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case ReactionContainerPackage.SIM_BOUND: {
 			SimBound simBound = (SimBound) theEObject;
 			T result = caseSimBound(simBound);
@@ -196,21 +187,6 @@ public class ReactionContainerSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSimLinkState(SimLinkState object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Sim Free</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Sim Free</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSimFree(SimFree object) {
 		return null;
 	}
 

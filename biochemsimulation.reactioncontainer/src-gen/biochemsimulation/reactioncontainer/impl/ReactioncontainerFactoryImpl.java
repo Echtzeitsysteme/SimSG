@@ -64,8 +64,6 @@ public class ReactionContainerFactoryImpl extends EFactoryImpl implements Reacti
 			return createSimSite();
 		case ReactionContainerPackage.SIM_SITE_STATE:
 			return createSimSiteState();
-		case ReactionContainerPackage.SIM_FREE:
-			return createSimFree();
 		case ReactionContainerPackage.SIM_BOUND:
 			return createSimBound();
 		default:
@@ -111,16 +109,6 @@ public class ReactionContainerFactoryImpl extends EFactoryImpl implements Reacti
 	public SimSiteState createSimSiteState() {
 		SimSiteStateImpl simSiteState = new SimSiteStateImpl();
 		return simSiteState;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SimFree createSimFree() {
-		SimFreeImpl simFree = new SimFreeImpl();
-		return simFree;
 	}
 
 	/**
