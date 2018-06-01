@@ -6,21 +6,21 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Site State</b></em>'.
+ * A representation of the model object '<em><b>Sim Site State</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactioncontainer.SiteState#getType <em>Type</em>}</li>
+ *   <li>{@link biochemsimulation.reactioncontainer.SimSiteState#getType <em>Type</em>}</li>
  * </ul>
  *
- * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSiteState()
+ * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimSiteState()
  * @model
  * @generated
  */
-public interface SiteState extends EObject {
+public interface SimSiteState extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -31,14 +31,14 @@ public interface SiteState extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see #setType(String)
-	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getSiteState_Type()
+	 * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimSiteState_Type()
 	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
 	 * @generated
 	 */
 	String getType();
 
 	/**
-	 * Sets the value of the '{@link biochemsimulation.reactioncontainer.SiteState#getType <em>Type</em>}' attribute.
+	 * Sets the value of the '{@link biochemsimulation.reactioncontainer.SimSiteState#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Type</em>' attribute.
@@ -47,4 +47,4 @@ public interface SiteState extends EObject {
 	 */
 	void setType(String value);
 
-} // SiteState
+} // SimSiteState

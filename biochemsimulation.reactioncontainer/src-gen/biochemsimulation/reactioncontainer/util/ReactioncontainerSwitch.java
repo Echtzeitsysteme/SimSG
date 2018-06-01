@@ -19,17 +19,17 @@ import org.eclipse.emf.ecore.util.Switch;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage
+ * @see biochemsimulation.reactioncontainer.ReactionContainerPackage
  * @generated
  */
-public class ReactioncontainerSwitch<T> extends Switch<T> {
+public class ReactionContainerSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static ReactioncontainerPackage modelPackage;
+	protected static ReactionContainerPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -37,9 +37,9 @@ public class ReactioncontainerSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReactioncontainerSwitch() {
+	public ReactionContainerSwitch() {
 		if (modelPackage == null) {
-			modelPackage = ReactioncontainerPackage.eINSTANCE;
+			modelPackage = ReactionContainerPackage.eINSTANCE;
 		}
 	}
 
@@ -66,55 +66,55 @@ public class ReactioncontainerSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-		case ReactioncontainerPackage.REACTION_CONTAINER: {
+		case ReactionContainerPackage.REACTION_CONTAINER: {
 			ReactionContainer reactionContainer = (ReactionContainer) theEObject;
 			T result = caseReactionContainer(reactionContainer);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ReactioncontainerPackage.AGENT: {
-			Agent agent = (Agent) theEObject;
-			T result = caseAgent(agent);
+		case ReactionContainerPackage.SIM_AGENT: {
+			SimAgent simAgent = (SimAgent) theEObject;
+			T result = caseSimAgent(simAgent);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ReactioncontainerPackage.SITE: {
-			Site site = (Site) theEObject;
-			T result = caseSite(site);
+		case ReactionContainerPackage.SIM_SITE: {
+			SimSite simSite = (SimSite) theEObject;
+			T result = caseSimSite(simSite);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ReactioncontainerPackage.SITE_STATE: {
-			SiteState siteState = (SiteState) theEObject;
-			T result = caseSiteState(siteState);
+		case ReactionContainerPackage.SIM_SITE_STATE: {
+			SimSiteState simSiteState = (SimSiteState) theEObject;
+			T result = caseSimSiteState(simSiteState);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ReactioncontainerPackage.LINK_STATE: {
-			LinkState linkState = (LinkState) theEObject;
-			T result = caseLinkState(linkState);
+		case ReactionContainerPackage.SIM_LINK_STATE: {
+			SimLinkState simLinkState = (SimLinkState) theEObject;
+			T result = caseSimLinkState(simLinkState);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ReactioncontainerPackage.FREE: {
-			Free free = (Free) theEObject;
-			T result = caseFree(free);
+		case ReactionContainerPackage.SIM_FREE: {
+			SimFree simFree = (SimFree) theEObject;
+			T result = caseSimFree(simFree);
 			if (result == null)
-				result = caseLinkState(free);
+				result = caseSimLinkState(simFree);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ReactioncontainerPackage.BOUND: {
-			Bound bound = (Bound) theEObject;
-			T result = caseBound(bound);
+		case ReactionContainerPackage.SIM_BOUND: {
+			SimBound simBound = (SimBound) theEObject;
+			T result = caseSimBound(simBound);
 			if (result == null)
-				result = caseLinkState(bound);
+				result = caseSimLinkState(simBound);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -140,92 +140,92 @@ public class ReactioncontainerSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Agent</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Sim Agent</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Agent</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Sim Agent</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAgent(Agent object) {
+	public T caseSimAgent(SimAgent object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Site</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Sim Site</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Site</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Sim Site</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSite(Site object) {
+	public T caseSimSite(SimSite object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Site State</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Sim Site State</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Site State</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Sim Site State</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSiteState(SiteState object) {
+	public T caseSimSiteState(SimSiteState object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Link State</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Sim Link State</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Link State</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Sim Link State</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLinkState(LinkState object) {
+	public T caseSimLinkState(SimLinkState object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Free</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Sim Free</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Free</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Sim Free</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFree(Free object) {
+	public T caseSimFree(SimFree object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Bound</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Sim Bound</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Bound</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Sim Bound</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBound(Bound object) {
+	public T caseSimBound(SimBound object) {
 		return null;
 	}
 
@@ -245,4 +245,4 @@ public class ReactioncontainerSwitch<T> extends Switch<T> {
 		return null;
 	}
 
-} //ReactioncontainerSwitch
+} //ReactionContainerSwitch

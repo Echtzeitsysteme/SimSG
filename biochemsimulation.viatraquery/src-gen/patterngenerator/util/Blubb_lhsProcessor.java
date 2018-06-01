@@ -3,7 +3,7 @@
  */
 package patterngenerator.util;
 
-import biochemsimulation.reactionrules.reactionRules.AgentInstance;
+import biochemsimulation.reactioncontainer.SimAgent;
 import org.eclipse.viatra.query.runtime.api.IMatchProcessor;
 import patterngenerator.Blubb_lhsMatch;
 
@@ -21,7 +21,7 @@ public abstract class Blubb_lhsProcessor implements IMatchProcessor<Blubb_lhsMat
    * @param pD1 the value of pattern parameter D1 in the currently processed match
    * 
    */
-  public abstract void process(final AgentInstance pD, final AgentInstance pD1);
+  public abstract void process(final SimAgent pD, final SimAgent pD1);
   
   @Override
   public void process(final Blubb_lhsMatch match) {

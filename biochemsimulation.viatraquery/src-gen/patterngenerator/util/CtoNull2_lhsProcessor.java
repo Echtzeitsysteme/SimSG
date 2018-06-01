@@ -3,7 +3,7 @@
  */
 package patterngenerator.util;
 
-import biochemsimulation.reactionrules.reactionRules.AgentInstance;
+import biochemsimulation.reactioncontainer.SimAgent;
 import org.eclipse.viatra.query.runtime.api.IMatchProcessor;
 import patterngenerator.CtoNull2_lhsMatch;
 
@@ -20,7 +20,7 @@ public abstract class CtoNull2_lhsProcessor implements IMatchProcessor<CtoNull2_
    * @param pC the value of pattern parameter C in the currently processed match
    * 
    */
-  public abstract void process(final AgentInstance pC);
+  public abstract void process(final SimAgent pC);
   
   @Override
   public void process(final CtoNull2_lhsMatch match) {

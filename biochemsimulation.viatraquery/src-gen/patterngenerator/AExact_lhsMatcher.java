@@ -3,7 +3,7 @@
  */
 package patterngenerator;
 
-import biochemsimulation.reactionrules.reactionRules.AgentInstance;
+import biochemsimulation.reactioncontainer.SimAgent;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,16 +29,20 @@ import patterngenerator.util.AExact_lhsQuerySpecification;
  * 
  * <p>Original source:
  * <code><pre>
- * pattern AExact_lhs( A: AgentInstance) {
+ * pattern AExact_lhs( A: SimAgent) {
  * 	// Agent pattern for instances of agent A
- * 	AgentInstance.agent.name(A, "A");
+ * 	SimAgent.Type(A, "A");
  * 		// Site patterns for site x attached to instances of agent A 
- * 		AgentInstance.linkStates(A, A_x_ILS);
- * 		AgentInstanceLinkState.site.name(A_x_ILS, "x");
- * 		AgentInstanceLinkState.linkState.linkState(A_x_ILS, A_x_EL);
- * 		IndexedLink(A_x_EL);
- * 		AgentInstanceLinkState.attachedSite.name(A_x_ILS, "x");
- * 		AgentInstanceLinkState.attachedAgentInstance.agent.name(A_x_ILS, "B");
+ * 		SimAgent.simSites(A, A_x);
+ * 		SimSite.Type(A_x, "x");
+ * 		SimSite.simLinkState(A_x, A_x_LS);
+ * 		// Create context for other SimAgent:
+ * 		SimAgent.Type(A_B, "B");
+ * 		SimAgent.simSites(A_B, A_B_x);
+ * 		SimSite.Type(A_B_x, "x");
+ * 		SimSite.simLinkState(A_B_x, A_B_x_LS);
+ * 		// check for equality
+ * 		A_x_LS == A_B_x_LS;
  * }
  * </pre></code>
  * 
@@ -98,7 +102,7 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
    * @return matches represented as a AExact_lhsMatch object.
    * 
    */
-  public Collection<AExact_lhsMatch> getAllMatches(final AgentInstance pA) {
+  public Collection<AExact_lhsMatch> getAllMatches(final SimAgent pA) {
     return rawGetAllMatches(new Object[]{pA});
   }
   
@@ -109,7 +113,7 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
    * @return a match represented as a AExact_lhsMatch object, or null if no match is found.
    * 
    */
-  public AExact_lhsMatch getOneArbitraryMatch(final AgentInstance pA) {
+  public AExact_lhsMatch getOneArbitraryMatch(final SimAgent pA) {
     return rawGetOneArbitraryMatch(new Object[]{pA});
   }
   
@@ -120,7 +124,7 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
    * @return true if the input is a valid (partial) match of the pattern.
    * 
    */
-  public boolean hasMatch(final AgentInstance pA) {
+  public boolean hasMatch(final SimAgent pA) {
     return rawHasMatch(new Object[]{pA});
   }
   
@@ -130,7 +134,7 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
    * @return the number of pattern matches found.
    * 
    */
-  public int countMatches(final AgentInstance pA) {
+  public int countMatches(final SimAgent pA) {
     return rawCountMatches(new Object[]{pA});
   }
   
@@ -140,7 +144,7 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
    * @param processor the action that will process each pattern match.
    * 
    */
-  public void forEachMatch(final AgentInstance pA, final IMatchProcessor<? super AExact_lhsMatch> processor) {
+  public void forEachMatch(final SimAgent pA, final IMatchProcessor<? super AExact_lhsMatch> processor) {
     rawForEachMatch(new Object[]{pA}, processor);
   }
   
@@ -152,7 +156,7 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
    * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
    * 
    */
-  public boolean forOneArbitraryMatch(final AgentInstance pA, final IMatchProcessor<? super AExact_lhsMatch> processor) {
+  public boolean forOneArbitraryMatch(final SimAgent pA, final IMatchProcessor<? super AExact_lhsMatch> processor) {
     return rawForOneArbitraryMatch(new Object[]{pA}, processor);
   }
   
@@ -164,7 +168,7 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
    * @return the (partial) match object.
    * 
    */
-  public AExact_lhsMatch newMatch(final AgentInstance pA) {
+  public AExact_lhsMatch newMatch(final SimAgent pA) {
     return AExact_lhsMatch.newMatch(pA);
   }
   
@@ -173,8 +177,8 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  protected Set<AgentInstance> rawAccumulateAllValuesOfA(final Object[] parameters) {
-    Set<AgentInstance> results = new HashSet<AgentInstance>();
+  protected Set<SimAgent> rawAccumulateAllValuesOfA(final Object[] parameters) {
+    Set<SimAgent> results = new HashSet<SimAgent>();
     rawAccumulateAllValues(POSITION_A, parameters, results);
     return results;
   }
@@ -184,14 +188,14 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  public Set<AgentInstance> getAllValuesOfA() {
+  public Set<SimAgent> getAllValuesOfA() {
     return rawAccumulateAllValuesOfA(emptyArray());
   }
   
   @Override
   protected AExact_lhsMatch tupleToMatch(final Tuple t) {
     try {
-        return AExact_lhsMatch.newMatch((AgentInstance) t.get(POSITION_A));
+        return AExact_lhsMatch.newMatch((SimAgent) t.get(POSITION_A));
     } catch(ClassCastException e) {
         LOGGER.error("Element(s) in tuple not properly typed!",e);
         return null;
@@ -201,7 +205,7 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
   @Override
   protected AExact_lhsMatch arrayToMatch(final Object[] match) {
     try {
-        return AExact_lhsMatch.newMatch((AgentInstance) match[POSITION_A]);
+        return AExact_lhsMatch.newMatch((SimAgent) match[POSITION_A]);
     } catch(ClassCastException e) {
         LOGGER.error("Element(s) in array not properly typed!",e);
         return null;
@@ -211,7 +215,7 @@ public class AExact_lhsMatcher extends BaseMatcher<AExact_lhsMatch> {
   @Override
   protected AExact_lhsMatch arrayToMatchMutable(final Object[] match) {
     try {
-        return AExact_lhsMatch.newMutableMatch((AgentInstance) match[POSITION_A]);
+        return AExact_lhsMatch.newMutableMatch((SimAgent) match[POSITION_A]);
     } catch(ClassCastException e) {
         LOGGER.error("Element(s) in array not properly typed!",e);
         return null;

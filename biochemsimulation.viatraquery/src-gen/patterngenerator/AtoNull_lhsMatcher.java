@@ -3,7 +3,7 @@
  */
 package patterngenerator;
 
-import biochemsimulation.reactionrules.reactionRules.AgentInstance;
+import biochemsimulation.reactioncontainer.SimAgent;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,18 +29,18 @@ import patterngenerator.util.AtoNull_lhsQuerySpecification;
  * 
  * <p>Original source:
  * <code><pre>
- * pattern AtoNull_lhs( A: AgentInstance,  B: AgentInstance) {
+ * pattern AtoNull_lhs( A: SimAgent,  B: SimAgent) {
  * 	// Agent pattern for instances of agent A
- * 	AgentInstance.agent.name(A, "A");
+ * 	SimAgent.Type(A, "A");
  * 		// Site patterns for site x attached to instances of agent A 
- * 		AgentInstance.linkStates(A, A_x_ILS);
- * 		AgentInstanceLinkState.site.name(A_x_ILS, "x");
+ * 		SimAgent.simSites(A, A_x);
+ * 		SimSite.Type(A_x, "x");
  * 	
  * 	// Agent pattern for instances of agent B
- * 	AgentInstance.agent.name(B, "B");
+ * 	SimAgent.Type(B, "B");
  * 		// Site patterns for site x attached to instances of agent B 
- * 		AgentInstance.linkStates(B, B_x_ILS);
- * 		AgentInstanceLinkState.site.name(B_x_ILS, "x");
+ * 		SimAgent.simSites(B, B_x);
+ * 		SimSite.Type(B_x, "x");
  * }
  * </pre></code>
  * 
@@ -103,7 +103,7 @@ public class AtoNull_lhsMatcher extends BaseMatcher<AtoNull_lhsMatch> {
    * @return matches represented as a AtoNull_lhsMatch object.
    * 
    */
-  public Collection<AtoNull_lhsMatch> getAllMatches(final AgentInstance pA, final AgentInstance pB) {
+  public Collection<AtoNull_lhsMatch> getAllMatches(final SimAgent pA, final SimAgent pB) {
     return rawGetAllMatches(new Object[]{pA, pB});
   }
   
@@ -115,7 +115,7 @@ public class AtoNull_lhsMatcher extends BaseMatcher<AtoNull_lhsMatch> {
    * @return a match represented as a AtoNull_lhsMatch object, or null if no match is found.
    * 
    */
-  public AtoNull_lhsMatch getOneArbitraryMatch(final AgentInstance pA, final AgentInstance pB) {
+  public AtoNull_lhsMatch getOneArbitraryMatch(final SimAgent pA, final SimAgent pB) {
     return rawGetOneArbitraryMatch(new Object[]{pA, pB});
   }
   
@@ -127,7 +127,7 @@ public class AtoNull_lhsMatcher extends BaseMatcher<AtoNull_lhsMatch> {
    * @return true if the input is a valid (partial) match of the pattern.
    * 
    */
-  public boolean hasMatch(final AgentInstance pA, final AgentInstance pB) {
+  public boolean hasMatch(final SimAgent pA, final SimAgent pB) {
     return rawHasMatch(new Object[]{pA, pB});
   }
   
@@ -138,7 +138,7 @@ public class AtoNull_lhsMatcher extends BaseMatcher<AtoNull_lhsMatch> {
    * @return the number of pattern matches found.
    * 
    */
-  public int countMatches(final AgentInstance pA, final AgentInstance pB) {
+  public int countMatches(final SimAgent pA, final SimAgent pB) {
     return rawCountMatches(new Object[]{pA, pB});
   }
   
@@ -149,7 +149,7 @@ public class AtoNull_lhsMatcher extends BaseMatcher<AtoNull_lhsMatch> {
    * @param processor the action that will process each pattern match.
    * 
    */
-  public void forEachMatch(final AgentInstance pA, final AgentInstance pB, final IMatchProcessor<? super AtoNull_lhsMatch> processor) {
+  public void forEachMatch(final SimAgent pA, final SimAgent pB, final IMatchProcessor<? super AtoNull_lhsMatch> processor) {
     rawForEachMatch(new Object[]{pA, pB}, processor);
   }
   
@@ -162,7 +162,7 @@ public class AtoNull_lhsMatcher extends BaseMatcher<AtoNull_lhsMatch> {
    * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
    * 
    */
-  public boolean forOneArbitraryMatch(final AgentInstance pA, final AgentInstance pB, final IMatchProcessor<? super AtoNull_lhsMatch> processor) {
+  public boolean forOneArbitraryMatch(final SimAgent pA, final SimAgent pB, final IMatchProcessor<? super AtoNull_lhsMatch> processor) {
     return rawForOneArbitraryMatch(new Object[]{pA, pB}, processor);
   }
   
@@ -175,7 +175,7 @@ public class AtoNull_lhsMatcher extends BaseMatcher<AtoNull_lhsMatch> {
    * @return the (partial) match object.
    * 
    */
-  public AtoNull_lhsMatch newMatch(final AgentInstance pA, final AgentInstance pB) {
+  public AtoNull_lhsMatch newMatch(final SimAgent pA, final SimAgent pB) {
     return AtoNull_lhsMatch.newMatch(pA, pB);
   }
   
@@ -184,8 +184,8 @@ public class AtoNull_lhsMatcher extends BaseMatcher<AtoNull_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  protected Set<AgentInstance> rawAccumulateAllValuesOfA(final Object[] parameters) {
-    Set<AgentInstance> results = new HashSet<AgentInstance>();
+  protected Set<SimAgent> rawAccumulateAllValuesOfA(final Object[] parameters) {
+    Set<SimAgent> results = new HashSet<SimAgent>();
     rawAccumulateAllValues(POSITION_A, parameters, results);
     return results;
   }
@@ -195,7 +195,7 @@ public class AtoNull_lhsMatcher extends BaseMatcher<AtoNull_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  public Set<AgentInstance> getAllValuesOfA() {
+  public Set<SimAgent> getAllValuesOfA() {
     return rawAccumulateAllValuesOfA(emptyArray());
   }
   
@@ -204,7 +204,7 @@ public class AtoNull_lhsMatcher extends BaseMatcher<AtoNull_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  public Set<AgentInstance> getAllValuesOfA(final AtoNull_lhsMatch partialMatch) {
+  public Set<SimAgent> getAllValuesOfA(final AtoNull_lhsMatch partialMatch) {
     return rawAccumulateAllValuesOfA(partialMatch.toArray());
   }
   
@@ -213,7 +213,7 @@ public class AtoNull_lhsMatcher extends BaseMatcher<AtoNull_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  public Set<AgentInstance> getAllValuesOfA(final AgentInstance pB) {
+  public Set<SimAgent> getAllValuesOfA(final SimAgent pB) {
     return rawAccumulateAllValuesOfA(new Object[]{
     null, 
     pB
@@ -225,8 +225,8 @@ public class AtoNull_lhsMatcher extends BaseMatcher<AtoNull_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  protected Set<AgentInstance> rawAccumulateAllValuesOfB(final Object[] parameters) {
-    Set<AgentInstance> results = new HashSet<AgentInstance>();
+  protected Set<SimAgent> rawAccumulateAllValuesOfB(final Object[] parameters) {
+    Set<SimAgent> results = new HashSet<SimAgent>();
     rawAccumulateAllValues(POSITION_B, parameters, results);
     return results;
   }
@@ -236,7 +236,7 @@ public class AtoNull_lhsMatcher extends BaseMatcher<AtoNull_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  public Set<AgentInstance> getAllValuesOfB() {
+  public Set<SimAgent> getAllValuesOfB() {
     return rawAccumulateAllValuesOfB(emptyArray());
   }
   
@@ -245,7 +245,7 @@ public class AtoNull_lhsMatcher extends BaseMatcher<AtoNull_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  public Set<AgentInstance> getAllValuesOfB(final AtoNull_lhsMatch partialMatch) {
+  public Set<SimAgent> getAllValuesOfB(final AtoNull_lhsMatch partialMatch) {
     return rawAccumulateAllValuesOfB(partialMatch.toArray());
   }
   
@@ -254,7 +254,7 @@ public class AtoNull_lhsMatcher extends BaseMatcher<AtoNull_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  public Set<AgentInstance> getAllValuesOfB(final AgentInstance pA) {
+  public Set<SimAgent> getAllValuesOfB(final SimAgent pA) {
     return rawAccumulateAllValuesOfB(new Object[]{
     pA, 
     null
@@ -264,7 +264,7 @@ public class AtoNull_lhsMatcher extends BaseMatcher<AtoNull_lhsMatch> {
   @Override
   protected AtoNull_lhsMatch tupleToMatch(final Tuple t) {
     try {
-        return AtoNull_lhsMatch.newMatch((AgentInstance) t.get(POSITION_A), (AgentInstance) t.get(POSITION_B));
+        return AtoNull_lhsMatch.newMatch((SimAgent) t.get(POSITION_A), (SimAgent) t.get(POSITION_B));
     } catch(ClassCastException e) {
         LOGGER.error("Element(s) in tuple not properly typed!",e);
         return null;
@@ -274,7 +274,7 @@ public class AtoNull_lhsMatcher extends BaseMatcher<AtoNull_lhsMatch> {
   @Override
   protected AtoNull_lhsMatch arrayToMatch(final Object[] match) {
     try {
-        return AtoNull_lhsMatch.newMatch((AgentInstance) match[POSITION_A], (AgentInstance) match[POSITION_B]);
+        return AtoNull_lhsMatch.newMatch((SimAgent) match[POSITION_A], (SimAgent) match[POSITION_B]);
     } catch(ClassCastException e) {
         LOGGER.error("Element(s) in array not properly typed!",e);
         return null;
@@ -284,7 +284,7 @@ public class AtoNull_lhsMatcher extends BaseMatcher<AtoNull_lhsMatch> {
   @Override
   protected AtoNull_lhsMatch arrayToMatchMutable(final Object[] match) {
     try {
-        return AtoNull_lhsMatch.newMutableMatch((AgentInstance) match[POSITION_A], (AgentInstance) match[POSITION_B]);
+        return AtoNull_lhsMatch.newMutableMatch((SimAgent) match[POSITION_A], (SimAgent) match[POSITION_B]);
     } catch(ClassCastException e) {
         LOGGER.error("Element(s) in array not properly typed!",e);
         return null;

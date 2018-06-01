@@ -3,7 +3,7 @@
  */
 package patterngenerator;
 
-import biochemsimulation.reactionrules.reactionRules.AgentInstance;
+import biochemsimulation.reactioncontainer.SimAgent;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,12 +29,12 @@ import patterngenerator.util.CtoNull2_lhsQuerySpecification;
  * 
  * <p>Original source:
  * <code><pre>
- * pattern CtoNull2_lhs( C: AgentInstance) {
+ * pattern CtoNull2_lhs( C: SimAgent) {
  * 	// Agent pattern for instances of agent C
- * 	AgentInstance.agent.name(C, "C");
+ * 	SimAgent.Type(C, "C");
  * 		// Site patterns for site x attached to instances of agent C 
- * 		AgentInstance.linkStates(C, C_x_ILS);
- * 		AgentInstanceLinkState.site.name(C_x_ILS, "x");
+ * 		SimAgent.simSites(C, C_x);
+ * 		SimSite.Type(C_x, "x");
  * }
  * </pre></code>
  * 
@@ -94,7 +94,7 @@ public class CtoNull2_lhsMatcher extends BaseMatcher<CtoNull2_lhsMatch> {
    * @return matches represented as a CtoNull2_lhsMatch object.
    * 
    */
-  public Collection<CtoNull2_lhsMatch> getAllMatches(final AgentInstance pC) {
+  public Collection<CtoNull2_lhsMatch> getAllMatches(final SimAgent pC) {
     return rawGetAllMatches(new Object[]{pC});
   }
   
@@ -105,7 +105,7 @@ public class CtoNull2_lhsMatcher extends BaseMatcher<CtoNull2_lhsMatch> {
    * @return a match represented as a CtoNull2_lhsMatch object, or null if no match is found.
    * 
    */
-  public CtoNull2_lhsMatch getOneArbitraryMatch(final AgentInstance pC) {
+  public CtoNull2_lhsMatch getOneArbitraryMatch(final SimAgent pC) {
     return rawGetOneArbitraryMatch(new Object[]{pC});
   }
   
@@ -116,7 +116,7 @@ public class CtoNull2_lhsMatcher extends BaseMatcher<CtoNull2_lhsMatch> {
    * @return true if the input is a valid (partial) match of the pattern.
    * 
    */
-  public boolean hasMatch(final AgentInstance pC) {
+  public boolean hasMatch(final SimAgent pC) {
     return rawHasMatch(new Object[]{pC});
   }
   
@@ -126,7 +126,7 @@ public class CtoNull2_lhsMatcher extends BaseMatcher<CtoNull2_lhsMatch> {
    * @return the number of pattern matches found.
    * 
    */
-  public int countMatches(final AgentInstance pC) {
+  public int countMatches(final SimAgent pC) {
     return rawCountMatches(new Object[]{pC});
   }
   
@@ -136,7 +136,7 @@ public class CtoNull2_lhsMatcher extends BaseMatcher<CtoNull2_lhsMatch> {
    * @param processor the action that will process each pattern match.
    * 
    */
-  public void forEachMatch(final AgentInstance pC, final IMatchProcessor<? super CtoNull2_lhsMatch> processor) {
+  public void forEachMatch(final SimAgent pC, final IMatchProcessor<? super CtoNull2_lhsMatch> processor) {
     rawForEachMatch(new Object[]{pC}, processor);
   }
   
@@ -148,7 +148,7 @@ public class CtoNull2_lhsMatcher extends BaseMatcher<CtoNull2_lhsMatch> {
    * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
    * 
    */
-  public boolean forOneArbitraryMatch(final AgentInstance pC, final IMatchProcessor<? super CtoNull2_lhsMatch> processor) {
+  public boolean forOneArbitraryMatch(final SimAgent pC, final IMatchProcessor<? super CtoNull2_lhsMatch> processor) {
     return rawForOneArbitraryMatch(new Object[]{pC}, processor);
   }
   
@@ -160,7 +160,7 @@ public class CtoNull2_lhsMatcher extends BaseMatcher<CtoNull2_lhsMatch> {
    * @return the (partial) match object.
    * 
    */
-  public CtoNull2_lhsMatch newMatch(final AgentInstance pC) {
+  public CtoNull2_lhsMatch newMatch(final SimAgent pC) {
     return CtoNull2_lhsMatch.newMatch(pC);
   }
   
@@ -169,8 +169,8 @@ public class CtoNull2_lhsMatcher extends BaseMatcher<CtoNull2_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  protected Set<AgentInstance> rawAccumulateAllValuesOfC(final Object[] parameters) {
-    Set<AgentInstance> results = new HashSet<AgentInstance>();
+  protected Set<SimAgent> rawAccumulateAllValuesOfC(final Object[] parameters) {
+    Set<SimAgent> results = new HashSet<SimAgent>();
     rawAccumulateAllValues(POSITION_C, parameters, results);
     return results;
   }
@@ -180,14 +180,14 @@ public class CtoNull2_lhsMatcher extends BaseMatcher<CtoNull2_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  public Set<AgentInstance> getAllValuesOfC() {
+  public Set<SimAgent> getAllValuesOfC() {
     return rawAccumulateAllValuesOfC(emptyArray());
   }
   
   @Override
   protected CtoNull2_lhsMatch tupleToMatch(final Tuple t) {
     try {
-        return CtoNull2_lhsMatch.newMatch((AgentInstance) t.get(POSITION_C));
+        return CtoNull2_lhsMatch.newMatch((SimAgent) t.get(POSITION_C));
     } catch(ClassCastException e) {
         LOGGER.error("Element(s) in tuple not properly typed!",e);
         return null;
@@ -197,7 +197,7 @@ public class CtoNull2_lhsMatcher extends BaseMatcher<CtoNull2_lhsMatch> {
   @Override
   protected CtoNull2_lhsMatch arrayToMatch(final Object[] match) {
     try {
-        return CtoNull2_lhsMatch.newMatch((AgentInstance) match[POSITION_C]);
+        return CtoNull2_lhsMatch.newMatch((SimAgent) match[POSITION_C]);
     } catch(ClassCastException e) {
         LOGGER.error("Element(s) in array not properly typed!",e);
         return null;
@@ -207,7 +207,7 @@ public class CtoNull2_lhsMatcher extends BaseMatcher<CtoNull2_lhsMatch> {
   @Override
   protected CtoNull2_lhsMatch arrayToMatchMutable(final Object[] match) {
     try {
-        return CtoNull2_lhsMatch.newMutableMatch((AgentInstance) match[POSITION_C]);
+        return CtoNull2_lhsMatch.newMutableMatch((SimAgent) match[POSITION_C]);
     } catch(ClassCastException e) {
         LOGGER.error("Element(s) in array not properly typed!",e);
         return null;

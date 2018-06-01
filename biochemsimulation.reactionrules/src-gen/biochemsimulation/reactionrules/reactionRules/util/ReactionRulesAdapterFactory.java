@@ -81,44 +81,9 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
         return createReactionRuleModelAdapter();
       }
       @Override
-      public Adapter caseModelUri(ModelUri object)
-      {
-        return createModelUriAdapter();
-      }
-      @Override
-      public Adapter caseModelPath(ModelPath object)
-      {
-        return createModelPathAdapter();
-      }
-      @Override
-      public Adapter caseModelLocation(ModelLocation object)
-      {
-        return createModelLocationAdapter();
-      }
-      @Override
       public Adapter caseModel(Model object)
       {
         return createModelAdapter();
-      }
-      @Override
-      public Adapter caseReactionContainer(ReactionContainer object)
-      {
-        return createReactionContainerAdapter();
-      }
-      @Override
-      public Adapter caseAgentInstanceSiteState(AgentInstanceSiteState object)
-      {
-        return createAgentInstanceSiteStateAdapter();
-      }
-      @Override
-      public Adapter caseAgentInstanceLinkState(AgentInstanceLinkState object)
-      {
-        return createAgentInstanceLinkStateAdapter();
-      }
-      @Override
-      public Adapter caseAgentInstance(AgentInstance object)
-      {
-        return createAgentInstanceAdapter();
       }
       @Override
       public Adapter caseReactionProperty(ReactionProperty object)
@@ -338,51 +303,6 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.ModelUri <em>Model Uri</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see biochemsimulation.reactionrules.reactionRules.ModelUri
-   * @generated
-   */
-  public Adapter createModelUriAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.ModelPath <em>Model Path</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see biochemsimulation.reactionrules.reactionRules.ModelPath
-   * @generated
-   */
-  public Adapter createModelPathAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.ModelLocation <em>Model Location</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see biochemsimulation.reactionrules.reactionRules.ModelLocation
-   * @generated
-   */
-  public Adapter createModelLocationAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.Model <em>Model</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -393,66 +313,6 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createModelAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.ReactionContainer <em>Reaction Container</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see biochemsimulation.reactionrules.reactionRules.ReactionContainer
-   * @generated
-   */
-  public Adapter createReactionContainerAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.AgentInstanceSiteState <em>Agent Instance Site State</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see biochemsimulation.reactionrules.reactionRules.AgentInstanceSiteState
-   * @generated
-   */
-  public Adapter createAgentInstanceSiteStateAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.AgentInstanceLinkState <em>Agent Instance Link State</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see biochemsimulation.reactionrules.reactionRules.AgentInstanceLinkState
-   * @generated
-   */
-  public Adapter createAgentInstanceLinkStateAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.AgentInstance <em>Agent Instance</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see biochemsimulation.reactionrules.reactionRules.AgentInstance
-   * @generated
-   */
-  public Adapter createAgentInstanceAdapter()
   {
     return null;
   }

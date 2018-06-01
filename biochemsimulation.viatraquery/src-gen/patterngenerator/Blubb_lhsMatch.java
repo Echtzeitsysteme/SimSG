@@ -3,7 +3,7 @@
  */
 package patterngenerator;
 
-import biochemsimulation.reactionrules.reactionRules.AgentInstance;
+import biochemsimulation.reactioncontainer.SimAgent;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -27,13 +27,13 @@ import patterngenerator.util.Blubb_lhsQuerySpecification;
  */
 @SuppressWarnings("all")
 public abstract class Blubb_lhsMatch extends BasePatternMatch {
-  private AgentInstance fD;
+  private SimAgent fD;
   
-  private AgentInstance fD1;
+  private SimAgent fD1;
   
   private static List<String> parameterNames = makeImmutableList("D", "D1");
   
-  private Blubb_lhsMatch(final AgentInstance pD, final AgentInstance pD1) {
+  private Blubb_lhsMatch(final SimAgent pD, final SimAgent pD1) {
     this.fD = pD;
     this.fD1 = pD1;
   }
@@ -45,11 +45,11 @@ public abstract class Blubb_lhsMatch extends BasePatternMatch {
     return null;
   }
   
-  public AgentInstance getD() {
+  public SimAgent getD() {
     return this.fD;
   }
   
-  public AgentInstance getD1() {
+  public SimAgent getD1() {
     return this.fD1;
   }
   
@@ -57,22 +57,22 @@ public abstract class Blubb_lhsMatch extends BasePatternMatch {
   public boolean set(final String parameterName, final Object newValue) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
     if ("D".equals(parameterName) ) {
-        this.fD = (AgentInstance) newValue;
+        this.fD = (SimAgent) newValue;
         return true;
     }
     if ("D1".equals(parameterName) ) {
-        this.fD1 = (AgentInstance) newValue;
+        this.fD1 = (SimAgent) newValue;
         return true;
     }
     return false;
   }
   
-  public void setD(final AgentInstance pD) {
+  public void setD(final SimAgent pD) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
     this.fD = pD;
   }
   
-  public void setD1(final AgentInstance pD1) {
+  public void setD1(final SimAgent pD1) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
     this.fD1 = pD1;
   }
@@ -160,7 +160,7 @@ public abstract class Blubb_lhsMatch extends BasePatternMatch {
    * @return the new, mutable (partial) match object.
    * 
    */
-  public static Blubb_lhsMatch newMutableMatch(final AgentInstance pD, final AgentInstance pD1) {
+  public static Blubb_lhsMatch newMutableMatch(final SimAgent pD, final SimAgent pD1) {
     return new Mutable(pD, pD1);
   }
   
@@ -173,12 +173,12 @@ public abstract class Blubb_lhsMatch extends BasePatternMatch {
    * @return the (partial) match object.
    * 
    */
-  public static Blubb_lhsMatch newMatch(final AgentInstance pD, final AgentInstance pD1) {
+  public static Blubb_lhsMatch newMatch(final SimAgent pD, final SimAgent pD1) {
     return new Immutable(pD, pD1);
   }
   
   private static final class Mutable extends Blubb_lhsMatch {
-    Mutable(final AgentInstance pD, final AgentInstance pD1) {
+    Mutable(final SimAgent pD, final SimAgent pD1) {
       super(pD, pD1);
     }
     
@@ -189,7 +189,7 @@ public abstract class Blubb_lhsMatch extends BasePatternMatch {
   }
   
   private static final class Immutable extends Blubb_lhsMatch {
-    Immutable(final AgentInstance pD, final AgentInstance pD1) {
+    Immutable(final SimAgent pD, final SimAgent pD1) {
       super(pD, pD1);
     }
     

@@ -3,7 +3,7 @@
  */
 package patterngenerator.util;
 
-import biochemsimulation.reactionrules.reactionRules.AgentInstance;
+import biochemsimulation.reactioncontainer.SimAgent;
 import org.eclipse.viatra.query.runtime.api.IMatchProcessor;
 import patterngenerator.AtoB_rhsMatch;
 
@@ -21,7 +21,7 @@ public abstract class AtoB_rhsProcessor implements IMatchProcessor<AtoB_rhsMatch
    * @param pB the value of pattern parameter B in the currently processed match
    * 
    */
-  public abstract void process(final AgentInstance pA, final AgentInstance pB);
+  public abstract void process(final SimAgent pA, final SimAgent pB);
   
   @Override
   public void process(final AtoB_rhsMatch match) {

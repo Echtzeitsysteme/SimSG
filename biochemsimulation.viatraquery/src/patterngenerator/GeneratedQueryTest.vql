@@ -1,121 +1,121 @@
 package patterngenerator
 		
-import "http://www.reactionrules.biochemsimulation/ReactionRules" as reactionRules
+import "http://www.reactioncontainer.biochemsimulation.org/reactioncontainer" as reactionContainer
 
-pattern AtoB_lhs( A: AgentInstance,  B: AgentInstance) {
-	// Agent pattern for instances of agent A
-	AgentInstance.agent.name(A, "A");
-		// Site patterns for site x attached to instances of agent A 
-		AgentInstance.linkStates(A, A_x_ILS);
-		AgentInstanceLinkState.site.name(A_x_ILS, "x");
-		AgentInstanceLinkState.linkState.linkState(A_x_ILS, A_x_FL);
-		FreeLink(A_x_FL);
-	
-	// Agent pattern for instances of agent B
-	AgentInstance.agent.name(B, "B");
-		// Site patterns for site x attached to instances of agent B 
-		AgentInstance.linkStates(B, B_x_ILS);
-		AgentInstanceLinkState.site.name(B_x_ILS, "x");
-		AgentInstanceLinkState.linkState.linkState(B_x_ILS, B_x_FL);
-		FreeLink(B_x_FL);
+pattern support_BoundState(ls: SimBound) {
+	SimBound(ls);
 }
 
-pattern AtoB_rhs( A: AgentInstance,  B: AgentInstance) {
+pattern AtoB_lhs( A: SimAgent,  B: SimAgent) {
 	// Agent pattern for instances of agent A
-	AgentInstance.agent.name(A, "A");
+	SimAgent.Type(A, "A");
 		// Site patterns for site x attached to instances of agent A 
-		AgentInstance.linkStates(A, A_x_ILS);
-		AgentInstanceLinkState.site.name(A_x_ILS, "x");
-		AgentInstanceLinkState.linkState.linkState(A_x_ILS, A_x_IL);	
-		IndexedLink(A_x_IL);
-		AgentInstanceLinkState.site(A_x_ILS, A_x_Site);
-		AgentInstanceLinkState.attachedSite(A_x_ILS, B_x_Site);
-		AgentInstanceLinkState.attachedAgentInstance(A_x_ILS, B);
+		SimAgent.simSites(A, A_x);
+		SimSite.Type(A_x, "x");
+		SimSite.simLinkState(A_x, A_x_LS);
+		neg find support_BoundState(A_x_LS);
 	
 	// Agent pattern for instances of agent B
-	AgentInstance.agent.name(B, "B");
+	SimAgent.Type(B, "B");
 		// Site patterns for site x attached to instances of agent B 
-		AgentInstance.linkStates(B, B_x_ILS);
-		AgentInstanceLinkState.site.name(B_x_ILS, "x");
-		AgentInstanceLinkState.linkState.linkState(B_x_ILS, B_x_IL);	
-		IndexedLink(B_x_IL);
-		AgentInstanceLinkState.site(B_x_ILS, B_x_Site);
-		AgentInstanceLinkState.attachedSite(B_x_ILS, A_x_Site);
-		AgentInstanceLinkState.attachedAgentInstance(B_x_ILS, A);
+		SimAgent.simSites(B, B_x);
+		SimSite.Type(B_x, "x");
+		SimSite.simLinkState(B_x, B_x_LS);
+		neg find support_BoundState(B_x_LS);
 }
 
-pattern AtoNull_lhs( A: AgentInstance,  B: AgentInstance) {
+pattern AtoB_rhs( A: SimAgent,  B: SimAgent) {
 	// Agent pattern for instances of agent A
-	AgentInstance.agent.name(A, "A");
+	SimAgent.Type(A, "A");
 		// Site patterns for site x attached to instances of agent A 
-		AgentInstance.linkStates(A, A_x_ILS);
-		AgentInstanceLinkState.site.name(A_x_ILS, "x");
+		SimAgent.simSites(A, A_x);
+		SimSite.Type(A_x, "x");
+		SimSite.simLinkState(A_x, A_x_LS);
+		A_x_LS == B_x_LS;
 	
 	// Agent pattern for instances of agent B
-	AgentInstance.agent.name(B, "B");
+	SimAgent.Type(B, "B");
 		// Site patterns for site x attached to instances of agent B 
-		AgentInstance.linkStates(B, B_x_ILS);
-		AgentInstanceLinkState.site.name(B_x_ILS, "x");
+		SimAgent.simSites(B, B_x);
+		SimSite.Type(B_x, "x");
+		SimSite.simLinkState(B_x, B_x_LS);
+		B_x_LS == A_x_LS;
+}
+
+pattern AtoNull_lhs( A: SimAgent,  B: SimAgent) {
+	// Agent pattern for instances of agent A
+	SimAgent.Type(A, "A");
+		// Site patterns for site x attached to instances of agent A 
+		SimAgent.simSites(A, A_x);
+		SimSite.Type(A_x, "x");
+	
+	// Agent pattern for instances of agent B
+	SimAgent.Type(B, "B");
+		// Site patterns for site x attached to instances of agent B 
+		SimAgent.simSites(B, B_x);
+		SimSite.Type(B_x, "x");
 }
 
 
-pattern CtoNull_lhs( C: AgentInstance) {
+pattern CtoNull_lhs( C: SimAgent) {
 	// Agent pattern for instances of agent C
-	AgentInstance.agent.name(C, "C");
+	SimAgent.Type(C, "C");
 		// Site patterns for site x attached to instances of agent C 
-		AgentInstance.linkStates(C, C_x_ILS);
-		AgentInstanceLinkState.site.name(C_x_ILS, "x");
-		AgentInstance.siteStates(C, C_x_ISS);
-		AgentInstanceSiteState.site.name(C_x_ISS, "x");
-		AgentInstanceSiteState.siteState.state.name(C_x_ISS, "u");
+		SimAgent.simSites(C, C_x);
+		SimSite.Type(C_x, "x");
+		SimSite.simSiteState.Type(C_x, "u");
 }
 
-pattern CtoNull2_lhs( C: AgentInstance) {
+pattern CtoNull2_lhs( C: SimAgent) {
 	// Agent pattern for instances of agent C
-	AgentInstance.agent.name(C, "C");
+	SimAgent.Type(C, "C");
 		// Site patterns for site x attached to instances of agent C 
-		AgentInstance.linkStates(C, C_x_ILS);
-		AgentInstanceLinkState.site.name(C_x_ILS, "x");
+		SimAgent.simSites(C, C_x);
+		SimSite.Type(C_x, "x");
 }
 
-pattern AExact_lhs( A: AgentInstance) {
+pattern AExact_lhs( A: SimAgent) {
 	// Agent pattern for instances of agent A
-	AgentInstance.agent.name(A, "A");
+	SimAgent.Type(A, "A");
 		// Site patterns for site x attached to instances of agent A 
-		AgentInstance.linkStates(A, A_x_ILS);
-		AgentInstanceLinkState.site.name(A_x_ILS, "x");
-		AgentInstanceLinkState.linkState.linkState(A_x_ILS, A_x_EL);
-		IndexedLink(A_x_EL);
-		AgentInstanceLinkState.attachedSite.name(A_x_ILS, "x");
-		AgentInstanceLinkState.attachedAgentInstance.agent.name(A_x_ILS, "B");
+		SimAgent.simSites(A, A_x);
+		SimSite.Type(A_x, "x");
+		SimSite.simLinkState(A_x, A_x_LS);
+		// Create context for other SimAgent:
+		SimAgent.Type(A_B, "B");
+		SimAgent.simSites(A_B, A_B_x);
+		SimSite.Type(A_B_x, "x");
+		SimSite.simLinkState(A_B_x, A_B_x_LS);
+		// check for equality
+		A_x_LS == A_B_x_LS;
 }
 
-pattern bla_lhs( A: AgentInstance) {
+pattern bla_lhs( A: SimAgent) {
 	// Agent pattern for instances of agent A
-	AgentInstance.agent.name(A, "A");
+	SimAgent.Type(A, "A");
 		// Site patterns for site x attached to instances of agent A 
-		AgentInstance.linkStates(A, A_x_ILS);
-		AgentInstanceLinkState.site.name(A_x_ILS, "x");
-		AgentInstanceLinkState.linkState.linkState(A_x_ILS, A_x_SL);
-		IndexedLink(A_x_SL);
+		SimAgent.simSites(A, A_x);
+		SimSite.Type(A_x, "x");
+		SimSite.simLinkState(A_x, A_x_LS);
+		find support_BoundState(A_x_LS);
 }
 
-pattern blubb_lhs( D: AgentInstance,  D1: AgentInstance) {
+pattern blubb_lhs( D: SimAgent,  D1: SimAgent) {
 	// Agent pattern for instances of agent D
-	AgentInstance.agent.name(D, "D");
+	SimAgent.Type(D, "D");
 		// Site patterns for site c attached to instances of agent D 
-		AgentInstance.linkStates(D, D_c_ILS);
-		AgentInstanceLinkState.site.name(D_c_ILS, "c");
-		AgentInstanceLinkState.linkState.linkState(D_c_ILS, D_c_FL);
-		FreeLink(D_c_FL);
+		SimAgent.simSites(D, D_c);
+		SimSite.Type(D_c, "c");
+		SimSite.simLinkState(D_c, D_c_LS);
+		neg find support_BoundState(D_c_LS);
 	
 	// Agent pattern for instances of agent D1
-	AgentInstance.agent.name(D1, "D");
+	SimAgent.Type(D1, "D");
 		// Site patterns for site c attached to instances of agent D1 
-		AgentInstance.linkStates(D1, D1_c_ILS);
-		AgentInstanceLinkState.site.name(D1_c_ILS, "c");
-		AgentInstanceLinkState.linkState.linkState(D1_c_ILS, D1_c_FL);
-		FreeLink(D1_c_FL);
+		SimAgent.simSites(D1, D1_c);
+		SimSite.Type(D1_c, "c");
+		SimSite.simLinkState(D1_c, D1_c_LS);
+		neg find support_BoundState(D1_c_LS);
 	 D1 != D;
 }
 

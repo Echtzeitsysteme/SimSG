@@ -8,23 +8,23 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Agent</b></em>'.
+ * A representation of the model object '<em><b>Sim Agent</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactioncontainer.Agent#getName <em>Name</em>}</li>
- *   <li>{@link biochemsimulation.reactioncontainer.Agent#getType <em>Type</em>}</li>
- *   <li>{@link biochemsimulation.reactioncontainer.Agent#getSite <em>Site</em>}</li>
+ *   <li>{@link biochemsimulation.reactioncontainer.SimAgent#getName <em>Name</em>}</li>
+ *   <li>{@link biochemsimulation.reactioncontainer.SimAgent#getType <em>Type</em>}</li>
+ *   <li>{@link biochemsimulation.reactioncontainer.SimAgent#getSimSites <em>Sim Sites</em>}</li>
  * </ul>
  *
- * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getAgent()
+ * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimAgent()
  * @model
  * @generated
  */
-public interface Agent extends EObject {
+public interface SimAgent extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -35,14 +35,14 @@ public interface Agent extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getAgent_Name()
+	 * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimAgent_Name()
 	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link biochemsimulation.reactioncontainer.Agent#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link biochemsimulation.reactioncontainer.SimAgent#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -61,14 +61,14 @@ public interface Agent extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see #setType(String)
-	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getAgent_Type()
+	 * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimAgent_Type()
 	 * @model dataType="org.eclipse.emf.ecore.xml.type.String"
 	 * @generated
 	 */
 	String getType();
 
 	/**
-	 * Sets the value of the '{@link biochemsimulation.reactioncontainer.Agent#getType <em>Type</em>}' attribute.
+	 * Sets the value of the '{@link biochemsimulation.reactioncontainer.SimAgent#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Type</em>' attribute.
@@ -78,19 +78,19 @@ public interface Agent extends EObject {
 	void setType(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Site</b></em>' containment reference list.
-	 * The list contents are of type {@link biochemsimulation.reactioncontainer.Site}.
+	 * Returns the value of the '<em><b>Sim Sites</b></em>' containment reference list.
+	 * The list contents are of type {@link biochemsimulation.reactioncontainer.SimSite}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Site</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Sim Sites</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Site</em>' containment reference list.
-	 * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage#getAgent_Site()
+	 * @return the value of the '<em>Sim Sites</em>' containment reference list.
+	 * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimAgent_SimSites()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Site> getSite();
+	EList<SimSite> getSimSites();
 
-} // Agent
+} // SimAgent

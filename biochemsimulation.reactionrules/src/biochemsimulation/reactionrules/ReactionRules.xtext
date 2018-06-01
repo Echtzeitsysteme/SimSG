@@ -4,54 +4,12 @@ generate reactionRules "http://www.reactionrules.biochemsimulation/ReactionRules
 
 ReactionRuleModel:
 	model = Model
-	reactionContainer = ReactionContainer
 	(reactionProperties+=ReactionProperty)*
-;
-
-ModelUri:
-	'URI'
-	uri = STRING
-;
-
-ModelPath:
-	'PATH'
-	path = STRING
-;
-
-ModelLocation:
-	ModelUri|ModelPath
 ;
 
 Model:
 	'ModelID'
 	name=ID
-	(location = ModelLocation)?
-;
-
-ReactionContainer:
-	{ReactionContainer}
-	(agentInstances += AgentInstance)*
-;
-
-AgentInstanceSiteState:
-	site = [Site]
-	siteState = SiteState
-;
-
-AgentInstanceLinkState:
-	site = [Site]
-	attachedSite = [Site]
-	attachedAgent = [Agent]
-	attachedAgentInstance = [AgentInstance]
-	linkState = LinkState
-;
-
-AgentInstance:
-	'AgentInstance'
-	name=ID
-	agent = [Agent]
-	siteStates += AgentInstanceSiteState
-	linkStates += AgentInstanceLinkState
 ;
 
 ReactionProperty returns ReactionProperty:

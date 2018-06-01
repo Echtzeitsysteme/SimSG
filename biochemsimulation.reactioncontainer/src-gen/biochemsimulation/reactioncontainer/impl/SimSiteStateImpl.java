@@ -2,8 +2,8 @@
  */
 package biochemsimulation.reactioncontainer.impl;
 
-import biochemsimulation.reactioncontainer.ReactioncontainerPackage;
-import biochemsimulation.reactioncontainer.SiteState;
+import biochemsimulation.reactioncontainer.ReactionContainerPackage;
+import biochemsimulation.reactioncontainer.SimSiteState;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -14,18 +14,18 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Site State</b></em>'.
+ * An implementation of the model object '<em><b>Sim Site State</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactioncontainer.impl.SiteStateImpl#getType <em>Type</em>}</li>
+ *   <li>{@link biochemsimulation.reactioncontainer.impl.SimSiteStateImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SiteStateImpl extends MinimalEObjectImpl.Container implements SiteState {
+public class SimSiteStateImpl extends MinimalEObjectImpl.Container implements SimSiteState {
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -51,7 +51,7 @@ public class SiteStateImpl extends MinimalEObjectImpl.Container implements SiteS
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SiteStateImpl() {
+	protected SimSiteStateImpl() {
 		super();
 	}
 
@@ -62,7 +62,7 @@ public class SiteStateImpl extends MinimalEObjectImpl.Container implements SiteS
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ReactioncontainerPackage.Literals.SITE_STATE;
+		return ReactionContainerPackage.Literals.SIM_SITE_STATE;
 	}
 
 	/**
@@ -83,8 +83,8 @@ public class SiteStateImpl extends MinimalEObjectImpl.Container implements SiteS
 		String oldType = type;
 		type = newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ReactioncontainerPackage.SITE_STATE__TYPE, oldType,
-					type));
+			eNotify(new ENotificationImpl(this, Notification.SET, ReactionContainerPackage.SIM_SITE_STATE__TYPE,
+					oldType, type));
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class SiteStateImpl extends MinimalEObjectImpl.Container implements SiteS
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SITE_STATE__TYPE:
+		case ReactionContainerPackage.SIM_SITE_STATE__TYPE:
 			return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -109,7 +109,7 @@ public class SiteStateImpl extends MinimalEObjectImpl.Container implements SiteS
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SITE_STATE__TYPE:
+		case ReactionContainerPackage.SIM_SITE_STATE__TYPE:
 			setType((String) newValue);
 			return;
 		}
@@ -124,7 +124,7 @@ public class SiteStateImpl extends MinimalEObjectImpl.Container implements SiteS
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SITE_STATE__TYPE:
+		case ReactionContainerPackage.SIM_SITE_STATE__TYPE:
 			setType(TYPE_EDEFAULT);
 			return;
 		}
@@ -139,7 +139,7 @@ public class SiteStateImpl extends MinimalEObjectImpl.Container implements SiteS
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ReactioncontainerPackage.SITE_STATE__TYPE:
+		case ReactionContainerPackage.SIM_SITE_STATE__TYPE:
 			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 		}
 		return super.eIsSet(featureID);
@@ -162,4 +162,4 @@ public class SiteStateImpl extends MinimalEObjectImpl.Container implements SiteS
 		return result.toString();
 	}
 
-} //SiteStateImpl
+} //SimSiteStateImpl

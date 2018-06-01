@@ -3,7 +3,7 @@
  */
 package patterngenerator;
 
-import biochemsimulation.reactionrules.reactionRules.AgentInstance;
+import biochemsimulation.reactioncontainer.SimAgent;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -27,13 +27,13 @@ import patterngenerator.util.AtoNull_lhsQuerySpecification;
  */
 @SuppressWarnings("all")
 public abstract class AtoNull_lhsMatch extends BasePatternMatch {
-  private AgentInstance fA;
+  private SimAgent fA;
   
-  private AgentInstance fB;
+  private SimAgent fB;
   
   private static List<String> parameterNames = makeImmutableList("A", "B");
   
-  private AtoNull_lhsMatch(final AgentInstance pA, final AgentInstance pB) {
+  private AtoNull_lhsMatch(final SimAgent pA, final SimAgent pB) {
     this.fA = pA;
     this.fB = pB;
   }
@@ -45,11 +45,11 @@ public abstract class AtoNull_lhsMatch extends BasePatternMatch {
     return null;
   }
   
-  public AgentInstance getA() {
+  public SimAgent getA() {
     return this.fA;
   }
   
-  public AgentInstance getB() {
+  public SimAgent getB() {
     return this.fB;
   }
   
@@ -57,22 +57,22 @@ public abstract class AtoNull_lhsMatch extends BasePatternMatch {
   public boolean set(final String parameterName, final Object newValue) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
     if ("A".equals(parameterName) ) {
-        this.fA = (AgentInstance) newValue;
+        this.fA = (SimAgent) newValue;
         return true;
     }
     if ("B".equals(parameterName) ) {
-        this.fB = (AgentInstance) newValue;
+        this.fB = (SimAgent) newValue;
         return true;
     }
     return false;
   }
   
-  public void setA(final AgentInstance pA) {
+  public void setA(final SimAgent pA) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
     this.fA = pA;
   }
   
-  public void setB(final AgentInstance pB) {
+  public void setB(final SimAgent pB) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
     this.fB = pB;
   }
@@ -160,7 +160,7 @@ public abstract class AtoNull_lhsMatch extends BasePatternMatch {
    * @return the new, mutable (partial) match object.
    * 
    */
-  public static AtoNull_lhsMatch newMutableMatch(final AgentInstance pA, final AgentInstance pB) {
+  public static AtoNull_lhsMatch newMutableMatch(final SimAgent pA, final SimAgent pB) {
     return new Mutable(pA, pB);
   }
   
@@ -173,12 +173,12 @@ public abstract class AtoNull_lhsMatch extends BasePatternMatch {
    * @return the (partial) match object.
    * 
    */
-  public static AtoNull_lhsMatch newMatch(final AgentInstance pA, final AgentInstance pB) {
+  public static AtoNull_lhsMatch newMatch(final SimAgent pA, final SimAgent pB) {
     return new Immutable(pA, pB);
   }
   
   private static final class Mutable extends AtoNull_lhsMatch {
-    Mutable(final AgentInstance pA, final AgentInstance pB) {
+    Mutable(final SimAgent pA, final SimAgent pB) {
       super(pA, pB);
     }
     
@@ -189,7 +189,7 @@ public abstract class AtoNull_lhsMatch extends BasePatternMatch {
   }
   
   private static final class Immutable extends AtoNull_lhsMatch {
-    Immutable(final AgentInstance pA, final AgentInstance pB) {
+    Immutable(final SimAgent pA, final SimAgent pB) {
       super(pA, pB);
     }
     

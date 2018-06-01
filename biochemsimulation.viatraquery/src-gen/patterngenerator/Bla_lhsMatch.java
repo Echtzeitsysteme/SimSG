@@ -3,7 +3,7 @@
  */
 package patterngenerator;
 
-import biochemsimulation.reactionrules.reactionRules.AgentInstance;
+import biochemsimulation.reactioncontainer.SimAgent;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -27,11 +27,11 @@ import patterngenerator.util.Bla_lhsQuerySpecification;
  */
 @SuppressWarnings("all")
 public abstract class Bla_lhsMatch extends BasePatternMatch {
-  private AgentInstance fA;
+  private SimAgent fA;
   
   private static List<String> parameterNames = makeImmutableList("A");
   
-  private Bla_lhsMatch(final AgentInstance pA) {
+  private Bla_lhsMatch(final SimAgent pA) {
     this.fA = pA;
   }
   
@@ -41,7 +41,7 @@ public abstract class Bla_lhsMatch extends BasePatternMatch {
     return null;
   }
   
-  public AgentInstance getA() {
+  public SimAgent getA() {
     return this.fA;
   }
   
@@ -49,13 +49,13 @@ public abstract class Bla_lhsMatch extends BasePatternMatch {
   public boolean set(final String parameterName, final Object newValue) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
     if ("A".equals(parameterName) ) {
-        this.fA = (AgentInstance) newValue;
+        this.fA = (SimAgent) newValue;
         return true;
     }
     return false;
   }
   
-  public void setA(final AgentInstance pA) {
+  public void setA(final SimAgent pA) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
     this.fA = pA;
   }
@@ -141,7 +141,7 @@ public abstract class Bla_lhsMatch extends BasePatternMatch {
    * @return the new, mutable (partial) match object.
    * 
    */
-  public static Bla_lhsMatch newMutableMatch(final AgentInstance pA) {
+  public static Bla_lhsMatch newMutableMatch(final SimAgent pA) {
     return new Mutable(pA);
   }
   
@@ -153,12 +153,12 @@ public abstract class Bla_lhsMatch extends BasePatternMatch {
    * @return the (partial) match object.
    * 
    */
-  public static Bla_lhsMatch newMatch(final AgentInstance pA) {
+  public static Bla_lhsMatch newMatch(final SimAgent pA) {
     return new Immutable(pA);
   }
   
   private static final class Mutable extends Bla_lhsMatch {
-    Mutable(final AgentInstance pA) {
+    Mutable(final SimAgent pA) {
       super(pA);
     }
     
@@ -169,7 +169,7 @@ public abstract class Bla_lhsMatch extends BasePatternMatch {
   }
   
   private static final class Immutable extends Bla_lhsMatch {
-    Immutable(final AgentInstance pA) {
+    Immutable(final SimAgent pA) {
       super(pA);
     }
     

@@ -9,17 +9,17 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see biochemsimulation.reactioncontainer.ReactioncontainerPackage
+ * @see biochemsimulation.reactioncontainer.ReactionContainerPackage
  * @generated
  */
-public interface ReactioncontainerFactory extends EFactory {
+public interface ReactionContainerFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ReactioncontainerFactory eINSTANCE = biochemsimulation.reactioncontainer.impl.ReactioncontainerFactoryImpl.init();
+	ReactionContainerFactory eINSTANCE = biochemsimulation.reactioncontainer.impl.ReactionContainerFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Reaction Container</em>'.
@@ -31,49 +31,49 @@ public interface ReactioncontainerFactory extends EFactory {
 	ReactionContainer createReactionContainer();
 
 	/**
-	 * Returns a new object of class '<em>Agent</em>'.
+	 * Returns a new object of class '<em>Sim Agent</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Agent</em>'.
+	 * @return a new object of class '<em>Sim Agent</em>'.
 	 * @generated
 	 */
-	Agent createAgent();
+	SimAgent createSimAgent();
 
 	/**
-	 * Returns a new object of class '<em>Site</em>'.
+	 * Returns a new object of class '<em>Sim Site</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Site</em>'.
+	 * @return a new object of class '<em>Sim Site</em>'.
 	 * @generated
 	 */
-	Site createSite();
+	SimSite createSimSite();
 
 	/**
-	 * Returns a new object of class '<em>Site State</em>'.
+	 * Returns a new object of class '<em>Sim Site State</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Site State</em>'.
+	 * @return a new object of class '<em>Sim Site State</em>'.
 	 * @generated
 	 */
-	SiteState createSiteState();
+	SimSiteState createSimSiteState();
 
 	/**
-	 * Returns a new object of class '<em>Free</em>'.
+	 * Returns a new object of class '<em>Sim Free</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Free</em>'.
+	 * @return a new object of class '<em>Sim Free</em>'.
 	 * @generated
 	 */
-	Free createFree();
+	SimFree createSimFree();
 
 	/**
-	 * Returns a new object of class '<em>Bound</em>'.
+	 * Returns a new object of class '<em>Sim Bound</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Bound</em>'.
+	 * @return a new object of class '<em>Sim Bound</em>'.
 	 * @generated
 	 */
-	Bound createBound();
+	SimBound createSimBound();
 
 	/**
 	 * Returns the package supported by this factory.
@@ -82,6 +82,6 @@ public interface ReactioncontainerFactory extends EFactory {
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
-	ReactioncontainerPackage getReactioncontainerPackage();
+	ReactionContainerPackage getReactionContainerPackage();
 
-} //ReactioncontainerFactory
+} //ReactionContainerFactory

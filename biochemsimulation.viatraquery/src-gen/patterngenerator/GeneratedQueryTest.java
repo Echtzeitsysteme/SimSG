@@ -14,6 +14,7 @@ import patterngenerator.Bla_lhsMatcher;
 import patterngenerator.Blubb_lhsMatcher;
 import patterngenerator.CtoNull2_lhsMatcher;
 import patterngenerator.CtoNull_lhsMatcher;
+import patterngenerator.Support_BoundStateMatcher;
 import patterngenerator.util.AExact_lhsQuerySpecification;
 import patterngenerator.util.AtoB_lhsQuerySpecification;
 import patterngenerator.util.AtoB_rhsQuerySpecification;
@@ -22,6 +23,7 @@ import patterngenerator.util.Bla_lhsQuerySpecification;
 import patterngenerator.util.Blubb_lhsQuerySpecification;
 import patterngenerator.util.CtoNull2_lhsQuerySpecification;
 import patterngenerator.util.CtoNull_lhsQuerySpecification;
+import patterngenerator.util.Support_BoundStateQuerySpecification;
 
 /**
  * A pattern group formed of all public patterns defined in GeneratedQueryTest.vql.
@@ -31,6 +33,7 @@ import patterngenerator.util.CtoNull_lhsQuerySpecification;
  * in order to achieve better performance than one-by-one on-demand matcher initialization.
  * 
  * <p> From package patterngenerator, the group contains the definition of the following patterns: <ul>
+ * <li>support_BoundState</li>
  * <li>AtoB_lhs</li>
  * <li>AtoB_rhs</li>
  * <li>AtoNull_lhs</li>
@@ -63,6 +66,7 @@ public final class GeneratedQueryTest extends BaseGeneratedPatternGroup {
   private static GeneratedQueryTest INSTANCE;
   
   private GeneratedQueryTest() throws ViatraQueryException {
+    querySpecifications.add(Support_BoundStateQuerySpecification.instance());
     querySpecifications.add(AtoB_lhsQuerySpecification.instance());
     querySpecifications.add(AtoB_rhsQuerySpecification.instance());
     querySpecifications.add(AtoNull_lhsQuerySpecification.instance());
@@ -71,6 +75,14 @@ public final class GeneratedQueryTest extends BaseGeneratedPatternGroup {
     querySpecifications.add(AExact_lhsQuerySpecification.instance());
     querySpecifications.add(Bla_lhsQuerySpecification.instance());
     querySpecifications.add(Blubb_lhsQuerySpecification.instance());
+  }
+  
+  public Support_BoundStateQuerySpecification getSupport_BoundState() throws ViatraQueryException {
+    return Support_BoundStateQuerySpecification.instance();
+  }
+  
+  public Support_BoundStateMatcher getSupport_BoundState(final ViatraQueryEngine engine) throws ViatraQueryException {
+    return Support_BoundStateMatcher.on(engine);
   }
   
   public AtoB_lhsQuerySpecification getAtoB_lhs() throws ViatraQueryException {

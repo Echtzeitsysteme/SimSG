@@ -2,47 +2,47 @@
  */
 package biochemsimulation.reactioncontainer.impl;
 
-import biochemsimulation.reactioncontainer.LinkState;
-import biochemsimulation.reactioncontainer.ReactioncontainerPackage;
+import biochemsimulation.reactioncontainer.ReactionContainerPackage;
+import biochemsimulation.reactioncontainer.SimBound;
+import biochemsimulation.reactioncontainer.SimSite;
 
-import biochemsimulation.reactioncontainer.Site;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Link State</b></em>'.
+ * An implementation of the model object '<em><b>Sim Bound</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactioncontainer.impl.LinkStateImpl#getSite1 <em>Site1</em>}</li>
+ *   <li>{@link biochemsimulation.reactioncontainer.impl.SimBoundImpl#getSimSite2 <em>Sim Site2</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class LinkStateImpl extends MinimalEObjectImpl.Container implements LinkState {
+public class SimBoundImpl extends SimLinkStateImpl implements SimBound {
 	/**
-	 * The cached value of the '{@link #getSite1() <em>Site1</em>}' reference.
+	 * The cached value of the '{@link #getSimSite2() <em>Sim Site2</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSite1()
+	 * @see #getSimSite2()
 	 * @generated
 	 * @ordered
 	 */
-	protected Site site1;
+	protected SimSite simSite2;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LinkStateImpl() {
+	protected SimBoundImpl() {
 		super();
 	}
 
@@ -53,7 +53,7 @@ public abstract class LinkStateImpl extends MinimalEObjectImpl.Container impleme
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ReactioncontainerPackage.Literals.LINK_STATE;
+		return ReactionContainerPackage.Literals.SIM_BOUND;
 	}
 
 	/**
@@ -61,17 +61,17 @@ public abstract class LinkStateImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Site getSite1() {
-		if (site1 != null && site1.eIsProxy()) {
-			InternalEObject oldSite1 = (InternalEObject) site1;
-			site1 = (Site) eResolveProxy(oldSite1);
-			if (site1 != oldSite1) {
+	public SimSite getSimSite2() {
+		if (simSite2 != null && simSite2.eIsProxy()) {
+			InternalEObject oldSimSite2 = (InternalEObject) simSite2;
+			simSite2 = (SimSite) eResolveProxy(oldSimSite2);
+			if (simSite2 != oldSimSite2) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							ReactioncontainerPackage.LINK_STATE__SITE1, oldSite1, site1));
+							ReactionContainerPackage.SIM_BOUND__SIM_SITE2, oldSimSite2, simSite2));
 			}
 		}
-		return site1;
+		return simSite2;
 	}
 
 	/**
@@ -79,8 +79,8 @@ public abstract class LinkStateImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Site basicGetSite1() {
-		return site1;
+	public SimSite basicGetSimSite2() {
+		return simSite2;
 	}
 
 	/**
@@ -88,12 +88,12 @@ public abstract class LinkStateImpl extends MinimalEObjectImpl.Container impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSite1(Site newSite1) {
-		Site oldSite1 = site1;
-		site1 = newSite1;
+	public void setSimSite2(SimSite newSimSite2) {
+		SimSite oldSimSite2 = simSite2;
+		simSite2 = newSimSite2;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ReactioncontainerPackage.LINK_STATE__SITE1, oldSite1,
-					site1));
+			eNotify(new ENotificationImpl(this, Notification.SET, ReactionContainerPackage.SIM_BOUND__SIM_SITE2,
+					oldSimSite2, simSite2));
 	}
 
 	/**
@@ -104,10 +104,10 @@ public abstract class LinkStateImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ReactioncontainerPackage.LINK_STATE__SITE1:
+		case ReactionContainerPackage.SIM_BOUND__SIM_SITE2:
 			if (resolve)
-				return getSite1();
-			return basicGetSite1();
+				return getSimSite2();
+			return basicGetSimSite2();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -120,8 +120,8 @@ public abstract class LinkStateImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ReactioncontainerPackage.LINK_STATE__SITE1:
-			setSite1((Site) newValue);
+		case ReactionContainerPackage.SIM_BOUND__SIM_SITE2:
+			setSimSite2((SimSite) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -135,8 +135,8 @@ public abstract class LinkStateImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ReactioncontainerPackage.LINK_STATE__SITE1:
-			setSite1((Site) null);
+		case ReactionContainerPackage.SIM_BOUND__SIM_SITE2:
+			setSimSite2((SimSite) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -150,10 +150,10 @@ public abstract class LinkStateImpl extends MinimalEObjectImpl.Container impleme
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ReactioncontainerPackage.LINK_STATE__SITE1:
-			return site1 != null;
+		case ReactionContainerPackage.SIM_BOUND__SIM_SITE2:
+			return simSite2 != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //LinkStateImpl
+} //SimBoundImpl

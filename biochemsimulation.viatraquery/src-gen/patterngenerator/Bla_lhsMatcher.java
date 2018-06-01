@@ -3,7 +3,7 @@
  */
 package patterngenerator;
 
-import biochemsimulation.reactionrules.reactionRules.AgentInstance;
+import biochemsimulation.reactioncontainer.SimAgent;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,14 +29,14 @@ import patterngenerator.util.Bla_lhsQuerySpecification;
  * 
  * <p>Original source:
  * <code><pre>
- * pattern bla_lhs( A: AgentInstance) {
+ * pattern bla_lhs( A: SimAgent) {
  * 	// Agent pattern for instances of agent A
- * 	AgentInstance.agent.name(A, "A");
+ * 	SimAgent.Type(A, "A");
  * 		// Site patterns for site x attached to instances of agent A 
- * 		AgentInstance.linkStates(A, A_x_ILS);
- * 		AgentInstanceLinkState.site.name(A_x_ILS, "x");
- * 		AgentInstanceLinkState.linkState.linkState(A_x_ILS, A_x_SL);
- * 		IndexedLink(A_x_SL);
+ * 		SimAgent.simSites(A, A_x);
+ * 		SimSite.Type(A_x, "x");
+ * 		SimSite.simLinkState(A_x, A_x_LS);
+ * 		find support_BoundState(A_x_LS);
  * }
  * </pre></code>
  * 
@@ -96,7 +96,7 @@ public class Bla_lhsMatcher extends BaseMatcher<Bla_lhsMatch> {
    * @return matches represented as a Bla_lhsMatch object.
    * 
    */
-  public Collection<Bla_lhsMatch> getAllMatches(final AgentInstance pA) {
+  public Collection<Bla_lhsMatch> getAllMatches(final SimAgent pA) {
     return rawGetAllMatches(new Object[]{pA});
   }
   
@@ -107,7 +107,7 @@ public class Bla_lhsMatcher extends BaseMatcher<Bla_lhsMatch> {
    * @return a match represented as a Bla_lhsMatch object, or null if no match is found.
    * 
    */
-  public Bla_lhsMatch getOneArbitraryMatch(final AgentInstance pA) {
+  public Bla_lhsMatch getOneArbitraryMatch(final SimAgent pA) {
     return rawGetOneArbitraryMatch(new Object[]{pA});
   }
   
@@ -118,7 +118,7 @@ public class Bla_lhsMatcher extends BaseMatcher<Bla_lhsMatch> {
    * @return true if the input is a valid (partial) match of the pattern.
    * 
    */
-  public boolean hasMatch(final AgentInstance pA) {
+  public boolean hasMatch(final SimAgent pA) {
     return rawHasMatch(new Object[]{pA});
   }
   
@@ -128,7 +128,7 @@ public class Bla_lhsMatcher extends BaseMatcher<Bla_lhsMatch> {
    * @return the number of pattern matches found.
    * 
    */
-  public int countMatches(final AgentInstance pA) {
+  public int countMatches(final SimAgent pA) {
     return rawCountMatches(new Object[]{pA});
   }
   
@@ -138,7 +138,7 @@ public class Bla_lhsMatcher extends BaseMatcher<Bla_lhsMatch> {
    * @param processor the action that will process each pattern match.
    * 
    */
-  public void forEachMatch(final AgentInstance pA, final IMatchProcessor<? super Bla_lhsMatch> processor) {
+  public void forEachMatch(final SimAgent pA, final IMatchProcessor<? super Bla_lhsMatch> processor) {
     rawForEachMatch(new Object[]{pA}, processor);
   }
   
@@ -150,7 +150,7 @@ public class Bla_lhsMatcher extends BaseMatcher<Bla_lhsMatch> {
    * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
    * 
    */
-  public boolean forOneArbitraryMatch(final AgentInstance pA, final IMatchProcessor<? super Bla_lhsMatch> processor) {
+  public boolean forOneArbitraryMatch(final SimAgent pA, final IMatchProcessor<? super Bla_lhsMatch> processor) {
     return rawForOneArbitraryMatch(new Object[]{pA}, processor);
   }
   
@@ -162,7 +162,7 @@ public class Bla_lhsMatcher extends BaseMatcher<Bla_lhsMatch> {
    * @return the (partial) match object.
    * 
    */
-  public Bla_lhsMatch newMatch(final AgentInstance pA) {
+  public Bla_lhsMatch newMatch(final SimAgent pA) {
     return Bla_lhsMatch.newMatch(pA);
   }
   
@@ -171,8 +171,8 @@ public class Bla_lhsMatcher extends BaseMatcher<Bla_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  protected Set<AgentInstance> rawAccumulateAllValuesOfA(final Object[] parameters) {
-    Set<AgentInstance> results = new HashSet<AgentInstance>();
+  protected Set<SimAgent> rawAccumulateAllValuesOfA(final Object[] parameters) {
+    Set<SimAgent> results = new HashSet<SimAgent>();
     rawAccumulateAllValues(POSITION_A, parameters, results);
     return results;
   }
@@ -182,14 +182,14 @@ public class Bla_lhsMatcher extends BaseMatcher<Bla_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  public Set<AgentInstance> getAllValuesOfA() {
+  public Set<SimAgent> getAllValuesOfA() {
     return rawAccumulateAllValuesOfA(emptyArray());
   }
   
   @Override
   protected Bla_lhsMatch tupleToMatch(final Tuple t) {
     try {
-        return Bla_lhsMatch.newMatch((AgentInstance) t.get(POSITION_A));
+        return Bla_lhsMatch.newMatch((SimAgent) t.get(POSITION_A));
     } catch(ClassCastException e) {
         LOGGER.error("Element(s) in tuple not properly typed!",e);
         return null;
@@ -199,7 +199,7 @@ public class Bla_lhsMatcher extends BaseMatcher<Bla_lhsMatch> {
   @Override
   protected Bla_lhsMatch arrayToMatch(final Object[] match) {
     try {
-        return Bla_lhsMatch.newMatch((AgentInstance) match[POSITION_A]);
+        return Bla_lhsMatch.newMatch((SimAgent) match[POSITION_A]);
     } catch(ClassCastException e) {
         LOGGER.error("Element(s) in array not properly typed!",e);
         return null;
@@ -209,7 +209,7 @@ public class Bla_lhsMatcher extends BaseMatcher<Bla_lhsMatch> {
   @Override
   protected Bla_lhsMatch arrayToMatchMutable(final Object[] match) {
     try {
-        return Bla_lhsMatch.newMutableMatch((AgentInstance) match[POSITION_A]);
+        return Bla_lhsMatch.newMutableMatch((SimAgent) match[POSITION_A]);
     } catch(ClassCastException e) {
         LOGGER.error("Element(s) in array not properly typed!",e);
         return null;

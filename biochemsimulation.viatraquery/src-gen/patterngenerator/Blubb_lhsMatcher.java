@@ -3,7 +3,7 @@
  */
 package patterngenerator;
 
-import biochemsimulation.reactionrules.reactionRules.AgentInstance;
+import biochemsimulation.reactioncontainer.SimAgent;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,22 +29,22 @@ import patterngenerator.util.Blubb_lhsQuerySpecification;
  * 
  * <p>Original source:
  * <code><pre>
- * pattern blubb_lhs( D: AgentInstance,  D1: AgentInstance) {
+ * pattern blubb_lhs( D: SimAgent,  D1: SimAgent) {
  * 	// Agent pattern for instances of agent D
- * 	AgentInstance.agent.name(D, "D");
+ * 	SimAgent.Type(D, "D");
  * 		// Site patterns for site c attached to instances of agent D 
- * 		AgentInstance.linkStates(D, D_c_ILS);
- * 		AgentInstanceLinkState.site.name(D_c_ILS, "c");
- * 		AgentInstanceLinkState.linkState.linkState(D_c_ILS, D_c_FL);
- * 		FreeLink(D_c_FL);
+ * 		SimAgent.simSites(D, D_c);
+ * 		SimSite.Type(D_c, "c");
+ * 		SimSite.simLinkState(D_c, D_c_LS);
+ * 		neg find support_BoundState(D_c_LS);
  * 	
  * 	// Agent pattern for instances of agent D1
- * 	AgentInstance.agent.name(D1, "D");
+ * 	SimAgent.Type(D1, "D");
  * 		// Site patterns for site c attached to instances of agent D1 
- * 		AgentInstance.linkStates(D1, D1_c_ILS);
- * 		AgentInstanceLinkState.site.name(D1_c_ILS, "c");
- * 		AgentInstanceLinkState.linkState.linkState(D1_c_ILS, D1_c_FL);
- * 		FreeLink(D1_c_FL);
+ * 		SimAgent.simSites(D1, D1_c);
+ * 		SimSite.Type(D1_c, "c");
+ * 		SimSite.simLinkState(D1_c, D1_c_LS);
+ * 		neg find support_BoundState(D1_c_LS);
  * 	 D1 != D;
  * }
  * </pre></code>
@@ -108,7 +108,7 @@ public class Blubb_lhsMatcher extends BaseMatcher<Blubb_lhsMatch> {
    * @return matches represented as a Blubb_lhsMatch object.
    * 
    */
-  public Collection<Blubb_lhsMatch> getAllMatches(final AgentInstance pD, final AgentInstance pD1) {
+  public Collection<Blubb_lhsMatch> getAllMatches(final SimAgent pD, final SimAgent pD1) {
     return rawGetAllMatches(new Object[]{pD, pD1});
   }
   
@@ -120,7 +120,7 @@ public class Blubb_lhsMatcher extends BaseMatcher<Blubb_lhsMatch> {
    * @return a match represented as a Blubb_lhsMatch object, or null if no match is found.
    * 
    */
-  public Blubb_lhsMatch getOneArbitraryMatch(final AgentInstance pD, final AgentInstance pD1) {
+  public Blubb_lhsMatch getOneArbitraryMatch(final SimAgent pD, final SimAgent pD1) {
     return rawGetOneArbitraryMatch(new Object[]{pD, pD1});
   }
   
@@ -132,7 +132,7 @@ public class Blubb_lhsMatcher extends BaseMatcher<Blubb_lhsMatch> {
    * @return true if the input is a valid (partial) match of the pattern.
    * 
    */
-  public boolean hasMatch(final AgentInstance pD, final AgentInstance pD1) {
+  public boolean hasMatch(final SimAgent pD, final SimAgent pD1) {
     return rawHasMatch(new Object[]{pD, pD1});
   }
   
@@ -143,7 +143,7 @@ public class Blubb_lhsMatcher extends BaseMatcher<Blubb_lhsMatch> {
    * @return the number of pattern matches found.
    * 
    */
-  public int countMatches(final AgentInstance pD, final AgentInstance pD1) {
+  public int countMatches(final SimAgent pD, final SimAgent pD1) {
     return rawCountMatches(new Object[]{pD, pD1});
   }
   
@@ -154,7 +154,7 @@ public class Blubb_lhsMatcher extends BaseMatcher<Blubb_lhsMatch> {
    * @param processor the action that will process each pattern match.
    * 
    */
-  public void forEachMatch(final AgentInstance pD, final AgentInstance pD1, final IMatchProcessor<? super Blubb_lhsMatch> processor) {
+  public void forEachMatch(final SimAgent pD, final SimAgent pD1, final IMatchProcessor<? super Blubb_lhsMatch> processor) {
     rawForEachMatch(new Object[]{pD, pD1}, processor);
   }
   
@@ -167,7 +167,7 @@ public class Blubb_lhsMatcher extends BaseMatcher<Blubb_lhsMatch> {
    * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
    * 
    */
-  public boolean forOneArbitraryMatch(final AgentInstance pD, final AgentInstance pD1, final IMatchProcessor<? super Blubb_lhsMatch> processor) {
+  public boolean forOneArbitraryMatch(final SimAgent pD, final SimAgent pD1, final IMatchProcessor<? super Blubb_lhsMatch> processor) {
     return rawForOneArbitraryMatch(new Object[]{pD, pD1}, processor);
   }
   
@@ -180,7 +180,7 @@ public class Blubb_lhsMatcher extends BaseMatcher<Blubb_lhsMatch> {
    * @return the (partial) match object.
    * 
    */
-  public Blubb_lhsMatch newMatch(final AgentInstance pD, final AgentInstance pD1) {
+  public Blubb_lhsMatch newMatch(final SimAgent pD, final SimAgent pD1) {
     return Blubb_lhsMatch.newMatch(pD, pD1);
   }
   
@@ -189,8 +189,8 @@ public class Blubb_lhsMatcher extends BaseMatcher<Blubb_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  protected Set<AgentInstance> rawAccumulateAllValuesOfD(final Object[] parameters) {
-    Set<AgentInstance> results = new HashSet<AgentInstance>();
+  protected Set<SimAgent> rawAccumulateAllValuesOfD(final Object[] parameters) {
+    Set<SimAgent> results = new HashSet<SimAgent>();
     rawAccumulateAllValues(POSITION_D, parameters, results);
     return results;
   }
@@ -200,7 +200,7 @@ public class Blubb_lhsMatcher extends BaseMatcher<Blubb_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  public Set<AgentInstance> getAllValuesOfD() {
+  public Set<SimAgent> getAllValuesOfD() {
     return rawAccumulateAllValuesOfD(emptyArray());
   }
   
@@ -209,7 +209,7 @@ public class Blubb_lhsMatcher extends BaseMatcher<Blubb_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  public Set<AgentInstance> getAllValuesOfD(final Blubb_lhsMatch partialMatch) {
+  public Set<SimAgent> getAllValuesOfD(final Blubb_lhsMatch partialMatch) {
     return rawAccumulateAllValuesOfD(partialMatch.toArray());
   }
   
@@ -218,7 +218,7 @@ public class Blubb_lhsMatcher extends BaseMatcher<Blubb_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  public Set<AgentInstance> getAllValuesOfD(final AgentInstance pD1) {
+  public Set<SimAgent> getAllValuesOfD(final SimAgent pD1) {
     return rawAccumulateAllValuesOfD(new Object[]{
     null, 
     pD1
@@ -230,8 +230,8 @@ public class Blubb_lhsMatcher extends BaseMatcher<Blubb_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  protected Set<AgentInstance> rawAccumulateAllValuesOfD1(final Object[] parameters) {
-    Set<AgentInstance> results = new HashSet<AgentInstance>();
+  protected Set<SimAgent> rawAccumulateAllValuesOfD1(final Object[] parameters) {
+    Set<SimAgent> results = new HashSet<SimAgent>();
     rawAccumulateAllValues(POSITION_D1, parameters, results);
     return results;
   }
@@ -241,7 +241,7 @@ public class Blubb_lhsMatcher extends BaseMatcher<Blubb_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  public Set<AgentInstance> getAllValuesOfD1() {
+  public Set<SimAgent> getAllValuesOfD1() {
     return rawAccumulateAllValuesOfD1(emptyArray());
   }
   
@@ -250,7 +250,7 @@ public class Blubb_lhsMatcher extends BaseMatcher<Blubb_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  public Set<AgentInstance> getAllValuesOfD1(final Blubb_lhsMatch partialMatch) {
+  public Set<SimAgent> getAllValuesOfD1(final Blubb_lhsMatch partialMatch) {
     return rawAccumulateAllValuesOfD1(partialMatch.toArray());
   }
   
@@ -259,7 +259,7 @@ public class Blubb_lhsMatcher extends BaseMatcher<Blubb_lhsMatch> {
    * @return the Set of all values or empty set if there are no matches
    * 
    */
-  public Set<AgentInstance> getAllValuesOfD1(final AgentInstance pD) {
+  public Set<SimAgent> getAllValuesOfD1(final SimAgent pD) {
     return rawAccumulateAllValuesOfD1(new Object[]{
     pD, 
     null
@@ -269,7 +269,7 @@ public class Blubb_lhsMatcher extends BaseMatcher<Blubb_lhsMatch> {
   @Override
   protected Blubb_lhsMatch tupleToMatch(final Tuple t) {
     try {
-        return Blubb_lhsMatch.newMatch((AgentInstance) t.get(POSITION_D), (AgentInstance) t.get(POSITION_D1));
+        return Blubb_lhsMatch.newMatch((SimAgent) t.get(POSITION_D), (SimAgent) t.get(POSITION_D1));
     } catch(ClassCastException e) {
         LOGGER.error("Element(s) in tuple not properly typed!",e);
         return null;
@@ -279,7 +279,7 @@ public class Blubb_lhsMatcher extends BaseMatcher<Blubb_lhsMatch> {
   @Override
   protected Blubb_lhsMatch arrayToMatch(final Object[] match) {
     try {
-        return Blubb_lhsMatch.newMatch((AgentInstance) match[POSITION_D], (AgentInstance) match[POSITION_D1]);
+        return Blubb_lhsMatch.newMatch((SimAgent) match[POSITION_D], (SimAgent) match[POSITION_D1]);
     } catch(ClassCastException e) {
         LOGGER.error("Element(s) in array not properly typed!",e);
         return null;
@@ -289,7 +289,7 @@ public class Blubb_lhsMatcher extends BaseMatcher<Blubb_lhsMatch> {
   @Override
   protected Blubb_lhsMatch arrayToMatchMutable(final Object[] match) {
     try {
-        return Blubb_lhsMatch.newMutableMatch((AgentInstance) match[POSITION_D], (AgentInstance) match[POSITION_D1]);
+        return Blubb_lhsMatch.newMutableMatch((SimAgent) match[POSITION_D], (SimAgent) match[POSITION_D1]);
     } catch(ClassCastException e) {
         LOGGER.error("Element(s) in array not properly typed!",e);
         return null;

@@ -2,24 +2,25 @@
  */
 package biochemsimulation.reactioncontainer.impl;
 
-import biochemsimulation.reactioncontainer.Free;
-import biochemsimulation.reactioncontainer.ReactioncontainerPackage;
+import biochemsimulation.reactioncontainer.ReactionContainerPackage;
+import biochemsimulation.reactioncontainer.SimFree;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Free</b></em>'.
+ * An implementation of the model object '<em><b>Sim Free</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class FreeImpl extends LinkStateImpl implements Free {
+public class SimFreeImpl extends SimLinkStateImpl implements SimFree {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected FreeImpl() {
+	protected SimFreeImpl() {
 		super();
 	}
 
@@ -30,7 +31,7 @@ public class FreeImpl extends LinkStateImpl implements Free {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ReactioncontainerPackage.Literals.FREE;
+		return ReactionContainerPackage.Literals.SIM_FREE;
 	}
 
-} //FreeImpl
+} //SimFreeImpl

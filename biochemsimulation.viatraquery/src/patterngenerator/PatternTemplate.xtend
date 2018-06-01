@@ -51,6 +51,10 @@ class PatternTemplate {
 				import "«p.nsURI»" as «importAliases.get(p)»
 			«ENDFOR»
 			
+			pattern support_BoundState(ls: SimBound) {
+				SimBound(ls);
+			}
+			
 			«FOR r : rules SEPARATOR "\n"»
 				«if(!isPatternEmpty(patternFromPatternAssignment(r.rule.lhs)))generatePatternCode(r, patternFromPatternAssignment(r.rule.lhs), "lhs")»«if(r.rule.operator.equals("<->"))"\n"»
 				«if(r.rule.operator.equals("<->"))if(!isPatternEmpty(patternFromPatternAssignment(r.rule.rhs)))generatePatternCode(r, patternFromPatternAssignment(r.rule.rhs), "rhs")»
@@ -86,16 +90,16 @@ class PatternTemplate {
 			return ''''''
 		}	
 		return '''
-			pattern «rule.name+"_"+suffix»(«FOR ap : getValidAgentPatterns(pattern.agentPatterns) SEPARATOR ", "» «generateAgentPatternContext(ap)»«ENDFOR») {
+			pattern «rule.name+"_"+suffix»(«FOR ap : getValidAgentPatterns(pattern.agentPatterns) SEPARATOR ", "» «generateSimAgentContext(ap)»«ENDFOR») {
 				«FOR ap : getValidAgentPatterns(pattern.agentPatterns) SEPARATOR "\n"»
-				// Agent pattern for instances of agent «getUniqueAgentPatternVarId(ap)»
-				AgentInstance.agent.name(«getUniqueAgentPatternVarId(ap)», "«ap.agent.name»");
+				// Agent pattern for instances of agent «uniqueSimAgentVariableName(ap)»
+				SimAgent.Type(«uniqueSimAgentVariableName(ap)», "«ap.agent.name»");
 					«FOR sp : ap.sitePatterns.sitePatterns SEPARATOR "\n"»
-					// Site patterns for site «sp.site.name» attached to instances of agent «getUniqueAgentPatternVarId(ap)» 
-					AgentInstance.linkStates(«getUniqueAgentPatternVarId(ap)», «aILSVariableName(ap, sp)»);
-					AgentInstanceLinkState.site.name(«aILSVariableName(ap, sp)», "«sp.site.name»");
-					«linkStatePattern(ap, sp)»
+					// Site patterns for site «sp.site.name» attached to instances of agent «uniqueSimAgentVariableName(ap)» 
+					SimAgent.simSites(«uniqueSimAgentVariableName(ap)», «simSiteVariableName(ap, sp)»);
+					SimSite.Type(«simSiteVariableName(ap, sp)», "«sp.site.name»");
 					«siteStatePattern(ap, sp)»
+					«linkStatePattern(ap, sp)»
 					«ENDFOR»
 				«ENDFOR»
 				«generateInjectivityConstraints(pattern)»
@@ -144,13 +148,13 @@ class PatternTemplate {
 		val linkState = sp.linkState.linkState as LinkState
 		if(linkState instanceof FreeLink) {
 			return '''
-				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «getUniqueAgentPatternVarId(ap)»_«sp.site.name»_FL);
-				FreeLink(«getUniqueAgentPatternVarId(ap)»_«sp.site.name»_FL);
+				SimSite.simLinkState(«simSiteVariableName(ap, sp)», «simLinkStateVariableName(ap ,sp)»);
+				neg find support_BoundState(«simLinkStateVariableName(ap ,sp)»);
 			'''
 		}else if(linkState instanceof SemiLink) {
 			return '''
-				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «getUniqueAgentPatternVarId(ap)»_«sp.site.name»_SL);
-				IndexedLink(«getUniqueAgentPatternVarId(ap)»_«sp.site.name»_SL);
+				SimSite.simLinkState(«simSiteVariableName(ap, sp)», «simLinkStateVariableName(ap ,sp)»);
+				find support_BoundState(«simLinkStateVariableName(ap ,sp)»);
 			'''
 			/* SemiLinks are used to find occurences of agent instances of a 
 			 * certain type bound to any other agent instance at its specified site.
@@ -165,21 +169,22 @@ class PatternTemplate {
 		}else if(linkState instanceof ExactLink) {
 			val eLink = linkState as ExactLink
 			return '''
-				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «getUniqueAgentPatternVarId(ap)»_«sp.site.name»_EL);
-				IndexedLink(«getUniqueAgentPatternVarId(ap)»_«sp.site.name»_EL);
-				AgentInstanceLinkState.attachedSite.name(«aILSVariableName(ap, sp)», "«eLink.linkSite.site.name»");
-				AgentInstanceLinkState.attachedAgentInstance.agent.name(«aILSVariableName(ap, sp)», "«eLink.linkAgent.agent.name»");
+				SimSite.simLinkState(«simSiteVariableName(ap, sp)», «simLinkStateVariableName(ap ,sp)»);
+				// Create context for other SimAgent:
+				SimAgent.Type(«uniqueSimAgentVariableName(ap)»_«eLink.linkAgent.agent.name», "«eLink.linkAgent.agent.name»");
+				SimAgent.simSites(«uniqueSimAgentVariableName(ap)»_«eLink.linkAgent.agent.name», «uniqueSimAgentVariableName(ap)»_«eLink.linkAgent.agent.name»_«eLink.linkSite.site.name»);
+				SimSite.Type(«uniqueSimAgentVariableName(ap)»_«eLink.linkAgent.agent.name»_«eLink.linkSite.site.name», "«eLink.linkSite.site.name»");
+				SimSite.simLinkState(«uniqueSimAgentVariableName(ap)»_«eLink.linkAgent.agent.name»_«eLink.linkSite.site.name», «uniqueSimAgentVariableName(ap)»_«eLink.linkAgent.agent.name»_«eLink.linkSite.site.name»_LS);
+				// check for equality
+				«simLinkStateVariableName(ap ,sp)» == «uniqueSimAgentVariableName(ap)»_«eLink.linkAgent.agent.name»_«eLink.linkSite.site.name»_LS;
 			'''
 			/* ExactLinks behave the same as SemiLinks and are used to count the occurences of agent instances with a 
 			 * certain type bound to any agent instance of the specified type and site at its specified site.
 			 */
 		}else {
 			return '''
-				AgentInstanceLinkState.linkState.linkState(«aILSVariableName(ap, sp)», «getUniqueAgentPatternVarId(ap)»_«sp.site.name»_IL);	
-				IndexedLink(«ap.agent.name»_«sp.site.name»_IL);
-				AgentInstanceLinkState.site(«aILSVariableName(ap, sp)», «ap.agent.name»_«sp.site.name»_Site);
-				AgentInstanceLinkState.attachedSite(«aILSVariableName(ap, sp)», «getOtherIndexedLinkSite(ap, sp)»);
-				AgentInstanceLinkState.attachedAgentInstance(«aILSVariableName(ap, sp)», «getOtherIndexedLinkAgent(ap, sp)»);
+				SimSite.simLinkState(«simSiteVariableName(ap, sp)», «simLinkStateVariableName(ap ,sp)»);
+				«simLinkStateVariableName(ap ,sp)» == «getOtherLinkStateVariableName(ap, sp)»;
 			'''
 		}
 	}
@@ -190,10 +195,46 @@ class PatternTemplate {
 			return ''''''
 		}
 		return '''
-			AgentInstance.siteStates(«getUniqueAgentPatternVarId(ap)», «aISSVariableName(ap, sp)»);
-			AgentInstanceSiteState.site.name(«aISSVariableName(ap, sp)», "«sp.site.name»");
-			AgentInstanceSiteState.siteState.state.name(«aISSVariableName(ap, sp)», "«sp.state.state.name»");
+			SimSite.simSiteState.Type(«simSiteVariableName(ap, sp)», "«siteState.state.name»");
 		'''
+	}
+	
+	def getOtherLinkStateVariableName(ValidAgentPattern ap, SitePattern sp) {
+		val iLink = sp.linkState.linkState as IndexedLink
+		var rule = null as Rule
+		var eObj = iLink.eContainer
+		while(!(eObj instanceof Rule) && eObj !== null) {
+			eObj = eObj.eContainer
+		}
+		if(eObj instanceof Rule) {
+			rule = eObj
+		}
+		var candidates = getAllIndexedLinksOfRule(rule)
+		for(cand : candidates) {
+			val candidate = cand as IndexedLink
+			if(!candidate.equals(iLink) && iLink.state.equals(candidate.state)) {
+				var agentPattern = null as ValidAgentPattern
+				var sitePattern = null as SitePattern
+				var eObj2 = candidate.eContainer
+				while(!(eObj2 instanceof SitePattern) && eObj2 !== null) {
+					eObj2 = eObj2.eContainer
+				}
+				if(eObj2 instanceof SitePattern) {
+					sitePattern = eObj2 as SitePattern
+				}
+				while(!(eObj2 instanceof ValidAgentPattern) && eObj2 !== null) {
+					eObj2 = eObj2.eContainer
+				}
+				if(eObj2 instanceof ValidAgentPattern) {
+					agentPattern = eObj2 as ValidAgentPattern
+				}
+				if(agentPattern !== null && sitePattern !== null) {
+					return '''«simLinkStateVariableName(agentPattern, sitePattern)»'''
+				}
+				return ''''''
+			}
+		}
+		return ''''''
 	}
 	
 	def getOtherIndexedLinkAgent(ValidAgentPattern ap, SitePattern sp) {
@@ -226,7 +267,7 @@ class PatternTemplate {
 					agentPattern = eObj2 as ValidAgentPattern
 				}
 				if(agentPattern !== null && sitePattern !== null) {
-					return '''«getUniqueAgentPatternVarId(agentPattern)»'''
+					return '''«uniqueSimAgentVariableName(agentPattern)»'''
 				}
 				return ''''''
 			}
@@ -264,7 +305,7 @@ class PatternTemplate {
 					agentPattern = eObj2 as ValidAgentPattern
 				}
 				if(agentPattern !== null && sitePattern !== null) {
-					return '''«getUniqueAgentPatternVarId(agentPattern)»_«sitePattern.site.name»_Site'''
+					return '''«uniqueSimAgentVariableName(agentPattern)»_«sitePattern.site.name»_Site'''
 				}
 				return ''''''
 			}
@@ -318,18 +359,18 @@ class PatternTemplate {
 		
 	} 
 	
-	def generateAgentPatternContext(ValidAgentPattern ap) {
-		return '''«getUniqueAgentPatternVarId(ap)»: AgentInstance'''
+	def generateSimAgentContext(ValidAgentPattern ap) {
+		return '''«uniqueSimAgentVariableName(ap)»: SimAgent'''
 	}
 	
-	def aILSVariableName(ValidAgentPattern ap, SitePattern sp) {
-		return '''«getUniqueAgentPatternVarId(ap)+"_"+sp.site.name»_ILS'''
+	def simSiteVariableName(ValidAgentPattern ap, SitePattern sp) {
+		return '''«uniqueSimAgentVariableName(ap)+"_"+sp.site.name»'''
 	}
-	def aISSVariableName(ValidAgentPattern ap, SitePattern sp) {
-		return '''«getUniqueAgentPatternVarId(ap)+"_"+sp.site.name»_ISS'''
+	def simLinkStateVariableName(ValidAgentPattern ap, SitePattern sp) {
+		return '''«uniqueSimAgentVariableName(ap)+"_"+sp.site.name»_LS'''
 	}
 	
-	def String getUniqueAgentPatternVarId(ValidAgentPattern ap) {
+	def String uniqueSimAgentVariableName(ValidAgentPattern ap) {
 		var name = ""
 		if(agentPatternVariables.containsKey(ap)) {
 			name = agentPatternVariables.get(ap)

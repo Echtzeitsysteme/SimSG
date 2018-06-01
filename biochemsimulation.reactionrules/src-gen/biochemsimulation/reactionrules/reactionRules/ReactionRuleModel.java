@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link biochemsimulation.reactionrules.reactionRules.ReactionRuleModel#getModel <em>Model</em>}</li>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.ReactionRuleModel#getReactionContainer <em>Reaction Container</em>}</li>
  *   <li>{@link biochemsimulation.reactionrules.reactionRules.ReactionRuleModel#getReactionProperties <em>Reaction Properties</em>}</li>
  * </ul>
  *
@@ -52,32 +51,6 @@ public interface ReactionRuleModel extends EObject
    * @generated
    */
   void setModel(Model value);
-
-  /**
-   * Returns the value of the '<em><b>Reaction Container</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Reaction Container</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Reaction Container</em>' containment reference.
-   * @see #setReactionContainer(ReactionContainer)
-   * @see biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage#getReactionRuleModel_ReactionContainer()
-   * @model containment="true"
-   * @generated
-   */
-  ReactionContainer getReactionContainer();
-
-  /**
-   * Sets the value of the '{@link biochemsimulation.reactionrules.reactionRules.ReactionRuleModel#getReactionContainer <em>Reaction Container</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Reaction Container</em>' containment reference.
-   * @see #getReactionContainer()
-   * @generated
-   */
-  void setReactionContainer(ReactionContainer value);
 
   /**
    * Returns the value of the '<em><b>Reaction Properties</b></em>' containment reference list.

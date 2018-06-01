@@ -2,9 +2,9 @@
  */
 package biochemsimulation.reactioncontainer.impl;
 
-import biochemsimulation.reactioncontainer.Agent;
-import biochemsimulation.reactioncontainer.ReactioncontainerPackage;
-import biochemsimulation.reactioncontainer.Site;
+import biochemsimulation.reactioncontainer.ReactionContainerPackage;
+import biochemsimulation.reactioncontainer.SimAgent;
+import biochemsimulation.reactioncontainer.SimSite;
 
 import java.util.Collection;
 
@@ -24,20 +24,20 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Agent</b></em>'.
+ * An implementation of the model object '<em><b>Sim Agent</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactioncontainer.impl.AgentImpl#getName <em>Name</em>}</li>
- *   <li>{@link biochemsimulation.reactioncontainer.impl.AgentImpl#getType <em>Type</em>}</li>
- *   <li>{@link biochemsimulation.reactioncontainer.impl.AgentImpl#getSite <em>Site</em>}</li>
+ *   <li>{@link biochemsimulation.reactioncontainer.impl.SimAgentImpl#getName <em>Name</em>}</li>
+ *   <li>{@link biochemsimulation.reactioncontainer.impl.SimAgentImpl#getType <em>Type</em>}</li>
+ *   <li>{@link biochemsimulation.reactioncontainer.impl.SimAgentImpl#getSimSites <em>Sim Sites</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class AgentImpl extends MinimalEObjectImpl.Container implements Agent {
+public class SimAgentImpl extends MinimalEObjectImpl.Container implements SimAgent {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -79,21 +79,21 @@ public class AgentImpl extends MinimalEObjectImpl.Container implements Agent {
 	protected String type = TYPE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSite() <em>Site</em>}' containment reference list.
+	 * The cached value of the '{@link #getSimSites() <em>Sim Sites</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSite()
+	 * @see #getSimSites()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Site> site;
+	protected EList<SimSite> simSites;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AgentImpl() {
+	protected SimAgentImpl() {
 		super();
 	}
 
@@ -104,7 +104,7 @@ public class AgentImpl extends MinimalEObjectImpl.Container implements Agent {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ReactioncontainerPackage.Literals.AGENT;
+		return ReactionContainerPackage.Literals.SIM_AGENT;
 	}
 
 	/**
@@ -125,7 +125,8 @@ public class AgentImpl extends MinimalEObjectImpl.Container implements Agent {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ReactioncontainerPackage.AGENT__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, ReactionContainerPackage.SIM_AGENT__NAME, oldName,
+					name));
 	}
 
 	/**
@@ -146,7 +147,8 @@ public class AgentImpl extends MinimalEObjectImpl.Container implements Agent {
 		String oldType = type;
 		type = newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ReactioncontainerPackage.AGENT__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, ReactionContainerPackage.SIM_AGENT__TYPE, oldType,
+					type));
 	}
 
 	/**
@@ -154,11 +156,12 @@ public class AgentImpl extends MinimalEObjectImpl.Container implements Agent {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Site> getSite() {
-		if (site == null) {
-			site = new EObjectContainmentEList<Site>(Site.class, this, ReactioncontainerPackage.AGENT__SITE);
+	public EList<SimSite> getSimSites() {
+		if (simSites == null) {
+			simSites = new EObjectContainmentEList<SimSite>(SimSite.class, this,
+					ReactionContainerPackage.SIM_AGENT__SIM_SITES);
 		}
-		return site;
+		return simSites;
 	}
 
 	/**
@@ -169,8 +172,8 @@ public class AgentImpl extends MinimalEObjectImpl.Container implements Agent {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ReactioncontainerPackage.AGENT__SITE:
-			return ((InternalEList<?>) getSite()).basicRemove(otherEnd, msgs);
+		case ReactionContainerPackage.SIM_AGENT__SIM_SITES:
+			return ((InternalEList<?>) getSimSites()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -183,12 +186,12 @@ public class AgentImpl extends MinimalEObjectImpl.Container implements Agent {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ReactioncontainerPackage.AGENT__NAME:
+		case ReactionContainerPackage.SIM_AGENT__NAME:
 			return getName();
-		case ReactioncontainerPackage.AGENT__TYPE:
+		case ReactionContainerPackage.SIM_AGENT__TYPE:
 			return getType();
-		case ReactioncontainerPackage.AGENT__SITE:
-			return getSite();
+		case ReactionContainerPackage.SIM_AGENT__SIM_SITES:
+			return getSimSites();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -202,15 +205,15 @@ public class AgentImpl extends MinimalEObjectImpl.Container implements Agent {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ReactioncontainerPackage.AGENT__NAME:
+		case ReactionContainerPackage.SIM_AGENT__NAME:
 			setName((String) newValue);
 			return;
-		case ReactioncontainerPackage.AGENT__TYPE:
+		case ReactionContainerPackage.SIM_AGENT__TYPE:
 			setType((String) newValue);
 			return;
-		case ReactioncontainerPackage.AGENT__SITE:
-			getSite().clear();
-			getSite().addAll((Collection<? extends Site>) newValue);
+		case ReactionContainerPackage.SIM_AGENT__SIM_SITES:
+			getSimSites().clear();
+			getSimSites().addAll((Collection<? extends SimSite>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -224,14 +227,14 @@ public class AgentImpl extends MinimalEObjectImpl.Container implements Agent {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ReactioncontainerPackage.AGENT__NAME:
+		case ReactionContainerPackage.SIM_AGENT__NAME:
 			setName(NAME_EDEFAULT);
 			return;
-		case ReactioncontainerPackage.AGENT__TYPE:
+		case ReactionContainerPackage.SIM_AGENT__TYPE:
 			setType(TYPE_EDEFAULT);
 			return;
-		case ReactioncontainerPackage.AGENT__SITE:
-			getSite().clear();
+		case ReactionContainerPackage.SIM_AGENT__SIM_SITES:
+			getSimSites().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -245,12 +248,12 @@ public class AgentImpl extends MinimalEObjectImpl.Container implements Agent {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ReactioncontainerPackage.AGENT__NAME:
+		case ReactionContainerPackage.SIM_AGENT__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case ReactioncontainerPackage.AGENT__TYPE:
+		case ReactionContainerPackage.SIM_AGENT__TYPE:
 			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-		case ReactioncontainerPackage.AGENT__SITE:
-			return site != null && !site.isEmpty();
+		case ReactionContainerPackage.SIM_AGENT__SIM_SITES:
+			return simSites != null && !simSites.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -274,4 +277,4 @@ public class AgentImpl extends MinimalEObjectImpl.Container implements Agent {
 		return result.toString();
 	}
 
-} //AgentImpl
+} //SimAgentImpl

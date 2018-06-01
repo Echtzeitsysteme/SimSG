@@ -3,7 +3,7 @@
  */
 package patterngenerator;
 
-import biochemsimulation.reactionrules.reactionRules.AgentInstance;
+import biochemsimulation.reactioncontainer.SimAgent;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -27,11 +27,11 @@ import patterngenerator.util.CtoNull_lhsQuerySpecification;
  */
 @SuppressWarnings("all")
 public abstract class CtoNull_lhsMatch extends BasePatternMatch {
-  private AgentInstance fC;
+  private SimAgent fC;
   
   private static List<String> parameterNames = makeImmutableList("C");
   
-  private CtoNull_lhsMatch(final AgentInstance pC) {
+  private CtoNull_lhsMatch(final SimAgent pC) {
     this.fC = pC;
   }
   
@@ -41,7 +41,7 @@ public abstract class CtoNull_lhsMatch extends BasePatternMatch {
     return null;
   }
   
-  public AgentInstance getC() {
+  public SimAgent getC() {
     return this.fC;
   }
   
@@ -49,13 +49,13 @@ public abstract class CtoNull_lhsMatch extends BasePatternMatch {
   public boolean set(final String parameterName, final Object newValue) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
     if ("C".equals(parameterName) ) {
-        this.fC = (AgentInstance) newValue;
+        this.fC = (SimAgent) newValue;
         return true;
     }
     return false;
   }
   
-  public void setC(final AgentInstance pC) {
+  public void setC(final SimAgent pC) {
     if (!isMutable()) throw new java.lang.UnsupportedOperationException();
     this.fC = pC;
   }
@@ -141,7 +141,7 @@ public abstract class CtoNull_lhsMatch extends BasePatternMatch {
    * @return the new, mutable (partial) match object.
    * 
    */
-  public static CtoNull_lhsMatch newMutableMatch(final AgentInstance pC) {
+  public static CtoNull_lhsMatch newMutableMatch(final SimAgent pC) {
     return new Mutable(pC);
   }
   
@@ -153,12 +153,12 @@ public abstract class CtoNull_lhsMatch extends BasePatternMatch {
    * @return the (partial) match object.
    * 
    */
-  public static CtoNull_lhsMatch newMatch(final AgentInstance pC) {
+  public static CtoNull_lhsMatch newMatch(final SimAgent pC) {
     return new Immutable(pC);
   }
   
   private static final class Mutable extends CtoNull_lhsMatch {
-    Mutable(final AgentInstance pC) {
+    Mutable(final SimAgent pC) {
       super(pC);
     }
     
@@ -169,7 +169,7 @@ public abstract class CtoNull_lhsMatch extends BasePatternMatch {
   }
   
   private static final class Immutable extends CtoNull_lhsMatch {
-    Immutable(final AgentInstance pC) {
+    Immutable(final SimAgent pC) {
       super(pC);
     }
     
