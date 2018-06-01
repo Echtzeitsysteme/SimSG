@@ -24,3 +24,4 @@ Export-Package: biochemsimulation.reactionrules.ui.quickfix,
  biochemsimulation.reactionrules.ui.contentassist
 Bundle-Activator: biochemsimulation.reactionrules.ui.internal.ReactionrulesActivator
 Automatic-Module-Name: biochemsimulation.reactionrules.ui
+Service-Component: wizard.xml

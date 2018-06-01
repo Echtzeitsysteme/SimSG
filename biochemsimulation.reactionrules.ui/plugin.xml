@@ -407,4 +407,17 @@
 			type="text">
 		</fileTypes>
 	</extension>
+	 <extension
+         point="org.eclipse.ui.newWizards">
+         project="true"
+      <wizard
+            name="New Reaction Rules File"
+            class="biochemsimulation.reactionrules.wizard.ReactFileWizard"
+            id="biochemsimulation.reactionrules.wizard.reactFileWizard">
+      </wizard>
+      <category 
+          id="biochemsimulation.reactionrules.wizard.reactFileWizard" 
+          name="Reaction Rule Wizards">
+      </category>
+   </extension>
 </plugin>

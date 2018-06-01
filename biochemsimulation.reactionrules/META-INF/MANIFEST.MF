@@ -29,3 +29,4 @@ Export-Package: biochemsimulation.reactionrules,
  biochemsimulation.reactionrules.validation
 Import-Package: org.apache.log4j
 Automatic-Module-Name: biochemsimulation.reactionrules
+Service-Component: component.xml
