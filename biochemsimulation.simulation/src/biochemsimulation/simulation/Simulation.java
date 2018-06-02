@@ -1,6 +1,6 @@
 package biochemsimulation.simulation;
 
-import biochemsimulation.simulation.pattern_matching.PatternMatchingController;
+import biochemsimulation.simulation.pmc.PatternMatchingController;
 
 public class Simulation {
 	private PatternMatchingController pmc;
