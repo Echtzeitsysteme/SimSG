@@ -12,6 +12,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.viatra.query.patternlanguage.emf.EMFPatternLanguageStandaloneSetup;
+import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.EMFPatternLanguagePackage;
 import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternModel;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
@@ -62,6 +64,8 @@ public class SimplePersistenceManager implements PersistenceManager {
 	private void classLoader() {
 		ReactionRulesPackage.eINSTANCE.eClass();
 		ReactionContainerPackage.eINSTANCE.eClass();
+		EMFPatternLanguageStandaloneSetup.doSetup();
+		EMFPatternLanguagePackage.eINSTANCE.eClass();
 	}
 	
 	@Override
@@ -136,15 +140,19 @@ public class SimplePersistenceManager implements PersistenceManager {
 		}
 		PatternModel patternModel = null;
 		ReactionRuleModel ruleModel = loadReactionRuleModel(name);
-		ViatraPatternGenerator gen = new ViatraPatternGenerator(ruleModel);
+		
+		//prohibit creation of .xmi-files, because viatra doesn't like persistence..
+		doesNotExist = true;
+		
 		if(doesNotExist) {
-			String path = viatraPatternModelFolder+"/"+name+".vql";
-			patternModel = gen.doGenerate(path, true);
+			ViatraPatternGenerator gen = new ViatraPatternGenerator(ruleModel);
+			String path = viatraPatternModelFolder+"/"+name+".xmi";
+			// in a perfect world, where viatra isn't a total diva, the second argument should be true
+			patternModel = gen.doGenerate(path, false);
 			viatraPatternModelPaths.put(name, path);
 		} else {
-			patternModel = gen.doGenerate("", false);
+			patternModel = (PatternModel) PersistenceUtils.loadResource(viatraPatternModelPaths.get(name)).getContents().get(0);
 		}
-		
 		viatraPatternModelCache.put(name, patternModel);
 		return patternModel;
 	}
@@ -229,15 +237,18 @@ public class SimplePersistenceManager implements PersistenceManager {
 		viatraPatternModelPaths = new HashMap<String, String>();
 		
 		List<String> allFiles = PersistenceUtils.getAllFilesInFolder(viatraPatternModelFolder);
-		Pattern pattern = Pattern.compile("(.*?)\\.vql$");
-		
+		Pattern pattern = Pattern.compile("\\\\(.*?)(\\.xmi)$");
 		for(String filePath : allFiles) {
-			if(!filePath.matches(".+(\\.vql)$")) {
+			if(!filePath.matches(".+(\\.xmi)$")) {
 			}else {
 				Matcher matcher = pattern.matcher(filePath);
 				if(matcher.find()) {
 					String key = matcher.group(1);
-					viatraPatternModelPaths.put(key, filePath);
+					int idx = key.lastIndexOf("\\")+1;
+					if(idx>=0) {
+						key = key.substring(idx);
+						viatraPatternModelPaths.put(key, filePath);
+					}
 				}
 				
 			}

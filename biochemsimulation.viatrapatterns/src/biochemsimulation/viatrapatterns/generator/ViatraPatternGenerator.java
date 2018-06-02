@@ -15,10 +15,11 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.viatra.query.patternlanguage.emf.EMFPatternLanguageStandaloneSetup;
 import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.EMFPatternLanguagePackage;
 import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternModel;
-
+import org.eclipse.xtext.resource.XtextResourceSet;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.Rule;
@@ -46,7 +47,6 @@ public class ViatraPatternGenerator {
 	
 	public ViatraPatternGenerator(ReactionRuleModel model) {
 		init();
-
 		isInitialized = model != null;
 		this.model = model;
 	}
@@ -73,14 +73,14 @@ public class ViatraPatternGenerator {
 		URI fileURI = URI.createFileURI(patternModelFolder+"temp.vql");
 		Resource patternResource = resourceSet.getResource(fileURI, true);
 
-		// navigate to the pattern definition that we want
 		if (patternResource != null) {
 			if (patternResource.getErrors().size() == 0 && patternResource.getContents().size() >= 1) {
 				patternModel = (PatternModel) patternResource.getContents().get(0);
 			}
 		}
 		if(saveToFile) {
-			saveModelToVqlFile(path, output);
+			URI uri = URI.createFileURI(path);
+			saveModelToXmiFile(uri);
 		}
 		return patternModel;
 	}
@@ -90,6 +90,18 @@ public class ViatraPatternGenerator {
 		List<String> lines = Arrays.asList(output);
 
 		Files.write(file, lines, Charset.forName("UTF-8"));
+
+	}
+	
+	private void saveModelToXmiFile(URI uri) throws Exception {
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( ).put( "*",
+				new XMIResourceFactoryImpl());
+		XtextResourceSet resourceSet = new XtextResourceSet();
+		Resource resource = resourceSet.createResource(uri);
+		resource.getContents().add(patternModel);
+		
+		resource.save(null);
+		System.out.println("Model saved to: "+uri.path());
 
 	}
 

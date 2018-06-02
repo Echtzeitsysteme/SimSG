@@ -126,7 +126,7 @@ public class ReactionContainerGenerator {
 		
 		String uriName = "file:"+projectPath+"model/instances/"+model.getModel().getName()+".xmi";
 		URI uri = URI.createURI(uriName);
-		saveModelToURI(containerModel, model.getModel().getName(), uri);
+		saveModelToURI(containerModel, uri);
 	}
 	
 	public ReactionContainer doGenerate(String path, boolean saveToFile) throws Exception{
@@ -158,12 +158,12 @@ public class ReactionContainerGenerator {
 		
 		if(saveToFile) {
 			URI uri = URI.createFileURI(path);
-			saveModelToURI(containerModel, model.getModel().getName(), uri);
+			saveModelToURI(containerModel, uri);
 		}
 		return containerModel;
 	}
 	
-	private void saveModelToURI(EObject model, String name, URI uri) throws Exception{
+	private void saveModelToURI(EObject model, URI uri) throws Exception{
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( ).put( "*",
 				new XMIResourceFactoryImpl());
 		ResourceSet resourceSet = new ResourceSetImpl();

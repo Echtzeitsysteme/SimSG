@@ -1,0 +1,869 @@
+<?xml version="1.0" encoding="ASCII"?>
+<eMFPatternLanguage:PatternModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:eMFPatternLanguage="http://www.eclipse.org/viatra/query/patternlanguage/emf/EMFPatternLanguage" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:patternLanguage="http://www.eclipse.org/viatra/query/patternlanguage/PatternLanguage" packageName="patterngenerator">
+  <patterns name="support_SimLinkState">
+    <modifiers/>
+    <parameters xsi:type="patternLanguage:Parameter" name="ss">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|1"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|2"/>
+            </type>
+          </tail>
+          <src var="ss"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="_"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="AtoB_lhs">
+    <modifiers/>
+    <parameters xsi:type="patternLanguage:Parameter" name="A">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent"/>
+      </type>
+    </parameters>
+    <parameters xsi:type="patternLanguage:Parameter" name="B">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|5"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|6"/>
+            </type>
+          </tail>
+          <src var="A"/>
+          <dst xsi:type="patternLanguage:StringValue" value="A"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|7"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|8"/>
+            </type>
+          </tail>
+          <src var="A"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="A_x"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|9"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|10"/>
+            </type>
+          </tail>
+          <src var="A_x"/>
+          <dst xsi:type="patternLanguage:StringValue" value="x"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint" negative="true">
+        <call>
+          <patternRef href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|11"/>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="A_x"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|12"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|13"/>
+            </type>
+          </tail>
+          <src var="B"/>
+          <dst xsi:type="patternLanguage:StringValue" value="B"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|14"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|15"/>
+            </type>
+          </tail>
+          <src var="B"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="B_x"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|16"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|17"/>
+            </type>
+          </tail>
+          <src var="B_x"/>
+          <dst xsi:type="patternLanguage:StringValue" value="x"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint" negative="true">
+        <call>
+          <patternRef href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|18"/>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="B_x"/>
+          </parameters>
+        </call>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="AtoB_rhs">
+    <modifiers/>
+    <parameters xsi:type="patternLanguage:Parameter" name="A">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent"/>
+      </type>
+    </parameters>
+    <parameters xsi:type="patternLanguage:Parameter" name="B">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|21"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|22"/>
+            </type>
+          </tail>
+          <src var="A"/>
+          <dst xsi:type="patternLanguage:StringValue" value="A"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|23"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|24"/>
+            </type>
+          </tail>
+          <src var="A"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="A_x"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|25"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|26"/>
+            </type>
+          </tail>
+          <src var="A_x"/>
+          <dst xsi:type="patternLanguage:StringValue" value="x"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|27"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|28"/>
+            </type>
+          </tail>
+          <src var="A_x"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="A_x_LS"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:CompareConstraint">
+        <leftOperand xsi:type="patternLanguage:VariableValue">
+          <value var="A_x_LS"/>
+        </leftOperand>
+        <rightOperand xsi:type="patternLanguage:VariableValue">
+          <value var="B_x_LS"/>
+        </rightOperand>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|29"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|30"/>
+            </type>
+          </tail>
+          <src var="B"/>
+          <dst xsi:type="patternLanguage:StringValue" value="B"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|31"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|32"/>
+            </type>
+          </tail>
+          <src var="B"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="B_x"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|33"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|34"/>
+            </type>
+          </tail>
+          <src var="B_x"/>
+          <dst xsi:type="patternLanguage:StringValue" value="x"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|35"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|36"/>
+            </type>
+          </tail>
+          <src var="B_x"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="B_x_LS"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:CompareConstraint">
+        <leftOperand xsi:type="patternLanguage:VariableValue">
+          <value var="B_x_LS"/>
+        </leftOperand>
+        <rightOperand xsi:type="patternLanguage:VariableValue">
+          <value var="A_x_LS"/>
+        </rightOperand>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="AtoNull_lhs">
+    <modifiers/>
+    <parameters xsi:type="patternLanguage:Parameter" name="A">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent"/>
+      </type>
+    </parameters>
+    <parameters xsi:type="patternLanguage:Parameter" name="B">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|39"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|40"/>
+            </type>
+          </tail>
+          <src var="A"/>
+          <dst xsi:type="patternLanguage:StringValue" value="A"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|41"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|42"/>
+            </type>
+          </tail>
+          <src var="A"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="A_x"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|43"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|44"/>
+            </type>
+          </tail>
+          <src var="A_x"/>
+          <dst xsi:type="patternLanguage:StringValue" value="x"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|45"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|46"/>
+            </type>
+          </tail>
+          <src var="B"/>
+          <dst xsi:type="patternLanguage:StringValue" value="B"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|47"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|48"/>
+            </type>
+          </tail>
+          <src var="B"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="B_x"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|49"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|50"/>
+            </type>
+          </tail>
+          <src var="B_x"/>
+          <dst xsi:type="patternLanguage:StringValue" value="x"/>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="CtoNull_lhs">
+    <modifiers/>
+    <parameters xsi:type="patternLanguage:Parameter" name="C">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|52"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|53"/>
+            </type>
+          </tail>
+          <src var="C"/>
+          <dst xsi:type="patternLanguage:StringValue" value="C"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|54"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|55"/>
+            </type>
+          </tail>
+          <src var="C"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="C_x"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|56"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|57"/>
+            </type>
+          </tail>
+          <src var="C_x"/>
+          <dst xsi:type="patternLanguage:StringValue" value="x"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|58"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|59"/>
+            </type>
+            <tail>
+              <type xsi:type="eMFPatternLanguage:ReferenceType">
+                <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|60"/>
+              </type>
+            </tail>
+          </tail>
+          <src var="C_x"/>
+          <dst xsi:type="patternLanguage:StringValue" value="u"/>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="CtoNull2_lhs">
+    <modifiers/>
+    <parameters xsi:type="patternLanguage:Parameter" name="C">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|62"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|63"/>
+            </type>
+          </tail>
+          <src var="C"/>
+          <dst xsi:type="patternLanguage:StringValue" value="C"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|64"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|65"/>
+            </type>
+          </tail>
+          <src var="C"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="C_x"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|66"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|67"/>
+            </type>
+          </tail>
+          <src var="C_x"/>
+          <dst xsi:type="patternLanguage:StringValue" value="x"/>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="AExact_lhs">
+    <modifiers/>
+    <parameters xsi:type="patternLanguage:Parameter" name="A">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|69"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|70"/>
+            </type>
+          </tail>
+          <src var="A"/>
+          <dst xsi:type="patternLanguage:StringValue" value="A"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|71"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|72"/>
+            </type>
+          </tail>
+          <src var="A"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="A_x"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|73"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|74"/>
+            </type>
+          </tail>
+          <src var="A_x"/>
+          <dst xsi:type="patternLanguage:StringValue" value="x"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|75"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|76"/>
+            </type>
+          </tail>
+          <src var="A_x"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="A_x_LS"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|77"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|78"/>
+            </type>
+          </tail>
+          <src var="A_B"/>
+          <dst xsi:type="patternLanguage:StringValue" value="B"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|79"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|80"/>
+            </type>
+          </tail>
+          <src var="A_B"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="A_B_x"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|81"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|82"/>
+            </type>
+          </tail>
+          <src var="A_B_x"/>
+          <dst xsi:type="patternLanguage:StringValue" value="x"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|83"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|84"/>
+            </type>
+          </tail>
+          <src var="A_B_x"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="A_B_x_LS"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:CompareConstraint">
+        <leftOperand xsi:type="patternLanguage:VariableValue">
+          <value var="A_x_LS"/>
+        </leftOperand>
+        <rightOperand xsi:type="patternLanguage:VariableValue">
+          <value var="A_B_x_LS"/>
+        </rightOperand>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="bla_lhs">
+    <modifiers/>
+    <parameters xsi:type="patternLanguage:Parameter" name="A">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|86"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|87"/>
+            </type>
+          </tail>
+          <src var="A"/>
+          <dst xsi:type="patternLanguage:StringValue" value="A"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|88"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|89"/>
+            </type>
+          </tail>
+          <src var="A"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="A_x"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|90"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|91"/>
+            </type>
+          </tail>
+          <src var="A_x"/>
+          <dst xsi:type="patternLanguage:StringValue" value="x"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|92"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|93"/>
+            </type>
+          </tail>
+          <src var="A_x"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="_"/>
+          </dst>
+        </head>
+      </constraints>
+    </bodies>
+  </patterns>
+  <patterns name="blubb_lhs">
+    <modifiers/>
+    <parameters xsi:type="patternLanguage:Parameter" name="D">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent"/>
+      </type>
+    </parameters>
+    <parameters xsi:type="patternLanguage:Parameter" name="D1">
+      <type xsi:type="eMFPatternLanguage:ClassType">
+        <classname xsi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent"/>
+      </type>
+    </parameters>
+    <bodies>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|96"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|97"/>
+            </type>
+          </tail>
+          <src var="D"/>
+          <dst xsi:type="patternLanguage:StringValue" value="D"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|98"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|99"/>
+            </type>
+          </tail>
+          <src var="D"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="D_c"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|100"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|101"/>
+            </type>
+          </tail>
+          <src var="D_c"/>
+          <dst xsi:type="patternLanguage:StringValue" value="c"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint" negative="true">
+        <call>
+          <patternRef href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|102"/>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="D_c"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|103"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|104"/>
+            </type>
+          </tail>
+          <src var="D1"/>
+          <dst xsi:type="patternLanguage:StringValue" value="D"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|105"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|106"/>
+            </type>
+          </tail>
+          <src var="D1"/>
+          <dst xsi:type="patternLanguage:VariableValue">
+            <value var="D1_c"/>
+          </dst>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PathExpressionConstraint">
+        <head>
+          <type xsi:type="eMFPatternLanguage:ClassType">
+            <classname xsi:type="ecore:EClass" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|107"/>
+          </type>
+          <tail>
+            <type xsi:type="eMFPatternLanguage:ReferenceType">
+              <refname xsi:type="ecore:EAttribute" href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|108"/>
+            </type>
+          </tail>
+          <src var="D1_c"/>
+          <dst xsi:type="patternLanguage:StringValue" value="c"/>
+        </head>
+      </constraints>
+      <constraints xsi:type="patternLanguage:PatternCompositionConstraint" negative="true">
+        <call>
+          <patternRef href="../../../biochemsimulation.viatrapatterns/PatternModels/temp.vql#|109"/>
+          <parameters xsi:type="patternLanguage:VariableValue">
+            <value var="D1_c"/>
+          </parameters>
+        </call>
+      </constraints>
+      <constraints xsi:type="patternLanguage:CompareConstraint" feature="!=">
+        <leftOperand xsi:type="patternLanguage:VariableValue">
+          <value var="D1"/>
+        </leftOperand>
+        <rightOperand xsi:type="patternLanguage:VariableValue">
+          <value var="D"/>
+        </rightOperand>
+      </constraints>
+    </bodies>
+  </patterns>
+  <importPackages>
+    <packageImport alias="reactionContainer">
+      <ePackage href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#/"/>
+    </packageImport>
+  </importPackages>
+</eMFPatternLanguage:PatternModel>

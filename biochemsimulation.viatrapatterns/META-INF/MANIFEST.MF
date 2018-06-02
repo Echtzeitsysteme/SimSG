@@ -22,5 +22,7 @@ Import-Package: biochemsimulation.reactioncontainer,
   biochemsimulation.reactioncontainer.generator,
   org.apache.log4j,
   org.eclipse.emf.ecore.xmi,
-  org.eclipse.emf.ecore.xmi.impl
+  org.eclipse.emf.ecore.xmi.impl,
+  org.eclipse.xtext.resource,
+  org.eclipse.xtext.xbase.resource
 Automatic-Module-Name: biochemsimulation.viatraquery
