@@ -3,10 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: biochemsimulation.viatraquery
 Bundle-SymbolicName: biochemsimulation.viatrapatterns;singleton:=true
 Bundle-Version: 0.0.1.qualifier
-Export-Package: manual.queries,
-  manual.queries.util,
-  patterngenerator,
-  patterngenerator.util
 Require-Bundle: biochemsimulation.reactioncontainer,
   biochemsimulation.reactionrules,
   org.eclipse.emf.ecore,

@@ -1,4 +1,4 @@
-package patterngenerator
+package biochemsimulation.viatrapatterns.generator
 
 import java.util.LinkedHashMap
 //import java.util.List
@@ -92,15 +92,15 @@ class PatternTemplate {
 		return '''
 			pattern «rule.name+"_"+suffix»(«FOR ap : getValidAgentPatterns(pattern.agentPatterns) SEPARATOR ", "» «generateSimAgentContext(ap)»«ENDFOR») {
 				«FOR ap : getValidAgentPatterns(pattern.agentPatterns) SEPARATOR "\n"»
-				// Agent pattern for instances of agent «uniqueSimAgentVariableName(ap)»
-				SimAgent.Type(«uniqueSimAgentVariableName(ap)», "«ap.agent.name»");
-					«FOR sp : ap.sitePatterns.sitePatterns SEPARATOR "\n"»
-					// Site patterns for site «sp.site.name» attached to instances of agent «uniqueSimAgentVariableName(ap)» 
-					SimAgent.simSites(«uniqueSimAgentVariableName(ap)», «simSiteVariableName(ap, sp)»);
-					SimSite.Type(«simSiteVariableName(ap, sp)», "«sp.site.name»");
-					«siteStatePattern(ap, sp)»
-					«linkStatePattern(ap, sp)»
-					«ENDFOR»
+					// Agent pattern for instances of agent «uniqueSimAgentVariableName(ap)»
+					SimAgent.Type(«uniqueSimAgentVariableName(ap)», "«ap.agent.name»");
+						«FOR sp : ap.sitePatterns.sitePatterns SEPARATOR "\n"»
+							// Site patterns for site «sp.site.name» attached to instances of agent «uniqueSimAgentVariableName(ap)» 
+							SimAgent.simSites(«uniqueSimAgentVariableName(ap)», «simSiteVariableName(ap, sp)»);
+							SimSite.Type(«simSiteVariableName(ap, sp)», "«sp.site.name»");
+							«siteStatePattern(ap, sp)»
+							«linkStatePattern(ap, sp)»
+						«ENDFOR»
 				«ENDFOR»
 				«generateInjectivityConstraints(pattern)»
 			}
