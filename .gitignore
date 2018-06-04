@@ -8,6 +8,9 @@
 *.war
 *.ear
 
+# ExportedPlugins
+!*/ExportedPlugins/**/*.jar
+
 # Eclipse
 .metadata/*
 */bin/*
