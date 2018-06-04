@@ -71,8 +71,10 @@ public class SimplePersistenceManager implements PersistenceManager {
 	
 	private void setOSspecificSeparators() {
 		os = System.getProperty(SYSTEM_OS_PROPERTY);
-		if(os.equalsIgnoreCase(SYSTEM_OS_WIN)) {
+		System.out.println(os);
+		if(os.contains(SYSTEM_OS_WIN)) {
 			pathSeparator = SEPARATOR_WIN;
+			os = SYSTEM_OS_WIN;
 		}else {
 			pathSeparator = SEPARATOR_OSX;
 		}
@@ -255,7 +257,7 @@ public class SimplePersistenceManager implements PersistenceManager {
 		viatraPatternModelPaths = new HashMap<String, String>();
 		
 		List<String> allFiles = PersistenceUtils.getAllFilesInFolder(viatraPatternModelFolder);
-		Pattern pattern = Pattern.compile(pathSeparator+"(.*?)(\\.xmi)$");
+		Pattern pattern = Pattern.compile(pathSeparator+pathSeparator+"(.*?)(\\.xmi)$");
 		for(String filePath : allFiles) {
 			if(!filePath.matches(".+(\\.xmi)$")) {
 			}else {

@@ -19,9 +19,12 @@ Require-Bundle: biochemsimulation.reactionrules,
  org.eclipse.xtext.xbase.lib
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: biochemsimulation.reactionrules.ui.quickfix,
+Export-Package: biochemsimulation.reactionrules.ui.contentassist,
  biochemsimulation.reactionrules.ui.internal,
- biochemsimulation.reactionrules.ui.contentassist
+ biochemsimulation.reactionrules.ui.quickfix,
+ biochemsimulation.reactionrules.wizard
 Bundle-Activator: biochemsimulation.reactionrules.ui.internal.ReactionrulesActivator
 Automatic-Module-Name: biochemsimulation.reactionrules.ui
 Service-Component: wizard.xml
+Bundle-ClassPath: icon/,
+ .

@@ -40,6 +40,9 @@ public class ViatraPatternGenerator {
 	
 	private void setOSspecificSeparators() {
 		os = System.getProperty(SYSTEM_OS_PROPERTY);
+		if(os.contains(SYSTEM_OS_WIN)) {
+			os = SYSTEM_OS_WIN;
+		}
 	}
 	
 	private void init() {
