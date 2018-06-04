@@ -17,6 +17,8 @@ import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkAgent
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkSite
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink
+import biochemsimulation.reactionrules.reactionRules.NumericFromVariable
+import biochemsimulation.reactionrules.reactionRules.ArithmeticVariable
 
 /**
  * This class contains custom scoping description.
@@ -39,7 +41,29 @@ class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvider {
 	    if (context instanceof SitePattern) {
 	       return sitePatternScope(context, reference)
 	    }
+	    if (context instanceof NumericFromVariable) {
+	    	return numericVariableScope(context, reference)
+	    }
+	    if (context instanceof ValidAgentPattern) {
+	    	//return validAgentPatternScope(context, reference)
+	    }
 	    return super.getScope(context, reference);
+	}
+	
+	def validAgentPatternScope(EObject context, EReference reference){
+		val rootElement = EcoreUtil2.getRootContainer(context);
+		val list = new LinkedList<EObject>
+	    list.addAll(EcoreUtil2.getAllContentsOfType(rootElement, Agent))
+	    val existingScope = Scopes.scopeFor(list)
+	    return new FilteringScope(existingScope, [getEObjectOrProxy != context])
+	}
+	
+	def numericVariableScope(EObject context, EReference reference){
+		val rootElement = EcoreUtil2.getRootContainer(context);
+		val list = new LinkedList<EObject>
+	    list.addAll(EcoreUtil2.getAllContentsOfType(rootElement, ArithmeticVariable))
+	    val existingScope = Scopes.scopeFor(list)
+	    return new FilteringScope(existingScope, [getEObjectOrProxy != context])
 	}
 	
 	def siteStateScope(EObject context, EReference reference) {

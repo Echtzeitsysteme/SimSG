@@ -4,9 +4,11 @@
 package biochemsimulation.reactionrules.scoping;
 
 import biochemsimulation.reactionrules.reactionRules.Agent;
+import biochemsimulation.reactionrules.reactionRules.ArithmeticVariable;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkAgent;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkSite;
+import biochemsimulation.reactionrules.reactionRules.NumericFromVariable;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.SitePatterns;
@@ -49,7 +51,36 @@ public class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvid
     if ((context instanceof SitePattern)) {
       return this.sitePatternScope(context, reference);
     }
+    if ((context instanceof NumericFromVariable)) {
+      return this.numericVariableScope(context, reference);
+    }
+    if ((context instanceof ValidAgentPattern)) {
+    }
     return super.getScope(context, reference);
+  }
+  
+  public FilteringScope validAgentPatternScope(final EObject context, final EReference reference) {
+    final EObject rootElement = EcoreUtil2.getRootContainer(context);
+    final LinkedList<EObject> list = new LinkedList<EObject>();
+    list.addAll(EcoreUtil2.<Agent>getAllContentsOfType(rootElement, Agent.class));
+    final IScope existingScope = Scopes.scopeFor(list);
+    final Predicate<IEObjectDescription> _function = (IEObjectDescription it) -> {
+      EObject _eObjectOrProxy = it.getEObjectOrProxy();
+      return (!Objects.equal(_eObjectOrProxy, context));
+    };
+    return new FilteringScope(existingScope, _function);
+  }
+  
+  public FilteringScope numericVariableScope(final EObject context, final EReference reference) {
+    final EObject rootElement = EcoreUtil2.getRootContainer(context);
+    final LinkedList<EObject> list = new LinkedList<EObject>();
+    list.addAll(EcoreUtil2.<ArithmeticVariable>getAllContentsOfType(rootElement, ArithmeticVariable.class));
+    final IScope existingScope = Scopes.scopeFor(list);
+    final Predicate<IEObjectDescription> _function = (IEObjectDescription it) -> {
+      EObject _eObjectOrProxy = it.getEObjectOrProxy();
+      return (!Objects.equal(_eObjectOrProxy, context));
+    };
+    return new FilteringScope(existingScope, _function);
   }
   
   public IScope siteStateScope(final EObject context, final EReference reference) {

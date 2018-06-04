@@ -18,7 +18,7 @@ init init3 2 { C(x{u}[free])}
 init init4 2 { A(x[1]), C(x{p}[1])}
 init init5 2 { D() }
 
-/* Rules */
+/* Rules */ 
 rule AtoB { A(x[free]), B(x[free]) } <-> { A(x[1]), B(x[1])} @ [on_rate, off_rate]
 rule AtoNull { A(x[?]), B(x[?]) } <-> { void, void } @ [on_rate, off_rate]
 rule CtoNull { C(x{u}[?]) } -> { void } @ [on_rate]

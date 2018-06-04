@@ -111,6 +111,6 @@ pattern blubb_lhs( D: SimAgent,  D1: SimAgent) {
 		SimAgent.simSites(D1, D1_c);
 		SimSite.Type(D1_c, "c");
 		neg find support_SimLinkState(D1_c);
-	 D1 != D;
+	 D != D1;
 }
 
