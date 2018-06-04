@@ -28,16 +28,27 @@ import patterngenerator.PatternTemplate;
 public class ViatraPatternGenerator {
 	
 	final public static String PATTERN_MODEL_FOLDER_NAME = "PatternModels";
+	final public static String SYSTEM_OS_PROPERTY = "os.name";
+	final public static String SYSTEM_OS_WIN = "Windows";
+	final public static String SYSTEM_OS_OSX = "Mac OS X";
 	
+	private String os;
 	private boolean isInitialized;
 	private ReactionRuleModel model;
 	private PatternModel patternModel;
 	private String patternModelFolder;
 	
+	private void setOSspecificSeparators() {
+		os = System.getProperty(SYSTEM_OS_PROPERTY);
+	}
+	
 	private void init() {
+		setOSspecificSeparators();
 		patternModelFolder = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
 		patternModelFolder = patternModelFolder.replaceFirst("/bin", "");
-		patternModelFolder = patternModelFolder.replaceFirst("^/", "");
+		if(os.equalsIgnoreCase(SYSTEM_OS_WIN)) {
+			patternModelFolder = patternModelFolder.replaceFirst("^/", "");
+		}
 		patternModelFolder = patternModelFolder.replaceFirst("%20", " ");
 		patternModelFolder += PATTERN_MODEL_FOLDER_NAME+"/";
 		isInitialized = false;

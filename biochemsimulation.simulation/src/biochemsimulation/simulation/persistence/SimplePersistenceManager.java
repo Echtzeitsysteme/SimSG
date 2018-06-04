@@ -31,6 +31,11 @@ public class SimplePersistenceManager implements PersistenceManager {
 	final public static String REACTION_RULE_MODELS_HEADER = "<reactionRules:ReactionRuleModel xmi:version=\"2.0\" xmlns:xmi=\"http://www.omg.org/XMI\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:reactionRules=\"http://www.reactionrules.biochemsimulation/ReactionRules\" xsi:schemaLocation=\"http://www.reactionrules.biochemsimulation/ReactionRules java://biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage\">";
 	final public static String REACTION_RULE_MODELS_NAME_LOCATION = "<model xmi:type=\"reactionRules:Model\" name=";
 	final public static String VIATRA_PATTERN_MODELS_FOLDER = "ViatraPatternModels";
+	final public static String SEPARATOR_WIN = "\\";
+	final public static String SEPARATOR_OSX = "/";
+	final public static String SYSTEM_OS_PROPERTY = "os.name";
+	final public static String SYSTEM_OS_WIN = "Windows";
+	final public static String SYSTEM_OS_OSX = "Mac OS X";
 	
 	private HashMap<String, String> reactionModelPaths;
 	private HashMap<String, String> ruleModelPaths;
@@ -40,6 +45,8 @@ public class SimplePersistenceManager implements PersistenceManager {
 	private HashMap<String, ReactionRuleModel> ruleModelCache;
 	private HashMap<String, PatternModel> viatraPatternModelCache;
 	
+	private String os;
+	private String pathSeparator;
 	private String dataFolder;
 	private String reactionModelFolder;
 	private String ruleModelFolder;
@@ -52,6 +59,7 @@ public class SimplePersistenceManager implements PersistenceManager {
 	@Override
 	public void init() {
 		classLoader();
+		setOSspecificSeparators();
 		setFolderPaths();
 		fetchExistingRuleModelPaths();
 		fetchExistingReactionModelPaths();
@@ -59,6 +67,15 @@ public class SimplePersistenceManager implements PersistenceManager {
 		reactionModelCache = new HashMap<String, ReactionContainer>();
 		ruleModelCache = new HashMap<String, ReactionRuleModel>();
 		viatraPatternModelCache = new HashMap<String, PatternModel>();
+	}
+	
+	private void setOSspecificSeparators() {
+		os = System.getProperty(SYSTEM_OS_PROPERTY);
+		if(os.equalsIgnoreCase(SYSTEM_OS_WIN)) {
+			pathSeparator = SEPARATOR_WIN;
+		}else {
+			pathSeparator = SEPARATOR_OSX;
+		}
 	}
 	
 	private void classLoader() {
@@ -160,11 +177,12 @@ public class SimplePersistenceManager implements PersistenceManager {
 	private void setFolderPaths() {
 		dataFolder = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
 		dataFolder = dataFolder.replaceFirst("/bin", "");
-		dataFolder = dataFolder.replaceFirst("^/", "");
+		if(os.equalsIgnoreCase(SYSTEM_OS_WIN)) {
+			dataFolder = dataFolder.replaceFirst("^/", "");
+		}
 		dataFolder = dataFolder.replaceFirst("%20", " ");
 		dataFolder += "data/";
 		PersistenceUtils.createFolderIfNotExist(dataFolder);
-		
 		reactionModelFolder = dataFolder + REACTION_CONTAINER_MODELS_FOLDER;
 		PersistenceUtils.createFolderIfNotExist(reactionModelFolder);
 		
@@ -237,14 +255,14 @@ public class SimplePersistenceManager implements PersistenceManager {
 		viatraPatternModelPaths = new HashMap<String, String>();
 		
 		List<String> allFiles = PersistenceUtils.getAllFilesInFolder(viatraPatternModelFolder);
-		Pattern pattern = Pattern.compile("\\\\(.*?)(\\.xmi)$");
+		Pattern pattern = Pattern.compile(pathSeparator+"(.*?)(\\.xmi)$");
 		for(String filePath : allFiles) {
 			if(!filePath.matches(".+(\\.xmi)$")) {
 			}else {
 				Matcher matcher = pattern.matcher(filePath);
 				if(matcher.find()) {
 					String key = matcher.group(1);
-					int idx = key.lastIndexOf("\\")+1;
+					int idx = key.lastIndexOf(pathSeparator)+1;
 					if(idx>=0) {
 						key = key.substring(idx);
 						viatraPatternModelPaths.put(key, filePath);

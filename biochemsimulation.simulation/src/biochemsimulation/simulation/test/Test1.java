@@ -20,6 +20,11 @@ public class Test1 {
 	public static void main(String[] args) {
 		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
 		pm.init();
+		
+		pm.availableReactionContainerModels().forEach(x->System.out.println(x));
+		pm.availableReactionRuleModels().forEach(x->System.out.println(x));
+		
+		
 		try {
 			ReactionRuleModel model1 = pm.loadReactionRuleModel("test2");
 			System.out.println("Loaded reaction rule model: "+model1.getModel().getName());
@@ -39,6 +44,7 @@ public class Test1 {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 
 	}
 

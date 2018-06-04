@@ -10,7 +10,8 @@ public class ReactFileWizard extends Wizard implements INewWizard {
 
     private IStructuredSelection selection;
     private ReactFileWizardPage newFileWizardPage;
-    private IWorkbench workbench;
+    @SuppressWarnings("unused")
+	private IWorkbench workbench;
  
 
     public ReactFileWizard() {

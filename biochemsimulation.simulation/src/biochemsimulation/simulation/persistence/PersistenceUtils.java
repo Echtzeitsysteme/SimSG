@@ -19,12 +19,8 @@ public class PersistenceUtils {
 		if(dir.exists()) {
 			File[] contents = dir.listFiles();
 			for(File f : contents) {
-				try {
-					fileNames.add(f.getCanonicalPath());
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				fileNames.add(f.getAbsolutePath());
+				System.out.println(f.getAbsolutePath());
 			}
 		}
 		
