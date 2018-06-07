@@ -33,6 +33,7 @@ public class Test1 {
 			PatternModel model3 = pm.loadViatraPatternModel("test2", true);
 			System.out.println("Patterns for pattern model: "+"test2");
 			model3.getPatterns().forEach(x->System.out.println(x.getName()));
+
 			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.ViatraEngine);
 			engine.initEngine(model2);
 			engine.initMatcher(model3);
@@ -41,6 +42,7 @@ public class Test1 {
 			for(String key : results.keySet()) {
 				System.out.println("Pattern: "+key+ ", size: "+results.get(key).size());
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

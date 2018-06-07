@@ -1,116 +1,118 @@
-package patterngenerator
+package biochemsimulation.viatrapatterns.generator
 		
 import "http://www.reactioncontainer.biochemsimulation.org/reactioncontainer" as reactionContainer
 
-pattern support_SimLinkState(ss: SimSite) {
+pattern support_SimLinkState(ss : SimSite) {
 	SimSite.simLinkState(ss, _);
 }
 
-pattern AtoB_lhs( A: SimAgent,  B: SimAgent) {
-	// Agent pattern for instances of agent A
+pattern AtoB_rhs( A : SimAgent,  B : SimAgent) {
+	 // Context for agent pattern:
 	SimAgent.Type(A, "A");
-		// Site patterns for site x attached to instances of agent A 
-		SimAgent.simSites(A, A_x);
-		SimSite.Type(A_x, "x");
-		neg find support_SimLinkState(A_x);
+	// Context and checks for site patterns:
+	SimAgent.simSites(A, A_x);
+	SimSite.Type(A_x, "x");
+	SimSite.simLinkState(A_x, A_x_LS);
+	A_x_LS==B_x_LS;
 	
-	// Agent pattern for instances of agent B
+	 // Context for agent pattern:
 	SimAgent.Type(B, "B");
-		// Site patterns for site x attached to instances of agent B 
-		SimAgent.simSites(B, B_x);
-		SimSite.Type(B_x, "x");
-		neg find support_SimLinkState(B_x);
+	// Context and checks for site patterns:
+	SimAgent.simSites(B, B_x);
+	SimSite.Type(B_x, "x");
+	SimSite.simLinkState(B_x, B_x_LS);
+	
 }
 
-pattern AtoB_rhs( A: SimAgent,  B: SimAgent) {
-	// Agent pattern for instances of agent A
+pattern AtoB_lhs( A : SimAgent,  B : SimAgent) {
+	 // Context for agent pattern:
 	SimAgent.Type(A, "A");
-		// Site patterns for site x attached to instances of agent A 
-		SimAgent.simSites(A, A_x);
-		SimSite.Type(A_x, "x");
-		SimSite.simLinkState(A_x, A_x_LS);
-		A_x_LS == B_x_LS;
+	// Context and checks for site patterns:
+	SimAgent.simSites(A, A_x);
+	SimSite.Type(A_x, "x");
+	neg find support_SimLinkState(A_x);
 	
-	// Agent pattern for instances of agent B
+	 // Context for agent pattern:
 	SimAgent.Type(B, "B");
-		// Site patterns for site x attached to instances of agent B 
-		SimAgent.simSites(B, B_x);
-		SimSite.Type(B_x, "x");
-		SimSite.simLinkState(B_x, B_x_LS);
-		B_x_LS == A_x_LS;
+	// Context and checks for site patterns:
+	SimAgent.simSites(B, B_x);
+	SimSite.Type(B_x, "x");
+	neg find support_SimLinkState(B_x);
 }
 
-pattern AtoNull_lhs( A: SimAgent,  B: SimAgent) {
-	// Agent pattern for instances of agent A
+pattern AtoNull_lhs( A : SimAgent,  B : SimAgent) {
+	 // Context for agent pattern:
 	SimAgent.Type(A, "A");
-		// Site patterns for site x attached to instances of agent A 
-		SimAgent.simSites(A, A_x);
-		SimSite.Type(A_x, "x");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A, A_x);
+	SimSite.Type(A_x, "x");
 	
-	// Agent pattern for instances of agent B
+	
+	 // Context for agent pattern:
 	SimAgent.Type(B, "B");
-		// Site patterns for site x attached to instances of agent B 
-		SimAgent.simSites(B, B_x);
-		SimSite.Type(B_x, "x");
+	// Context and checks for site patterns:
+	SimAgent.simSites(B, B_x);
+	SimSite.Type(B_x, "x");
+	
 }
 
-
-pattern CtoNull_lhs( C: SimAgent) {
-	// Agent pattern for instances of agent C
+pattern CtoNull_lhs( C : SimAgent) {
+	 // Context for agent pattern:
 	SimAgent.Type(C, "C");
-		// Site patterns for site x attached to instances of agent C 
-		SimAgent.simSites(C, C_x);
-		SimSite.Type(C_x, "x");
-		SimSite.simSiteState.Type(C_x, "u");
+	// Context and checks for site patterns:
+	SimAgent.simSites(C, C_x);
+	SimSite.Type(C_x, "x");
+	SimSite.simSiteState.Type(C_x, "u");
+	
 }
 
-pattern CtoNull2_lhs( C: SimAgent) {
-	// Agent pattern for instances of agent C
+pattern CtoNull2_lhs( C : SimAgent) {
+	 // Context for agent pattern:
 	SimAgent.Type(C, "C");
-		// Site patterns for site x attached to instances of agent C 
-		SimAgent.simSites(C, C_x);
-		SimSite.Type(C_x, "x");
+	// Context and checks for site patterns:
+	SimAgent.simSites(C, C_x);
+	SimSite.Type(C_x, "x");
+	
 }
 
-pattern AExact_lhs( A: SimAgent) {
-	// Agent pattern for instances of agent A
+pattern AExact_lhs( A : SimAgent) {
+	 // Context for agent pattern:
 	SimAgent.Type(A, "A");
-		// Site patterns for site x attached to instances of agent A 
-		SimAgent.simSites(A, A_x);
-		SimSite.Type(A_x, "x");
-		SimSite.simLinkState(A_x, A_x_LS);
-		// Create context for other SimAgent:
-		SimAgent.Type(A_B, "B");
-		SimAgent.simSites(A_B, A_B_x);
-		SimSite.Type(A_B_x, "x");
-		SimSite.simLinkState(A_B_x, A_B_x_LS);
-		// check for equality
-		A_x_LS == A_B_x_LS;
+	// Context and checks for site patterns:
+	SimAgent.simSites(A, A_x);
+	SimSite.Type(A_x, "x");
+	SimSite.simLinkState(A_x, A_x_LS);
+	// Create context for other SimAgent:
+	SimAgent.Type(A_B, "B");
+	SimAgent.simSites(A_B, A_B_x);
+	SimSite.Type(A_B_x, "x");
+	SimSite.simLinkState(A_B_x, A_B_BLS);
+	A_x_LS==A_B_BLS;
 }
 
-pattern bla_lhs( A: SimAgent) {
-	// Agent pattern for instances of agent A
+pattern bla_lhs( A : SimAgent) {
+	 // Context for agent pattern:
 	SimAgent.Type(A, "A");
-		// Site patterns for site x attached to instances of agent A 
-		SimAgent.simSites(A, A_x);
-		SimSite.Type(A_x, "x");
-		SimSite.simLinkState(A_x, _);
+	// Context and checks for site patterns:
+	SimAgent.simSites(A, A_x);
+	SimSite.Type(A_x, "x");
+	SimSite.simLinkState(A_x, _);
 }
 
-pattern blubb_lhs( D: SimAgent,  D1: SimAgent) {
-	// Agent pattern for instances of agent D
+pattern blubb_lhs( D : SimAgent,  D1 : SimAgent) {
+	 // Context for agent pattern:
 	SimAgent.Type(D, "D");
-		// Site patterns for site c attached to instances of agent D 
-		SimAgent.simSites(D, D_c);
-		SimSite.Type(D_c, "c");
-		neg find support_SimLinkState(D_c);
+	// Context and checks for site patterns:
+	SimAgent.simSites(D, D_c);
+	SimSite.Type(D_c, "c");
+	neg find support_SimLinkState(D_c);
 	
-	// Agent pattern for instances of agent D1
+	 // Context for agent pattern:
 	SimAgent.Type(D1, "D");
-		// Site patterns for site c attached to instances of agent D1 
-		SimAgent.simSites(D1, D1_c);
-		SimSite.Type(D1_c, "c");
-		neg find support_SimLinkState(D1_c);
-	 D1 != D;
+	// Context and checks for site patterns:
+	SimAgent.simSites(D1, D1_c);
+	SimSite.Type(D1_c, "c");
+	neg find support_SimLinkState(D1_c);
+	 D!=D1;
 }
 

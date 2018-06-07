@@ -6,11 +6,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -22,8 +20,6 @@ import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternMo
 import org.eclipse.xtext.resource.XtextResourceSet;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
-import biochemsimulation.reactionrules.reactionRules.Rule;
-import patterngenerator.PatternTemplate;
 
 public class ViatraPatternGenerator {
 	
@@ -72,15 +68,10 @@ public class ViatraPatternGenerator {
 		
 		LinkedHashMap<EPackage, String> imports = new LinkedHashMap<EPackage, String>();
 		imports.put(ReactionContainerPackage.eINSTANCE, "reactionContainer");
+
+		PatternTemplate pt = new PatternTemplate(imports, model);
+		String output = pt.generatePatternCode();
 		
-		PatternTemplate pt = new PatternTemplate(imports);
-		List<Rule> rules = new LinkedList<Rule>();
-		for (EObject e : model.getReactionProperties()) {
-			if (e instanceof Rule) {
-				rules.add((Rule) e);
-			}
-		}
-		String output = pt.generatePatternCode(rules);
 		saveModelToVqlFile(patternModelFolder+"temp.vql", output);
 		
 		ResourceSet resourceSet = new ResourceSetImpl();

@@ -71,7 +71,6 @@ public class SimplePersistenceManager implements PersistenceManager {
 	
 	private void setOSspecificSeparators() {
 		os = System.getProperty(SYSTEM_OS_PROPERTY);
-		System.out.println(os);
 		if(os.contains(SYSTEM_OS_WIN)) {
 			pathSeparator = SEPARATOR_WIN;
 			os = SYSTEM_OS_WIN;

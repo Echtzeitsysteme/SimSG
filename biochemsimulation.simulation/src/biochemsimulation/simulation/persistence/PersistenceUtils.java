@@ -20,7 +20,6 @@ public class PersistenceUtils {
 			File[] contents = dir.listFiles();
 			for(File f : contents) {
 				fileNames.add(f.getAbsolutePath());
-				System.out.println(f.getAbsolutePath());
 			}
 		}
 		
