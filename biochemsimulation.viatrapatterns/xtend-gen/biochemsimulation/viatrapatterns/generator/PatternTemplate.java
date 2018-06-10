@@ -25,6 +25,14 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
 public class PatternTemplate {
+  public final static String PATTERN_NAME_SUFFIX_RHS = "_rhs";
+  
+  public final static String PATTERN_NAME_SUFFIX_LHS = "_lhs";
+  
+  public final static String RULE_OPERATOR_UNI = "->";
+  
+  public final static String RULE_OPERATOR_BI = "<->";
+  
   private LinkedHashMap<EPackage, String> importAliases;
   
   private List<Rule> rules;
@@ -67,15 +75,18 @@ public class PatternTemplate {
       this.patternTemplates = _linkedList;
       final Consumer<Rule> _function = (Rule x) -> {
         String _name = x.getName();
-        String _plus = (_name + "_rhs");
-        Pattern _patternFromPatternAssignment = this.patternFromPatternAssignment(x.getRule().getRhs());
+        String _plus = (_name + PatternTemplate.PATTERN_NAME_SUFFIX_LHS);
+        Pattern _patternFromPatternAssignment = this.patternFromPatternAssignment(x.getRule().getLhs());
         PatternViatraTemplate _patternViatraTemplate = new PatternViatraTemplate(_plus, _patternFromPatternAssignment);
         this.patternTemplates.add(_patternViatraTemplate);
-        String _name_1 = x.getName();
-        String _plus_1 = (_name_1 + "_lhs");
-        Pattern _patternFromPatternAssignment_1 = this.patternFromPatternAssignment(x.getRule().getLhs());
-        PatternViatraTemplate _patternViatraTemplate_1 = new PatternViatraTemplate(_plus_1, _patternFromPatternAssignment_1);
-        this.patternTemplates.add(_patternViatraTemplate_1);
+        boolean _equals = x.getRule().getOperator().equals(PatternTemplate.RULE_OPERATOR_BI);
+        if (_equals) {
+          String _name_1 = x.getName();
+          String _plus_1 = (_name_1 + PatternTemplate.PATTERN_NAME_SUFFIX_RHS);
+          Pattern _patternFromPatternAssignment_1 = this.patternFromPatternAssignment(x.getRule().getRhs());
+          PatternViatraTemplate _patternViatraTemplate_1 = new PatternViatraTemplate(_plus_1, _patternFromPatternAssignment_1);
+          this.patternTemplates.add(_patternViatraTemplate_1);
+        }
       };
       this.rules.forEach(_function);
       final Function1<PatternViatraTemplate, Boolean> _function_1 = (PatternViatraTemplate x) -> {

@@ -14,10 +14,17 @@ import biochemsimulation.simulation.matching.PatternMatchingEngineFactory;
 import biochemsimulation.simulation.persistence.PersistenceManager;
 import biochemsimulation.simulation.persistence.PersistenceManagerEnum;
 import biochemsimulation.simulation.persistence.PersistenceManagerFactory;
+import biochemsimulation.simulation.pmc.PatternMatchingController;
+import biochemsimulation.simulation.pmc.PatternMatchingControllerEnum;
+import biochemsimulation.simulation.pmc.PatternMatchingControllerFactory;
 
 public class Test1 {
 
 	public static void main(String[] args) {
+		test2();
+	}
+	
+	public static void test1() {
 		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
 		pm.init();
 		
@@ -46,8 +53,31 @@ public class Test1 {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static void test2() {
+		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
+		pm.init();
 		
-
+		try {
+			ReactionRuleModel model1 = pm.loadReactionRuleModel("test3");
+			ReactionContainer model2 = pm.loadReactionContainerModel("test3", true);
+			PatternModel model3 = pm.loadViatraPatternModel("test3", true);
+			PatternMatchingController pmc = PatternMatchingControllerFactory.create(PatternMatchingControllerEnum.SimplePMC);
+			pmc.init(model1, model2, model3);
+			for(int i = 0; i<20; i++) {
+				pmc.collectMatches();
+				Map<String, Collection<? extends IPatternMatch>> results = pmc.getAllMatches();
+				for(String key : results.keySet()) {
+					System.out.println("Pattern: "+key+ ", size: "+results.get(key).size());
+				}
+				pmc.performTransformations();
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

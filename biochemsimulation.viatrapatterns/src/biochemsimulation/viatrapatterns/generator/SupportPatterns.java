@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class SupportPatterns {
 	
+	final public static String SUPPORT_PREFIX = "support_";
 	final public static String PATTERN_SIMLINKSTATE = "support_SimLinkState";
 	
 	private static SupportPatterns instance;

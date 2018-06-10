@@ -13,6 +13,11 @@ import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel
 
 class PatternTemplate {
 	
+	final public static String PATTERN_NAME_SUFFIX_RHS = "_rhs";
+	final public static String PATTERN_NAME_SUFFIX_LHS = "_lhs";
+	final public static String RULE_OPERATOR_UNI = "->";
+	final public static String RULE_OPERATOR_BI = "<->";
+	
 	private LinkedHashMap<EPackage, String> importAliases;
 	private List<Rule> rules;
 	private List<PatternViatraTemplate> patternTemplates;
@@ -38,8 +43,10 @@ class PatternTemplate {
 	def initPatternTemplates() {
 		patternTemplates = new LinkedList<PatternViatraTemplate>()
 		rules.forEach[x | 
-			patternTemplates.add(new PatternViatraTemplate(x.name+"_rhs", patternFromPatternAssignment(x.rule.rhs))) 
-			patternTemplates.add(new PatternViatraTemplate(x.name+"_lhs", patternFromPatternAssignment(x.rule.lhs)))
+			patternTemplates.add(new PatternViatraTemplate(x.name+PATTERN_NAME_SUFFIX_LHS, patternFromPatternAssignment(x.rule.lhs)))
+			if(x.rule.operator.equals(RULE_OPERATOR_BI)) {
+				patternTemplates.add(new PatternViatraTemplate(x.name+PATTERN_NAME_SUFFIX_RHS, patternFromPatternAssignment(x.rule.rhs))) 
+			}
 		]
 		patternTemplates = patternTemplates.filter[x | !x.isVoidPattern].toList
 	}

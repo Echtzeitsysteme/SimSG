@@ -1,7 +1,7 @@
 package biochemsimulation.simulation.pmc;
 
 public enum PatternMatchingControllerEnum {
-	SimpleController("SimpleController");
+	SimplePMC("SimplePMC");
 	
 	private String name;
 	
