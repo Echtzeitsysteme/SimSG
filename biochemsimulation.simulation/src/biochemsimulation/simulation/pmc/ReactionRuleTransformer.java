@@ -12,10 +12,15 @@ import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternMo
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
+import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.SimAgent;
 import biochemsimulation.reactioncontainer.SimLinkState;
+import biochemsimulation.reactioncontainer.SimSite;
+import biochemsimulation.reactioncontainer.SimSiteState;
+import biochemsimulation.reactioncontainer.impl.ReactionContainerFactoryImpl;
 import biochemsimulation.reactionrules.reactionRules.AssignFromPattern;
 import biochemsimulation.reactionrules.reactionRules.AssignFromVariable;
+import biochemsimulation.reactionrules.reactionRules.FreeLink;
 import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral;
 import biochemsimulation.reactionrules.reactionRules.NumericFromVariable;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
@@ -23,6 +28,8 @@ import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.Rule;
 import biochemsimulation.reactionrules.reactionRules.RuleBody;
+import biochemsimulation.reactionrules.reactionRules.SitePattern;
+import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern;
 import biochemsimulation.reactionrules.utils.PatternUtils;
 import biochemsimulation.viatrapatterns.generator.PatternTemplate;
@@ -44,6 +51,8 @@ public abstract class ReactionRuleTransformer {
 	protected Map<String, Double> staticReactionRates;
 	protected Map<String, Double> dynamicReactionRates;
 	
+	private ReactionContainerFactory factory;
+	
 	public ReactionRuleTransformer() {
 		ruleMap = new HashMap<String, Rule>();
 		patternMap = new HashMap<String, Pattern>();
@@ -54,6 +63,8 @@ public abstract class ReactionRuleTransformer {
 		
 		staticReactionRates = new HashMap<String, Double>();
 		dynamicReactionRates = new HashMap<String, Double>();
+		
+		factory = ReactionContainerFactoryImpl.init();
 	}
 	
 	protected void initRuleMap() {
@@ -122,10 +133,14 @@ public abstract class ReactionRuleTransformer {
 		String patternName = match.patternName().replaceAll("^(.)*\\.", "");
 		Pattern src = patternMap.get(patternName);
 		Pattern trg = targetPatternMap.get(patternName);
-		removeMarkedElements(match, src, trg);
+		removeAgents(match, trg);
+		removeLinks(match, src, trg);
+		changeSiteStates(match, src, trg);
+		addGreenAgents(match, src, trg);
+		//addGreenSites(match, src, trg);
 	}
 	
-	protected void removeMarkedElements(IPatternMatch match, Pattern src, Pattern trg) {
+	protected void removeAgents(IPatternMatch match, Pattern trg) {
 		for(int i = 0; i<trg.getAgentPatterns().size(); i++) {
 			if(trg.getAgentPatterns().get(i) instanceof VoidAgentPattern) {
 				SimAgent agnt = (SimAgent) match.get(match.parameterNames().get(i));
@@ -136,6 +151,65 @@ public abstract class ReactionRuleTransformer {
 					}
 				});
 				org.eclipse.emf.ecore.util.EcoreUtil.delete(agnt);
+			}
+		}
+	}
+	
+	protected void removeLinks(IPatternMatch match, Pattern src, Pattern trg) {
+		for(int i = 0; i<trg.getAgentPatterns().size(); i++) {
+			if(trg.getAgentPatterns().get(i) instanceof ValidAgentPattern && 
+					src.getAgentPatterns().get(i) instanceof ValidAgentPattern) {
+				ValidAgentPattern ap = (ValidAgentPattern)trg.getAgentPatterns().get(i);
+				SimAgent agnt = (SimAgent) match.get(match.parameterNames().get(i));
+				for(int j = 0; j<agnt.getSimSites().size(); j++) {
+					SimSite ss = agnt.getSimSites().get(j);
+					SitePattern sp = ap.getSitePatterns().getSitePatterns().get(j);
+					if(ss.getSimLinkState() != null) {
+						if(sp.getLinkState().getLinkState() instanceof FreeLink) {
+							org.eclipse.emf.ecore.util.EcoreUtil.delete(ss.getSimLinkState());
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	protected void changeSiteStates(IPatternMatch match, Pattern src, Pattern trg) {
+		for(int i = 0; i<trg.getAgentPatterns().size(); i++) {
+			if(trg.getAgentPatterns().get(i) instanceof ValidAgentPattern && 
+					src.getAgentPatterns().get(i) instanceof ValidAgentPattern) {
+				ValidAgentPattern ap = (ValidAgentPattern)trg.getAgentPatterns().get(i);
+				SimAgent agnt = (SimAgent) match.get(match.parameterNames().get(i));
+				for(int j = 0; j<agnt.getSimSites().size(); j++) {
+					SimSite ss = agnt.getSimSites().get(j);
+					SitePattern sp = ap.getSitePatterns().getSitePatterns().get(j);
+					if(ss.getSimSiteState() != null) {
+						if(sp.getState() != null) {
+							String spStateName = sp.getState().getState().getName();
+							if(!ss.getSimSiteState().getType().equals(spStateName)) {
+								SimSiteState sss = factory.createSimSiteState();
+								sss.setType(spStateName);
+								org.eclipse.emf.ecore.util.EcoreUtil.delete(ss.getSimSiteState());
+								ss.setSimSiteState(sss);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	// ToDo: Add Site States!
+	protected void addGreenAgents(IPatternMatch match, Pattern src, Pattern trg) {
+		int agntID = 0;
+		for(int i = 0; i<src.getAgentPatterns().size(); i++) {
+			if(src.getAgentPatterns().get(i) instanceof VoidAgentPattern) {
+				ValidAgentPattern ap = (ValidAgentPattern)trg.getAgentPatterns().get(i);
+				SimAgent agnt = factory.createSimAgent();
+				reactionContainer.getSimAgent().add(agnt);
+				agnt.setName(ap.getAgent().getName()+"_viaTransfrom:"+match.hashCode()+"//"+agntID);
+				agntID++;
+				agnt.setType(ap.getAgent().getName());
 			}
 		}
 	}
