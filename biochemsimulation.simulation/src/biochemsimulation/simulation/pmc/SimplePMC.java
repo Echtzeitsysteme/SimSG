@@ -46,6 +46,7 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 		collectReactionCandidates();
 		candidates.forEach((x, y) -> {
 			y.forEach(z -> applyRuleToMatch(z));
+			// hier muesst noch ein update matches rein!
 		});
 		
 	}

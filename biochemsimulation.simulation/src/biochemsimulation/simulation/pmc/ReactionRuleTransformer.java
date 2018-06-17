@@ -14,13 +14,16 @@ import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.SimAgent;
+import biochemsimulation.reactioncontainer.SimBound;
 import biochemsimulation.reactioncontainer.SimLinkState;
 import biochemsimulation.reactioncontainer.SimSite;
 import biochemsimulation.reactioncontainer.SimSiteState;
 import biochemsimulation.reactioncontainer.impl.ReactionContainerFactoryImpl;
 import biochemsimulation.reactionrules.reactionRules.AssignFromPattern;
 import biochemsimulation.reactionrules.reactionRules.AssignFromVariable;
+import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.FreeLink;
+import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral;
 import biochemsimulation.reactionrules.reactionRules.NumericFromVariable;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
@@ -134,22 +137,27 @@ public abstract class ReactionRuleTransformer {
 		Pattern src = patternMap.get(patternName);
 		Pattern trg = targetPatternMap.get(patternName);
 		removeAgents(match, trg);
+		/*
 		removeLinks(match, src, trg);
 		changeSiteStates(match, src, trg);
 		addGreenAgents(match, src, trg);
-		//addGreenSites(match, src, trg);
+		changeLinks(match, src, trg);
+		*/
 	}
 	
 	protected void removeAgents(IPatternMatch match, Pattern trg) {
 		for(int i = 0; i<trg.getAgentPatterns().size(); i++) {
+			// if the target pattern defines a void instead of an agent pattern -> delete agent
 			if(trg.getAgentPatterns().get(i) instanceof VoidAgentPattern) {
 				SimAgent agnt = (SimAgent) match.get(match.parameterNames().get(i));
+				// delete all links to agent
 				agnt.getSimSites().forEach(x-> {
 					SimLinkState sls = x.getSimLinkState();
 					if(sls != null) {
 						org.eclipse.emf.ecore.util.EcoreUtil.delete(sls);
 					}
 				});
+				// delete agent
 				org.eclipse.emf.ecore.util.EcoreUtil.delete(agnt);
 			}
 		}
@@ -164,7 +172,9 @@ public abstract class ReactionRuleTransformer {
 				for(int j = 0; j<agnt.getSimSites().size(); j++) {
 					SimSite ss = agnt.getSimSites().get(j);
 					SitePattern sp = ap.getSitePatterns().getSitePatterns().get(j);
+					// if the site has a link -> check if it needs deletion
 					if(ss.getSimLinkState() != null) {
+						// if the pattern defines a free link -> delete SimBound object
 						if(sp.getLinkState().getLinkState() instanceof FreeLink) {
 							org.eclipse.emf.ecore.util.EcoreUtil.delete(ss.getSimLinkState());
 						}
@@ -183,9 +193,12 @@ public abstract class ReactionRuleTransformer {
 				for(int j = 0; j<agnt.getSimSites().size(); j++) {
 					SimSite ss = agnt.getSimSites().get(j);
 					SitePattern sp = ap.getSitePatterns().getSitePatterns().get(j);
+					// if the site has a site state -> check if change is required
 					if(ss.getSimSiteState() != null) {
+						// if the pattern defines a site state -> so something
 						if(sp.getState() != null) {
 							String spStateName = sp.getState().getState().getName();
+							// change site state according to the pattern
 							if(!ss.getSimSiteState().getType().equals(spStateName)) {
 								SimSiteState sss = factory.createSimSiteState();
 								sss.setType(spStateName);
@@ -199,17 +212,69 @@ public abstract class ReactionRuleTransformer {
 		}
 	}
 	
-	// ToDo: Add Site States!
 	protected void addGreenAgents(IPatternMatch match, Pattern src, Pattern trg) {
 		int agntID = 0;
 		for(int i = 0; i<src.getAgentPatterns().size(); i++) {
+			// if the source pattern defines a void instead of an agent pattern -> create new agent according to target pattern
 			if(src.getAgentPatterns().get(i) instanceof VoidAgentPattern) {
 				ValidAgentPattern ap = (ValidAgentPattern)trg.getAgentPatterns().get(i);
+				// create new agent and add it to the model
 				SimAgent agnt = factory.createSimAgent();
 				reactionContainer.getSimAgent().add(agnt);
+				// create some unique name and assign type
 				agnt.setName(ap.getAgent().getName()+"_viaTransfrom:"+match.hashCode()+"//"+agntID);
 				agntID++;
 				agnt.setType(ap.getAgent().getName());
+				// create required sites
+				ap.getSitePatterns().getSitePatterns().forEach(x-> {
+					SimSite ss = factory.createSimSite();
+					ss.setType(x.getSite().getName());
+					// create state if the pattern defines a state
+					if(x.getState() != null) {
+						SimSiteState sss = factory.createSimSiteState();
+						sss.setType(x.getState().getState().getName());
+						ss.setSimSiteState(sss);
+					} 
+					// otherwise create the default site state, if there is any
+					else if(x.getSite().getStates().getState() != null && x.getState() == null) {
+						SimSiteState sss = factory.createSimSiteState();
+						sss.setType(x.getSite().getStates().getState().get(0).getName());
+						ss.setSimSiteState(sss);
+					}
+					// create a link if the pattern defines an indexed link
+					// -> the correct linking is performed by another method
+					if(x.getLinkState().getLinkState() instanceof BoundLink) {
+						SimBound bl = factory.createSimBound();
+						reactionContainer.getSimLinkStates().add(bl);
+						ss.setSimLinkState(bl);
+						bl.setSimSite1(ss);
+					}
+				});
+			}
+		}
+	}
+	
+	protected void changeLinks(IPatternMatch match, Pattern src, Pattern trg) {
+		for(int i = 0; i<trg.getAgentPatterns().size(); i++) {
+			if(trg.getAgentPatterns().get(i) instanceof ValidAgentPattern) {
+				ValidAgentPattern ap = (ValidAgentPattern)trg.getAgentPatterns().get(i);
+				SimAgent agnt = (SimAgent) match.get(match.parameterNames().get(i));
+				for(int j = 0; j<agnt.getSimSites().size(); j++) {
+					SimSite ss = agnt.getSimSites().get(j);
+					SitePattern sp = ap.getSitePatterns().getSitePatterns().get(j);
+					// if the site pattern defines an indexed link -> perfom check if changes are required
+					LinkState ls = sp.getLinkState().getLinkState();
+					if(ls instanceof BoundLink) {
+						int idx = Integer.valueOf(((BoundLink) ls).getState());
+						// find the corresponding agent pattern according to link index
+						for(int k = 0; k<trg.getAgentPatterns().size(); k++) {
+							if(k==i || trg.getAgentPatterns().get(i) instanceof VoidAgentPattern)
+								continue;
+							ValidAgentPattern ap2 = (ValidAgentPattern)trg.getAgentPatterns().get(k);
+							// do shit...
+						}
+					}
+				}
 			}
 		}
 	}
