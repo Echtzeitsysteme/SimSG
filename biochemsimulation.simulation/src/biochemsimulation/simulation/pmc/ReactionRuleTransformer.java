@@ -1,8 +1,6 @@
 package biochemsimulation.simulation.pmc;
 
-import java.io.IOException;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,15 +17,12 @@ import biochemsimulation.reactioncontainer.SimLinkState;
 import biochemsimulation.reactioncontainer.SimSite;
 import biochemsimulation.reactioncontainer.SimSiteState;
 import biochemsimulation.reactioncontainer.impl.ReactionContainerFactoryImpl;
-import biochemsimulation.reactionrules.reactionRules.AssignFromPattern;
-import biochemsimulation.reactionrules.reactionRules.AssignFromVariable;
 import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.FreeLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral;
 import biochemsimulation.reactionrules.reactionRules.NumericFromVariable;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
-import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.Rule;
 import biochemsimulation.reactionrules.reactionRules.RuleBody;
@@ -36,7 +31,6 @@ import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern;
 import biochemsimulation.reactionrules.utils.PatternUtils;
 import biochemsimulation.viatrapatterns.generator.PatternTemplate;
-import biochemsimulation.viatrapatterns.generator.SupportPatterns;
 
 public abstract class ReactionRuleTransformer {
 	
@@ -49,10 +43,8 @@ public abstract class ReactionRuleTransformer {
 	protected Map<String, Pattern> targetPatternMap;
 	
 	protected Map<String, Collection<? extends IPatternMatch>> matches;
-	//protected Map<String, Collection<? extends IPatternMatch>> candidates;
 	
 	protected Map<String, Double> staticReactionRates;
-	//protected Map<String, Double> dynamicReactionRates;
 	
 	private ReactionContainerFactory factory;
 	
@@ -62,10 +54,8 @@ public abstract class ReactionRuleTransformer {
 		targetPatternMap = new HashMap<String, Pattern>();
 		
 		matches = new HashMap<String, Collection<? extends IPatternMatch>>();
-		//candidates = new HashMap<String, Collection<? extends IPatternMatch>>();
 		
 		staticReactionRates = new HashMap<String, Double>();
-		//dynamicReactionRates = new HashMap<String, Double>();
 		
 		factory = ReactionContainerFactoryImpl.init();
 	}
@@ -109,43 +99,19 @@ public abstract class ReactionRuleTransformer {
 				staticReactionRates.put(name+PatternTemplate.PATTERN_NAME_SUFFIX_RHS, reactionRate.get(1));
 			}
 		});
-		//dynamicReactionRates.putAll(staticReactionRates);
-	}
-	/*
-	protected void updateDynamicReactionRates() {
-		dynamicReactionRates.keySet().forEach(x -> {
-			int numOfMatches = getMatches(x).size();
-			double y = numOfMatches * staticReactionRates.get(x);
-			dynamicReactionRates.replace(x, y);
-		});
 	}
 	
-	protected void collectReactionCandidates() {
-		matches.forEach( (x, y) -> {
-			if(!x.contains(SupportPatterns.SUPPORT_PREFIX)) {
-				List<IPatternMatch> mc = new LinkedList<>();
-				mc.addAll(y);
-				Collections.shuffle(mc);
-				int index = (int) dynamicReactionRates.get(x).doubleValue();
-				index = (index == 0)?1:index;
-				index = (index >= mc.size())?mc.size():index;
-				mc = mc.subList(0, index);
-				candidates.put(x, mc);
-			}
-		});
-	}
-	*/
 	protected void applyRuleToMatch(IPatternMatch match) {
 		String patternName = match.patternName().replaceAll("^(.)*\\.", "");
 		Pattern src = patternMap.get(patternName);
 		Pattern trg = targetPatternMap.get(patternName);
+		
 		removeAgents(match, trg);
-		/*
 		removeLinks(match, src, trg);
 		changeSiteStates(match, src, trg);
 		addGreenAgents(match, src, trg);
 		changeLinks(match, src, trg);
-		*/
+
 	}
 	
 	protected void removeAgents(IPatternMatch match, Pattern trg) {
@@ -281,9 +247,4 @@ public abstract class ReactionRuleTransformer {
 			}
 		}
 	}
-	/*
-	protected Collection<? extends IPatternMatch> getMatches(String patternName) {
-		return matches.getOrDefault(patternName, new LinkedList<IPatternMatch>());
-	}
-	*/
 }	

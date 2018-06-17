@@ -18,7 +18,7 @@ public interface PatternMatchingController {
 	
 	void performTransformations();
 	
-	public Collection<? extends IPatternMatch> getMatches(String patternName) throws Exception;
+	public Collection<? extends IPatternMatch> getMatches(String patternName);
 	
-	public Map<String, Collection<? extends IPatternMatch>> getAllMatches() throws Exception;
+	public Map<String, Collection<? extends IPatternMatch>> getAllMatches();
 }

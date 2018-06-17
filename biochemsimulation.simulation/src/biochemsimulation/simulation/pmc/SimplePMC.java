@@ -47,7 +47,10 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 	
 	@Override
 	public void collectAllMatches() throws Exception {
-		matches = engine.getAllMatches();
+		//matches = engine.getAllMatches();
+		engine.getAllMatches().forEach((x, y) -> {
+			matches.replace(x, y);
+		});
 		
 	}
 	
@@ -97,14 +100,14 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 	}
 
 	@Override
-	public Collection<? extends IPatternMatch> getMatches(String patternName) throws Exception {
-		collectMatches(patternName);
+	public Collection<? extends IPatternMatch> getMatches(String patternName) {
+		//collectMatches(patternName);
 		return matches.get(patternName);
 	}
 
 	@Override
-	public Map<String, Collection<? extends IPatternMatch>> getAllMatches() throws Exception {
-		collectAllMatches();
+	public Map<String, Collection<? extends IPatternMatch>> getAllMatches() {
+		//collectAllMatches();
 		return matches;
 	}
 
