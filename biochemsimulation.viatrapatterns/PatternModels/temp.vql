@@ -13,7 +13,7 @@ pattern AtoB_lhs( A : SimAgent,  B : SimAgent) {
 	SimAgent.simSites(A, A_x);
 	SimSite.Type(A_x, "x");
 	SimSite.simLinkState(A_x, A_x_LS);
-	A_x_LS==B_x_LS;
+	
 	
 	 // Context for agent pattern:
 	SimAgent.Type(B, "B");
@@ -21,6 +21,6 @@ pattern AtoB_lhs( A : SimAgent,  B : SimAgent) {
 	SimAgent.simSites(B, B_x);
 	SimSite.Type(B_x, "x");
 	SimSite.simLinkState(B_x, B_x_LS);
-	
+	B_x_LS==A_x_LS;
 }
 

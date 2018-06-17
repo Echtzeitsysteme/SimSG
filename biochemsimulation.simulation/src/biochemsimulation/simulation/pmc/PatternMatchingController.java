@@ -12,11 +12,13 @@ import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 public interface PatternMatchingController {
 	public void init(ReactionRuleModel ruleModel, ReactionContainer reactionContainer, PatternModel patterns) throws Exception;
 	
-	void collectMatches() throws Exception;
+	void collectMatches(String patternName) throws Exception;
+	
+	void collectAllMatches() throws Exception;
 	
 	void performTransformations();
 	
-	public Collection<? extends IPatternMatch> getMatches(String patternName);
+	public Collection<? extends IPatternMatch> getMatches(String patternName) throws Exception;
 	
-	public Map<String, Collection<? extends IPatternMatch>> getAllMatches();
+	public Map<String, Collection<? extends IPatternMatch>> getAllMatches() throws Exception;
 }

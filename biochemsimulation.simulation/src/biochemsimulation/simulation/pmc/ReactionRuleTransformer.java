@@ -49,10 +49,10 @@ public abstract class ReactionRuleTransformer {
 	protected Map<String, Pattern> targetPatternMap;
 	
 	protected Map<String, Collection<? extends IPatternMatch>> matches;
-	protected Map<String, Collection<? extends IPatternMatch>> candidates;
+	//protected Map<String, Collection<? extends IPatternMatch>> candidates;
 	
 	protected Map<String, Double> staticReactionRates;
-	protected Map<String, Double> dynamicReactionRates;
+	//protected Map<String, Double> dynamicReactionRates;
 	
 	private ReactionContainerFactory factory;
 	
@@ -62,10 +62,10 @@ public abstract class ReactionRuleTransformer {
 		targetPatternMap = new HashMap<String, Pattern>();
 		
 		matches = new HashMap<String, Collection<? extends IPatternMatch>>();
-		candidates = new HashMap<String, Collection<? extends IPatternMatch>>();
+		//candidates = new HashMap<String, Collection<? extends IPatternMatch>>();
 		
 		staticReactionRates = new HashMap<String, Double>();
-		dynamicReactionRates = new HashMap<String, Double>();
+		//dynamicReactionRates = new HashMap<String, Double>();
 		
 		factory = ReactionContainerFactoryImpl.init();
 	}
@@ -84,10 +84,13 @@ public abstract class ReactionRuleTransformer {
 			RuleBody rb = r.getRule();
 			patternMap.put(name+PatternTemplate.PATTERN_NAME_SUFFIX_LHS, PatternUtils.patternFromPatternAssignment(rb.getLhs()));
 			targetPatternMap.put(name+PatternTemplate.PATTERN_NAME_SUFFIX_LHS, PatternUtils.patternFromPatternAssignment(rb.getRhs()));
+			matches.put(name+PatternTemplate.PATTERN_NAME_SUFFIX_LHS, null);
 			if(rb.getOperator().equals(PatternTemplate.RULE_OPERATOR_BI)) {
 				targetPatternMap.put(name+PatternTemplate.PATTERN_NAME_SUFFIX_RHS, PatternUtils.patternFromPatternAssignment(rb.getLhs()));
 				patternMap.put(name+PatternTemplate.PATTERN_NAME_SUFFIX_RHS, PatternUtils.patternFromPatternAssignment(rb.getRhs()));
+				matches.put(name+PatternTemplate.PATTERN_NAME_SUFFIX_RHS, null);
 			}
+			
 		});
 	}
 	
@@ -106,9 +109,9 @@ public abstract class ReactionRuleTransformer {
 				staticReactionRates.put(name+PatternTemplate.PATTERN_NAME_SUFFIX_RHS, reactionRate.get(1));
 			}
 		});
-		dynamicReactionRates.putAll(staticReactionRates);
+		//dynamicReactionRates.putAll(staticReactionRates);
 	}
-	
+	/*
 	protected void updateDynamicReactionRates() {
 		dynamicReactionRates.keySet().forEach(x -> {
 			int numOfMatches = getMatches(x).size();
@@ -131,7 +134,7 @@ public abstract class ReactionRuleTransformer {
 			}
 		});
 	}
-	
+	*/
 	protected void applyRuleToMatch(IPatternMatch match) {
 		String patternName = match.patternName().replaceAll("^(.)*\\.", "");
 		Pattern src = patternMap.get(patternName);
@@ -278,8 +281,9 @@ public abstract class ReactionRuleTransformer {
 			}
 		}
 	}
-	
+	/*
 	protected Collection<? extends IPatternMatch> getMatches(String patternName) {
 		return matches.getOrDefault(patternName, new LinkedList<IPatternMatch>());
 	}
-}
+	*/
+}	
