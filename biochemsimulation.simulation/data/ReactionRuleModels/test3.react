@@ -2,12 +2,19 @@ ModelID test3
 
 agent A(x , c )
 agent B(x )
+
+agent C(x , c )
+agent D(x )
  
 /* Variables */ 
 var on_rate = 0.3
+var on_rate2 = 0.2
 
 /* Initial conditions */
-init init1 10 { A(x[1]),B(x[1]) } 
+init init1 100 { A(x[1]),B(x[1]) } 
+init init2 100 { C(),D() } 
 
 /* Rules */ 
 rule AtoB { A(x[1]), B(x[1]) } -> { void , B(x[free])} @ [on_rate]
+
+rule CtoD { C(x[free]), D(x[free]) } -> { C(x[1]) , D(x[1])} @ [on_rate2]

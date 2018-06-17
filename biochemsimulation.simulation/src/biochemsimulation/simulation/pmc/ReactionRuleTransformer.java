@@ -138,7 +138,7 @@ public abstract class ReactionRuleTransformer {
 					src.getAgentPatterns().get(i) instanceof ValidAgentPattern) {
 				ValidAgentPattern ap = (ValidAgentPattern)trg.getAgentPatterns().get(i);
 				SimAgent agnt = (SimAgent) match.get(match.parameterNames().get(i));
-				for(int j = 0; j<agnt.getSimSites().size(); j++) {
+				for(int j = 0; j<ap.getSitePatterns().getSitePatterns().size(); j++) {
 					SimSite ss = agnt.getSimSites().get(j);
 					SitePattern sp = ap.getSitePatterns().getSitePatterns().get(j);
 					// if the site has a link -> check if it needs deletion
@@ -159,7 +159,7 @@ public abstract class ReactionRuleTransformer {
 					src.getAgentPatterns().get(i) instanceof ValidAgentPattern) {
 				ValidAgentPattern ap = (ValidAgentPattern)trg.getAgentPatterns().get(i);
 				SimAgent agnt = (SimAgent) match.get(match.parameterNames().get(i));
-				for(int j = 0; j<agnt.getSimSites().size(); j++) {
+				for(int j = 0; j<ap.getSitePatterns().getSitePatterns().size(); j++) {
 					SimSite ss = agnt.getSimSites().get(j);
 					SitePattern sp = ap.getSitePatterns().getSitePatterns().get(j);
 					// if the site has a site state -> check if change is required
@@ -228,19 +228,78 @@ public abstract class ReactionRuleTransformer {
 			if(trg.getAgentPatterns().get(i) instanceof ValidAgentPattern) {
 				ValidAgentPattern ap = (ValidAgentPattern)trg.getAgentPatterns().get(i);
 				SimAgent agnt = (SimAgent) match.get(match.parameterNames().get(i));
-				for(int j = 0; j<agnt.getSimSites().size(); j++) {
+				for(int j = 0; j<ap.getSitePatterns().getSitePatterns().size(); j++) {
 					SimSite ss = agnt.getSimSites().get(j);
 					SitePattern sp = ap.getSitePatterns().getSitePatterns().get(j);
 					// if the site pattern defines an indexed link -> perfom check if changes are required
 					LinkState ls = sp.getLinkState().getLinkState();
 					if(ls instanceof BoundLink) {
 						int idx = Integer.valueOf(((BoundLink) ls).getState());
+						SimBound bound = (SimBound) ss.getSimLinkState();
 						// find the corresponding agent pattern according to link index
 						for(int k = 0; k<trg.getAgentPatterns().size(); k++) {
-							if(k==i || trg.getAgentPatterns().get(i) instanceof VoidAgentPattern)
+							if(k==i || trg.getAgentPatterns().get(k) instanceof VoidAgentPattern)
 								continue;
 							ValidAgentPattern ap2 = (ValidAgentPattern)trg.getAgentPatterns().get(k);
-							// do shit...
+							SimAgent agnt2 = (SimAgent) match.get(match.parameterNames().get(k));
+							for(int l = 0; l<ap2.getSitePatterns().getSitePatterns().size(); l++) {
+								SimSite ss2 = agnt2.getSimSites().get(l);
+								SitePattern sp2 = ap2.getSitePatterns().getSitePatterns().get(l);
+								LinkState ls2 = sp2.getLinkState().getLinkState();
+								if(ls2 instanceof BoundLink) {
+									int idx2 = Integer.valueOf(((BoundLink) ls2).getState());
+									SimBound bound2 = (SimBound) ss2.getSimLinkState();
+									if(idx==idx2) {
+										if(bound == null && bound2 != null) {
+											org.eclipse.emf.ecore.util.EcoreUtil.delete(bound2);
+											
+											SimBound newBound = factory.createSimBound();
+											reactionContainer.getSimLinkStates().add(newBound);
+											newBound.setSimSite1(ss);
+											newBound.setSimSite2(ss2);
+											ss.setSimLinkState(newBound);
+											ss2.setSimLinkState(newBound);
+											
+											break;
+										}
+										if(bound != null && bound2 == null) {
+											org.eclipse.emf.ecore.util.EcoreUtil.delete(bound);
+											
+											SimBound newBound = factory.createSimBound();
+											reactionContainer.getSimLinkStates().add(newBound);
+											newBound.setSimSite1(ss);
+											newBound.setSimSite2(ss2);
+											ss.setSimLinkState(newBound);
+											ss2.setSimLinkState(newBound);
+											
+											break;
+										}
+										if(bound == null && bound2 == null) {
+											SimBound newBound = factory.createSimBound();
+											reactionContainer.getSimLinkStates().add(newBound);
+											newBound.setSimSite1(ss);
+											newBound.setSimSite2(ss2);
+											ss.setSimLinkState(newBound);
+											ss2.setSimLinkState(newBound);
+											
+											break;
+										}
+										if(!bound.equals(bound2)) {
+											org.eclipse.emf.ecore.util.EcoreUtil.delete(bound);
+											org.eclipse.emf.ecore.util.EcoreUtil.delete(bound2);
+											
+											SimBound newBound = factory.createSimBound();
+											reactionContainer.getSimLinkStates().add(newBound);
+											newBound.setSimSite1(ss);
+											newBound.setSimSite2(ss2);
+											ss.setSimLinkState(newBound);
+											ss2.setSimLinkState(newBound);
+											
+											break;
+										}
+									}
+								}
+							}
 						}
 					}
 				}
