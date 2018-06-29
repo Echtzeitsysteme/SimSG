@@ -11,8 +11,8 @@ var on_rate = 0.3
 var on_rate2 = 0.2
 
 /* Initial conditions */
-init init1 100 { A(x[1]),B(x[1]) } 
-init init2 100 { C(),D() } 
+init init1 1000 { A(x[1]),B(x[1]) } 
+init init2 1000 { C(),D() } 
 
 /* Rules */ 
 rule AtoB { A(x[1]), B(x[1]) } -> { void , B(x[free])} @ [on_rate]

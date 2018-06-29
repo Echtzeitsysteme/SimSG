@@ -60,22 +60,44 @@ public class Test1 {
 		pm.init();
 		
 		try {
+			double ns = 1E9;
 			ReactionRuleModel model1 = pm.loadReactionRuleModel("test3");
+			System.out.println("Loading reaction container model ...");
+			long start = System.nanoTime();
 			ReactionContainer model2 = pm.loadReactionContainerModel("test3", true);
+			long end = System.nanoTime();
+			System.out.println("time diff = " + (end - start) + " ns");
+			System.out.println("time diff = " + (end - start)/ns + " s");
 			PatternModel model3 = pm.loadViatraPatternModel("test3", true);
+			
 			PatternMatchingController pmc = PatternMatchingControllerFactory.create(PatternMatchingControllerEnum.SimplePMC);
+			System.out.println("Initializing pm engine ...");
+			start = System.nanoTime();
 			pmc.init(model1, model2, model3);
-			for(int i = 0; i<20; i++) {
+			end = System.nanoTime();
+			System.out.println("time diff = " + (end - start) + " ns");
+			System.out.println("time diff = " + (end - start)/ns + " s");
+			start = System.nanoTime();
+			int iterations = 1000;
+			System.out.println("Running sim with "+iterations + " iterations ...");
+			
+			for(int i = 0; i<iterations; i++) {
 				// <-- debugging stuff starts here
+				
 				Map<String, Collection<? extends IPatternMatch>> results = pmc.getAllMatches();
 				for(String key : results.keySet()) {
 					if(results.get(key)!= null) {
-						System.out.println("Pattern: "+key+ ", size: "+results.get(key).size());
+						System.out.println("Iter: "+i+" // Pattern: "+key+ ", size: "+results.get(key).size());
 					}
 				}
+				
 				// debugging stuff ends here -->
 				pmc.performTransformations();
 			}
+			
+			end = System.nanoTime();
+			System.out.println("time diff = " + (end - start) + " ns");
+			System.out.println("time diff = " + (end - start)/ns + " s");
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
