@@ -24,3 +24,19 @@ pattern AtoB_lhs( A : SimAgent,  B : SimAgent) {
 	
 }
 
+pattern CtoD_lhs( C : SimAgent,  D : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(C, "C");
+	// Context and checks for site patterns:
+	SimAgent.simSites(C, C_x);
+	SimSite.Type(C_x, "x");
+	neg find support_SimLinkState(C_x);
+	
+	 // Context for agent pattern:
+	SimAgent.Type(D, "D");
+	// Context and checks for site patterns:
+	SimAgent.simSites(D, D_x);
+	SimSite.Type(D_x, "x");
+	neg find support_SimLinkState(D_x);
+}
+

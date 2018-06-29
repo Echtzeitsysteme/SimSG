@@ -66,11 +66,14 @@ public class Test1 {
 			PatternMatchingController pmc = PatternMatchingControllerFactory.create(PatternMatchingControllerEnum.SimplePMC);
 			pmc.init(model1, model2, model3);
 			for(int i = 0; i<20; i++) {
-				pmc.collectMatches();
+				// <-- debugging stuff starts here
 				Map<String, Collection<? extends IPatternMatch>> results = pmc.getAllMatches();
 				for(String key : results.keySet()) {
-					System.out.println("Pattern: "+key+ ", size: "+results.get(key).size());
+					if(results.get(key)!= null) {
+						System.out.println("Pattern: "+key+ ", size: "+results.get(key).size());
+					}
 				}
+				// debugging stuff ends here -->
 				pmc.performTransformations();
 			}
 			
