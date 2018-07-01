@@ -43,7 +43,7 @@
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:Initial" name="init1">
     <count xmi:type="reactionRules:NumericFromLiteral">
-      <value xmi:type="reactionRules:ArithmeticValue" value="1000"/>
+      <value xmi:type="reactionRules:ArithmeticValue" value="100"/>
     </count>
     <initialPattern xmi:type="reactionRules:AssignFromPattern">
       <pattern xmi:type="reactionRules:Pattern">
@@ -70,7 +70,7 @@
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:Initial" name="init2">
     <count xmi:type="reactionRules:NumericFromLiteral">
-      <value xmi:type="reactionRules:ArithmeticValue" value="1000"/>
+      <value xmi:type="reactionRules:ArithmeticValue" value="100"/>
     </count>
     <initialPattern xmi:type="reactionRules:AssignFromPattern">
       <pattern xmi:type="reactionRules:Pattern">

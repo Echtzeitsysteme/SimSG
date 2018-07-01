@@ -27,6 +27,7 @@ import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.Variable;
+import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.WhatEver;
 import biochemsimulation.reactionrules.validation.AbstractReactionRulesValidator;
 import com.google.common.base.Objects;
@@ -285,11 +286,11 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
         boolean faulty = false;
         boolean _contains = value.contains(" ");
         if (_contains) {
-          this.error("Arithmetic variables may not contain any whitespaces!", ReactionRulesPackage.Literals.RULE_BODY__VARIABLES);
+          this.error("Arithmetic variables may not contain any white spaces!", ReactionRulesPackage.Literals.RULE_BODY__VARIABLES);
           faulty = true;
         }
         if ((((!value.matches("^(-)?(\\d)+(\\.)(\\d)+E(-|\\+)(\\d)+$")) && (!value.matches("^(-)?(\\d)*$"))) && (!value.matches("^(-)?(\\d)+(\\.)(\\d)+$")))) {
-          this.error("Given expression does not adhere to any known number format.", ReactionRulesPackage.Literals.RULE_BODY__VARIABLES);
+          this.error("Given expression uses an unknown number format.", ReactionRulesPackage.Literals.RULE_BODY__VARIABLES);
           faulty = true;
         }
         if ((!faulty)) {
@@ -306,9 +307,10 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
   }
   
   @Check
-  public void checkRuleNumberOfArgs(final RuleBody ruleBody) {
+  public void checkRuleArgs(final RuleBody ruleBody) {
     final Pattern lhs = this.patternFromPatternAssignment(ruleBody.getLhs());
     final Pattern rhs = this.patternFromPatternAssignment(ruleBody.getRhs());
+    boolean equalNumOfArgs = true;
     int _size = lhs.getAgentPatterns().size();
     int _size_1 = rhs.getAgentPatterns().size();
     boolean _notEquals = (_size != _size_1);
@@ -317,6 +319,25 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
         ReactionRulesPackage.Literals.RULE_BODY__LHS);
       this.error("Number of arguments on the right hand side of the rule, must match number of arguments on the left hand side.", 
         ReactionRulesPackage.Literals.RULE_BODY__RHS);
+      equalNumOfArgs = false;
+    }
+    if (equalNumOfArgs) {
+      int idx = 0;
+      EList<AgentPattern> _agentPatterns = lhs.getAgentPatterns();
+      for (final AgentPattern ap : _agentPatterns) {
+        {
+          if ((ap instanceof VoidAgentPattern)) {
+            final AgentPattern ap2 = rhs.getAgentPatterns().get(idx);
+            if ((ap2 instanceof VoidAgentPattern)) {
+              this.error("Two arguments at the same index on lhs and rhs can not be of void type.", 
+                ReactionRulesPackage.Literals.RULE_BODY__LHS);
+              this.error("Two arguments at the same index on lhs and rhs can not be of void type.", 
+                ReactionRulesPackage.Literals.RULE_BODY__RHS);
+            }
+          }
+          idx++;
+        }
+      }
     }
   }
   
