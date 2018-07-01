@@ -32,7 +32,7 @@ import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern;
 import biochemsimulation.reactionrules.utils.PatternUtils;
 import biochemsimulation.viatrapatterns.generator.PatternTemplate;
 
-public abstract class ReactionRuleTransformer {
+abstract class ReactionRuleTransformer {
 	
 	protected ReactionRuleModel ruleModel;
 	protected ReactionContainer reactionContainer;
@@ -48,7 +48,7 @@ public abstract class ReactionRuleTransformer {
 	
 	private ReactionContainerFactory factory;
 	
-	public ReactionRuleTransformer() {
+	protected ReactionRuleTransformer() {
 		ruleMap = new HashMap<String, Rule>();
 		patternMap = new HashMap<String, Pattern>();
 		targetPatternMap = new HashMap<String, Pattern>();
