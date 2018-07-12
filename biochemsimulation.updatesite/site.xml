@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/biochemsimulation.feature_1.0.0.201807011814.jar" id="biochemsimulation.feature" version="1.0.0.201807011814">
+   <feature url="features/biochemsimulation.feature_1.0.0.201807121950.jar" id="biochemsimulation.feature" version="1.0.0.201807121950">
       <category name="BiochemSimulation"/>
    </feature>
    <category-def name="BiochemSimulation" label="BiochemSimulation"/>
