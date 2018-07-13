@@ -8,11 +8,11 @@ import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import biochemsimulation.reactioncontainer.SimAgent;
 import biochemsimulation.reactioncontainer.SimSite;
 
-class LinkTransformationTemplate {
+class LinkDeletionTemplate {
 	private int agentIndex;
 	private List<Integer> siteIndexes;
 	
-	LinkTransformationTemplate(int agentIndex){
+	LinkDeletionTemplate(int agentIndex){
 		this.agentIndex = agentIndex;
 		siteIndexes = new LinkedList<Integer>();
 	}
