@@ -22,3 +22,4 @@ Import-Package: biochemsimulation.reactioncontainer,
   org.eclipse.emf.ecore.xmi.impl,
   org.eclipse.xtext.resource,
   org.eclipse.xtext.xbase.resource
+Export-Package: biochemsimulation.viatrapatterns.generator
