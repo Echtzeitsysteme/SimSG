@@ -78,7 +78,7 @@ public class Test1 {
 			System.out.println("time diff = " + (end - start) + " ns");
 			System.out.println("time diff = " + (end - start)/ns + " s");
 			start = System.nanoTime();
-			int iterations = 1000;
+			int iterations = 100;
 			System.out.println("Running sim with "+iterations + " iterations ...");
 			
 			for(int i = 0; i<iterations; i++) {

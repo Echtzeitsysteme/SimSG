@@ -36,6 +36,7 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 		
 		initRuleMap();
 		initPatternMaps();
+		initTransformationTemplates();
 		retrieveStaticReactionRates();
 		
 	}

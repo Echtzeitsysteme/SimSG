@@ -8,11 +8,11 @@ import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import biochemsimulation.reactioncontainer.SimAgent;
 import biochemsimulation.reactioncontainer.SimSite;
 
-class StateTransformationTemplate {
+class StateChangeTemplate {
 	private int agentIndex;
 	private Map<Integer, String> siteStateMap;
 	
-	StateTransformationTemplate (int agentIndex){
+	StateChangeTemplate (int agentIndex){
 		this.agentIndex = agentIndex;
 		siteStateMap = new LinkedHashMap<Integer, String>();
 	}

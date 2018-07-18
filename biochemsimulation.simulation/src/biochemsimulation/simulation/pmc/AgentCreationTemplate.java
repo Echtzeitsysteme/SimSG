@@ -45,7 +45,7 @@ class AgentCreationTemplate {
 		SimAgent simAgent = factory.createSimAgent();
 		simAgent.setType(type);
 		List<SimSite> createdSites = new LinkedList<SimSite>();
-		sites.forEach(site -> {
+		for(String site : sites) {
 			SimSite simSite = factory.createSimSite();
 			simSite.setType(site);
 			if(siteStates.containsKey(site)) {
@@ -63,7 +63,7 @@ class AgentCreationTemplate {
 			}
 			createdSites.add(simSite);
 			simSite.setSimAgent(simAgent);
-		});
+		}
 		simAgent.getSimSites().addAll(createdSites);
 		return simAgent;
 	}

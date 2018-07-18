@@ -23,10 +23,12 @@ class LinkDeletionTemplate {
 	
 	void applyRemovalCandidates(IPatternMatch match) {
 		SimAgent agent = (SimAgent) match.get(match.parameterNames().get(agentIndex));
-		siteIndexes.forEach(link -> {
-			SimSite ss = agent.getSimSites().get(link);
-			org.eclipse.emf.ecore.util.EcoreUtil.delete(ss.getSimLinkState());
-		});
+		for(Integer siteIdx : siteIndexes) {
+			SimSite ss = agent.getSimSites().get(siteIdx);
+			if(ss.getSimLinkState() != null) {
+				org.eclipse.emf.ecore.util.EcoreUtil.delete(ss.getSimLinkState());
+			}
+		}
 	}
 	
 	boolean isEmpty() {
