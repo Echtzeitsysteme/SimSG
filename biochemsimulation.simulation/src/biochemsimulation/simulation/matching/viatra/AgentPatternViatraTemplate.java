@@ -1,4 +1,4 @@
-package biochemsimulation.viatrapatterns.generator;
+package biochemsimulation.simulation.matching.viatra;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package biochemsimulation.viatrapatterns.generator;
+package biochemsimulation.simulation.matching.viatra;
 
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -23,7 +23,8 @@ import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 
 public class ViatraPatternGenerator {
 	
-	final public static String PATTERN_MODEL_FOLDER_NAME = "PatternModels";
+	final public static String MODEL_FOLDER_NAME = "data";
+	final public static String PATTERN_MODEL_FOLDER_NAME = "ViatraPatternModels";
 	final public static String SYSTEM_OS_PROPERTY = "os.name";
 	final public static String SYSTEM_OS_WIN = "Windows";
 	final public static String SYSTEM_OS_OSX = "Mac OS X";
@@ -49,7 +50,7 @@ public class ViatraPatternGenerator {
 			patternModelFolder = patternModelFolder.replaceFirst("^/", "");
 		}
 		patternModelFolder = patternModelFolder.replaceFirst("%20", " ");
-		patternModelFolder += PATTERN_MODEL_FOLDER_NAME+"/";
+		patternModelFolder += MODEL_FOLDER_NAME+"/"+PATTERN_MODEL_FOLDER_NAME+"/";
 		isInitialized = false;
 		EMFPatternLanguageStandaloneSetup.doSetup();
 		EMFPatternLanguagePackage.eINSTANCE.eClass();
@@ -69,7 +70,7 @@ public class ViatraPatternGenerator {
 		LinkedHashMap<EPackage, String> imports = new LinkedHashMap<EPackage, String>();
 		imports.put(ReactionContainerPackage.eINSTANCE, "reactionContainer");
 
-		PatternTemplate pt = new PatternTemplate(imports, model);
+		ViatraCodeGenerator pt = new ViatraCodeGenerator(imports, model);
 		String output = pt.generatePatternCode();
 		
 		saveModelToVqlFile(patternModelFolder+"temp.vql", output);
