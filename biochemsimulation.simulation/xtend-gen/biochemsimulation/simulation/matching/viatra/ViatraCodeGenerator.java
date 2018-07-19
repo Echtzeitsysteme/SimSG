@@ -1,4 +1,4 @@
-package biochemsimulation.viatrapatterns.generator;
+package biochemsimulation.simulation.matching.viatra;
 
 import biochemsimulation.reactionrules.reactionRules.AssignFromPattern;
 import biochemsimulation.reactionrules.reactionRules.AssignFromVariable;
@@ -7,11 +7,11 @@ import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
 import biochemsimulation.reactionrules.reactionRules.ReactionProperty;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.Rule;
-import biochemsimulation.viatrapatterns.generator.AgentPatternViatraTemplate;
-import biochemsimulation.viatrapatterns.generator.PatternViatraTemplate;
-import biochemsimulation.viatrapatterns.generator.SitePatternViatraTemplate;
-import biochemsimulation.viatrapatterns.generator.SupportPatternTemplate;
-import biochemsimulation.viatrapatterns.generator.SupportPatterns;
+import biochemsimulation.simulation.matching.viatra.AgentPatternViatraTemplate;
+import biochemsimulation.simulation.matching.viatra.PatternViatraTemplate;
+import biochemsimulation.simulation.matching.viatra.SitePatternViatraTemplate;
+import biochemsimulation.simulation.matching.viatra.SupportPatternTemplate;
+import biochemsimulation.simulation.matching.viatra.SupportPatterns;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -24,7 +24,7 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
-public class PatternTemplate {
+public class ViatraCodeGenerator {
   public final static String PATTERN_NAME_SUFFIX_RHS = "_rhs";
   
   public final static String PATTERN_NAME_SUFFIX_LHS = "_lhs";
@@ -39,7 +39,7 @@ public class PatternTemplate {
   
   private List<PatternViatraTemplate> patternTemplates;
   
-  public PatternTemplate(final LinkedHashMap<EPackage, String> importAliases, final ReactionRuleModel model) {
+  public ViatraCodeGenerator(final LinkedHashMap<EPackage, String> importAliases, final ReactionRuleModel model) {
     this.importAliases = importAliases;
     LinkedList<Rule> _linkedList = new LinkedList<Rule>();
     this.rules = _linkedList;
@@ -75,14 +75,14 @@ public class PatternTemplate {
       this.patternTemplates = _linkedList;
       final Consumer<Rule> _function = (Rule x) -> {
         String _name = x.getName();
-        String _plus = (_name + PatternTemplate.PATTERN_NAME_SUFFIX_LHS);
+        String _plus = (_name + ViatraCodeGenerator.PATTERN_NAME_SUFFIX_LHS);
         Pattern _patternFromPatternAssignment = this.patternFromPatternAssignment(x.getRule().getLhs());
         PatternViatraTemplate _patternViatraTemplate = new PatternViatraTemplate(_plus, _patternFromPatternAssignment);
         this.patternTemplates.add(_patternViatraTemplate);
-        boolean _equals = x.getRule().getOperator().equals(PatternTemplate.RULE_OPERATOR_BI);
+        boolean _equals = x.getRule().getOperator().equals(ViatraCodeGenerator.RULE_OPERATOR_BI);
         if (_equals) {
           String _name_1 = x.getName();
-          String _plus_1 = (_name_1 + PatternTemplate.PATTERN_NAME_SUFFIX_RHS);
+          String _plus_1 = (_name_1 + ViatraCodeGenerator.PATTERN_NAME_SUFFIX_RHS);
           Pattern _patternFromPatternAssignment_1 = this.patternFromPatternAssignment(x.getRule().getRhs());
           PatternViatraTemplate _patternViatraTemplate_1 = new PatternViatraTemplate(_plus_1, _patternFromPatternAssignment_1);
           this.patternTemplates.add(_patternViatraTemplate_1);

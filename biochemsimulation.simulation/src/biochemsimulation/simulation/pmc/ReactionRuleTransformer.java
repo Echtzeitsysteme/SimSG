@@ -19,7 +19,7 @@ import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.Rule;
 import biochemsimulation.reactionrules.reactionRules.RuleBody;
 import biochemsimulation.reactionrules.utils.PatternUtils;
-import biochemsimulation.viatrapatterns.generator.PatternTemplate;
+import biochemsimulation.simulation.matching.viatra.ViatraCodeGenerator;
 
 abstract class ReactionRuleTransformer {
 	
@@ -63,13 +63,13 @@ abstract class ReactionRuleTransformer {
 	protected void initPatternMaps() {
 		ruleMap.forEach((name, r) -> {
 			RuleBody rb = r.getRule();
-			patternMap.put(name+PatternTemplate.PATTERN_NAME_SUFFIX_LHS, PatternUtils.patternFromPatternAssignment(rb.getLhs()));
-			targetPatternMap.put(name+PatternTemplate.PATTERN_NAME_SUFFIX_LHS, PatternUtils.patternFromPatternAssignment(rb.getRhs()));
-			matches.put(name+PatternTemplate.PATTERN_NAME_SUFFIX_LHS, null);
-			if(rb.getOperator().equals(PatternTemplate.RULE_OPERATOR_BI)) {
-				targetPatternMap.put(name+PatternTemplate.PATTERN_NAME_SUFFIX_RHS, PatternUtils.patternFromPatternAssignment(rb.getLhs()));
-				patternMap.put(name+PatternTemplate.PATTERN_NAME_SUFFIX_RHS, PatternUtils.patternFromPatternAssignment(rb.getRhs()));
-				matches.put(name+PatternTemplate.PATTERN_NAME_SUFFIX_RHS, null);
+			patternMap.put(name+ViatraCodeGenerator.PATTERN_NAME_SUFFIX_LHS, PatternUtils.patternFromPatternAssignment(rb.getLhs()));
+			targetPatternMap.put(name+ViatraCodeGenerator.PATTERN_NAME_SUFFIX_LHS, PatternUtils.patternFromPatternAssignment(rb.getRhs()));
+			matches.put(name+ViatraCodeGenerator.PATTERN_NAME_SUFFIX_LHS, null);
+			if(rb.getOperator().equals(ViatraCodeGenerator.RULE_OPERATOR_BI)) {
+				targetPatternMap.put(name+ViatraCodeGenerator.PATTERN_NAME_SUFFIX_RHS, PatternUtils.patternFromPatternAssignment(rb.getLhs()));
+				patternMap.put(name+ViatraCodeGenerator.PATTERN_NAME_SUFFIX_RHS, PatternUtils.patternFromPatternAssignment(rb.getRhs()));
+				matches.put(name+ViatraCodeGenerator.PATTERN_NAME_SUFFIX_RHS, null);
 			}
 			
 		});
@@ -92,9 +92,9 @@ abstract class ReactionRuleTransformer {
 					reactionRate.add(Double.valueOf(((NumericFromVariable) y).getValueVar().getValue().getValue()));
 				}
 			});
-			staticReactionRates.put(name+PatternTemplate.PATTERN_NAME_SUFFIX_LHS, reactionRate.get(0));
-			if(r.getRule().getOperator().equals(PatternTemplate.RULE_OPERATOR_BI)) {
-				staticReactionRates.put(name+PatternTemplate.PATTERN_NAME_SUFFIX_RHS, reactionRate.get(1));
+			staticReactionRates.put(name+ViatraCodeGenerator.PATTERN_NAME_SUFFIX_LHS, reactionRate.get(0));
+			if(r.getRule().getOperator().equals(ViatraCodeGenerator.RULE_OPERATOR_BI)) {
+				staticReactionRates.put(name+ViatraCodeGenerator.PATTERN_NAME_SUFFIX_RHS, reactionRate.get(1));
 			}
 		});
 	}

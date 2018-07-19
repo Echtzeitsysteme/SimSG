@@ -1,4 +1,4 @@
-package biochemsimulation.viatrapatterns.generator
+package biochemsimulation.simulation.matching.viatra
 
 import java.util.LinkedHashMap
 import org.eclipse.emf.ecore.EPackage
@@ -11,8 +11,7 @@ import java.util.LinkedList
 import java.util.List
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel
 
-class PatternTemplate {
-	
+class ViatraCodeGenerator {
 	final public static String PATTERN_NAME_SUFFIX_RHS = "_rhs";
 	final public static String PATTERN_NAME_SUFFIX_LHS = "_lhs";
 	final public static String RULE_OPERATOR_UNI = "->";
@@ -65,20 +64,20 @@ class PatternTemplate {
 		return '''
 			package biochemsimulation.viatrapatterns.generator
 					
-			Â«FOR p : importAliases.keySetÂ»
-				import "Â«p.nsURIÂ»" as Â«importAliases.get(p)Â»
-			Â«ENDFORÂ»
+			«FOR p : importAliases.keySet»
+				import "«p.nsURI»" as «importAliases.get(p)»
+			«ENDFOR»
 			
-			Â«FOR supPattern : SupportPatterns.instance.allSupportPatterns SEPARATOR "\n"Â»
-				Â«supPattern.getSupportPattern(false)Â»
-			Â«ENDFORÂ»
+			«FOR supPattern : SupportPatterns.instance.allSupportPatterns SEPARATOR "\n"»
+				«supPattern.getSupportPattern(false)»
+			«ENDFOR»
 			
-			Â«FOR pT : patternTemplates SEPARATOR "\n"Â»
-				pattern Â«pT.patternNameÂ»(Â«FOR arg : pT.patternArgumentList SEPARATOR ", "Â» Â«argÂ»Â«ENDFORÂ») {
-					Â«FOR body : pT.patternBody SEPARATOR "\n"Â» Â«bodyÂ»Â«ENDFORÂ»
-					Â«FOR injConst : pT.injectivityConstraints SEPARATOR "\n"Â» Â«injConstÂ»Â«ENDFORÂ»
+			«FOR pT : patternTemplates SEPARATOR "\n"»
+				pattern «pT.patternName»(«FOR arg : pT.patternArgumentList SEPARATOR ", "» «arg»«ENDFOR») {
+					«FOR body : pT.patternBody SEPARATOR "\n"» «body»«ENDFOR»
+					«FOR injConst : pT.injectivityConstraints SEPARATOR "\n"» «injConst»«ENDFOR»
 				}
-			Â«ENDFORÂ»
+			«ENDFOR»
 		'''
 	}
 	

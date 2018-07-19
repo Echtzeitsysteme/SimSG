@@ -21,7 +21,7 @@ import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactioncontainer.generator.ReactionContainerGenerator;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
-import biochemsimulation.viatrapatterns.generator.ViatraPatternGenerator;
+import biochemsimulation.simulation.matching.viatra.ViatraPatternGenerator;
 
 public class SimplePersistenceManager implements PersistenceManager {
 	
