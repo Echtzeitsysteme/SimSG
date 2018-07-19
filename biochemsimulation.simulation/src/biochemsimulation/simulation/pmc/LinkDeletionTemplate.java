@@ -3,10 +3,9 @@ package biochemsimulation.simulation.pmc;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.viatra.query.runtime.api.IPatternMatch;
-
 import biochemsimulation.reactioncontainer.SimAgent;
 import biochemsimulation.reactioncontainer.SimSite;
+import biochemsimulation.simulation.matching.IMatch;
 
 class LinkDeletionTemplate {
 	private int agentIndex;
@@ -21,7 +20,7 @@ class LinkDeletionTemplate {
 		siteIndexes.add(index);
 	}
 	
-	void applyRemovalCandidates(IPatternMatch match) {
+	void applyRemovalCandidates(IMatch match) {
 		SimAgent agent = (SimAgent) match.get(match.parameterNames().get(agentIndex));
 		for(Integer siteIdx : siteIndexes) {
 			SimSite ss = agent.getSimSites().get(siteIdx);

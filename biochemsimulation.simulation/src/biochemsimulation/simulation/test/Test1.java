@@ -60,14 +60,11 @@ public class Test1 {
 			System.out.println("Loaded reaction rule model: " + model1.getModel().getName());
 			ReactionContainer model2 = pm.loadReactionContainerModel("test2", true);
 			System.out.println("Loaded reaction container model: " + model2.getName());
-			PatternModel model3 = pm.loadViatraPatternModel("test2", true);
-			System.out.println("Patterns for pattern model: " + "test2");
-			model3.getPatterns().forEach(x -> System.out.println(x.getName()));
 
 			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.ViatraEngine);
-			engine.initEngine(model2);
-			engine.initMatcher(model3);
-			Map<String, Collection<? extends IPatternMatch>> results = engine.getAllMatches();
+			engine.loadModels(model2, model1);
+			engine.initEngine();
+			Map<String, Collection<IMatch>> results = engine.getAllMatches();
 			System.out.println("Found matches on given Models:");
 			for (String key : results.keySet()) {
 				System.out.println("Pattern: " + key + ", size: " + results.get(key).size());
@@ -91,13 +88,24 @@ public class Test1 {
 			long end = System.nanoTime();
 			System.out.println("time diff = " + (end - start) + " ns");
 			System.out.println("time diff = " + (end - start) / ns + " s");
-			PatternModel model3 = pm.loadViatraPatternModel("test3", true);
 
 			PatternMatchingController pmc = PatternMatchingControllerFactory
 					.create(PatternMatchingControllerEnum.SimplePMC);
-			System.out.println("Initializing pm engine ...");
+			System.out.println("Initializing pmc: loading models...");
 			start = System.nanoTime();
-			pmc.init(model1, model2, model3);
+			pmc.loadModels(model1, model2);
+			end = System.nanoTime();
+			System.out.println("time diff = " + (end - start) + " ns");
+			System.out.println("time diff = " + (end - start) / ns + " s");
+			System.out.println("Initializing pmc: init engine...");
+			start = System.nanoTime();
+			pmc.initEngine();
+			end = System.nanoTime();
+			System.out.println("time diff = " + (end - start) + " ns");
+			System.out.println("time diff = " + (end - start) / ns + " s");
+			System.out.println("Initializing pmc: init controller...");
+			start = System.nanoTime();
+			pmc.initController();
 			end = System.nanoTime();
 			System.out.println("time diff = " + (end - start) + " ns");
 			System.out.println("time diff = " + (end - start) / ns + " s");
@@ -108,7 +116,7 @@ public class Test1 {
 			for (int i = 0; i < iterations; i++) {
 				// <-- debugging stuff starts here
 
-				Map<String, Collection<? extends IPatternMatch>> results = pmc.getAllMatches();
+				Map<String, Collection<IMatch>> results = pmc.getAllMatches();
 				for (String key : results.keySet()) {
 					if (results.get(key) != null) {
 						System.out.println("Iter: " + i + " // Pattern: " + key + ", size: " + results.get(key).size());

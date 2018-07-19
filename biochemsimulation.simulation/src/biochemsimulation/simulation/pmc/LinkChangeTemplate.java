@@ -1,12 +1,11 @@
 package biochemsimulation.simulation.pmc;
 
-import org.eclipse.viatra.query.runtime.api.IPatternMatch;
-
 import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.SimAgent;
 import biochemsimulation.reactioncontainer.SimBound;
 import biochemsimulation.reactioncontainer.SimLinkState;
 import biochemsimulation.reactioncontainer.SimSite;
+import biochemsimulation.simulation.matching.IMatch;
 
 public class LinkChangeTemplate {
 	private int agentIdxFrom;
@@ -25,7 +24,7 @@ public class LinkChangeTemplate {
 		this.siteIdxTo = siteIdxTo;
 	}
 	
-	SimLinkState applyLinkChange(IPatternMatch match, ReactionContainerFactory factory) {
+	SimLinkState applyLinkChange(IMatch match, ReactionContainerFactory factory) {
 		SimAgent simAgentFrom = (SimAgent) match.get(match.parameterNames().get(agentIdxFrom));
 		SimSite simSiteFrom = simAgentFrom.getSimSites().get(siteIdxFrom);
 		if(simSiteFrom.getSimLinkState() != null) {

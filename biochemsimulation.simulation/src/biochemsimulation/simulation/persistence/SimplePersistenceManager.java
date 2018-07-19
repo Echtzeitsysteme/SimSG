@@ -12,16 +12,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.viatra.query.patternlanguage.emf.EMFPatternLanguageStandaloneSetup;
-import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.EMFPatternLanguagePackage;
-import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternModel;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactioncontainer.generator.ReactionContainerGenerator;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
-import biochemsimulation.simulation.matching.viatra.ViatraPatternGenerator;
 
 public class SimplePersistenceManager implements PersistenceManager {
 	
@@ -30,7 +26,6 @@ public class SimplePersistenceManager implements PersistenceManager {
 	final public static String REACTION_RULE_MODELS_FOLDER = "ReactionRuleModels";
 	final public static String REACTION_RULE_MODELS_HEADER = "<reactionRules:ReactionRuleModel xmi:version=\"2.0\" xmlns:xmi=\"http://www.omg.org/XMI\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:reactionRules=\"http://www.reactionrules.biochemsimulation/ReactionRules\" xsi:schemaLocation=\"http://www.reactionrules.biochemsimulation/ReactionRules java://biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage\">";
 	final public static String REACTION_RULE_MODELS_NAME_LOCATION = "<model xmi:type=\"reactionRules:Model\" name=";
-	final public static String VIATRA_PATTERN_MODELS_FOLDER = "ViatraPatternModels";
 	final public static String SEPARATOR_WIN = "\\";
 	final public static String SEPARATOR_OSX = "/";
 	final public static String SYSTEM_OS_PROPERTY = "os.name";
@@ -39,18 +34,16 @@ public class SimplePersistenceManager implements PersistenceManager {
 	
 	private HashMap<String, String> reactionModelPaths;
 	private HashMap<String, String> ruleModelPaths;
-	private HashMap<String, String> viatraPatternModelPaths;
 	
 	private HashMap<String, ReactionContainer> reactionModelCache;
 	private HashMap<String, ReactionRuleModel> ruleModelCache;
-	private HashMap<String, PatternModel> viatraPatternModelCache;
 	
 	private String os;
+	@SuppressWarnings("unused")
 	private String pathSeparator;
 	private String dataFolder;
 	private String reactionModelFolder;
 	private String ruleModelFolder;
-	private String viatraPatternModelFolder;
 	
 	SimplePersistenceManager() {
 		
@@ -63,10 +56,8 @@ public class SimplePersistenceManager implements PersistenceManager {
 		setFolderPaths();
 		fetchExistingRuleModelPaths();
 		fetchExistingReactionModelPaths();
-		fetchExistingViatraPatternModelPaths();
 		reactionModelCache = new HashMap<String, ReactionContainer>();
 		ruleModelCache = new HashMap<String, ReactionRuleModel>();
-		viatraPatternModelCache = new HashMap<String, PatternModel>();
 	}
 	
 	private void setOSspecificSeparators() {
@@ -82,8 +73,6 @@ public class SimplePersistenceManager implements PersistenceManager {
 	private void classLoader() {
 		ReactionRulesPackage.eINSTANCE.eClass();
 		ReactionContainerPackage.eINSTANCE.eClass();
-		EMFPatternLanguageStandaloneSetup.doSetup();
-		EMFPatternLanguagePackage.eINSTANCE.eClass();
 	}
 	
 	@Override
@@ -96,10 +85,6 @@ public class SimplePersistenceManager implements PersistenceManager {
 		return reactionModelPaths.keySet();
 	}
 	
-	@Override
-	public Set<String> availableViatraPatternModels() {
-		return viatraPatternModelPaths.keySet();
-	}
 
 	@Override
 	public ReactionRuleModel loadReactionRuleModel (String name) throws java.lang.Exception {
@@ -143,37 +128,6 @@ public class SimplePersistenceManager implements PersistenceManager {
 		reactionModelCache.put(name, containerModel);
 		return containerModel;
 	}
-
-	@Override
-	public PatternModel loadViatraPatternModel(String name, boolean generateIfNotExist) throws Exception {
-		if(viatraPatternModelCache.containsKey(name)) {
-			return viatraPatternModelCache.get(name);
-		}
-		boolean doesNotExist = false;
-		if(!viatraPatternModelPaths.containsKey(name)) {
-			doesNotExist = true;
-		}
-		if(doesNotExist && !generateIfNotExist) {
-			throw new IndexOutOfBoundsException("Requested viatra pattern model with given name does not exist.");
-		}
-		PatternModel patternModel = null;
-		ReactionRuleModel ruleModel = loadReactionRuleModel(name);
-		
-		//prohibit creation of .xmi-files, because viatra doesn't like persistence..
-		doesNotExist = true;
-		
-		if(doesNotExist) {
-			ViatraPatternGenerator gen = new ViatraPatternGenerator(ruleModel);
-			String path = viatraPatternModelFolder+"/"+name+".xmi";
-			// in a perfect world, where viatra isn't a total diva, the second argument should be true
-			patternModel = gen.doGenerate(path, false);
-			viatraPatternModelPaths.put(name, path);
-		} else {
-			patternModel = (PatternModel) PersistenceUtils.loadResource(viatraPatternModelPaths.get(name)).getContents().get(0);
-		}
-		viatraPatternModelCache.put(name, patternModel);
-		return patternModel;
-	}
 	
 	private void setFolderPaths() {
 		dataFolder = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
@@ -189,9 +143,6 @@ public class SimplePersistenceManager implements PersistenceManager {
 		
 		ruleModelFolder = dataFolder + REACTION_RULE_MODELS_FOLDER;
 		PersistenceUtils.createFolderIfNotExist(ruleModelFolder);
-		
-		viatraPatternModelFolder = dataFolder + VIATRA_PATTERN_MODELS_FOLDER;
-		PersistenceUtils.createFolderIfNotExist(viatraPatternModelFolder);
 	}
 	
 	private void fetchExistingRuleModelPaths() {
@@ -248,28 +199,6 @@ public class SimplePersistenceManager implements PersistenceManager {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-			}
-		}
-	}
-	
-	private void fetchExistingViatraPatternModelPaths() {
-		viatraPatternModelPaths = new HashMap<String, String>();
-		
-		List<String> allFiles = PersistenceUtils.getAllFilesInFolder(viatraPatternModelFolder);
-		Pattern pattern = Pattern.compile(pathSeparator+pathSeparator+"(.*?)(\\.xmi)$");
-		for(String filePath : allFiles) {
-			if(!filePath.matches(".+(\\.xmi)$")) {
-			}else {
-				Matcher matcher = pattern.matcher(filePath);
-				if(matcher.find()) {
-					String key = matcher.group(1);
-					int idx = key.lastIndexOf(pathSeparator)+1;
-					if(idx>=0) {
-						key = key.substring(idx);
-						viatraPatternModelPaths.put(key, filePath);
-					}
-				}
-				
 			}
 		}
 	}

@@ -3,8 +3,6 @@ package biochemsimulation.simulation.pmc;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.viatra.query.runtime.api.IPatternMatch;
-
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.SimAgent;
@@ -17,6 +15,7 @@ import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern;
+import biochemsimulation.simulation.matching.IMatch;
 
 class TransformationTemplate {
 	
@@ -187,7 +186,7 @@ class TransformationTemplate {
 		}
 	}
 	
-	private void applyAgentRemovalCandidates(IPatternMatch match) {
+	private void applyAgentRemovalCandidates(IMatch match) {
 		for(Integer agentIdx : agentRemovals) {
 			SimAgent agent = (SimAgent) match.get(match.parameterNames().get(agentIdx));
 			// delete all links to agent
@@ -202,13 +201,13 @@ class TransformationTemplate {
 		}
 	}
 	
-	private void applyLinkRemovalTemplates(IPatternMatch match) {
+	private void applyLinkRemovalTemplates(IMatch match) {
 		for(LinkDeletionTemplate template : linkRemovals) {
 			template.applyRemovalCandidates(match);
 		}
 	}
 	
-	private void applyStateChangeTemplates(IPatternMatch match) {
+	private void applyStateChangeTemplates(IMatch match) {
 		for(StateChangeTemplate template : stateChanges) {
 			template.applyStateChangeCandidates(match);
 		}
@@ -227,7 +226,7 @@ class TransformationTemplate {
 		reactionContainer.getSimLinkStates().addAll(createdLinks);
 	}
 	
-	private void applyLinkChangeCandidates(IPatternMatch match, ReactionContainer reactionContainer, ReactionContainerFactory factory) {
+	private void applyLinkChangeCandidates(IMatch match, ReactionContainer reactionContainer, ReactionContainerFactory factory) {
 		if(linkChanges.size() == 0)
 			return;
 		
@@ -238,7 +237,7 @@ class TransformationTemplate {
 		reactionContainer.getSimLinkStates().addAll(createdLinks);
 	}
 	
-	void applyTransformation(IPatternMatch match, ReactionContainer reactionContainer, ReactionContainerFactory factory) {
+	void applyTransformation(IMatch match, ReactionContainer reactionContainer, ReactionContainerFactory factory) {
 		applyAgentRemovalCandidates(match);
 		applyLinkRemovalTemplates(match);
 		applyStateChangeTemplates(match);

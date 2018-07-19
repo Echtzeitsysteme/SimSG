@@ -6,9 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternModel;
-import org.eclipse.viatra.query.runtime.api.IPatternMatch;
-
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.impl.ReactionContainerFactoryImpl;
@@ -19,20 +16,20 @@ import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.Rule;
 import biochemsimulation.reactionrules.reactionRules.RuleBody;
 import biochemsimulation.reactionrules.utils.PatternUtils;
+import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.viatra.ViatraCodeGenerator;
 
 abstract class ReactionRuleTransformer {
 	
 	protected ReactionRuleModel ruleModel;
 	protected ReactionContainer reactionContainer;
-	protected PatternModel patterns;
 	
 	protected Map<String, Rule> ruleMap;
 	protected Map<String, Pattern> patternMap;
 	protected Map<String, Pattern> targetPatternMap;
 	protected Map<String, TransformationTemplate> templateMap;
 	
-	protected Map<String, Collection<? extends IPatternMatch>> matches;
+	protected Map<String, Collection<IMatch>> matches;
 	
 	protected Map<String, Double> staticReactionRates;
 	
@@ -44,7 +41,7 @@ abstract class ReactionRuleTransformer {
 		targetPatternMap = new HashMap<String, Pattern>();
 		templateMap = new HashMap<String, TransformationTemplate>();
 		
-		matches = new HashMap<String, Collection<? extends IPatternMatch>>();
+		matches = new HashMap<String, Collection<IMatch>>();
 		
 		staticReactionRates = new HashMap<String, Double>();
 		
@@ -99,7 +96,7 @@ abstract class ReactionRuleTransformer {
 		});
 	}
 	
-	protected void applyRuleToMatch(IPatternMatch match) {
+	protected void applyRuleToMatch(IMatch match) {
 		String patternName = match.patternName().replaceAll("^(.)*\\.", "");
 		templateMap.get(patternName).applyTransformation(match, reactionContainer, factory);
 

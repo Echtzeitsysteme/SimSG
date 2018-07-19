@@ -8,11 +8,9 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternModel;
-import org.eclipse.viatra.query.runtime.api.IPatternMatch;
-
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
+import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.PatternMatchingEngine;
 import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;
 import biochemsimulation.simulation.matching.PatternMatchingEngineFactory;
@@ -26,19 +24,23 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 	}
 	
 	@Override
-	public void init(ReactionRuleModel ruleModel, ReactionContainer reactionContainer, PatternModel patterns) throws Exception {
+	public void loadModels(ReactionRuleModel ruleModel, ReactionContainer reactionContainer) throws Exception {
 		this.ruleModel = ruleModel;
 		this.reactionContainer = reactionContainer;
-		this.patterns = patterns;
-		
-		engine.initEngine(reactionContainer);
-		engine.initMatcher(patterns);
-		
+		engine.loadModels(reactionContainer, ruleModel);
+	}
+	
+	@Override
+	public void initEngine() throws Exception {
+		engine.initEngine();
+	}
+	
+	@Override
+	public void initController() throws Exception {
 		initRuleMap();
 		initPatternMaps();
 		initTransformationTemplates();
 		retrieveStaticReactionRates();
-		
 	}
 
 	@Override
@@ -84,7 +86,7 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 			}
 			
 			double reactionRate = staticReactionRates.get(current);
-			List<IPatternMatch> currentMatches = new LinkedList<IPatternMatch>(matches.get(current));
+			List<IMatch> currentMatches = new LinkedList<IMatch>(matches.get(current));
 			for(int i = 0; i<currentMatches.size(); i++) {
 				//double rnd = Math.random();
 				double rnd = random.nextDouble();
@@ -101,13 +103,13 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 	}
 
 	@Override
-	public Collection<? extends IPatternMatch> getMatches(String patternName) {
+	public Collection<IMatch> getMatches(String patternName) {
 		//collectMatches(patternName);
 		return matches.get(patternName);
 	}
 
 	@Override
-	public Map<String, Collection<? extends IPatternMatch>> getAllMatches() {
+	public Map<String, Collection<IMatch>> getAllMatches() {
 		//collectAllMatches();
 		return matches;
 	}

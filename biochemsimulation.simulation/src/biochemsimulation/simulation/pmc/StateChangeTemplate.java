@@ -3,10 +3,9 @@ package biochemsimulation.simulation.pmc;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.eclipse.viatra.query.runtime.api.IPatternMatch;
-
 import biochemsimulation.reactioncontainer.SimAgent;
 import biochemsimulation.reactioncontainer.SimSite;
+import biochemsimulation.simulation.matching.IMatch;
 
 class StateChangeTemplate {
 	private int agentIndex;
@@ -21,7 +20,7 @@ class StateChangeTemplate {
 		siteStateMap.put(index, state);
 	}
 	
-	void applyStateChangeCandidates(IPatternMatch match) {
+	void applyStateChangeCandidates(IMatch match) {
 		SimAgent agent = (SimAgent) match.get(match.parameterNames().get(agentIndex));
 		siteStateMap.forEach( (idx, state) -> {
 			SimSite ss = agent.getSimSites().get(idx);
