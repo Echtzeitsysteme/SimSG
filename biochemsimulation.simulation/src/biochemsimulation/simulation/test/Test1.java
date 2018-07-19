@@ -45,7 +45,7 @@ public class Test1 {
 	public static final RelationalConstraintFactory constraintFac = RelationalConstraintFactory.eINSTANCE; 
 
 	public static void main(String[] args) {
-		test3();
+		test2();
 	}
 
 	public static void test1() {
