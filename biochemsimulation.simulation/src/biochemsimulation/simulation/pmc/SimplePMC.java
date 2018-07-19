@@ -14,6 +14,7 @@ import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.PatternMatchingEngine;
 import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;
 import biochemsimulation.simulation.matching.PatternMatchingEngineFactory;
+import biochemsimulation.simulation.pmc.GT.ReactionRuleTransformer;
 
 public class SimplePMC extends ReactionRuleTransformer implements PatternMatchingController {
 	

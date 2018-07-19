@@ -1,4 +1,4 @@
-package biochemsimulation.simulation.pmc;
+package biochemsimulation.simulation.pmc.GT;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -19,7 +19,7 @@ import biochemsimulation.reactionrules.utils.PatternUtils;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.viatra.ViatraCodeGenerator;
 
-abstract class ReactionRuleTransformer {
+public abstract class ReactionRuleTransformer {
 	
 	protected ReactionRuleModel ruleModel;
 	protected ReactionContainer reactionContainer;

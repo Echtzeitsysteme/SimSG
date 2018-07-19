@@ -1,4 +1,4 @@
-package biochemsimulation.simulation.pmc;
+package biochemsimulation.simulation.pmc.GT;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package biochemsimulation.simulation.pmc;
+package biochemsimulation.simulation.pmc.GT;
 
 import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.SimAgent;
@@ -7,7 +7,7 @@ import biochemsimulation.reactioncontainer.SimLinkState;
 import biochemsimulation.reactioncontainer.SimSite;
 import biochemsimulation.simulation.matching.IMatch;
 
-public class LinkChangeTemplate {
+class LinkChangeTemplate {
 	private int agentIdxFrom;
 	private int agentIdxTo;
 	

@@ -10,6 +10,10 @@ public class PatternMatchingEngineFactory {
 			pme = new ViatraEngineWrapper();
 			break;
 		}
+		case DemoclesEngine : {
+			pme = new DemoclesEngineWrapper();
+			break;
+		}
 		}
 		
 		return pme;
