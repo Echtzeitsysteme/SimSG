@@ -6,13 +6,20 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternModel;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
+import org.gervarro.democles.specification.emf.Constant;
+import org.gervarro.democles.specification.emf.ConstraintParameter;
+import org.gervarro.democles.specification.emf.ConstraintVariable;
 import org.gervarro.democles.specification.emf.Pattern;
 import org.gervarro.democles.specification.emf.PatternBody;
 import org.gervarro.democles.specification.emf.SpecificationFactory;
+import org.gervarro.democles.specification.emf.constraint.emf.emf.Attribute;
 import org.gervarro.democles.specification.emf.constraint.emf.emf.EMFTypeFactory;
 import org.gervarro.democles.specification.emf.constraint.emf.emf.EMFVariable;
+import org.gervarro.democles.specification.emf.constraint.relational.RelationalConstraint;
+import org.gervarro.democles.specification.emf.constraint.relational.RelationalConstraintFactory;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
@@ -35,6 +42,7 @@ public class Test1 {
 	
 	public static final SpecificationFactory democlesFac = SpecificationFactory.eINSTANCE;
 	public static final EMFTypeFactory emfTypeFac = EMFTypeFactory.eINSTANCE;
+	public static final RelationalConstraintFactory constraintFac = RelationalConstraintFactory.eINSTANCE; 
 
 	public static void main(String[] args) {
 		test3();
@@ -133,6 +141,10 @@ public class Test1 {
 			engine.initPatterns(patterns);
 			Collection<IMatch> match = engine.getMatches("A_Type_Pattern", true);
 			System.out.println((match!=null)?match.size():"Fu");
+			org.eclipse.emf.ecore.util.EcoreUtil.delete(model2.getSimAgent().get(0));
+			match = engine.getMatches("A_Type_Pattern", true);
+			System.out.println((match!=null)?match.size():"Fu");
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -146,13 +158,50 @@ public class Test1 {
 		PatternBody pb = democlesFac.createPatternBody();
 		
 		// create Signature
-		EMFVariable variable = emfTypeFac.createEMFVariable();
-		variable.setName("A");
-		variable.setEClassifier(ReactionContainerPackage.Literals.SIM_AGENT);
-		p.getSymbolicParameters().add(variable);
+		EMFVariable signatureNodeVariable = emfTypeFac.createEMFVariable();
+		signatureNodeVariable.setName("A");
+		signatureNodeVariable.setEClassifier(ReactionContainerPackage.Literals.SIM_AGENT);
+		p.getSymbolicParameters().add(signatureNodeVariable);
+		
+		// Attribute Constraint
+		EMFVariable attributeVariable = emfTypeFac.createEMFVariable();
+		attributeVariable.setEClassifier(ReactionContainerPackage.Literals.SIM_AGENT.getEAttributes().get(1).getEAttributeType());
+		attributeVariable.setName("A_Type");
+		pb.getLocalVariables().add(attributeVariable);
+		
+		Attribute attributeConstraint = emfTypeFac.createAttribute();
+		attributeConstraint.setEModelElement(ReactionContainerPackage.Literals.SIM_AGENT.getEAttributes().get(1));
+		
+		ConstraintParameter parameterForNode = democlesFac.createConstraintParameter();
+		attributeConstraint.getParameters().add(parameterForNode);
+		parameterForNode.setReference(signatureNodeVariable);
+		
+		ConstraintParameter parameterForAttribute = democlesFac.createConstraintParameter();
+		attributeConstraint.getParameters().add(parameterForAttribute);
+		parameterForAttribute.setReference(attributeVariable);
+		
+		pb.getConstraints().add(attributeConstraint);
+		
+		// constant constraint	
+		Constant constant = democlesFac.createConstant();
+		constant.setValue("A");
+		pb.getConstants().add(constant);
+
+		RelationalConstraint constraint = constraintFac.createEqual();
+		
+		ConstraintParameter parameterForAttribute2 = democlesFac.createConstraintParameter();
+		constraint.getParameters().add(parameterForAttribute2);
+		parameterForAttribute2.setReference(attributeVariable);
+		
+		ConstraintParameter parameterForConstant = democlesFac.createConstraintParameter();
+		constraint.getParameters().add(parameterForConstant);
+		parameterForConstant.setReference(constant);
+		pb.getConstraints().add(constraint);
 		
 		p.getBodies().add(pb);
 		return p;
 	}
+	
+	
 
 }

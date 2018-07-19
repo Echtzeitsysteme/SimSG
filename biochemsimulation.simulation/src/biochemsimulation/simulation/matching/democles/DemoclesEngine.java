@@ -87,16 +87,14 @@ public class DemoclesEngine implements MatchEventListener {
 	protected NotificationProcessor observer;
 
 	public DemoclesEngine(EObject model) {
-		System.out.println("Start init...");
 		patterns = new HashMap<String, Pattern>();
 		patternMatchers = new ArrayList<>();
 		matches = new HashMap<IDataFrame, Map<String, IMatch>>();
 		matchToPatternMap = new HashMap<String, Map<IDataFrame, IMatch>>();
 
 		rs = model.eResource().getResourceSet();
-
+		
 		initReteModule();
-		System.out.println("Completed init...");
 	}
 
 	public void initPatterns(Collection<Pattern> patterns) {
@@ -114,8 +112,6 @@ public class DemoclesEngine implements MatchEventListener {
 		if (doUpdate) {
 			updateMatches();
 		}
-		System.out.println(matches.size());
-		System.out.println(matchToPatternMap.size());
 		if (matchToPatternMap.containsKey(patternName)) {
 			return matchToPatternMap.get(patternName).values();
 		}
@@ -227,12 +223,12 @@ public class DemoclesEngine implements MatchEventListener {
 				referenceToEdgeConverter);
 		this.observer = new NotificationProcessor(bidirectionalReferenceFilter,
 				new CategoryBasedQueueFactory<ModelDelta>(ModelDeltaCategorizer.INSTANCE));
+		observer.install(rs);
 	}
 
 	@Override
 	public void handleEvent(MatchEvent event) {
 		String type = event.getEventType();
-		System.out.println("Event type: "+type);
 		DataFrame frame = event.getMatching();
 		Pattern pattern = patterns.get(event.getSource().toString());
 		if (pattern == null) {
