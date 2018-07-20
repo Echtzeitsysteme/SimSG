@@ -45,7 +45,7 @@ public class Test1 {
 	public static final RelationalConstraintFactory constraintFac = RelationalConstraintFactory.eINSTANCE; 
 
 	public static void main(String[] args) {
-		test2();
+		test3();
 	}
 
 	public static void test1() {
@@ -115,14 +115,12 @@ public class Test1 {
 
 			for (int i = 0; i < iterations; i++) {
 				// <-- debugging stuff starts here
-
 				Map<String, Collection<IMatch>> results = pmc.getAllMatches();
 				for (String key : results.keySet()) {
 					if (results.get(key) != null) {
 						System.out.println("Iter: " + i + " // Pattern: " + key + ", size: " + results.get(key).size());
 					}
 				}
-
 				// debugging stuff ends here -->
 				pmc.performTransformations();
 			}

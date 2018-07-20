@@ -67,14 +67,7 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 	@Override
 	public void performTransformations() {
 		Random random = new Random();
-		/*
-		updateDynamicReactionRates();
-		collectReactionCandidates();
-		candidates.forEach((x, y) -> {
-			y.forEach(z -> applyRuleToMatch(z));
-			// hier muesst noch ein update matches rein!
-		});
-		*/
+
 		ConcurrentLinkedQueue<String> patternQueue = generateRndPatternQueue();
 		
 		while(!patternQueue.isEmpty()) {
@@ -83,11 +76,20 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 				collectMatches(current);
 			} catch (Exception e) {
 				e.printStackTrace();
-				return;
+				continue;
 			}
 			
 			double reactionRate = staticReactionRates.get(current);
 			List<IMatch> currentMatches = new LinkedList<IMatch>(matches.get(current));
+			// New version: Approximation of N "true" Laplace-experiments
+			double pRule = 1.0 - Math.pow((1.0-reactionRate), currentMatches.size());
+			double rnd = random.nextDouble();
+			if(rnd <= pRule) {
+				int idx = (int)(currentMatches.size()*random.nextDouble());
+				applyRuleToMatch(currentMatches.get(idx));
+			}
+			// Old version: N "true" Laplace-experiments via For-Loop and Rnd-Function
+			/*
 			for(int i = 0; i<currentMatches.size(); i++) {
 				//double rnd = Math.random();
 				double rnd = random.nextDouble();
@@ -98,6 +100,7 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 					break;
 				}
 			}
+			*/
 			
 		}
 		
