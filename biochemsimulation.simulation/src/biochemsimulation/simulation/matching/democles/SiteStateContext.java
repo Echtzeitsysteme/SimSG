@@ -3,14 +3,15 @@ package biochemsimulation.simulation.matching.democles;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EReference;
 
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 
 class SiteStateContext {
 	private SiteNodeContext siteNodeContext;
 	
-	public final static EDataType SIM_SITE_STATE_CONTAINER_ATTRIBUTE_TYPE = ReactionContainerPackage.Literals.SIM_SITE.getEAttributes().get(1).getEAttributeType();
-	public final static EAttribute SIM_SITE_STATE_CONTAINER_ATTRIBUTE = ReactionContainerPackage.Literals.SIM_SITE.getEAttributes().get(1);
+	public final static EClassifier SIM_SITE_STATE_CONTAINER_ATTRIBUTE_TYPE = ReactionContainerPackage.Literals.SIM_SITE.getEAllContainments().get(0).getEType();
+	public final static EReference SIM_SITE_STATE_CONTAINER_ATTRIBUTE = ReactionContainerPackage.Literals.SIM_SITE.getEAllContainments().get(0);
 	private String uniqueSimSiteStateContainerAttributeName;
 	
 	public final static EClassifier SIM_SITE_STATE_TYPE = ReactionContainerPackage.Literals.SIM_SITE_STATE;

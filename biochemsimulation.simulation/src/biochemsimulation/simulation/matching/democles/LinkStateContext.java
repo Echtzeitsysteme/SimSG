@@ -1,16 +1,15 @@
 package biochemsimulation.simulation.matching.democles;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EReference;
 
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 
 class LinkStateContext {
 	private SiteNodeContext siteNodeContext;
 	
-	public final static EDataType SIM_LINK_STATE_CONTAINER_ATTRIBUTE_TYPE = ReactionContainerPackage.Literals.SIM_SITE.getEAttributes().get(3).getEAttributeType();
-	public final static EAttribute SIM_LINK_STATE_CONTAINER_ATTRIBUTE = ReactionContainerPackage.Literals.SIM_SITE.getEAttributes().get(3);
+	public final static EClassifier SIM_LINK_STATE_CONTAINER_ATTRIBUTE_TYPE = ReactionContainerPackage.Literals.SIM_SITE.getEAllReferences().get(2).getEType();
+	public final static EReference SIM_LINK_STATE_CONTAINER_ATTRIBUTE = ReactionContainerPackage.Literals.SIM_SITE.getEAllReferences().get(2);
 	private String uniqueSimLinkStateContainerAttributeName;
 	
 	public final static EClassifier SIM_LINK_STATE_TYPE = ReactionContainerPackage.Literals.SIM_LINK_STATE;
