@@ -49,9 +49,7 @@ class DemoclesPatternSignature {
 			patternSignatureMapping.put(vap, name);
 			signaturePatternMapping.put(name, vap);
 			
-			if(occurence > 0) {
-				injectivityConflicts.get(agent.getName()).add(name);
-			}
+			injectivityConflicts.get(agent.getName()).add(name);
 		}
 		
 	}
@@ -59,7 +57,7 @@ class DemoclesPatternSignature {
 	private void cleanUpInjectivityConflicts() {
 		Map<String, List<String>> injectivityConflicts2 = new HashMap<String, List<String>>();
 		injectivityConflicts.forEach((name, list) -> {
-			if(list.size()>0) {
+			if(list.size()>1) {
 				injectivityConflicts2.put(name, list);
 			}
 		});

@@ -4,9 +4,10 @@ import biochemsimulation.reactionrules.reactionRules.BoundAnyLink;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
 import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
+import biochemsimulation.reactionrules.reactionRules.WhatEver;
 
 enum LinkStateType {
-	Unbound("Unbound"), BoundAny("BoundAny"), BoundAnyOfType("BoundAny"), Bound("BoundExact");
+	Unbound("Unbound"), BoundAny("BoundAny"), BoundAnyOfType("BoundAny"), Bound("BoundExact"), WhatEver("WhatEver");
 	
 	private String name;
 	
@@ -23,6 +24,9 @@ enum LinkStateType {
 		}
 		if(linkState instanceof BoundLink) {
 			return Bound;
+		}
+		if(linkState instanceof WhatEver) {
+			return WhatEver;
 		}
 		return Unbound;
 	}

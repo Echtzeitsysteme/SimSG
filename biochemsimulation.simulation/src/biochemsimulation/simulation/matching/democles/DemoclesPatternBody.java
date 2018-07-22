@@ -210,7 +210,6 @@ class DemoclesPatternBody {
 					AgentNodeContext agentNode = agentNodeContexts.get(signature.getSignaturePattern(node));
 					AgentNodeContext agentNode2 = agentNodeContexts.get(signature.getSignaturePattern(node2));
 					constraints.putIfAbsent(key, new AgentNodeConstraint(agentNode, agentNode2, ConstraintType.unequal));
-					
 				}
 			}
 		}
