@@ -22,7 +22,7 @@ class DemoclesPatternBody {
 	private Map<SiteNodeContext, SiteStateContext> siteStateContexts;
 	private Map<SiteNodeContext, LinkStateContext> linkStateContexts;
 	
-	private List<LinkStateConstraint> linkStateConstraints;
+	private Map<LinkStateContext, LinkStateConstraint> linkStateConstraints;
 	private Collection<AgentNodeConstraint> injectivityConstraints;
 	
 	private Map<ValidAgentPattern, List<AgentNodeContext>> localAgentNodes;
@@ -77,7 +77,7 @@ class DemoclesPatternBody {
 
 
 
-	List<LinkStateConstraint> getLinkStateConstraints() {
+	Map<LinkStateContext, LinkStateConstraint> getLinkStateConstraints() {
 		return linkStateConstraints;
 	}
 
@@ -142,7 +142,7 @@ class DemoclesPatternBody {
 		localAgentNodes = new HashMap<ValidAgentPattern, List<AgentNodeContext>>();
 		localSiteNodes = new HashMap<AgentNodeContext, SiteNodeContext>();
 		localLinkStates = new HashMap<SiteNodeContext, LinkStateContext>();
-		linkStateConstraints = new LinkedList<LinkStateConstraint>();
+		linkStateConstraints = new HashMap<LinkStateContext, LinkStateConstraint>();
 		
 		for(ValidAgentPattern pattern : agentPatterns) {
 			AgentNodeContext currentAgentNodeContext = agentNodeContexts.get(pattern);
@@ -175,14 +175,14 @@ class DemoclesPatternBody {
 					localLinkStates.put(localSiteNodeContext, localLinkStateContext);
 					
 					LinkStateConstraint constraint = new LinkStateConstraint(currentLinkStateContext, localLinkStateContext, ConstraintType.equal);
-					linkStateConstraints.add(constraint);
+					linkStateConstraints.put(currentLinkStateContext, constraint);
 					
 				}else if(currentLinkStateContext.getStateType() == LinkStateType.Bound) {
 					BoundLink boundLink = (BoundLink)link;
 					int linkIdx = Integer.valueOf(boundLink.getState());
 					LinkStateContext otherSite = findLinkedSite(pattern, linkIdx);
 					LinkStateConstraint constraint = new LinkStateConstraint(currentLinkStateContext, otherSite, ConstraintType.equal);
-					linkStateConstraints.add(constraint);
+					linkStateConstraints.put(otherSite, constraint);
 				}
 				
 			}

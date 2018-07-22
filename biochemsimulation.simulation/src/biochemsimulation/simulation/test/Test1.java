@@ -28,6 +28,7 @@ import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactioncontainer.SimAgent;
 import biochemsimulation.reactioncontainer.impl.SimAgentImpl;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
+import biochemsimulation.simulation.matching.DemoclesEngineWrapper;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.PatternMatchingEngine;
 import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;
@@ -41,15 +42,15 @@ import biochemsimulation.simulation.pmc.PatternMatchingControllerEnum;
 import biochemsimulation.simulation.pmc.PatternMatchingControllerFactory;
 
 public class Test1 {
-	
+
 	public static final SpecificationFactory democlesFac = SpecificationFactory.eINSTANCE;
 	public static final EMFTypeFactory emfTypeFac = EMFTypeFactory.eINSTANCE;
 	public static final RelationalConstraintFactory constraintFac = RelationalConstraintFactory.eINSTANCE;
-	
+
 	public static final Pattern negPattern = generateInvokedTestPattern();
 
 	public static void main(String[] args) {
-		test3();
+		test4();
 	}
 
 	public static void test1() {
@@ -151,243 +152,375 @@ public class Test1 {
 			patterns.add(negPattern);
 			engine.initPatterns(patterns);
 			Collection<IMatch> match = engine.getMatches("A_Type_Pattern", true);
-			System.out.println((match!=null)?match.size():"Fu");
+			System.out.println((match != null) ? match.size() : "Fu");
 			org.eclipse.emf.ecore.util.EcoreUtil.delete(model2.getSimAgent().get(0));
 			match = engine.getMatches("A_Type_Pattern", true);
-			System.out.println((match!=null)?match.size():"Fu");
-			
+			System.out.println((match != null) ? match.size() : "Fu");
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
+	public static void test4() {
+		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
+		pm.init();
+		try {
+			ReactionRuleModel model1 = pm.loadReactionRuleModel("test2");
+			ReactionContainer model2 = pm.loadReactionContainerModel("test2", true);
+			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.DemoclesEngine);
+			engine.loadModels(model2, model1);
+			engine.initEngine();
+			Map<String, Collection<IMatch>> matches = engine.getAllMatches();
+			matches.forEach((name, m) -> {
+				System.out.println("Pattern: "+name+", size: "+m.size());
+			});
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	public static Pattern generateDemoclesTestPattern() {
 		Pattern p = democlesFac.createPattern();
 		p.setName("A_Type_Pattern");
-		
+
 		PatternBody pb = democlesFac.createPatternBody();
+		p.getBodies().add(pb);
 		
 		// ##### create Signature
+		EMFVariable signatureNodeA = createSignatureNode("A", p);
+		//EMFVariable signatureNodeC = createSignatureNode("C", p);
+		//EMFVariable signatureNodeB = createSignatureNode("B", p);
+
+		// ##### Agent Node Context
+		createTypeConstraint(signatureNodeA, "A", pb);
+		//createTypeConstraint(signatureNodeB, "B", pb);
+		//createTypeConstraint(signatureNodeC, "C", p, pb);
+		// ##### Site Node Context
+		EMFVariable sitesVariableA = createSiteConstraint(signatureNodeA, "x", pb);
+		//EMFVariable sitesVariableB = createSiteConstraint(signatureNodeB, "x", pb);
+		//EMFVariable sitesVariable = createSiteConstraint(signatureNodeC, "x", p, pb);
+		// ##### Site State Context
+		//createSiteStateConstraint(sitesVariable, "u", p, pb);
+		
+		// ##### Link Context - Any Link
+		//createAnyLinkConstraint(sitesVariable, p, pb);
+		
+		// ##### Link Context - No Link
+		//createNoLinkConstraint(sitesVariable, p, pb);
+		//createNoLinkConstraint(sitesVariableA, p, pb);
+		//createNoLinkConstraint(sitesVariableB, p, pb);
+		
+		// ##### Link Context - Bound
+		//createBoundConstraint(sitesVariableA, sitesVariableB, pb);
+		
+		// ##### Link Context - Bound to Type
+		createBoundToTypeConstraint(sitesVariableA, "B", "x", pb);
+		
+		return p;
+	}
+
+	public static EMFVariable createSignatureNode(String name, Pattern p) {
 		EMFVariable signatureNodeVariable = emfTypeFac.createEMFVariable();
-		signatureNodeVariable.setName("A");
+		signatureNodeVariable.setName(name);
 		signatureNodeVariable.setEClassifier(ReactionContainerPackage.Literals.SIM_AGENT);
 		p.getSymbolicParameters().add(signatureNodeVariable);
-		
-		// ##### Agent Node Context
+
+		return signatureNodeVariable;
+	}
+
+	public static void createTypeConstraint(EMFVariable signatureNodeVariable, String typeName,
+			PatternBody pb) {
 		// Attribute Constraint
 		EMFVariable attributeVariable = emfTypeFac.createEMFVariable();
-		attributeVariable.setEClassifier(ReactionContainerPackage.Literals.SIM_AGENT.getEAttributes().get(1).getEAttributeType());
-		attributeVariable.setName("A_Type");
+		attributeVariable.setEClassifier(
+				ReactionContainerPackage.Literals.SIM_AGENT.getEAttributes().get(1).getEAttributeType());
+		attributeVariable.setName(signatureNodeVariable.toString() + "_Type");
 		pb.getLocalVariables().add(attributeVariable);
-		
+
 		Attribute attributeConstraint = emfTypeFac.createAttribute();
 		attributeConstraint.setEModelElement(ReactionContainerPackage.Literals.SIM_AGENT.getEAttributes().get(1));
-		
+
 		ConstraintParameter parameterForNode = democlesFac.createConstraintParameter();
 		attributeConstraint.getParameters().add(parameterForNode);
 		parameterForNode.setReference(signatureNodeVariable);
-		
+
 		ConstraintParameter parameterForAttribute = democlesFac.createConstraintParameter();
 		attributeConstraint.getParameters().add(parameterForAttribute);
 		parameterForAttribute.setReference(attributeVariable);
-		
+
 		pb.getConstraints().add(attributeConstraint);
-		
-		// constant constraint	
+
+		// constant constraint
 		Constant constant = democlesFac.createConstant();
-		constant.setValue("C");
+		constant.setValue(typeName);
 		pb.getConstants().add(constant);
 
 		RelationalConstraint constraint = constraintFac.createEqual();
-		
+
 		ConstraintParameter parameterForAttribute2 = democlesFac.createConstraintParameter();
 		constraint.getParameters().add(parameterForAttribute2);
 		parameterForAttribute2.setReference(attributeVariable);
-		
+
 		ConstraintParameter parameterForConstant = democlesFac.createConstraintParameter();
 		constraint.getParameters().add(parameterForConstant);
 		parameterForConstant.setReference(constant);
 		pb.getConstraints().add(constraint);
-		
-		// ##### Site Node Context
+	}
+	
+	public static EMFVariable createSiteConstraint(EMFVariable signatureNodeVariable, String typeName,
+			PatternBody pb) {
 		EMFVariable sitesVariable = emfTypeFac.createEMFVariable();
-		sitesVariable.setEClassifier(ReactionContainerPackage.Literals.SIM_AGENT.getEAllContainments().get(0).getEType());
-		sitesVariable.setName("A_simSites");
+		sitesVariable
+				.setEClassifier(ReactionContainerPackage.Literals.SIM_AGENT.getEAllContainments().get(0).getEType());
+		sitesVariable.setName(signatureNodeVariable.toString()+"_simSites");
 		pb.getLocalVariables().add(sitesVariable);
-		
+
 		Reference sitesConstraint = emfTypeFac.createReference();
 		sitesConstraint.setEModelElement(ReactionContainerPackage.Literals.SIM_AGENT.getEAllContainments().get(0));
-		
+
 		ConstraintParameter signatureContext = democlesFac.createConstraintParameter();
 		sitesConstraint.getParameters().add(signatureContext);
 		signatureContext.setReference(signatureNodeVariable);
-		
+
 		ConstraintParameter localContext = democlesFac.createConstraintParameter();
 		sitesConstraint.getParameters().add(localContext);
 		localContext.setReference(sitesVariable);
-		
+
 		pb.getConstraints().add(sitesConstraint);
-		
+
 		// Create the node itself:
 		EMFVariable siteVariable = emfTypeFac.createEMFVariable();
-		siteVariable.setEClassifier(ReactionContainerPackage.Literals.SIM_SITE.getEAttributes().get(0).getEAttributeType());
-		siteVariable.setName("A_A_x_Type");
+		siteVariable
+				.setEClassifier(ReactionContainerPackage.Literals.SIM_SITE.getEAttributes().get(0).getEAttributeType());
+		siteVariable.setName(signatureNodeVariable.toString()+"_simSites_"+typeName);
 		pb.getLocalVariables().add(siteVariable);
-		
+
 		Attribute siteTypeAttribute = emfTypeFac.createAttribute();
 		siteTypeAttribute.setEModelElement(ReactionContainerPackage.Literals.SIM_SITE.getEAttributes().get(0));
-		
+
 		ConstraintParameter parameterSiteContext = democlesFac.createConstraintParameter();
 		siteTypeAttribute.getParameters().add(parameterSiteContext);
 		parameterSiteContext.setReference(sitesVariable);
-		
+
 		ConstraintParameter parameterSiteVariable = democlesFac.createConstraintParameter();
 		siteTypeAttribute.getParameters().add(parameterSiteVariable);
 		parameterSiteVariable.setReference(siteVariable);
-		
+
 		pb.getConstraints().add(siteTypeAttribute);
-		
+
 		// constant constraint
 		Constant siteConstant = democlesFac.createConstant();
-		siteConstant.setValue("x");
+		siteConstant.setValue(typeName);
 		pb.getConstants().add(siteConstant);
 
 		RelationalConstraint constraint2 = constraintFac.createEqual();
-		
+
 		ConstraintParameter parameterForSiteAttribute2 = democlesFac.createConstraintParameter();
 		constraint2.getParameters().add(parameterForSiteAttribute2);
 		parameterForSiteAttribute2.setReference(siteVariable);
-		
+
 		ConstraintParameter parameterForSiteConstant = democlesFac.createConstraintParameter();
 		constraint2.getParameters().add(parameterForSiteConstant);
 		parameterForSiteConstant.setReference(siteConstant);
 		pb.getConstraints().add(constraint2);
 		
-		/*
-		// ##### Site State Context
+		return sitesVariable;
+	}
+	
+	public static void createSiteStateConstraint(EMFVariable sitesVariable, String typeName,
+			PatternBody pb) {
 		EMFVariable siteStateVariable = emfTypeFac.createEMFVariable();
-		siteStateVariable.setEClassifier(ReactionContainerPackage.Literals.SIM_SITE.getEAllContainments().get(0).getEType());
-		siteStateVariable.setName("A_A_x_SiteState");
+		siteStateVariable
+				.setEClassifier(ReactionContainerPackage.Literals.SIM_SITE.getEAllContainments().get(0).getEType());
+		siteStateVariable.setName(sitesVariable.toString()+"_SiteState");
 		pb.getLocalVariables().add(siteStateVariable);
-		
+
 		Reference siteStateReference = emfTypeFac.createReference();
 		siteStateReference.setEModelElement(ReactionContainerPackage.Literals.SIM_SITE.getEAllContainments().get(0));
-		
+
 		ConstraintParameter parameterSiteContext2 = democlesFac.createConstraintParameter();
 		siteStateReference.getParameters().add(parameterSiteContext2);
 		parameterSiteContext2.setReference(sitesVariable);
-		
+
 		ConstraintParameter parameterStateVariable = democlesFac.createConstraintParameter();
 		siteStateReference.getParameters().add(parameterStateVariable);
 		parameterStateVariable.setReference(siteStateVariable);
-		
+
 		pb.getConstraints().add(siteStateReference);
-		
+
 		// site state type
 		EMFVariable stateTypeVariable = emfTypeFac.createEMFVariable();
-		stateTypeVariable.setEClassifier(ReactionContainerPackage.Literals.SIM_SITE_STATE.getEAttributes().get(0).getEAttributeType());
-		stateTypeVariable.setName("A_A_x_SiteState_u");
+		stateTypeVariable.setEClassifier(
+				ReactionContainerPackage.Literals.SIM_SITE_STATE.getEAttributes().get(0).getEAttributeType());
+		stateTypeVariable.setName(sitesVariable.toString()+"SiteState_"+typeName);
 		pb.getLocalVariables().add(stateTypeVariable);
-		
+
 		Attribute stateTypeAttribute = emfTypeFac.createAttribute();
 		stateTypeAttribute.setEModelElement(ReactionContainerPackage.Literals.SIM_SITE_STATE.getEAttributes().get(0));
-		
+
 		ConstraintParameter parameterSiteContext3 = democlesFac.createConstraintParameter();
 		stateTypeAttribute.getParameters().add(parameterSiteContext3);
 		parameterSiteContext3.setReference(siteStateVariable);
-		
+
 		ConstraintParameter parameterStateTypeVariable = democlesFac.createConstraintParameter();
 		stateTypeAttribute.getParameters().add(parameterStateTypeVariable);
 		parameterStateTypeVariable.setReference(stateTypeVariable);
-		
+
 		pb.getConstraints().add(stateTypeAttribute);
-		
-		//constant constraint
+
+		// constant constraint
 		Constant stateTypeConstant = democlesFac.createConstant();
-		stateTypeConstant.setValue("u");
+		stateTypeConstant.setValue(typeName);
 		pb.getConstants().add(stateTypeConstant);
 
 		RelationalConstraint constraint3 = constraintFac.createEqual();
-		
+
 		ConstraintParameter parameterForStateAttribute = democlesFac.createConstraintParameter();
 		constraint3.getParameters().add(parameterForStateAttribute);
 		parameterForStateAttribute.setReference(stateTypeVariable);
-		
+
 		ConstraintParameter parameterForStateConstant = democlesFac.createConstraintParameter();
 		constraint3.getParameters().add(parameterForStateConstant);
 		parameterForStateConstant.setReference(stateTypeConstant);
-		
-		pb.getConstraints().add(constraint3);
-		*/
-		
-		/*
-		// ##### Link Context - Any Link
-		EMFVariable linkStateVariable = emfTypeFac.createEMFVariable();
-		linkStateVariable.setEClassifier(ReactionContainerPackage.Literals.SIM_SITE.getEAllReferences().get(2).getEType());
-		linkStateVariable.setName("A_A_x_LinkState");
-		pb.getLocalVariables().add(linkStateVariable);
-		
-		Reference linkConstraint = emfTypeFac.createReference();
-		linkConstraint.setEModelElement(ReactionContainerPackage.Literals.SIM_SITE.getEAllReferences().get(2));
-		
-		ConstraintParameter sitesContextParam = democlesFac.createConstraintParameter();
-		linkConstraint.getParameters().add(sitesContextParam);
-		sitesContextParam.setReference(sitesVariable);
-		
-		ConstraintParameter linkVariableParam = democlesFac.createConstraintParameter();
-		linkConstraint.getParameters().add(linkVariableParam);
-		linkVariableParam.setReference(linkStateVariable);
-		
-		pb.getConstraints().add(linkConstraint);
-		*/
-		// ##### Link Context - No Link
 
+		pb.getConstraints().add(constraint3);
+	}
+	
+	public static void createAnyLinkConstraint(EMFVariable sitesVariable,
+			PatternBody pb) {
 		PatternInvocationConstraint pic = democlesFac.createPatternInvocationConstraint();
-		pic.setPositive(false);
+		pic.setPositive(true);
 		pic.setInvokedPattern(negPattern);
-		
+
 		ConstraintParameter sitesContextParam = democlesFac.createConstraintParameter();
 		sitesContextParam.setReference(sitesVariable);
 		pic.getParameters().add(sitesContextParam);
 		pb.getConstraints().add(pic);
-
-		p.getBodies().add(pb);
-		return p;
 	}
 	
+	public static void createNoLinkConstraint(EMFVariable sitesVariable,
+			PatternBody pb) {
+		PatternInvocationConstraint pic = democlesFac.createPatternInvocationConstraint();
+		pic.setPositive(false);
+		pic.setInvokedPattern(negPattern);
+
+		ConstraintParameter sitesContextParam = democlesFac.createConstraintParameter();
+		sitesContextParam.setReference(sitesVariable);
+		pic.getParameters().add(sitesContextParam);
+		pb.getConstraints().add(pic);
+	}
+	
+	public static void createBoundConstraint(EMFVariable sitesVariable1, EMFVariable sitesVariable2,
+			PatternBody pb) {
+		EMFVariable linkVariableA = createBoundContext(sitesVariable1, pb);
+		EMFVariable linkVariableB = createBoundContext(sitesVariable2, pb);
+		
+		RelationalConstraint  linkConstraint = constraintFac.createEqual();
+		ConstraintParameter linkA = democlesFac.createConstraintParameter();
+		linkConstraint.getParameters().add(linkA);
+		linkA.setReference(linkVariableA);
+
+		ConstraintParameter linkB = democlesFac.createConstraintParameter();
+		linkConstraint.getParameters().add(linkB);
+		linkB.setReference(linkVariableB);
+		
+		pb.getConstraints().add(linkConstraint);
+		
+	}
+	
+	public static void createBoundToTypeConstraint(EMFVariable sitesVariable1, String agentType2, String siteType2,
+			PatternBody pb) {
+		EMFVariable linkVariableA = createBoundContext(sitesVariable1, pb);
+		EMFVariable linkVariableB = createBoundToTypeContext(agentType2, siteType2, pb);
+		
+		// create relational constraint -> check for link equality
+		RelationalConstraint  linkConstraint = constraintFac.createEqual();
+		ConstraintParameter linkA = democlesFac.createConstraintParameter();
+		linkConstraint.getParameters().add(linkA);
+		linkA.setReference(linkVariableA);
+
+		ConstraintParameter linkB = democlesFac.createConstraintParameter();
+		linkConstraint.getParameters().add(linkB);
+		linkB.setReference(linkVariableB);
+		
+		pb.getConstraints().add(linkConstraint);
+		
+	}
+	
+	public static EMFVariable createBoundContext(EMFVariable sitesVariable,
+			PatternBody pb) {
+		EMFVariable linkStateVariable = emfTypeFac.createEMFVariable();
+		linkStateVariable
+				.setEClassifier(ReactionContainerPackage.Literals.SIM_SITE.getEAllReferences().get(2).getEType());
+		linkStateVariable.setName("NEG_LinkState");
+		pb.getLocalVariables().add(linkStateVariable);
+
+		Reference linkConstraint = emfTypeFac.createReference();
+		linkConstraint.setEModelElement(ReactionContainerPackage.Literals.SIM_SITE.getEAllReferences().get(2));
+
+		ConstraintParameter sitesContextParam = democlesFac.createConstraintParameter();
+		linkConstraint.getParameters().add(sitesContextParam);
+		sitesContextParam.setReference(sitesVariable);
+
+		ConstraintParameter linkVariableParam = democlesFac.createConstraintParameter();
+		linkConstraint.getParameters().add(linkVariableParam);
+		linkVariableParam.setReference(linkStateVariable);
+
+		pb.getConstraints().add(linkConstraint);
+		
+		return linkStateVariable;
+	}
+	
+	public static EMFVariable createBoundToTypeContext(String agentType2, String siteType2,
+			PatternBody pb) {
+		EMFVariable signatureNodeVariable = emfTypeFac.createEMFVariable();
+		signatureNodeVariable.setName(agentType2);
+		signatureNodeVariable.setEClassifier(ReactionContainerPackage.Literals.SIM_AGENT);
+		pb.getLocalVariables().add(signatureNodeVariable);
+		
+		createTypeConstraint(signatureNodeVariable, agentType2, pb);
+		EMFVariable sitesVariable = createSiteConstraint(signatureNodeVariable, siteType2, pb);
+		
+		return createBoundContext(sitesVariable, pb);
+	}
+
 	public static Pattern generateInvokedTestPattern() {
 		Pattern p = democlesFac.createPattern();
 		p.setName("Neg_Pattern");
-		
+
 		PatternBody pb = democlesFac.createPatternBody();
 		p.getBodies().add(pb);
-		
+
 		// ##### create Signature
 		EMFVariable signatureNodeVariable = emfTypeFac.createEMFVariable();
 		signatureNodeVariable.setName("ss");
 		signatureNodeVariable.setEClassifier(ReactionContainerPackage.Literals.SIM_SITE);
 		p.getSymbolicParameters().add(signatureNodeVariable);
-		
+
 		// ##### create Body
 		EMFVariable linkStateVariable = emfTypeFac.createEMFVariable();
-		linkStateVariable.setEClassifier(ReactionContainerPackage.Literals.SIM_SITE.getEAllReferences().get(2).getEType());
+		linkStateVariable
+				.setEClassifier(ReactionContainerPackage.Literals.SIM_SITE.getEAllReferences().get(2).getEType());
 		linkStateVariable.setName("NEG_LinkState");
 		pb.getLocalVariables().add(linkStateVariable);
-		
+
 		Reference linkConstraint = emfTypeFac.createReference();
 		linkConstraint.setEModelElement(ReactionContainerPackage.Literals.SIM_SITE.getEAllReferences().get(2));
-		
+
 		ConstraintParameter sitesContextParam = democlesFac.createConstraintParameter();
 		linkConstraint.getParameters().add(sitesContextParam);
 		sitesContextParam.setReference(signatureNodeVariable);
-		
+
 		ConstraintParameter linkVariableParam = democlesFac.createConstraintParameter();
 		linkConstraint.getParameters().add(linkVariableParam);
 		linkVariableParam.setReference(linkStateVariable);
-		
+
 		pb.getConstraints().add(linkConstraint);
-		
+
 		return p;
 	}
 
