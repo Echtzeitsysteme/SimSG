@@ -44,6 +44,7 @@ public class Test1 {
 	public static void main(String[] args) {
 		test2();
 		test5();
+		test4();
 	}
 
 	public static void test1() {
@@ -114,20 +115,45 @@ public class Test1 {
 			System.out.println("Running sim with " + iterations + " iterations ...");
 
 			for (int i = 0; i < iterations; i++) {
+				/*
 				// <-- debugging stuff starts here
+				pmc.collectAllMatches();
 				Map<String, Collection<IMatch>> results = pmc.getAllMatches();
 				for (String key : results.keySet()) {
 					if (results.get(key) != null) {
-						System.out.println("Iter: " + i + " // Pattern: " + key + ", size: " + results.get(key).size());
+						System.out.println("IterPre: " + i + " // Pattern: " + key + ", size: " + results.get(key).size());
 					}
 				}
 				// debugging stuff ends here -->
+				*/
 				pmc.performTransformations();
+				/*
+				// <-- debugging stuff starts here
+				pmc.collectAllMatches();
+				results = pmc.getAllMatches();
+				for (String key : results.keySet()) {
+					if (results.get(key) != null) {
+						System.out.println("IterPost: " + i + " // Pattern: " + key + ", size: " + results.get(key).size());
+					}
+				}
+				// debugging stuff ends here -->
+				*/
 			}
+			
+			// <-- debugging stuff starts here
+			pmc.collectAllMatches();
+			Map<String, Collection<IMatch>> results = pmc.getAllMatches();
+			for (String key : results.keySet()) {
+				if (results.get(key) != null) {
+					System.out.println("Pattern: " + key + ", size: " + results.get(key).size());
+				}
+			}
+			// debugging stuff ends here -->
 
 			end = System.nanoTime();
 			System.out.println("time diff = " + (end - start) + " ns");
 			System.out.println("time diff = " + (end - start) / ns + " s");
+			pmc.discardEngine();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -171,6 +197,7 @@ public class Test1 {
 			matches.forEach((name, m) -> {
 				System.out.println("Pattern: "+name+", size: "+m.size());
 			});
+			engine.disposeEngine();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -219,7 +246,9 @@ public class Test1 {
 			System.out.println("Running sim with " + iterations + " iterations ...");
 
 			for (int i = 0; i < iterations; i++) {
+				/*
 				// <-- debugging stuff starts here
+				pmc.collectAllMatches();
 				Map<String, Collection<IMatch>> results = pmc.getAllMatches();
 				for (String key : results.keySet()) {
 					if (results.get(key) != null) {
@@ -227,8 +256,11 @@ public class Test1 {
 					}
 				}
 				// debugging stuff ends here -->
+				*/
 				pmc.performTransformations();
+				/*
 				// <-- debugging stuff starts here
+				pmc.collectAllMatches();
 				results = pmc.getAllMatches();
 				for (String key : results.keySet()) {
 					if (results.get(key) != null) {
@@ -236,11 +268,24 @@ public class Test1 {
 					}
 				}
 				// debugging stuff ends here -->
+				*/
 			}
+			
+			// <-- debugging stuff starts here
+			pmc.collectAllMatches();
+			Map<String, Collection<IMatch>> results = pmc.getAllMatches();
+			for (String key : results.keySet()) {
+				if (results.get(key) != null) {
+					System.out.println("Pattern: " + key + ", size: " + results.get(key).size());
+				}
+			}
+			// debugging stuff ends here -->
 
 			end = System.nanoTime();
 			System.out.println("time diff = " + (end - start) + " ns");
 			System.out.println("time diff = " + (end - start) / ns + " s");
+			
+			pmc.discardEngine();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

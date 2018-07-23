@@ -142,4 +142,9 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 		useReactionRates = activate;
 	}
 
+	@Override
+	public void discardEngine() {
+		engine.disposeEngine();
+	}
+
 }

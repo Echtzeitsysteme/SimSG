@@ -128,17 +128,9 @@ public class DemoclesPatternGenerator {
 
 			}
 		}
-
-		for (AgentNodeContext agentNode : body.getAgentNodeContexts().values()) {
-
-			for (SiteNodeContext siteNode : body.getSiteNodeContexts().get(agentNode)) {
-
-				if (body.getLinkStateContexts().containsKey(siteNode)) {
-					transformComplexLinkStateContext(trgPatternBody, body.getLinkStateContexts().get(siteNode), body
-							.getLinkStateConstraints().getOrDefault(body.getLinkStateContexts().get(siteNode), null));
-				}
-
-			}
+		
+		for(LinkStateConstraint constraint : body.getLinkStateConstraints().values()) {
+			transformComplexLinkStateContext(trgPatternBody, constraint.getOperand1(), constraint);
 		}
 
 		for (AgentNodeConstraint constraint : body.getInjectivityConstraints()) {

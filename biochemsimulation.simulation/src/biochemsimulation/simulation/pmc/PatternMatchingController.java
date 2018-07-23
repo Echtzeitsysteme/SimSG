@@ -25,6 +25,8 @@ public interface PatternMatchingController {
 	
 	public void performTransformations();
 	
+	public void discardEngine();
+	
 	public Collection<IMatch> getMatches(String patternName);
 	
 	public Map<String, Collection<IMatch>> getAllMatches();

@@ -22,7 +22,7 @@ class DemoclesPatternBody {
 	private Map<SiteNodeContext, SiteStateContext> siteStateContexts;
 	private Map<SiteNodeContext, LinkStateContext> linkStateContexts;
 	
-	private Map<LinkStateContext, LinkStateConstraint> linkStateConstraints;
+	private Map<Integer, LinkStateConstraint> linkStateConstraints;
 	private Collection<AgentNodeConstraint> injectivityConstraints;
 	
 	private Map<ValidAgentPattern, List<AgentNodeContext>> localAgentNodes;
@@ -77,7 +77,7 @@ class DemoclesPatternBody {
 
 
 
-	Map<LinkStateContext, LinkStateConstraint> getLinkStateConstraints() {
+	Map<Integer, LinkStateConstraint> getLinkStateConstraints() {
 		return linkStateConstraints;
 	}
 
@@ -142,7 +142,7 @@ class DemoclesPatternBody {
 		localAgentNodes = new HashMap<ValidAgentPattern, List<AgentNodeContext>>();
 		localSiteNodes = new HashMap<AgentNodeContext, SiteNodeContext>();
 		localLinkStates = new HashMap<SiteNodeContext, LinkStateContext>();
-		linkStateConstraints = new HashMap<LinkStateContext, LinkStateConstraint>();
+		linkStateConstraints = new HashMap<Integer, LinkStateConstraint>();
 		
 		for(ValidAgentPattern pattern : agentPatterns) {
 			AgentNodeContext currentAgentNodeContext = agentNodeContexts.get(pattern);
@@ -175,14 +175,17 @@ class DemoclesPatternBody {
 					localLinkStates.put(localSiteNodeContext, localLinkStateContext);
 					
 					LinkStateConstraint constraint = new LinkStateConstraint(currentLinkStateContext, localLinkStateContext, ConstraintType.equal);
-					linkStateConstraints.put(currentLinkStateContext, constraint);
+					linkStateConstraints.put(currentLinkStateContext.getLocalSimLinkStateVariableName().hashCode(), constraint);
 					
 				}else if(currentLinkStateContext.getStateType() == LinkStateType.Bound) {
 					BoundLink boundLink = (BoundLink)link;
 					int linkIdx = Integer.valueOf(boundLink.getState());
 					LinkStateContext otherSite = findLinkedSite(pattern, linkIdx);
 					LinkStateConstraint constraint = new LinkStateConstraint(currentLinkStateContext, otherSite, ConstraintType.equal);
-					linkStateConstraints.put(otherSite, constraint);
+					int key2 = otherSite.getLocalSimLinkStateVariableName().hashCode();
+					int key1 = currentLinkStateContext.getLocalSimLinkStateVariableName().hashCode();
+					int key = (key1>key2)?key1:key2;
+					linkStateConstraints.putIfAbsent(key, constraint);
 				}
 				
 			}
