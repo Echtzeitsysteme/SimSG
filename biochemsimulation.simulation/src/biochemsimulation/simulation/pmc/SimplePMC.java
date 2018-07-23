@@ -20,8 +20,10 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 	
 	PatternMatchingEngine engine;
 	
-	SimplePMC() {
-		engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.ViatraEngine);
+	SimplePMC(PatternMatchingEngine engine) {
+		this.engine = engine;
+		//engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.ViatraEngine);
+		//engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.DemoclesEngine);
 	}
 	
 	@Override

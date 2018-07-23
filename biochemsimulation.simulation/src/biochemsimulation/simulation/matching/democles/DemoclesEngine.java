@@ -242,7 +242,6 @@ public class DemoclesEngine implements MatchEventListener {
 			handleDeleteEvent(frame, pattern);
 			break;
 		}
-
 	}
 
 	private void handleInsertEvent(DataFrame frame, Pattern pattern) {

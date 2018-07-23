@@ -5,10 +5,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.SimAgent;
 import biochemsimulation.reactioncontainer.SimBound;
-import biochemsimulation.reactioncontainer.SimLinkState;
 import biochemsimulation.reactioncontainer.SimSite;
 import biochemsimulation.reactioncontainer.SimSiteState;
 
@@ -41,12 +41,14 @@ class AgentCreationTemplate {
 		}
 	}
 	
-	SimAgent createAgentFromTemplate(ReactionContainerFactory factory, List<SimLinkState> createdLinks) {
+	SimAgent createAgentFromTemplate(ReactionContainerFactory factory, ReactionContainer reactionContainer) {
 		SimAgent simAgent = factory.createSimAgent();
+		reactionContainer.getSimAgent().add(simAgent);
 		simAgent.setType(type);
-		List<SimSite> createdSites = new LinkedList<SimSite>();
 		for(String site : sites) {
 			SimSite simSite = factory.createSimSite();
+			simAgent.getSimSites().add(simSite);
+			simSite.setSimAgent(simAgent);
 			simSite.setType(site);
 			if(siteStates.containsKey(site)) {
 				SimSiteState simSiteState = factory.createSimSiteState();
@@ -56,15 +58,13 @@ class AgentCreationTemplate {
 			if(siteLinks.containsKey(site)) {
 				for(int i = siteLinks.get(site); i>0; i--) {
 					SimBound simBound = factory.createSimBound();
+					reactionContainer.getSimLinkStates().add(simBound);
 					simBound.setSimSite1(simSite);
 					simSite.setSimLinkState(simBound);
-					createdLinks.add(simBound);
 				}
 			}
-			createdSites.add(simSite);
-			simSite.setSimAgent(simAgent);
+			
 		}
-		simAgent.getSimSites().addAll(createdSites);
 		return simAgent;
 	}
 	

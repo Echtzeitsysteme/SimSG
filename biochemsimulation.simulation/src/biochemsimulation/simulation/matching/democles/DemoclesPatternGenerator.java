@@ -2,7 +2,6 @@ package biochemsimulation.simulation.matching.democles;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -24,6 +23,7 @@ import org.gervarro.democles.specification.emf.constraint.emf.emf.StructuralFeat
 import org.gervarro.democles.specification.emf.constraint.relational.RelationalConstraint;
 import org.gervarro.democles.specification.emf.constraint.relational.RelationalConstraintFactory;
 
+import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.Rule;
@@ -44,7 +44,7 @@ public class DemoclesPatternGenerator {
 
 	private List<Rule> rules;
 	private Map<String, Pattern> rulePatterns;
-	private List<DemoclesPattern> genericPatterns;
+	private Map<String, DemoclesPattern> genericPatterns;
 
 	Map<String, org.gervarro.democles.specification.emf.Pattern> generated;
 
@@ -72,9 +72,9 @@ public class DemoclesPatternGenerator {
 	}
 
 	private void generateGenericPatterns() {
-		genericPatterns = new LinkedList<DemoclesPattern>();
+		genericPatterns = new HashMap<String, DemoclesPattern>();
 		rulePatterns.forEach((name, pattern) -> {
-			genericPatterns.add(new DemoclesPattern(name, pattern));
+			genericPatterns.put(name, new DemoclesPattern(name, pattern));
 		});
 	}
 
@@ -86,14 +86,15 @@ public class DemoclesPatternGenerator {
 
 		generated.put(BOUND_ANY_LINK_PATTERN_KEY, createBoundAnyLinkPattern());
 
-		for (DemoclesPattern srcPattern : genericPatterns) {
+		for (DemoclesPattern srcPattern : genericPatterns.values()) {
 			if (srcPattern.voidPattern) {
 				continue;
 			}
 			org.gervarro.democles.specification.emf.Pattern trgPattern = specificationFactory.createPattern();
 			trgPattern.setName(srcPattern.getName());
 			generated.put(srcPattern.getName(), trgPattern);
-			transformSignature(trgPattern, srcPattern.getSignature(), srcPattern.getBody());
+
+			transformSignature(trgPattern, srcPattern.getSignature());
 			transformBody(trgPattern, srcPattern.getBody());
 
 		}
@@ -101,11 +102,9 @@ public class DemoclesPatternGenerator {
 	}
 
 	private void transformSignature(org.gervarro.democles.specification.emf.Pattern trgPattern,
-			DemoclesPatternSignature signature, DemoclesPatternBody body) {
+			DemoclesPatternSignature signature) {
 		signature.getSignature().forEach((variableName, type) -> {
-			EMFVariable signatureVariable = createEMFVariable(trgPattern, variableName, type);
-			signatureVariables.put(body.getAgentNodeContexts().get(signature.getSignaturePattern(variableName)),
-					signatureVariable);
+			createSignatureAgent(variableName, trgPattern);
 		});
 	}
 
@@ -154,38 +153,12 @@ public class DemoclesPatternGenerator {
 	}
 
 	private void transformAgentNodeContext(PatternBody trgPatternBody, AgentNodeContext agentNode) {
-		Attribute typeAttributeConstraint = createAttributeConstraint(trgPatternBody, AgentNodeContext.TYPE_ATTRIBUTE);
-		EMFVariable typeAttribute = createEMFVariable(trgPatternBody, agentNode.getUniqueTypeAttributeName(),
-				AgentNodeContext.TYPE_ATTRIBUTE_TYPE);
-		createConstraintParameter(typeAttributeConstraint, signatureVariables.get(agentNode));
-		createConstraintParameter(typeAttributeConstraint, typeAttribute);
-
-		RelationalConstraint typeConstraint = createRelationalConstraint(trgPatternBody, ConstraintType.equal);
-		Constant typeName = createConstant(trgPatternBody, agentNode.getAgentType());
-		createConstraintParameter(typeConstraint, typeAttribute);
-		createConstraintParameter(typeConstraint, typeName);
+		createAgentTypeConstraint(trgPatternBody, agentNode, signatureVariables.get(agentNode));
 	}
 
 	private void transformSiteNodeContext(PatternBody trgPatternBody, SiteNodeContext siteNode) {
-		// ##### Site Node Context
-		Reference sitesConstraint = createReferenceConstraint(trgPatternBody,
-				SiteNodeContext.SIM_SITE_CONTAINER_ATTRIBUTE);
-		EMFVariable sitesAttribute = createEMFVariable(trgPatternBody,
-				siteNode.getUniqueSimSiteContainerAttributeName(), SiteNodeContext.SIM_SITE_CONTAINER_ATTRIBUTE_TYPE);
-		sitesVariables.put(siteNode, sitesAttribute);
-		createConstraintParameter(sitesConstraint, signatureVariables.get(siteNode.getAgentNodeContext()));
-		createConstraintParameter(sitesConstraint, sitesAttribute);
-		// Create the local node itself:
-		Attribute siteTypeAttribute = createAttributeConstraint(trgPatternBody, SiteNodeContext.TYPE_ATTRIBUTE);
-		EMFVariable siteTypeVariable = createEMFVariable(trgPatternBody, siteNode.getUniqueTypeAttributeName(),
-				SiteNodeContext.TYPE_ATTRIBUTE_TYPE);
-		createConstraintParameter(siteTypeAttribute, sitesAttribute);
-		createConstraintParameter(siteTypeAttribute, siteTypeVariable);
-		// constant site type constraint
-		RelationalConstraint typeConstraint = createRelationalConstraint(trgPatternBody, ConstraintType.equal);
-		Constant siteConstant = createConstant(trgPatternBody, siteNode.getSiteType());
-		createConstraintParameter(typeConstraint, siteTypeVariable);
-		createConstraintParameter(typeConstraint, siteConstant);
+		EMFVariable site = createLocalSite(trgPatternBody, siteNode, signatureVariables.get(siteNode.getAgentNodeContext()));
+		sitesVariables.put(siteNode, site);
 	}
 
 	private void transformSiteStateContext(PatternBody trgPatternBody, SiteStateContext siteState) {
@@ -237,7 +210,7 @@ public class DemoclesPatternGenerator {
 			return;
 		}
 		case BoundAnyOfType: {
-			// transformBoundToTypeLink(trgPatternBody, linkState, constraint);
+			transformBoundToTypeLink(trgPatternBody, linkState, constraint);
 			return;
 		}
 		default: {
@@ -269,14 +242,8 @@ public class DemoclesPatternGenerator {
 		if (linkVariables.containsKey(linkState.getSiteNodeContext())) {
 			linkVariableA = linkVariables.get(linkState.getSiteNodeContext());
 		} else {
-			linkVariableA = createEMFVariable(trgPatternBody, linkState.getUniqueSimLinkStateContainerAttributeName(),
-					LinkStateContext.SIM_LINK_STATE_CONTAINER_ATTRIBUTE_TYPE);
+			linkVariableA = createLocalLink(trgPatternBody, linkState, sitesVariables.get(linkState.getSiteNodeContext()));
 			linkVariables.put(linkState.getSiteNodeContext(), linkVariableA);
-
-			Reference linkConstraint = createReferenceConstraint(trgPatternBody,
-					LinkStateContext.SIM_LINK_STATE_CONTAINER_ATTRIBUTE);
-			createConstraintParameter(linkConstraint, sitesVariables.get(linkState.getSiteNodeContext()));
-			createConstraintParameter(linkConstraint, linkVariableA);
 		}
 		// create operand 2
 		LinkStateContext otherLinkStateContext = null;
@@ -290,15 +257,8 @@ public class DemoclesPatternGenerator {
 		if (linkVariables.containsKey(otherLinkStateContext.getSiteNodeContext())) {
 			linkVariableB = linkVariables.get(otherLinkStateContext.getSiteNodeContext());
 		} else {
-			linkVariableB = createEMFVariable(trgPatternBody,
-					otherLinkStateContext.getUniqueSimLinkStateContainerAttributeName(),
-					LinkStateContext.SIM_LINK_STATE_CONTAINER_ATTRIBUTE_TYPE);
+			linkVariableB = createLocalLink(trgPatternBody, otherLinkStateContext, sitesVariables.get(otherLinkStateContext.getSiteNodeContext()));
 			linkVariables.put(otherLinkStateContext.getSiteNodeContext(), linkVariableB);
-
-			Reference linkConstraintB = createReferenceConstraint(trgPatternBody,
-					LinkStateContext.SIM_LINK_STATE_CONTAINER_ATTRIBUTE);
-			createConstraintParameter(linkConstraintB, sitesVariables.get(otherLinkStateContext.getSiteNodeContext()));
-			createConstraintParameter(linkConstraintB, linkVariableB);
 		}
 
 		RelationalConstraint linkConstraint = createRelationalConstraint(trgPatternBody, ConstraintType.equal);
@@ -309,19 +269,7 @@ public class DemoclesPatternGenerator {
 	private void transformBoundToTypeLink(PatternBody trgPatternBody, LinkStateContext linkState,
 			LinkStateConstraint constraint) {
 		// Create operand 1
-		EMFVariable linkVariableA = null;
-		if (linkVariables.containsKey(linkState.getSiteNodeContext())) {
-			linkVariableA = linkVariables.get(linkState.getSiteNodeContext());
-		} else {
-			linkVariableA = createEMFVariable(trgPatternBody, linkState.getUniqueSimLinkStateContainerAttributeName(),
-					LinkStateContext.SIM_LINK_STATE_CONTAINER_ATTRIBUTE_TYPE);
-			linkVariables.put(linkState.getSiteNodeContext(), linkVariableA);
-
-			Reference linkConstraint = createReferenceConstraint(trgPatternBody,
-					LinkStateContext.SIM_LINK_STATE_CONTAINER_ATTRIBUTE);
-			createConstraintParameter(linkConstraint, sitesVariables.get(linkState.getSiteNodeContext()));
-			createConstraintParameter(linkConstraint, linkVariableA);
-		}
+		EMFVariable linkVariableA = createLocalLink(trgPatternBody, linkState, sitesVariables.get(linkState.getSiteNodeContext()));
 		// create operand 2
 		LinkStateContext otherLinkStateContext = null;
 		if (constraint.getOperand1() != linkState) {
@@ -332,45 +280,11 @@ public class DemoclesPatternGenerator {
 		SiteNodeContext otherSiteNodeContext = otherLinkStateContext.getSiteNodeContext();
 		AgentNodeContext otherAgentNodeContext = otherSiteNodeContext.getAgentNodeContext();
 		// ###### create local agent node
-		EMFVariable tempSignatureNode = createEMFVariable(trgPatternBody, otherAgentNodeContext.getAgentType(),
-				AgentNodeContext.SIM_AGENT_TYPE);
-		EMFVariable typeAttribute = createEMFVariable(trgPatternBody,
-				otherAgentNodeContext.getUniqueTypeAttributeName(), AgentNodeContext.TYPE_ATTRIBUTE_TYPE);
-		Attribute typeAttributeConstraint = createAttributeConstraint(trgPatternBody, AgentNodeContext.TYPE_ATTRIBUTE);
-		createConstraintParameter(typeAttributeConstraint, tempSignatureNode);
-		createConstraintParameter(typeAttributeConstraint, typeAttribute);
-
-		RelationalConstraint typeConstraint = createRelationalConstraint(trgPatternBody, ConstraintType.equal);
-		Constant typeName = createConstant(trgPatternBody, otherAgentNodeContext.getAgentType());
-		createConstraintParameter(typeConstraint, typeAttribute);
-		createConstraintParameter(typeConstraint, typeName);
+		EMFVariable tempAgent = createLocalAgent(trgPatternBody, otherAgentNodeContext);
 		// ###### create local simSite node
-		Reference sitesConstraint = createReferenceConstraint(trgPatternBody,
-				SiteNodeContext.SIM_SITE_CONTAINER_ATTRIBUTE);
-		EMFVariable sitesAttribute = createEMFVariable(trgPatternBody,
-				otherSiteNodeContext.getUniqueSimSiteContainerAttributeName(),
-				SiteNodeContext.SIM_SITE_CONTAINER_ATTRIBUTE_TYPE);
-		createConstraintParameter(sitesConstraint, signatureVariables.get(otherSiteNodeContext.getAgentNodeContext()));
-		createConstraintParameter(sitesConstraint, sitesAttribute);
-
-		Attribute siteTypeAttribute = createAttributeConstraint(trgPatternBody, SiteNodeContext.TYPE_ATTRIBUTE);
-		EMFVariable siteTypeVariable = createEMFVariable(trgPatternBody,
-				otherSiteNodeContext.getUniqueTypeAttributeName(), SiteNodeContext.TYPE_ATTRIBUTE_TYPE);
-		createConstraintParameter(siteTypeAttribute, sitesAttribute);
-		createConstraintParameter(siteTypeAttribute, siteTypeVariable);
-
-		RelationalConstraint typeConstraint2 = createRelationalConstraint(trgPatternBody, ConstraintType.equal);
-		Constant siteConstant = createConstant(trgPatternBody, otherSiteNodeContext.getSiteType());
-		createConstraintParameter(typeConstraint2, siteTypeVariable);
-		createConstraintParameter(typeConstraint2, siteConstant);
+		EMFVariable tempSite = createLocalSite(trgPatternBody, otherSiteNodeContext, tempAgent);
 		// ###### create local link node
-		Reference linkConstraintB = createReferenceConstraint(trgPatternBody,
-				LinkStateContext.SIM_LINK_STATE_CONTAINER_ATTRIBUTE);
-		EMFVariable linkVariableB = createEMFVariable(trgPatternBody,
-				otherLinkStateContext.getUniqueSimLinkStateContainerAttributeName(),
-				LinkStateContext.SIM_LINK_STATE_CONTAINER_ATTRIBUTE_TYPE);
-		createConstraintParameter(linkConstraintB, sitesAttribute);
-		createConstraintParameter(linkConstraintB, linkVariableB);
+		EMFVariable linkVariableB = createLocalLink(trgPatternBody, otherLinkStateContext, tempSite);
 		// create relational constraint
 		RelationalConstraint linkConstraint = createRelationalConstraint(trgPatternBody, ConstraintType.equal);
 		createConstraintParameter(linkConstraint, linkVariableA);
@@ -395,6 +309,71 @@ public class DemoclesPatternGenerator {
 		createConstraintParameter(linkConstraint, linkStateVariable);
 
 		return pattern;
+	}
+
+	private EMFVariable createSignatureAgent(String name, org.gervarro.democles.specification.emf.Pattern p) {
+		EMFVariable signatureNodeVariable = createEMFVariable(p, name, ReactionContainerPackage.Literals.SIM_AGENT);
+		p.getSymbolicParameters().add(signatureNodeVariable);
+		DemoclesPatternBody body = genericPatterns.get(p.getName()).getBody();
+		DemoclesPatternSignature signature = genericPatterns.get(p.getName()).getSignature();
+		signatureVariables.put(body.getAgentNodeContexts().get(signature.getSignaturePattern(name)),
+				signatureNodeVariable);
+		return signatureNodeVariable;
+	}
+
+	private static EMFVariable createLocalAgent(PatternBody body, AgentNodeContext agentNode) {
+		EMFVariable agent = createEMFVariable(body, agentNode.getAgentType(), AgentNodeContext.SIM_AGENT_TYPE);
+		createAgentTypeConstraint(body, agentNode, agent);
+		return agent;
+	}
+
+	private static EMFVariable createLocalSite(PatternBody body, SiteNodeContext siteNode, EMFVariable agent) {
+		EMFVariable site = createEMFVariable(body, siteNode.getSiteType(),
+				SiteNodeContext.SIM_SITE_CONTAINER_ATTRIBUTE_TYPE);
+		createSiteTypeConstraint(body, siteNode, site, agent);
+		return site;
+	}
+	
+	private static EMFVariable createLocalLink(PatternBody body, LinkStateContext linkNode, EMFVariable site) {
+		EMFVariable link = createEMFVariable(body, linkNode.getUniqueSimLinkStateContainerAttributeName(), LinkStateContext.SIM_LINK_STATE_TYPE);
+		Reference linkConstraint = createReferenceConstraint(body,
+				LinkStateContext.SIM_LINK_STATE_CONTAINER_ATTRIBUTE);
+		createConstraintParameter(linkConstraint, site);
+		createConstraintParameter(linkConstraint, link);
+		
+		return link;
+	}
+
+	private static void createAgentTypeConstraint(PatternBody body, AgentNodeContext agentNode, EMFVariable agent) {
+		Attribute typeAttributeConstraint = createAttributeConstraint(body, AgentNodeContext.TYPE_ATTRIBUTE);
+		EMFVariable typeAttribute = createEMFVariable(body, agentNode.getUniqueTypeAttributeName(),
+				AgentNodeContext.TYPE_ATTRIBUTE_TYPE);
+		createConstraintParameter(typeAttributeConstraint, agent);
+		createConstraintParameter(typeAttributeConstraint, typeAttribute);
+
+		RelationalConstraint typeConstraint = createRelationalConstraint(body, ConstraintType.equal);
+		Constant typeName = createConstant(body, agentNode.getAgentType());
+		createConstraintParameter(typeConstraint, typeAttribute);
+		createConstraintParameter(typeConstraint, typeName);
+	}
+
+	private static void createSiteTypeConstraint(PatternBody body, SiteNodeContext siteNode, EMFVariable site,
+			EMFVariable agent) {
+		// ##### Site Node Context
+		Reference sitesConstraint = createReferenceConstraint(body, SiteNodeContext.SIM_SITE_CONTAINER_ATTRIBUTE);
+		createConstraintParameter(sitesConstraint, agent);
+		createConstraintParameter(sitesConstraint, site);
+		// Create the local node itself:
+		Attribute siteTypeAttribute = createAttributeConstraint(body, SiteNodeContext.TYPE_ATTRIBUTE);
+		EMFVariable siteTypeVariable = createEMFVariable(body, siteNode.getUniqueTypeAttributeName(),
+				SiteNodeContext.TYPE_ATTRIBUTE_TYPE);
+		createConstraintParameter(siteTypeAttribute, site);
+		createConstraintParameter(siteTypeAttribute, siteTypeVariable);
+		// constant site type constraint
+		RelationalConstraint typeConstraint = createRelationalConstraint(body, ConstraintType.equal);
+		Constant siteConstant = createConstant(body, siteNode.getSiteType());
+		createConstraintParameter(typeConstraint, siteTypeVariable);
+		createConstraintParameter(typeConstraint, siteConstant);
 	}
 
 	private static EMFVariable createEMFVariable(org.gervarro.democles.specification.emf.Pattern pattern, String name,

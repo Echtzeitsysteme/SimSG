@@ -1,5 +1,6 @@
 package biochemsimulation.simulation.pmc.GT;
 
+import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.SimAgent;
 import biochemsimulation.reactioncontainer.SimBound;
@@ -24,7 +25,7 @@ class LinkChangeTemplate {
 		this.siteIdxTo = siteIdxTo;
 	}
 	
-	SimLinkState applyLinkChange(IMatch match, ReactionContainerFactory factory) {
+	SimLinkState applyLinkChange(IMatch match, ReactionContainerFactory factory, ReactionContainer reactionContainer) {
 		SimAgent simAgentFrom = (SimAgent) match.get(match.parameterNames().get(agentIdxFrom));
 		SimSite simSiteFrom = simAgentFrom.getSimSites().get(siteIdxFrom);
 		if(simSiteFrom.getSimLinkState() != null) {
@@ -38,11 +39,11 @@ class LinkChangeTemplate {
 		}
 		
 		SimBound link = factory.createSimBound();
+		reactionContainer.getSimLinkStates().add(link);
 		link.setSimSite1(simSiteFrom);
 		link.setSimSite2(simSiteTo);
 		simSiteFrom.setSimLinkState(link);
 		simSiteTo.setSimLinkState(link);
-		
 		return link;
 	}
 	

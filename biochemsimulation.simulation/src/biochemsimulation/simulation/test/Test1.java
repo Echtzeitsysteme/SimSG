@@ -5,13 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternModel;
-import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.gervarro.democles.specification.emf.Constant;
 import org.gervarro.democles.specification.emf.ConstraintParameter;
-import org.gervarro.democles.specification.emf.ConstraintVariable;
 import org.gervarro.democles.specification.emf.Pattern;
 import org.gervarro.democles.specification.emf.PatternBody;
 import org.gervarro.democles.specification.emf.PatternInvocationConstraint;
@@ -25,10 +20,7 @@ import org.gervarro.democles.specification.emf.constraint.relational.RelationalC
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
-import biochemsimulation.reactioncontainer.SimAgent;
-import biochemsimulation.reactioncontainer.impl.SimAgentImpl;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
-import biochemsimulation.simulation.matching.DemoclesEngineWrapper;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.PatternMatchingEngine;
 import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;
@@ -50,7 +42,8 @@ public class Test1 {
 	public static final Pattern negPattern = generateInvokedTestPattern();
 
 	public static void main(String[] args) {
-		test4();
+		test2();
+		test5();
 	}
 
 	public static void test1() {
@@ -95,7 +88,7 @@ public class Test1 {
 			System.out.println("time diff = " + (end - start) / ns + " s");
 
 			PatternMatchingController pmc = PatternMatchingControllerFactory
-					.create(PatternMatchingControllerEnum.SimplePMC);
+					.create(PatternMatchingControllerEnum.SimpleViatraPMC);
 			System.out.println("Initializing pmc: loading models...");
 			start = System.nanoTime();
 			pmc.loadModels(model1, model2);
@@ -144,7 +137,7 @@ public class Test1 {
 		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
 		pm.init();
 		try {
-			ReactionRuleModel model1 = pm.loadReactionRuleModel("test2");
+			//ReactionRuleModel model1 = pm.loadReactionRuleModel("test2");
 			ReactionContainer model2 = pm.loadReactionContainerModel("test2", true);
 			DemoclesEngine engine = new DemoclesEngine(model2);
 			List<Pattern> patterns = new LinkedList<Pattern>();
@@ -176,6 +169,74 @@ public class Test1 {
 			matches.forEach((name, m) -> {
 				System.out.println("Pattern: "+name+", size: "+m.size());
 			});
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void test5() {
+		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
+		pm.init();
+
+		try {
+			double ns = 1E9;
+			ReactionRuleModel model1 = pm.loadReactionRuleModel("test3");
+			System.out.println("Loading reaction container model ...");
+			long start = System.nanoTime();
+			ReactionContainer model2 = pm.loadReactionContainerModel("test3", true);
+			long end = System.nanoTime();
+			System.out.println("time diff = " + (end - start) + " ns");
+			System.out.println("time diff = " + (end - start) / ns + " s");
+
+			PatternMatchingController pmc = PatternMatchingControllerFactory
+					.create(PatternMatchingControllerEnum.SimpleDemoclesPMC);
+			System.out.println("Initializing pmc: loading models...");
+			start = System.nanoTime();
+			pmc.loadModels(model1, model2);
+			end = System.nanoTime();
+			System.out.println("time diff = " + (end - start) + " ns");
+			System.out.println("time diff = " + (end - start) / ns + " s");
+			System.out.println("Initializing pmc: init engine...");
+			start = System.nanoTime();
+			pmc.initEngine();
+			end = System.nanoTime();
+			System.out.println("time diff = " + (end - start) + " ns");
+			System.out.println("time diff = " + (end - start) / ns + " s");
+			System.out.println("Initializing pmc: init controller...");
+			start = System.nanoTime();
+			pmc.initController();
+			end = System.nanoTime();
+			System.out.println("time diff = " + (end - start) + " ns");
+			System.out.println("time diff = " + (end - start) / ns + " s");
+			start = System.nanoTime();
+			int iterations = 100;
+			System.out.println("Running sim with " + iterations + " iterations ...");
+
+			for (int i = 0; i < iterations; i++) {
+				// <-- debugging stuff starts here
+				Map<String, Collection<IMatch>> results = pmc.getAllMatches();
+				for (String key : results.keySet()) {
+					if (results.get(key) != null) {
+						System.out.println("IterPre: " + i + " // Pattern: " + key + ", size: " + results.get(key).size());
+					}
+				}
+				// debugging stuff ends here -->
+				pmc.performTransformations();
+				// <-- debugging stuff starts here
+				results = pmc.getAllMatches();
+				for (String key : results.keySet()) {
+					if (results.get(key) != null) {
+						System.out.println("IterPost: " + i + " // Pattern: " + key + ", size: " + results.get(key).size());
+					}
+				}
+				// debugging stuff ends here -->
+			}
+
+			end = System.nanoTime();
+			System.out.println("time diff = " + (end - start) + " ns");
+			System.out.println("time diff = " + (end - start) / ns + " s");
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -217,24 +217,18 @@ class TransformationTemplate {
 		if(agentCreations.size() == 0)
 			return;
 		
-		List<SimAgent> createdAgents = new LinkedList<SimAgent>();
-		List<SimLinkState> createdLinks = new LinkedList<SimLinkState>();
 		for(AgentCreationTemplate template : agentCreations) {
-			createdAgents.add(template.createAgentFromTemplate(factory, createdLinks));
+			template.createAgentFromTemplate(factory, reactionContainer);
 		}
-		reactionContainer.getSimAgent().addAll(createdAgents);
-		reactionContainer.getSimLinkStates().addAll(createdLinks);
 	}
 	
 	private void applyLinkChangeCandidates(IMatch match, ReactionContainer reactionContainer, ReactionContainerFactory factory) {
 		if(linkChanges.size() == 0)
 			return;
 		
-		List<SimLinkState> createdLinks = new LinkedList<SimLinkState>();
 		for(LinkChangeTemplate template : linkChanges) {
-			createdLinks.add(template.applyLinkChange(match, factory));
+			template.applyLinkChange(match, factory, reactionContainer);
 		}
-		reactionContainer.getSimLinkStates().addAll(createdLinks);
 	}
 	
 	void applyTransformation(IMatch match, ReactionContainer reactionContainer, ReactionContainerFactory factory) {
