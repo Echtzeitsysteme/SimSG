@@ -15,11 +15,15 @@ public interface PatternMatchingController {
 	
 	public void initController() throws Exception;
 	
-	void collectMatches(String patternName) throws Exception;
+	public void randomizeRuleOrder(boolean activate);
 	
-	void collectAllMatches() throws Exception;
+	public void useReactionRate(boolean activate);
 	
-	void performTransformations();
+	public void collectMatches(String patternName) throws Exception;
+	
+	public void collectAllMatches() throws Exception;
+	
+	public void performTransformations();
 	
 	public Collection<IMatch> getMatches(String patternName);
 	

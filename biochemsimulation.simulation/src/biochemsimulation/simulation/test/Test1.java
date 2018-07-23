@@ -104,6 +104,8 @@ public class Test1 {
 			System.out.println("Initializing pmc: init controller...");
 			start = System.nanoTime();
 			pmc.initController();
+			pmc.randomizeRuleOrder(false);
+			pmc.useReactionRate(false);
 			end = System.nanoTime();
 			System.out.println("time diff = " + (end - start) + " ns");
 			System.out.println("time diff = " + (end - start) / ns + " s");
@@ -207,6 +209,8 @@ public class Test1 {
 			System.out.println("Initializing pmc: init controller...");
 			start = System.nanoTime();
 			pmc.initController();
+			pmc.randomizeRuleOrder(false);
+			pmc.useReactionRate(false);
 			end = System.nanoTime();
 			System.out.println("time diff = " + (end - start) + " ns");
 			System.out.println("time diff = " + (end - start) / ns + " s");
