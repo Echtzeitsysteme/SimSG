@@ -1,4 +1,4 @@
-package biochemsimulation.simulation.matching.democles;
+package biochemsimulation.simulation.matching.patterns;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -12,9 +12,9 @@ import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 
-class DemoclesPatternBody {
+public class GenericPatternBody {
 	
-	private DemoclesPatternSignature signature;
+	private GenericPatternSignature signature;
 	private List<ValidAgentPattern> agentPatterns;
 	
 	private Map<ValidAgentPattern, AgentNodeContext> agentNodeContexts;
@@ -29,7 +29,7 @@ class DemoclesPatternBody {
 	private Map<AgentNodeContext, SiteNodeContext> localSiteNodes;
 	private Map<SiteNodeContext, LinkStateContext> localLinkStates;
 	
-	DemoclesPatternBody(DemoclesPatternSignature signature, List<ValidAgentPattern> agentPatterns) {
+	public GenericPatternBody(GenericPatternSignature signature, List<ValidAgentPattern> agentPatterns) {
 		this.signature = signature;
 		this.agentPatterns = agentPatterns;
 		
@@ -41,67 +41,67 @@ class DemoclesPatternBody {
 	
 	
 	
-	DemoclesPatternSignature getSignature() {
+	public GenericPatternSignature getSignature() {
 		return signature;
 	}
 
 
 
-	List<ValidAgentPattern> getAgentPatterns() {
+	public List<ValidAgentPattern> getAgentPatterns() {
 		return agentPatterns;
 	}
 
 
 
-	Map<ValidAgentPattern, AgentNodeContext> getAgentNodeContexts() {
+	public Map<ValidAgentPattern, AgentNodeContext> getAgentNodeContexts() {
 		return agentNodeContexts;
 	}
 
 
 
-	Map<AgentNodeContext, List<SiteNodeContext>> getSiteNodeContexts() {
+	public Map<AgentNodeContext, List<SiteNodeContext>> getSiteNodeContexts() {
 		return siteNodeContexts;
 	}
 
 
 
-	Map<SiteNodeContext, SiteStateContext> getSiteStateContexts() {
+	public Map<SiteNodeContext, SiteStateContext> getSiteStateContexts() {
 		return siteStateContexts;
 	}
 
 
 
-	Map<SiteNodeContext, LinkStateContext> getLinkStateContexts() {
+	public Map<SiteNodeContext, LinkStateContext> getLinkStateContexts() {
 		return linkStateContexts;
 	}
 
 
 
-	Map<Integer, LinkStateConstraint> getLinkStateConstraints() {
+	public Map<Integer, LinkStateConstraint> getLinkStateConstraints() {
 		return linkStateConstraints;
 	}
 
 
 
-	Collection<AgentNodeConstraint> getInjectivityConstraints() {
+	public Collection<AgentNodeConstraint> getInjectivityConstraints() {
 		return injectivityConstraints;
 	}
 
 
 
-	Map<ValidAgentPattern, List<AgentNodeContext>> getLocalAgentNodes() {
+	public Map<ValidAgentPattern, List<AgentNodeContext>> getLocalAgentNodes() {
 		return localAgentNodes;
 	}
 
 
 
-	Map<AgentNodeContext, SiteNodeContext> getLocalSiteNodes() {
+	public Map<AgentNodeContext, SiteNodeContext> getLocalSiteNodes() {
 		return localSiteNodes;
 	}
 
 
 
-	Map<SiteNodeContext, LinkStateContext> getLocalLinkStates() {
+	public Map<SiteNodeContext, LinkStateContext> getLocalLinkStates() {
 		return localLinkStates;
 	}
 

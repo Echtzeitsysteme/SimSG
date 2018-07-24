@@ -1,6 +1,6 @@
-package biochemsimulation.simulation.matching.democles;
+package biochemsimulation.simulation.matching.patterns;
 
-enum ConstraintType {
+public enum ConstraintType {
 	equal("=="), unequal("!=");
 	
 	private String operator;

@@ -1,4 +1,4 @@
-package biochemsimulation.simulation.matching.democles;
+package biochemsimulation.simulation.matching.patterns;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClassifier;
@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 
-class SiteStateContext {
+public class SiteStateContext {
 	private SiteNodeContext siteNodeContext;
 	
 	public final static EClassifier SIM_SITE_STATE_CONTAINER_ATTRIBUTE_TYPE = ReactionContainerPackage.Literals.SIM_SITE.getEAllContainments().get(0).getEType();
@@ -22,7 +22,7 @@ class SiteStateContext {
 	
 	private String stateType;
 	
-	SiteStateContext(SiteNodeContext siteNodeContext, String stateType) {
+	public SiteStateContext(SiteNodeContext siteNodeContext, String stateType) {
 		this.siteNodeContext = siteNodeContext;
 		uniqueSimSiteStateContainerAttributeName = siteNodeContext.getAgentNodeContext().getAgentVariableName()
 				+"_"+siteNodeContext.getLocalSimSiteVariableName()
@@ -33,39 +33,39 @@ class SiteStateContext {
 		this.stateType = stateType;
 	}
 	
-	static String getSimSiteStateContainerAttributeName() {
+	public static String getSimSiteStateContainerAttributeName() {
 		return SIM_SITE_STATE_CONTAINER_ATTRIBUTE.getName();
 	}
 	
-	static String getSimSiteStateContainerAttributeTypeName() {
+	public static String getSimSiteStateContainerAttributeTypeName() {
 		return SIM_SITE_STATE_CONTAINER_ATTRIBUTE_TYPE.getName();
 	}
 	
-	static String getSimSiteStateTypeName() {
+	public static String getSimSiteStateTypeName() {
 		return SIM_SITE_STATE_TYPE.getName();
 	}
 	
-	static String getSimSiteStateTypeAttributeName() {
+	public static String getSimSiteStateTypeAttributeName() {
 		return TYPE_ATTRIBUTE.getName();
 	}
 	
-	static String getSimSiteStateTypeAttributeTypeName() {
+	public static String getSimSiteStateTypeAttributeTypeName() {
 		return TYPE_ATTRIBUTE_TYPE.getName();
 	}
 
-	SiteNodeContext getSiteNodeContext() {
+	public SiteNodeContext getSiteNodeContext() {
 		return siteNodeContext;
 	}
 
-	String getUniqueSimSiteStateContainerAttributeName() {
+	public String getUniqueSimSiteStateContainerAttributeName() {
 		return uniqueSimSiteStateContainerAttributeName;
 	}
 
-	String getUniqueTypeAttributeName() {
+	public String getUniqueTypeAttributeName() {
 		return uniqueTypeAttributeName;
 	}
 
-	String getStateType() {
+	public String getStateType() {
 		return stateType;
 	}
 	

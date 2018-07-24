@@ -1,4 +1,4 @@
-package biochemsimulation.simulation.matching.democles;
+package biochemsimulation.simulation.matching.patterns;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -6,16 +6,16 @@ import java.util.stream.Collectors;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 
-class DemoclesPattern {
+public class GenericPattern {
 	private String patternName;
 	private Pattern lhs;
 	private List<ValidAgentPattern> agentPatterns;
 	boolean voidPattern;
 	
-	private DemoclesPatternSignature signature;
-	private DemoclesPatternBody body;
+	private GenericPatternSignature signature;
+	private GenericPatternBody body;
 	
-	DemoclesPattern(String patternName, Pattern lhs) {
+	public GenericPattern(String patternName, Pattern lhs) {
 		this.patternName = patternName;
 		this.lhs = lhs;
 		voidPattern = false;
@@ -25,24 +25,24 @@ class DemoclesPattern {
 			return;
 		}
 		
-		signature = new DemoclesPatternSignature(agentPatterns);
-		body = new DemoclesPatternBody(signature, agentPatterns);
+		signature = new GenericPatternSignature(agentPatterns);
+		body = new GenericPatternBody(signature, agentPatterns);
 		
 	}
 	
-	boolean isVoidPattern() {
+	public boolean isVoidPattern() {
 		return voidPattern;
 	}
 	
-	String getName() {
+	public String getName() {
 		return patternName;
 	}
 	
-	DemoclesPatternSignature getSignature() {
+	public GenericPatternSignature getSignature() {
 		return signature;
 	}
 	
-	DemoclesPatternBody getBody() {
+	public GenericPatternBody getBody() {
 		return body;
 	}
 	

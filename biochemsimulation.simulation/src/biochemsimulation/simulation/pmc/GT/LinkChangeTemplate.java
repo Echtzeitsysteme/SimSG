@@ -8,7 +8,7 @@ import biochemsimulation.reactioncontainer.SimLinkState;
 import biochemsimulation.reactioncontainer.SimSite;
 import biochemsimulation.simulation.matching.IMatch;
 
-class LinkChangeTemplate {
+public class LinkChangeTemplate {
 	private int agentIdxFrom;
 	private int agentIdxTo;
 	
@@ -20,12 +20,12 @@ class LinkChangeTemplate {
 		this.siteIdxFrom = siteIdxFrom;
 	}
 	
-	void connectTo(int agentIdxTo, int siteIdxTo) {
+	public void connectTo(int agentIdxTo, int siteIdxTo) {
 		this.agentIdxTo = agentIdxTo;
 		this.siteIdxTo = siteIdxTo;
 	}
 	
-	SimLinkState applyLinkChange(IMatch match, ReactionContainerFactory factory, ReactionContainer reactionContainer) {
+	public SimLinkState applyLinkChange(IMatch match, ReactionContainerFactory factory, ReactionContainer reactionContainer) {
 		SimAgent simAgentFrom = (SimAgent) match.get(match.parameterNames().get(agentIdxFrom));
 		SimSite simSiteFrom = simAgentFrom.getSimSites().get(siteIdxFrom);
 		if(simSiteFrom.getSimLinkState() != null) {

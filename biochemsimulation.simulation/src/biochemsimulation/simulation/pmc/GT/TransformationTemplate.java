@@ -17,7 +17,7 @@ import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern;
 import biochemsimulation.simulation.matching.IMatch;
 
-class TransformationTemplate {
+public class TransformationTemplate {
 	
 	private Pattern precondition;
 	private Pattern postcondition;
@@ -28,7 +28,7 @@ class TransformationTemplate {
 	private List<AgentCreationTemplate> agentCreations;
 	private List<LinkChangeTemplate> linkChanges;
 	
-	TransformationTemplate(Pattern precondition, Pattern postcondition) {
+	public TransformationTemplate(Pattern precondition, Pattern postcondition) {
 		this.precondition = precondition;
 		this.postcondition = postcondition;
 		initTemplate();
@@ -231,7 +231,7 @@ class TransformationTemplate {
 		}
 	}
 	
-	void applyTransformation(IMatch match, ReactionContainer reactionContainer, ReactionContainerFactory factory) {
+	public void applyTransformation(IMatch match, ReactionContainer reactionContainer, ReactionContainerFactory factory) {
 		applyAgentRemovalCandidates(match);
 		applyLinkRemovalTemplates(match);
 		applyStateChangeTemplates(match);

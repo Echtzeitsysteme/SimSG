@@ -7,20 +7,20 @@ import biochemsimulation.reactioncontainer.SimAgent;
 import biochemsimulation.reactioncontainer.SimSite;
 import biochemsimulation.simulation.matching.IMatch;
 
-class LinkDeletionTemplate {
+public class LinkDeletionTemplate {
 	private int agentIndex;
 	private List<Integer> siteIndexes;
 	
-	LinkDeletionTemplate(int agentIndex){
+	public LinkDeletionTemplate(int agentIndex){
 		this.agentIndex = agentIndex;
 		siteIndexes = new LinkedList<Integer>();
 	}
 	
-	void addLinkRemovalCandidate(int index) {
+	public void addLinkRemovalCandidate(int index) {
 		siteIndexes.add(index);
 	}
 	
-	void applyRemovalCandidates(IMatch match) {
+	public void applyRemovalCandidates(IMatch match) {
 		SimAgent agent = (SimAgent) match.get(match.parameterNames().get(agentIndex));
 		for(Integer siteIdx : siteIndexes) {
 			SimSite ss = agent.getSimSites().get(siteIdx);
@@ -30,7 +30,7 @@ class LinkDeletionTemplate {
 		}
 	}
 	
-	boolean isEmpty() {
+	public boolean isEmpty() {
 		return siteIndexes.size() == 0;
 	}
 }

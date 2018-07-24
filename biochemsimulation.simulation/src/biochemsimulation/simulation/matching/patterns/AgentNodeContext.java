@@ -1,4 +1,4 @@
-package biochemsimulation.simulation.matching.democles;
+package biochemsimulation.simulation.matching.patterns;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClassifier;
@@ -6,7 +6,7 @@ import org.eclipse.emf.ecore.EDataType;
 
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 
-class AgentNodeContext {
+public class AgentNodeContext {
 	private String agentVariableName;
 	public final static EClassifier SIM_AGENT_TYPE = ReactionContainerPackage.Literals.SIM_AGENT;
 	
@@ -17,33 +17,33 @@ class AgentNodeContext {
 	
 	private String agentType;
 	
-	AgentNodeContext(String agentVariableName, String agentType) {
+	public AgentNodeContext(String agentVariableName, String agentType) {
 		this.agentVariableName = agentVariableName;
 		this.agentType = agentType;
 		uniqueTypeAttributeName = agentVariableName+"_"+TYPE_ATTRIBUTE.getName();
 	}
 	
-	static String getSimAgentTypeName() {
+	public static String getSimAgentTypeName() {
 		return SIM_AGENT_TYPE.getName();
 	}
 	
-	static String getTypeAttributeTypeName() {
+	public static String getTypeAttributeTypeName() {
 		return TYPE_ATTRIBUTE_TYPE.getName();
 	}
 	
-	static String getTypeAttributeName() {
+	public static String getTypeAttributeName() {
 		return TYPE_ATTRIBUTE.getName();
 	}
 
-	String getAgentVariableName() {
+	public String getAgentVariableName() {
 		return agentVariableName;
 	}
 	
-	String getUniqueTypeAttributeName() {
+	public String getUniqueTypeAttributeName() {
 		return uniqueTypeAttributeName;
 	}
 
-	String getAgentType() {
+	public String getAgentType() {
 		return agentType;
 	}
 	

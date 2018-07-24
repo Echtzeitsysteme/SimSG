@@ -1,4 +1,4 @@
-package biochemsimulation.simulation.matching.democles;
+package biochemsimulation.simulation.matching.patterns;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -12,16 +12,16 @@ import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactionrules.reactionRules.Agent;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 
-class DemoclesPatternSignature {
+public class GenericPatternSignature {
 	public final static EClassifier SIM_AGENT_CLASSIFIER = ReactionContainerPackage.Literals.SIM_AGENT;
 	
-	List<ValidAgentPattern> patterns;
-	Map<String, EClassifier> signatureNodes;
-	Map<ValidAgentPattern, String> patternSignatureMapping;
-	Map<String, ValidAgentPattern> signaturePatternMapping;
-	Map<String, List<String>> injectivityConflicts;
+	private List<ValidAgentPattern> patterns;
+	private Map<String, EClassifier> signatureNodes;
+	private Map<ValidAgentPattern, String> patternSignatureMapping;
+	private Map<String, ValidAgentPattern> signaturePatternMapping;
+	private Map<String, List<String>> injectivityConflicts;
 	
-	DemoclesPatternSignature(List<ValidAgentPattern> patterns) {
+	public GenericPatternSignature(List<ValidAgentPattern> patterns) {
 		this.patterns = patterns;
 		buildSignature();
 		cleanUpInjectivityConflicts();
@@ -64,19 +64,19 @@ class DemoclesPatternSignature {
 		injectivityConflicts = injectivityConflicts2;
 	}
 	
-	String getSignatureNode(ValidAgentPattern pattern) {
+	public String getSignatureNode(ValidAgentPattern pattern) {
 		return patternSignatureMapping.get(pattern);
 	}
 	
-	ValidAgentPattern getSignaturePattern(String signatureNode) {
+	public ValidAgentPattern getSignaturePattern(String signatureNode) {
 		return signaturePatternMapping.get(signatureNode);
 	}
 	
-	Map<String, EClassifier> getSignature() {
+	public Map<String, EClassifier> getSignature() {
 		return signatureNodes;
 	}
 	
-	Map<String, List<String>> getInjectivityConflicts() {
+	public Map<String, List<String>> getInjectivityConflicts() {
 		return injectivityConflicts;
 	}
 }

@@ -12,28 +12,28 @@ import biochemsimulation.reactioncontainer.SimBound;
 import biochemsimulation.reactioncontainer.SimSite;
 import biochemsimulation.reactioncontainer.SimSiteState;
 
-class AgentCreationTemplate {
+public class AgentCreationTemplate {
 	private String type;
 	private List<String> sites;
 	private Map<String, String> siteStates;
 	private Map<String, Integer> siteLinks;
 	
-	AgentCreationTemplate(String type){
+	public AgentCreationTemplate(String type){
 		this.type = type;
 		sites = new LinkedList<String>();
 		siteStates = new HashMap<String, String>();
 		siteLinks = new HashMap<String, Integer>();
 	}
 	
-	void addSite(String site) {
+	public void addSite(String site) {
 		sites.add(site);
 	}
 	
-	void addSiteState(String site, String state) {
+	public void addSiteState(String site, String state) {
 		siteStates.put(site, state);
 	}
 	
-	void addLink(String site) {
+	public void addLink(String site) {
 		if(siteLinks.containsKey(site)) {
 			siteLinks.replace(site, siteLinks.get(site)+1);
 		}else {
@@ -41,7 +41,7 @@ class AgentCreationTemplate {
 		}
 	}
 	
-	SimAgent createAgentFromTemplate(ReactionContainerFactory factory, ReactionContainer reactionContainer) {
+	public SimAgent createAgentFromTemplate(ReactionContainerFactory factory, ReactionContainer reactionContainer) {
 		SimAgent simAgent = factory.createSimAgent();
 		reactionContainer.getSimAgent().add(simAgent);
 		simAgent.setType(type);

@@ -28,6 +28,16 @@ import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.Rule;
 import biochemsimulation.reactionrules.utils.PatternUtils;
+import biochemsimulation.simulation.matching.patterns.AgentNodeConstraint;
+import biochemsimulation.simulation.matching.patterns.AgentNodeContext;
+import biochemsimulation.simulation.matching.patterns.ConstraintType;
+import biochemsimulation.simulation.matching.patterns.GenericPattern;
+import biochemsimulation.simulation.matching.patterns.GenericPatternBody;
+import biochemsimulation.simulation.matching.patterns.GenericPatternSignature;
+import biochemsimulation.simulation.matching.patterns.LinkStateConstraint;
+import biochemsimulation.simulation.matching.patterns.LinkStateContext;
+import biochemsimulation.simulation.matching.patterns.SiteNodeContext;
+import biochemsimulation.simulation.matching.patterns.SiteStateContext;
 
 public class DemoclesPatternGenerator {
 
@@ -44,7 +54,7 @@ public class DemoclesPatternGenerator {
 
 	private List<Rule> rules;
 	private Map<String, Pattern> rulePatterns;
-	private Map<String, DemoclesPattern> genericPatterns;
+	private Map<String, GenericPattern> genericPatterns;
 
 	Map<String, org.gervarro.democles.specification.emf.Pattern> generated;
 
@@ -72,9 +82,9 @@ public class DemoclesPatternGenerator {
 	}
 
 	private void generateGenericPatterns() {
-		genericPatterns = new HashMap<String, DemoclesPattern>();
+		genericPatterns = new HashMap<String, GenericPattern>();
 		rulePatterns.forEach((name, pattern) -> {
-			genericPatterns.put(name, new DemoclesPattern(name, pattern));
+			genericPatterns.put(name, new GenericPattern(name, pattern));
 		});
 	}
 
@@ -86,8 +96,8 @@ public class DemoclesPatternGenerator {
 
 		generated.put(BOUND_ANY_LINK_PATTERN_KEY, createBoundAnyLinkPattern());
 
-		for (DemoclesPattern srcPattern : genericPatterns.values()) {
-			if (srcPattern.voidPattern) {
+		for (GenericPattern srcPattern : genericPatterns.values()) {
+			if (srcPattern.isVoidPattern()) {
 				continue;
 			}
 			org.gervarro.democles.specification.emf.Pattern trgPattern = specificationFactory.createPattern();
@@ -102,13 +112,13 @@ public class DemoclesPatternGenerator {
 	}
 
 	private void transformSignature(org.gervarro.democles.specification.emf.Pattern trgPattern,
-			DemoclesPatternSignature signature) {
+			GenericPatternSignature signature) {
 		signature.getSignature().forEach((variableName, type) -> {
 			createSignatureAgent(variableName, trgPattern);
 		});
 	}
 
-	private void transformBody(org.gervarro.democles.specification.emf.Pattern trgPattern, DemoclesPatternBody body) {
+	private void transformBody(org.gervarro.democles.specification.emf.Pattern trgPattern, GenericPatternBody body) {
 		PatternBody trgPatternBody = specificationFactory.createPatternBody();
 		trgPattern.getBodies().add(trgPatternBody);
 
@@ -306,8 +316,8 @@ public class DemoclesPatternGenerator {
 	private EMFVariable createSignatureAgent(String name, org.gervarro.democles.specification.emf.Pattern p) {
 		EMFVariable signatureNodeVariable = createEMFVariable(p, name, ReactionContainerPackage.Literals.SIM_AGENT);
 		p.getSymbolicParameters().add(signatureNodeVariable);
-		DemoclesPatternBody body = genericPatterns.get(p.getName()).getBody();
-		DemoclesPatternSignature signature = genericPatterns.get(p.getName()).getSignature();
+		GenericPatternBody body = genericPatterns.get(p.getName()).getBody();
+		GenericPatternSignature signature = genericPatterns.get(p.getName()).getSignature();
 		signatureVariables.put(body.getAgentNodeContexts().get(signature.getSignaturePattern(name)),
 				signatureNodeVariable);
 		return signatureNodeVariable;

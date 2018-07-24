@@ -1,11 +1,11 @@
-package biochemsimulation.simulation.matching.democles;
+package biochemsimulation.simulation.matching.patterns;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EReference;
 
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 
-class LinkStateContext {
+public class LinkStateContext {
 	private SiteNodeContext siteNodeContext;
 	
 	public final static EClassifier SIM_LINK_STATE_CONTAINER_ATTRIBUTE_TYPE = ReactionContainerPackage.Literals.SIM_SITE.getEAllReferences().get(2).getEType();
@@ -17,7 +17,7 @@ class LinkStateContext {
 	
 	private LinkStateType stateType;
 	
-	LinkStateContext(SiteNodeContext siteNodeContext, LinkStateType stateType) {
+	public LinkStateContext(SiteNodeContext siteNodeContext, LinkStateType stateType) {
 		this.siteNodeContext = siteNodeContext;
 		this.stateType = stateType;
 		
@@ -29,31 +29,31 @@ class LinkStateContext {
 				+"_"+stateType.toString();
 	}
 	
-	static String getSimLinkStateContainerAttributeName() {
+	public static String getSimLinkStateContainerAttributeName() {
 		return SIM_LINK_STATE_CONTAINER_ATTRIBUTE.getName();
 	}
 	
-	static String getSimLinkStateContainerAttributeTypeName() {
+	public static String getSimLinkStateContainerAttributeTypeName() {
 		return SIM_LINK_STATE_CONTAINER_ATTRIBUTE_TYPE.getName();
 	}
 	
-	static String getSimLinkStateTypeName() {
+	public static String getSimLinkStateTypeName() {
 		return SIM_LINK_STATE_TYPE.getName();
 	}
 
-	SiteNodeContext getSiteNodeContext() {
+	public SiteNodeContext getSiteNodeContext() {
 		return siteNodeContext;
 	}
 
-	String getUniqueSimLinkStateContainerAttributeName() {
+	public String getUniqueSimLinkStateContainerAttributeName() {
 		return uniqueSimLinkStateContainerAttributeName;
 	}
 
-	String getLocalSimLinkStateVariableName() {
+	public String getLocalSimLinkStateVariableName() {
 		return localSimLinkStateVariableName;
 	}
 
-	LinkStateType getStateType() {
+	public LinkStateType getStateType() {
 		return stateType;
 	}
 	

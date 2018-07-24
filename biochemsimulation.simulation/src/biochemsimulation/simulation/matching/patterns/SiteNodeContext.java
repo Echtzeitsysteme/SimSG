@@ -1,4 +1,4 @@
-package biochemsimulation.simulation.matching.democles;
+package biochemsimulation.simulation.matching.patterns;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClassifier;
@@ -7,7 +7,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 
-class SiteNodeContext {
+public class SiteNodeContext {
 	private AgentNodeContext agentNodeContext;
 	
 	public final static EClassifier SIM_SITE_CONTAINER_ATTRIBUTE_TYPE = ReactionContainerPackage.Literals.SIM_AGENT.getEAllContainments().get(0).getEType();
@@ -24,7 +24,7 @@ class SiteNodeContext {
 	
 	private String siteType;
 	
-	SiteNodeContext(AgentNodeContext agentNodeContext, String siteType) {
+	public SiteNodeContext(AgentNodeContext agentNodeContext, String siteType) {
 		this.agentNodeContext = agentNodeContext;
 		uniqueSimSiteContainerAttributeName = agentNodeContext.getAgentVariableName()+"_"+getSimSiteContainerAttributeName();
 		localSimSiteVariableName = agentNodeContext.getAgentVariableName()+"_"+siteType;
@@ -32,43 +32,43 @@ class SiteNodeContext {
 		this.siteType = siteType;
 	}
 	
-	static String getSimSiteTypeName() {
+	public static String getSimSiteTypeName() {
 		return SIM_SITE_TYPE.getName();
 	}
 	
-	static String getSimSiteContainerAttributeName() {
+	public static String getSimSiteContainerAttributeName() {
 		return SIM_SITE_CONTAINER_ATTRIBUTE.getName();
 	}
 	
-	static String getSimSiteContainerAttributeTypeName() {
+	public static String getSimSiteContainerAttributeTypeName() {
 		return SIM_SITE_CONTAINER_ATTRIBUTE_TYPE.getName();
 	}
 	
-	static String getTypeAttributeName() {
+	public static String getTypeAttributeName() {
 		return TYPE_ATTRIBUTE.getName();
 	}
 	
-	static String getTypeAttributeTypeName() {
+	public static String getTypeAttributeTypeName() {
 		return TYPE_ATTRIBUTE_TYPE.getName();
 	}
 
-	AgentNodeContext getAgentNodeContext() {
+	public AgentNodeContext getAgentNodeContext() {
 		return agentNodeContext;
 	}
 
-	String getUniqueSimSiteContainerAttributeName() {
+	public String getUniqueSimSiteContainerAttributeName() {
 		return uniqueSimSiteContainerAttributeName;
 	}
 
-	String getLocalSimSiteVariableName() {
+	public String getLocalSimSiteVariableName() {
 		return localSimSiteVariableName;
 	}
 
-	String getUniqueTypeAttributeName() {
+	public String getUniqueTypeAttributeName() {
 		return uniqueTypeAttributeName;
 	}
 
-	String getSiteType() {
+	public String getSiteType() {
 		return siteType;
 	}
 	
