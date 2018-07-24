@@ -1,0 +1,17 @@
+ModelID PatternMatchingTest
+
+agent A1(x, y)
+agent B1(x, z)
+agent A2(x, y)
+agent B2(x, z)
+
+var dummy_rate = 0.1
+
+var simpleDisjunct_pattern = {A1(x[free]), B1(x[free])}
+var mediumDisjunct_pattern = {A1(x[free]), B1(x[free]), A2(y[free]), B2(z[free])}
+
+init simpleDisjunct_init 10 {A1(), B1()}
+init mediumDisjunct_init 10 {A2(x[1]), B2(x[1])}
+
+rule simpleDisjunct_rule simpleDisjunct_pattern -> {void, void} @ [dummy_rate]
+rule mediumDisjunct_rule mediumDisjunct_pattern -> {void, void, void, void} @ [dummy_rate]

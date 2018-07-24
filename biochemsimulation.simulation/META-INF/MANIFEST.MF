@@ -48,6 +48,20 @@ Require-Bundle: org.apache.log4j;bundle-version="1.2.15",
   org.gervarro.notification;bundle-version="1.0.0",
   org.gervarro.util;bundle-version="1.0.0",
   org.gervarro.plan.dynprog;bundle-version="1.0.1",
-  org.eclipse.emf.ecore
+  org.eclipse.emf.ecore,
+  org.junit,
+  org.junit.jupiter.api,
+  org.junit.jupiter.engine,
+  org.junit.jupiter.migrationsupport,
+  org.junit.jupiter.params,
+  org.junit.platform.commons,
+  org.junit.platform.engine,
+  org.junit.platform.launcher,
+  org.junit.platform.runner,
+  org.junit.platform.suite.api,
+  org.junit.vintage.engine,
+  org.hamcrest.core,
+  org.opentest4j,
+  org.apiguardian
 Automatic-Module-Name: biochemsimulation.simulation
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

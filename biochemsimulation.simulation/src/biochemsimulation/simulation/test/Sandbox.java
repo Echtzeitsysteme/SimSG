@@ -33,7 +33,7 @@ import biochemsimulation.simulation.pmc.PatternMatchingController;
 import biochemsimulation.simulation.pmc.PatternMatchingControllerEnum;
 import biochemsimulation.simulation.pmc.PatternMatchingControllerFactory;
 
-public class Test1 {
+public class Sandbox {
 
 	public static final SpecificationFactory democlesFac = SpecificationFactory.eINSTANCE;
 	public static final EMFTypeFactory emfTypeFac = EMFTypeFactory.eINSTANCE;
