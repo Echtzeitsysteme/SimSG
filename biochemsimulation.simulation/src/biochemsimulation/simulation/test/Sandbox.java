@@ -42,9 +42,10 @@ public class Sandbox {
 	public static final Pattern negPattern = generateInvokedTestPattern();
 
 	public static void main(String[] args) {
-		test2();
-		test5();
-		test4();
+		//test2();
+		//test5();
+		//test4();
+		test6();
 	}
 
 	public static void test1() {
@@ -286,6 +287,27 @@ public class Sandbox {
 			System.out.println("time diff = " + (end - start) / ns + " s");
 			
 			pmc.discardEngine();
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void test6() {
+		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
+		pm.init();
+		try {
+			ReactionRuleModel model1 = pm.loadReactionRuleModel("PatternMatchingTest");
+			ReactionContainer model2 = pm.loadReactionContainerModel("PatternMatchingTest", true);
+			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.DemoclesEngine);
+			engine.loadModels(model2, model1);
+			engine.initEngine();
+			Map<String, Collection<IMatch>> matches = engine.getAllMatches();
+			matches.forEach((name, m) -> {
+				System.out.println("Pattern: "+name+", size: "+m.size());
+			});
+			engine.disposeEngine();
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

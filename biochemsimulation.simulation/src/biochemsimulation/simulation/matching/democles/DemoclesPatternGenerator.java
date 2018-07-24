@@ -1,10 +1,7 @@
 package biochemsimulation.simulation.matching.democles;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClassifier;
@@ -12,6 +9,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.gervarro.democles.specification.emf.Constant;
 import org.gervarro.democles.specification.emf.ConstraintParameter;
 import org.gervarro.democles.specification.emf.ConstraintVariable;
+import org.gervarro.democles.specification.emf.Pattern;
 import org.gervarro.democles.specification.emf.PatternBody;
 import org.gervarro.democles.specification.emf.PatternInvocationConstraint;
 import org.gervarro.democles.specification.emf.SpecificationFactory;
@@ -24,9 +22,7 @@ import org.gervarro.democles.specification.emf.constraint.relational.RelationalC
 import org.gervarro.democles.specification.emf.constraint.relational.RelationalConstraintFactory;
 
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
-import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
-import biochemsimulation.reactionrules.reactionRules.Rule;
 import biochemsimulation.reactionrules.utils.PatternUtils;
 import biochemsimulation.simulation.matching.patterns.AgentNodeConstraint;
 import biochemsimulation.simulation.matching.patterns.AgentNodeContext;
@@ -52,33 +48,18 @@ public class DemoclesPatternGenerator {
 
 	public static final String BOUND_ANY_LINK_PATTERN_KEY = "BoundAnyLink_SupportPattern";
 
-	private List<Rule> rules;
-	private Map<String, Pattern> rulePatterns;
+	private Map<String, biochemsimulation.reactionrules.reactionRules.Pattern> rulePatterns;
 	private Map<String, GenericPattern> genericPatterns;
 
-	Map<String, org.gervarro.democles.specification.emf.Pattern> generated;
+	Map<String, Pattern> generated;
 
 	private Map<AgentNodeContext, EMFVariable> signatureVariables;
 	private Map<SiteNodeContext, EMFVariable> sitesVariables;
 	private Map<SiteNodeContext, EMFVariable> linkVariables;
 
 	public DemoclesPatternGenerator(ReactionRuleModel model) {
-		rules = model.getReactionProperties().stream().filter(item -> (item instanceof Rule)).map(rule -> (Rule) rule)
-				.collect(Collectors.toList());
-		extractPatterns();
+		rulePatterns = PatternUtils.getPatterns(model);
 		generateGenericPatterns();
-	}
-
-	private void extractPatterns() {
-		rulePatterns = new LinkedHashMap<String, Pattern>();
-		for (Rule rule : rules) {
-			rulePatterns.put(rule.getName() + PATTERN_NAME_SUFFIX_LHS,
-					PatternUtils.patternFromPatternAssignment(rule.getRule().getLhs()));
-			if (rule.getRule().getOperator().equals(RULE_OPERATOR_BI)) {
-				rulePatterns.put(rule.getName() + PATTERN_NAME_SUFFIX_RHS,
-						PatternUtils.patternFromPatternAssignment(rule.getRule().getRhs()));
-			}
-		}
 	}
 
 	private void generateGenericPatterns() {
@@ -88,8 +69,8 @@ public class DemoclesPatternGenerator {
 		});
 	}
 
-	public Map<String, org.gervarro.democles.specification.emf.Pattern> doGenerate() {
-		generated = new HashMap<String, org.gervarro.democles.specification.emf.Pattern>();
+	public Map<String, Pattern> doGenerate() {
+		generated = new HashMap<String, Pattern>();
 		signatureVariables = new HashMap<AgentNodeContext, EMFVariable>();
 		sitesVariables = new HashMap<SiteNodeContext, EMFVariable>();
 		linkVariables = new HashMap<SiteNodeContext, EMFVariable>();
@@ -100,7 +81,7 @@ public class DemoclesPatternGenerator {
 			if (srcPattern.isVoidPattern()) {
 				continue;
 			}
-			org.gervarro.democles.specification.emf.Pattern trgPattern = specificationFactory.createPattern();
+			Pattern trgPattern = specificationFactory.createPattern();
 			trgPattern.setName(srcPattern.getName());
 			generated.put(srcPattern.getName(), trgPattern);
 
@@ -111,14 +92,14 @@ public class DemoclesPatternGenerator {
 		return generated;
 	}
 
-	private void transformSignature(org.gervarro.democles.specification.emf.Pattern trgPattern,
+	private void transformSignature(Pattern trgPattern,
 			GenericPatternSignature signature) {
 		signature.getSignature().forEach((variableName, type) -> {
 			createSignatureAgent(variableName, trgPattern);
 		});
 	}
 
-	private void transformBody(org.gervarro.democles.specification.emf.Pattern trgPattern, GenericPatternBody body) {
+	private void transformBody(Pattern trgPattern, GenericPatternBody body) {
 		PatternBody trgPatternBody = specificationFactory.createPatternBody();
 		trgPattern.getBodies().add(trgPatternBody);
 
@@ -293,8 +274,8 @@ public class DemoclesPatternGenerator {
 		createConstraintParameter(linkConstraint, linkVariableB);
 	}
 
-	private static org.gervarro.democles.specification.emf.Pattern createBoundAnyLinkPattern() {
-		org.gervarro.democles.specification.emf.Pattern pattern = specificationFactory.createPattern();
+	private static Pattern createBoundAnyLinkPattern() {
+		Pattern pattern = specificationFactory.createPattern();
 		pattern.setName(BOUND_ANY_LINK_PATTERN_KEY);
 
 		PatternBody patternBody = specificationFactory.createPatternBody();
@@ -313,7 +294,7 @@ public class DemoclesPatternGenerator {
 		return pattern;
 	}
 
-	private EMFVariable createSignatureAgent(String name, org.gervarro.democles.specification.emf.Pattern p) {
+	private EMFVariable createSignatureAgent(String name, Pattern p) {
 		EMFVariable signatureNodeVariable = createEMFVariable(p, name, ReactionContainerPackage.Literals.SIM_AGENT);
 		p.getSymbolicParameters().add(signatureNodeVariable);
 		GenericPatternBody body = genericPatterns.get(p.getName()).getBody();
@@ -378,7 +359,7 @@ public class DemoclesPatternGenerator {
 		createConstraintParameter(typeConstraint, siteConstant);
 	}
 
-	private static EMFVariable createEMFVariable(org.gervarro.democles.specification.emf.Pattern pattern, String name,
+	private static EMFVariable createEMFVariable(Pattern pattern, String name,
 			EClassifier nodeType) {
 		EMFVariable variable = emfTypeFactory.createEMFVariable();
 		variable.setName(name);

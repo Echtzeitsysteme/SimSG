@@ -4,14 +4,22 @@ agent A1(x, y)
 agent B1(x, z)
 agent A2(x, y)
 agent B2(x, z)
+agent C1(v, w)
+agent A3(x, y)
+agent B3(x, z)
 
 var dummy_rate = 0.1
 
-var simpleDisjunct_pattern = {A1(x[free]), B1(x[free])}
-var mediumDisjunct_pattern = {A1(x[free]), B1(x[free]), A2(y[free]), B2(z[free])}
+var p1 = {A1(x[free]), B1(x[free])}
+var p2 = {A1(x[free]), B1(x[free]), A2(y[free]), B2(z[free])}
+var p3 = {A2(x[1]), B2(x[1])}
+var p4 = {A3(x[1]), B3(x[1], z[2]), C1(v[2])}
 
-init simpleDisjunct_init 10 {A1(), B1()}
-init mediumDisjunct_init 10 {A2(x[1]), B2(x[1])}
+init i1 10 {A1(), B1()}
+init i2 6 {A2(x[1]), B2(x[1])}
+init i3 7 {A3(x[1]), B3(x[1], z[2]), C1(v[2])}
 
-rule simpleDisjunct_rule simpleDisjunct_pattern -> {void, void} @ [dummy_rate]
-rule mediumDisjunct_rule mediumDisjunct_pattern -> {void, void, void, void} @ [dummy_rate]
+rule simpleDisjunct_rule p1 -> {void, void} @ [dummy_rate] // 10*10 = 100 Matches
+rule mediumDisjunct_rule p2 -> {void, void, void, void} @ [dummy_rate] // 10 * 10 * 6 * 6 = 3600 Matches
+rule simpleBound_rule p3 -> {void, void} @ [dummy_rate] // 6 Matches
+rule mediumBound_rule p4 -> {void, void, void} @ [dummy_rate] // 7 Matches
