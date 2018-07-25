@@ -6,37 +6,610 @@ pattern support_SimLinkState(ss : SimSite) {
 	SimSite.simLinkState(ss, _);
 }
 
-pattern AtoB_lhs( A : SimAgent,  B : SimAgent) {
+pattern simpleDisjunct_rule_lhs( A1 : SimAgent,  B1 : SimAgent) {
 	 // Context for agent pattern:
-	SimAgent.Type(A, "A");
+	SimAgent.Type(A1, "A1");
 	// Context and checks for site patterns:
-	SimAgent.simSites(A, A_x);
-	SimSite.Type(A_x, "x");
-	SimSite.simLinkState(A_x, A_x_LS);
-	A_x_LS==B_x_LS;
+	SimAgent.simSites(A1, A1_x);
+	SimSite.Type(A1_x, "x");
+	neg find support_SimLinkState(A1_x);
 	
 	 // Context for agent pattern:
-	SimAgent.Type(B, "B");
+	SimAgent.Type(B1, "B1");
 	// Context and checks for site patterns:
-	SimAgent.simSites(B, B_x);
-	SimSite.Type(B_x, "x");
-	SimSite.simLinkState(B_x, B_x_LS);
+	SimAgent.simSites(B1, B1_x);
+	SimSite.Type(B1_x, "x");
+	neg find support_SimLinkState(B1_x);
+}
+
+pattern mediumDisjunct_rule_lhs( A1 : SimAgent,  B2 : SimAgent,  A2 : SimAgent,  B1 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(A1, "A1");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A1, A1_x);
+	SimSite.Type(A1_x, "x");
+	neg find support_SimLinkState(A1_x);
+	
+	 // Context for agent pattern:
+	SimAgent.Type(B2, "B2");
+	// Context and checks for site patterns:
+	SimAgent.simSites(B2, B2_z);
+	SimSite.Type(B2_z, "z");
+	neg find support_SimLinkState(B2_z);
+	
+	 // Context for agent pattern:
+	SimAgent.Type(A2, "A2");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A2, A2_y);
+	SimSite.Type(A2_y, "y");
+	neg find support_SimLinkState(A2_y);
+	
+	 // Context for agent pattern:
+	SimAgent.Type(B1, "B1");
+	// Context and checks for site patterns:
+	SimAgent.simSites(B1, B1_x);
+	SimSite.Type(B1_x, "x");
+	neg find support_SimLinkState(B1_x);
+}
+
+pattern simpleBound_rule_lhs( B2 : SimAgent,  A2 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(B2, "B2");
+	// Context and checks for site patterns:
+	SimAgent.simSites(B2, B2_x);
+	SimSite.Type(B2_x, "x");
+	SimSite.simLinkState(B2_x, B2_x_LS);
+	B2_x_LS==A2_x_LS;
+	
+	 // Context for agent pattern:
+	SimAgent.Type(A2, "A2");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A2, A2_x);
+	SimSite.Type(A2_x, "x");
+	SimSite.simLinkState(A2_x, A2_x_LS);
 	
 }
 
-pattern CtoD_lhs( C : SimAgent,  D : SimAgent) {
+pattern mediumBound_rule_lhs( B3 : SimAgent,  A3 : SimAgent,  C1 : SimAgent) {
 	 // Context for agent pattern:
-	SimAgent.Type(C, "C");
+	SimAgent.Type(B3, "B3");
 	// Context and checks for site patterns:
-	SimAgent.simSites(C, C_x);
-	SimSite.Type(C_x, "x");
-	neg find support_SimLinkState(C_x);
+	SimAgent.simSites(B3, B3_x);
+	SimSite.Type(B3_x, "x");
+	SimSite.simLinkState(B3_x, B3_x_LS);
+	B3_x_LS==A3_x_LS;
+	SimAgent.simSites(B3, B3_x);
+	SimSite.Type(B3_x, "x");
+	SimSite.simLinkState(B3_x, B3_x_LS);
+	B3_x_LS==A3_x_LS;SimAgent.simSites(B3, B3_z);
+	SimSite.Type(B3_z, "z");
+	SimSite.simLinkState(B3_z, B3_z_LS);
+	
 	
 	 // Context for agent pattern:
-	SimAgent.Type(D, "D");
+	SimAgent.Type(A3, "A3");
 	// Context and checks for site patterns:
-	SimAgent.simSites(D, D_x);
-	SimSite.Type(D_x, "x");
-	neg find support_SimLinkState(D_x);
+	SimAgent.simSites(A3, A3_x);
+	SimSite.Type(A3_x, "x");
+	SimSite.simLinkState(A3_x, A3_x_LS);
+	
+	
+	 // Context for agent pattern:
+	SimAgent.Type(C1, "C1");
+	// Context and checks for site patterns:
+	SimAgent.simSites(C1, C1_v);
+	SimSite.Type(C1_v, "v");
+	SimSite.simLinkState(C1_v, C1_v_LS);
+	C1_v_LS==B3_z_LS;
+}
+
+pattern simpleDisjunctWithStates_rule_lhs( A4 : SimAgent,  B1 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(A4, "A4");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A4, A4_x);
+	SimSite.Type(A4_x, "x");
+	SimSite.simSiteState.Type(A4_x, "q");
+	neg find support_SimLinkState(A4_x);
+	
+	 // Context for agent pattern:
+	SimAgent.Type(B1, "B1");
+	// Context and checks for site patterns:
+	SimAgent.simSites(B1, B1_x);
+	SimSite.Type(B1_x, "x");
+	neg find support_SimLinkState(B1_x);
+}
+
+pattern mediumDisjunctWithStates_rule_lhs( A1 : SimAgent,  B4 : SimAgent,  A4 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(A1, "A1");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A1, A1_x);
+	SimSite.Type(A1_x, "x");
+	neg find support_SimLinkState(A1_x);
+	
+	 // Context for agent pattern:
+	SimAgent.Type(B4, "B4");
+	// Context and checks for site patterns:
+	SimAgent.simSites(B4, B4_x);
+	SimSite.Type(B4_x, "x");
+	SimSite.simSiteState.Type(B4_x, "b");
+	neg find support_SimLinkState(B4_x);
+	
+	 // Context for agent pattern:
+	SimAgent.Type(A4, "A4");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A4, A4_x);
+	SimSite.Type(A4_x, "x");
+	SimSite.simSiteState.Type(A4_x, "q");
+	neg find support_SimLinkState(A4_x);
+}
+
+pattern simpleBoundWithStates_rule_lhs( B4 : SimAgent,  A4 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(B4, "B4");
+	// Context and checks for site patterns:
+	SimAgent.simSites(B4, B4_x);
+	SimSite.Type(B4_x, "x");
+	SimSite.simSiteState.Type(B4_x, "b");
+	SimSite.simLinkState(B4_x, B4_x_LS);
+	B4_x_LS==A4_x_LS;
+	
+	 // Context for agent pattern:
+	SimAgent.Type(A4, "A4");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A4, A4_x);
+	SimSite.Type(A4_x, "x");
+	SimSite.simSiteState.Type(A4_x, "p");
+	SimSite.simLinkState(A4_x, A4_x_LS);
+	
+}
+
+pattern mediumBoundWithStates_rule_lhs( C4 : SimAgent,  B4 : SimAgent,  A4 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(C4, "C4");
+	// Context and checks for site patterns:
+	SimAgent.simSites(C4, C4_w);
+	SimSite.Type(C4_w, "w");
+	SimSite.simLinkState(C4_w, C4_w_LS);
+	C4_w_LS==B4_x_LS;
+	
+	 // Context for agent pattern:
+	SimAgent.Type(B4, "B4");
+	// Context and checks for site patterns:
+	SimAgent.simSites(B4, B4_z);
+	SimSite.Type(B4_z, "z");
+	SimSite.simSiteState.Type(B4_z, "p");
+	SimSite.simLinkState(B4_z, B4_z_LS);
+	
+	SimAgent.simSites(B4, B4_z);
+	SimSite.Type(B4_z, "z");
+	SimSite.simSiteState.Type(B4_z, "p");
+	SimSite.simLinkState(B4_z, B4_z_LS);
+	SimAgent.simSites(B4, B4_x);
+	SimSite.Type(B4_x, "x");
+	SimSite.simSiteState.Type(B4_x, "a");
+	SimSite.simLinkState(B4_x, B4_x_LS);
+	
+	
+	 // Context for agent pattern:
+	SimAgent.Type(A4, "A4");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A4, A4_y);
+	SimSite.Type(A4_y, "y");
+	SimSite.simSiteState.Type(A4_y, "m");
+	SimSite.simLinkState(A4_y, A4_y_LS);
+	A4_y_LS==B4_z_LS;
+}
+
+pattern simpleWildcard_rule_lhs( A2 : SimAgent,  B3 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(A2, "A2");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A2, A2_x);
+	SimSite.Type(A2_x, "x");
+	
+	
+	 // Context for agent pattern:
+	SimAgent.Type(B3, "B3");
+	// Context and checks for site patterns:
+	SimAgent.simSites(B3, B3_x);
+	SimSite.Type(B3_x, "x");
+	
+}
+
+pattern mediumWildcard_rule_lhs( B4 : SimAgent,  A4 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(B4, "B4");
+	// Context and checks for site patterns:
+	SimAgent.simSites(B4, B4_z);
+	SimSite.Type(B4_z, "z");
+	
+	
+	 // Context for agent pattern:
+	SimAgent.Type(A4, "A4");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A4, A4_x);
+	SimSite.Type(A4_x, "x");
+	
+}
+
+pattern simpleWildcardWithStates_rule_lhs( B4 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(B4, "B4");
+	// Context and checks for site patterns:
+	SimAgent.simSites(B4, B4_z);
+	SimSite.Type(B4_z, "z");
+	SimSite.simSiteState.Type(B4_z, "p");
+	
+}
+
+pattern mediumWildcardWithStates_rule_lhs( B4 : SimAgent,  A4 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(B4, "B4");
+	// Context and checks for site patterns:
+	SimAgent.simSites(B4, B4_x);
+	SimSite.Type(B4_x, "x");
+	SimSite.simSiteState.Type(B4_x, "b");
+	
+	
+	 // Context for agent pattern:
+	SimAgent.Type(A4, "A4");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A4, A4_x);
+	SimSite.Type(A4_x, "x");
+	SimSite.simSiteState.Type(A4_x, "q");
+	
+}
+
+pattern simpleBoundAny_rule_lhs( B3 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(B3, "B3");
+	// Context and checks for site patterns:
+	SimAgent.simSites(B3, B3_x);
+	SimSite.Type(B3_x, "x");
+	SimSite.simLinkState(B3_x, _);
+	SimAgent.simSites(B3, B3_x);
+	SimSite.Type(B3_x, "x");
+	SimSite.simLinkState(B3_x, _);SimAgent.simSites(B3, B3_z);
+	SimSite.Type(B3_z, "z");
+	SimSite.simLinkState(B3_z, _);
+}
+
+pattern mediumBoundAny_rule_lhs( B3 : SimAgent,  A2 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(B3, "B3");
+	// Context and checks for site patterns:
+	SimAgent.simSites(B3, B3_x);
+	SimSite.Type(B3_x, "x");
+	SimSite.simLinkState(B3_x, _);
+	SimAgent.simSites(B3, B3_x);
+	SimSite.Type(B3_x, "x");
+	SimSite.simLinkState(B3_x, _);SimAgent.simSites(B3, B3_z);
+	SimSite.Type(B3_z, "z");
+	SimSite.simLinkState(B3_z, _);
+	
+	 // Context for agent pattern:
+	SimAgent.Type(A2, "A2");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A2, A2_x);
+	SimSite.Type(A2_x, "x");
+	SimSite.simLinkState(A2_x, _);
+}
+
+pattern simpleBoundAnyWithStates_rule_lhs( A4 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(A4, "A4");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A4, A4_x);
+	SimSite.Type(A4_x, "x");
+	SimSite.simSiteState.Type(A4_x, "p");
+	SimSite.simLinkState(A4_x, _);
+}
+
+pattern mediumBoundAnyWithStates_rule_lhs( A2 : SimAgent,  A4 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(A2, "A2");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A2, A2_x);
+	SimSite.Type(A2_x, "x");
+	SimSite.simLinkState(A2_x, _);
+	
+	 // Context for agent pattern:
+	SimAgent.Type(A4, "A4");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A4, A4_x);
+	SimSite.Type(A4_x, "x");
+	SimSite.simSiteState.Type(A4_x, "p");
+	SimSite.simLinkState(A4_x, _);
+}
+
+pattern simpleBoundAnyType_rule_lhs( A5 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(A5, "A5");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A5, A5_x);
+	SimSite.Type(A5_x, "x");
+	SimSite.simLinkState(A5_x, A5_x_LS);
+	// Create context for other SimAgent:
+	SimAgent.Type(A5_B5, "B5");
+	SimAgent.simSites(A5_B5, A5_B5_w);
+	SimSite.Type(A5_B5_w, "w");
+	SimSite.simLinkState(A5_B5_w, A5_B5_B5LS);
+	A5_x_LS==A5_B5_B5LS;
+}
+
+pattern mediumBoundAnyType_rule_lhs( B5 : SimAgent,  A5 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(B5, "B5");
+	// Context and checks for site patterns:
+	SimAgent.simSites(B5, B5_z);
+	SimSite.Type(B5_z, "z");
+	SimSite.simLinkState(B5_z, B5_z_LS);
+	// Create context for other SimAgent:
+	SimAgent.Type(B5_A5, "A5");
+	SimAgent.simSites(B5_A5, B5_A5_y);
+	SimSite.Type(B5_A5_y, "y");
+	SimSite.simLinkState(B5_A5_y, B5_A5_A5LS);
+	B5_z_LS==B5_A5_A5LS;
+	
+	 // Context for agent pattern:
+	SimAgent.Type(A5, "A5");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A5, A5_x);
+	SimSite.Type(A5_x, "x");
+	SimSite.simLinkState(A5_x, A5_x_LS);
+	// Create context for other SimAgent:
+	SimAgent.Type(A5_B5, "B5");
+	SimAgent.simSites(A5_B5, A5_B5_w);
+	SimSite.Type(A5_B5_w, "w");
+	SimSite.simLinkState(A5_B5_w, A5_B5_B5LS);
+	A5_x_LS==A5_B5_B5LS;
+}
+
+pattern simpleBoundAnyTypeWithStates_rule_lhs( A5 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(A5, "A5");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A5, A5_x);
+	SimSite.Type(A5_x, "x");
+	SimSite.simSiteState.Type(A5_x, "v");
+	SimSite.simLinkState(A5_x, A5_x_LS);
+	// Create context for other SimAgent:
+	SimAgent.Type(A5_B5, "B5");
+	SimAgent.simSites(A5_B5, A5_B5_w);
+	SimSite.Type(A5_B5_w, "w");
+	SimSite.simLinkState(A5_B5_w, A5_B5_B5LS);
+	A5_x_LS==A5_B5_B5LS;
+}
+
+pattern mediumBoundAnyTypeWithStates_rule_lhs( B5 : SimAgent,  A5 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(B5, "B5");
+	// Context and checks for site patterns:
+	SimAgent.simSites(B5, B5_z);
+	SimSite.Type(B5_z, "z");
+	SimSite.simSiteState.Type(B5_z, "q");
+	SimSite.simLinkState(B5_z, B5_z_LS);
+	// Create context for other SimAgent:
+	SimAgent.Type(B5_A5, "A5");
+	SimAgent.simSites(B5_A5, B5_A5_y);
+	SimSite.Type(B5_A5_y, "y");
+	SimSite.simLinkState(B5_A5_y, B5_A5_A5LS);
+	B5_z_LS==B5_A5_A5LS;
+	
+	 // Context for agent pattern:
+	SimAgent.Type(A5, "A5");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A5, A5_x);
+	SimSite.Type(A5_x, "x");
+	SimSite.simSiteState.Type(A5_x, "v");
+	SimSite.simLinkState(A5_x, A5_x_LS);
+	// Create context for other SimAgent:
+	SimAgent.Type(A5_B5, "B5");
+	SimAgent.simSites(A5_B5, A5_B5_w);
+	SimSite.Type(A5_B5_w, "w");
+	SimSite.simLinkState(A5_B5_w, A5_B5_B5LS);
+	A5_x_LS==A5_B5_B5LS;
+}
+
+pattern simpleMixedBound_rule_lhs( B6 : SimAgent,  A6 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(B6, "B6");
+	// Context and checks for site patterns:
+	SimAgent.simSites(B6, B6_u);
+	SimSite.Type(B6_u, "u");
+	SimSite.simLinkState(B6_u, B6_u_LS);
+	
+	SimAgent.simSites(B6, B6_u);
+	SimSite.Type(B6_u, "u");
+	SimSite.simLinkState(B6_u, B6_u_LS);
+	SimAgent.simSites(B6, B6_v);
+	SimSite.Type(B6_v, "v");
+	SimSite.simLinkState(B6_v, B6_v_LS);
+	// Create context for other SimAgent:
+	SimAgent.Type(B6_C3, "C3");
+	SimAgent.simSites(B6_C3, B6_C3_a);
+	SimSite.Type(B6_C3_a, "a");
+	SimSite.simLinkState(B6_C3_a, B6_C3_C3LS);
+	B6_v_LS==B6_C3_C3LS;
+	
+	 // Context for agent pattern:
+	SimAgent.Type(A6, "A6");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A6, A6_x);
+	SimSite.Type(A6_x, "x");
+	SimSite.simLinkState(A6_x, A6_x_LS);
+	A6_x_LS==B6_u_LS;
+}
+
+pattern mediumMixedBound_rule_lhs( C3 : SimAgent,  B6 : SimAgent,  A6 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(C3, "C3");
+	// Context and checks for site patterns:
+	SimAgent.simSites(C3, C3_b);
+	SimSite.Type(C3_b, "b");
+	SimSite.simLinkState(C3_b, C3_b_LS);
+	
+	SimAgent.simSites(C3, C3_b);
+	SimSite.Type(C3_b, "b");
+	SimSite.simLinkState(C3_b, C3_b_LS);
+	SimAgent.simSites(C3, C3_c);
+	SimSite.Type(C3_c, "c");
+	SimSite.simLinkState(C3_c, C3_c_LS);
+	
+	
+	 // Context for agent pattern:
+	SimAgent.Type(B6, "B6");
+	// Context and checks for site patterns:
+	SimAgent.simSites(B6, B6_u);
+	SimSite.Type(B6_u, "u");
+	SimSite.simLinkState(B6_u, B6_u_LS);
+	B6_u_LS==A6_x_LS;
+	SimAgent.simSites(B6, B6_u);
+	SimSite.Type(B6_u, "u");
+	SimSite.simLinkState(B6_u, B6_u_LS);
+	B6_u_LS==A6_x_LS;SimAgent.simSites(B6, B6_v);
+	SimSite.Type(B6_v, "v");
+	SimSite.simLinkState(B6_v, B6_v_LS);
+	// Create context for other SimAgent:
+	SimAgent.Type(B6_C3, "C3");
+	SimAgent.simSites(B6_C3, B6_C3_a);
+	SimSite.Type(B6_C3_a, "a");
+	SimSite.simLinkState(B6_C3_a, B6_C3_C3LS);
+	B6_v_LS==B6_C3_C3LS;
+	SimAgent.simSites(B6, B6_u);
+	SimSite.Type(B6_u, "u");
+	SimSite.simLinkState(B6_u, B6_u_LS);
+	B6_u_LS==A6_x_LS;SimAgent.simSites(B6, B6_v);
+	SimSite.Type(B6_v, "v");
+	SimSite.simLinkState(B6_v, B6_v_LS);
+	// Create context for other SimAgent:
+	SimAgent.Type(B6_C3, "C3");
+	SimAgent.simSites(B6_C3, B6_C3_a);
+	SimSite.Type(B6_C3_a, "a");
+	SimSite.simLinkState(B6_C3_a, B6_C3_C3LS);
+	B6_v_LS==B6_C3_C3LS;SimAgent.simSites(B6, B6_w);
+	SimSite.Type(B6_w, "w");
+	SimSite.simLinkState(B6_w, B6_w_LS);
+	B6_w_LS==C3_c_LS;
+	
+	 // Context for agent pattern:
+	SimAgent.Type(A6, "A6");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A6, A6_x);
+	SimSite.Type(A6_x, "x");
+	SimSite.simLinkState(A6_x, A6_x_LS);
+	
+	SimAgent.simSites(A6, A6_x);
+	SimSite.Type(A6_x, "x");
+	SimSite.simLinkState(A6_x, A6_x_LS);
+	SimAgent.simSites(A6, A6_y);
+	SimSite.Type(A6_y, "y");
+	SimSite.simLinkState(A6_y, A6_y_LS);
+	A6_y_LS==C3_b_LS;
+}
+
+pattern simpleMixedBoundWithStates_rule_lhs( B6 : SimAgent,  A6 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(B6, "B6");
+	// Context and checks for site patterns:
+	SimAgent.simSites(B6, B6_u);
+	SimSite.Type(B6_u, "u");
+	SimSite.simLinkState(B6_u, B6_u_LS);
+	
+	SimAgent.simSites(B6, B6_u);
+	SimSite.Type(B6_u, "u");
+	SimSite.simLinkState(B6_u, B6_u_LS);
+	SimAgent.simSites(B6, B6_v);
+	SimSite.Type(B6_v, "v");
+	SimSite.simSiteState.Type(B6_v, "n");
+	SimSite.simLinkState(B6_v, B6_v_LS);
+	// Create context for other SimAgent:
+	SimAgent.Type(B6_C3, "C3");
+	SimAgent.simSites(B6_C3, B6_C3_a);
+	SimSite.Type(B6_C3_a, "a");
+	SimSite.simLinkState(B6_C3_a, B6_C3_C3LS);
+	B6_v_LS==B6_C3_C3LS;
+	
+	 // Context for agent pattern:
+	SimAgent.Type(A6, "A6");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A6, A6_x);
+	SimSite.Type(A6_x, "x");
+	SimSite.simSiteState.Type(A6_x, "v");
+	SimSite.simLinkState(A6_x, A6_x_LS);
+	A6_x_LS==B6_u_LS;
+}
+
+pattern mediumMixedBoundWithStates_rule_lhs( C3 : SimAgent,  B6 : SimAgent,  A6 : SimAgent) {
+	 // Context for agent pattern:
+	SimAgent.Type(C3, "C3");
+	// Context and checks for site patterns:
+	SimAgent.simSites(C3, C3_b);
+	SimSite.Type(C3_b, "b");
+	SimSite.simSiteState.Type(C3_b, "g");
+	SimSite.simLinkState(C3_b, C3_b_LS);
+	
+	SimAgent.simSites(C3, C3_b);
+	SimSite.Type(C3_b, "b");
+	SimSite.simSiteState.Type(C3_b, "g");
+	SimSite.simLinkState(C3_b, C3_b_LS);
+	SimAgent.simSites(C3, C3_c);
+	SimSite.Type(C3_c, "c");
+	SimSite.simLinkState(C3_c, C3_c_LS);
+	
+	
+	 // Context for agent pattern:
+	SimAgent.Type(B6, "B6");
+	// Context and checks for site patterns:
+	SimAgent.simSites(B6, B6_u);
+	SimSite.Type(B6_u, "u");
+	SimSite.simLinkState(B6_u, B6_u_LS);
+	B6_u_LS==A6_x_LS;
+	SimAgent.simSites(B6, B6_u);
+	SimSite.Type(B6_u, "u");
+	SimSite.simLinkState(B6_u, B6_u_LS);
+	B6_u_LS==A6_x_LS;SimAgent.simSites(B6, B6_v);
+	SimSite.Type(B6_v, "v");
+	SimSite.simLinkState(B6_v, B6_v_LS);
+	// Create context for other SimAgent:
+	SimAgent.Type(B6_C3, "C3");
+	SimAgent.simSites(B6_C3, B6_C3_a);
+	SimSite.Type(B6_C3_a, "a");
+	SimSite.simLinkState(B6_C3_a, B6_C3_C3LS);
+	B6_v_LS==B6_C3_C3LS;
+	SimAgent.simSites(B6, B6_u);
+	SimSite.Type(B6_u, "u");
+	SimSite.simLinkState(B6_u, B6_u_LS);
+	B6_u_LS==A6_x_LS;SimAgent.simSites(B6, B6_v);
+	SimSite.Type(B6_v, "v");
+	SimSite.simLinkState(B6_v, B6_v_LS);
+	// Create context for other SimAgent:
+	SimAgent.Type(B6_C3, "C3");
+	SimAgent.simSites(B6_C3, B6_C3_a);
+	SimSite.Type(B6_C3_a, "a");
+	SimSite.simLinkState(B6_C3_a, B6_C3_C3LS);
+	B6_v_LS==B6_C3_C3LS;SimAgent.simSites(B6, B6_w);
+	SimSite.Type(B6_w, "w");
+	SimSite.simLinkState(B6_w, B6_w_LS);
+	B6_w_LS==C3_c_LS;
+	
+	 // Context for agent pattern:
+	SimAgent.Type(A6, "A6");
+	// Context and checks for site patterns:
+	SimAgent.simSites(A6, A6_x);
+	SimSite.Type(A6_x, "x");
+	SimSite.simSiteState.Type(A6_x, "u");
+	SimSite.simLinkState(A6_x, A6_x_LS);
+	
+	SimAgent.simSites(A6, A6_x);
+	SimSite.Type(A6_x, "x");
+	SimSite.simSiteState.Type(A6_x, "u");
+	SimSite.simLinkState(A6_x, A6_x_LS);
+	SimAgent.simSites(A6, A6_y);
+	SimSite.Type(A6_y, "y");
+	SimSite.simLinkState(A6_y, A6_y_LS);
+	A6_y_LS==C3_b_LS;
 }
 

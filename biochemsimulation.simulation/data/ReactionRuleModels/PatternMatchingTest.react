@@ -1,5 +1,6 @@
 ModelID PatternMatchingTest
 
+// create necessary test agent types
 agent A1(x, y)
 agent B1(x, z)
 agent A2(x, y)
@@ -7,19 +8,96 @@ agent B2(x, z)
 agent C1(v, w)
 agent A3(x, y)
 agent B3(x, z)
+agent A4(x{p,q}, y{m,n})
+agent B4(x{a,b}, z{o, p})
+agent C4(v, w)
+agent A5(x{u, v}, y)
+agent B5(w, z{p, q})
+agent A6(x{u, v}, y, z{r, t})
+agent B6(u, v{l, m, n}, w{r, s, t})
+agent C3(a{i, j}, b{e, f, g}, c)
 
+// mockup rate variable
 var dummy_rate = 0.1
 
+// disjunct tests
 var p1 = {A1(x[free]), B1(x[free])}
 var p2 = {A1(x[free]), B1(x[free]), A2(y[free]), B2(z[free])}
+// bound tests
 var p3 = {A2(x[1]), B2(x[1])}
 var p4 = {A3(x[1]), B3(x[1], z[2]), C1(v[2])}
+// disjunct tests with states
+var p5 = {A4(x{q}[free]), B1(x[free])}
+var p6 = {A1(x[free]), B4(x{b}[free]), A4(x{q}[free])}
+// bound tests with states
+var p7 = {A4(x{p}[1]), B4(x{b}[1])}
+var p8 = {A4(y{m}[1]), B4(z{p}[1], x{a}[2]), C4(w[2])}
+// "WhatEver", i.e. wildcard tests
+var p9 = {A2(x[?]), B3(x[?])}
+var p10 = {A4(x[?]), B4(z[?])}
+// "WhatEver", i.e. wildcard tests with states
+var p11 = {B4(z{p}[?])}
+var p12 = {B4(x{b}[?]), A4(x{q}[?])}
+// "Bound to any" tests
+var p13 = {B3(x[bound], z[bound]) }
+var p14 = {B3(x[bound], z[bound]), A2(x[bound]) }
+// "Bound to any" tests with states
+var p15 = {A4(x{p}[bound])}
+var p16 = {A4(x{p}[bound]) , A2(x[bound]) }
+// "Bound to any of type" tests
+var p17 = {A5(x[B5.w])}
+var p18 = {A5(x[B5.w]), B5(z[A5.y])}
+// "Bound to any of type" tests with states
+var p19 = {A5(x{v}[B5.w])}
+var p20 = {A5(x{v}[B5.w]), B5(z{q}[A5.y])}
+// Complex bound tests
+var p21 = {A6(x[1]), B6(u[1], v[C3.a])}
+var p22 = {A6(x[1], y[2]), B6(u[1], v[C3.a], w[3]), C3(b[2], c[3])}
+// Complex bound tests with states
+var p23 = {A6(x{v}[1]), B6(u[1], v{n}[C3.a])}
+var p24 = {A6(x{u}[1], y[2]), B6(u[1], v[C3.a], w[3]), C3(b{g}[2], c[3])}
 
+// Initial variables for disjunct tests
 init i1 10 {A1(), B1()}
+// Initial variables for bound tests
 init i2 6 {A2(x[1]), B2(x[1])}
 init i3 7 {A3(x[1]), B3(x[1], z[2]), C1(v[2])}
+// Initial variables for disjunct and bound tests with states
+init i4 5 {A4(x{p}[free]), A4(x{q}[free]), B4(x{b}[free])}
+init i5 9 {A4(x{p}[1]), B4(x{b}[1])}
+init i6 11 {A4(y{m}[1]), B4(z{p}[1], x{a}[2]), C4(w[2])}
+init i7 5 {B3()}
+// Initial variables for "bound to any of type" tests with and w.o. states
+init i8 13 {A5(x[1]), B5(w[1])}
+init i9 3 {A5(y[1]), B5(z[1])}
+init i10 13 {A5(x{v}[1]), B5(w[1])}
+init i11 3 {A5(y[1]), B5(z{q}[1])}
+// Initial variables for complex bound tests with and w.o. states
+init i12 3 {A6(x{v}[1], y[2]), B6(u[1], v{n}[4], w[3]), C3(a[4], b{f}[2], c[3])}
+init i13 8 {A6(x{u}[1], y[2]), B6(u[1], v[4], w[3]), C3(a[4], b{g}[2], c[3])}
 
+// mockup rules to register patterns as relevant for pattern generators
 rule simpleDisjunct_rule p1 -> {void, void} @ [dummy_rate] // 10*10 = 100 Matches
 rule mediumDisjunct_rule p2 -> {void, void, void, void} @ [dummy_rate] // 10 * 10 * 6 * 6 = 3600 Matches
 rule simpleBound_rule p3 -> {void, void} @ [dummy_rate] // 6 Matches
 rule mediumBound_rule p4 -> {void, void, void} @ [dummy_rate] // 7 Matches
+rule simpleDisjunctWithStates_rule p5 -> {void, void} @ [dummy_rate] // 5*10 = 50 Matches
+rule mediumDisjunctWithStates_rule p6 ->  {void, void, void} @ [dummy_rate] // 10*5*5 = 250 Matches
+rule simpleBoundWithStates_rule p7 -> {void, void} @ [dummy_rate] // 9 Matches
+rule mediumBoundWithStates_rule p8 -> {void, void, void} @ [dummy_rate] // 11 Matches
+rule simpleWildcard_rule p9 -> {void, void} @ [dummy_rate] // 6*(7+5) = 6*12 = 72 Matches
+rule mediumWildcard_rule p10 -> {void, void} @ [dummy_rate] // (5+5+9+11) * (9+11+5) = 30*25 = 750 Matches
+rule simpleWildcardWithStates_rule p11 -> {void} @ [dummy_rate] // 11 Matches
+rule mediumWildcardWithStates_rule p12 -> {void, void} @ [dummy_rate] // (5+9)*5 = 14*5 = 70 Matches
+rule simpleBoundAny_rule p13 -> {void} @ [dummy_rate] // 7 Matches 
+rule mediumBoundAny_rule p14 -> {void, void} @ [dummy_rate] // 7*6 = 42 Matches 
+rule simpleBoundAnyWithStates_rule p15 -> {void} @ [dummy_rate] // 9 Matches
+rule mediumBoundAnyWithStates_rule p16 -> {void, void} @ [dummy_rate] // 9*6 = 54 Matches
+rule simpleBoundAnyType_rule p17 -> {void} @ [dummy_rate] // 26 Matches 
+rule mediumBoundAnyType_rule p18 -> {void, void} @ [dummy_rate] // 26*6 = 156 Matches 
+rule simpleBoundAnyTypeWithStates_rule p19 -> {void} @ [dummy_rate] // 13 Matches
+rule mediumBoundAnyTypeWithStates_rule p20 -> {void, void} @ [dummy_rate] // 13*3 = 39 Matches
+rule simpleMixedBound_rule p21 -> {void, void} @ [dummy_rate] // 11 Matches
+rule mediumMixedBound_rule p22 -> {void, void, void} @ [dummy_rate] // 11 Matches
+rule simpleMixedBoundWithStates_rule p23 -> {void, void} @ [dummy_rate] // 3 Matches
+rule mediumMixedBoundWithStates_rule p24 -> {void, void, void} @ [dummy_rate] // 8 Matches

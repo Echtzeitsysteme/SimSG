@@ -55,6 +55,8 @@ abstract class PatternMatchingTest {
 	@AfterAll
 	void afterAllTests() throws Exception {
 		engine.disposeEngine();
+		containerModel.eResource().unload();
+		ruleModel.eResource().unload();
 	}
 
 	@Test
@@ -81,7 +83,7 @@ abstract class PatternMatchingTest {
 			return;
 		}
 		assertNotNull(matches, "Couldn't get matches for pattern: "+patternName);
-		assertEquals(matches.size(), numOfMatches, "Number of matches weren't equal. Got: "+matches.size()+", Expected: "+numOfMatches);
+		assertEquals(numOfMatches, matches.size(), "Number of matches weren't equal!");
 	}
 
 	@Test
@@ -114,102 +116,142 @@ abstract class PatternMatchingTest {
 	
 	@Test
 	void simpleDisjunctWithStatesTest() {
-		fail("Not implemented!");
+		final int numOfMatches = 50;
+		final String patternName = "simpleDisjunctWithStates_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
 	}
 	
 	@Test
 	void mediumDisjunctWithStatesTest() {
-		fail("Not implemented!");
+		final int numOfMatches = 250;
+		final String patternName = "mediumDisjunctWithStates_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
 	}
 	
 	@Test
 	void simpleBoundWithStatesTest() {
-		fail("Not implemented!");
+		final int numOfMatches = 9;
+		final String patternName = "simpleBoundWithStates_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
 	}
 	
 	@Test
 	void mediumBoundWithStatesTest() {
-		fail("Not implemented!");
+		final int numOfMatches = 11;
+		final String patternName = "mediumBoundWithStates_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
 	}
 	
 	@Test
 	void simpleWildcardTest() {
-		fail("Not implemented!");
+		final int numOfMatches = 72;
+		final String patternName = "simpleWildcard_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
 	}
 	
 	@Test
 	void mediumWildcardTest() {
-		fail("Not implemented!");
+		final int numOfMatches = 750;
+		final String patternName = "mediumWildcard_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
 	}
 	
 	@Test
 	void simpleWildcardWithStatesTest() {
-		fail("Not implemented!");
+		final int numOfMatches = 11;
+		final String patternName = "simpleWildcardWithStates_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
 	}
 	
 	@Test
 	void mediumWildcardWithStatesTest() {
-		fail("Not implemented!");
+		final int numOfMatches = 70;
+		final String patternName = "mediumWildcardWithStates_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
 	}
 	
 	@Test
 	void simpleBoundAnyTest() {
-		fail("Not implemented!");
+		final int numOfMatches = 7;
+		final String patternName = "simpleBoundAny_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
 	}
 	
 	@Test
 	void mediumBoundAnyTest() {
-		fail("Not implemented!");
+		final int numOfMatches = 42;
+		final String patternName = "mediumBoundAny_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
 	}
 	
 	@Test
 	void simpleBoundAnyWithStatesTest() {
-		fail("Not implemented!");
+		final int numOfMatches = 9;
+		final String patternName = "simpleBoundAnyWithStates_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
 	}
 	
 	@Test
 	void mediumBoundAnyWithStatesTest() {
-		fail("Not implemented!");
+		final int numOfMatches = 54;
+		final String patternName = "mediumBoundAnyWithStates_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
 	}
 	
 	@Test
 	void simpleBoundAnyTypeTest() {
-		fail("Not implemented!");
+		final int numOfMatches = 26;
+		final String patternName = "simpleBoundAnyType_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
 	}
 	
 	@Test
 	void mediumBoundAnyTypeTest() {
-		fail("Not implemented!");
+		final int numOfMatches = 156;
+		final String patternName = "mediumBoundAnyType_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
 	}
 	
 	@Test
 	void simpleBoundAnyTypeWithStatesTest() {
-		fail("Not implemented!");
+		final int numOfMatches = 13;
+		final String patternName = "simpleBoundAnyTypeWithStates_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
 	}
 	
 	@Test
 	void mediumBoundAnyTypeWithStatesTest() {
-		fail("Not implemented!");
+		final int numOfMatches = 39;
+		final String patternName = "mediumBoundAnyTypeWithStates_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
 	}
 	
 	@Test
 	void simpleMixedBoundTest() {
-		fail("Not implemented!");
+		final int numOfMatches = 11;
+		final String patternName = "simpleMixedBound_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
 	}
 	
 	@Test
 	void mediumMixedBoundTest() {
-		fail("Not implemented!");
+		final int numOfMatches = 11;
+		final String patternName = "mediumMixedBound_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
 	}
 	
 	@Test
 	void simpleMixedBoundWithStatesTest() {
-		fail("Not implemented!");
+		final int numOfMatches = 3;
+		final String patternName = "simpleMixedBoundWithStates_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
 	}
 	
 	@Test
 	void mediumMixedBoundWithStatesTest() {
-		fail("Not implemented!");
+		final int numOfMatches = 8;
+		final String patternName = "mediumMixedBoundWithStates_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
 	}
-
+	
 }
