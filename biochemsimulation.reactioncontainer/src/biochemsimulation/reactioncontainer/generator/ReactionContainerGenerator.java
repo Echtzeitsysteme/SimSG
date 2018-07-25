@@ -15,6 +15,8 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
+import biochemsimulation.reactioncontainer.SimAgent;
+import biochemsimulation.reactioncontainer.SimLinkState;
 import biochemsimulation.reactioncontainer.impl.ReactionContainerFactoryImpl;
 import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
@@ -30,6 +32,8 @@ public class ReactionContainerGenerator {
 	private Resource modelResource;
 	private ReactionRuleModelImpl model;
 	private boolean isInitialized;
+	
+	private List<AgentTemplate> templates;
 	
 	private ReactionContainerFactory factory;
 	
@@ -97,70 +101,51 @@ public class ReactionContainerGenerator {
 		return false;
 	}
 	
-	void doGenerate() throws Exception{
-		if(!isInitialized) {
-			throw new RuntimeException("ReactionContainerGenerator is uninitialized because the given resource containing the ReactionRules model could not be loaded.");
-		}
-		List<Initial> initials = new LinkedList<Initial>();
-		model.getReactionProperties().forEach(x -> { 
-			if(x instanceof Initial) initials.add((Initial) x); 
-			});
-		
-		List<AgentTemplate> templates = new LinkedList<AgentTemplate>();
-		for(Initial init : initials) {
-			Pattern pa = PatternUtils.patternFromPatternAssignment(init.getInitialPattern());
-			if(!PatternUtils.isPatternEmpty(pa)) {
-				for(ValidAgentPattern ap : PatternUtils.getValidAgentPatterns(pa.getAgentPatterns())) {
-					templates.add(new AgentTemplate(init, ap));
-				}
-			}
-		}
-		
-		ReactionContainer containerModel = factory.createReactionContainer();
-		containerModel.setName(model.getModel().getName());
-		for(AgentTemplate at : templates) {
-			for(int i = 0; i<at.getCount(); i++) {
-				containerModel.getSimAgent().add(at.createInstance(factory, containerModel));
-			}
-		}
-		
-		String uriName = "file:"+projectPath+"model/instances/"+model.getModel().getName()+".xmi";
-		URI uri = URI.createURI(uriName);
-		saveModelToURI(containerModel, uri);
-	}
-	
 	public ReactionContainer doGenerate(String path, boolean saveToFile) throws Exception{
 		if(!isInitialized) {
 			throw new RuntimeException("ReactionContainerGenerator is uninitialized because the given resource containing the ReactionRules model could not be loaded.");
 		}
-		List<Initial> initials = new LinkedList<Initial>();
-		model.getReactionProperties().forEach(x -> { 
-			if(x instanceof Initial) initials.add((Initial) x); 
-			});
-		
-		List<AgentTemplate> templates = new LinkedList<AgentTemplate>();
-		for(Initial init : initials) {
-			Pattern pa = PatternUtils.patternFromPatternAssignment(init.getInitialPattern());
-			if(!PatternUtils.isPatternEmpty(pa)) {
-				for(ValidAgentPattern ap : PatternUtils.getValidAgentPatterns(pa.getAgentPatterns())) {
-					templates.add(new AgentTemplate(init, ap));
-				}
-			}
-		}
+		generateAgentTemplates();
 		
 		ReactionContainer containerModel = factory.createReactionContainer();
 		containerModel.setName(model.getModel().getName());
-		for(AgentTemplate at : templates) {
-			for(int i = 0; i<at.getCount(); i++) {
-				containerModel.getSimAgent().add(at.createInstance(factory, containerModel));
-			}
-		}
+		
+		createInstances(containerModel);
 		
 		if(saveToFile) {
 			URI uri = URI.createFileURI(path);
 			saveModelToURI(containerModel, uri);
 		}
 		return containerModel;
+	}
+	
+	private void generateAgentTemplates(){
+		List<Initial> initials = new LinkedList<Initial>();
+		model.getReactionProperties().forEach(x -> { 
+			if(x instanceof Initial) initials.add((Initial) x); 
+			});
+		
+		templates = new LinkedList<AgentTemplate>();
+		for(Initial init : initials) {
+			Pattern pa = PatternUtils.patternFromPatternAssignment(init.getInitialPattern());
+			if(!PatternUtils.isPatternEmpty(pa)) {
+				for(ValidAgentPattern ap : PatternUtils.getValidAgentPatterns(pa.getAgentPatterns())) {
+					templates.add(new AgentTemplate(init, ap));
+				}
+			}
+		}
+	}
+	
+	private void createInstances(ReactionContainer containerModel){
+		List<SimAgent> agents = new LinkedList<SimAgent>();
+		List<SimLinkState> links = new LinkedList<SimLinkState>();
+		for(AgentTemplate at : templates) {
+			for(int i = 0; i<at.getCount(); i++) {
+				agents.add(at.createInstance(factory, links));
+			}
+		}
+		containerModel.getSimAgent().addAll(agents);
+		containerModel.getSimLinkStates().addAll(links);
 	}
 	
 	private void saveModelToURI(EObject model, URI uri) throws Exception{

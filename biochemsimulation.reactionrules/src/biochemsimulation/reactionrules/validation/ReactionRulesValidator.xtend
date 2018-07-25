@@ -29,6 +29,7 @@ import biochemsimulation.reactionrules.reactionRules.BoundAnyLink
 import biochemsimulation.reactionrules.reactionRules.WhatEver
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern
+import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern
 
 /**
  * This class contains custom validation rules. 
@@ -256,11 +257,11 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 			var value = valueOfNumericAssignment(variable)
 			var faulty = false;
 			if(value.contains(" ")) {
-				error('Arithmetic variables may not contain any whitespaces!', ReactionRulesPackage.Literals.RULE_BODY__VARIABLES)
+				error('Arithmetic variables may not contain any white spaces!', ReactionRulesPackage.Literals.RULE_BODY__VARIABLES)
 				faulty = true;
 			}
 			if(!value.matches("^(-)?(\\d)+(\\.)(\\d)+E(-|\\+)(\\d)+$") && !value.matches("^(-)?(\\d)*$") && !value.matches("^(-)?(\\d)+(\\.)(\\d)+$")) {
-				error('Given expression does not adhere to any known number format.', ReactionRulesPackage.Literals.RULE_BODY__VARIABLES)
+				error('Given expression uses an unknown number format.', ReactionRulesPackage.Literals.RULE_BODY__VARIABLES)
 				faulty = true;
 			}
 			if(!faulty) {
@@ -277,9 +278,11 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 	}
 	
 	@Check
-	def checkRuleNumberOfArgs(RuleBody ruleBody) {
+	def checkRuleArgs(RuleBody ruleBody) {
 		val lhs = patternFromPatternAssignment(ruleBody.lhs)
 		val rhs = patternFromPatternAssignment(ruleBody.rhs)
+		var equalNumOfArgs = true
+		// check for equal number of args
 		if(lhs.agentPatterns.size != rhs.agentPatterns.size) {
 			error('Number of arguments on the left hand side of the rule, must match number of arguments on the right hand side.', 
 				ReactionRulesPackage.Literals.RULE_BODY__LHS
@@ -287,9 +290,29 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 			error('Number of arguments on the right hand side of the rule, must match number of arguments on the left hand side.', 
 				ReactionRulesPackage.Literals.RULE_BODY__RHS
 			)
+			equalNumOfArgs = false
 		}
+		// check whether two args with the same index specify a void type -> not allowed
+		if(equalNumOfArgs){
+			var idx = 0
+			for(ap : lhs.agentPatterns) {
+				if(ap instanceof VoidAgentPattern) {
+					val ap2 = rhs.agentPatterns.get(idx)
+					if(ap2 instanceof VoidAgentPattern) {
+						error('Two arguments at the same index on lhs and rhs can not be of void type.', 
+							ReactionRulesPackage.Literals.RULE_BODY__LHS
+						)
+						error('Two arguments at the same index on lhs and rhs can not be of void type.', 
+							ReactionRulesPackage.Literals.RULE_BODY__RHS
+						)
+					}
+				}
+				idx++;	
+			}
+		}
+		
 	}
-	
+
 	def valueOfNumericAssignment(NumericAssignment na){
 		var value = "0"
 		if(na instanceof NumericFromLiteral) {

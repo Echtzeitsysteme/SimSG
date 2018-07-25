@@ -1,8 +1,8 @@
 package biochemsimulation.reactioncontainer.generator;
 
 import java.util.HashMap;
+import java.util.List;
 
-import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.SimBound;
 import biochemsimulation.reactioncontainer.SimLinkState;
@@ -19,6 +19,7 @@ public class BoundStateTemplate implements LinkStateTemplate {
 	private AgentTemplate at;
 	private BoundLink link;
 	private String otherType;
+	private String otherSite;
 	
 	BoundStateTemplate(AgentTemplate at, BoundLink link) {
 		this.at = at;
@@ -41,6 +42,7 @@ public class BoundStateTemplate implements LinkStateTemplate {
 				String currentIndex = currentLink.getState();
 				if(currentIndex.equals(index)) {
 					otherType = ap.getAgent().getName();
+					otherSite = sp.getSite().getName();
 					return;
 				}
 			}
@@ -48,18 +50,21 @@ public class BoundStateTemplate implements LinkStateTemplate {
 	}
 	
 	@Override
-	public SimLinkState createInstance(ReactionContainerFactory factory, ReactionContainer container, SimSite site) {
-		String thisAgentsName = AgentTemplate.generateAgentInstanceName(at.getCurrentCount(), at.getType(), at.getVariableName());
-		String otherAgentsName = AgentTemplate.generateAgentInstanceName(at.getCurrentCount(), otherType, at.getVariableName());
+	public SimLinkState createInstance(ReactionContainerFactory factory, List<SimLinkState> simLinkStates, SimSite site) {
+		String thisAgentsName = AgentTemplate.generateAgentInstanceName(at.getCurrentCount(), at.getType(), at.getVariableName(), site.getType());
+		String otherAgentsName = AgentTemplate.generateAgentInstanceName(at.getCurrentCount(), otherType, at.getVariableName(), otherSite);
+
 		if(halfBoundLinks.containsKey(otherAgentsName)) {
 			SimBound oldLinkState = (SimBound)halfBoundLinks.get(otherAgentsName);
 			oldLinkState.setSimSite2(site);
+
 			return oldLinkState;
 		}else {
 			SimBound newLinkState = factory.createSimBound();
 			newLinkState.setSimSite1(site);
 			halfBoundLinks.put(thisAgentsName, newLinkState);
-			container.getSimLinkStates().add(newLinkState);
+			simLinkStates.add(newLinkState);
+
 			return newLinkState;
 		}
 		
