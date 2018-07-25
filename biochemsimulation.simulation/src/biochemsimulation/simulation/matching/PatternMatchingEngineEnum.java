@@ -1,7 +1,7 @@
 package biochemsimulation.simulation.matching;
 
 public enum PatternMatchingEngineEnum {
-	ViatraEngine("ViatraEngine");
+	ViatraEngine("ViatraEngine"), DemoclesEngine("DemoclesEngine");
 	
 	private String name;
 	private PatternMatchingEngineEnum(String name) {

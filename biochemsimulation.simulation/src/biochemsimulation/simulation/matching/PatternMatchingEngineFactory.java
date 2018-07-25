@@ -7,7 +7,11 @@ public class PatternMatchingEngineFactory {
 		
 		switch(type) {
 		case ViatraEngine : {
-			pme = new ViatraEngine();
+			pme = new ViatraEngineWrapper();
+			break;
+		}
+		case DemoclesEngine : {
+			pme = new DemoclesEngineWrapper();
 			break;
 		}
 		}

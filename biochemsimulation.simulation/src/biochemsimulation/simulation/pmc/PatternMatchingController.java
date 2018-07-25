@@ -3,22 +3,31 @@ package biochemsimulation.simulation.pmc;
 import java.util.Collection;
 import java.util.Map;
 
-import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternModel;
-import org.eclipse.viatra.query.runtime.api.IPatternMatch;
-
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
+import biochemsimulation.simulation.matching.IMatch;
 
 public interface PatternMatchingController {
-	public void init(ReactionRuleModel ruleModel, ReactionContainer reactionContainer, PatternModel patterns) throws Exception;
 	
-	void collectMatches(String patternName) throws Exception;
+	public void loadModels(ReactionRuleModel ruleModel, ReactionContainer reactionContainer) throws Exception;
 	
-	void collectAllMatches() throws Exception;
+	public void initEngine() throws Exception;
 	
-	void performTransformations();
+	public void initController() throws Exception;
 	
-	public Collection<? extends IPatternMatch> getMatches(String patternName);
+	public void randomizeRuleOrder(boolean activate);
 	
-	public Map<String, Collection<? extends IPatternMatch>> getAllMatches();
+	public void useReactionRate(boolean activate);
+	
+	public void collectMatches(String patternName) throws Exception;
+	
+	public void collectAllMatches() throws Exception;
+	
+	public void performTransformations();
+	
+	public void discardEngine();
+	
+	public Collection<IMatch> getMatches(String patternName);
+	
+	public Map<String, Collection<IMatch>> getAllMatches();
 }

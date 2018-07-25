@@ -52,7 +52,7 @@ public class AgentTemplate {
 		currentNumOfInstances++;
 		// missing name
 		newAgent.setType(type);
-		newAgent.setName(generateAgentInstanceName(currentNumOfInstances, type, init.getName()));
+		newAgent.setName(generateAgentInstanceName(currentNumOfInstances, type, init.getName(), ""));
 		
 		for(SiteTemplate st : siteTemplates) {
 			newAgent.getSimSites().add(st.createInstance(factory, simLinkStates, newAgent));
@@ -61,8 +61,8 @@ public class AgentTemplate {
 		return newAgent;
 	}
 	
-	public static String generateAgentInstanceName(int numOfInstance, String type, String varName) {
-		return "AgentInstance:"+numOfInstance+"/ofType:"+type+"/fromVar:"+varName;
+	public static String generateAgentInstanceName(int numOfInstance, String type, String varName, String site) {
+		return "AgentInstance:"+numOfInstance+"/ofType:"+type+"/fromVar:"+varName+"/atSite:"+site;
 	}
 	
 	public String getType() {
