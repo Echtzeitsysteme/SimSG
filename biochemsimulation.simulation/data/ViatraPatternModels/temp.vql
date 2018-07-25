@@ -7,15 +7,15 @@ pattern BoundAnyLink_SupportPattern(simSite : SimSite) {
 		}
 
 pattern mediumBoundAnyTypeWithStates_rule_lhs( A5 : SimAgent,  B5 : SimAgent) {
-	SimAgent.Type(B5, "B5");
-	SimAgent.simSites(B5, B5_z);
-	SimSite.Type(B5_z, "z");
-	SimSite.simSiteState.Type(B5_z, "q");
-	
-SimAgent.Type(A5, "A5");
+	SimAgent.Type(A5, "A5");
 	SimAgent.simSites(A5, A5_x);
 	SimSite.Type(A5_x, "x");
 	SimSite.simSiteState.Type(A5_x, "v");
+	
+SimAgent.Type(B5, "B5");
+	SimAgent.simSites(B5, B5_z);
+	SimSite.Type(B5_z, "z");
+	SimSite.simSiteState.Type(B5_z, "q");
 	SimSite.simLinkState(A5_x, A5_A5_x_BoundAny);
 			SimAgent.Type(A5_B5, "B5");
 			SimAgent.simSites(A5_B5, A5_B5_w);
@@ -52,11 +52,7 @@ SimAgent.Type(A6, "A6");
 	}
 
 pattern mediumBound_rule_lhs( A3 : SimAgent,  B3 : SimAgent,  C1 : SimAgent) {
-	SimAgent.Type(C1, "C1");
-	SimAgent.simSites(C1, C1_v);
-	SimSite.Type(C1_v, "v");
-	
-SimAgent.Type(B3, "B3");
+	SimAgent.Type(B3, "B3");
 	SimAgent.simSites(B3, B3_x);
 	SimSite.Type(B3_x, "x");
 	
@@ -66,6 +62,10 @@ SimAgent.simSites(B3, B3_z);
 SimAgent.Type(A3, "A3");
 	SimAgent.simSites(A3, A3_x);
 	SimSite.Type(A3_x, "x");
+	
+SimAgent.Type(C1, "C1");
+	SimAgent.simSites(C1, C1_v);
+	SimSite.Type(C1_v, "v");
 	SimSite.simLinkState(B3_z, B3_B3_z_BoundExact);
 			SimSite.simLinkState(C1_v, C1_C1_v_BoundExact);
 			B3_B3_z_BoundExact==C1_C1_v_BoundExact;
@@ -83,6 +83,13 @@ pattern mediumMixedBound_rule_lhs( A6 : SimAgent,  B6 : SimAgent,  C3 : SimAgent
 SimAgent.simSites(C3, C3_c);
 	SimSite.Type(C3_c, "c");
 	
+SimAgent.Type(A6, "A6");
+	SimAgent.simSites(A6, A6_x);
+	SimSite.Type(A6_x, "x");
+	
+SimAgent.simSites(A6, A6_y);
+	SimSite.Type(A6_y, "y");
+	
 SimAgent.Type(B6, "B6");
 	SimAgent.simSites(B6, B6_u);
 	SimSite.Type(B6_u, "u");
@@ -92,13 +99,6 @@ SimAgent.simSites(B6, B6_v);
 	
 SimAgent.simSites(B6, B6_w);
 	SimSite.Type(B6_w, "w");
-	
-SimAgent.Type(A6, "A6");
-	SimAgent.simSites(A6, A6_x);
-	SimSite.Type(A6_x, "x");
-	
-SimAgent.simSites(A6, A6_y);
-	SimSite.Type(A6_y, "y");
 	SimSite.simLinkState(B6_w, B6_B6_w_BoundExact);
 			SimSite.simLinkState(C3_c, C3_C3_c_BoundExact);
 			B6_B6_w_BoundExact==C3_C3_c_BoundExact;
@@ -152,27 +152,17 @@ SimAgent.Type(A1, "A1");
 	}
 
 pattern simpleWildcard_rule_lhs( A2 : SimAgent,  B3 : SimAgent) {
-	SimAgent.Type(B3, "B3");
-	SimAgent.simSites(B3, B3_x);
-	SimSite.Type(B3_x, "x");
-	
-SimAgent.Type(A2, "A2");
+	SimAgent.Type(A2, "A2");
 	SimAgent.simSites(A2, A2_x);
 	SimSite.Type(A2_x, "x");
+	
+SimAgent.Type(B3, "B3");
+	SimAgent.simSites(B3, B3_x);
+	SimSite.Type(B3_x, "x");
 	}
 
 pattern mediumDisjunct_rule_lhs( A1 : SimAgent,  B1 : SimAgent,  A2 : SimAgent,  B2 : SimAgent) {
-	SimAgent.Type(A1, "A1");
-	SimAgent.simSites(A1, A1_x);
-	SimSite.Type(A1_x, "x");
-	neg find BoundAnyLink_SupportPattern(A1_x);
-	
-SimAgent.Type(A2, "A2");
-	SimAgent.simSites(A2, A2_y);
-	SimSite.Type(A2_y, "y");
-	neg find BoundAnyLink_SupportPattern(A2_y);
-	
-SimAgent.Type(B2, "B2");
+	SimAgent.Type(B2, "B2");
 	SimAgent.simSites(B2, B2_z);
 	SimSite.Type(B2_z, "z");
 	neg find BoundAnyLink_SupportPattern(B2_z);
@@ -181,29 +171,39 @@ SimAgent.Type(B1, "B1");
 	SimAgent.simSites(B1, B1_x);
 	SimSite.Type(B1_x, "x");
 	neg find BoundAnyLink_SupportPattern(B1_x);
+	
+SimAgent.Type(A2, "A2");
+	SimAgent.simSites(A2, A2_y);
+	SimSite.Type(A2_y, "y");
+	neg find BoundAnyLink_SupportPattern(A2_y);
+	
+SimAgent.Type(A1, "A1");
+	SimAgent.simSites(A1, A1_x);
+	SimSite.Type(A1_x, "x");
+	neg find BoundAnyLink_SupportPattern(A1_x);
 	}
 
 pattern simpleBound_rule_lhs( A2 : SimAgent,  B2 : SimAgent) {
-	SimAgent.Type(B2, "B2");
-	SimAgent.simSites(B2, B2_x);
-	SimSite.Type(B2_x, "x");
-	
-SimAgent.Type(A2, "A2");
+	SimAgent.Type(A2, "A2");
 	SimAgent.simSites(A2, A2_x);
 	SimSite.Type(A2_x, "x");
+	
+SimAgent.Type(B2, "B2");
+	SimAgent.simSites(B2, B2_x);
+	SimSite.Type(B2_x, "x");
 	SimSite.simLinkState(A2_x, A2_A2_x_BoundExact);
 			SimSite.simLinkState(B2_x, B2_B2_x_BoundExact);
 			A2_A2_x_BoundExact==B2_B2_x_BoundExact;
 	}
 
 pattern mediumWildcard_rule_lhs( A4 : SimAgent,  B4 : SimAgent) {
-	SimAgent.Type(B4, "B4");
-	SimAgent.simSites(B4, B4_z);
-	SimSite.Type(B4_z, "z");
-	
-SimAgent.Type(A4, "A4");
+	SimAgent.Type(A4, "A4");
 	SimAgent.simSites(A4, A4_x);
 	SimSite.Type(A4_x, "x");
+	
+SimAgent.Type(B4, "B4");
+	SimAgent.simSites(B4, B4_z);
+	SimSite.Type(B4_z, "z");
 	}
 
 pattern mediumBoundWithStates_rule_lhs( A4 : SimAgent,  B4 : SimAgent,  C4 : SimAgent) {
@@ -267,14 +267,6 @@ SimAgent.simSites(B6, B6_v);
 SimAgent.simSites(B6, B6_w);
 	SimSite.Type(B6_w, "w");
 	
-SimAgent.Type(C3, "C3");
-	SimAgent.simSites(C3, C3_b);
-	SimSite.Type(C3_b, "b");
-	SimSite.simSiteState.Type(C3_b, "g");
-	
-SimAgent.simSites(C3, C3_c);
-	SimSite.Type(C3_c, "c");
-	
 SimAgent.Type(A6, "A6");
 	SimAgent.simSites(A6, A6_x);
 	SimSite.Type(A6_x, "x");
@@ -282,6 +274,14 @@ SimAgent.Type(A6, "A6");
 	
 SimAgent.simSites(A6, A6_y);
 	SimSite.Type(A6_y, "y");
+	
+SimAgent.Type(C3, "C3");
+	SimAgent.simSites(C3, C3_b);
+	SimSite.Type(C3_b, "b");
+	SimSite.simSiteState.Type(C3_b, "g");
+	
+SimAgent.simSites(C3, C3_c);
+	SimSite.Type(C3_c, "c");
 	SimSite.simLinkState(B6_w, B6_B6_w_BoundExact);
 			SimSite.simLinkState(C3_c, C3_C3_c_BoundExact);
 			B6_B6_w_BoundExact==C3_C3_c_BoundExact;
@@ -322,15 +322,15 @@ pattern simpleWildcardWithStates_rule_lhs( B4 : SimAgent) {
 	}
 
 pattern simpleBoundWithStates_rule_lhs( A4 : SimAgent,  B4 : SimAgent) {
-	SimAgent.Type(B4, "B4");
-	SimAgent.simSites(B4, B4_x);
-	SimSite.Type(B4_x, "x");
-	SimSite.simSiteState.Type(B4_x, "b");
-	
-SimAgent.Type(A4, "A4");
+	SimAgent.Type(A4, "A4");
 	SimAgent.simSites(A4, A4_x);
 	SimSite.Type(A4_x, "x");
 	SimSite.simSiteState.Type(A4_x, "p");
+	
+SimAgent.Type(B4, "B4");
+	SimAgent.simSites(B4, B4_x);
+	SimSite.Type(B4_x, "x");
+	SimSite.simSiteState.Type(B4_x, "b");
 	SimSite.simLinkState(A4_x, A4_A4_x_BoundExact);
 			SimSite.simLinkState(B4_x, B4_B4_x_BoundExact);
 			A4_A4_x_BoundExact==B4_B4_x_BoundExact;
@@ -349,13 +349,7 @@ SimAgent.Type(B4, "B4");
 	}
 
 pattern mediumDisjunctWithStates_rule_lhs( A1 : SimAgent,  B4 : SimAgent,  A4 : SimAgent) {
-	SimAgent.Type(A4, "A4");
-	SimAgent.simSites(A4, A4_x);
-	SimSite.Type(A4_x, "x");
-	SimSite.simSiteState.Type(A4_x, "q");
-	neg find BoundAnyLink_SupportPattern(A4_x);
-	
-SimAgent.Type(A1, "A1");
+	SimAgent.Type(A1, "A1");
 	SimAgent.simSites(A1, A1_x);
 	SimSite.Type(A1_x, "x");
 	neg find BoundAnyLink_SupportPattern(A1_x);
@@ -365,15 +359,16 @@ SimAgent.Type(B4, "B4");
 	SimSite.Type(B4_x, "x");
 	SimSite.simSiteState.Type(B4_x, "b");
 	neg find BoundAnyLink_SupportPattern(B4_x);
+	
+SimAgent.Type(A4, "A4");
+	SimAgent.simSites(A4, A4_x);
+	SimSite.Type(A4_x, "x");
+	SimSite.simSiteState.Type(A4_x, "q");
+	neg find BoundAnyLink_SupportPattern(A4_x);
 	}
 
 pattern mediumBoundAny_rule_lhs( B3 : SimAgent,  A2 : SimAgent) {
-	SimAgent.Type(A2, "A2");
-	SimAgent.simSites(A2, A2_x);
-	SimSite.Type(A2_x, "x");
-	find BoundAnyLink_SupportPattern(A2_x);
-	
-SimAgent.Type(B3, "B3");
+	SimAgent.Type(B3, "B3");
 	SimAgent.simSites(B3, B3_x);
 	SimSite.Type(B3_x, "x");
 	find BoundAnyLink_SupportPattern(B3_x);
@@ -381,6 +376,11 @@ SimAgent.Type(B3, "B3");
 SimAgent.simSites(B3, B3_z);
 	SimSite.Type(B3_z, "z");
 	find BoundAnyLink_SupportPattern(B3_z);
+	
+SimAgent.Type(A2, "A2");
+	SimAgent.simSites(A2, A2_x);
+	SimSite.Type(A2_x, "x");
+	find BoundAnyLink_SupportPattern(A2_x);
 	}
 
 pattern simpleBoundAnyWithStates_rule_lhs( A4 : SimAgent) {
@@ -403,18 +403,18 @@ SimAgent.simSites(B3, B3_z);
 	}
 
 pattern simpleMixedBoundWithStates_rule_lhs( A6 : SimAgent,  B6 : SimAgent) {
-	SimAgent.Type(A6, "A6");
-	SimAgent.simSites(A6, A6_x);
-	SimSite.Type(A6_x, "x");
-	SimSite.simSiteState.Type(A6_x, "v");
-	
-SimAgent.Type(B6, "B6");
+	SimAgent.Type(B6, "B6");
 	SimAgent.simSites(B6, B6_u);
 	SimSite.Type(B6_u, "u");
 	
 SimAgent.simSites(B6, B6_v);
 	SimSite.Type(B6_v, "v");
 	SimSite.simSiteState.Type(B6_v, "n");
+	
+SimAgent.Type(A6, "A6");
+	SimAgent.simSites(A6, A6_x);
+	SimSite.Type(A6_x, "x");
+	SimSite.simSiteState.Type(A6_x, "v");
 	SimSite.simLinkState(B6_v, B6_B6_v_BoundAny);
 			SimAgent.Type(B6_C3, "C3");
 			SimAgent.simSites(B6_C3, B6_C3_a);
@@ -427,15 +427,15 @@ SimAgent.simSites(B6, B6_v);
 	}
 
 pattern mediumBoundAnyWithStates_rule_lhs( A4 : SimAgent,  A2 : SimAgent) {
-	SimAgent.Type(A2, "A2");
-	SimAgent.simSites(A2, A2_x);
-	SimSite.Type(A2_x, "x");
-	find BoundAnyLink_SupportPattern(A2_x);
-	
-SimAgent.Type(A4, "A4");
+	SimAgent.Type(A4, "A4");
 	SimAgent.simSites(A4, A4_x);
 	SimSite.Type(A4_x, "x");
 	SimSite.simSiteState.Type(A4_x, "p");
 	find BoundAnyLink_SupportPattern(A4_x);
+	
+SimAgent.Type(A2, "A2");
+	SimAgent.simSites(A2, A2_x);
+	SimSite.Type(A2_x, "x");
+	find BoundAnyLink_SupportPattern(A2_x);
 	}
 
