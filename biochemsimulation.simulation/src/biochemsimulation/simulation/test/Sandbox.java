@@ -42,10 +42,11 @@ public class Sandbox {
 	public static final Pattern negPattern = generateInvokedTestPattern();
 
 	public static void main(String[] args) {
+		test1();
 		//test2();
 		//test5();
 		//test4();
-		test6();
+		//test6();
 	}
 
 	public static void test1() {
