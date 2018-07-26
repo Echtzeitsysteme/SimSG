@@ -16,6 +16,8 @@ agent B5(w, z{p, q})
 agent A6(x{u, v}, y, z{r, t})
 agent B6(u, v{l, m, n}, w{r, s, t})
 agent C3(a{i, j}, b{e, f, g}, c)
+agent A7(w{a, b}, x{c, d})
+agent B7(y{e, f}, z{g, h})
 
 // mockup rate variable
 var dummy_rate = 0.1
@@ -56,6 +58,17 @@ var p22 = {A6(x[1], y[2]), B6(u[1], v[C3.a], w[3]), C3(b[2], c[3])}
 // Complex bound tests with states
 var p23 = {A6(x{v}[1]), B6(u[1], v{n}[C3.a])}
 var p24 = {A6(x{u}[1], y[2]), B6(u[1], v[C3.a], w[3]), C3(b{g}[2], c[3])}
+// injectivity constraint tests
+var p25 = {A7(x[1]), A7(x[1], w[2]), A7(x[2])}
+var p26 = {A7(x[1]), B7(y[1], z[2]), A7(x[2], w[3]), B7(z[3], y[5]), B7(z[5])}
+// injectivity constraint tests with states
+var p27 = {A7(x[1]), A7(x{d}[1], w[2]), A7(x[2])}
+var p28 = {A7(x{d}[1]), B7(y[1], z[2]), A7(x[2], w[3]), B7(z{h}[3], y[5]), B7(z[5])}
+// evil versions of: injectivity constraint & BoundAny tests
+var p29 = {A7(x[A7.x]), A7(x[A7.x], w[A7.x]), A7(x[A7.w])}
+var p30 = {A7(x[A7.x]), A7(x{d}[A7.x], w[A7.x]), A7(x[A7.w])}
+// ligh version of: injectivity constraint & BoundAny tests
+var p31 = {A7(x[A7.x], w[A7.x]), A7(x[A7.w])}
 
 // Initial variables for disjunct tests
 init i1 10 {A1(), B1()}
@@ -75,29 +88,51 @@ init i11 3 {A5(y[1]), B5(z{q}[1])}
 // Initial variables for complex bound tests with and w.o. states
 init i12 3 {A6(x{v}[1], y[2]), B6(u[1], v{n}[4], w[3]), C3(a[4], b{f}[2], c[3])}
 init i13 8 {A6(x{u}[1], y[2]), B6(u[1], v[4], w[3]), C3(a[4], b{g}[2], c[3])}
+// Initial variables for injectivity constraints
+init i14 3 {A7(x[1]), A7(x[1], w[2]), A7(x[2])}
+init i15 5 {A7(x[1]), B7(y[1], z[2]), A7(x[2], w[3]), B7(z[3], y[5]), B7(z[5])}
+init i16 7 {A7(x[1]), A7(x{d}[1], w[2]), A7(x[2])}
+init i17 4 {A7(x{d}[1]), B7(y[1], z[2]), A7(x[2], w[3]), B7(z{h}[3], y[5]), B7(z[5])}
 
 // mockup rules to register patterns as relevant for pattern generators
 rule simpleDisjunct_rule p1 -> {void, void} @ [dummy_rate] // 10*10 = 100 Matches
 rule mediumDisjunct_rule p2 -> {void, void, void, void} @ [dummy_rate] // 10 * 10 * 6 * 6 = 3600 Matches
-rule simpleBound_rule p3 -> {void, void} @ [dummy_rate] // 6 Matches
-rule mediumBound_rule p4 -> {void, void, void} @ [dummy_rate] // 7 Matches
 rule simpleDisjunctWithStates_rule p5 -> {void, void} @ [dummy_rate] // 5*10 = 50 Matches
 rule mediumDisjunctWithStates_rule p6 ->  {void, void, void} @ [dummy_rate] // 10*5*5 = 250 Matches
+
+rule simpleBound_rule p3 -> {void, void} @ [dummy_rate] // 6 Matches
+rule mediumBound_rule p4 -> {void, void, void} @ [dummy_rate] // 7 Matches
 rule simpleBoundWithStates_rule p7 -> {void, void} @ [dummy_rate] // 9 Matches
 rule mediumBoundWithStates_rule p8 -> {void, void, void} @ [dummy_rate] // 11 Matches
+
 rule simpleWildcard_rule p9 -> {void, void} @ [dummy_rate] // 6*(7+5) = 6*12 = 72 Matches
 rule mediumWildcard_rule p10 -> {void, void} @ [dummy_rate] // (5+5+9+11) * (9+11+5) = 30*25 = 750 Matches
 rule simpleWildcardWithStates_rule p11 -> {void} @ [dummy_rate] // 11 Matches
 rule mediumWildcardWithStates_rule p12 -> {void, void} @ [dummy_rate] // (5+9)*5 = 14*5 = 70 Matches
+
 rule simpleBoundAny_rule p13 -> {void} @ [dummy_rate] // 7 Matches 
 rule mediumBoundAny_rule p14 -> {void, void} @ [dummy_rate] // 7*6 = 42 Matches 
 rule simpleBoundAnyWithStates_rule p15 -> {void} @ [dummy_rate] // 9 Matches
 rule mediumBoundAnyWithStates_rule p16 -> {void, void} @ [dummy_rate] // 9*6 = 54 Matches
+
 rule simpleBoundAnyType_rule p17 -> {void} @ [dummy_rate] // 26 Matches 
 rule mediumBoundAnyType_rule p18 -> {void, void} @ [dummy_rate] // 26*6 = 156 Matches 
 rule simpleBoundAnyTypeWithStates_rule p19 -> {void} @ [dummy_rate] // 13 Matches
 rule mediumBoundAnyTypeWithStates_rule p20 -> {void, void} @ [dummy_rate] // 13*3 = 39 Matches
+
 rule simpleMixedBound_rule p21 -> {void, void} @ [dummy_rate] // 11 Matches
 rule mediumMixedBound_rule p22 -> {void, void, void} @ [dummy_rate] // 11 Matches
 rule simpleMixedBoundWithStates_rule p23 -> {void, void} @ [dummy_rate] // 3 Matches
 rule mediumMixedBoundWithStates_rule p24 -> {void, void, void} @ [dummy_rate] // 8 Matches
+
+rule simpleInjectivity_rule p25 -> {void, void, void} @ [dummy_rate] // 3+7 = 10 Matches
+rule mediumInjectivity_rule p26 -> {void, void, void, void, void} @ [dummy_rate] // 5 + 4 = 9 Matches
+rule simpleInjectivityWithStates_rule p27 -> {void, void, void} @ [dummy_rate] // 7 Matches
+rule mediumInjectivityWithStates_rule p28 -> {void, void, void, void, void} @ [dummy_rate] // 4 Matches
+
+// Important: These lhs patterns will cause democles to crash or run indefinately
+//rule evilInjectivityAndBoundAny_rule p29 -> {void, void, void} @ [dummy_rate] // [(3+3)+(7+7)]*(3+7)*(3+7) = 20 * 10 * 10 = 2000 Matches (2000 - 10*10 = 1900 for now..)
+//rule evilInjectivityAndBoundAnyWithStates_rule p30 -> {void, void, void} @ [dummy_rate] // [(3+3)+(7+7)]*7*(3+7) = 20 * 7 * 10 = 1400 Matches (1400 - 7*10 = 1330 for now..)
+
+// Light version of the lhs patterns above
+rule lightInjectivityAndBoundAny_rule p31 -> {void, void} @ [dummy_rate] // (3+7)*(3+7)*(4+5) = 10 * 10 = 100 Matches

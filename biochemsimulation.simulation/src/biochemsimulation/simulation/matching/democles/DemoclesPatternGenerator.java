@@ -54,6 +54,7 @@ public class DemoclesPatternGenerator {
 	Map<String, Pattern> generated;
 
 	private Map<AgentNodeContext, EMFVariable> signatureVariables;
+	private Map<AgentNodeContext, EMFVariable> localAgentVariables;
 	private Map<SiteNodeContext, EMFVariable> sitesVariables;
 	private Map<SiteNodeContext, EMFVariable> linkVariables;
 
@@ -72,6 +73,7 @@ public class DemoclesPatternGenerator {
 	public Map<String, Pattern> doGenerate() {
 		generated = new HashMap<String, Pattern>();
 		signatureVariables = new HashMap<AgentNodeContext, EMFVariable>();
+		localAgentVariables = new HashMap<AgentNodeContext, EMFVariable>();
 		sitesVariables = new HashMap<SiteNodeContext, EMFVariable>();
 		linkVariables = new HashMap<SiteNodeContext, EMFVariable>();
 
@@ -127,6 +129,9 @@ public class DemoclesPatternGenerator {
 		for (AgentNodeConstraint constraint : body.getInjectivityConstraints()) {
 			EMFVariable agentNode1 = signatureVariables.get(constraint.getOperand1());
 			EMFVariable agentNode2 = signatureVariables.get(constraint.getOperand2());
+			if(agentNode2 == null) {
+				agentNode2 = localAgentVariables.get(constraint.getOperand2());
+			}
 			RelationalConstraint injectivityConstraint = createRelationalConstraint(trgPatternBody,
 					ConstraintType.unequal);
 			createConstraintParameter(injectivityConstraint, agentNode1);
@@ -264,6 +269,7 @@ public class DemoclesPatternGenerator {
 		AgentNodeContext otherAgentNodeContext = otherSiteNodeContext.getAgentNodeContext();
 		// ###### create local agent node
 		EMFVariable tempAgent = createLocalAgent(trgPatternBody, otherAgentNodeContext);
+		localAgentVariables.put(otherAgentNodeContext, tempAgent);
 		// ###### create local simSite node
 		EMFVariable tempSite = createLocalSite(trgPatternBody, otherSiteNodeContext, tempAgent);
 		// ###### create local link node
@@ -272,6 +278,13 @@ public class DemoclesPatternGenerator {
 		RelationalConstraint linkConstraint = createRelationalConstraint(trgPatternBody, ConstraintType.equal);
 		createConstraintParameter(linkConstraint, linkVariableA);
 		createConstraintParameter(linkConstraint, linkVariableB);
+		/*
+		// create injectivity constraint to remove self-occurences
+		RelationalConstraint injectivityConstraint = createRelationalConstraint(trgPatternBody,
+				ConstraintType.unequal);
+		createConstraintParameter(injectivityConstraint, sitesVariables.get(linkState.getSiteNodeContext()));
+		createConstraintParameter(injectivityConstraint, tempSite);
+		*/
 	}
 
 	private static Pattern createBoundAnyLinkPattern() {

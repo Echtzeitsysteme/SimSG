@@ -32,6 +32,7 @@ public class GenericPatternBody {
 	public GenericPatternBody(GenericPatternSignature signature, List<ValidAgentPattern> agentPatterns) {
 		this.signature = signature;
 		this.agentPatterns = agentPatterns;
+		injectivityConstraints = new LinkedList<AgentNodeConstraint>();
 		
 		buildAgentNodeContexts();
 		buildSiteNodeContexts();
@@ -164,7 +165,7 @@ public class GenericPatternBody {
 					BoundAnyOfTypeLink boundLink = (BoundAnyOfTypeLink)link;
 					String otherAgentType = boundLink.getLinkAgent().getAgent().getName();
 					String otherSiteType = boundLink.getLinkSite().getSite().getName();
-					String localAgentVariableName = currentAgentNodeContext.getAgentVariableName() + "_" + otherAgentType;
+					String localAgentVariableName = currentAgentNodeContext.getAgentVariableName() + "_" + otherAgentType + idx;
 					
 					AgentNodeContext localAgentNodeContext = new AgentNodeContext(localAgentVariableName, otherAgentType);
 					SiteNodeContext localSiteNodeContext = new SiteNodeContext(localAgentNodeContext, otherSiteType);
@@ -176,6 +177,8 @@ public class GenericPatternBody {
 					
 					LinkStateConstraint constraint = new LinkStateConstraint(currentLinkStateContext, localLinkStateContext, ConstraintType.equal);
 					linkStateConstraints.put(currentLinkStateContext.getLocalSimLinkStateVariableName().hashCode(), constraint);
+					// remove self occurences
+					injectivityConstraints.add(new AgentNodeConstraint(currentAgentNodeContext, localAgentNodeContext, ConstraintType.unequal));
 					
 				}else if(currentLinkStateContext.getStateType() == LinkStateType.Bound) {
 					BoundLink boundLink = (BoundLink)link;
@@ -197,7 +200,7 @@ public class GenericPatternBody {
 	}
 	
 	private void buildInjectivityConstraints() {
-		injectivityConstraints = new LinkedList<AgentNodeConstraint>();
+		//injectivityConstraints = new LinkedList<AgentNodeConstraint>();
 		Map<String, List<String>> injectivityConflicts = signature.getInjectivityConflicts();
 		Map<Integer, AgentNodeConstraint> constraints = new HashMap<Integer, AgentNodeConstraint>();
 		

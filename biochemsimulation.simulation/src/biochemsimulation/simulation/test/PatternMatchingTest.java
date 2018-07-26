@@ -58,7 +58,7 @@ abstract class PatternMatchingTest {
 		containerModel.eResource().unload();
 		ruleModel.eResource().unload();
 	}
-
+	
 	@Test
 	void testGetAllMatches() {
 		Collection<String> patternNames = PatternUtils.getPatterns(ruleModel).keySet();
@@ -254,4 +254,80 @@ abstract class PatternMatchingTest {
 		getAndCheckMatches(patternName, numOfMatches);
 	}
 	
+	@Test
+	void simpleInjectivityTest() {
+		final int numOfMatches = 10;
+		final String patternName = "simpleInjectivity_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+
+	@Test
+	void mediumInjectivityTest() {
+		final int numOfMatches = 9;
+		final String patternName = "mediumInjectivity_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void simpleInjectivityWithStatesTest() {
+		final int numOfMatches = 7;
+		final String patternName = "simpleInjectivityWithStates_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void mediumInjectivityWithStatesTest() {
+		final int numOfMatches = 4;
+		final String patternName = "mediumInjectivityWithStates_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	/*	Important: This pattern will cause democles to crash!
+	 * 	From a semantic point of view, the correct result should be 2000.
+	 *  The wrong result, stems from the fact that the constraint to remove self-occurences
+	 *  in "Bound-Any-Type" scenarios removes 1 time the karth. Product of matches from the other context nodes.
+	 *  E.g.: (A, A1, C) : A.x[A1.x], A1.x[A.x]&B.y[C.d], C.d[B.y]
+	 *  -> Result for each context separateley A-> 10, A1->7, C->5
+	 *  -> Combined it should be: A x A1 x C = 10*7*5 = 350
+	 *  -> But due to the mentioned effect is: A x A1 x C - (A1 x C) = 10*7*5 - (7*5) = 315
+	 *  Note: This only occurs, when "Bound-Any-Type"-Constrained are exactly mirrored in two or more participants
+	 *  and these participants have the same type but different variable names.
+	 *  E.g. A.x[A1.x] and A1.x[A.x]
+	 */
+	/*
+	@Test
+	void evilInjectivityAndBoundAnyTest() {
+		final int numOfMatches = 1900;
+		final String patternName = "evilInjectivityAndBoundAny_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	*/
+	/*	Important: This pattern will cause democles to crash!
+	 * 	From a semantic point of view, the correct result should be 1400.
+	 *  The wrong result, stems from the fact that the constraint to remove self-occurences
+	 *  in "Bound-Any-Type" scenarios removes 1 time the karth. Product of matches from the other context nodes.
+	 *  E.g.: (A, A1, C) : A.x[A1.x], A1.x[A.x]&B.y[C.d], C.d[B.y]
+	 *  -> Result for each context separateley A-> 10, A1->7, C->5
+	 *  -> Combined it should be: A x A1 x C = 10*7*5 = 350
+	 *  -> But due to the mentioned effect is: A x A1 x C - (A1 x C) = 10*7*5 - (7*5) = 315
+	 *  Note: This only occurs, when "Bound-Any-Type"-Constrained are exactly mirrored in two or more participants
+	 *  and these participants have the same type but different variable names.
+	 *  E.g. A.x[A1.x] and A1.x[A.x]
+	 */
+	/*
+	@Test
+	void evilInjectivityAndBoundAnyWithStatesTest() {
+		final int numOfMatches = 1330;
+		final String patternName = "evilInjectivityAndBoundAnyWithStates_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	*/
+	
+	@Test
+	void lightInjectivityAndBoundAnyTest() {
+		final int numOfMatches = 100;
+		final String patternName = "lightInjectivityAndBoundAny_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+
 }

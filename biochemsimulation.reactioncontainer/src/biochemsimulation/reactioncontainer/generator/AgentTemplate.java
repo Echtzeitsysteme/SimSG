@@ -17,15 +17,17 @@ import biochemsimulation.reactionrules.utils.PatternUtils;
 public class AgentTemplate {
 	private Initial init;
 	private ValidAgentPattern ap;
+	private int indexInPattern;
 	private int maxNumOfInstances;
 	private int currentNumOfInstances = 0;
 	
 	private String type;
 	private List<SiteTemplate> siteTemplates;
 	
-	AgentTemplate(Initial init, ValidAgentPattern ap) {
+	AgentTemplate(Initial init, ValidAgentPattern ap, int indexInPattern) {
 		this.ap = ap;
 		this.init = init;
+		this.indexInPattern = indexInPattern;
 		siteTemplates = new LinkedList<SiteTemplate>();
 		createTemplate();
 	}
@@ -52,7 +54,7 @@ public class AgentTemplate {
 		currentNumOfInstances++;
 		// missing name
 		newAgent.setType(type);
-		newAgent.setName(generateAgentInstanceName(currentNumOfInstances, type, init.getName(), ""));
+		newAgent.setName(generateAgentInstanceName(currentNumOfInstances, type, init.getName(), "", indexInPattern));
 		
 		for(SiteTemplate st : siteTemplates) {
 			newAgent.getSimSites().add(st.createInstance(factory, simLinkStates, newAgent));
@@ -61,12 +63,16 @@ public class AgentTemplate {
 		return newAgent;
 	}
 	
-	public static String generateAgentInstanceName(int numOfInstance, String type, String varName, String site) {
-		return "AgentInstance:"+numOfInstance+"/ofType:"+type+"/fromVar:"+varName+"/atSite:"+site;
+	public static String generateAgentInstanceName(int numOfInstance, String type, String varName, String site, int idxInPattern) {
+		return "AgentInstance:"+numOfInstance+"/ofType:"+type+"/fromVar:"+varName+"/withIdx:"+idxInPattern+"/atSite:"+site;
 	}
 	
 	public String getType() {
 		return type;
+	}
+	
+	public int getIndexInPattern() {
+		return indexInPattern;
 	}
 	
 	public String getVariableName() {

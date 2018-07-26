@@ -129,8 +129,10 @@ public class ReactionContainerGenerator {
 		for(Initial init : initials) {
 			Pattern pa = PatternUtils.patternFromPatternAssignment(init.getInitialPattern());
 			if(!PatternUtils.isPatternEmpty(pa)) {
+				int idx = 0;
 				for(ValidAgentPattern ap : PatternUtils.getValidAgentPatterns(pa.getAgentPatterns())) {
-					templates.add(new AgentTemplate(init, ap));
+					templates.add(new AgentTemplate(init, ap, idx));
+					idx++;
 				}
 			}
 		}

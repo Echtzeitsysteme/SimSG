@@ -145,6 +145,9 @@ class ViatraCodeGenerator {
 		«SiteNodeContext.SIM_SITE_TYPE.name».«SiteNodeContext.TYPE_ATTRIBUTE.name»(«
 		constraint.operand2.siteNodeContext.localSimSiteVariableName», "«
 		constraint.operand2.siteNodeContext.siteType»");
+		«SiteNodeContext.SIM_SITE_TYPE.name».«LinkStateContext.SIM_LINK_STATE_CONTAINER_ATTRIBUTE.name»(«
+		constraint.operand2.siteNodeContext.localSimSiteVariableName», «
+		constraint.operand2.localSimLinkStateVariableName»);
 		«constraint.operand1.localSimLinkStateVariableName»==«constraint.operand2.localSimLinkStateVariableName»;
 		'''
 	}

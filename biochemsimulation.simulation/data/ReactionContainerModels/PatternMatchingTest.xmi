@@ -1,218 +1,218 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <reactioncontainer:ReactionContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:reactioncontainer="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer" xsi:schemaLocation="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer java://biochemsimulation.reactioncontainer.ReactionContainerPackage" Name="PatternMatchingTest">
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A1/fromVar:i1/atSite:" Type="A1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A1/fromVar:i1/withIdx:0/atSite:" Type="A1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.0"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.0"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A1/fromVar:i1/atSite:" Type="A1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A1/fromVar:i1/withIdx:0/atSite:" Type="A1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.1"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.1"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A1/fromVar:i1/atSite:" Type="A1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A1/fromVar:i1/withIdx:0/atSite:" Type="A1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.2"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.2"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A1/fromVar:i1/atSite:" Type="A1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A1/fromVar:i1/withIdx:0/atSite:" Type="A1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.3"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.3"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A1/fromVar:i1/atSite:" Type="A1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A1/fromVar:i1/withIdx:0/atSite:" Type="A1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.4"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.4"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:A1/fromVar:i1/atSite:" Type="A1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:A1/fromVar:i1/withIdx:0/atSite:" Type="A1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.5"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.5"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:A1/fromVar:i1/atSite:" Type="A1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:A1/fromVar:i1/withIdx:0/atSite:" Type="A1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.6"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.6"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:A1/fromVar:i1/atSite:" Type="A1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:A1/fromVar:i1/withIdx:0/atSite:" Type="A1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.7"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.7"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:A1/fromVar:i1/atSite:" Type="A1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:A1/fromVar:i1/withIdx:0/atSite:" Type="A1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.8"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.8"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:10/ofType:A1/fromVar:i1/atSite:" Type="A1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:10/ofType:A1/fromVar:i1/withIdx:0/atSite:" Type="A1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.9"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.9"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B1/fromVar:i1/atSite:" Type="B1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B1/fromVar:i1/withIdx:1/atSite:" Type="B1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.10"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.10"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B1/fromVar:i1/atSite:" Type="B1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B1/fromVar:i1/withIdx:1/atSite:" Type="B1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.11"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.11"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B1/fromVar:i1/atSite:" Type="B1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B1/fromVar:i1/withIdx:1/atSite:" Type="B1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.12"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.12"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B1/fromVar:i1/atSite:" Type="B1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B1/fromVar:i1/withIdx:1/atSite:" Type="B1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.13"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.13"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B1/fromVar:i1/atSite:" Type="B1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B1/fromVar:i1/withIdx:1/atSite:" Type="B1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.14"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.14"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:B1/fromVar:i1/atSite:" Type="B1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:B1/fromVar:i1/withIdx:1/atSite:" Type="B1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.15"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.15"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:B1/fromVar:i1/atSite:" Type="B1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:B1/fromVar:i1/withIdx:1/atSite:" Type="B1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.16"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.16"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:B1/fromVar:i1/atSite:" Type="B1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:B1/fromVar:i1/withIdx:1/atSite:" Type="B1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.17"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.17"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:B1/fromVar:i1/atSite:" Type="B1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:B1/fromVar:i1/withIdx:1/atSite:" Type="B1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.18"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.18"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:10/ofType:B1/fromVar:i1/atSite:" Type="B1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:10/ofType:B1/fromVar:i1/withIdx:1/atSite:" Type="B1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.19"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.19"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A2/fromVar:i2/atSite:" Type="A2">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A2/fromVar:i2/withIdx:0/atSite:" Type="A2">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.20" simLinkState="//@simLinkStates.0"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.20"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A2/fromVar:i2/atSite:" Type="A2">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A2/fromVar:i2/withIdx:0/atSite:" Type="A2">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.21" simLinkState="//@simLinkStates.1"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.21"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A2/fromVar:i2/atSite:" Type="A2">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A2/fromVar:i2/withIdx:0/atSite:" Type="A2">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.22" simLinkState="//@simLinkStates.2"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.22"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A2/fromVar:i2/atSite:" Type="A2">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A2/fromVar:i2/withIdx:0/atSite:" Type="A2">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.23" simLinkState="//@simLinkStates.3"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.23"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A2/fromVar:i2/atSite:" Type="A2">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A2/fromVar:i2/withIdx:0/atSite:" Type="A2">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.24" simLinkState="//@simLinkStates.4"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.24"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:A2/fromVar:i2/atSite:" Type="A2">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:A2/fromVar:i2/withIdx:0/atSite:" Type="A2">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.25" simLinkState="//@simLinkStates.5"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.25"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B2/fromVar:i2/atSite:" Type="B2">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B2/fromVar:i2/withIdx:1/atSite:" Type="B2">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.26" simLinkState="//@simLinkStates.0"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.26"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B2/fromVar:i2/atSite:" Type="B2">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B2/fromVar:i2/withIdx:1/atSite:" Type="B2">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.27" simLinkState="//@simLinkStates.1"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.27"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B2/fromVar:i2/atSite:" Type="B2">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B2/fromVar:i2/withIdx:1/atSite:" Type="B2">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.28" simLinkState="//@simLinkStates.2"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.28"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B2/fromVar:i2/atSite:" Type="B2">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B2/fromVar:i2/withIdx:1/atSite:" Type="B2">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.29" simLinkState="//@simLinkStates.3"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.29"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B2/fromVar:i2/atSite:" Type="B2">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B2/fromVar:i2/withIdx:1/atSite:" Type="B2">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.30" simLinkState="//@simLinkStates.4"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.30"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:B2/fromVar:i2/atSite:" Type="B2">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:B2/fromVar:i2/withIdx:1/atSite:" Type="B2">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.31" simLinkState="//@simLinkStates.5"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.31"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A3/fromVar:i3/atSite:" Type="A3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A3/fromVar:i3/withIdx:0/atSite:" Type="A3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.32" simLinkState="//@simLinkStates.6"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.32"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A3/fromVar:i3/atSite:" Type="A3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A3/fromVar:i3/withIdx:0/atSite:" Type="A3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.33" simLinkState="//@simLinkStates.7"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.33"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A3/fromVar:i3/atSite:" Type="A3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A3/fromVar:i3/withIdx:0/atSite:" Type="A3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.34" simLinkState="//@simLinkStates.8"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.34"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A3/fromVar:i3/atSite:" Type="A3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A3/fromVar:i3/withIdx:0/atSite:" Type="A3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.35" simLinkState="//@simLinkStates.9"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.35"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A3/fromVar:i3/atSite:" Type="A3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A3/fromVar:i3/withIdx:0/atSite:" Type="A3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.36" simLinkState="//@simLinkStates.10"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.36"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:A3/fromVar:i3/atSite:" Type="A3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:A3/fromVar:i3/withIdx:0/atSite:" Type="A3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.37" simLinkState="//@simLinkStates.11"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.37"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:A3/fromVar:i3/atSite:" Type="A3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:A3/fromVar:i3/withIdx:0/atSite:" Type="A3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.38" simLinkState="//@simLinkStates.12"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.38"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B3/fromVar:i3/atSite:" Type="B3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B3/fromVar:i3/withIdx:1/atSite:" Type="B3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.39" simLinkState="//@simLinkStates.6"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.39" simLinkState="//@simLinkStates.13"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B3/fromVar:i3/atSite:" Type="B3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B3/fromVar:i3/withIdx:1/atSite:" Type="B3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.40" simLinkState="//@simLinkStates.7"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.40" simLinkState="//@simLinkStates.14"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B3/fromVar:i3/atSite:" Type="B3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B3/fromVar:i3/withIdx:1/atSite:" Type="B3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.41" simLinkState="//@simLinkStates.8"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.41" simLinkState="//@simLinkStates.15"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B3/fromVar:i3/atSite:" Type="B3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B3/fromVar:i3/withIdx:1/atSite:" Type="B3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.42" simLinkState="//@simLinkStates.9"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.42" simLinkState="//@simLinkStates.16"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B3/fromVar:i3/atSite:" Type="B3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B3/fromVar:i3/withIdx:1/atSite:" Type="B3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.43" simLinkState="//@simLinkStates.10"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.43" simLinkState="//@simLinkStates.17"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:B3/fromVar:i3/atSite:" Type="B3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:B3/fromVar:i3/withIdx:1/atSite:" Type="B3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.44" simLinkState="//@simLinkStates.11"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.44" simLinkState="//@simLinkStates.18"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:B3/fromVar:i3/atSite:" Type="B3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:B3/fromVar:i3/withIdx:1/atSite:" Type="B3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.45" simLinkState="//@simLinkStates.12"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.45" simLinkState="//@simLinkStates.19"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:C1/fromVar:i3/atSite:" Type="C1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:C1/fromVar:i3/withIdx:2/atSite:" Type="C1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.46" simLinkState="//@simLinkStates.13"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.46"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:C1/fromVar:i3/atSite:" Type="C1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:C1/fromVar:i3/withIdx:2/atSite:" Type="C1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.47" simLinkState="//@simLinkStates.14"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.47"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:C1/fromVar:i3/atSite:" Type="C1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:C1/fromVar:i3/withIdx:2/atSite:" Type="C1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.48" simLinkState="//@simLinkStates.15"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.48"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:C1/fromVar:i3/atSite:" Type="C1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:C1/fromVar:i3/withIdx:2/atSite:" Type="C1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.49" simLinkState="//@simLinkStates.16"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.49"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:C1/fromVar:i3/atSite:" Type="C1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:C1/fromVar:i3/withIdx:2/atSite:" Type="C1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.50" simLinkState="//@simLinkStates.17"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.50"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:C1/fromVar:i3/atSite:" Type="C1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:C1/fromVar:i3/withIdx:2/atSite:" Type="C1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.51" simLinkState="//@simLinkStates.18"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.51"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:C1/fromVar:i3/atSite:" Type="C1">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:C1/fromVar:i3/withIdx:2/atSite:" Type="C1">
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.52" simLinkState="//@simLinkStates.19"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.52"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A4/fromVar:i4/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A4/fromVar:i4/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.53">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -220,7 +220,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A4/fromVar:i4/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A4/fromVar:i4/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.54">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -228,7 +228,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A4/fromVar:i4/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A4/fromVar:i4/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.55">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -236,7 +236,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A4/fromVar:i4/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A4/fromVar:i4/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.56">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -244,7 +244,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A4/fromVar:i4/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A4/fromVar:i4/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.57">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -252,7 +252,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A4/fromVar:i4/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A4/fromVar:i4/withIdx:1/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.58">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="q"/>
     </simSites>
@@ -260,7 +260,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A4/fromVar:i4/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A4/fromVar:i4/withIdx:1/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.59">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="q"/>
     </simSites>
@@ -268,7 +268,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A4/fromVar:i4/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A4/fromVar:i4/withIdx:1/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.60">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="q"/>
     </simSites>
@@ -276,7 +276,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A4/fromVar:i4/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A4/fromVar:i4/withIdx:1/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.61">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="q"/>
     </simSites>
@@ -284,7 +284,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A4/fromVar:i4/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A4/fromVar:i4/withIdx:1/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.62">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="q"/>
     </simSites>
@@ -292,7 +292,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B4/fromVar:i4/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B4/fromVar:i4/withIdx:2/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.63">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="b"/>
     </simSites>
@@ -300,7 +300,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="o"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B4/fromVar:i4/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B4/fromVar:i4/withIdx:2/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.64">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="b"/>
     </simSites>
@@ -308,7 +308,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="o"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B4/fromVar:i4/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B4/fromVar:i4/withIdx:2/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.65">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="b"/>
     </simSites>
@@ -316,7 +316,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="o"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B4/fromVar:i4/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B4/fromVar:i4/withIdx:2/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.66">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="b"/>
     </simSites>
@@ -324,7 +324,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="o"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B4/fromVar:i4/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B4/fromVar:i4/withIdx:2/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.67">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="b"/>
     </simSites>
@@ -332,7 +332,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="o"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A4/fromVar:i5/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A4/fromVar:i5/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.68" simLinkState="//@simLinkStates.20">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -340,7 +340,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A4/fromVar:i5/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A4/fromVar:i5/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.69" simLinkState="//@simLinkStates.21">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -348,7 +348,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A4/fromVar:i5/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A4/fromVar:i5/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.70" simLinkState="//@simLinkStates.22">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -356,7 +356,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A4/fromVar:i5/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A4/fromVar:i5/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.71" simLinkState="//@simLinkStates.23">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -364,7 +364,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A4/fromVar:i5/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A4/fromVar:i5/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.72" simLinkState="//@simLinkStates.24">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -372,7 +372,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:A4/fromVar:i5/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:A4/fromVar:i5/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.73" simLinkState="//@simLinkStates.25">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -380,7 +380,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:A4/fromVar:i5/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:A4/fromVar:i5/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.74" simLinkState="//@simLinkStates.26">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -388,7 +388,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:A4/fromVar:i5/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:A4/fromVar:i5/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.75" simLinkState="//@simLinkStates.27">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -396,7 +396,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:A4/fromVar:i5/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:A4/fromVar:i5/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.76" simLinkState="//@simLinkStates.28">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -404,7 +404,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B4/fromVar:i5/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B4/fromVar:i5/withIdx:1/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.77" simLinkState="//@simLinkStates.20">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="b"/>
     </simSites>
@@ -412,7 +412,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="o"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B4/fromVar:i5/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B4/fromVar:i5/withIdx:1/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.78" simLinkState="//@simLinkStates.21">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="b"/>
     </simSites>
@@ -420,7 +420,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="o"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B4/fromVar:i5/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B4/fromVar:i5/withIdx:1/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.79" simLinkState="//@simLinkStates.22">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="b"/>
     </simSites>
@@ -428,7 +428,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="o"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B4/fromVar:i5/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B4/fromVar:i5/withIdx:1/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.80" simLinkState="//@simLinkStates.23">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="b"/>
     </simSites>
@@ -436,7 +436,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="o"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B4/fromVar:i5/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B4/fromVar:i5/withIdx:1/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.81" simLinkState="//@simLinkStates.24">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="b"/>
     </simSites>
@@ -444,7 +444,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="o"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:B4/fromVar:i5/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:B4/fromVar:i5/withIdx:1/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.82" simLinkState="//@simLinkStates.25">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="b"/>
     </simSites>
@@ -452,7 +452,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="o"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:B4/fromVar:i5/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:B4/fromVar:i5/withIdx:1/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.83" simLinkState="//@simLinkStates.26">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="b"/>
     </simSites>
@@ -460,7 +460,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="o"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:B4/fromVar:i5/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:B4/fromVar:i5/withIdx:1/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.84" simLinkState="//@simLinkStates.27">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="b"/>
     </simSites>
@@ -468,7 +468,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="o"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:B4/fromVar:i5/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:B4/fromVar:i5/withIdx:1/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.85" simLinkState="//@simLinkStates.28">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="b"/>
     </simSites>
@@ -476,7 +476,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="o"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A4/fromVar:i6/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A4/fromVar:i6/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.86" simLinkState="//@simLinkStates.29">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
@@ -484,7 +484,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A4/fromVar:i6/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A4/fromVar:i6/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.87" simLinkState="//@simLinkStates.30">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
@@ -492,7 +492,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A4/fromVar:i6/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A4/fromVar:i6/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.88" simLinkState="//@simLinkStates.31">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
@@ -500,7 +500,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A4/fromVar:i6/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A4/fromVar:i6/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.89" simLinkState="//@simLinkStates.32">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
@@ -508,7 +508,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A4/fromVar:i6/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A4/fromVar:i6/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.90" simLinkState="//@simLinkStates.33">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
@@ -516,7 +516,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:A4/fromVar:i6/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:A4/fromVar:i6/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.91" simLinkState="//@simLinkStates.34">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
@@ -524,7 +524,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:A4/fromVar:i6/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:A4/fromVar:i6/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.92" simLinkState="//@simLinkStates.35">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
@@ -532,7 +532,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:A4/fromVar:i6/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:A4/fromVar:i6/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.93" simLinkState="//@simLinkStates.36">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
@@ -540,7 +540,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:A4/fromVar:i6/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:A4/fromVar:i6/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.94" simLinkState="//@simLinkStates.37">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
@@ -548,7 +548,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:10/ofType:A4/fromVar:i6/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:10/ofType:A4/fromVar:i6/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.95" simLinkState="//@simLinkStates.38">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
@@ -556,7 +556,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:11/ofType:A4/fromVar:i6/atSite:" Type="A4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:11/ofType:A4/fromVar:i6/withIdx:0/atSite:" Type="A4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.96" simLinkState="//@simLinkStates.39">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="m"/>
     </simSites>
@@ -564,7 +564,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B4/fromVar:i6/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B4/fromVar:i6/withIdx:1/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.97" simLinkState="//@simLinkStates.29">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -572,7 +572,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B4/fromVar:i6/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B4/fromVar:i6/withIdx:1/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.98" simLinkState="//@simLinkStates.30">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -580,7 +580,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B4/fromVar:i6/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B4/fromVar:i6/withIdx:1/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.99" simLinkState="//@simLinkStates.31">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -588,7 +588,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B4/fromVar:i6/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B4/fromVar:i6/withIdx:1/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.100" simLinkState="//@simLinkStates.32">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -596,7 +596,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B4/fromVar:i6/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B4/fromVar:i6/withIdx:1/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.101" simLinkState="//@simLinkStates.33">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -604,7 +604,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:B4/fromVar:i6/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:B4/fromVar:i6/withIdx:1/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.102" simLinkState="//@simLinkStates.34">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -612,7 +612,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:B4/fromVar:i6/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:B4/fromVar:i6/withIdx:1/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.103" simLinkState="//@simLinkStates.35">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -620,7 +620,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:B4/fromVar:i6/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:B4/fromVar:i6/withIdx:1/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.104" simLinkState="//@simLinkStates.36">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -628,7 +628,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:B4/fromVar:i6/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:B4/fromVar:i6/withIdx:1/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.105" simLinkState="//@simLinkStates.37">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -636,7 +636,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:10/ofType:B4/fromVar:i6/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:10/ofType:B4/fromVar:i6/withIdx:1/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.106" simLinkState="//@simLinkStates.38">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -644,7 +644,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:11/ofType:B4/fromVar:i6/atSite:" Type="B4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:11/ofType:B4/fromVar:i6/withIdx:1/atSite:" Type="B4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.107" simLinkState="//@simLinkStates.39">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
@@ -652,455 +652,455 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:C4/fromVar:i6/atSite:" Type="C4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:C4/fromVar:i6/withIdx:2/atSite:" Type="C4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.108" simLinkState="//@simLinkStates.40"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.108"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:C4/fromVar:i6/atSite:" Type="C4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:C4/fromVar:i6/withIdx:2/atSite:" Type="C4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.109" simLinkState="//@simLinkStates.41"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.109"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:C4/fromVar:i6/atSite:" Type="C4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:C4/fromVar:i6/withIdx:2/atSite:" Type="C4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.110" simLinkState="//@simLinkStates.42"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.110"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:C4/fromVar:i6/atSite:" Type="C4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:C4/fromVar:i6/withIdx:2/atSite:" Type="C4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.111" simLinkState="//@simLinkStates.43"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.111"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:C4/fromVar:i6/atSite:" Type="C4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:C4/fromVar:i6/withIdx:2/atSite:" Type="C4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.112" simLinkState="//@simLinkStates.44"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.112"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:C4/fromVar:i6/atSite:" Type="C4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:C4/fromVar:i6/withIdx:2/atSite:" Type="C4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.113" simLinkState="//@simLinkStates.45"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.113"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:C4/fromVar:i6/atSite:" Type="C4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:C4/fromVar:i6/withIdx:2/atSite:" Type="C4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.114" simLinkState="//@simLinkStates.46"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.114"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:C4/fromVar:i6/atSite:" Type="C4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:C4/fromVar:i6/withIdx:2/atSite:" Type="C4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.115" simLinkState="//@simLinkStates.47"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.115"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:C4/fromVar:i6/atSite:" Type="C4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:C4/fromVar:i6/withIdx:2/atSite:" Type="C4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.116" simLinkState="//@simLinkStates.48"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.116"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:10/ofType:C4/fromVar:i6/atSite:" Type="C4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:10/ofType:C4/fromVar:i6/withIdx:2/atSite:" Type="C4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.117" simLinkState="//@simLinkStates.49"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.117"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:11/ofType:C4/fromVar:i6/atSite:" Type="C4">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:11/ofType:C4/fromVar:i6/withIdx:2/atSite:" Type="C4">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.118" simLinkState="//@simLinkStates.50"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.118"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B3/fromVar:i7/atSite:" Type="B3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B3/fromVar:i7/withIdx:0/atSite:" Type="B3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.119"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.119"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B3/fromVar:i7/atSite:" Type="B3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B3/fromVar:i7/withIdx:0/atSite:" Type="B3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.120"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.120"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B3/fromVar:i7/atSite:" Type="B3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B3/fromVar:i7/withIdx:0/atSite:" Type="B3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.121"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.121"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B3/fromVar:i7/atSite:" Type="B3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B3/fromVar:i7/withIdx:0/atSite:" Type="B3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.122"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.122"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B3/fromVar:i7/atSite:" Type="B3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B3/fromVar:i7/withIdx:0/atSite:" Type="B3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.123"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.123"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A5/fromVar:i8/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A5/fromVar:i8/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.124" simLinkState="//@simLinkStates.51">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.124"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A5/fromVar:i8/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A5/fromVar:i8/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.125" simLinkState="//@simLinkStates.52">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.125"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A5/fromVar:i8/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A5/fromVar:i8/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.126" simLinkState="//@simLinkStates.53">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.126"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A5/fromVar:i8/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A5/fromVar:i8/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.127" simLinkState="//@simLinkStates.54">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.127"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A5/fromVar:i8/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A5/fromVar:i8/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.128" simLinkState="//@simLinkStates.55">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.128"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:A5/fromVar:i8/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:A5/fromVar:i8/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.129" simLinkState="//@simLinkStates.56">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.129"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:A5/fromVar:i8/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:A5/fromVar:i8/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.130" simLinkState="//@simLinkStates.57">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.130"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:A5/fromVar:i8/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:A5/fromVar:i8/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.131" simLinkState="//@simLinkStates.58">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.131"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:A5/fromVar:i8/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:A5/fromVar:i8/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.132" simLinkState="//@simLinkStates.59">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.132"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:10/ofType:A5/fromVar:i8/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:10/ofType:A5/fromVar:i8/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.133" simLinkState="//@simLinkStates.60">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.133"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:11/ofType:A5/fromVar:i8/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:11/ofType:A5/fromVar:i8/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.134" simLinkState="//@simLinkStates.61">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.134"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:12/ofType:A5/fromVar:i8/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:12/ofType:A5/fromVar:i8/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.135" simLinkState="//@simLinkStates.62">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.135"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:13/ofType:A5/fromVar:i8/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:13/ofType:A5/fromVar:i8/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.136" simLinkState="//@simLinkStates.63">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.136"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B5/fromVar:i8/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B5/fromVar:i8/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.137" simLinkState="//@simLinkStates.51"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.137">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B5/fromVar:i8/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B5/fromVar:i8/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.138" simLinkState="//@simLinkStates.52"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.138">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B5/fromVar:i8/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B5/fromVar:i8/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.139" simLinkState="//@simLinkStates.53"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.139">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B5/fromVar:i8/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B5/fromVar:i8/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.140" simLinkState="//@simLinkStates.54"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.140">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B5/fromVar:i8/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B5/fromVar:i8/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.141" simLinkState="//@simLinkStates.55"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.141">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:B5/fromVar:i8/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:B5/fromVar:i8/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.142" simLinkState="//@simLinkStates.56"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.142">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:B5/fromVar:i8/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:B5/fromVar:i8/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.143" simLinkState="//@simLinkStates.57"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.143">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:B5/fromVar:i8/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:B5/fromVar:i8/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.144" simLinkState="//@simLinkStates.58"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.144">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:B5/fromVar:i8/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:B5/fromVar:i8/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.145" simLinkState="//@simLinkStates.59"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.145">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:10/ofType:B5/fromVar:i8/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:10/ofType:B5/fromVar:i8/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.146" simLinkState="//@simLinkStates.60"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.146">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:11/ofType:B5/fromVar:i8/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:11/ofType:B5/fromVar:i8/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.147" simLinkState="//@simLinkStates.61"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.147">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:12/ofType:B5/fromVar:i8/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:12/ofType:B5/fromVar:i8/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.148" simLinkState="//@simLinkStates.62"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.148">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:13/ofType:B5/fromVar:i8/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:13/ofType:B5/fromVar:i8/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.149" simLinkState="//@simLinkStates.63"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.149">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A5/fromVar:i9/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A5/fromVar:i9/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.150" simLinkState="//@simLinkStates.64"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.150">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A5/fromVar:i9/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A5/fromVar:i9/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.151" simLinkState="//@simLinkStates.65"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.151">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A5/fromVar:i9/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A5/fromVar:i9/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.152" simLinkState="//@simLinkStates.66"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.152">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B5/fromVar:i9/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B5/fromVar:i9/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.153" simLinkState="//@simLinkStates.64">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.153"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B5/fromVar:i9/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B5/fromVar:i9/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.154" simLinkState="//@simLinkStates.65">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.154"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B5/fromVar:i9/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B5/fromVar:i9/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.155" simLinkState="//@simLinkStates.66">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.155"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A5/fromVar:i10/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A5/fromVar:i10/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.156" simLinkState="//@simLinkStates.67">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="v"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.156"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A5/fromVar:i10/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A5/fromVar:i10/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.157" simLinkState="//@simLinkStates.68">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="v"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.157"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A5/fromVar:i10/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A5/fromVar:i10/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.158" simLinkState="//@simLinkStates.69">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="v"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.158"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A5/fromVar:i10/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A5/fromVar:i10/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.159" simLinkState="//@simLinkStates.70">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="v"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.159"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A5/fromVar:i10/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A5/fromVar:i10/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.160" simLinkState="//@simLinkStates.71">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="v"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.160"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:A5/fromVar:i10/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:A5/fromVar:i10/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.161" simLinkState="//@simLinkStates.72">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="v"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.161"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:A5/fromVar:i10/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:A5/fromVar:i10/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.162" simLinkState="//@simLinkStates.73">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="v"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.162"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:A5/fromVar:i10/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:A5/fromVar:i10/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.163" simLinkState="//@simLinkStates.74">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="v"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.163"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:A5/fromVar:i10/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:A5/fromVar:i10/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.164" simLinkState="//@simLinkStates.75">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="v"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.164"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:10/ofType:A5/fromVar:i10/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:10/ofType:A5/fromVar:i10/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.165" simLinkState="//@simLinkStates.76">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="v"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.165"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:11/ofType:A5/fromVar:i10/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:11/ofType:A5/fromVar:i10/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.166" simLinkState="//@simLinkStates.77">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="v"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.166"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:12/ofType:A5/fromVar:i10/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:12/ofType:A5/fromVar:i10/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.167" simLinkState="//@simLinkStates.78">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="v"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.167"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:13/ofType:A5/fromVar:i10/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:13/ofType:A5/fromVar:i10/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.168" simLinkState="//@simLinkStates.79">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="v"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.168"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B5/fromVar:i10/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B5/fromVar:i10/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.169" simLinkState="//@simLinkStates.67"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.169">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B5/fromVar:i10/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B5/fromVar:i10/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.170" simLinkState="//@simLinkStates.68"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.170">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B5/fromVar:i10/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B5/fromVar:i10/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.171" simLinkState="//@simLinkStates.69"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.171">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B5/fromVar:i10/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B5/fromVar:i10/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.172" simLinkState="//@simLinkStates.70"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.172">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B5/fromVar:i10/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B5/fromVar:i10/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.173" simLinkState="//@simLinkStates.71"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.173">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:B5/fromVar:i10/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:B5/fromVar:i10/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.174" simLinkState="//@simLinkStates.72"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.174">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:B5/fromVar:i10/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:B5/fromVar:i10/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.175" simLinkState="//@simLinkStates.73"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.175">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:B5/fromVar:i10/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:B5/fromVar:i10/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.176" simLinkState="//@simLinkStates.74"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.176">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:B5/fromVar:i10/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:9/ofType:B5/fromVar:i10/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.177" simLinkState="//@simLinkStates.75"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.177">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:10/ofType:B5/fromVar:i10/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:10/ofType:B5/fromVar:i10/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.178" simLinkState="//@simLinkStates.76"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.178">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:11/ofType:B5/fromVar:i10/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:11/ofType:B5/fromVar:i10/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.179" simLinkState="//@simLinkStates.77"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.179">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:12/ofType:B5/fromVar:i10/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:12/ofType:B5/fromVar:i10/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.180" simLinkState="//@simLinkStates.78"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.180">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:13/ofType:B5/fromVar:i10/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:13/ofType:B5/fromVar:i10/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.181" simLinkState="//@simLinkStates.79"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.181">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="p"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A5/fromVar:i11/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A5/fromVar:i11/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.182" simLinkState="//@simLinkStates.80"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.182">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A5/fromVar:i11/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A5/fromVar:i11/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.183" simLinkState="//@simLinkStates.81"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.183">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A5/fromVar:i11/atSite:" Type="A5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A5/fromVar:i11/withIdx:0/atSite:" Type="A5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.184" simLinkState="//@simLinkStates.82"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.184">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B5/fromVar:i11/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B5/fromVar:i11/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.185" simLinkState="//@simLinkStates.80">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="q"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.185"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B5/fromVar:i11/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B5/fromVar:i11/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.186" simLinkState="//@simLinkStates.81">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="q"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.186"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B5/fromVar:i11/atSite:" Type="B5">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B5/fromVar:i11/withIdx:1/atSite:" Type="B5">
     <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.187" simLinkState="//@simLinkStates.82">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="q"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.187"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A6/fromVar:i12/atSite:" Type="A6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A6/fromVar:i12/withIdx:0/atSite:" Type="A6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.188" simLinkState="//@simLinkStates.83">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="v"/>
     </simSites>
@@ -1109,7 +1109,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A6/fromVar:i12/atSite:" Type="A6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A6/fromVar:i12/withIdx:0/atSite:" Type="A6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.189" simLinkState="//@simLinkStates.85">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="v"/>
     </simSites>
@@ -1118,7 +1118,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A6/fromVar:i12/atSite:" Type="A6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A6/fromVar:i12/withIdx:0/atSite:" Type="A6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.190" simLinkState="//@simLinkStates.87">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="v"/>
     </simSites>
@@ -1127,7 +1127,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B6/fromVar:i12/atSite:" Type="B6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B6/fromVar:i12/withIdx:1/atSite:" Type="B6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="u" simAgent="//@simAgent.191" simLinkState="//@simLinkStates.83"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.191" simLinkState="//@simLinkStates.89">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="n"/>
@@ -1136,7 +1136,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B6/fromVar:i12/atSite:" Type="B6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B6/fromVar:i12/withIdx:1/atSite:" Type="B6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="u" simAgent="//@simAgent.192" simLinkState="//@simLinkStates.85"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.192" simLinkState="//@simLinkStates.91">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="n"/>
@@ -1145,7 +1145,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B6/fromVar:i12/atSite:" Type="B6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B6/fromVar:i12/withIdx:1/atSite:" Type="B6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="u" simAgent="//@simAgent.193" simLinkState="//@simLinkStates.87"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.193" simLinkState="//@simLinkStates.93">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="n"/>
@@ -1154,7 +1154,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:C3/fromVar:i12/atSite:" Type="C3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:C3/fromVar:i12/withIdx:2/atSite:" Type="C3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="a" simAgent="//@simAgent.194" simLinkState="//@simLinkStates.89">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="i"/>
     </simSites>
@@ -1163,7 +1163,7 @@
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="c" simAgent="//@simAgent.194" simLinkState="//@simLinkStates.90"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:C3/fromVar:i12/atSite:" Type="C3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:C3/fromVar:i12/withIdx:2/atSite:" Type="C3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="a" simAgent="//@simAgent.195" simLinkState="//@simLinkStates.91">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="i"/>
     </simSites>
@@ -1172,7 +1172,7 @@
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="c" simAgent="//@simAgent.195" simLinkState="//@simLinkStates.92"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:C3/fromVar:i12/atSite:" Type="C3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:C3/fromVar:i12/withIdx:2/atSite:" Type="C3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="a" simAgent="//@simAgent.196" simLinkState="//@simLinkStates.93">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="i"/>
     </simSites>
@@ -1181,7 +1181,7 @@
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="c" simAgent="//@simAgent.196" simLinkState="//@simLinkStates.94"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A6/fromVar:i13/atSite:" Type="A6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A6/fromVar:i13/withIdx:0/atSite:" Type="A6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.197" simLinkState="//@simLinkStates.95">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
@@ -1190,7 +1190,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A6/fromVar:i13/atSite:" Type="A6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A6/fromVar:i13/withIdx:0/atSite:" Type="A6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.198" simLinkState="//@simLinkStates.97">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
@@ -1199,7 +1199,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A6/fromVar:i13/atSite:" Type="A6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A6/fromVar:i13/withIdx:0/atSite:" Type="A6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.199" simLinkState="//@simLinkStates.99">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
@@ -1208,7 +1208,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A6/fromVar:i13/atSite:" Type="A6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A6/fromVar:i13/withIdx:0/atSite:" Type="A6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.200" simLinkState="//@simLinkStates.101">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
@@ -1217,7 +1217,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A6/fromVar:i13/atSite:" Type="A6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A6/fromVar:i13/withIdx:0/atSite:" Type="A6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.201" simLinkState="//@simLinkStates.103">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
@@ -1226,7 +1226,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:A6/fromVar:i13/atSite:" Type="A6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:A6/fromVar:i13/withIdx:0/atSite:" Type="A6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.202" simLinkState="//@simLinkStates.105">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
@@ -1235,7 +1235,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:A6/fromVar:i13/atSite:" Type="A6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:A6/fromVar:i13/withIdx:0/atSite:" Type="A6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.203" simLinkState="//@simLinkStates.107">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
@@ -1244,7 +1244,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:A6/fromVar:i13/atSite:" Type="A6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:A6/fromVar:i13/withIdx:0/atSite:" Type="A6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.204" simLinkState="//@simLinkStates.109">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="u"/>
     </simSites>
@@ -1253,7 +1253,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B6/fromVar:i13/atSite:" Type="B6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B6/fromVar:i13/withIdx:1/atSite:" Type="B6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="u" simAgent="//@simAgent.205" simLinkState="//@simLinkStates.95"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.205" simLinkState="//@simLinkStates.111">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="l"/>
@@ -1262,7 +1262,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B6/fromVar:i13/atSite:" Type="B6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B6/fromVar:i13/withIdx:1/atSite:" Type="B6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="u" simAgent="//@simAgent.206" simLinkState="//@simLinkStates.97"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.206" simLinkState="//@simLinkStates.113">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="l"/>
@@ -1271,7 +1271,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B6/fromVar:i13/atSite:" Type="B6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B6/fromVar:i13/withIdx:1/atSite:" Type="B6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="u" simAgent="//@simAgent.207" simLinkState="//@simLinkStates.99"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.207" simLinkState="//@simLinkStates.115">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="l"/>
@@ -1280,7 +1280,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B6/fromVar:i13/atSite:" Type="B6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B6/fromVar:i13/withIdx:1/atSite:" Type="B6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="u" simAgent="//@simAgent.208" simLinkState="//@simLinkStates.101"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.208" simLinkState="//@simLinkStates.117">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="l"/>
@@ -1289,7 +1289,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B6/fromVar:i13/atSite:" Type="B6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B6/fromVar:i13/withIdx:1/atSite:" Type="B6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="u" simAgent="//@simAgent.209" simLinkState="//@simLinkStates.103"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.209" simLinkState="//@simLinkStates.119">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="l"/>
@@ -1298,7 +1298,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:B6/fromVar:i13/atSite:" Type="B6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:B6/fromVar:i13/withIdx:1/atSite:" Type="B6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="u" simAgent="//@simAgent.210" simLinkState="//@simLinkStates.105"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.210" simLinkState="//@simLinkStates.121">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="l"/>
@@ -1307,7 +1307,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:B6/fromVar:i13/atSite:" Type="B6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:B6/fromVar:i13/withIdx:1/atSite:" Type="B6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="u" simAgent="//@simAgent.211" simLinkState="//@simLinkStates.107"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.211" simLinkState="//@simLinkStates.123">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="l"/>
@@ -1316,7 +1316,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:B6/fromVar:i13/atSite:" Type="B6">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:B6/fromVar:i13/withIdx:1/atSite:" Type="B6">
     <simSites xmi:type="reactioncontainer:SimSite" Type="u" simAgent="//@simAgent.212" simLinkState="//@simLinkStates.109"/>
     <simSites xmi:type="reactioncontainer:SimSite" Type="v" simAgent="//@simAgent.212" simLinkState="//@simLinkStates.125">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="l"/>
@@ -1325,7 +1325,7 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="r"/>
     </simSites>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:C3/fromVar:i13/atSite:" Type="C3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:C3/fromVar:i13/withIdx:2/atSite:" Type="C3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="a" simAgent="//@simAgent.213" simLinkState="//@simLinkStates.111">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="i"/>
     </simSites>
@@ -1334,7 +1334,7 @@
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="c" simAgent="//@simAgent.213" simLinkState="//@simLinkStates.112"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:C3/fromVar:i13/atSite:" Type="C3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:C3/fromVar:i13/withIdx:2/atSite:" Type="C3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="a" simAgent="//@simAgent.214" simLinkState="//@simLinkStates.113">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="i"/>
     </simSites>
@@ -1343,7 +1343,7 @@
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="c" simAgent="//@simAgent.214" simLinkState="//@simLinkStates.114"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:C3/fromVar:i13/atSite:" Type="C3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:C3/fromVar:i13/withIdx:2/atSite:" Type="C3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="a" simAgent="//@simAgent.215" simLinkState="//@simLinkStates.115">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="i"/>
     </simSites>
@@ -1352,7 +1352,7 @@
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="c" simAgent="//@simAgent.215" simLinkState="//@simLinkStates.116"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:C3/fromVar:i13/atSite:" Type="C3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:C3/fromVar:i13/withIdx:2/atSite:" Type="C3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="a" simAgent="//@simAgent.216" simLinkState="//@simLinkStates.117">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="i"/>
     </simSites>
@@ -1361,7 +1361,7 @@
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="c" simAgent="//@simAgent.216" simLinkState="//@simLinkStates.118"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:C3/fromVar:i13/atSite:" Type="C3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:C3/fromVar:i13/withIdx:2/atSite:" Type="C3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="a" simAgent="//@simAgent.217" simLinkState="//@simLinkStates.119">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="i"/>
     </simSites>
@@ -1370,7 +1370,7 @@
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="c" simAgent="//@simAgent.217" simLinkState="//@simLinkStates.120"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:C3/fromVar:i13/atSite:" Type="C3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:C3/fromVar:i13/withIdx:2/atSite:" Type="C3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="a" simAgent="//@simAgent.218" simLinkState="//@simLinkStates.121">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="i"/>
     </simSites>
@@ -1379,7 +1379,7 @@
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="c" simAgent="//@simAgent.218" simLinkState="//@simLinkStates.122"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:C3/fromVar:i13/atSite:" Type="C3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:C3/fromVar:i13/withIdx:2/atSite:" Type="C3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="a" simAgent="//@simAgent.219" simLinkState="//@simLinkStates.123">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="i"/>
     </simSites>
@@ -1388,7 +1388,7 @@
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="c" simAgent="//@simAgent.219" simLinkState="//@simLinkStates.124"/>
   </simAgent>
-  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:C3/fromVar:i13/atSite:" Type="C3">
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:8/ofType:C3/fromVar:i13/withIdx:2/atSite:" Type="C3">
     <simSites xmi:type="reactioncontainer:SimSite" Type="a" simAgent="//@simAgent.220" simLinkState="//@simLinkStates.125">
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="i"/>
     </simSites>
@@ -1396,6 +1396,606 @@
       <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
     </simSites>
     <simSites xmi:type="reactioncontainer:SimSite" Type="c" simAgent="//@simAgent.220" simLinkState="//@simLinkStates.126"/>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A7/fromVar:i14/withIdx:0/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.221" simLinkState="//@simLinkStates.127">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.221">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A7/fromVar:i14/withIdx:0/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.222" simLinkState="//@simLinkStates.128">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.222">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A7/fromVar:i14/withIdx:0/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.223" simLinkState="//@simLinkStates.129">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.223">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A7/fromVar:i14/withIdx:1/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.224" simLinkState="//@simLinkStates.127">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.224" simLinkState="//@simLinkStates.130">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A7/fromVar:i14/withIdx:1/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.225" simLinkState="//@simLinkStates.128">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.225" simLinkState="//@simLinkStates.131">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A7/fromVar:i14/withIdx:1/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.226" simLinkState="//@simLinkStates.129">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.226" simLinkState="//@simLinkStates.132">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A7/fromVar:i14/withIdx:2/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.227" simLinkState="//@simLinkStates.130">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.227">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A7/fromVar:i14/withIdx:2/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.228" simLinkState="//@simLinkStates.131">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.228">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A7/fromVar:i14/withIdx:2/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.229" simLinkState="//@simLinkStates.132">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.229">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A7/fromVar:i15/withIdx:0/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.230" simLinkState="//@simLinkStates.133">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.230">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A7/fromVar:i15/withIdx:0/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.231" simLinkState="//@simLinkStates.134">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.231">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A7/fromVar:i15/withIdx:0/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.232" simLinkState="//@simLinkStates.135">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.232">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A7/fromVar:i15/withIdx:0/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.233" simLinkState="//@simLinkStates.136">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.233">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A7/fromVar:i15/withIdx:0/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.234" simLinkState="//@simLinkStates.137">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.234">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B7/fromVar:i15/withIdx:1/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.235" simLinkState="//@simLinkStates.133">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.235" simLinkState="//@simLinkStates.138">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B7/fromVar:i15/withIdx:1/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.236" simLinkState="//@simLinkStates.134">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.236" simLinkState="//@simLinkStates.139">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B7/fromVar:i15/withIdx:1/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.237" simLinkState="//@simLinkStates.135">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.237" simLinkState="//@simLinkStates.140">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B7/fromVar:i15/withIdx:1/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.238" simLinkState="//@simLinkStates.136">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.238" simLinkState="//@simLinkStates.141">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B7/fromVar:i15/withIdx:1/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.239" simLinkState="//@simLinkStates.137">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.239" simLinkState="//@simLinkStates.142">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A7/fromVar:i15/withIdx:2/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.240" simLinkState="//@simLinkStates.138">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.240" simLinkState="//@simLinkStates.143">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A7/fromVar:i15/withIdx:2/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.241" simLinkState="//@simLinkStates.139">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.241" simLinkState="//@simLinkStates.144">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A7/fromVar:i15/withIdx:2/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.242" simLinkState="//@simLinkStates.140">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.242" simLinkState="//@simLinkStates.145">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A7/fromVar:i15/withIdx:2/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.243" simLinkState="//@simLinkStates.141">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.243" simLinkState="//@simLinkStates.146">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A7/fromVar:i15/withIdx:2/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.244" simLinkState="//@simLinkStates.142">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.244" simLinkState="//@simLinkStates.147">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B7/fromVar:i15/withIdx:3/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.245" simLinkState="//@simLinkStates.143">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.245" simLinkState="//@simLinkStates.148">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B7/fromVar:i15/withIdx:3/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.246" simLinkState="//@simLinkStates.144">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.246" simLinkState="//@simLinkStates.149">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B7/fromVar:i15/withIdx:3/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.247" simLinkState="//@simLinkStates.145">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.247" simLinkState="//@simLinkStates.150">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B7/fromVar:i15/withIdx:3/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.248" simLinkState="//@simLinkStates.146">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.248" simLinkState="//@simLinkStates.151">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B7/fromVar:i15/withIdx:3/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.249" simLinkState="//@simLinkStates.147">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.249" simLinkState="//@simLinkStates.152">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B7/fromVar:i15/withIdx:4/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.250" simLinkState="//@simLinkStates.148">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.250">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B7/fromVar:i15/withIdx:4/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.251" simLinkState="//@simLinkStates.149">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.251">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B7/fromVar:i15/withIdx:4/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.252" simLinkState="//@simLinkStates.150">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.252">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B7/fromVar:i15/withIdx:4/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.253" simLinkState="//@simLinkStates.151">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.253">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:B7/fromVar:i15/withIdx:4/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.254" simLinkState="//@simLinkStates.152">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.254">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A7/fromVar:i16/withIdx:0/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.255" simLinkState="//@simLinkStates.153">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.255">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A7/fromVar:i16/withIdx:0/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.256" simLinkState="//@simLinkStates.154">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.256">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A7/fromVar:i16/withIdx:0/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.257" simLinkState="//@simLinkStates.155">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.257">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A7/fromVar:i16/withIdx:0/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.258" simLinkState="//@simLinkStates.156">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.258">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A7/fromVar:i16/withIdx:0/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.259" simLinkState="//@simLinkStates.157">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.259">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:A7/fromVar:i16/withIdx:0/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.260" simLinkState="//@simLinkStates.158">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.260">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:A7/fromVar:i16/withIdx:0/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.261" simLinkState="//@simLinkStates.159">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.261">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A7/fromVar:i16/withIdx:1/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.262" simLinkState="//@simLinkStates.153">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="d"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.262" simLinkState="//@simLinkStates.160">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A7/fromVar:i16/withIdx:1/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.263" simLinkState="//@simLinkStates.154">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="d"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.263" simLinkState="//@simLinkStates.161">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A7/fromVar:i16/withIdx:1/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.264" simLinkState="//@simLinkStates.155">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="d"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.264" simLinkState="//@simLinkStates.162">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A7/fromVar:i16/withIdx:1/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.265" simLinkState="//@simLinkStates.156">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="d"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.265" simLinkState="//@simLinkStates.163">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A7/fromVar:i16/withIdx:1/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.266" simLinkState="//@simLinkStates.157">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="d"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.266" simLinkState="//@simLinkStates.164">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:A7/fromVar:i16/withIdx:1/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.267" simLinkState="//@simLinkStates.158">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="d"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.267" simLinkState="//@simLinkStates.165">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:A7/fromVar:i16/withIdx:1/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.268" simLinkState="//@simLinkStates.159">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="d"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.268" simLinkState="//@simLinkStates.166">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A7/fromVar:i16/withIdx:2/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.269" simLinkState="//@simLinkStates.160">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.269">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A7/fromVar:i16/withIdx:2/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.270" simLinkState="//@simLinkStates.161">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.270">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A7/fromVar:i16/withIdx:2/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.271" simLinkState="//@simLinkStates.162">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.271">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A7/fromVar:i16/withIdx:2/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.272" simLinkState="//@simLinkStates.163">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.272">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:5/ofType:A7/fromVar:i16/withIdx:2/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.273" simLinkState="//@simLinkStates.164">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.273">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:6/ofType:A7/fromVar:i16/withIdx:2/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.274" simLinkState="//@simLinkStates.165">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.274">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:7/ofType:A7/fromVar:i16/withIdx:2/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.275" simLinkState="//@simLinkStates.166">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.275">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A7/fromVar:i17/withIdx:0/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.276" simLinkState="//@simLinkStates.167">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="d"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.276">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A7/fromVar:i17/withIdx:0/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.277" simLinkState="//@simLinkStates.168">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="d"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.277">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A7/fromVar:i17/withIdx:0/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.278" simLinkState="//@simLinkStates.169">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="d"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.278">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A7/fromVar:i17/withIdx:0/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.279" simLinkState="//@simLinkStates.170">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="d"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.279">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B7/fromVar:i17/withIdx:1/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.280" simLinkState="//@simLinkStates.167">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.280" simLinkState="//@simLinkStates.171">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B7/fromVar:i17/withIdx:1/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.281" simLinkState="//@simLinkStates.168">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.281" simLinkState="//@simLinkStates.172">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B7/fromVar:i17/withIdx:1/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.282" simLinkState="//@simLinkStates.169">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.282" simLinkState="//@simLinkStates.173">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B7/fromVar:i17/withIdx:1/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.283" simLinkState="//@simLinkStates.170">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.283" simLinkState="//@simLinkStates.174">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:A7/fromVar:i17/withIdx:2/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.284" simLinkState="//@simLinkStates.171">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.284" simLinkState="//@simLinkStates.175">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:A7/fromVar:i17/withIdx:2/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.285" simLinkState="//@simLinkStates.172">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.285" simLinkState="//@simLinkStates.176">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:A7/fromVar:i17/withIdx:2/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.286" simLinkState="//@simLinkStates.173">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.286" simLinkState="//@simLinkStates.177">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:A7/fromVar:i17/withIdx:2/atSite:" Type="A7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="x" simAgent="//@simAgent.287" simLinkState="//@simLinkStates.174">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="c"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="w" simAgent="//@simAgent.287" simLinkState="//@simLinkStates.178">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="a"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B7/fromVar:i17/withIdx:3/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.288" simLinkState="//@simLinkStates.175">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="h"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.288" simLinkState="//@simLinkStates.179">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B7/fromVar:i17/withIdx:3/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.289" simLinkState="//@simLinkStates.176">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="h"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.289" simLinkState="//@simLinkStates.180">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B7/fromVar:i17/withIdx:3/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.290" simLinkState="//@simLinkStates.177">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="h"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.290" simLinkState="//@simLinkStates.181">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B7/fromVar:i17/withIdx:3/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.291" simLinkState="//@simLinkStates.178">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="h"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.291" simLinkState="//@simLinkStates.182">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:1/ofType:B7/fromVar:i17/withIdx:4/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.292" simLinkState="//@simLinkStates.179">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.292">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:2/ofType:B7/fromVar:i17/withIdx:4/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.293" simLinkState="//@simLinkStates.180">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.293">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:3/ofType:B7/fromVar:i17/withIdx:4/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.294" simLinkState="//@simLinkStates.181">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.294">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
+  </simAgent>
+  <simAgent xmi:type="reactioncontainer:SimAgent" Name="AgentInstance:4/ofType:B7/fromVar:i17/withIdx:4/atSite:" Type="B7">
+    <simSites xmi:type="reactioncontainer:SimSite" Type="z" simAgent="//@simAgent.295" simLinkState="//@simLinkStates.182">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="g"/>
+    </simSites>
+    <simSites xmi:type="reactioncontainer:SimSite" Type="y" simAgent="//@simAgent.295">
+      <simSiteState xmi:type="reactioncontainer:SimSiteState" Type="e"/>
+    </simSites>
   </simAgent>
   <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.20/@simSites.0" simSite2="//@simAgent.26/@simSites.0"/>
   <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.21/@simSites.0" simSite2="//@simAgent.27/@simSites.0"/>
@@ -1524,4 +2124,60 @@
   <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.211/@simSites.2" simSite2="//@simAgent.219/@simSites.2"/>
   <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.212/@simSites.1" simSite2="//@simAgent.220/@simSites.0"/>
   <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.212/@simSites.2" simSite2="//@simAgent.220/@simSites.2"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.221/@simSites.0" simSite2="//@simAgent.224/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.222/@simSites.0" simSite2="//@simAgent.225/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.223/@simSites.0" simSite2="//@simAgent.226/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.224/@simSites.1" simSite2="//@simAgent.227/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.225/@simSites.1" simSite2="//@simAgent.228/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.226/@simSites.1" simSite2="//@simAgent.229/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.230/@simSites.0" simSite2="//@simAgent.235/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.231/@simSites.0" simSite2="//@simAgent.236/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.232/@simSites.0" simSite2="//@simAgent.237/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.233/@simSites.0" simSite2="//@simAgent.238/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.234/@simSites.0" simSite2="//@simAgent.239/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.235/@simSites.1" simSite2="//@simAgent.240/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.236/@simSites.1" simSite2="//@simAgent.241/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.237/@simSites.1" simSite2="//@simAgent.242/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.238/@simSites.1" simSite2="//@simAgent.243/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.239/@simSites.1" simSite2="//@simAgent.244/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.240/@simSites.1" simSite2="//@simAgent.245/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.241/@simSites.1" simSite2="//@simAgent.246/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.242/@simSites.1" simSite2="//@simAgent.247/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.243/@simSites.1" simSite2="//@simAgent.248/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.244/@simSites.1" simSite2="//@simAgent.249/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.245/@simSites.1" simSite2="//@simAgent.250/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.246/@simSites.1" simSite2="//@simAgent.251/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.247/@simSites.1" simSite2="//@simAgent.252/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.248/@simSites.1" simSite2="//@simAgent.253/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.249/@simSites.1" simSite2="//@simAgent.254/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.255/@simSites.0" simSite2="//@simAgent.262/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.256/@simSites.0" simSite2="//@simAgent.263/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.257/@simSites.0" simSite2="//@simAgent.264/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.258/@simSites.0" simSite2="//@simAgent.265/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.259/@simSites.0" simSite2="//@simAgent.266/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.260/@simSites.0" simSite2="//@simAgent.267/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.261/@simSites.0" simSite2="//@simAgent.268/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.262/@simSites.1" simSite2="//@simAgent.269/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.263/@simSites.1" simSite2="//@simAgent.270/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.264/@simSites.1" simSite2="//@simAgent.271/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.265/@simSites.1" simSite2="//@simAgent.272/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.266/@simSites.1" simSite2="//@simAgent.273/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.267/@simSites.1" simSite2="//@simAgent.274/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.268/@simSites.1" simSite2="//@simAgent.275/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.276/@simSites.0" simSite2="//@simAgent.280/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.277/@simSites.0" simSite2="//@simAgent.281/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.278/@simSites.0" simSite2="//@simAgent.282/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.279/@simSites.0" simSite2="//@simAgent.283/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.280/@simSites.1" simSite2="//@simAgent.284/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.281/@simSites.1" simSite2="//@simAgent.285/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.282/@simSites.1" simSite2="//@simAgent.286/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.283/@simSites.1" simSite2="//@simAgent.287/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.284/@simSites.1" simSite2="//@simAgent.288/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.285/@simSites.1" simSite2="//@simAgent.289/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.286/@simSites.1" simSite2="//@simAgent.290/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.287/@simSites.1" simSite2="//@simAgent.291/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.288/@simSites.1" simSite2="//@simAgent.292/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.289/@simSites.1" simSite2="//@simAgent.293/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.290/@simSites.1" simSite2="//@simAgent.294/@simSites.0"/>
+  <simLinkStates xmi:type="reactioncontainer:SimBound" simSite1="//@simAgent.291/@simSites.1" simSite2="//@simAgent.295/@simSites.0"/>
 </reactioncontainer:ReactionContainer>
