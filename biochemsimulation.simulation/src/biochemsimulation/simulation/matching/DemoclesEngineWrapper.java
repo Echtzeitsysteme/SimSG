@@ -15,6 +15,7 @@ import biochemsimulation.simulation.matching.democles.DemoclesPatternGenerator;
 
 public class DemoclesEngineWrapper implements PatternMatchingEngine {
 	
+	public static final PatternMatchingEngineEnum type = PatternMatchingEngineEnum.DemoclesEngine;
 	private DemoclesEngine engine;
 	private ReactionContainer model;
 	List<Pattern> patterns;
@@ -54,6 +55,11 @@ public class DemoclesEngineWrapper implements PatternMatchingEngine {
 	@Override
 	public void disposeEngine() {
 		engine.disposeEngine();
+	}
+
+	@Override
+	public PatternMatchingEngineEnum getEngineType() {
+		return type;
 	}
 
 }

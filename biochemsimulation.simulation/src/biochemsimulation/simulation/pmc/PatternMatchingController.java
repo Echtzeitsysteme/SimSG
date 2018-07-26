@@ -7,6 +7,7 @@ import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.PatternMatchingEngine;
+import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;
 
 public interface PatternMatchingController {
 	
@@ -35,4 +36,8 @@ public interface PatternMatchingController {
 	public Collection<IMatch> getMatches(String patternName);
 	
 	public Map<String, Collection<IMatch>> getAllMatches();
+	
+	public PatternMatchingControllerEnum getPMCType();
+	
+	public PatternMatchingEngineEnum getEngineType();
 }

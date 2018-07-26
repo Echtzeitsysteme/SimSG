@@ -18,4 +18,6 @@ public interface PatternMatchingEngine {
 	
 	public void disposeEngine();
 	
+	public PatternMatchingEngineEnum getEngineType();
+	
 }

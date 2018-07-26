@@ -19,7 +19,8 @@ import biochemsimulation.simulation.matching.viatra.ViatraMatch;
 import biochemsimulation.simulation.matching.viatra.ViatraPatternGenerator;
 
 public class ViatraEngineWrapper implements PatternMatchingEngine {
-
+	
+	public static final PatternMatchingEngineEnum type = PatternMatchingEngineEnum.ViatraEngine;
 	private AdvancedViatraQueryEngine queryEngine;
 	private ReactionContainer model;
 	private PatternModel patternModel;
@@ -74,6 +75,11 @@ public class ViatraEngineWrapper implements PatternMatchingEngine {
 		queryEngine.wipe();
 		queryEngine.dispose();
 		
+	}
+
+	@Override
+	public PatternMatchingEngineEnum getEngineType() {
+		return type;
 	}
 	
 	

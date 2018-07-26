@@ -7,13 +7,13 @@ pattern BoundAnyLink_SupportPattern(simSite : SimSite) {
 		}
 
 pattern AtoB_lhs( A : SimAgent,  B : SimAgent) {
-	SimAgent.Type(B, "B");
-	SimAgent.simSites(B, B_x);
-	SimSite.Type(B_x, "x");
-	
-SimAgent.Type(A, "A");
+	SimAgent.Type(A, "A");
 	SimAgent.simSites(A, A_x);
 	SimSite.Type(A_x, "x");
+	
+SimAgent.Type(B, "B");
+	SimAgent.simSites(B, B_x);
+	SimSite.Type(B_x, "x");
 	SimSite.simLinkState(A_x, A_A_x_BoundExact);
 			SimSite.simLinkState(B_x, B_B_x_BoundExact);
 			A_A_x_BoundExact==B_B_x_BoundExact;

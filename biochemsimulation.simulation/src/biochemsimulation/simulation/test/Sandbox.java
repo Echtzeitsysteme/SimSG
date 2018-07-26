@@ -333,66 +333,17 @@ public class Sandbox {
 		
 		Simulation democlesSim = simConfig.createSimulation();
 		
-		double ns = 1E9;
-		long start = System.nanoTime();
-		long end = System.nanoTime();
-		try {
-			start = System.nanoTime();
-			viatraSim.initilize();
-			end = System.nanoTime();
-			System.out.println("#### Viatra init: ####");
-			System.out.println("time diff = " + (end - start) + " ns");
-			System.out.println("time diff = " + (end - start) / ns + " s");
-			start = System.nanoTime();
-			viatraSim.run();
-			end = System.nanoTime();
-			System.out.println("--> Viatra run:");
-			System.out.println("time diff = " + (end - start) + " ns");
-			System.out.println("time diff = " + (end - start) / ns + " s");
-			System.out.println("--> Viatra results:");
-			// <-- debugging stuff starts here
-			Map<String, Collection<IMatch>> results = viatraSim.getResults();
-			for (String key : results.keySet()) {
-				if (results.get(key) != null) {
-					System.out.println("Pattern: " + key + ", size: " + results.get(key).size());
-				}
-			}
-			// debugging stuff ends here -->
-			viatraSim.finish();
-			System.out.println("#### Viatra End ####");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		viatraSim.initializeClocked();
+		viatraSim.runClocked();
+		System.out.println(viatraSim.results());
+		viatraSim.finish();
 		
-		try {
-			start = System.nanoTime();
-			democlesSim.initilize();
-			end = System.nanoTime();
-			System.out.println("#### Democles init: ####");
-			System.out.println("time diff = " + (end - start) + " ns");
-			System.out.println("time diff = " + (end - start) / ns + " s");
-			start = System.nanoTime();
-			democlesSim.run();
-			end = System.nanoTime();
-			System.out.println("--> Democles run:");
-			System.out.println("time diff = " + (end - start) + " ns");
-			System.out.println("time diff = " + (end - start) / ns + " s");
-			System.out.println("--> Democles results:");
-			// <-- debugging stuff starts here
-			Map<String, Collection<IMatch>> results = democlesSim.getResults();
-			for (String key : results.keySet()) {
-				if (results.get(key) != null) {
-					System.out.println("Pattern: " + key + ", size: " + results.get(key).size());
-				}
-			}
-			// debugging stuff ends here -->
-			democlesSim.finish();
-			System.out.println("#### Democles End ####");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		democlesSim.initializeClocked();
+		democlesSim.runClocked();
+		System.out.println(democlesSim.results());
+		democlesSim.finish();
+		
+		System.out.println(Runtimer.getInstance());
 		
 	}
 	

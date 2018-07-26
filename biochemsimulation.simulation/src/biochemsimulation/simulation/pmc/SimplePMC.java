@@ -12,10 +12,12 @@ import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.PatternMatchingEngine;
+import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;
 import biochemsimulation.simulation.pmc.GT.ReactionRuleTransformer;
 
 public class SimplePMC extends ReactionRuleTransformer implements PatternMatchingController {
 	
+	final public static PatternMatchingControllerEnum type = PatternMatchingControllerEnum.SimplePMC;
 	private PatternMatchingEngine engine;
 	private boolean randomRuleOrder;
 	private boolean useReactionRates;
@@ -160,6 +162,16 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 	@Override
 	public void discardEngine() {
 		engine.disposeEngine();
+	}
+
+	@Override
+	public PatternMatchingControllerEnum getPMCType() {
+		return type;
+	}
+
+	@Override
+	public PatternMatchingEngineEnum getEngineType() {
+		return engine.getEngineType();
 	}
 
 	
