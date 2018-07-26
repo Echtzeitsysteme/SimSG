@@ -19,11 +19,17 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 	private PatternMatchingEngine engine;
 	private boolean randomRuleOrder;
 	private boolean useReactionRates;
+	private int iterations;
 	
-	SimplePMC(PatternMatchingEngine engine) {
-		this.engine = engine;
+	SimplePMC() {
 		randomRuleOrder = true;
 		useReactionRates = true;
+		iterations = 0;
+	}
+	
+	@Override
+	public void setEngine(PatternMatchingEngine engine) {
+		this.engine = engine;
 	}
 	
 	@Override
@@ -74,6 +80,7 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 		Random random = new Random();
 		ConcurrentLinkedQueue<String> patternQueue = null;
 		if(randomRuleOrder) {
+			//System.out.println("Random stuff1");
 			patternQueue = generateRndPatternQueue();
 		}else {
 			patternQueue = generatePatternQueue();
@@ -94,6 +101,7 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 				// New version: Approximation of N "true" Laplace-experiments
 				double pRule = 1.0 - Math.pow((1.0-reactionRate), currentMatches.size());
 				double rnd = random.nextDouble();
+				//System.out.println("Pattern: "+current+", pRule: "+pRule+", rnd: "+rnd+", rate: "+reactionRate+", matchSize: "+currentMatches.size());
 				if(rnd <= pRule) {
 					int idx = (int)(currentMatches.size()*random.nextDouble());
 					applyRuleToMatch(currentMatches.get(idx));
@@ -120,6 +128,13 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 			
 		}
 		
+		iterations++;
+		
+	}
+	
+	@Override
+	public int getIterations() {
+		return iterations;
 	}
 
 	@Override
@@ -147,4 +162,5 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 		engine.disposeEngine();
 	}
 
+	
 }

@@ -7,8 +7,8 @@ agent C(x , c )
 agent D(x )
  
 /* Variables */ 
-var on_rate = 0.3
-var on_rate2 = 0.2
+var on_rate = 0.02
+var on_rate2 = 0.0002
 
 /* Initial conditions */
 init init1 100 { A(x[1]),B(x[1]) } 

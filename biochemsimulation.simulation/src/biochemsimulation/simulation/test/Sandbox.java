@@ -21,6 +21,8 @@ import org.gervarro.democles.specification.emf.constraint.relational.RelationalC
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
+import biochemsimulation.simulation.Simulation;
+import biochemsimulation.simulation.SimulationConfigurator;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.PatternMatchingEngine;
 import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;
@@ -42,11 +44,14 @@ public class Sandbox {
 	public static final Pattern negPattern = generateInvokedTestPattern();
 
 	public static void main(String[] args) {
+		/*
 		test1();
-		//test2();
-		//test5();
-		//test4();
-		//test6();
+		test2();
+		test5();
+		test4();
+		test6();
+		*/
+		test7();
 	}
 
 	public static void test1() {
@@ -90,8 +95,7 @@ public class Sandbox {
 			System.out.println("time diff = " + (end - start) + " ns");
 			System.out.println("time diff = " + (end - start) / ns + " s");
 
-			PatternMatchingController pmc = PatternMatchingControllerFactory
-					.create(PatternMatchingControllerEnum.SimpleViatraPMC);
+			PatternMatchingController pmc = createSimplePMC_Viatra();
 			System.out.println("Initializing pmc: loading models...");
 			start = System.nanoTime();
 			pmc.loadModels(model1, model2);
@@ -221,8 +225,7 @@ public class Sandbox {
 			System.out.println("time diff = " + (end - start) + " ns");
 			System.out.println("time diff = " + (end - start) / ns + " s");
 
-			PatternMatchingController pmc = PatternMatchingControllerFactory
-					.create(PatternMatchingControllerEnum.SimpleDemoclesPMC);
+			PatternMatchingController pmc = createSimplePMC_Democles();
 			System.out.println("Initializing pmc: loading models...");
 			start = System.nanoTime();
 			pmc.loadModels(model1, model2);
@@ -314,6 +317,101 @@ public class Sandbox {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static void test7() {
+		SimulationConfigurator simConfig = new SimulationConfigurator();
+		simConfig.setModel("test3");
+		simConfig.setSimplePersistence();
+		simConfig.setViatraAsEngine();
+		simConfig.setSimplePMC();
+		simConfig.setSimpleTerminationCondition(100);
+		
+		Simulation viatraSim = simConfig.createSimulation();
+		
+		simConfig.setDemoclesAsEngine();
+		
+		Simulation democlesSim = simConfig.createSimulation();
+		
+		double ns = 1E9;
+		long start = System.nanoTime();
+		long end = System.nanoTime();
+		try {
+			start = System.nanoTime();
+			viatraSim.initilize();
+			end = System.nanoTime();
+			System.out.println("#### Viatra init: ####");
+			System.out.println("time diff = " + (end - start) + " ns");
+			System.out.println("time diff = " + (end - start) / ns + " s");
+			start = System.nanoTime();
+			viatraSim.run();
+			end = System.nanoTime();
+			System.out.println("--> Viatra run:");
+			System.out.println("time diff = " + (end - start) + " ns");
+			System.out.println("time diff = " + (end - start) / ns + " s");
+			System.out.println("--> Viatra results:");
+			// <-- debugging stuff starts here
+			Map<String, Collection<IMatch>> results = viatraSim.getResults();
+			for (String key : results.keySet()) {
+				if (results.get(key) != null) {
+					System.out.println("Pattern: " + key + ", size: " + results.get(key).size());
+				}
+			}
+			// debugging stuff ends here -->
+			viatraSim.finish();
+			System.out.println("#### Viatra End ####");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			start = System.nanoTime();
+			democlesSim.initilize();
+			end = System.nanoTime();
+			System.out.println("#### Democles init: ####");
+			System.out.println("time diff = " + (end - start) + " ns");
+			System.out.println("time diff = " + (end - start) / ns + " s");
+			start = System.nanoTime();
+			democlesSim.run();
+			end = System.nanoTime();
+			System.out.println("--> Democles run:");
+			System.out.println("time diff = " + (end - start) + " ns");
+			System.out.println("time diff = " + (end - start) / ns + " s");
+			System.out.println("--> Democles results:");
+			// <-- debugging stuff starts here
+			Map<String, Collection<IMatch>> results = democlesSim.getResults();
+			for (String key : results.keySet()) {
+				if (results.get(key) != null) {
+					System.out.println("Pattern: " + key + ", size: " + results.get(key).size());
+				}
+			}
+			// debugging stuff ends here -->
+			democlesSim.finish();
+			System.out.println("#### Democles End ####");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public static PatternMatchingController createSimplePMC_Viatra() {
+		PatternMatchingController pmc = PatternMatchingControllerFactory
+				.create(PatternMatchingControllerEnum.SimplePMC);
+		PatternMatchingEngine engine = PatternMatchingEngineFactory
+				.create(PatternMatchingEngineEnum.ViatraEngine);
+		pmc.setEngine(engine);
+		return pmc;
+	}
+	
+	public static PatternMatchingController createSimplePMC_Democles() {
+		PatternMatchingController pmc = PatternMatchingControllerFactory
+				.create(PatternMatchingControllerEnum.SimplePMC);
+		PatternMatchingEngine engine = PatternMatchingEngineFactory
+				.create(PatternMatchingEngineEnum.DemoclesEngine);
+		pmc.setEngine(engine);
+		return pmc;
 	}
 
 	public static Pattern generateDemoclesTestPattern() {

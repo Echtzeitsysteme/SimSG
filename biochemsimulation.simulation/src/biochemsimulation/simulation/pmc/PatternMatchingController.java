@@ -6,8 +6,11 @@ import java.util.Map;
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.simulation.matching.IMatch;
+import biochemsimulation.simulation.matching.PatternMatchingEngine;
 
 public interface PatternMatchingController {
+	
+	public void setEngine(PatternMatchingEngine engine);
 	
 	public void loadModels(ReactionRuleModel ruleModel, ReactionContainer reactionContainer) throws Exception;
 	
@@ -24,6 +27,8 @@ public interface PatternMatchingController {
 	public void collectAllMatches() throws Exception;
 	
 	public void performTransformations();
+	
+	public int getIterations();
 	
 	public void discardEngine();
 	

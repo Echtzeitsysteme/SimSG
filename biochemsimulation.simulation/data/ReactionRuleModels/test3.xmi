@@ -36,10 +36,10 @@
     </sites>
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:ArithmeticVariable" name="on_rate">
-    <value xmi:type="reactionRules:ArithmeticValue" value="0.3"/>
+    <value xmi:type="reactionRules:ArithmeticValue" value="0.02"/>
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:ArithmeticVariable" name="on_rate2">
-    <value xmi:type="reactionRules:ArithmeticValue" value="0.2"/>
+    <value xmi:type="reactionRules:ArithmeticValue" value="0.0002"/>
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:Initial" name="init1">
     <count xmi:type="reactionRules:NumericFromLiteral">
