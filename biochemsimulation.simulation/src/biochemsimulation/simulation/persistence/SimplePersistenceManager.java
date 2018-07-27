@@ -104,9 +104,11 @@ public class SimplePersistenceManager implements PersistenceManager {
 
 	@Override
 	public ReactionContainer loadReactionContainerModel(String name, boolean generateIfNotExist) throws Exception {
+		/*
 		if(reactionModelCache.containsKey(name)) {
 			return reactionModelCache.get(name);
 		}
+		*/
 		boolean doesNotExist = false;
 		if(!reactionModelPaths.containsKey(name)) {
 			doesNotExist = true;

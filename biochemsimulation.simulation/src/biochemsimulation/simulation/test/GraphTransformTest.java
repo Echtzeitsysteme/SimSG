@@ -116,9 +116,42 @@ abstract class GraphTransformTest {
 		pmc.transform(rhsMatch);
 		
 		collectMatches(lhs, rhs);
-		lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
+		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
+		
+	}
+	
+	@Test
+	void changeStatesTest() {
+		final int lhsPre = 5;
+		final int lhsPost = 4;
+		final int rhsPre = 2;
+		final int rhsPost = 3;
+		final String lhs = "changeStates_rule_lhs";
+		final String rhs = "changeStates_rule_rhs";
+		
+		collectMatches(lhs, rhs);
+		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
 		pmc.transform(lhsMatch);
 		
+		collectMatches(lhs, rhs);
+		getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
+	}
+
+	@Test
+	void breakUpWithStates() {
+		final int lhsPre = 2;
+		final int lhsPost = 1;
+		final int rhsPre = 0;
+		final int rhsPost = 4;
+		final String lhs = "breakUpWithStates_rule_lhs";
+		final String rhs = "breakUpWithStates_rule_rhs";
+		
+		collectMatches(lhs, rhs);
+		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
+		pmc.transform(lhsMatch);
+		
+		collectMatches(lhs, rhs);
+		getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
 	}
 	/*
 	@Test
