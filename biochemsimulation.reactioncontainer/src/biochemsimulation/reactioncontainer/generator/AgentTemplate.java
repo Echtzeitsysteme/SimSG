@@ -36,16 +36,26 @@ public class AgentTemplate {
 		maxNumOfInstances = (int)PatternUtils.valueOfNumericAssignment(init.getCount());
 		type = ap.getAgent().getName();
 		
-		HashSet<Site> sites = new HashSet<Site>();
+		List<Site> sites = new LinkedList<Site>();
 		ap.getAgent().getSites().getSites().forEach(x -> sites.add(x));
 		
-		for(SitePattern sp : ap.getSitePatterns().getSitePatterns()) {
-			siteTemplates.add(new SiteTemplate(this, sp));
-			sites.remove(sp.getSite());
-		}
+		HashSet<SitePattern> sps = new HashSet<SitePattern>(ap.getSitePatterns().getSitePatterns());
 		
-		for(Site s : sites) {
-			siteTemplates.add(new SiteTemplate(this, s));
+		for(Site site : sites) {
+			String currentSite = site.getName();
+			SitePattern foundSp = null;
+			for(SitePattern sp : sps) {
+				if(currentSite.equals(sp.getSite().getName())) {
+					siteTemplates.add(new SiteTemplate(this, sp));
+					foundSp = sp;
+					break;
+				}
+			}
+			if(foundSp == null) {
+				siteTemplates.add(new SiteTemplate(this, site));
+			}else {
+				sps.remove(foundSp);
+			}
 		}
 	}
 	

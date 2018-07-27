@@ -23,6 +23,7 @@ import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.simulation.Simulation;
 import biochemsimulation.simulation.SimulationConfigurator;
+import biochemsimulation.simulation.benchmark.Runtimer;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.PatternMatchingEngine;
 import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;

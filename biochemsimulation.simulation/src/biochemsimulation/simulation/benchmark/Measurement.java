@@ -1,4 +1,4 @@
-package biochemsimulation.simulation.test;
+package biochemsimulation.simulation.benchmark;
 
 public class Measurement {
 	

@@ -1,0 +1,17 @@
+ModelID GraphTransformTest
+
+agent A(a, b, c{q, p})
+agent B(d, e, f{l, m})
+agent C(g, h{n, o})
+
+var mockup_rate = 0.4
+
+init i1 2 {A(a[free], c[1]), B(d[free], e[free], f[1]), A(b[free])}
+init i2 3 {A(a[free], c{p}[1]), B(d[free], e[free], f{m}[1]), A(b[free])}
+init i3 2 {A(a[free], c{p}[1]), B(d[free], e[2], f{m}[1]), C(h{o}[2])}
+
+// bind and breakup tests
+rule disjuncToBound_rule {A(a[free]), B(d[free], e[free]), A(b[free])} <-> {A(a[1]), B(d[1], e[2]), A(b[2])} @ [mockup_rate, mockup_rate] // lhs: 12*5*11 = 660 -> 11*4*10 = 440, rhs: 0 -> 1 
+// change states tests
+rule changeStates_rule {A(c{p}[1]), B(f{m}[1])} <-> {A(c{q}[1]), B(f{l}[1])} @ [mockup_rate, mockup_rate] // lhs: 7 -> 6, rhs: 0 -> 1
+//rule changeStatesAndBind_rule {A(c{p}[1]), B(f{m}[1], e[2]), C(h{o}[2])} <-> {A(c{p}[1]), B(f{m}[1], e[free]), C(h{o}[free])} @ [mockup_rate, mockup_rate] // lhs: 2 -> 1, rhs: 0 -> 1

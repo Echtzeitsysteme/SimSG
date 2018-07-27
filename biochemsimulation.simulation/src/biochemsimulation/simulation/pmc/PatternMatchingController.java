@@ -27,6 +27,8 @@ public interface PatternMatchingController {
 	
 	public void collectAllMatches() throws Exception;
 	
+	public void transform(IMatch match);
+	
 	public void performTransformations();
 	
 	public int getIterations();

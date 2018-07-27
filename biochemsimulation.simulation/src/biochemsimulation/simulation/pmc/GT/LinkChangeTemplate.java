@@ -44,6 +44,16 @@ public class LinkChangeTemplate {
 		link.setSimSite2(simSiteTo);
 		simSiteFrom.setSimLinkState(link);
 		simSiteTo.setSimLinkState(link);
+		/*
+		System.out.println("Change link... #######################");
+		System.out.println("AFrom: "+simAgentFrom.getType()+", sFrom: "+simSiteFrom.getType());
+		simAgentFrom.getSimSites().forEach(x->System.out.print(x.getType()));
+		System.out.println();
+		System.out.println("ATo: "+simAgentTo.getType()+", sTo: "+simSiteTo.getType());
+		simAgentTo.getSimSites().forEach(x->System.out.print(x.getType()));
+		System.out.println();
+		System.out.println("######################################");
+		*/
 		return link;
 	}
 	

@@ -1,4 +1,4 @@
-package biochemsimulation.simulation.test;
+package biochemsimulation.simulation.benchmark;
 
 import java.util.HashMap;
 import java.util.Map;

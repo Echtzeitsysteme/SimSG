@@ -5,10 +5,10 @@ import java.util.Map;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
+import biochemsimulation.simulation.benchmark.Runtimer;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.persistence.PersistenceManager;
 import biochemsimulation.simulation.pmc.PatternMatchingController;
-import biochemsimulation.simulation.test.Runtimer;
 
 public class Simulation {
 	

@@ -12,6 +12,7 @@ import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.FreeLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
+import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern;
@@ -64,7 +65,8 @@ public class TransformationTemplate {
 					SitePattern sp = ap.getSitePatterns().getSitePatterns().get(j);
 					// if the site has a link -> check if it needs deletion
 					if(sp.getLinkState().getLinkState() instanceof FreeLink) {
-						linkRemoveTemplate.addLinkRemovalCandidate(j);
+						//linkRemoveTemplate.addLinkRemovalCandidate(j);
+						linkRemoveTemplate.addLinkRemovalCandidate(convertSitePatternIdxToMatchIdx(ap, j));
 					}
 				}
 			}
@@ -91,7 +93,8 @@ public class TransformationTemplate {
 					}else {
 						continue;
 					}
-					stTemplate.addStateChangeCandidate(j, state_trg);
+					//stTemplate.addStateChangeCandidate(j, state_trg);
+					stTemplate.addStateChangeCandidate(convertSitePatternIdxToMatchIdx(ap_trg, j), state_trg);
 				}
 				
 				if(!stTemplate.isEmpty()) {
@@ -151,12 +154,29 @@ public class TransformationTemplate {
 				}
 				BoundLink link = (BoundLink) ls;
 				int linkIdx = Integer.valueOf(link.getState());
-				findAndSetLinkCorrespondence(i, j, linkIdx);
+				//System.out.println("A: "+ap.getAgent().getName()+", s: "+sp.getSite().getName()+linkIdx);
+				findAndSetLinkCorrespondence(i, j, convertSitePatternIdxToMatchIdx(ap, j), linkIdx);
 			}
 		}
+		//System.out.println("Link changes: "+linkChanges.size());
 	}
 	
-	private void findAndSetLinkCorrespondence(int agentIdx, int siteIdx, int linkIdx) {
+	private int convertSitePatternIdxToMatchIdx(ValidAgentPattern ap, int patternIdx) {
+		int matchIdx = 0;
+		String siteName = ap.getSitePatterns().getSitePatterns().get(patternIdx).getSite().getName();
+		List<Site> sites = ap.getAgent().getSites().getSites();
+		for(int i = 0; i<sites.size(); i++) {
+			Site currentSite = sites.get(i);
+			if(currentSite.getName().equals(siteName)) {
+				matchIdx = i;
+				//System.out.println("Mapped site: "+siteName+" from: "+ patternIdx+", to: "+matchIdx);
+				break;
+			}
+		}
+		return matchIdx;
+	}
+	
+	private void findAndSetLinkCorrespondence(int agentIdx, int siteIdx, int matchSiteIdx, int linkIdx) {
 		for(int i = 0; i<postcondition.getAgentPatterns().size(); i++) {
 			if(i == agentIdx) {
 				continue;
@@ -178,8 +198,10 @@ public class TransformationTemplate {
 				int linkIdx2 = Integer.valueOf(link.getState());
 				if(linkIdx == linkIdx2) {
 					//create template
-					LinkChangeTemplate linkChange = new LinkChangeTemplate(agentIdx, siteIdx);
-					linkChange.connectTo(i, j);
+					//LinkChangeTemplate linkChange = new LinkChangeTemplate(agentIdx, siteIdx);
+					//linkChange.connectTo(i, j);
+					LinkChangeTemplate linkChange = new LinkChangeTemplate(agentIdx, matchSiteIdx);
+					linkChange.connectTo(i, convertSitePatternIdxToMatchIdx(ap, j));
 					linkChanges.add(linkChange);
 				}
 			}

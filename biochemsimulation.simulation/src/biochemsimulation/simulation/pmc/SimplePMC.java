@@ -76,6 +76,12 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 		Collections.shuffle(rndPatternList);
 		return new ConcurrentLinkedQueue<String>(rndPatternList);
 	}
+	
+	@Override
+	public void transform(IMatch match) {
+		applyRuleToMatch(match);
+		//System.out.println(match.patternName());
+	}
 
 	@Override
 	public void performTransformations() {
@@ -141,7 +147,10 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 
 	@Override
 	public Collection<IMatch> getMatches(String patternName) {
-		return matches.get(patternName);
+		if(matches.get(patternName) != null) {
+			return matches.get(patternName);
+		}
+		return new LinkedList<IMatch>();
 	}
 
 	@Override
