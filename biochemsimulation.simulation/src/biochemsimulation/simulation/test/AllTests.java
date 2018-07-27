@@ -7,7 +7,9 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({
 	PatternMatchingDemoclesTest.class,
-	PatternMatchingViatraTest.class
+	PatternMatchingViatraTest.class,
+	GraphTransformViatraTest.class,
+	GraphTransformDemoclesTest.class
 })
 public class AllTests {
 

@@ -134,7 +134,11 @@ abstract class GraphTransformTest {
 		pmc.transform(lhsMatch);
 		
 		collectMatches(lhs, rhs);
-		getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
+		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
+		pmc.transform(rhsMatch);
+		
+		collectMatches(lhs, rhs);
+		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
 	}
 
 	@Test
@@ -151,23 +155,54 @@ abstract class GraphTransformTest {
 		pmc.transform(lhsMatch);
 		
 		collectMatches(lhs, rhs);
-		getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
-	}
-	/*
-	@Test
-	void changeStatesTest() {
-		fail("Not yet implemented");
-	}
-	
-	@Test
-	void changeStatesAndBind() {
-		fail("Not yet implemented");
+		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
+		pmc.transform(rhsMatch);
+		
+		collectMatches(lhs, rhs);
+		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
 	}
 	
 	@Test
-	void allTests() {
-		fail("Not yet implemented");
+	void bindAndChangeStates() {
+		final int lhsPre = 45;
+		final int lhsPost = 16;
+		final int rhsPre = 0;
+		final int rhsPost = 1;
+		final String lhs = "bindAndChangeStates_rule_lhs";
+		final String rhs = "bindAndChangeStates_rule_rhs";
+		
+		collectMatches(lhs, rhs);
+		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
+		pmc.transform(lhsMatch);
+		
+		collectMatches(lhs, rhs);
+		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
+		pmc.transform(rhsMatch);
+		
+		collectMatches(lhs, rhs);
+		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
 	}
-	*/
+	
+	@Test
+	void createAndDestroy() {
+		final int lhsPre = 12;
+		final int lhsPost = 11;
+		final int rhsPre = 0;
+		final int rhsPost = 1;
+		final String lhs = "createAndDestroy_rule_lhs";
+		final String rhs = "createAndDestroy_rule_rhs";
+		
+		collectMatches(lhs, rhs);
+		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
+		pmc.transform(lhsMatch);
+		
+		collectMatches(lhs, rhs);
+		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
+		pmc.transform(rhsMatch);
+		
+		collectMatches(lhs, rhs);
+		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
+		
+	}
 
 }

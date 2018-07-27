@@ -1,13 +1,18 @@
 package biochemsimulation.simulation.pmc.GT;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.SimAgent;
+import biochemsimulation.reactioncontainer.SimBound;
 import biochemsimulation.reactioncontainer.SimLinkState;
 import biochemsimulation.reactioncontainer.SimSite;
+import biochemsimulation.reactioncontainer.SimSiteState;
+import biochemsimulation.reactionrules.reactionRules.AgentPattern;
 import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.FreeLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
@@ -28,6 +33,9 @@ public class TransformationTemplate {
 	private List<StateChangeTemplate> stateChanges;
 	private List<AgentCreationTemplate> agentCreations;
 	private List<LinkChangeTemplate> linkChanges;
+	
+	private Map<AgentPattern, AgentCreationTemplate> createdAgents;
+	private Map<AgentCreationTemplate, SimAgent> createdSimAgents;
 	
 	public TransformationTemplate(Pattern precondition, Pattern postcondition) {
 		this.precondition = precondition;
@@ -107,6 +115,8 @@ public class TransformationTemplate {
 	
 	private void findAgentCreationCandidates() {
 		agentCreations = new LinkedList<AgentCreationTemplate>();
+		createdAgents = new HashMap<AgentPattern, AgentCreationTemplate>();
+		createdSimAgents = new HashMap<AgentCreationTemplate, SimAgent>();
 		for(int i = 0; i<precondition.getAgentPatterns().size(); i++) {
 			// if the source pattern defines a void instead of an agent pattern -> create new agent according to target pattern
 			if(precondition.getAgentPatterns().get(i) instanceof VoidAgentPattern) {
@@ -114,23 +124,28 @@ public class TransformationTemplate {
 				ValidAgentPattern ap = (ValidAgentPattern)postcondition.getAgentPatterns().get(i);
 				AgentCreationTemplate agntTemplate = new AgentCreationTemplate(ap.getAgent().getName());
 				// define required sites
-				ap.getSitePatterns().getSitePatterns().forEach(sp-> {
+				for(Site site : ap.getAgent().getSites().getSites()) {
+					agntTemplate.addSite(site.getName());
+					// define the default site state, if there is any
+					if(site.getStates().getState() != null) {
+						if(site.getStates().getState().size() > 0) {
+							agntTemplate.addSiteState(site.getName(), site.getStates().getState().get(0).getName());
+						}
+					}
+				}
+				for(SitePattern sp : ap.getSitePatterns().getSitePatterns()) {
 					String site = sp.getSite().getName();
-					agntTemplate.addSite(site);
 					// define a state if the pattern has a state
 					if(sp.getState() != null) {
 						agntTemplate.addSiteState(site, sp.getState().getState().getName());
-					} 
-					// otherwise define the default site state, if there is any
-					else if(sp.getSite().getStates().getState() != null && sp.getState() == null) {
-						agntTemplate.addSiteState(site, sp.getSite().getStates().getState().get(0).getName());
 					}
 					// create a link if the pattern defines an indexed link
 					// -> the correct linking is performed in the link transform step
 					if(sp.getLinkState().getLinkState() instanceof BoundLink) {
 						agntTemplate.addLink(site);
+						createdAgents.put(precondition.getAgentPatterns().get(i), agntTemplate);
 					}
-				});
+				}
 				agentCreations.add(agntTemplate);
 			}
 		}
@@ -154,11 +169,16 @@ public class TransformationTemplate {
 				}
 				BoundLink link = (BoundLink) ls;
 				int linkIdx = Integer.valueOf(link.getState());
-				//System.out.println("A: "+ap.getAgent().getName()+", s: "+sp.getSite().getName()+linkIdx);
-				findAndSetLinkCorrespondence(i, j, convertSitePatternIdxToMatchIdx(ap, j), linkIdx);
+				
+				AgentPattern prePattern = precondition.getAgentPatterns().get(i);
+				if(!createdAgents.containsKey(prePattern)) {
+					findAndSetLinkCorrespondence(i, j, convertSitePatternIdxToMatchIdx(ap, j), linkIdx);
+				}else {
+					findAndSetLinkCorrespondence(createdAgents.get(prePattern), i, j, convertSitePatternIdxToMatchIdx(ap, j), linkIdx);
+				}
+				
 			}
 		}
-		//System.out.println("Link changes: "+linkChanges.size());
 	}
 	
 	private int convertSitePatternIdxToMatchIdx(ValidAgentPattern ap, int patternIdx) {
@@ -169,7 +189,6 @@ public class TransformationTemplate {
 			Site currentSite = sites.get(i);
 			if(currentSite.getName().equals(siteName)) {
 				matchIdx = i;
-				//System.out.println("Mapped site: "+siteName+" from: "+ patternIdx+", to: "+matchIdx);
 				break;
 			}
 		}
@@ -198,10 +217,49 @@ public class TransformationTemplate {
 				int linkIdx2 = Integer.valueOf(link.getState());
 				if(linkIdx == linkIdx2) {
 					//create template
-					//LinkChangeTemplate linkChange = new LinkChangeTemplate(agentIdx, siteIdx);
-					//linkChange.connectTo(i, j);
+					AgentPattern prePattern = precondition.getAgentPatterns().get(i);
 					LinkChangeTemplate linkChange = new LinkChangeTemplate(agentIdx, matchSiteIdx);
-					linkChange.connectTo(i, convertSitePatternIdxToMatchIdx(ap, j));
+					//create template
+					if(!createdAgents.containsKey(prePattern)) {
+						linkChange.connectTo(i, convertSitePatternIdxToMatchIdx(ap, j));
+					}else {
+						linkChange.connectTo(createdAgents.get(prePattern), convertSitePatternIdxToMatchIdx(ap, j), createdSimAgents);
+					}
+					linkChanges.add(linkChange);
+				}
+			}
+		}
+	}
+	
+	private void findAndSetLinkCorrespondence(AgentCreationTemplate agentTemplate, int agentIdx, int siteIdx, int matchSiteIdx, int linkIdx) {
+		for(int i = 0; i<postcondition.getAgentPatterns().size(); i++) {
+			if(i == agentIdx) {
+				continue;
+			}
+			if(!(postcondition.getAgentPatterns().get(i) instanceof ValidAgentPattern)) {
+				continue;
+			}
+			ValidAgentPattern ap = (ValidAgentPattern)postcondition.getAgentPatterns().get(i);
+			for(int j = 0; j<ap.getSitePatterns().getSitePatterns().size(); j++) {
+				SitePattern sp = ap.getSitePatterns().getSitePatterns().get(j);
+				if(sp.getLinkState() == null) {
+					continue;
+				}
+				LinkState ls = sp.getLinkState().getLinkState();
+				if(!(ls instanceof BoundLink)) {
+					continue;
+				}
+				BoundLink link = (BoundLink) ls;
+				int linkIdx2 = Integer.valueOf(link.getState());
+				if(linkIdx == linkIdx2) {
+					AgentPattern prePattern = precondition.getAgentPatterns().get(i);
+					LinkChangeTemplate linkChange = new LinkChangeTemplate(agentTemplate, matchSiteIdx, createdSimAgents);
+					//create template
+					if(!createdAgents.containsKey(prePattern)) {
+						linkChange.connectTo(i, convertSitePatternIdxToMatchIdx(ap, j));
+					}else {
+						linkChange.connectTo(createdAgents.get(prePattern), convertSitePatternIdxToMatchIdx(ap, j), createdSimAgents);
+					}
 					linkChanges.add(linkChange);
 				}
 			}
@@ -215,11 +273,12 @@ public class TransformationTemplate {
 			for(SimSite site : agent.getSimSites()) {
 				SimLinkState sLinkState = site.getSimLinkState();
 				if(sLinkState != null) {
-					org.eclipse.emf.ecore.util.EcoreUtil.delete(sLinkState);
+					org.eclipse.emf.ecore.util.EcoreUtil.delete(sLinkState, true);
 				}
 			}
 			// delete agent
-			org.eclipse.emf.ecore.util.EcoreUtil.delete(agent);
+			org.eclipse.emf.ecore.util.EcoreUtil.delete(agent, true);
+			
 		}
 	}
 	
@@ -240,7 +299,8 @@ public class TransformationTemplate {
 			return;
 		
 		for(AgentCreationTemplate template : agentCreations) {
-			template.createAgentFromTemplate(factory, reactionContainer);
+			SimAgent agent = template.createAgentFromTemplate(factory, reactionContainer);
+			createdSimAgents.put(template, agent);
 		}
 	}
 	
@@ -254,7 +314,8 @@ public class TransformationTemplate {
 	}
 	
 	public void applyTransformation(IMatch match, ReactionContainer reactionContainer, ReactionContainerFactory factory) {
-		applyAgentRemovalCandidates(match);
+		createdSimAgents.clear();
+		//applyAgentRemovalCandidates(match);
 		applyLinkRemovalTemplates(match);
 		applyStateChangeTemplates(match);
 		applyAgentCreationCandidates(reactionContainer, factory);
