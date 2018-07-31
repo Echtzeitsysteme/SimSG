@@ -6,233 +6,61 @@ pattern BoundAnyLink_SupportPattern(simSite : SimSite) {
 			SimSite.simLinkState(simSite, _);
 		}
 
-pattern bindAndChangeStates_rule_rhs( A : SimAgent,  B : SimAgent,  A1 : SimAgent) {
-	SimAgent.Type(A1, "A");
-	SimAgent.simSites(A1, A1_b);
-	SimSite.Type(A1_b, "b");
-	SimSite.simSiteState.Type(A1_b, "s");
+pattern evilInjectivityAndBoundAnyWithStates_rule_lhs( A7 : SimAgent,  A71 : SimAgent,  A72 : SimAgent) {
+	SimAgent.Type(A7, "A7");
+	SimAgent.simSites(A7, A7_x);
+	SimSite.Type(A7_x, "x");
 	
-SimAgent.Type(A, "A");
-	SimAgent.simSites(A, A_a);
-	SimSite.Type(A_a, "a");
+SimAgent.Type(A71, "A7");
+	SimAgent.simSites(A71, A71_x);
+	SimSite.Type(A71_x, "x");
+	SimSite.simSiteState.Type(A71_x, "d");
 	
-SimAgent.simSites(A, A_c);
-	SimSite.Type(A_c, "c");
-	SimSite.simSiteState.Type(A_c, "q");
+SimAgent.simSites(A71, A71_w);
+	SimSite.Type(A71_w, "w");
 	
-SimAgent.Type(B, "B");
-	SimAgent.simSites(B, B_d);
-	SimSite.Type(B_d, "d");
+SimAgent.Type(A72, "A7");
+	SimAgent.simSites(A72, A72_x);
+	SimSite.Type(A72_x, "x");
+	SimSite.simLinkState(A71_x, A71_A71_x_BoundAny);
+			SimAgent.Type(A71_A70, "A7");
+			SimAgent.simSites(A71_A70, A71_A70_x);
+			SimSite.Type(A71_A70_x, "x");
+			SimSite.simLinkState(A71_A70_x, A71_A70_A71_A70_x_BoundAny);
+			A71_A71_x_BoundAny==A71_A70_A71_A70_x_BoundAny;
 	
-SimAgent.simSites(B, B_e);
-	SimSite.Type(B_e, "e");
+	SimSite.simLinkState(A7_x, A7_A7_x_BoundAny);
+			SimAgent.Type(A7_A70, "A7");
+			SimAgent.simSites(A7_A70, A7_A70_x);
+			SimSite.Type(A7_A70_x, "x");
+			SimSite.simLinkState(A7_A70_x, A7_A70_A7_A70_x_BoundAny);
+			A7_A7_x_BoundAny==A7_A70_A7_A70_x_BoundAny;
 	
-SimAgent.simSites(B, B_f);
-	SimSite.Type(B_f, "f");
-	SimSite.simSiteState.Type(B_f, "l");
-	SimSite.simLinkState(A_a, A_A_a_BoundExact);
-			SimSite.simLinkState(B_d, B_B_d_BoundExact);
-			A_A_a_BoundExact==B_B_d_BoundExact;
+	SimSite.simLinkState(A71_w, A71_A71_w_BoundAny);
+			SimAgent.Type(A71_A71, "A7");
+			SimAgent.simSites(A71_A71, A71_A71_x);
+			SimSite.Type(A71_A71_x, "x");
+			SimSite.simLinkState(A71_A71_x, A71_A71_A71_A71_x_BoundAny);
+			A71_A71_w_BoundAny==A71_A71_A71_A71_x_BoundAny;
 	
-	SimSite.simLinkState(B_e, B_B_e_BoundExact);
-			SimSite.simLinkState(A1_b, A1_A1_b_BoundExact);
-			B_B_e_BoundExact==A1_A1_b_BoundExact;
-	A!=A1;
-}
-
-pattern changeStates_rule_rhs( A : SimAgent,  B : SimAgent) {
-	SimAgent.Type(B, "B");
-	SimAgent.simSites(B, B_f);
-	SimSite.Type(B_f, "f");
-	SimSite.simSiteState.Type(B_f, "l");
+	SimSite.simLinkState(A72_x, A72_A72_x_BoundAny);
+			SimAgent.Type(A72_A70, "A7");
+			SimAgent.simSites(A72_A70, A72_A70_w);
+			SimSite.Type(A72_A70_w, "w");
+			SimSite.simLinkState(A72_A70_w, A72_A70_A72_A70_w_BoundAny);
+			A72_A72_x_BoundAny==A72_A70_A72_A70_w_BoundAny;
+	A7!=A7_A70;
 	
-SimAgent.Type(A, "A");
-	SimAgent.simSites(A, A_c);
-	SimSite.Type(A_c, "c");
-	SimSite.simSiteState.Type(A_c, "q");
-	SimSite.simLinkState(A_c, A_A_c_BoundExact);
-			SimSite.simLinkState(B_f, B_B_f_BoundExact);
-			A_A_c_BoundExact==B_B_f_BoundExact;
-	}
-
-pattern createAndDestroy_rule_rhs( A1 : SimAgent,  B1 : SimAgent,  B11 : SimAgent) {
-	SimAgent.Type(B11, "B1");
-	SimAgent.simSites(B11, B11_f);
-	SimSite.Type(B11_f, "f");
+A71!=A71_A70;
 	
-SimAgent.Type(A1, "A1");
-	SimAgent.simSites(A1, A1_a);
-	SimSite.Type(A1_a, "a");
+A71!=A71_A71;
 	
-SimAgent.Type(B1, "B1");
-	SimAgent.simSites(B1, B1_d);
-	SimSite.Type(B1_d, "d");
+A72!=A72_A70;
 	
-SimAgent.simSites(B1, B1_e);
-	SimSite.Type(B1_e, "e");
-	SimSite.simLinkState(B1_e, B1_B1_e_BoundExact);
-			SimSite.simLinkState(B11_f, B11_B11_f_BoundExact);
-			B1_B1_e_BoundExact==B11_B11_f_BoundExact;
+A71!=A72;
 	
-	SimSite.simLinkState(A1_a, A1_A1_a_BoundExact);
-			SimSite.simLinkState(B1_d, B1_B1_d_BoundExact);
-			A1_A1_a_BoundExact==B1_B1_d_BoundExact;
-	B1!=B11;
-}
-
-pattern disjuncToBound_rule_rhs( A : SimAgent,  B : SimAgent,  A1 : SimAgent) {
-	SimAgent.Type(B, "B");
-	SimAgent.simSites(B, B_d);
-	SimSite.Type(B_d, "d");
+A7!=A71;
 	
-SimAgent.simSites(B, B_e);
-	SimSite.Type(B_e, "e");
-	
-SimAgent.Type(A1, "A");
-	SimAgent.simSites(A1, A1_b);
-	SimSite.Type(A1_b, "b");
-	
-SimAgent.Type(A, "A");
-	SimAgent.simSites(A, A_a);
-	SimSite.Type(A_a, "a");
-	SimSite.simLinkState(A_a, A_A_a_BoundExact);
-			SimSite.simLinkState(B_d, B_B_d_BoundExact);
-			A_A_a_BoundExact==B_B_d_BoundExact;
-	
-	SimSite.simLinkState(B_e, B_B_e_BoundExact);
-			SimSite.simLinkState(A1_b, A1_A1_b_BoundExact);
-			B_B_e_BoundExact==A1_A1_b_BoundExact;
-	A!=A1;
-}
-
-pattern changeStates_rule_lhs( A : SimAgent,  B : SimAgent) {
-	SimAgent.Type(B, "B");
-	SimAgent.simSites(B, B_f);
-	SimSite.Type(B_f, "f");
-	SimSite.simSiteState.Type(B_f, "m");
-	
-SimAgent.Type(A, "A");
-	SimAgent.simSites(A, A_c);
-	SimSite.Type(A_c, "c");
-	SimSite.simSiteState.Type(A_c, "p");
-	SimSite.simLinkState(A_c, A_A_c_BoundExact);
-			SimSite.simLinkState(B_f, B_B_f_BoundExact);
-			A_A_c_BoundExact==B_B_f_BoundExact;
-	}
-
-pattern breakUpWithStates_rule_lhs( A : SimAgent,  B : SimAgent,  C : SimAgent) {
-	SimAgent.Type(A, "A");
-	SimAgent.simSites(A, A_c);
-	SimSite.Type(A_c, "c");
-	SimSite.simSiteState.Type(A_c, "p");
-	
-SimAgent.Type(B, "B");
-	SimAgent.simSites(B, B_f);
-	SimSite.Type(B_f, "f");
-	SimSite.simSiteState.Type(B_f, "m");
-	
-SimAgent.simSites(B, B_e);
-	SimSite.Type(B_e, "e");
-	
-SimAgent.Type(C, "C");
-	SimAgent.simSites(C, C_h);
-	SimSite.Type(C_h, "h");
-	SimSite.simSiteState.Type(C_h, "o");
-	SimSite.simLinkState(B_e, B_B_e_BoundExact);
-			SimSite.simLinkState(C_h, C_C_h_BoundExact);
-			B_B_e_BoundExact==C_C_h_BoundExact;
-	
-	SimSite.simLinkState(A_c, A_A_c_BoundExact);
-			SimSite.simLinkState(B_f, B_B_f_BoundExact);
-			A_A_c_BoundExact==B_B_f_BoundExact;
-	}
-
-pattern bindAndChangeStates_rule_lhs( A : SimAgent,  B : SimAgent,  A1 : SimAgent) {
-	SimAgent.Type(B, "B");
-	SimAgent.simSites(B, B_d);
-	SimSite.Type(B_d, "d");
-	neg find BoundAnyLink_SupportPattern(B_d);
-	
-SimAgent.simSites(B, B_e);
-	SimSite.Type(B_e, "e");
-	neg find BoundAnyLink_SupportPattern(B_e);
-	
-SimAgent.simSites(B, B_f);
-	SimSite.Type(B_f, "f");
-	SimSite.simSiteState.Type(B_f, "m");
-	
-SimAgent.Type(A, "A");
-	SimAgent.simSites(A, A_a);
-	SimSite.Type(A_a, "a");
-	neg find BoundAnyLink_SupportPattern(A_a);
-	
-SimAgent.simSites(A, A_c);
-	SimSite.Type(A_c, "c");
-	SimSite.simSiteState.Type(A_c, "p");
-	
-SimAgent.simSites(A, A_b);
-	SimSite.Type(A_b, "b");
-	SimSite.simSiteState.Type(A_b, "r");
-	
-SimAgent.Type(A1, "A");
-	SimAgent.simSites(A1, A1_b);
-	SimSite.Type(A1_b, "b");
-	SimSite.simSiteState.Type(A1_b, "s");
-	neg find BoundAnyLink_SupportPattern(A1_b);
-	A!=A1;
-}
-
-pattern breakUpWithStates_rule_rhs( A : SimAgent,  B : SimAgent,  C : SimAgent) {
-	SimAgent.Type(A, "A");
-	SimAgent.simSites(A, A_c);
-	SimSite.Type(A_c, "c");
-	SimSite.simSiteState.Type(A_c, "p");
-	
-SimAgent.Type(C, "C");
-	SimAgent.simSites(C, C_h);
-	SimSite.Type(C_h, "h");
-	SimSite.simSiteState.Type(C_h, "o");
-	neg find BoundAnyLink_SupportPattern(C_h);
-	
-SimAgent.Type(B, "B");
-	SimAgent.simSites(B, B_f);
-	SimSite.Type(B_f, "f");
-	SimSite.simSiteState.Type(B_f, "m");
-	
-SimAgent.simSites(B, B_e);
-	SimSite.Type(B_e, "e");
-	neg find BoundAnyLink_SupportPattern(B_e);
-	SimSite.simLinkState(A_c, A_A_c_BoundExact);
-			SimSite.simLinkState(B_f, B_B_f_BoundExact);
-			A_A_c_BoundExact==B_B_f_BoundExact;
-	}
-
-pattern createAndDestroy_rule_lhs( A1 : SimAgent) {
-	SimAgent.Type(A1, "A1");
-	SimAgent.simSites(A1, A1_a);
-	SimSite.Type(A1_a, "a");
-	neg find BoundAnyLink_SupportPattern(A1_a);
-	}
-
-pattern disjuncToBound_rule_lhs( A : SimAgent,  B : SimAgent,  A1 : SimAgent) {
-	SimAgent.Type(A, "A");
-	SimAgent.simSites(A, A_a);
-	SimSite.Type(A_a, "a");
-	neg find BoundAnyLink_SupportPattern(A_a);
-	
-SimAgent.Type(B, "B");
-	SimAgent.simSites(B, B_d);
-	SimSite.Type(B_d, "d");
-	neg find BoundAnyLink_SupportPattern(B_d);
-	
-SimAgent.simSites(B, B_e);
-	SimSite.Type(B_e, "e");
-	neg find BoundAnyLink_SupportPattern(B_e);
-	
-SimAgent.Type(A1, "A");
-	SimAgent.simSites(A1, A1_b);
-	SimSite.Type(A1_b, "b");
-	neg find BoundAnyLink_SupportPattern(A1_b);
-	A!=A1;
+A7!=A72;
 }
 

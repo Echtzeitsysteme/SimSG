@@ -52,7 +52,8 @@ public class Sandbox {
 		test4();
 		test6();
 		*/
-		test7();
+		//test7();
+		test8_kill();
 	}
 
 	public static void test1() {
@@ -345,6 +346,41 @@ public class Sandbox {
 		democlesSim.finish();
 		
 		System.out.println(Runtimer.getInstance());
+		
+	}
+	
+	public static void test8_kill() {
+		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
+		pm.init();
+		try {
+			ReactionRuleModel model1 = pm.loadReactionRuleModel("DemoclesKill1");
+			ReactionContainer model2 = pm.loadReactionContainerModel("DemoclesKill1", true);
+			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.DemoclesEngine);
+			engine.loadModels(model2, model1);
+			Runtimer.getInstance().measure(engine, "init", () -> {
+				try {
+					engine.initEngine();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
+			//engine.initEngine();
+			System.out.println(Runtimer.getInstance());
+			Map<String, Collection<IMatch>> matches = engine.getAllMatches();
+			matches.forEach((name, m) -> {
+				if(m != null) {
+					System.out.println("Pattern: "+name+", size: "+m.size());
+				}
+				
+			});
+			
+			engine.disposeEngine();
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	

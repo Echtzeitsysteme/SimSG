@@ -1,5 +1,6 @@
 package biochemsimulation.simulation.pmc.GT;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,7 +9,6 @@ import java.util.Map;
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.SimAgent;
-import biochemsimulation.reactioncontainer.SimBound;
 import biochemsimulation.reactioncontainer.SimLinkState;
 import biochemsimulation.reactioncontainer.SimSite;
 import biochemsimulation.reactioncontainer.SimSiteState;
@@ -267,19 +267,35 @@ public class TransformationTemplate {
 	}
 	
 	private void applyAgentRemovalCandidates(IMatch match) {
+		Collection<SimLinkState> links = new LinkedList<SimLinkState>();
+		Collection<SimSiteState> states = new LinkedList<SimSiteState>();
+		Collection<SimSite> sites = new LinkedList<SimSite>();
+		Collection<SimAgent> agents = new LinkedList<SimAgent>();
+		
 		for(Integer agentIdx : agentRemovals) {
 			SimAgent agent = (SimAgent) match.get(match.parameterNames().get(agentIdx));
 			// delete all links to agent
 			for(SimSite site : agent.getSimSites()) {
 				SimLinkState sLinkState = site.getSimLinkState();
+				SimSiteState sState = site.getSimSiteState();
 				if(sLinkState != null) {
-					org.eclipse.emf.ecore.util.EcoreUtil.delete(sLinkState, true);
+					links.add(sLinkState);
 				}
+				if(sState != null) {
+					states.add(sState);
+				}
+				sites.add(site);
 			}
 			// delete agent
-			org.eclipse.emf.ecore.util.EcoreUtil.delete(agent, true);
+			agents.add(agent);
+			
+			
 			
 		}
+		org.eclipse.emf.ecore.util.EcoreUtil.deleteAll(links, false);
+		org.eclipse.emf.ecore.util.EcoreUtil.deleteAll(states, false);
+		org.eclipse.emf.ecore.util.EcoreUtil.deleteAll(sites, false);
+		org.eclipse.emf.ecore.util.EcoreUtil.deleteAll(agents, false);
 	}
 	
 	private void applyLinkRemovalTemplates(IMatch match) {
@@ -314,8 +330,7 @@ public class TransformationTemplate {
 	}
 	
 	public void applyTransformation(IMatch match, ReactionContainer reactionContainer, ReactionContainerFactory factory) {
-		createdSimAgents.clear();
-		//applyAgentRemovalCandidates(match);
+		applyAgentRemovalCandidates(match);
 		applyLinkRemovalTemplates(match);
 		applyStateChangeTemplates(match);
 		applyAgentCreationCandidates(reactionContainer, factory);
