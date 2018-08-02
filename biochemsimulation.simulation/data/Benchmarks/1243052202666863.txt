@@ -1,0 +1,10 @@
+*************** Runtime measurements at sys-time: 1243052202712373***************
+#### Measurements for Object: Simulation-object: 937437482/ Model: Bench_konj_C8Entities_Var6PatternSize / MatchingEngine: ViatraEngine / PMC: SimplePMC ####
+Function: initEngine -> Execution took: 0.780207865s (7.80207865E8ns)
+Function: loadModels -> Execution took: 1.34353223s (1.34353223E9ns)
+Function: run -> Execution took: 0.060076968s (6.0076968E7ns)
+Function: initialize -> Execution took: 2.234557731s (2.234557731E9ns)
+Function: initController -> Execution took: 0.006506454s (6506454.0ns)
+##################################################################
+******************************************************************
+

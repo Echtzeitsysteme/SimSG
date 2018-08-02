@@ -1,0 +1,143 @@
+*************** Runtime measurements at sys-time: 1243709542597006***************
+#### Measurements for Object: Simulation-object: 575568687/ Model: Bench_C8Entities_Var3PatternSize / MatchingEngine: DemoclesEngine / PMC: SimplePMC ####
+Function: initEngine -> Execution took: 0.034449931s (3.4449931E7ns)
+Function: loadModels -> Execution took: 4.2523E-4s (425230.0ns)
+Function: run -> Execution took: 0.02347813s (2.347813E7ns)
+Function: initialize -> Execution took: 0.045507347s (4.5507347E7ns)
+Function: initController -> Execution took: 1.02397E-4s (102397.0ns)
+##################################################################
+#### Measurements for Object: Simulation-object: 1984982546/ Model: Bench_konj_C8Entities_Var6PatternSize / MatchingEngine: DemoclesEngine / PMC: SimplePMC ####
+Function: initEngine -> Execution took: 0.691654105s (6.91654105E8ns)
+Function: loadModels -> Execution took: 7.94143E-4s (794143.0ns)
+Function: run -> Execution took: 0.091508473s (9.1508473E7ns)
+Function: initialize -> Execution took: 0.704805531s (7.04805531E8ns)
+Function: initController -> Execution took: 2.668E-4s (266800.0ns)
+##################################################################
+#### Measurements for Object: Simulation-object: 1527629935/ Model: Bench_konj_Var10Entities_C2PatternSize / MatchingEngine: DemoclesEngine / PMC: SimplePMC ####
+Function: initEngine -> Execution took: 0.018126198s (1.8126198E7ns)
+Function: loadModels -> Execution took: 3.07474E-4s (307474.0ns)
+Function: run -> Execution took: 0.003666938s (3666938.0ns)
+Function: initialize -> Execution took: 0.029330383s (2.9330383E7ns)
+Function: initController -> Execution took: 9.1872E-5s (91872.0ns)
+##################################################################
+#### Measurements for Object: Simulation-object: 1861799612/ Model: Bench_Var500Entities_C2PatternSize / MatchingEngine: DemoclesEngine / PMC: SimplePMC ####
+Function: initEngine -> Execution took: 0.492559745s (4.92559745E8ns)
+Function: loadModels -> Execution took: 2.68222E-4s (268222.0ns)
+Function: run -> Execution took: 0.249234869s (2.49234869E8ns)
+Function: initialize -> Execution took: 0.51095758s (5.1095758E8ns)
+Function: initController -> Execution took: 1.0325E-4s (103250.0ns)
+##################################################################
+#### Measurements for Object: Simulation-object: 1463709115/ Model: Bench_konj_C8Entities_Var4PatternSize / MatchingEngine: DemoclesEngine / PMC: SimplePMC ####
+Function: initEngine -> Execution took: 0.436841177s (4.36841177E8ns)
+Function: loadModels -> Execution took: 4.6818E-4s (468180.0ns)
+Function: run -> Execution took: 0.016147952s (1.6147952E7ns)
+Function: initialize -> Execution took: 0.448559052s (4.48559052E8ns)
+Function: initController -> Execution took: 1.54164E-4s (154164.0ns)
+##################################################################
+#### Measurements for Object: Simulation-object: 874059252/ Model: Bench_konj_C8Entities_Var3PatternSize / MatchingEngine: DemoclesEngine / PMC: SimplePMC ####
+Function: initEngine -> Execution took: 0.212545865s (2.12545865E8ns)
+Function: loadModels -> Execution took: 3.42745E-4s (342745.0ns)
+Function: run -> Execution took: 0.00892017s (8920170.0ns)
+Function: initialize -> Execution took: 0.22368719s (2.2368719E8ns)
+Function: initController -> Execution took: 1.42218E-4s (142218.0ns)
+##################################################################
+#### Measurements for Object: Simulation-object: 40472007/ Model: Bench_konj_Var500Entities_C2PatternSize / MatchingEngine: DemoclesEngine / PMC: SimplePMC ####
+Function: initEngine -> Execution took: 0.70340156s (7.0340156E8ns)
+Function: loadModels -> Execution took: 0.016271681s (1.6271681E7ns)
+Function: run -> Execution took: 0.097540205s (9.7540205E7ns)
+Function: initialize -> Execution took: 0.897901153s (8.97901153E8ns)
+Function: initController -> Execution took: 0.003966449s (3966449.0ns)
+##################################################################
+#### Measurements for Object: Simulation-object: 265089150/ Model: Bench_konj_Var100Entities_C2PatternSize / MatchingEngine: DemoclesEngine / PMC: SimplePMC ####
+Function: initEngine -> Execution took: 0.037467219s (3.7467219E7ns)
+Function: loadModels -> Execution took: 3.13448E-4s (313448.0ns)
+Function: run -> Execution took: 0.010405206s (1.0405206E7ns)
+Function: initialize -> Execution took: 0.050068833s (5.0068833E7ns)
+Function: initController -> Execution took: 1.19463E-4s (119463.0ns)
+##################################################################
+#### Measurements for Object: Simulation-object: 1489098388/ Model: Bench_Var100Entities_C2PatternSize / MatchingEngine: DemoclesEngine / PMC: SimplePMC ####
+Function: initEngine -> Execution took: 0.025997372s (2.5997372E7ns)
+Function: loadModels -> Execution took: 2.37503E-4s (237503.0ns)
+Function: run -> Execution took: 0.016828037s (1.6828037E7ns)
+Function: initialize -> Execution took: 0.037703015s (3.7703015E7ns)
+Function: initController -> Execution took: 9.1873E-5s (91873.0ns)
+##################################################################
+#### Measurements for Object: Simulation-object: 1554113303/ Model: Bench_konj_C8Entities_Var2PatternSize / MatchingEngine: DemoclesEngine / PMC: SimplePMC ####
+Function: initEngine -> Execution took: 0.01657432s (1.657432E7ns)
+Function: loadModels -> Execution took: 3.80005E-4s (380005.0ns)
+Function: run -> Execution took: 0.004989561s (4989561.0ns)
+Function: initialize -> Execution took: 0.029319859s (2.9319859E7ns)
+Function: initController -> Execution took: 9.813E-5s (98130.0ns)
+##################################################################
+#### Measurements for Object: Simulation-object: 300378096/ Model: Bench_C8Entities_Var4PatternSize / MatchingEngine: DemoclesEngine / PMC: SimplePMC ####
+Function: initEngine -> Execution took: 0.05165911s (5.165911E7ns)
+Function: loadModels -> Execution took: 4.13568E-4s (413568.0ns)
+Function: run -> Execution took: 0.255187244s (2.55187244E8ns)
+Function: initialize -> Execution took: 0.06511915s (6.511915E7ns)
+Function: initController -> Execution took: 1.3596E-4s (135960.0ns)
+##################################################################
+#### Measurements for Object: Simulation-object: 2088246338/ Model: Bench_konj_Var1000Entities_C2PatternSize / MatchingEngine: DemoclesEngine / PMC: SimplePMC ####
+Function: initEngine -> Execution took: 1.038170058s (1.038170058E9ns)
+Function: loadModels -> Execution took: 5.09139E-4s (509139.0ns)
+Function: run -> Execution took: 0.104577984s (1.04577984E8ns)
+Function: initialize -> Execution took: 1.127112073s (1.127112073E9ns)
+Function: initController -> Execution took: 1.1349E-4s (113490.0ns)
+##################################################################
+#### Measurements for Object: Simulation-object: 1280706092/ Model: Bench_Var50Entities_C2PatternSize / MatchingEngine: DemoclesEngine / PMC: SimplePMC ####
+Function: initEngine -> Execution took: 0.011637664s (1.1637664E7ns)
+Function: loadModels -> Execution took: 2.47459E-4s (247459.0ns)
+Function: run -> Execution took: 0.008145369s (8145369.0ns)
+Function: initialize -> Execution took: 0.022883944s (2.2883944E7ns)
+Function: initController -> Execution took: 1.03819E-4s (103819.0ns)
+##################################################################
+#### Measurements for Object: Simulation-object: 118442356/ Model: Bench_C8Entities_Var2PatternSize / MatchingEngine: DemoclesEngine / PMC: SimplePMC ####
+Function: initEngine -> Execution took: 0.004399358s (4399358.0ns)
+Function: loadModels -> Execution took: 2.37788E-4s (237788.0ns)
+Function: run -> Execution took: 0.003124804s (3124804.0ns)
+Function: initialize -> Execution took: 0.015222684s (1.5222684E7ns)
+Function: initController -> Execution took: 6.542E-5s (65420.0ns)
+##################################################################
+#### Measurements for Object: Simulation-object: 1897287533/ Model: Bench_konj_Var50Entities_C2PatternSize / MatchingEngine: DemoclesEngine / PMC: SimplePMC ####
+Function: initEngine -> Execution took: 0.02518019s (2.518019E7ns)
+Function: loadModels -> Execution took: 2.92969E-4s (292969.0ns)
+Function: run -> Execution took: 0.006929978s (6929978.0ns)
+Function: initialize -> Execution took: 0.036470842s (3.6470842E7ns)
+Function: initController -> Execution took: 9.1588E-5s (91588.0ns)
+##################################################################
+#### Measurements for Object: Simulation-object: 1206938635/ Model: Bench_C8Entities_Var6PatternSize / MatchingEngine: DemoclesEngine / PMC: SimplePMC ####
+Function: initEngine -> Execution took: 3.627705974s (3.627705974E9ns)
+Function: loadModels -> Execution took: 4.76998E-4s (476998.0ns)
+Function: run -> Execution took: 54.930911558s (5.4930911558E10ns)
+Function: initialize -> Execution took: 3.639108978s (3.639108978E9ns)
+Function: initController -> Execution took: 1.66963E-4s (166963.0ns)
+##################################################################
+#### Measurements for Object: Simulation-object: 723358145/ Model: Bench_Var1000Entities_C2PatternSize / MatchingEngine: DemoclesEngine / PMC: SimplePMC ####
+Function: initEngine -> Execution took: 4.825338336s (4.825338336E9ns)
+Function: loadModels -> Execution took: 3.30514E-4s (330514.0ns)
+Function: run -> Execution took: 0.950405888s (9.50405888E8ns)
+Function: initialize -> Execution took: 4.85626696s (4.85626696E9ns)
+Function: initController -> Execution took: 1.16049E-4s (116049.0ns)
+##################################################################
+#### Measurements for Object: Simulation-object: 1691206416/ Model: Bench_konj_C8Entities_Var5PatternSize / MatchingEngine: DemoclesEngine / PMC: SimplePMC ####
+Function: initEngine -> Execution took: 0.721819588s (7.21819588E8ns)
+Function: loadModels -> Execution took: 9.95808E-4s (995808.0ns)
+Function: run -> Execution took: 0.046038672s (4.6038672E7ns)
+Function: initialize -> Execution took: 0.739395973s (7.39395973E8ns)
+Function: initController -> Execution took: 2.39779E-4s (239779.0ns)
+##################################################################
+#### Measurements for Object: Simulation-object: 1271624086/ Model: Bench_Var10Entities_C2PatternSize / MatchingEngine: DemoclesEngine / PMC: SimplePMC ####
+Function: initEngine -> Execution took: 0.005274281s (5274281.0ns)
+Function: loadModels -> Execution took: 3.24256E-4s (324256.0ns)
+Function: run -> Execution took: 0.005254655s (5254655.0ns)
+Function: initialize -> Execution took: 0.020727358s (2.0727358E7ns)
+Function: initController -> Execution took: 7.5944E-5s (75944.0ns)
+##################################################################
+#### Measurements for Object: Simulation-object: 1208058494/ Model: Bench_C8Entities_Var5PatternSize / MatchingEngine: DemoclesEngine / PMC: SimplePMC ####
+Function: initEngine -> Execution took: 0.243309517s (2.43309517E8ns)
+Function: loadModels -> Execution took: 5.54933E-4s (554933.0ns)
+Function: run -> Execution took: 3.93305051s (3.93305051E9ns)
+Function: initialize -> Execution took: 0.255608493s (2.55608493E8ns)
+Function: initController -> Execution took: 1.4108E-4s (141080.0ns)
+##################################################################
+******************************************************************
+

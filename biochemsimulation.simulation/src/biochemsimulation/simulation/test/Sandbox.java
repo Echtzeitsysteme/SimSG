@@ -318,13 +318,13 @@ public class Sandbox {
 	public static void benchmark() {
 		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
 		pm.init();
-		List<String> models = pm.availableReactionRuleModels().stream().filter(x->x.contains("Bench_konj_C8Entities_Var6")).collect(Collectors.toList());
+		List<String> models = pm.availableReactionRuleModels().stream().filter(x->x.contains("Bench_")).collect(Collectors.toList());
 		SimulationConfigurator simConfig = new SimulationConfigurator();
 		simConfig.setSimplePersistence();
 		simConfig.setSimplePMC();
 		simConfig.setPMCDeterministic(true);
 		simConfig.setSimpleTerminationCondition(10);
-		/*
+		
 		simConfig.setDemoclesAsEngine();
 		models.forEach(x-> {
 			simConfig.setModel(x);
@@ -334,8 +334,8 @@ public class Sandbox {
 			System.out.println(democlesSim.results());
 			democlesSim.finish();
 		});
-		*/
 		
+		/*
 		simConfig.setViatraAsEngine();
 		models.forEach(x-> {
 			simConfig.setModel(x);
@@ -345,7 +345,7 @@ public class Sandbox {
 			System.out.println(viatraSim.results());
 			viatraSim.finish();
 		});
-		
+		*/
 		
 		
 		Runtimer.getInstance().toFile();
