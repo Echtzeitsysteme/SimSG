@@ -1,0 +1,9 @@
+ModelID Bench_Var500Entities_C2PatternSize
+
+agent A(x, y)
+agent B(x, y)
+
+init i1 500 {A(x[free])}
+init i2 500 {B(x[free])}
+
+rule destroy {A(x[free]), B(x[free])} <-> {A(x[1]), B(x[1])} @ [0.01, 0.01]

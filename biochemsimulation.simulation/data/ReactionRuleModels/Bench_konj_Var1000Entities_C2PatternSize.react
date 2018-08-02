@@ -1,0 +1,8 @@
+ModelID Bench_konj_Var1000Entities_C2PatternSize
+
+agent A(x, y)
+agent B(x, y)
+
+init i1 1000 {A(x[1]), B(x[1])}
+
+rule destroy {A(x[1]), B(x[1])} <-> {A(x[free], y[1]), B(x[free], y[1])} @ [0.01, 0.01]

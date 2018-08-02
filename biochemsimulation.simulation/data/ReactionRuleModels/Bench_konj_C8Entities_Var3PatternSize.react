@@ -1,0 +1,9 @@
+ModelID Bench_konj_C8Entities_Var3PatternSize
+
+agent A(x, y)
+agent B(x, y)
+agent C(x, y)
+
+init i1 8 {A(x[1]), B(x[1], y[2]), C(x[2])}
+
+rule destroy {A(x[1]), B(x[1], y[2]), C(x[2])} <-> {A(x[1]), B(x[2], y[1]), C(x[2])} @ [0.01, 0.01]

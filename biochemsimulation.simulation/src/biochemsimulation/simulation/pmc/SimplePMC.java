@@ -102,7 +102,11 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 				e.printStackTrace();
 				continue;
 			}
-			List<IMatch> currentMatches = new LinkedList<IMatch>(matches.get(current));
+			Collection<IMatch> m = matches.getOrDefault(current, null);
+			if(m == null ) {
+				continue;
+			}
+			List<IMatch> currentMatches = new LinkedList<IMatch>(m);
 			
 			if(useReactionRates) {
 				double reactionRate = staticReactionRates.get(current);

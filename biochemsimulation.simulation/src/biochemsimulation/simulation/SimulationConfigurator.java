@@ -17,9 +17,10 @@ public class SimulationConfigurator {
 	private PatternMatchingControllerEnum controllerType;
 	private SimulationTerminationConditionEnum conditionType;
 	private int maxIterations;
+	private boolean deterministic;
 	
 	public SimulationConfigurator() {
-		
+		deterministic = false;
 	}
 	
 	public void setModel(String modelName) {
@@ -42,6 +43,10 @@ public class SimulationConfigurator {
 		controllerType = PatternMatchingControllerEnum.SimplePMC;
 	}
 	
+	public void setPMCDeterministic(boolean deterministic) {
+		this.deterministic = deterministic;
+	}
+	
 	public void setSimpleTerminationCondition(int maxIterations) {
 		conditionType = SimulationTerminationConditionEnum.SimpleCondition;
 		this.maxIterations = maxIterations;
@@ -55,6 +60,10 @@ public class SimulationConfigurator {
 		PatternMatchingEngine engine = PatternMatchingEngineFactory.create(engineType);
 		PatternMatchingController pmc = PatternMatchingControllerFactory.create(controllerType);
 		pmc.setEngine(engine);
+		if(deterministic) {
+			pmc.useReactionRate(false);
+			pmc.randomizeRuleOrder(false);
+		}
 		simulation.setPmc(pmc);
 		// create and set termination condition
 		SimulationTerminationCondition condition = SimulationTerminationConditionFactory.create(conditionType);

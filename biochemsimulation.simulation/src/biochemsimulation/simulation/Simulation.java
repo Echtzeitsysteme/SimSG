@@ -130,6 +130,6 @@ public class Simulation {
 	
 	@Override
 	public String toString() {
-		return "Simulation-object: "+this.hashCode()+" / MatchingEngine: " + pmc.getEngineType() + " / PMC: " + pmc.getPMCType();
+		return "Simulation-object: "+this.hashCode()+"/ Model: "+modelName+" / MatchingEngine: " + pmc.getEngineType() + " / PMC: " + pmc.getPMCType();
 	}
 }

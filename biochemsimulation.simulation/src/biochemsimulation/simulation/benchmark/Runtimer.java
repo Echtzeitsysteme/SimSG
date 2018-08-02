@@ -1,6 +1,13 @@
 package biochemsimulation.simulation.benchmark;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Runtimer {
@@ -52,6 +59,18 @@ public class Runtimer {
 		});
 		sb.append("******************************************************************\n");
 		return sb.toString();
+	}
+	
+	public void toFile() {
+		String path = "data/Benchmarks/"+System.nanoTime()+".txt";
+		Path file = Paths.get(path);
+		List<String> lines = Arrays.asList(toString());
+		try {
+			Files.write(file, lines, Charset.forName("UTF-8"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public Measurement getMeasurement(Object o, String functionName) {

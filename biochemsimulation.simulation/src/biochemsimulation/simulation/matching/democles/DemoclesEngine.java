@@ -102,6 +102,7 @@ public class DemoclesEngine implements MatchEventListener {
 			this.patterns.put(getPatternID(p), p);
 		}
 		createAndRegisterPatterns();
+		updateMatches();
 	}
 
 	public void updateMatches() {
