@@ -3,7 +3,6 @@ package biochemsimulation.simulation.matching;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Map;
 
 import org.eclipse.viatra.query.runtime.api.AdvancedViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
@@ -13,28 +12,24 @@ import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternMo
 import org.eclipse.viatra.query.patternlanguage.emf.specification.SpecificationBuilder;
 import org.eclipse.viatra.query.patternlanguage.patternLanguage.Pattern;
 
-import biochemsimulation.reactioncontainer.ReactionContainer;
-import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.simulation.matching.viatra.ViatraMatch;
 import biochemsimulation.simulation.matching.viatra.ViatraPatternGenerator;
 
-public class ViatraEngineWrapper implements PatternMatchingEngine {
+public class ViatraEngineWrapper extends PatternMatchingEngine {
 	
-	public static final PatternMatchingEngineEnum type = PatternMatchingEngineEnum.ViatraEngine;
 	private AdvancedViatraQueryEngine queryEngine;
-	private ReactionContainer model;
 	private PatternModel patternModel;
 	private SpecificationBuilder builder;
 	private HashMap<String, ViatraQueryMatcher<? extends IPatternMatch>> matcher;
 	
 	ViatraEngineWrapper() {
+		type = PatternMatchingEngineEnum.ViatraEngine;
 		builder = new SpecificationBuilder();
 		matcher = new HashMap<String, ViatraQueryMatcher<? extends IPatternMatch>>();
 	}
-
+	
 	@Override
-	public void loadModels(ReactionContainer model, ReactionRuleModel rules) throws Exception {
-		this.model = model;
+	public void loadModels() throws Exception {
 		ViatraPatternGenerator gen = new ViatraPatternGenerator(rules);
 		patternModel = gen.doGenerate("", false);
 	}
@@ -51,26 +46,6 @@ public class ViatraEngineWrapper implements PatternMatchingEngine {
 	}
 
 	@Override
-	public Collection<IMatch> getMatches(String patternName) throws Exception {
-		if(!matcher.containsKey(patternName))
-			throw new IndexOutOfBoundsException("Cannot return matches for requested Pattern, because pattern does not exist.");
-		Collection<IMatch> iMatches = new LinkedList<IMatch>();
-		for(IPatternMatch match : matcher.get(patternName).getAllMatches()) {
-			iMatches.add(new ViatraMatch(match));
-		}
-		return iMatches;
-	}
-
-	@Override
-	public Map<String, Collection<IMatch>> getAllMatches() throws Exception {
-		Map<String, Collection<IMatch>> matches = new HashMap<String, Collection<IMatch>>();
-		for(String patternName : matcher.keySet()) {
-			matches.put(patternName, getMatches(patternName));
-		}
-		return matches;
-	}
-
-	@Override
 	public void disposeEngine() {
 		queryEngine.wipe();
 		queryEngine.dispose();
@@ -78,8 +53,17 @@ public class ViatraEngineWrapper implements PatternMatchingEngine {
 	}
 
 	@Override
-	public PatternMatchingEngineEnum getEngineType() {
-		return type;
+	protected Collection<String> getAllPatternNames() {
+		return matcher.keySet();
+	}
+
+	@Override
+	protected Collection<IMatch> getMatchesAndUpdate(String patternName) throws Exception {
+		Collection<IMatch> iMatches = new LinkedList<IMatch>();
+		for(IPatternMatch match : matcher.get(patternName).getAllMatches()) {
+			iMatches.add(new ViatraMatch(match));
+		}
+		return iMatches;
 	}
 	
 	

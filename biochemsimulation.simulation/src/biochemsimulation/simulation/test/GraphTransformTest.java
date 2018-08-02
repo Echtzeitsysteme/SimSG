@@ -204,5 +204,27 @@ abstract class GraphTransformTest {
 		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
 		
 	}
+	
+	@Test
+	void createAndDestroyFullVoid() {
+		final int lhsPre = 72;
+		final int lhsPost = 55;
+		final int rhsPre = 1;
+		final int rhsPost = 1;
+		final String lhs = "createAndDestroyFullVoid_rule_lhs";
+		final String rhs = "createAndDestroyFullVoid_rule_rhs";
+		
+		collectMatches(lhs, rhs);
+		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
+		pmc.transform(lhsMatch);
+		
+		collectMatches(lhs, rhs);
+		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
+		pmc.transform(rhsMatch);
+		
+		collectMatches(lhs, rhs);
+		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
+		
+	}
 
 }

@@ -38,7 +38,9 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 	public void loadModels(ReactionRuleModel ruleModel, ReactionContainer reactionContainer) throws Exception {
 		this.ruleModel = ruleModel;
 		this.reactionContainer = reactionContainer;
-		engine.loadModels(reactionContainer, ruleModel);
+		engine.setReactionRules(ruleModel);
+		engine.setReactionContainer(reactionContainer);
+		engine.loadModels();
 	}
 	
 	@Override
@@ -80,7 +82,6 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 	@Override
 	public void transform(IMatch match) {
 		applyRuleToMatch(match);
-		//System.out.println(match.patternName());
 	}
 
 	@Override
@@ -88,7 +89,6 @@ public class SimplePMC extends ReactionRuleTransformer implements PatternMatchin
 		Random random = new Random();
 		ConcurrentLinkedQueue<String> patternQueue = null;
 		if(randomRuleOrder) {
-			//System.out.println("Random stuff1");
 			patternQueue = generateRndPatternQueue();
 		}else {
 			patternQueue = generatePatternQueue();

@@ -50,6 +50,19 @@ public class PatternUtils {
 		return true;
 	}
 	
+	public static boolean isPatternVoid(Pattern p) {
+		if(p.getAgentPatterns().size() < 1) {
+			return false;
+		}
+		for(AgentPattern ap : p.getAgentPatterns()) {
+			if(ap instanceof ValidAgentPattern) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
 	public static List<ValidAgentPattern> getValidAgentPatterns(EList<AgentPattern> aps) {
 		List<ValidAgentPattern> list = new LinkedList<ValidAgentPattern>();
 		for(AgentPattern ap : aps) {

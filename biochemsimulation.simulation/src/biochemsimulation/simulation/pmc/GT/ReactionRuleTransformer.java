@@ -97,7 +97,6 @@ public abstract class ReactionRuleTransformer {
 	
 	protected void applyRuleToMatch(IMatch match) {
 		String patternName = match.patternName().replaceAll("^(.)*\\.", "");
-		//System.out.println(patternName);
 		templateMap.get(patternName).applyTransformation(match, reactionContainer, factory);
 
 	}

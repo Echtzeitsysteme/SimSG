@@ -51,7 +51,9 @@ public class Sandbox {
 			System.out.println("Loaded reaction container model: " + model2.getName());
 
 			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.ViatraEngine);
-			engine.loadModels(model2, model1);
+			engine.setReactionRules(model1);
+			engine.setReactionContainer(model2);
+			engine.loadModels();
 			engine.initEngine();
 			Map<String, Collection<IMatch>> results = engine.getAllMatches();
 			System.out.println("Found matches on given Models:");
@@ -157,7 +159,9 @@ public class Sandbox {
 			ReactionRuleModel model1 = pm.loadReactionRuleModel("test2");
 			ReactionContainer model2 = pm.loadReactionContainerModel("test2", true);
 			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.DemoclesEngine);
-			engine.loadModels(model2, model1);
+			engine.setReactionRules(model1);
+			engine.setReactionContainer(model2);
+			engine.loadModels();
 			engine.initEngine();
 			Map<String, Collection<IMatch>> matches = engine.getAllMatches();
 			matches.forEach((name, m) -> {
@@ -265,7 +269,9 @@ public class Sandbox {
 			ReactionRuleModel model1 = pm.loadReactionRuleModel("PatternMatchingTest");
 			ReactionContainer model2 = pm.loadReactionContainerModel("PatternMatchingTest", true);
 			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.DemoclesEngine);
-			engine.loadModels(model2, model1);
+			engine.setReactionRules(model1);
+			engine.setReactionContainer(model2);
+			engine.loadModels();
 			engine.initEngine();
 			Map<String, Collection<IMatch>> matches = engine.getAllMatches();
 			matches.forEach((name, m) -> {
@@ -353,7 +359,9 @@ public class Sandbox {
 			ReactionRuleModel model1 = pm.loadReactionRuleModel("DemoclesKill1");
 			ReactionContainer model2 = pm.loadReactionContainerModel("DemoclesKill1", true);
 			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.DemoclesEngine);
-			engine.loadModels(model2, model1);
+			engine.setReactionRules(model1);
+			engine.setReactionContainer(model2);
+			engine.loadModels();
 			Runtimer.getInstance().measure(engine, "init", () -> {
 				try {
 					engine.initEngine();

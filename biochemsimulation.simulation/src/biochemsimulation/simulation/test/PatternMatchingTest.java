@@ -48,7 +48,9 @@ abstract class PatternMatchingTest {
 	void beforeAllTest() throws Exception {
 		ruleModel = persistence.loadReactionRuleModel(TEST_MODEL_NAME);
 		containerModel = persistence.loadReactionContainerModel(TEST_MODEL_NAME, true);
-		engine.loadModels(containerModel, ruleModel);
+		engine.setReactionRules(ruleModel);
+		engine.setReactionContainer(containerModel);
+		engine.loadModels();
 		engine.initEngine();
 	}
 	

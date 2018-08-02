@@ -25,3 +25,5 @@ rule breakUpWithStates_rule {A(c{p}[1]), B(f{m}[1], e[2]), C(h{o}[2])} <-> {A(c{
 rule bindAndChangeStates_rule {A(a[free], c{p}[?], b{r}[?]), B(d[free], e[free], f{m}[?]), A(b{s}[free])} <-> {A(a[1], c{q}[?]), B(d[1], e[2], f{l}[?]), A(b{s}[2])} @ [mockup_rate, mockup_rate] // lhs: 5*3*3 = 45 -> 4*2*2 = 16, rhs: 0 -> 1
 // create and destroy
 rule createAndDestroy_rule {A1(a[free]), void, void} <-> {A1(a[1]), B1(d[1], e[2]), B1(f[2])} @ [mockup_rate, mockup_rate] // lhs: 5*3*3 = 45 -> 4*2*2 = 16, rhs: 0 -> 1
+// create and destroy full void pattern
+rule createAndDestroyFullVoid_rule {A1(a[free]), B1(d[free])} <-> {void, void} @ [mockup_rate, mockup_rate] // lhs: 12*6 = 72 -> 11*5 = 55, rhs: 1 -> 1
