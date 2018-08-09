@@ -2,7 +2,7 @@
  */
 package biochemsimulation.reactioncontainer;
 
-import org.eclipse.emf.ecore.EObject;
+import fr.inria.atlanmod.neoemf.core.PersistentEObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,9 +18,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimSiteState()
  * @model
+ * @extends PersistentEObject
  * @generated
  */
-public interface SimSiteState extends EObject {
+public interface SimSiteState extends PersistentEObject {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->

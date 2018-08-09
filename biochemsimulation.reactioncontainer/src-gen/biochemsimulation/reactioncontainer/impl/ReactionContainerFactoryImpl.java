@@ -57,15 +57,15 @@ public class ReactionContainerFactoryImpl extends EFactoryImpl implements Reacti
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 		case ReactionContainerPackage.REACTION_CONTAINER:
-			return createReactionContainer();
+			return (EObject) createReactionContainer();
 		case ReactionContainerPackage.SIM_AGENT:
-			return createSimAgent();
+			return (EObject) createSimAgent();
 		case ReactionContainerPackage.SIM_SITE:
-			return createSimSite();
+			return (EObject) createSimSite();
 		case ReactionContainerPackage.SIM_SITE_STATE:
-			return createSimSiteState();
+			return (EObject) createSimSiteState();
 		case ReactionContainerPackage.SIM_BOUND:
-			return createSimBound();
+			return (EObject) createSimBound();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}

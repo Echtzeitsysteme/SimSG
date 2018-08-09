@@ -15,6 +15,11 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import fr.inria.atlanmod.neoemf.data.PersistenceBackendFactoryRegistry;
+import fr.inria.atlanmod.neoemf.data.blueprints.BlueprintsPersistenceBackendFactory;
+import fr.inria.atlanmod.neoemf.data.blueprints.util.BlueprintsURI;
+import fr.inria.atlanmod.neoemf.resource.PersistentResourceFactory;
+
 public class PersistenceUtils {
 	
 	public static List<String> getAllFilesInFolder(String folder) {
@@ -55,6 +60,24 @@ public class PersistenceUtils {
 
 		URI uri = URI.createFileURI(path);
 		Resource modelResource = rs.getResource(uri, true);
+		if(modelResource == null)
+			throw new IOException("File did not contain a vaild model.");
+		
+		return modelResource;
+	}
+	
+	public static Resource loadDBResource(String path) throws Exception {
+		ResourceSet containerResSet = new ResourceSetImpl();
+		
+		PersistenceBackendFactoryRegistry.register(BlueprintsURI.SCHEME,
+                BlueprintsPersistenceBackendFactory.getInstance());
+		
+		containerResSet.getResourceFactoryRegistry().getProtocolToFactoryMap()
+        .put(BlueprintsURI.SCHEME, PersistentResourceFactory.getInstance());
+		
+		URI uri = BlueprintsURI.createFileURI(path);
+		
+		Resource modelResource = containerResSet.getResource(uri, true);
 		if(modelResource == null)
 			throw new IOException("File did not contain a vaild model.");
 		

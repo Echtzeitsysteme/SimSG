@@ -2,7 +2,7 @@
  */
 package biochemsimulation.reactioncontainer;
 
-import org.eclipse.emf.ecore.EObject;
+import fr.inria.atlanmod.neoemf.core.PersistentEObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,9 +18,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimLinkState()
  * @model abstract="true"
+ * @extends PersistentEObject
  * @generated
  */
-public interface SimLinkState extends EObject {
+public interface SimLinkState extends PersistentEObject {
 	/**
 	 * Returns the value of the '<em><b>Sim Site1</b></em>' reference.
 	 * <!-- begin-user-doc -->

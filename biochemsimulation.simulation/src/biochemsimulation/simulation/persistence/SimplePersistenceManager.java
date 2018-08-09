@@ -16,7 +16,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
+import biochemsimulation.reactioncontainer.generator.ReactionContainerEMF;
 import biochemsimulation.reactioncontainer.generator.ReactionContainerGenerator;
+import biochemsimulation.reactioncontainer.generator.ReactionContainerNeoEMF;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 
@@ -141,12 +143,15 @@ public class SimplePersistenceManager implements PersistenceManager {
 		ReactionContainer containerModel = null;
 		if(doesNotExist) {
 			ReactionRuleModel ruleModel = loadReactionRuleModel(name);
-			ReactionContainerGenerator gen = new ReactionContainerGenerator(ruleModel);
-			String path = reactionModelFolder+"/"+name+".xmi";
+			//ReactionContainerGenerator gen = new ReactionContainerEMF(ruleModel);
+			ReactionContainerGenerator gen = new ReactionContainerNeoEMF(ruleModel);
+			//String path = reactionModelFolder+"/"+name+".xmi";
+			String path = reactionModelFolder+"/"+name+".graphdb";
 			containerModel = gen.doGenerate(path, true);
 			reactionModelPaths.put(name, path);
 		}else {
-			Resource modelResource = PersistenceUtils.loadResource(reactionModelPaths.get(name));
+			//Resource modelResource = PersistenceUtils.loadResource(reactionModelPaths.get(name));
+			Resource modelResource = PersistenceUtils.loadDBResource(reactionModelPaths.get(name));
 			containerModel = (ReactionContainer) modelResource.getContents().get(0);
 		}
 		reactionModelCache.put(name, containerModel);
