@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.json.simple.JSONObject;
 
 import org.eclipse.emf.ecore.resource.Resource;
 
@@ -26,11 +27,15 @@ public class SimplePersistenceManager implements PersistenceManager {
 	final public static String REACTION_RULE_MODELS_FOLDER = "ReactionRuleModels";
 	final public static String REACTION_RULE_MODELS_HEADER = "<reactionRules:ReactionRuleModel xmi:version=\"2.0\" xmlns:xmi=\"http://www.omg.org/XMI\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:reactionRules=\"http://www.reactionrules.biochemsimulation/ReactionRules\" xsi:schemaLocation=\"http://www.reactionrules.biochemsimulation/ReactionRules java://biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage\">";
 	final public static String REACTION_RULE_MODELS_NAME_LOCATION = "<model xmi:type=\"reactionRules:Model\" name=";
+	final public static String PERSISTENCE_INDEX_FILE = "simple_persistence_index.json";
+	final public static String DATA_FOLDER = "data";
 	final public static String SEPARATOR_WIN = "\\";
 	final public static String SEPARATOR_OSX = "/";
 	final public static String SYSTEM_OS_PROPERTY = "os.name";
 	final public static String SYSTEM_OS_WIN = "Windows";
 	final public static String SYSTEM_OS_OSX = "Mac OS X";
+	
+	private JSONObject modelIndex;
 	
 	private HashMap<String, String> reactionModelPaths;
 	private HashMap<String, String> ruleModelPaths;
@@ -42,6 +47,7 @@ public class SimplePersistenceManager implements PersistenceManager {
 	@SuppressWarnings("unused")
 	private String pathSeparator;
 	private String dataFolder;
+	private String indexPath;
 	private String reactionModelFolder;
 	private String ruleModelFolder;
 	
@@ -56,6 +62,7 @@ public class SimplePersistenceManager implements PersistenceManager {
 		setFolderPaths();
 		fetchExistingRuleModelPaths();
 		fetchExistingReactionModelPaths();
+		fetchIndex();
 		reactionModelCache = new HashMap<String, ReactionContainer>();
 		ruleModelCache = new HashMap<String, ReactionRuleModel>();
 	}
@@ -73,6 +80,21 @@ public class SimplePersistenceManager implements PersistenceManager {
 	private void classLoader() {
 		ReactionRulesPackage.eINSTANCE.eClass();
 		ReactionContainerPackage.eINSTANCE.eClass();
+	}
+	
+	private void fetchIndex() {
+		modelIndex = PersistenceUtils.loadJSONFile(indexPath);
+		if(modelIndex == null) {
+			createNewIndex();
+			// save to file
+		}
+	}
+	
+	private void createNewIndex() {
+		modelIndex = new JSONObject();
+		ruleModelPaths.forEach((modelName, path) -> {
+			
+		});
 	}
 	
 	@Override
@@ -138,8 +160,11 @@ public class SimplePersistenceManager implements PersistenceManager {
 			dataFolder = dataFolder.replaceFirst("^/", "");
 		}
 		dataFolder = dataFolder.replaceFirst("%20", " ");
-		dataFolder += "data/";
+		dataFolder += DATA_FOLDER+"/";
 		PersistenceUtils.createFolderIfNotExist(dataFolder);
+		
+		indexPath = dataFolder+PERSISTENCE_INDEX_FILE;
+		
 		reactionModelFolder = dataFolder + REACTION_CONTAINER_MODELS_FOLDER;
 		PersistenceUtils.createFolderIfNotExist(reactionModelFolder);
 		

@@ -62,6 +62,7 @@ Require-Bundle: org.apache.log4j;bundle-version="1.2.15",
   org.junit.vintage.engine,
   org.hamcrest.core,
   org.opentest4j,
-  org.apiguardian
+  org.apiguardian,
+  org.eclipse.wst.jsdt.chromium
 Automatic-Module-Name: biochemsimulation.simulation
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

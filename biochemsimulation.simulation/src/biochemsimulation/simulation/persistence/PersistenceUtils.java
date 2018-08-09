@@ -1,6 +1,7 @@
 package biochemsimulation.simulation.persistence;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,6 +11,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class PersistenceUtils {
 	
@@ -31,6 +35,17 @@ public class PersistenceUtils {
 		if(dir.isDirectory() && dir.exists())
 			return;
 		dir.mkdir();
+	}
+	
+	public static JSONObject loadJSONFile(String path) {
+		JSONObject out = null;
+		JSONParser parser = new JSONParser();
+		try {
+			out = (JSONObject) parser.parse(new FileReader(path));
+		} catch (IOException | ParseException e) {
+			System.out.println("Index not found..");
+		}
+		return out;
 	}
 	
 	public static Resource loadResource(String path) throws Exception {
