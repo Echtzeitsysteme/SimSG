@@ -36,7 +36,7 @@ abstract class PatternMatchingTest {
 	protected PatternMatchingEngineEnum engineType;
 	
 	protected PatternMatchingTest() {
-		persistence = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
+		persistence = PersistenceManagerFactory.create(PersistenceManagerEnum.NeoEMFPersistence);
 		persistence.init();
 		setEngineType();
 		engine = PatternMatchingEngineFactory.create(engineType);
@@ -47,7 +47,7 @@ abstract class PatternMatchingTest {
 	@BeforeAll
 	void beforeAllTest() throws Exception {
 		ruleModel = persistence.loadReactionRuleModel(TEST_MODEL_NAME);
-		containerModel = persistence.loadReactionContainerModel(TEST_MODEL_NAME, true);
+		containerModel = persistence.loadReactionContainerModel(TEST_MODEL_NAME);
 		engine.setReactionRules(ruleModel);
 		engine.setReactionContainer(containerModel);
 		engine.loadModels();
@@ -57,8 +57,7 @@ abstract class PatternMatchingTest {
 	@AfterAll
 	void afterAllTests() throws Exception {
 		engine.disposeEngine();
-		containerModel.eResource().unload();
-		ruleModel.eResource().unload();
+		persistence.unloadReactionContainerModel(TEST_MODEL_NAME);
 	}
 	
 	@Test

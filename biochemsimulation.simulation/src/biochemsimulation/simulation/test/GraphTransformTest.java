@@ -3,13 +3,14 @@ package biochemsimulation.simulation.test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Collection;
-import java.util.Map;
 
-import org.junit.jupiter.api.AfterAll;
+import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import org.junit.runners.MethodSorters;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
@@ -24,6 +25,7 @@ import biochemsimulation.simulation.pmc.PatternMatchingController;
 import biochemsimulation.simulation.pmc.PatternMatchingControllerEnum;
 import biochemsimulation.simulation.pmc.PatternMatchingControllerFactory;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 abstract class GraphTransformTest {
 	
@@ -36,7 +38,7 @@ abstract class GraphTransformTest {
 	protected PatternMatchingControllerEnum pmcType;
 	
 	protected GraphTransformTest() {
-		persistence = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
+		persistence = PersistenceManagerFactory.create(PersistenceManagerEnum.NeoEMFPersistence);
 		persistence.init();
 		setEngineType();
 		setPMCType();
@@ -45,11 +47,12 @@ abstract class GraphTransformTest {
 	abstract protected void setEngineType();
 	
 	abstract protected void setPMCType();
-
-	@AfterAll
-	void tearDownAfterClass() throws Exception {
-		containerModel.eResource().unload();
-		ruleModel.eResource().unload();
+	
+	@BeforeAll
+	void beforeAllTest() throws Exception {
+		ruleModel = persistence.loadReactionRuleModel("GraphTransformTest");
+		containerModel = persistence.loadReactionContainerModel("GraphTransformTest");
+		persistence.unloadReactionContainerModel("GraphTransformTest");
 	}
 
 	@BeforeEach
@@ -58,7 +61,7 @@ abstract class GraphTransformTest {
 		pmc = PatternMatchingControllerFactory.create(pmcType);
 		pmc.setEngine(engine);
 		ruleModel = persistence.loadReactionRuleModel("GraphTransformTest");
-		containerModel = persistence.loadReactionContainerModel("GraphTransformTest", true);
+		containerModel = persistence.loadReactionContainerModel("GraphTransformTest");
 		pmc.loadModels(ruleModel, containerModel);
 		pmc.initController();
 		pmc.initEngine();
@@ -67,6 +70,7 @@ abstract class GraphTransformTest {
 	@AfterEach
 	void tearDown() throws Exception {
 		pmc.discardEngine();
+		persistence.unloadReactionContainerModel("GraphTransformTest");
 	}
 	
 	private void collectMatches(String lhs, String rhs) {

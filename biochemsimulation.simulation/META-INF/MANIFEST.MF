@@ -67,6 +67,8 @@ Require-Bundle: org.apache.log4j;bundle-version="1.2.15",
   fr.inria.atlanmod.neoemf.data.blueprints.core,
   fr.inria.atlanmod.neoemf.data.blueprints.neo4j,
   fr.inria.atlanmod.neoemf.data.hbase,
-  fr.inria.atlanmod.neoemf.data.mapdb
-Automatic-Module-Name: biochemsimulation.simulation
+  fr.inria.atlanmod.neoemf.data.mapdb,
+  fr.inria.atlanmod.neoemf.core
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: org.apache.commons.io
+Automatic-Module-Name: biochemsimulation.simulation

@@ -40,7 +40,7 @@ public class Simulation {
 	public void initialize() throws Exception {
 		persistence.init();
 		ReactionRuleModel ruleModel = persistence.loadReactionRuleModel(modelName);
-		ReactionContainer reactionContainer = persistence.loadReactionContainerModel(modelName, true);
+		ReactionContainer reactionContainer = persistence.loadReactionContainerModel(modelName);
 		pmc.loadModels(ruleModel, reactionContainer);
 		pmc.initEngine();
 		pmc.initController();
@@ -62,7 +62,7 @@ public class Simulation {
 		Runtimer timer = Runtimer.getInstance();
 		persistence.init();
 		ReactionRuleModel ruleModel = persistence.loadReactionRuleModel(modelName);
-		ReactionContainer reactionContainer = persistence.loadReactionContainerModel(modelName, true);
+		ReactionContainer reactionContainer = persistence.loadReactionContainerModel(modelName);
 		timer.measure(this, "loadModels", () -> {
 			try {
 				pmc.loadModels(ruleModel, reactionContainer);

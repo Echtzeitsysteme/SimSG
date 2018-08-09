@@ -3,6 +3,8 @@ package biochemsimulation.simulation.test;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
@@ -32,8 +34,9 @@ public class Sandbox {
 		test6();
 		*/
 		//test7();
-		test8_kill();
+		//test8_kill();
 		//benchmark();
+		test4();
 	}
 
 	public static void test1() {
@@ -46,7 +49,7 @@ public class Sandbox {
 		try {
 			ReactionRuleModel model1 = pm.loadReactionRuleModel("test2");
 			System.out.println("Loaded reaction rule model: " + model1.getModel().getName());
-			ReactionContainer model2 = pm.loadReactionContainerModel("test2", true);
+			ReactionContainer model2 = pm.loadReactionContainerModel("test2");
 			System.out.println("Loaded reaction container model: " + model2.getName());
 
 			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.ViatraEngine);
@@ -74,7 +77,7 @@ public class Sandbox {
 			ReactionRuleModel model1 = pm.loadReactionRuleModel("test3");
 			System.out.println("Loading reaction container model ...");
 			long start = System.nanoTime();
-			ReactionContainer model2 = pm.loadReactionContainerModel("test3", true);
+			ReactionContainer model2 = pm.loadReactionContainerModel("test3");
 			long end = System.nanoTime();
 			System.out.println("time diff = " + (end - start) + " ns");
 			System.out.println("time diff = " + (end - start) / ns + " s");
@@ -154,9 +157,10 @@ public class Sandbox {
 	public static void test4() {
 		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
 		pm.init();
+		
 		try {
-			ReactionRuleModel model1 = pm.loadReactionRuleModel("test2");
-			ReactionContainer model2 = pm.loadReactionContainerModel("test2", true);
+			ReactionRuleModel model1 = pm.loadReactionRuleModel("test3");
+			ReactionContainer model2 = pm.loadReactionContainerModel("test3");
 			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.DemoclesEngine);
 			engine.setReactionRules(model1);
 			engine.setReactionContainer(model2);
@@ -172,6 +176,7 @@ public class Sandbox {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public static void test5() {
@@ -183,7 +188,7 @@ public class Sandbox {
 			ReactionRuleModel model1 = pm.loadReactionRuleModel("test3");
 			System.out.println("Loading reaction container model ...");
 			long start = System.nanoTime();
-			ReactionContainer model2 = pm.loadReactionContainerModel("test3", true);
+			ReactionContainer model2 = pm.loadReactionContainerModel("test3");
 			long end = System.nanoTime();
 			System.out.println("time diff = " + (end - start) + " ns");
 			System.out.println("time diff = " + (end - start) / ns + " s");
@@ -266,7 +271,7 @@ public class Sandbox {
 		pm.init();
 		try {
 			ReactionRuleModel model1 = pm.loadReactionRuleModel("PatternMatchingTest");
-			ReactionContainer model2 = pm.loadReactionContainerModel("PatternMatchingTest", true);
+			ReactionContainer model2 = pm.loadReactionContainerModel("PatternMatchingTest");
 			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.DemoclesEngine);
 			engine.setReactionRules(model1);
 			engine.setReactionContainer(model2);
@@ -356,7 +361,7 @@ public class Sandbox {
 		pm.init();
 		try {
 			ReactionRuleModel model1 = pm.loadReactionRuleModel("DemoclesKill1");
-			ReactionContainer model2 = pm.loadReactionContainerModel("DemoclesKill1", true);
+			ReactionContainer model2 = pm.loadReactionContainerModel("DemoclesKill1");
 			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.DemoclesEngine);
 			engine.setReactionRules(model1);
 			engine.setReactionContainer(model2);
