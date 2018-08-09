@@ -1,7 +1,6 @@
 package biochemsimulation.simulation.test;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -33,8 +32,8 @@ public class Sandbox {
 		test6();
 		*/
 		//test7();
-		//test8_kill();
-		benchmark();
+		test8_kill();
+		//benchmark();
 	}
 
 	public static void test1() {

@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:emf="http://gervarro.org/democles/constraint/emf.ecore" xmlns:relational="http://gervarro.org/democles/specification/constraint/relational.ecore" xmlns:specification="http://gervarro.org/democles/specification.ecore" xsi:schemaLocation="http://www.eclipse.org/emf/2002/Ecore java://org.eclipse.emf.ecore.EcorePackage http://gervarro.org/democles/constraint/emf.ecore java://org.gervarro.democles.specification.emf.constraint.emf.emf.EMFTypePackage http://gervarro.org/democles/specification/constraint/relational.ecore java://org.gervarro.democles.specification.emf.constraint.relational.RelationalConstraintPackage http://gervarro.org/democles/specification.ecore java://org.gervarro.democles.specification.emf.SpecificationPackage">
+  <specification:Pattern name="evilInjectivityAndBoundAnyWithStates_rule_lhs">
+    <symbolicParameters xmi:type="emf:EMFVariable" name="A7">
+      <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent"/>
+    </symbolicParameters>
+    <symbolicParameters xmi:type="emf:EMFVariable" name="A71">
+      <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent"/>
+    </symbolicParameters>
+    <symbolicParameters xmi:type="emf:EMFVariable" name="A72">
+      <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent"/>
+    </symbolicParameters>
+    <bodies xmi:type="specification:PatternBody">
+      <localVariables xmi:type="emf:EMFVariable" name="A71_Type">
+        <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="x">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A71_x_Type">
+        <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A71_A71_x_simSiteState">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSiteState"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A71_A71_x_Type">
+        <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="w">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A71_w_Type">
+        <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A7_Type">
+        <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="x">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A7_x_Type">
+        <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A72_Type">
+        <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="x">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A72_x_Type">
+        <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A71_A71_x_simLinkState">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimLinkState"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A7">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A71_A70_Type">
+        <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="x">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A71_A70_x_Type">
+        <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A71_A70_A71_A70_x_simLinkState">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimLinkState"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A7_A7_x_simLinkState">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimLinkState"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A7">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A7_A70_Type">
+        <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="x">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A7_A70_x_Type">
+        <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A7_A70_A7_A70_x_simLinkState">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimLinkState"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A71_A71_w_simLinkState">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimLinkState"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A7">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A71_A71_Type">
+        <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="x">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A71_A71_x_Type">
+        <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A71_A71_A71_A71_x_simLinkState">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimLinkState"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A72_A72_x_simLinkState">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimLinkState"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A7">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A72_A70_Type">
+        <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="w">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A72_A70_w_Type">
+        <eClassifier xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2003/XMLType#//String"/>
+      </localVariables>
+      <localVariables xmi:type="emf:EMFVariable" name="A72_A70_A72_A70_w_simLinkState">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimLinkState"/>
+      </localVariables>
+      <constants xmi:type="specification:Constant" value="ACED00057400024137"/>
+      <constants xmi:type="specification:Constant" value="ACED000574000178"/>
+      <constants xmi:type="specification:Constant" value="ACED000574000164"/>
+      <constants xmi:type="specification:Constant" value="ACED000574000177"/>
+      <constants xmi:type="specification:Constant" value="ACED00057400024137"/>
+      <constants xmi:type="specification:Constant" value="ACED000574000178"/>
+      <constants xmi:type="specification:Constant" value="ACED00057400024137"/>
+      <constants xmi:type="specification:Constant" value="ACED000574000178"/>
+      <constants xmi:type="specification:Constant" value="ACED00057400024137"/>
+      <constants xmi:type="specification:Constant" value="ACED000574000178"/>
+      <constants xmi:type="specification:Constant" value="ACED00057400024137"/>
+      <constants xmi:type="specification:Constant" value="ACED000574000178"/>
+      <constants xmi:type="specification:Constant" value="ACED00057400024137"/>
+      <constants xmi:type="specification:Constant" value="ACED000574000178"/>
+      <constants xmi:type="specification:Constant" value="ACED00057400024137"/>
+      <constants xmi:type="specification:Constant" value="ACED000574000177"/>
+      <constraints xmi:type="emf:Attribute">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@symbolicParameters.1"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.0"/>
+        <eModelElement xmi:type="ecore:EAttribute" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent/Type"/>
+      </constraints>
+      <constraints xmi:type="relational:Equal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.0"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@constants.0"/>
+      </constraints>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@symbolicParameters.1"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.1"/>
+        <eModelElement xmi:type="ecore:EReference" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent/simSites"/>
+      </constraints>
+      <constraints xmi:type="emf:Attribute">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.1"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.2"/>
+        <eModelElement xmi:type="ecore:EAttribute" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite/Type"/>
+      </constraints>
+      <constraints xmi:type="relational:Equal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.2"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@constants.1"/>
+      </constraints>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.1"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.3"/>
+        <eModelElement xmi:type="ecore:EReference" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite/simSiteState"/>
+      </constraints>
+      <constraints xmi:type="emf:Attribute">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.3"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.4"/>
+        <eModelElement xmi:type="ecore:EAttribute" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSiteState/Type"/>
+      </constraints>
+      <constraints xmi:type="relational:Equal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.4"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@constants.2"/>
+      </constraints>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@symbolicParameters.1"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.5"/>
+        <eModelElement xmi:type="ecore:EReference" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent/simSites"/>
+      </constraints>
+      <constraints xmi:type="emf:Attribute">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.5"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.6"/>
+        <eModelElement xmi:type="ecore:EAttribute" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite/Type"/>
+      </constraints>
+      <constraints xmi:type="relational:Equal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.6"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@constants.3"/>
+      </constraints>
+      <constraints xmi:type="emf:Attribute">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@symbolicParameters.0"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.7"/>
+        <eModelElement xmi:type="ecore:EAttribute" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent/Type"/>
+      </constraints>
+      <constraints xmi:type="relational:Equal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.7"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@constants.4"/>
+      </constraints>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@symbolicParameters.0"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.8"/>
+        <eModelElement xmi:type="ecore:EReference" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent/simSites"/>
+      </constraints>
+      <constraints xmi:type="emf:Attribute">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.8"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.9"/>
+        <eModelElement xmi:type="ecore:EAttribute" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite/Type"/>
+      </constraints>
+      <constraints xmi:type="relational:Equal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.9"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@constants.5"/>
+      </constraints>
+      <constraints xmi:type="emf:Attribute">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@symbolicParameters.2"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.10"/>
+        <eModelElement xmi:type="ecore:EAttribute" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent/Type"/>
+      </constraints>
+      <constraints xmi:type="relational:Equal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.10"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@constants.6"/>
+      </constraints>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@symbolicParameters.2"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.11"/>
+        <eModelElement xmi:type="ecore:EReference" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent/simSites"/>
+      </constraints>
+      <constraints xmi:type="emf:Attribute">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.11"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.12"/>
+        <eModelElement xmi:type="ecore:EAttribute" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite/Type"/>
+      </constraints>
+      <constraints xmi:type="relational:Equal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.12"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@constants.7"/>
+      </constraints>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.1"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.13"/>
+        <eModelElement xmi:type="ecore:EReference" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite/simLinkState"/>
+      </constraints>
+      <constraints xmi:type="emf:Attribute">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.14"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.15"/>
+        <eModelElement xmi:type="ecore:EAttribute" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent/Type"/>
+      </constraints>
+      <constraints xmi:type="relational:Equal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.15"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@constants.8"/>
+      </constraints>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.14"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.16"/>
+        <eModelElement xmi:type="ecore:EReference" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent/simSites"/>
+      </constraints>
+      <constraints xmi:type="emf:Attribute">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.16"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.17"/>
+        <eModelElement xmi:type="ecore:EAttribute" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite/Type"/>
+      </constraints>
+      <constraints xmi:type="relational:Equal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.17"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@constants.9"/>
+      </constraints>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.16"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.18"/>
+        <eModelElement xmi:type="ecore:EReference" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite/simLinkState"/>
+      </constraints>
+      <constraints xmi:type="relational:Equal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.13"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.18"/>
+      </constraints>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.8"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.19"/>
+        <eModelElement xmi:type="ecore:EReference" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite/simLinkState"/>
+      </constraints>
+      <constraints xmi:type="emf:Attribute">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.20"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.21"/>
+        <eModelElement xmi:type="ecore:EAttribute" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent/Type"/>
+      </constraints>
+      <constraints xmi:type="relational:Equal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.21"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@constants.10"/>
+      </constraints>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.20"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.22"/>
+        <eModelElement xmi:type="ecore:EReference" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent/simSites"/>
+      </constraints>
+      <constraints xmi:type="emf:Attribute">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.22"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.23"/>
+        <eModelElement xmi:type="ecore:EAttribute" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite/Type"/>
+      </constraints>
+      <constraints xmi:type="relational:Equal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.23"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@constants.11"/>
+      </constraints>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.22"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.24"/>
+        <eModelElement xmi:type="ecore:EReference" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite/simLinkState"/>
+      </constraints>
+      <constraints xmi:type="relational:Equal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.19"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.24"/>
+      </constraints>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.5"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.25"/>
+        <eModelElement xmi:type="ecore:EReference" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite/simLinkState"/>
+      </constraints>
+      <constraints xmi:type="emf:Attribute">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.26"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.27"/>
+        <eModelElement xmi:type="ecore:EAttribute" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent/Type"/>
+      </constraints>
+      <constraints xmi:type="relational:Equal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.27"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@constants.12"/>
+      </constraints>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.26"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.28"/>
+        <eModelElement xmi:type="ecore:EReference" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent/simSites"/>
+      </constraints>
+      <constraints xmi:type="emf:Attribute">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.28"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.29"/>
+        <eModelElement xmi:type="ecore:EAttribute" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite/Type"/>
+      </constraints>
+      <constraints xmi:type="relational:Equal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.29"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@constants.13"/>
+      </constraints>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.28"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.30"/>
+        <eModelElement xmi:type="ecore:EReference" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite/simLinkState"/>
+      </constraints>
+      <constraints xmi:type="relational:Equal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.25"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.30"/>
+      </constraints>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.11"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.31"/>
+        <eModelElement xmi:type="ecore:EReference" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite/simLinkState"/>
+      </constraints>
+      <constraints xmi:type="emf:Attribute">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.32"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.33"/>
+        <eModelElement xmi:type="ecore:EAttribute" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent/Type"/>
+      </constraints>
+      <constraints xmi:type="relational:Equal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.33"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@constants.14"/>
+      </constraints>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.32"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.34"/>
+        <eModelElement xmi:type="ecore:EReference" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimAgent/simSites"/>
+      </constraints>
+      <constraints xmi:type="emf:Attribute">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.34"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.35"/>
+        <eModelElement xmi:type="ecore:EAttribute" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite/Type"/>
+      </constraints>
+      <constraints xmi:type="relational:Equal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.35"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@constants.15"/>
+      </constraints>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.34"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.36"/>
+        <eModelElement xmi:type="ecore:EReference" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite/simLinkState"/>
+      </constraints>
+      <constraints xmi:type="relational:Equal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.31"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.36"/>
+      </constraints>
+      <constraints xmi:type="relational:Unequal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@symbolicParameters.0"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.20"/>
+      </constraints>
+      <constraints xmi:type="relational:Unequal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@symbolicParameters.1"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.14"/>
+      </constraints>
+      <constraints xmi:type="relational:Unequal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@symbolicParameters.1"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.26"/>
+      </constraints>
+      <constraints xmi:type="relational:Unequal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@symbolicParameters.2"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.32"/>
+      </constraints>
+      <constraints xmi:type="relational:Unequal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@symbolicParameters.1"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@symbolicParameters.2"/>
+      </constraints>
+      <constraints xmi:type="relational:Unequal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@symbolicParameters.0"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@symbolicParameters.1"/>
+      </constraints>
+      <constraints xmi:type="relational:Unequal">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@symbolicParameters.0"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/0/@symbolicParameters.2"/>
+      </constraints>
+    </bodies>
+  </specification:Pattern>
+  <specification:Pattern name="BoundAnyLink_SupportPattern">
+    <symbolicParameters xmi:type="emf:EMFVariable" name="simSite">
+      <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite"/>
+    </symbolicParameters>
+    <bodies xmi:type="specification:PatternBody">
+      <localVariables xmi:type="emf:EMFVariable" name="LinkState">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimLinkState"/>
+      </localVariables>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/1/@symbolicParameters.0"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/1/@bodies.0/@localVariables.0"/>
+        <eModelElement xmi:type="ecore:EReference" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//SimSite/simLinkState"/>
+      </constraints>
+    </bodies>
+  </specification:Pattern>
+</xmi:XMI>

@@ -1,14 +1,19 @@
 package biochemsimulation.simulation.matching.democles;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.gervarro.democles.common.runtime.CategoryBasedQueueFactory;
 import org.gervarro.democles.common.runtime.ListOperationBuilder;
 import org.gervarro.democles.common.runtime.OperationBuilder;
@@ -127,6 +132,27 @@ public class DemoclesEngine implements MatchEventListener {
 		});
 		observer.unsetTarget(null);
 		matches.clear();
+	}
+	
+	public void savePatternsToFile() {
+		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
+		reg.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+		ResourceSet rSet = new ResourceSetImpl();
+		URI uri = URI.createFileURI("data/democles_pattern.xmi");
+		XMIResource res = (XMIResource) rSet.createResource(uri);
+		res.getContents().addAll(patterns.values());
+		
+		Map<Object, Object> saveOptions = res.getDefaultSaveOptions();
+		saveOptions.put(XMIResource.OPTION_ENCODING,"UTF-8");
+		saveOptions.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
+		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION,Boolean.TRUE);
+		saveOptions.put(XMIResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION, Boolean.TRUE);
+		
+		try {
+			res.save(saveOptions);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void initReteModule() {
