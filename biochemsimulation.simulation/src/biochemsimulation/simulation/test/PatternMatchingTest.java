@@ -28,19 +28,24 @@ import biochemsimulation.simulation.persistence.PersistenceManagerFactory;
 abstract class PatternMatchingTest {
 	public final static String TEST_MODEL_NAME = "PatternMatchingTest";
 	
+	protected PersistenceManagerEnum persistenceType;
 	protected PersistenceManager persistence;
+	
 	protected ReactionRuleModel ruleModel;
 	protected ReactionContainer containerModel;
-	protected PatternMatchingEngine engine;
 	
+	protected PatternMatchingEngine engine;
 	protected PatternMatchingEngineEnum engineType;
 	
 	protected PatternMatchingTest() {
-		persistence = PersistenceManagerFactory.create(PersistenceManagerEnum.NeoEMFPersistence);
+		setPersistenceType();
+		persistence = PersistenceManagerFactory.create(persistenceType);
 		persistence.init();
 		setEngineType();
 		engine = PatternMatchingEngineFactory.create(engineType);
 	}
+	
+	abstract protected void setPersistenceType();
 	
 	abstract protected void setEngineType();
 	

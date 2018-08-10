@@ -1,16 +1,11 @@
 package biochemsimulation.simulation.test;
 
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.platform.suite.api.SelectPackages;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
 
-@RunWith(Suite.class)
-@SuiteClasses({
-	PatternMatchingDemoclesTest.class,
-	PatternMatchingViatraTest.class,
-	GraphTransformViatraTest.class,
-	GraphTransformDemoclesTest.class
-})
+@RunWith(JUnitPlatform.class)
+@SelectPackages("biochemsimulation.simulation.test")
 public class AllTests {
 
 }

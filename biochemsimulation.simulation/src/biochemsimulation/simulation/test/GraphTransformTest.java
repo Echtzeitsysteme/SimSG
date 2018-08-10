@@ -29,7 +29,9 @@ import biochemsimulation.simulation.pmc.PatternMatchingControllerFactory;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 abstract class GraphTransformTest {
 	
+	protected PersistenceManagerEnum persistenceType;
 	protected PersistenceManager persistence;
+	
 	protected ReactionRuleModel ruleModel;
 	protected ReactionContainer containerModel;
 	protected PatternMatchingController pmc;
@@ -38,11 +40,14 @@ abstract class GraphTransformTest {
 	protected PatternMatchingControllerEnum pmcType;
 	
 	protected GraphTransformTest() {
-		persistence = PersistenceManagerFactory.create(PersistenceManagerEnum.NeoEMFPersistence);
+		setPersistenceType();
+		persistence = PersistenceManagerFactory.create(persistenceType);
 		persistence.init();
 		setEngineType();
 		setPMCType();
 	}
+	
+	abstract protected void setPersistenceType();
 	
 	abstract protected void setEngineType();
 	
