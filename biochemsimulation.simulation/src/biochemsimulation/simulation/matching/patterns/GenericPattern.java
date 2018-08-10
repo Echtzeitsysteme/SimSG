@@ -10,7 +10,7 @@ public class GenericPattern {
 	private String patternName;
 	private Pattern lhs;
 	private List<ValidAgentPattern> agentPatterns;
-	boolean voidPattern;
+	private boolean voidPattern;
 	
 	private GenericPatternSignature signature;
 	private GenericPatternBody body;
@@ -24,6 +24,20 @@ public class GenericPattern {
 		if(voidPattern) {
 			return;
 		}
+		
+		signature = new GenericPatternSignature(agentPatterns);
+		body = new GenericPatternBody(signature, agentPatterns);
+		
+	}
+	
+	public GenericPattern(String patternName, List<ValidAgentPattern>  agentPatterns) {
+		this.patternName = patternName;
+		voidPattern = agentPatterns.size() == 0;
+		if(voidPattern) {
+			return;
+		}
+		this.agentPatterns = agentPatterns;
+		this.lhs = null;
 		
 		signature = new GenericPatternSignature(agentPatterns);
 		body = new GenericPatternBody(signature, agentPatterns);
@@ -55,5 +69,14 @@ public class GenericPattern {
 		if(agentPatterns.size() == 0) {
 			voidPattern = true;
 		}
+	}
+	
+	@Override
+	public String toString() {
+		String out = "***\nPattern: " + patternName + "\n";
+		out+="\t" + signature.toString() + "\n";
+		out+="\t" + body.toString() + "\n";
+		out+="***";
+		return out;
 	}
 }
