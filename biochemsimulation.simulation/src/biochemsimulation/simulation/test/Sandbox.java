@@ -159,7 +159,7 @@ public class Sandbox {
 		try {
 			ReactionRuleModel model1 = pm.loadReactionRuleModel("test3");
 			ReactionContainer model2 = pm.loadReactionContainerModel("test3");
-			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.DemoclesEngine);
+			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.ViatraEngine);
 			engine.setReactionRules(model1);
 			engine.setReactionContainer(model2);
 			engine.loadModels();
