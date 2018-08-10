@@ -20,6 +20,7 @@ import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternMo
 import org.eclipse.xtext.resource.XtextResourceSet;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
+import biochemsimulation.simulation.persistence.PersistenceUtils;
 
 public class ViatraPatternGenerator {
 	
@@ -50,7 +51,13 @@ public class ViatraPatternGenerator {
 			patternModelFolder = patternModelFolder.replaceFirst("^/", "");
 		}
 		patternModelFolder = patternModelFolder.replaceFirst("%20", " ");
-		patternModelFolder += MODEL_FOLDER_NAME+"/"+PATTERN_MODEL_FOLDER_NAME+"/";
+		patternModelFolder += MODEL_FOLDER_NAME+"/"+PATTERN_MODEL_FOLDER_NAME;
+		
+		// create model folder if absent
+		PersistenceUtils.createFolderIfNotExist(patternModelFolder);
+		
+		patternModelFolder += "/";
+		
 		isInitialized = false;
 		EMFPatternLanguageStandaloneSetup.doSetup();
 		EMFPatternLanguagePackage.eINSTANCE.eClass();

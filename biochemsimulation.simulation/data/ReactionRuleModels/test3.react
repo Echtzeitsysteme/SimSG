@@ -16,5 +16,5 @@ init init2 100 { C(),D() }
 
 /* Rules */ 
 rule AtoB { A(x[1]), B(x[1]) } -> { void , B(x[free])} @ [on_rate]
-
+ 
 rule CtoD { C(x[free]), D(x[free]) } -> { C(x[1]) , D(x[1])} @ [on_rate2]

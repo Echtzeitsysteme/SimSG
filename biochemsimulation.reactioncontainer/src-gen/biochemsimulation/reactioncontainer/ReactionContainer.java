@@ -2,9 +2,8 @@
  */
 package biochemsimulation.reactioncontainer;
 
+import fr.inria.atlanmod.neoemf.core.PersistentEObject;
 import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,9 +21,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getReactionContainer()
  * @model
+ * @extends PersistentEObject
  * @generated
  */
-public interface ReactionContainer extends EObject {
+public interface ReactionContainer extends PersistentEObject {
 	/**
 	 * Returns the value of the '<em><b>Sim Agent</b></em>' containment reference list.
 	 * The list contents are of type {@link biochemsimulation.reactioncontainer.SimAgent}.

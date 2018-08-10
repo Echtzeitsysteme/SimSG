@@ -10,6 +10,10 @@ public class PersistenceManagerFactory {
 			pm = new SimplePersistenceManager();
 			break;
 		}
+		case NeoEMFPersistence: {
+			pm = new NeoEMFPersistenceManager();
+			break;
+		}
 		}
 		
 		return pm;

@@ -2,10 +2,11 @@ package biochemsimulation.simulation.persistence;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-
+import org.apache.commons.io.FileUtils;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -14,6 +15,12 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import fr.inria.atlanmod.neoemf.data.PersistenceBackendFactoryRegistry;
+import fr.inria.atlanmod.neoemf.data.blueprints.BlueprintsPersistenceBackendFactory;
+import fr.inria.atlanmod.neoemf.data.blueprints.util.BlueprintsURI;
+import fr.inria.atlanmod.neoemf.option.AbstractPersistenceOptionsBuilder;
+import fr.inria.atlanmod.neoemf.resource.PersistentResourceFactory;
 
 public class PersistenceUtils {
 	
@@ -37,15 +44,51 @@ public class PersistenceUtils {
 		dir.mkdir();
 	}
 	
+	public static long getLastModified(String path) {
+		File file = new File(path);
+		return file.lastModified();
+	}
+	
+	public static void deleteFile(String path) {
+		File file = new File(path);
+		if(file.isDirectory()) {
+			try {
+				FileUtils.deleteDirectory(file);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else {
+			/*
+			try {
+				FileUtils.forceDelete(file);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			*/
+		}
+	}
+	
 	public static JSONObject loadJSONFile(String path) {
 		JSONObject out = null;
 		JSONParser parser = new JSONParser();
 		try {
 			out = (JSONObject) parser.parse(new FileReader(path));
 		} catch (IOException | ParseException e) {
-			System.out.println("Index not found..");
+			e.printStackTrace();
 		}
 		return out;
+	}
+	
+	public static void saveJSONFile(String path, JSONObject obj) {
+		try (FileWriter file = new FileWriter(path)) {
+            file.write(obj.toJSONString());
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 	
 	public static Resource loadResource(String path) throws Exception {
@@ -60,4 +103,22 @@ public class PersistenceUtils {
 		
 		return modelResource;
 	}
+	
+	public static Resource loadDBResource(String path) throws Exception {
+		ResourceSet containerResSet = new ResourceSetImpl();
+		
+		PersistenceBackendFactoryRegistry.register(BlueprintsURI.SCHEME,
+                BlueprintsPersistenceBackendFactory.getInstance());
+		
+		containerResSet.getResourceFactoryRegistry().getProtocolToFactoryMap()
+        .put(BlueprintsURI.SCHEME, PersistentResourceFactory.getInstance());
+		
+		URI uri = BlueprintsURI.createFileURI(new File(path));
+		
+		Resource modelResource = containerResSet.createResource(uri);
+		modelResource.load(AbstractPersistenceOptionsBuilder.noOption());
+		
+		return modelResource;
+	}
+	
 }

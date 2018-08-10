@@ -28,26 +28,31 @@ import biochemsimulation.simulation.persistence.PersistenceManagerFactory;
 abstract class PatternMatchingTest {
 	public final static String TEST_MODEL_NAME = "PatternMatchingTest";
 	
+	protected PersistenceManagerEnum persistenceType;
 	protected PersistenceManager persistence;
+	
 	protected ReactionRuleModel ruleModel;
 	protected ReactionContainer containerModel;
-	protected PatternMatchingEngine engine;
 	
+	protected PatternMatchingEngine engine;
 	protected PatternMatchingEngineEnum engineType;
 	
 	protected PatternMatchingTest() {
-		persistence = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
+		setPersistenceType();
+		persistence = PersistenceManagerFactory.create(persistenceType);
 		persistence.init();
 		setEngineType();
 		engine = PatternMatchingEngineFactory.create(engineType);
 	}
+	
+	abstract protected void setPersistenceType();
 	
 	abstract protected void setEngineType();
 	
 	@BeforeAll
 	void beforeAllTest() throws Exception {
 		ruleModel = persistence.loadReactionRuleModel(TEST_MODEL_NAME);
-		containerModel = persistence.loadReactionContainerModel(TEST_MODEL_NAME, true);
+		containerModel = persistence.loadReactionContainerModel(TEST_MODEL_NAME);
 		engine.setReactionRules(ruleModel);
 		engine.setReactionContainer(containerModel);
 		engine.loadModels();
@@ -57,8 +62,7 @@ abstract class PatternMatchingTest {
 	@AfterAll
 	void afterAllTests() throws Exception {
 		engine.disposeEngine();
-		containerModel.eResource().unload();
-		ruleModel.eResource().unload();
+		persistence.unloadReactionContainerModel(TEST_MODEL_NAME);
 	}
 	
 	@Test

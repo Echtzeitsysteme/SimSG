@@ -2,14 +2,11 @@ package biochemsimulation.reactioncontainer.generator;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
@@ -26,7 +23,7 @@ import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.impl.ReactionRuleModelImpl;
 import biochemsimulation.reactionrules.utils.PatternUtils;
 
-public class ReactionContainerGenerator {
+public abstract class ReactionContainerGenerator {
 	private String projectPath;
 	private URI modelLocation;
 	private Resource modelResource;
@@ -36,6 +33,10 @@ public class ReactionContainerGenerator {
 	private List<AgentTemplate> templates;
 	
 	private ReactionContainerFactory factory;
+	protected ReactionContainer containerModel;
+	protected URI containerURI;
+	protected ResourceSet containerResSet;
+	protected Resource containerRes;
 	
 	private void init() {
 		ReactionRulesPackage.eINSTANCE.eClass();
@@ -101,22 +102,33 @@ public class ReactionContainerGenerator {
 		return false;
 	}
 	
-	public ReactionContainer doGenerate(String path, boolean saveToFile) throws Exception{
+	protected abstract void setContainerURI(String path);
+	
+	protected abstract void createAndSetResourceSet();
+	
+	protected abstract void createAndSetResource();
+	
+	protected abstract void saveModel() throws Exception;
+	
+	public void doGenerate(String path) throws Exception{
 		if(!isInitialized) {
 			throw new RuntimeException("ReactionContainerGenerator is uninitialized because the given resource containing the ReactionRules model could not be loaded.");
 		}
 		generateAgentTemplates();
 		
-		ReactionContainer containerModel = factory.createReactionContainer();
-		containerModel.setName(model.getModel().getName());
+		createAndSetResourceSet();
+		setContainerURI(path);
+		createAndSetResource();
 		
+		containerModel = factory.createReactionContainer();
+		containerModel.setName(model.getModel().getName());
 		createInstances(containerModel);
 		
-		if(saveToFile) {
-			URI uri = URI.createFileURI(path);
-			saveModelToURI(containerModel, uri);
-		}
-		return containerModel;
+		containerRes.getContents().add(containerModel);
+		
+		saveModel();
+		
+		containerRes.unload();
 	}
 	
 	private void generateAgentTemplates(){
@@ -149,25 +161,5 @@ public class ReactionContainerGenerator {
 		containerModel.getSimAgent().addAll(agents);
 		containerModel.getSimLinkStates().addAll(links);
 	}
-	
-	private void saveModelToURI(EObject model, URI uri) throws Exception{
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( ).put( "*",
-				new XMIResourceFactoryImpl());
-		ResourceSet resourceSet = new ResourceSetImpl();
-		XMIResource resource = (XMIResource) resourceSet.createResource(uri);
-		resource.getContents().add(model);
-		
-		Map<Object, Object> saveOptions = resource.getDefaultSaveOptions();
-		saveOptions.put(XMIResource.OPTION_ENCODING,"UTF-8");
-		saveOptions.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
-		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION,Boolean.TRUE);
-		saveOptions.put(XMIResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION, Boolean.TRUE);
-		
-		resource.save(saveOptions);
-		System.out.println("Model saved to: "+uri.path());
-
-	}
-	
-	
 	
 }

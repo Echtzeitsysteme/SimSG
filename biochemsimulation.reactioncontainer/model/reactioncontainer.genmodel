@@ -1,40 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
-    modelDirectory="/biochemsimulation.reactioncontainer/src-gen" creationIcons="false"
-    editDirectory="/biochemsimulation.reactioncontainer.edit/src-gen" editorDirectory="/biochemsimulation.reactioncontainer.editor/src-gen"
-    modelPluginID="biochemsimulation.reactioncontainer" modelName="ReactionContainer"
-    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
-    operationReflection="true" importOrganizing="true">
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/biochemsimulation.reactioncontainer/src-gen" creationIcons="false" editDirectory="/biochemsimulation.reactioncontainer.edit/src-gen" editorDirectory="/biochemsimulation.reactioncontainer.editor/src-gen" modelPluginID="biochemsimulation.reactioncontainer" modelName="ReactionContainer" rootExtendsInterface="fr.inria.atlanmod.neoemf.core.PersistentEObject" rootExtendsClass="fr.inria.atlanmod.neoemf.core.DefaultPersistentEObject" reflectiveDelegation="true" codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" featureDelegation="Reflective" complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
   <foreignModel>reactioncontainer.ecore</foreignModel>
+  <modelPluginVariables>NEOEMF=fr.inria.atlanmod.neoemf.core</modelPluginVariables>
   <testsDirectory xsi:nil="true"/>
-  <genPackages prefix="ReactionContainer" basePackage="biochemsimulation" disposableProviderFactory="true"
-      ecorePackage="reactioncontainer.ecore#/">
-    <genClasses ecoreClass="reactioncontainer.ecore#//ReactionContainer">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference reactioncontainer.ecore#//ReactionContainer/simAgent"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference reactioncontainer.ecore#//ReactionContainer/simLinkStates"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute reactioncontainer.ecore#//ReactionContainer/Name"/>
+  <genPackages prefix="ReactionContainer" basePackage="biochemsimulation" disposableProviderFactory="true">
+    <ecorePackage href="reactioncontainer.ecore#/"/>
+    <genClasses>
+      <ecoreClass href="reactioncontainer.ecore#//ReactionContainer"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="reactioncontainer.ecore#//ReactionContainer/simAgent"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="reactioncontainer.ecore#//ReactionContainer/simLinkStates"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="reactioncontainer.ecore#//ReactionContainer/Name"/>
+      </genFeatures>
     </genClasses>
-    <genClasses ecoreClass="reactioncontainer.ecore#//SimAgent">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute reactioncontainer.ecore#//SimAgent/Name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute reactioncontainer.ecore#//SimAgent/Type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference reactioncontainer.ecore#//SimAgent/simSites"/>
+    <genClasses>
+      <ecoreClass href="reactioncontainer.ecore#//SimAgent"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="reactioncontainer.ecore#//SimAgent/Name"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="reactioncontainer.ecore#//SimAgent/Type"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="reactioncontainer.ecore#//SimAgent/simSites"/>
+      </genFeatures>
     </genClasses>
-    <genClasses ecoreClass="reactioncontainer.ecore#//SimSite">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute reactioncontainer.ecore#//SimSite/Type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference reactioncontainer.ecore#//SimSite/simSiteState"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference reactioncontainer.ecore#//SimSite/simAgent"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference reactioncontainer.ecore#//SimSite/simLinkState"/>
+    <genClasses>
+      <ecoreClass href="reactioncontainer.ecore#//SimSite"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="reactioncontainer.ecore#//SimSite/Type"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="reactioncontainer.ecore#//SimSite/simSiteState"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="reactioncontainer.ecore#//SimSite/simAgent"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="reactioncontainer.ecore#//SimSite/simLinkState"/>
+      </genFeatures>
     </genClasses>
-    <genClasses ecoreClass="reactioncontainer.ecore#//SimSiteState">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute reactioncontainer.ecore#//SimSiteState/Type"/>
+    <genClasses>
+      <ecoreClass href="reactioncontainer.ecore#//SimSiteState"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="reactioncontainer.ecore#//SimSiteState/Type"/>
+      </genFeatures>
     </genClasses>
-    <genClasses ecoreClass="reactioncontainer.ecore#//SimLinkState">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference reactioncontainer.ecore#//SimLinkState/simSite1"/>
+    <genClasses>
+      <ecoreClass href="reactioncontainer.ecore#//SimLinkState"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="reactioncontainer.ecore#//SimLinkState/simSite1"/>
+      </genFeatures>
     </genClasses>
-    <genClasses ecoreClass="reactioncontainer.ecore#//SimBound">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference reactioncontainer.ecore#//SimBound/simSite2"/>
+    <genClasses>
+      <ecoreClass href="reactioncontainer.ecore#//SimBound"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="reactioncontainer.ecore#//SimBound/simSite2"/>
+      </genFeatures>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
