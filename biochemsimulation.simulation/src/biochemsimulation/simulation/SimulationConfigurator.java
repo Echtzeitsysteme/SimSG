@@ -31,6 +31,10 @@ public class SimulationConfigurator {
 		persistenceType = PersistenceManagerEnum.SimplePersistence;
 	}
 	
+	public void setNeoEMFPersistence() {
+		persistenceType = PersistenceManagerEnum.NeoEMFPersistence;
+	}
+	
 	public void setViatraAsEngine() {
 		engineType = PatternMatchingEngineEnum.ViatraEngine;
 	}
