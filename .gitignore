@@ -25,6 +25,11 @@
 !*/xtend-gen/**/*.java
 */xtend-gen/**/*.java._trace
 
+# Simulation
+*/data/Benchmarks/*
+*/data/ReactionContainerModels/*
+*/data/ReactionRuleModels/*.xmi
+*/data/ViatraPatternModels/*
 
 !.gitignore
 

@@ -110,7 +110,7 @@ public abstract class ReactionContainerGenerator {
 	
 	protected abstract void saveModel() throws Exception;
 	
-	public ReactionContainer doGenerate(String path, boolean saveToFile) throws Exception{
+	public void doGenerate(String path) throws Exception{
 		if(!isInitialized) {
 			throw new RuntimeException("ReactionContainerGenerator is uninitialized because the given resource containing the ReactionRules model could not be loaded.");
 		}
@@ -126,11 +126,9 @@ public abstract class ReactionContainerGenerator {
 		
 		containerRes.getContents().add(containerModel);
 		
-		if(saveToFile) {
-			saveModel();
-		}
+		saveModel();
 		
-		return containerModel;
+		containerRes.unload();
 	}
 	
 	private void generateAgentTemplates(){

@@ -52,7 +52,6 @@ public abstract class PersistenceManager {
 		reactionContainerModelCache = new HashMap<String, ReactionContainer>();
 		setContainerModelSuffix();
 		setOSspecificSeparators();
-		//init();
 	}
 	
 	protected abstract void setContainerModelSuffix();

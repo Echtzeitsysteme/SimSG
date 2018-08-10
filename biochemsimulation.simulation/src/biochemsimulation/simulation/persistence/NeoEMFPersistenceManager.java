@@ -16,17 +16,21 @@ public class NeoEMFPersistenceManager extends PersistenceManager {
 
 	@Override
 	public ReactionContainer loadReactionContainerModel(String name) throws Exception {
-		ReactionContainer containerModel = null;
 		if(!checkExistenceAndIndex(name, true)) {
 			ReactionRuleModel ruleModel = loadReactionRuleModel(name);
 			ReactionContainerGenerator gen = new ReactionContainerNeoEMF(ruleModel);
 			String path = reactionModelFolder+"/"+name+containerModelSuffix;
-			containerModel = gen.doGenerate(path, true);
+			gen.doGenerate(path);
 			reactionModelPaths.put(name, path);
-		}else {
-			Resource modelResource = PersistenceUtils.loadDBResource(reactionModelPaths.get(name));
-			containerModel = (ReactionContainer) modelResource.getContents().get(0);
 		}
+		
+		Resource modelResource = PersistenceUtils.loadDBResource(reactionModelPaths.get(name));
+		ReactionContainer containerModel = (ReactionContainer) modelResource.getContents().get(0);
+		
+		if(reactionContainerModelCache.containsKey(name)) {
+			unloadReactionContainerModel(name);
+		}
+		
 		reactionContainerModelCache.put(name, containerModel);
 		return containerModel;
 	}
