@@ -169,6 +169,9 @@ public class Sandbox {
 				System.out.println("Pattern: "+name+", size: "+m.size());
 			});
 			engine.disposeEngine();
+			org.eclipse.emf.ecore.util.EcoreUtil.delete(model2.getSimAgent().get(1));
+			// calling unload leads to saving changes to persistence
+			pm.unloadReactionContainerModel("test3");
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

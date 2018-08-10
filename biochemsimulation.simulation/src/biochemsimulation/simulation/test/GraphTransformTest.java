@@ -59,7 +59,7 @@ abstract class GraphTransformTest {
 		containerModel = persistence.loadReactionContainerModel("GraphTransformTest");
 		persistence.unloadReactionContainerModel("GraphTransformTest");
 	}
-
+	
 	@BeforeEach
 	void setUp() throws Exception {
 		PatternMatchingEngine engine = PatternMatchingEngineFactory.create(engineType);

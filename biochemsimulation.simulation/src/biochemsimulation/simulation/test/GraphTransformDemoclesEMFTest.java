@@ -1,8 +1,5 @@
 package biochemsimulation.simulation.test;
 
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
-
 import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;
 import biochemsimulation.simulation.persistence.PersistenceManagerEnum;
 import biochemsimulation.simulation.pmc.PatternMatchingControllerEnum;
