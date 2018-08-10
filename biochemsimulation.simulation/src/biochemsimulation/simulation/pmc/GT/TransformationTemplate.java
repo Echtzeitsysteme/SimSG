@@ -32,7 +32,7 @@ public class TransformationTemplate {
 	private List<LinkDeletionTemplate> linkRemovals;
 	private List<StateChangeTemplate> stateChanges;
 	private List<AgentCreationTemplate> agentCreations;
-	private List<LinkChangeTemplate> linkChanges;
+	private Map<Integer, LinkChangeTemplate> linkChanges;
 	
 	private Map<AgentPattern, AgentCreationTemplate> createdAgents;
 	private Map<AgentCreationTemplate, SimAgent> createdSimAgents;
@@ -152,7 +152,7 @@ public class TransformationTemplate {
 	}
 	
 	private void findLinkChangeCandidates() {
-		linkChanges = new LinkedList<LinkChangeTemplate>();
+		linkChanges = new HashMap<Integer, LinkChangeTemplate>();
 		for(int i = 0; i<postcondition.getAgentPatterns().size(); i++) {
 			if(!(postcondition.getAgentPatterns().get(i) instanceof ValidAgentPattern)) {
 				continue;
@@ -225,7 +225,8 @@ public class TransformationTemplate {
 					}else {
 						linkChange.connectTo(createdAgents.get(prePattern), convertSitePatternIdxToMatchIdx(ap, j), createdSimAgents);
 					}
-					linkChanges.add(linkChange);
+					//linkChanges.add(linkChange);
+					linkChanges.putIfAbsent(linkChange.calculateKey(), linkChange);
 				}
 			}
 		}
@@ -260,7 +261,8 @@ public class TransformationTemplate {
 					}else {
 						linkChange.connectTo(createdAgents.get(prePattern), convertSitePatternIdxToMatchIdx(ap, j), createdSimAgents);
 					}
-					linkChanges.add(linkChange);
+					//linkChanges.add(linkChange);
+					linkChanges.putIfAbsent(linkChange.calculateKey(), linkChange);
 				}
 			}
 		}
@@ -324,7 +326,7 @@ public class TransformationTemplate {
 		if(linkChanges.size() == 0)
 			return;
 		
-		for(LinkChangeTemplate template : linkChanges) {
+		for(LinkChangeTemplate template : linkChanges.values()) {
 			template.applyLinkChange(match, factory, reactionContainer);
 		}
 	}

@@ -40,6 +40,30 @@ public class LinkChangeTemplate {
 		this.createdSimAgents = createdSimAgents;
 	}
 	
+	public int calculateKey() {
+		int key = 0;
+		String keyVal1 = "";
+		String keyVal2 = "";
+		if(!fromIsTemplate && !toIsTemplate) {
+			keyVal1 = String.valueOf(agentIdxFrom)+String.valueOf(siteIdxFrom)+String.valueOf(agentIdxTo)+String.valueOf(siteIdxTo);
+			keyVal2 = String.valueOf(agentIdxTo)+String.valueOf(siteIdxTo)+String.valueOf(agentIdxFrom)+String.valueOf(siteIdxFrom);
+			key = (keyVal1.hashCode()>keyVal2.hashCode())?keyVal1.hashCode():keyVal2.hashCode();
+		}else if(fromIsTemplate && !toIsTemplate) {
+			keyVal1 = templateFrom.toString()+String.valueOf(siteIdxFrom)+String.valueOf(agentIdxTo)+String.valueOf(siteIdxTo);
+			keyVal2 = String.valueOf(agentIdxTo)+String.valueOf(siteIdxTo)+templateFrom.toString()+String.valueOf(siteIdxFrom);
+			key = (keyVal1.hashCode()>keyVal2.hashCode())?keyVal1.hashCode():keyVal2.hashCode();
+		}else if(!fromIsTemplate && toIsTemplate){
+			keyVal1 = String.valueOf(agentIdxFrom)+String.valueOf(siteIdxFrom)+templateTo.toString()+String.valueOf(siteIdxTo);
+			keyVal2 = templateTo.toString()+String.valueOf(siteIdxTo)+String.valueOf(agentIdxFrom)+String.valueOf(siteIdxFrom);
+			key = (keyVal1.hashCode()>keyVal2.hashCode())?keyVal1.hashCode():keyVal2.hashCode();
+		}else {
+			keyVal1 = templateFrom.toString()+String.valueOf(siteIdxFrom)+templateTo.toString()+String.valueOf(siteIdxTo);
+			keyVal2 = templateTo.toString()+String.valueOf(siteIdxTo)+templateFrom.toString()+String.valueOf(siteIdxFrom);
+			key = (keyVal1.hashCode()>keyVal2.hashCode())?keyVal1.hashCode():keyVal2.hashCode();
+		}
+		return key;
+	}
+	
 	public void connectTo(int agentIdxTo, int siteIdxTo) {
 		this.agentIdxTo = agentIdxTo;
 		this.siteIdxTo = siteIdxTo;
