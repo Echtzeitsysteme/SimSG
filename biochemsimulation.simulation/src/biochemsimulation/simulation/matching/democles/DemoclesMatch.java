@@ -1,7 +1,7 @@
 package biochemsimulation.simulation.matching.democles;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +26,8 @@ class DemoclesMatch implements IMatch {
 			parameters.put(parameterName, parameterValue);
 		}
 		
-		parameterNames = new ArrayList<String>(parameters.keySet());
+		parameterNames = new LinkedList<String>(parameters.keySet());
+		
 	}
 
 	@Override

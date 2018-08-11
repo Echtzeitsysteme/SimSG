@@ -1,5 +1,6 @@
 package biochemsimulation.simulation.matching;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class IMatchImpl implements IMatch {
@@ -17,7 +18,7 @@ public class IMatchImpl implements IMatch {
 
 	@Override
 	public List<String> parameterNames() {
-		return null;
+		return new LinkedList<String>();
 	}
 
 	@Override

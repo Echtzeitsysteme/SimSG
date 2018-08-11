@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
@@ -20,6 +21,7 @@ import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternMo
 import org.eclipse.xtext.resource.XtextResourceSet;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
+import biochemsimulation.simulation.matching.patterns.GenericPattern;
 import biochemsimulation.simulation.persistence.PersistenceUtils;
 
 public class ViatraPatternGenerator {
@@ -33,6 +35,7 @@ public class ViatraPatternGenerator {
 	private String os;
 	private boolean isInitialized;
 	private ReactionRuleModel model;
+	private Map<String, GenericPattern> genericPatterns;
 	private PatternModel patternModel;
 	private String patternModelFolder;
 	
@@ -67,6 +70,14 @@ public class ViatraPatternGenerator {
 		init();
 		isInitialized = model != null;
 		this.model = model;
+		this.genericPatterns = null;
+	}
+	
+	public ViatraPatternGenerator(Map<String, GenericPattern> genericPatterns) {
+		init();
+		isInitialized = genericPatterns != null;
+		this.model = null;
+		this.genericPatterns = genericPatterns;
 	}
 	
 	public PatternModel doGenerate(String path, boolean saveToFile) throws Exception{
@@ -76,8 +87,14 @@ public class ViatraPatternGenerator {
 		
 		LinkedHashMap<EPackage, String> imports = new LinkedHashMap<EPackage, String>();
 		imports.put(ReactionContainerPackage.eINSTANCE, "reactionContainer");
-
-		ViatraCodeGenerator pt = new ViatraCodeGenerator(imports, model);
+		
+		ViatraCodeGenerator pt = null;
+		if(model != null) {
+			pt = new ViatraCodeGenerator(imports, model);
+		}else {
+			pt = new ViatraCodeGenerator(imports, genericPatterns);
+		}
+			
 		String output = pt.generatePatternCode();
 		
 		saveModelToVqlFile(patternModelFolder+"temp.vql", output);

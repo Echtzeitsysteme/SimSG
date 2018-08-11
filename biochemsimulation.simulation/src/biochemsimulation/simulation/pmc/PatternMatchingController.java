@@ -2,9 +2,11 @@ package biochemsimulation.simulation.pmc;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
@@ -19,9 +21,13 @@ public abstract class PatternMatchingController extends ReactionRuleTransformer{
 	protected PatternMatchingControllerEnum pmcType;
 	
 	protected PatternMatchingEngine engine;
+	protected Map<String, Integer> matchCount;
+	
 	protected boolean randomRuleOrder;
 	protected boolean useReactionRates;
 	protected int iterations;
+	
+	Random random = new Random();
 	
 	protected PatternMatchingController() {
 		setPMCType();
@@ -35,10 +41,32 @@ public abstract class PatternMatchingController extends ReactionRuleTransformer{
 	protected abstract void feedEngine() throws Exception;
 	
 	public abstract void performTransformations();
+
+	public void collectMatches(String patternName) throws Exception {
+		Collection<IMatch> matches = engine.getMatches(patternName);
+		this.matches.replace(patternName, matches);
+		this.matchCount.replace(patternName, matches.size());
+	}
 	
-	public abstract void collectMatches(String patternName) throws Exception;
+	public void collectAllMatches() throws Exception {
+		engine.getAllMatches().forEach((name, matches) -> {
+			this.matches.replace(name, matches);
+			this.matchCount.replace(name, matches.size());
+		});
+	}
 	
-	public abstract void collectAllMatches() throws Exception;
+	public int getMatchCount(String patternName) {
+		return matchCount.get(patternName);
+	}
+	
+	public IMatch getRandomMatch(String patternName) {
+		int idx = (int)(getMatchCount(patternName)*random.nextDouble());
+		return (IMatch) matches.get(patternName).toArray()[idx];
+	}
+	
+	public IMatch getMatchAt(String patternName, int idx) {
+		return (IMatch) matches.get(patternName).toArray()[idx];
+	}
 	
 	public abstract Collection<IMatch> getMatches(String patternName);
 	
@@ -63,6 +91,12 @@ public abstract class PatternMatchingController extends ReactionRuleTransformer{
 		initPatternMaps();
 		initTransformationTemplates();
 		retrieveStaticReactionRates();
+		
+		// Init match counter
+		matchCount = new HashMap<String, Integer>();
+		for(String patternName : matches.keySet()) {
+			matchCount.put(patternName, 0);
+		}
 	}
 
 	public void transform(IMatch match) {

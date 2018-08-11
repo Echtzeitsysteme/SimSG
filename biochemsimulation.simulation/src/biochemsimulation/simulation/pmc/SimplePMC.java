@@ -28,19 +28,6 @@ public class SimplePMC extends PatternMatchingController {
 	}
 
 	@Override
-	public void collectMatches(String patternName) throws Exception {
-		matches.replace(patternName, engine.getMatches(patternName));	
-	}
-	
-	@Override
-	public void collectAllMatches() throws Exception {
-		engine.getAllMatches().forEach((x, y) -> {
-			matches.replace(x, y);
-		});
-		
-	}
-
-	@Override
 	public void performTransformations() {
 		Random random = new Random();
 		ConcurrentLinkedQueue<String> patternQueue = null;
@@ -58,26 +45,19 @@ public class SimplePMC extends PatternMatchingController {
 				e.printStackTrace();
 				continue;
 			}
-			Collection<IMatch> m = matches.getOrDefault(current, null);
-			if(m == null ) {
-				continue;
-			}
-			List<IMatch> currentMatches = new LinkedList<IMatch>(m);
 			
 			if(useReactionRates) {
 				double reactionRate = staticReactionRates.get(current);
-				double pRule = 1.0 - Math.pow((1.0-reactionRate), currentMatches.size());
+				double pRule = 1.0 - Math.pow((1.0-reactionRate), getMatchCount(current));
 				double rnd = random.nextDouble();
 				if(rnd <= pRule) {
-					int idx = (int)(currentMatches.size()*random.nextDouble());
-					applyRuleToMatch(currentMatches.get(idx));
+					applyRuleToMatch(getRandomMatch(current));
 				}
 			}else {
-				if(!currentMatches.isEmpty()) {
-					applyRuleToMatch(currentMatches.get(0));
+				if(getMatchCount(current) != 0) {
+					applyRuleToMatch(getMatchAt(current, 0));
 				}
 			}
-			
 			
 		}
 		

@@ -43,6 +43,14 @@ public class ViatraCodeGenerator {
     this.generateGenericPatterns();
   }
   
+  public ViatraCodeGenerator(final LinkedHashMap<EPackage, String> importAliases, final Map<String, GenericPattern> genericPatterns) {
+    this.importAliases = importAliases;
+    HashMap<String, String> _hashMap = new HashMap<String, String>();
+    this.supportPatterns = _hashMap;
+    this.createAnyLinkSupportPattern();
+    this.genericPatterns = genericPatterns;
+  }
+  
   public String createAnyLinkSupportPattern() {
     String _xblockexpression = null;
     {

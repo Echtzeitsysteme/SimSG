@@ -33,6 +33,14 @@ class ViatraCodeGenerator {
 		generateGenericPatterns()
 	}
 	
+	new(LinkedHashMap<EPackage, String> importAliases, Map<String, GenericPattern> genericPatterns) {
+		this.importAliases = importAliases
+		supportPatterns = new HashMap
+		
+		createAnyLinkSupportPattern()
+		this.genericPatterns = genericPatterns
+	}
+	
 	def createAnyLinkSupportPattern() {
 		val pattern = '''pattern «BOUND_ANY_LINK_PATTERN_KEY»(simSite : «SiteNodeContext.SIM_SITE_TYPE.name») {
 			«SiteNodeContext.SIM_SITE_TYPE.name».«LinkStateContext.SIM_LINK_STATE_CONTAINER_ATTRIBUTE.name»(simSite, _);

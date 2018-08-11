@@ -62,6 +62,10 @@ public class DemoclesPatternGenerator {
 		rulePatterns = PatternUtils.getPatterns(model);
 		generateGenericPatterns();
 	}
+	
+	public DemoclesPatternGenerator(Map<String, GenericPattern> genericPatterns) {
+		this.genericPatterns = genericPatterns;
+	}
 
 	private void generateGenericPatterns() {
 		genericPatterns = new HashMap<String, GenericPattern>();

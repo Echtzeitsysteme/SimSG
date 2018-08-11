@@ -22,7 +22,7 @@ public class HybridPattern {
 	private Map<AgentNodeContext, List<LinkStateConstraint>> agentNodeToLinkConstraintMap;
 	
 	private List<Set<AgentNodeContext>> subPatterns;
-	private List<GenericPattern> genericSubPatterns;
+	private Map<String, GenericPattern> genericSubPatterns;
 	
 	public HybridPattern(String patternName, Pattern lhs) {
 		this.patternName = patternName;
@@ -30,8 +30,11 @@ public class HybridPattern {
 		
 		genericLhs = new GenericPattern(patternName, lhs);
 		if(genericLhs.isVoidPattern()) {
+			genericSubPatterns = new HashMap<String, GenericPattern>();
+			genericSubPatterns.put(patternName, genericLhs);
 			return;
 		}
+		
 		mapAgentNodesToLinkConstraints();
 		splitPattern();
 		generateGenericSubPatterns();
@@ -99,15 +102,19 @@ public class HybridPattern {
 	}
 	
 	private void generateGenericSubPatterns() {
-		genericSubPatterns = new LinkedList<GenericPattern>();
+		genericSubPatterns = new HashMap<String, GenericPattern>();
 		int c = 0;
 		for(Set<AgentNodeContext> subPattern : subPatterns) {
 			List<ValidAgentPattern> vaps = subPattern.stream()
 					.map(agentNode -> genericLhs.getSignature().getSignaturePattern(agentNode.getAgentVariableName()))
 					.collect(Collectors.toList());
-			genericSubPatterns.add(new GenericPattern(patternName+c, vaps));
+			genericSubPatterns.put(patternName+c, new GenericPattern(patternName+c, vaps));
 			c++;
 		}
+	}
+	
+	public Map<String, GenericPattern> getGenericSubPatterns() {
+		return genericSubPatterns;
 	}
 	
 	@Override
@@ -119,7 +126,7 @@ public class HybridPattern {
 		sb.append(genericLhs.toString());
 		sb.append("\n</Original Pattern>");
 		sb.append("\n<Split Hybrid-Patterns>: \n");
-		for(GenericPattern pattern : genericSubPatterns) {
+		for(GenericPattern pattern : genericSubPatterns.values()) {
 			sb.append(pattern.toString());
 		}
 		sb.append("\n</Split Hybrid-Patterns>");

@@ -1,14 +1,16 @@
 package biochemsimulation.simulation.matching;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
-import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.utils.PatternUtils;
+import biochemsimulation.simulation.matching.patterns.GenericPattern;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Set;
 
 public abstract class PatternMatchingEngine {
 	
@@ -16,20 +18,32 @@ public abstract class PatternMatchingEngine {
 	
 	protected ReactionContainer model;
 	protected ReactionRuleModel rules;
+	protected Map<String, GenericPattern> genericPatterns;
 	
-	protected Map<String, Pattern> voidPatterns;
+	protected Set<String> voidPatterns;
 	
 	protected PatternMatchingEngine() {
-		this.voidPatterns = new HashMap<String, Pattern>();
+		this.voidPatterns = new HashSet<String>();
 	}
 	
 	public void setReactionRules(ReactionRuleModel rules) {
 		this.rules = rules;
 		PatternUtils.getPatterns(rules).forEach((name, pattern)->{
 			if(PatternUtils.isPatternVoid(pattern)) {
-				voidPatterns.put(name, pattern);
+				voidPatterns.add(name);
 			}
 		});
+		this.genericPatterns = null;
+	}
+	
+	public void setReactionRules(Map<String, GenericPattern> genericPatterns) {
+		this.rules = null;
+		genericPatterns.forEach((name, pattern) -> {
+			if(pattern.isVoidPattern()) {
+				voidPatterns.add(name);
+			}
+		});
+		this.genericPatterns = genericPatterns;
 	}
 	
 	public void setReactionContainer(ReactionContainer container) {
@@ -45,7 +59,7 @@ public abstract class PatternMatchingEngine {
 	abstract protected Collection<IMatch> getMatchesAndUpdate(String patternName) throws Exception;
 	
 	public Collection<IMatch> getMatches(String patternName) throws Exception {
-		if(voidPatterns.containsKey(patternName)) {
+		if(voidPatterns.contains(patternName)) {
 			Collection<IMatch> m = new LinkedList<IMatch>();
 			m.add(new IMatchImpl(patternName));
 			return m;

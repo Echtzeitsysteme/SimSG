@@ -15,6 +15,12 @@ public class GenericPattern {
 	private GenericPatternSignature signature;
 	private GenericPatternBody body;
 	
+	public GenericPattern(String patternName) {
+		this.patternName = patternName;
+		this.lhs = null;
+		voidPattern = true;
+	}
+	
 	public GenericPattern(String patternName, Pattern lhs) {
 		this.patternName = patternName;
 		this.lhs = lhs;

@@ -10,6 +10,10 @@ public class PatternMatchingControllerFactory {
 			pmc = new SimplePMC();
 			break;
 		}
+		case HybridPMC : {
+			pmc = new HybridPMC();
+			break;
+		}
 		}
 		
 		return pmc;

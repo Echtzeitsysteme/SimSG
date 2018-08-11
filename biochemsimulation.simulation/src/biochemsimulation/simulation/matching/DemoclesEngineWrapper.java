@@ -22,7 +22,13 @@ public class DemoclesEngineWrapper extends PatternMatchingEngine {
 	
 	@Override
 	public void loadModels() throws Exception {
-		DemoclesPatternGenerator generator = new DemoclesPatternGenerator(rules);
+		DemoclesPatternGenerator generator = null;
+		if(rules != null) {
+			generator = new DemoclesPatternGenerator(rules);
+		}else {
+			generator = new DemoclesPatternGenerator(genericPatterns);
+		}
+		 
 		patterns = new LinkedList<Pattern>(generator.doGenerate().values());
 		for(Pattern pattern : patterns) {
 			patternNames.add(pattern.getName());
@@ -33,7 +39,6 @@ public class DemoclesEngineWrapper extends PatternMatchingEngine {
 	public void initEngine() throws Exception {
 		engine = new DemoclesEngine(model);
 		engine.initPatterns(patterns);
-		//engine.savePatternsToFile();
 	}
 	
 	@Override
