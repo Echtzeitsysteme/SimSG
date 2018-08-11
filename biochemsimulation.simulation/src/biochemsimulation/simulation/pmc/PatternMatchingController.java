@@ -1,45 +1,105 @@
 package biochemsimulation.simulation.pmc;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.PatternMatchingEngine;
 import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;
+import biochemsimulation.simulation.pmc.GT.ReactionRuleTransformer;
 
-public interface PatternMatchingController {
+public abstract class PatternMatchingController extends ReactionRuleTransformer{
 	
-	public void setEngine(PatternMatchingEngine engine);
+	protected PatternMatchingControllerEnum pmcType;
 	
-	public void loadModels(ReactionRuleModel ruleModel, ReactionContainer reactionContainer) throws Exception;
+	protected PatternMatchingEngine engine;
+	protected boolean randomRuleOrder;
+	protected boolean useReactionRates;
+	protected int iterations;
 	
-	public void initEngine() throws Exception;
+	protected PatternMatchingController() {
+		setPMCType();
+		randomRuleOrder = true;
+		useReactionRates = true;
+		iterations = 0;
+	}
 	
-	public void initController() throws Exception;
+	protected abstract void setPMCType();
 	
-	public void randomizeRuleOrder(boolean activate);
+	protected abstract void feedEngine() throws Exception;
 	
-	public void useReactionRate(boolean activate);
+	public abstract void performTransformations();
 	
-	public void collectMatches(String patternName) throws Exception;
+	public abstract void collectMatches(String patternName) throws Exception;
 	
-	public void collectAllMatches() throws Exception;
+	public abstract void collectAllMatches() throws Exception;
 	
-	public void transform(IMatch match);
+	public abstract Collection<IMatch> getMatches(String patternName);
 	
-	public void performTransformations();
+	public abstract Map<String, Collection<IMatch>> getAllMatches();
+
+	public void setEngine(PatternMatchingEngine engine) {
+		this.engine = engine;
+	}
 	
-	public int getIterations();
+	public void loadModels(ReactionRuleModel ruleModel, ReactionContainer reactionContainer) throws Exception {
+		this.ruleModel = ruleModel;
+		this.reactionContainer = reactionContainer;
+		feedEngine();
+	}
 	
-	public void discardEngine();
+	public void initEngine() throws Exception {
+		engine.initEngine();
+	}
 	
-	public Collection<IMatch> getMatches(String patternName);
+	public void initController() throws Exception {
+		initRuleMap();
+		initPatternMaps();
+		initTransformationTemplates();
+		retrieveStaticReactionRates();
+	}
+
+	public void transform(IMatch match) {
+		applyRuleToMatch(match);
+	}
 	
-	public Map<String, Collection<IMatch>> getAllMatches();
+	public int getIterations() {
+		return iterations;
+	}
 	
-	public PatternMatchingControllerEnum getPMCType();
+	public void randomizeRuleOrder(boolean activate) {
+		randomRuleOrder = activate;
+	}
+
+	public void useReactionRate(boolean activate) {
+		useReactionRates = activate;
+	}
+
+	public void discardEngine() {
+		engine.disposeEngine();
+	}
+
+	public PatternMatchingControllerEnum getPMCType() {
+		return pmcType;
+	}
+
+	public PatternMatchingEngineEnum getEngineType() {
+		return engine.getEngineType();
+	}
 	
-	public PatternMatchingEngineEnum getEngineType();
+	protected ConcurrentLinkedQueue<String> generatePatternQueue() {
+		return new ConcurrentLinkedQueue<String>(patternMap.keySet());
+	}
+	
+	protected ConcurrentLinkedQueue<String> generateRndPatternQueue(){
+		List<String> rndPatternList = new LinkedList<String>(patternMap.keySet());
+		Collections.shuffle(rndPatternList);
+		return new ConcurrentLinkedQueue<String>(rndPatternList);
+	}
 }
