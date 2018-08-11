@@ -252,5 +252,68 @@ public class GenericPatternBody {
 		return other;
 	}
 	
-	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("##<Body>:");
+		sb.append("\n\t<Links>:");
+		sb.append("\n\t\t Bound-Links:\n");
+		for(LinkStateConstraint lsc : linkStateConstraints.values()) {
+			if(lsc.getOperand1().getStateType() != LinkStateType.Bound) {
+				continue;
+			}
+			sb.append("\t\t\tFrom: Agent("+lsc.getOperand1().getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
+			sb.append(".Site("+lsc.getOperand1().getSiteNodeContext().getSiteType()+") <====> ");
+			sb.append("To: Agent("+lsc.getOperand2().getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
+			sb.append(".Site("+lsc.getOperand2().getSiteNodeContext().getSiteType()+");\n");
+		}
+		sb.append("\n\t\t BoundToAnyOfType-Links:\n");
+		for(LinkStateConstraint lsc : linkStateConstraints.values()) {
+			if(lsc.getOperand1().getStateType() != LinkStateType.BoundAnyOfType) {
+				continue;
+			}
+			sb.append("\t\t\tFrom: Agent("+lsc.getOperand1().getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
+			sb.append(".Site("+lsc.getOperand1().getSiteNodeContext().getSiteType()+") <====> ");
+			sb.append("To: Agent("+lsc.getOperand2().getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
+			sb.append(".Site("+lsc.getOperand2().getSiteNodeContext().getSiteType()+");\n");
+		}
+		sb.append("\n\t\t BoundToAny-Links:\n");
+		for(LinkStateConstraint lsc : linkStateConstraints.values()) {
+			if(lsc.getOperand1().getStateType() != LinkStateType.BoundAny) {
+				continue;
+			}
+			sb.append("\t\t\tFrom: Agent("+lsc.getOperand1().getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
+			sb.append(".Site("+lsc.getOperand1().getSiteNodeContext().getSiteType()+") <====> Agent(*).Site(*);\n");
+		}
+		sb.append("\n\t\t BoundToAny-Links:\n");
+		for(LinkStateConstraint lsc : linkStateConstraints.values()) {
+			if(lsc.getOperand1().getStateType() != LinkStateType.WhatEver) {
+				continue;
+			}
+			sb.append("\t\t\tFrom: Agent("+lsc.getOperand1().getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
+			sb.append(".Site("+lsc.getOperand1().getSiteNodeContext().getSiteType()+") <==??==> (??);\n");
+		}
+		sb.append("\n\t\t BoundToAny-Links:\n");
+		for(LinkStateConstraint lsc : linkStateConstraints.values()) {
+			if(lsc.getOperand1().getStateType() != LinkStateType.Unbound) {
+				continue;
+			}
+			sb.append("\t\t\tFrom: Agent("+lsc.getOperand1().getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
+			sb.append(".Site("+lsc.getOperand1().getSiteNodeContext().getSiteType()+") <==!!==> (Unbound);\n");
+		}
+		sb.append("\n\t</Links>");
+		sb.append("\n\t<States>:\n");
+		for(SiteStateContext state: siteStateContexts.values()) {
+			sb.append("\t\tAgent("+state.getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
+			sb.append(".Site("+state.getSiteNodeContext().getSiteType()+") ==> State("+state.getStateType()+");\n");
+		}
+		sb.append("\n\t</States>");
+		sb.append("\n\t<Injectivity Constraints>:\n");
+		for(AgentNodeConstraint injConstr : injectivityConstraints) {
+			sb.append("\t\tAgent("+injConstr.getOperand1().getAgentVariableName()+") != Agent("+injConstr.getOperand2().getAgentVariableName()+");\n");
+		}
+		sb.append("\n\t<Injectivity Constraints>");
+		sb.append("\n##</Body>:");
+		return sb.toString();
+	}
 }

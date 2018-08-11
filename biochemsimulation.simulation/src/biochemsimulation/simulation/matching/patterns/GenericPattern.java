@@ -73,10 +73,13 @@ public class GenericPattern {
 	
 	@Override
 	public String toString() {
-		String out = "***\nPattern: " + patternName + "\n";
-		out+="\t" + signature.toString() + "\n";
-		out+="\t" + body.toString() + "\n";
-		out+="***";
-		return out;
+		StringBuilder sb = new StringBuilder();
+		sb.append("******");
+		sb.append("\n<Pattern>: " + patternName + "\n");
+		sb.append(signature.toString() + "\n");
+		sb.append(body.toString() + "\n");
+		sb.append("</Pattern>\n");
+		sb.append("******");
+		return sb.toString();
 	}
 }

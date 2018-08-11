@@ -79,4 +79,17 @@ public class GenericPatternSignature {
 	public Map<String, List<String>> getInjectivityConflicts() {
 		return injectivityConflicts;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("##<Signature>: ");
+		for(String sigNode : signatureNodes.keySet()) {
+			sb.append(sigNode+", ");
+		}
+		sb.delete(sb.length()-2, sb.length());
+		sb.append("\n##</Signature>");
+		
+		return sb.toString();
+	}
 }

@@ -1,12 +1,15 @@
 package biochemsimulation.simulation.test;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.jar.Attributes.Name;
 import java.util.stream.Collectors;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
+import biochemsimulation.reactionrules.utils.PatternUtils;
 import biochemsimulation.simulation.Simulation;
 import biochemsimulation.simulation.SimulationConfigurator;
 import biochemsimulation.simulation.benchmark.Runtimer;
@@ -14,6 +17,7 @@ import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.PatternMatchingEngine;
 import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;
 import biochemsimulation.simulation.matching.PatternMatchingEngineFactory;
+import biochemsimulation.simulation.matching.patterns.HybridPattern;
 import biochemsimulation.simulation.persistence.PersistenceManager;
 import biochemsimulation.simulation.persistence.PersistenceManagerEnum;
 import biochemsimulation.simulation.persistence.PersistenceManagerFactory;
@@ -33,8 +37,9 @@ public class Sandbox {
 		*/
 		//test7();
 		//test8_kill();
-		benchmark();
+		//benchmark();
 		//test4();
+		hybridTest();
 	}
 
 	public static void test1() {
@@ -392,6 +397,26 @@ public class Sandbox {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public static void hybridTest() {
+		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
+		pm.init();
+		try {
+			ReactionRuleModel model1 = pm.loadReactionRuleModel("DemoclesKill1");
+			ReactionContainer model2 = pm.loadReactionContainerModel("DemoclesKill1");
+			Map<String, biochemsimulation.reactionrules.reactionRules.Pattern> rulePatterns = PatternUtils.getPatterns(model1);
+			Map<String, HybridPattern> hybridPatterns = new HashMap<String, HybridPattern>();
+			rulePatterns.forEach((name, pattern) -> {
+				hybridPatterns.put(name, new HybridPattern(name, pattern));
+			});
+			hybridPatterns.forEach((name, pattern) -> {
+				System.out.println(pattern);
+			});
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static PatternMatchingController createSimplePMC_Viatra() {

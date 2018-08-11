@@ -109,4 +109,22 @@ public class HybridPattern {
 			c++;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("*#*#*#*#*#*");
+		sb.append("\n<HybridPattern>: " + patternName);
+		sb.append("\n<Original Pattern>: \n");
+		sb.append(genericLhs.toString());
+		sb.append("\n</Original Pattern>");
+		sb.append("\n<Split Hybrid-Patterns>: \n");
+		for(GenericPattern pattern : genericSubPatterns) {
+			sb.append(pattern.toString());
+		}
+		sb.append("\n</Split Hybrid-Patterns>");
+		sb.append("</HybridPattern>\n");
+		sb.append("*#*#*#*#*#*");
+		return sb.toString();
+	}
 }
