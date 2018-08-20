@@ -2,7 +2,6 @@ package biochemsimulation.simulation.pmc;
 
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;

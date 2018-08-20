@@ -15,7 +15,6 @@ import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 public class HybridPattern {
 	
 	private String patternName;
-	private Pattern lhs;
 	
 	private GenericPattern genericLhs;
 	
@@ -26,7 +25,6 @@ public class HybridPattern {
 	
 	public HybridPattern(String patternName, Pattern lhs) {
 		this.patternName = patternName;
-		this.lhs = lhs;
 		
 		genericLhs = new GenericPattern(patternName, lhs);
 		if(genericLhs.isVoidPattern()) {

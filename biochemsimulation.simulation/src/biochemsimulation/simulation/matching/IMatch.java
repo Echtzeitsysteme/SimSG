@@ -9,4 +9,8 @@ public interface IMatch {
 	public List<String> parameterNames();
 	
 	public Object get(String parameterName);
+	
+	public boolean equals(IMatch other);
+	
+	public int hashCode();
 }

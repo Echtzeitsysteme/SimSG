@@ -2,9 +2,11 @@ package biochemsimulation.simulation.pmc;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.utils.PatternUtils;
@@ -63,21 +65,37 @@ public class HybridPMC extends PatternMatchingController {
 			super.collectMatches(subPatternName);
 		}
 		
-		List<IMatch> subMatches = new LinkedList<IMatch>();
+		Set<IMatch> subMatches = new HashSet<IMatch>();
 		for(String subPatternName : subPatterNames) {
 			if(super.getMatchCount(subPatternName) == 0) {
 				subMatches = null;
 				hybridMatchCount.replace(patternName, 0);
 				break;
 			}
-			subMatches.add(getRandomMatch(subPatternName));
+			
+			int idx = 0;
+			IMatch currentMatch = null;
+			do{
+				currentMatch = getMatchAt(subPatternName, idx);
+				idx++;
+			}while(idx < super.getMatchCount(subPatternName) && subMatches.contains(currentMatch));
+			
+			if(idx==super.getMatchCount(subPatternName)) {
+				subMatches = null;
+				hybridMatchCount.replace(patternName, 0);
+				break;
+			}
+			
+			subMatches.add(currentMatch);
 		}
 		
 		if(subMatches == null) {
+			hybridMatchCount.replace(patternName, 0);
 			return;
 		}
 		
 		hybridMatches.put(patternName, new HybridMatch(patternName, subMatches));
+		calculateHybridMatchCount(patternName);
 		
 	}
 	
@@ -93,8 +111,9 @@ public class HybridPMC extends PatternMatchingController {
 
 	@Override
 	public void collectAllMatches() throws Exception {
-		// TODO Auto-generated method stub
-
+		for(String hybridPatternName : hybridPatterns.keySet()) {
+			collectMatches(hybridPatternName);
+		}
 	}
 	
 	@Override
@@ -104,14 +123,18 @@ public class HybridPMC extends PatternMatchingController {
 
 	@Override
 	public Collection<IMatch> getMatches(String patternName) {
-		// TODO Auto-generated method stub
-		return null;
+		Collection<IMatch> out = new LinkedList<IMatch>();
+		out.add(hybridMatches.get(patternName));
+		return out;
 	}
 
 	@Override
 	public Map<String, Collection<IMatch>> getAllMatches() {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, Collection<IMatch>> out = new HashMap<String, Collection<IMatch>>();
+		for(String hybridPatternName : hybridPatterns.keySet()) {
+			out.put(hybridPatternName, getMatches(hybridPatternName));
+		}
+		return out;
 	}
 
 }

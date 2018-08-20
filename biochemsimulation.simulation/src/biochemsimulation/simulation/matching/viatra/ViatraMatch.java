@@ -1,16 +1,19 @@
 package biochemsimulation.simulation.matching.viatra;
 
 import java.util.List;
-
 import biochemsimulation.simulation.matching.IMatch;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 
 public class ViatraMatch implements IMatch {
 	
-	private IPatternMatch match;
+	final private IPatternMatch match;
 	
-	public ViatraMatch(IPatternMatch match) {
+	public ViatraMatch(final IPatternMatch match) {
 		this.match = match;
+	}
+	
+	public IPatternMatch getIPatternMatch() {
+		return match;
 	}
 
 	@Override
@@ -26,6 +29,19 @@ public class ViatraMatch implements IMatch {
 	@Override
 	public Object get(String parameterName) {
 		return match.get(parameterName);
+	}
+	
+	@Override
+	public boolean equals(IMatch other) {
+		if(!(other instanceof ViatraMatch)) {
+			return false;
+		}
+		return match.equals(((ViatraMatch)other).getIPatternMatch());
+	}
+	
+	@Override
+	public int hashCode() {
+		return match.hashCode();
 	}
 
 }

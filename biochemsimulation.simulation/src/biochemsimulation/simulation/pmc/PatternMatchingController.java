@@ -59,12 +59,15 @@ public abstract class PatternMatchingController extends ReactionRuleTransformer{
 		return matchCount.get(patternName);
 	}
 	
-	public IMatch getRandomMatch(String patternName) {
-		int idx = (int)(getMatchCount(patternName)*random.nextDouble());
-		return (IMatch) matches.get(patternName).toArray()[idx];
+	protected int getRandomMatchIdx(String patternName) {
+		return (int)(getMatchCount(patternName)*random.nextDouble());
 	}
 	
-	public IMatch getMatchAt(String patternName, int idx) {
+	protected IMatch getRandomMatch(String patternName) {
+		return (IMatch) matches.get(patternName).toArray()[getRandomMatchIdx(patternName)];
+	}
+	
+	protected IMatch getMatchAt(String patternName, int idx) {
 		return (IMatch) matches.get(patternName).toArray()[idx];
 	}
 	

@@ -15,8 +15,10 @@ class DemoclesMatch implements IMatch {
 	private String patternName;
 	private Map<String, Object> parameters;
 	private List<String> parameterNames;
+	final private DataFrame frame;
 	
 	public DemoclesMatch(final DataFrame frame, final Pattern pattern) {
+		this.frame = frame;
 		patternName = pattern.getName();
 		parameters = new LinkedHashMap<String, Object>();
 		
@@ -28,6 +30,10 @@ class DemoclesMatch implements IMatch {
 		
 		parameterNames = new LinkedList<String>(parameters.keySet());
 		
+	}
+	
+	public DataFrame getDataFrame() {
+		return frame;
 	}
 
 	@Override
@@ -43,6 +49,19 @@ class DemoclesMatch implements IMatch {
 	@Override
 	public Object get(String parameterName) {
 		return parameters.get(parameterName);
+	}
+	
+	@Override
+	public boolean equals(IMatch other) {
+		if(!(other instanceof DemoclesMatch)) {
+			return false;
+		}
+		return frame.equals(((DemoclesMatch)other).getDataFrame());
+	}
+	
+	@Override
+	public int hashCode() {
+		return frame.hashCode();
 	}
 
 }
