@@ -2,6 +2,10 @@ package biochemsimulation.simulation.test;
 
 import biochemsimulation.simulation.persistence.PersistenceManagerEnum;
 
+public class PatternMatchingViatraNeoEMFTest {
+	
+}
+/*
 public class PatternMatchingViatraNeoEMFTest extends PatternMatchingViatraEMFTest {
 	
 	@Override
@@ -10,3 +14,4 @@ public class PatternMatchingViatraNeoEMFTest extends PatternMatchingViatraEMFTes
 	}
 	
 }
+*/

@@ -2,6 +2,10 @@ package biochemsimulation.simulation.test;
 
 import biochemsimulation.simulation.persistence.PersistenceManagerEnum;
 
+public class GraphTransformDemoclesNeoEMFTest {
+	
+}
+/*
 public class GraphTransformDemoclesNeoEMFTest extends GraphTransformDemoclesEMFTest {
 	
 	@Override
@@ -10,3 +14,4 @@ public class GraphTransformDemoclesNeoEMFTest extends GraphTransformDemoclesEMFT
 	}
 	
 }
+*/
