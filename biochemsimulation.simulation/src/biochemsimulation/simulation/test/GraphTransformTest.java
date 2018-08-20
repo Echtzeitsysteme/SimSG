@@ -5,9 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.Collection;
 
 import org.junit.FixMethodOrder;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.runners.MethodSorters;
@@ -55,13 +54,6 @@ abstract class GraphTransformTest {
 	
 	@BeforeAll
 	void beforeAllTest() throws Exception {
-		ruleModel = persistence.loadReactionRuleModel("GraphTransformTest");
-		containerModel = persistence.loadReactionContainerModel("GraphTransformTest");
-		persistence.unloadReactionContainerModel("GraphTransformTest");
-	}
-	
-	@BeforeEach
-	void setUp() throws Exception {
 		PatternMatchingEngine engine = PatternMatchingEngineFactory.create(engineType);
 		pmc = PatternMatchingControllerFactory.create(pmcType);
 		pmc.setEngine(engine);
@@ -71,9 +63,9 @@ abstract class GraphTransformTest {
 		pmc.initController();
 		pmc.initEngine();
 	}
-
-	@AfterEach
-	void tearDown() throws Exception {
+	
+	@AfterAll
+	void afterAllTest() throws Exception {
 		pmc.discardEngine();
 		persistence.unloadReactionContainerModel("GraphTransformTest");
 	}
