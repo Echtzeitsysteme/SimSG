@@ -32,7 +32,7 @@ public class GenericPattern {
 		}
 		
 		signature = new GenericPatternSignature(agentPatterns);
-		body = new GenericPatternBody(signature, agentPatterns);
+		body = new GenericPatternBody(this, signature, agentPatterns);
 		
 	}
 	
@@ -46,7 +46,7 @@ public class GenericPattern {
 		this.lhs = null;
 		
 		signature = new GenericPatternSignature(agentPatterns);
-		body = new GenericPatternBody(signature, agentPatterns);
+		body = new GenericPatternBody(this, signature, agentPatterns);
 		
 	}
 	

@@ -51,6 +51,13 @@ public class HybridPMC extends PatternMatchingController {
 	@Override
 	public void initController() throws Exception {
 		super.initController();
+		hybridMatches = new HashMap<String, IMatch>();
+		hybridMatchCount = new HashMap<String, Integer>();
+		for(String hybridPattern : hybridPatterns.keySet()) {
+			hybridMatches.put(hybridPattern, null);
+			hybridMatchCount.put(hybridPattern, 0);
+		}
+		
 	}
 
 	@Override
@@ -154,8 +161,8 @@ public class HybridPMC extends PatternMatchingController {
 				GenericPatternSignature currentSignature = hybridPattern.getGenericSubPatterns().get(subPatternName).getSignature();
 				
 				for(AgentNodeConstraint constraint : constraints) {
-					String op1 = constraint.getOperand1().getAgentVariableName();
-					String op2 = constraint.getOperand2().getAgentVariableName();
+					String op1 = hybridPattern.globalToLocalSignature(constraint.getOperand1().getAgentVariableName());
+					String op2 = hybridPattern.globalToLocalSignature(constraint.getOperand2().getAgentVariableName());
 					if((predecessorSignature.containsSignatureNode(op1) || predecessorSignature.containsSignatureNode(op2)) && 
 							(currentSignature.containsSignatureNode(op1) || currentSignature.containsSignatureNode(op2))) {
 						currentCount--;

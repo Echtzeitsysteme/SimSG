@@ -24,6 +24,9 @@ public class HybridPattern {
 	private List<Set<AgentNodeContext>> subPatterns;
 	private Map<String, GenericPattern> genericSubPatterns;
 	
+	private Map<String, Map<String, String>> subPatternGlobalSignatureMap;
+	private Map<String, String> globaltoLocalSignatureMap;
+	
 	public HybridPattern(String patternName, Pattern lhs) {
 		this.patternName = patternName;
 		
@@ -37,6 +40,7 @@ public class HybridPattern {
 		mapAgentNodesToLinkConstraints();
 		splitPattern();
 		generateGenericSubPatterns();
+		mapSubSignaturesToSignatures();
 	}
 	
 	private void mapAgentNodesToLinkConstraints() {
@@ -72,6 +76,10 @@ public class HybridPattern {
 			currentSubSet.add(currentSubPattern);
 			
 			ConcurrentLinkedQueue<LinkStateConstraint> outgoingLinks =  new ConcurrentLinkedQueue<LinkStateConstraint>();
+			if(!agentNodeToLinkConstraintMap.containsKey(currentSubPattern)) {
+				subPatterns.add(currentSubSet);
+				continue;
+			}
 			outgoingLinks.addAll(agentNodeToLinkConstraintMap.get(currentSubPattern));
 			
 			while(!outgoingLinks.isEmpty()) {
@@ -102,13 +110,40 @@ public class HybridPattern {
 	
 	private void generateGenericSubPatterns() {
 		genericSubPatterns = new HashMap<String, GenericPattern>();
+		globaltoLocalSignatureMap = new HashMap<String, String>();
 		int c = 0;
 		for(Set<AgentNodeContext> subPattern : subPatterns) {
 			List<ValidAgentPattern> vaps = subPattern.stream()
 					.map(agentNode -> genericLhs.getSignature().getSignaturePattern(agentNode.getAgentVariableName()))
 					.collect(Collectors.toList());
-			genericSubPatterns.put(patternName+c, new GenericPattern(patternName+c, vaps));
+			
+			String subPatternName = patternName+c;
+			GenericPattern genericSubPattern = new GenericPattern(subPatternName, vaps);
+			genericSubPatterns.put(subPatternName, genericSubPattern);
+			
+			for(ValidAgentPattern vap : vaps) {
+				String signatureNodeGlobal = genericLhs.getSignature().getSignatureNode(vap);
+				String signatureNodeLocal = genericSubPattern.getSignature().getSignatureNode(vap);
+				System.out.println("N: "+subPatternName+" sng: "+signatureNodeGlobal+" snl: "+signatureNodeLocal);
+				globaltoLocalSignatureMap.put(signatureNodeGlobal, signatureNodeLocal);
+			}
+			
 			c++;
+		}
+	}
+	
+	private void mapSubSignaturesToSignatures() {
+		subPatternGlobalSignatureMap = new HashMap<String, Map<String,String>>();
+		for(GenericPattern subPattern : genericSubPatterns.values()) {
+			Map<String, String> mapping = subPatternGlobalSignatureMap.get(subPattern.getName());
+			if(mapping == null) {
+				mapping = new HashMap<String, String>();
+				subPatternGlobalSignatureMap.put(subPattern.getName(), mapping);
+			}
+			Map<ValidAgentPattern, AgentNodeContext> contextNodes = subPattern.getBody().getAgentNodeContexts();
+			for(ValidAgentPattern vap : contextNodes.keySet()) {
+				mapping.put(contextNodes.get(vap).getAgentVariableName(), genericLhs.getSignature().getSignatureNode(vap));
+			}
 		}
 	}
 	
@@ -118,6 +153,14 @@ public class HybridPattern {
 	
 	public Collection<AgentNodeConstraint> getInjectivityConstraintsSignature() {
 		return genericLhs.getBody().getInjectivityConstraintsSignature();
+	}
+	
+	public String localToGlobalSignature(String subPatternName, String signatureNode) {
+		return subPatternGlobalSignatureMap.get(subPatternName).get(signatureNode);
+	}
+	
+	public String globalToLocalSignature(String signatureNode) {
+		return globaltoLocalSignatureMap.get(signatureNode);
 	}
 	
 	@Override

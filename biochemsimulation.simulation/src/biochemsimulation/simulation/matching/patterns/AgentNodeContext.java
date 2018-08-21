@@ -7,6 +7,9 @@ import org.eclipse.emf.ecore.EDataType;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 
 public class AgentNodeContext {
+	
+	private String patternName;
+	
 	private String agentVariableName;
 	public final static EClassifier SIM_AGENT_TYPE = ReactionContainerPackage.Literals.SIM_AGENT;
 	
@@ -19,7 +22,8 @@ public class AgentNodeContext {
 	
 	private boolean local;
 	
-	public AgentNodeContext(String agentVariableName, String agentType) {
+	public AgentNodeContext(String patternName, String agentVariableName, String agentType) {
+		this.patternName = patternName;
 		this.agentVariableName = agentVariableName;
 		this.agentType = agentType;
 		uniqueTypeAttributeName = agentVariableName+"_"+TYPE_ATTRIBUTE.getName();
@@ -56,6 +60,10 @@ public class AgentNodeContext {
 	
 	public boolean isLocal() {
 		return local;
+	}
+	
+	public String getPatternName() {
+		return patternName;
 	}
 	
 }

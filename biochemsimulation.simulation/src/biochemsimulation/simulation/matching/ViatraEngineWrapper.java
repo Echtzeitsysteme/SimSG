@@ -40,14 +40,13 @@ public class ViatraEngineWrapper extends PatternMatchingEngine {
 	}
 
 	@Override
-	public void initEngine() throws Exception {
+	public void initEngineInternal() throws Exception {
 		EMFScope scope = new EMFScope(model);
 		queryEngine = AdvancedViatraQueryEngine.createUnmanagedEngine(scope);
 		
 		for(Pattern p : patternModel.getPatterns()) {
 			matcher.put(p.getName(), queryEngine.getMatcher(builder.getOrCreateSpecification(p, true)));
 		}
-		
 	}
 
 	@Override
@@ -58,17 +57,20 @@ public class ViatraEngineWrapper extends PatternMatchingEngine {
 	}
 
 	@Override
-	protected Collection<String> getAllPatternNames() {
-		return matcher.keySet();
-	}
-
-	@Override
 	protected Collection<IMatch> getMatchesAndUpdate(String patternName) throws Exception {
 		Collection<IMatch> iMatches = new LinkedList<IMatch>();
 		for(IPatternMatch match : matcher.get(patternName).getAllMatches()) {
 			iMatches.add(new ViatraMatch(match));
 		}
 		return iMatches;
+	}
+
+	@Override
+	protected void initNonVoidPatternNames() {
+		nonVoidPatterns = new LinkedList<String>();
+		for(String pattern : matcher.keySet()) {
+			nonVoidPatterns.add(pattern);
+		}
 	}
 	
 	

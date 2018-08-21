@@ -60,8 +60,8 @@ abstract class GraphTransformTest {
 		ruleModel = persistence.loadReactionRuleModel("GraphTransformTest");
 		containerModel = persistence.loadReactionContainerModel("GraphTransformTest");
 		pmc.loadModels(ruleModel, containerModel);
-		pmc.initController();
 		pmc.initEngine();
+		pmc.initController();
 	}
 	
 	@AfterAll

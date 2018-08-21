@@ -50,11 +50,11 @@ public class SimplePMC extends PatternMatchingController {
 				double pRule = 1.0 - Math.pow((1.0-reactionRate), getMatchCount(current));
 				double rnd = random.nextDouble();
 				if(rnd <= pRule) {
-					applyRuleToMatch(getRandomMatch(current));
+					gt.applyRuleToMatch(getRandomMatch(current));
 				}
 			}else {
 				if(getMatchCount(current) != 0) {
-					applyRuleToMatch(getMatchAt(current, 0));
+					gt.applyRuleToMatch(getMatchAt(current, 0));
 				}
 			}
 			

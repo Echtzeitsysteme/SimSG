@@ -21,6 +21,8 @@ public abstract class PatternMatchingEngine {
 	protected Map<String, GenericPattern> genericPatterns;
 	
 	protected Set<String> voidPatterns;
+	protected Collection<String> nonVoidPatterns;
+	protected Collection<String> allPatterns;
 	
 	protected PatternMatchingEngine() {
 		this.voidPatterns = new HashSet<String>();
@@ -52,9 +54,33 @@ public abstract class PatternMatchingEngine {
 	
 	abstract public void loadModels() throws Exception;
 	
-	abstract public void initEngine() throws Exception;
+	abstract protected void initEngineInternal() throws Exception;
 	
-	abstract protected Collection<String> getAllPatternNames();
+	public void initEngine() throws Exception {
+		initEngineInternal();
+		initNonVoidPatternNames();
+		initAllPatternNames();
+	}
+	
+	protected abstract void initNonVoidPatternNames();
+	
+	protected void initAllPatternNames() {
+		allPatterns = new LinkedList<String>();
+		allPatterns.addAll(nonVoidPatterns);
+		allPatterns.addAll(voidPatterns);
+	}
+	
+	public Collection<String> getNonVoidPatternNames() {
+		return nonVoidPatterns;
+	}
+	
+	public Collection<String> getVoidPatternNames() {
+		return voidPatterns;
+	}
+	
+	public Collection<String> getAllPatternNames() {
+		return allPatterns;
+	}
 	
 	abstract protected Collection<IMatch> getMatchesAndUpdate(String patternName) throws Exception;
 	

@@ -1,0 +1,11 @@
+ModelID HybridPatternSandbox
+
+agent A(x,b)
+
+var p = {A(x[free]),A(x[free]),A(x[free]),A(x[free])}
+
+init i 10 {A(x[free])}
+
+var dummy_rate = 0.1
+
+rule r p -> {void, void, void, void} @ [dummy_rate]

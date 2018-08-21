@@ -13,11 +13,9 @@ public class DemoclesEngineWrapper extends PatternMatchingEngine {
 	
 	private DemoclesEngine engine;
 	List<Pattern> patterns;
-	List<String> patternNames;
 	
 	DemoclesEngineWrapper() {
 		type = PatternMatchingEngineEnum.DemoclesEngine;
-		patternNames = new LinkedList<String>();
 	}
 	
 	@Override
@@ -30,20 +28,12 @@ public class DemoclesEngineWrapper extends PatternMatchingEngine {
 		}
 		 
 		patterns = new LinkedList<Pattern>(generator.doGenerate().values());
-		for(Pattern pattern : patterns) {
-			patternNames.add(pattern.getName());
-		}
 	}
 
 	@Override
-	public void initEngine() throws Exception {
+	public void initEngineInternal() throws Exception {
 		engine = new DemoclesEngine(model);
 		engine.initPatterns(patterns);
-	}
-	
-	@Override
-	protected Collection<String> getAllPatternNames() {
-		return patternNames;
 	}
 	
 	@Override
@@ -55,6 +45,14 @@ public class DemoclesEngineWrapper extends PatternMatchingEngine {
 	@Override
 	public void disposeEngine() {
 		engine.disposeEngine();
+	}
+
+	@Override
+	protected void initNonVoidPatternNames() {
+		nonVoidPatterns = new LinkedList<String>();
+		for(Pattern pattern : patterns) {
+			nonVoidPatterns.add(pattern.getName());
+		}
 	}
 
 }

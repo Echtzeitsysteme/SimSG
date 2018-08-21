@@ -14,6 +14,7 @@ import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 
 public class GenericPatternBody {
 	
+	private GenericPattern pattern;
 	private GenericPatternSignature signature;
 	private List<ValidAgentPattern> agentPatterns;
 	
@@ -31,7 +32,8 @@ public class GenericPatternBody {
 	private Map<AgentNodeContext, SiteNodeContext> localSiteNodes;
 	private Map<SiteNodeContext, LinkStateContext> localLinkStates;
 	
-	public GenericPatternBody(GenericPatternSignature signature, List<ValidAgentPattern> agentPatterns) {
+	public GenericPatternBody(GenericPattern pattern, GenericPatternSignature signature, List<ValidAgentPattern> agentPatterns) {
+		this.pattern = pattern;
 		this.signature = signature;
 		this.agentPatterns = agentPatterns;
 		injectivityConstraints = new LinkedList<AgentNodeConstraint>();
@@ -123,7 +125,7 @@ public class GenericPatternBody {
 	private void buildAgentNodeContexts() {
 		agentNodeContexts = new HashMap<ValidAgentPattern, AgentNodeContext>();
 		for(ValidAgentPattern pattern : agentPatterns) {
-			agentNodeContexts.put(pattern, new AgentNodeContext(signature.getSignatureNode(pattern), pattern.getAgent().getName()));
+			agentNodeContexts.put(pattern, new AgentNodeContext(this.pattern.getName(),signature.getSignatureNode(pattern), pattern.getAgent().getName()));
 		}
 	}
 	
@@ -179,7 +181,7 @@ public class GenericPatternBody {
 					String otherSiteType = boundLink.getLinkSite().getSite().getName();
 					String localAgentVariableName = currentAgentNodeContext.getAgentVariableName() + "_" + otherAgentType + idx;
 					
-					AgentNodeContext localAgentNodeContext = new AgentNodeContext(localAgentVariableName, otherAgentType);
+					AgentNodeContext localAgentNodeContext = new AgentNodeContext(this.pattern.getName(),localAgentVariableName, otherAgentType);
 					localAgentNodeContext.setLocal();
 					SiteNodeContext localSiteNodeContext = new SiteNodeContext(localAgentNodeContext, otherSiteType);
 					LinkStateContext localLinkStateContext = new LinkStateContext(localSiteNodeContext, LinkStateType.BoundAnyOfType);

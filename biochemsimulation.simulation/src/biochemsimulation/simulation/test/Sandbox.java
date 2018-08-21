@@ -409,9 +409,11 @@ public class Sandbox {
 				.create(PatternMatchingEngineEnum.DemoclesEngine);
 		pmc.setEngine(engine);
 		
+		PatternMatchingController pmc2 = createSimplePMC_Viatra();
+		
 		try {
-			ReactionRuleModel model1 = pm.loadReactionRuleModel("DemoclesKill1");
-			ReactionContainer model2 = pm.loadReactionContainerModel("DemoclesKill1");
+			ReactionRuleModel model1 = pm.loadReactionRuleModel("HybridPatternSandbox");
+			ReactionContainer model2 = pm.loadReactionContainerModel("HybridPatternSandbox");
 			/*
 			Map<String, biochemsimulation.reactionrules.reactionRules.Pattern> rulePatterns = PatternUtils.getPatterns(model1);
 			Map<String, HybridPattern> hybridPatterns = new HashMap<String, HybridPattern>();
@@ -428,6 +430,18 @@ public class Sandbox {
 			pmc.initController();
 			
 			pmc.collectAllMatches();
+			System.out.println(pmc.getMatchCount("r_lhs"));
+			pmc.discardEngine();
+			pm.unloadReactionContainerModel("HybridPatternSandbox");
+			
+			model2 = pm.loadReactionContainerModel("HybridPatternSandbox");
+			pmc2.loadModels(model1, model2);
+			pmc2.initEngine();
+			pmc2.initController();
+			
+			pmc2.collectAllMatches();
+			System.out.println(pmc2.getMatchCount("r_lhs"));
+			pmc2.discardEngine();
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
