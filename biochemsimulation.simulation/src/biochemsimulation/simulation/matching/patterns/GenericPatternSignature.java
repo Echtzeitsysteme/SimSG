@@ -76,6 +76,10 @@ public class GenericPatternSignature {
 		return signatureNodes;
 	}
 	
+	public boolean containsSignatureNode(String signatureNode) {
+		return signatureNodes.containsKey(signatureNode);
+	}
+	
 	public Map<String, List<String>> getInjectivityConflicts() {
 		return injectivityConflicts;
 	}

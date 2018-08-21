@@ -25,10 +25,10 @@ public class IMatchImpl implements IMatch {
 	public Object get(String parameterName) {
 		return null;
 	}
-	
+
 	@Override
-	public boolean equals(IMatch other) {
-		return super.equals(other);
+	public boolean contains(String parameterName) {
+		return false;
 	}
 
 }

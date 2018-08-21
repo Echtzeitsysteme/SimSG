@@ -10,7 +10,6 @@ public interface IMatch {
 	
 	public Object get(String parameterName);
 	
-	public boolean equals(IMatch other);
+	public boolean contains(String parameterName);
 	
-	public int hashCode();
 }

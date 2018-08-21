@@ -402,9 +402,17 @@ public class Sandbox {
 	public static void hybridTest() {
 		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
 		pm.init();
+		
+		PatternMatchingController pmc = PatternMatchingControllerFactory
+				.create(PatternMatchingControllerEnum.HybridPMC);
+		PatternMatchingEngine engine = PatternMatchingEngineFactory
+				.create(PatternMatchingEngineEnum.DemoclesEngine);
+		pmc.setEngine(engine);
+		
 		try {
 			ReactionRuleModel model1 = pm.loadReactionRuleModel("DemoclesKill1");
 			ReactionContainer model2 = pm.loadReactionContainerModel("DemoclesKill1");
+			/*
 			Map<String, biochemsimulation.reactionrules.reactionRules.Pattern> rulePatterns = PatternUtils.getPatterns(model1);
 			Map<String, HybridPattern> hybridPatterns = new HashMap<String, HybridPattern>();
 			rulePatterns.forEach((name, pattern) -> {
@@ -413,6 +421,14 @@ public class Sandbox {
 			hybridPatterns.forEach((name, pattern) -> {
 				System.out.println(pattern);
 			});
+			*/
+			
+			pmc.loadModels(model1, model2);
+			pmc.initEngine();
+			pmc.initController();
+			
+			pmc.collectAllMatches();
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

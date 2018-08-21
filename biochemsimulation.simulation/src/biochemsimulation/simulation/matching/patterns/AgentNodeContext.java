@@ -17,10 +17,13 @@ public class AgentNodeContext {
 	
 	private String agentType;
 	
+	private boolean local;
+	
 	public AgentNodeContext(String agentVariableName, String agentType) {
 		this.agentVariableName = agentVariableName;
 		this.agentType = agentType;
 		uniqueTypeAttributeName = agentVariableName+"_"+TYPE_ATTRIBUTE.getName();
+		local = false;
 	}
 	
 	public static String getSimAgentTypeName() {
@@ -45,6 +48,14 @@ public class AgentNodeContext {
 
 	public String getAgentType() {
 		return agentType;
+	}
+	
+	public void setLocal() {
+		local = true;
+	}
+	
+	public boolean isLocal() {
+		return local;
 	}
 	
 }

@@ -1,5 +1,6 @@
 package biochemsimulation.simulation.matching.patterns;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -113,6 +114,10 @@ public class HybridPattern {
 	
 	public Map<String, GenericPattern> getGenericSubPatterns() {
 		return genericSubPatterns;
+	}
+	
+	public Collection<AgentNodeConstraint> getInjectivityConstraintsSignature() {
+		return genericLhs.getBody().getInjectivityConstraintsSignature();
 	}
 	
 	@Override

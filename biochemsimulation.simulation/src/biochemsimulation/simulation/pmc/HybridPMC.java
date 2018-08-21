@@ -12,7 +12,9 @@ import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.utils.PatternUtils;
 import biochemsimulation.simulation.matching.HybridMatch;
 import biochemsimulation.simulation.matching.IMatch;
+import biochemsimulation.simulation.matching.patterns.AgentNodeConstraint;
 import biochemsimulation.simulation.matching.patterns.GenericPattern;
+import biochemsimulation.simulation.matching.patterns.GenericPatternSignature;
 import biochemsimulation.simulation.matching.patterns.HybridPattern;
 
 public class HybridPMC extends PatternMatchingController {
@@ -65,7 +67,7 @@ public class HybridPMC extends PatternMatchingController {
 			super.collectMatches(subPatternName);
 		}
 		
-		Set<IMatch> subMatches = new HashSet<IMatch>();
+		Map<String, IMatch> subMatches = new HashMap<String, IMatch>();
 		for(String subPatternName : subPatterNames) {
 			if(super.getMatchCount(subPatternName) == 0) {
 				subMatches = null;
@@ -75,18 +77,19 @@ public class HybridPMC extends PatternMatchingController {
 			
 			int idx = 0;
 			IMatch currentMatch = null;
+			int currentMatchCount = super.getMatchCount(subPatternName);
 			do{
 				currentMatch = getMatchAt(subPatternName, idx);
 				idx++;
-			}while(idx < super.getMatchCount(subPatternName) && subMatches.contains(currentMatch));
+			}while(idx < currentMatchCount && !checkSubMatchInjectivityConstraints(currentMatch, subMatches));
 			
-			if(idx==super.getMatchCount(subPatternName)) {
+			if(idx == currentMatchCount) {
 				subMatches = null;
 				hybridMatchCount.replace(patternName, 0);
 				break;
 			}
 			
-			subMatches.add(currentMatch);
+			subMatches.put(subPatternName, currentMatch);
 		}
 		
 		if(subMatches == null) {
@@ -94,17 +97,79 @@ public class HybridPMC extends PatternMatchingController {
 			return;
 		}
 		
-		hybridMatches.put(patternName, new HybridMatch(patternName, subMatches));
+		hybridMatches.put(patternName, new HybridMatch(patternName, subMatches.values()));
 		calculateHybridMatchCount(patternName);
 		
 	}
 	
+	private boolean checkSubMatchInjectivityConstraints(IMatch subMatch, Map<String, IMatch> subMatches) {
+		GenericPattern genericPattern = genericPatterns.get(subMatch.patternName());
+		Collection<AgentNodeConstraint> injectivityConstraints = genericPattern.getBody().getInjectivityConstraintsBody();
+		if(injectivityConstraints.size()==0) {
+			return true;
+		}
+		
+		for(String currentPatternName : subMatches.keySet()) {
+			if(currentPatternName.equals(subMatch.patternName())) {
+				continue;
+			}
+			IMatch currentMatch = subMatches.get(currentPatternName);
+			for(AgentNodeConstraint constraint : injectivityConstraints) {
+				String paramName = constraint.getOperand2().getAgentType();
+				if(!currentMatch.contains(paramName)) {
+					continue;
+				}
+				if(subMatch.get(paramName).equals(currentMatch.get(paramName))) {
+					return false;
+				}
+			}
+			
+		}
+		
+		return true;
+	}
+	
 	// For now, a very primitive and also wrong method to calculate hybrid match counts
 	private void calculateHybridMatchCount(String patternName) {
-		Collection<String> subPatterNames = hybridPatterns.get(patternName).getGenericSubPatterns().keySet();
+		HybridPattern hybridPattern = hybridPatterns.get(patternName);
+		Collection<String> subPatterNames = hybridPattern.getGenericSubPatterns().keySet();
+		Collection<AgentNodeConstraint> constraints = hybridPattern.getInjectivityConstraintsSignature();
+		
 		int count = 1;
+		List<String> predecessors = new LinkedList<String>();
 		for(String subPatternName : subPatterNames) {
-			count *= super.getMatchCount(subPatternName);
+			int currentCount = super.getMatchCount(subPatternName);
+			if(currentCount <= 0) {
+				hybridMatchCount.replace(patternName, 0);
+				return;
+			}
+			if(predecessors.size()==0) {
+				count = currentCount;
+				predecessors.add(subPatternName);
+				continue;
+			}
+			
+			for(String predecessor : predecessors) {
+				GenericPatternSignature predecessorSignature = hybridPattern.getGenericSubPatterns().get(predecessor).getSignature();
+				GenericPatternSignature currentSignature = hybridPattern.getGenericSubPatterns().get(subPatternName).getSignature();
+				
+				for(AgentNodeConstraint constraint : constraints) {
+					String op1 = constraint.getOperand1().getAgentVariableName();
+					String op2 = constraint.getOperand2().getAgentVariableName();
+					if((predecessorSignature.containsSignatureNode(op1) || predecessorSignature.containsSignatureNode(op2)) && 
+							(currentSignature.containsSignatureNode(op1) || currentSignature.containsSignatureNode(op2))) {
+						currentCount--;
+					}
+				}
+			}
+			
+			if(currentCount <= 0) {
+				hybridMatchCount.replace(patternName, 0);
+				return;
+			}
+			
+			count *= currentCount;
+			predecessors.add(subPatternName);
 		}
 		hybridMatchCount.replace(patternName, count);
 	}

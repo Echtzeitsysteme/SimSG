@@ -30,18 +30,10 @@ public class ViatraMatch implements IMatch {
 	public Object get(String parameterName) {
 		return match.get(parameterName);
 	}
-	
+
 	@Override
-	public boolean equals(IMatch other) {
-		if(!(other instanceof ViatraMatch)) {
-			return false;
-		}
-		return match.equals(((ViatraMatch)other).getIPatternMatch());
-	}
-	
-	@Override
-	public int hashCode() {
-		return match.hashCode();
+	public boolean contains(String parameterName) {
+		return match.get(parameterName) != null;
 	}
 
 }
