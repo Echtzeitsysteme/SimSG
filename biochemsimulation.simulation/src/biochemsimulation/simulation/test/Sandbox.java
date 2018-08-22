@@ -426,27 +426,75 @@ public class Sandbox {
 			*/
 			
 			pmc.loadModels(model1, model2);
-			pmc.initEngine();
-			pmc.initController();
-			
-			pmc.collectAllMatches();
-			System.out.println(pmc.getMatchCount("r_lhs"));
+			Runtimer.getInstance().measure(pmc, "hybridInitEngine", () -> {
+				try {
+					pmc.initEngine();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
+			//pmc.initEngine();
+			Runtimer.getInstance().measure(pmc, "hybridInitController", () -> {
+				try {
+					pmc.initController();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
+			//pmc.initController();
+			Runtimer.getInstance().measure(pmc, "hybridInitCollect", () -> {
+				try {
+					pmc.collectAllMatches();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
+			//pmc.collectAllMatches();
+			System.out.println(pmc.getMatchCount("r2_lhs"));
 			pmc.discardEngine();
 			pm.unloadReactionContainerModel("HybridPatternSandbox");
 			
 			model2 = pm.loadReactionContainerModel("HybridPatternSandbox");
 			pmc2.loadModels(model1, model2);
-			pmc2.initEngine();
-			pmc2.initController();
-			
-			pmc2.collectAllMatches();
-			System.out.println(pmc2.getMatchCount("r_lhs"));
+			Runtimer.getInstance().measure(pmc2, "simpleInitEngine", () -> {
+				try {
+					pmc2.initEngine();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
+			//pmc.initEngine();
+			Runtimer.getInstance().measure(pmc2, "simpleInitController", () -> {
+				try {
+					pmc2.initController();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
+			//pmc.initController();
+			Runtimer.getInstance().measure(pmc2, "simpleInitCollect", () -> {
+				try {
+					pmc2.collectAllMatches();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
+			//pmc.collectAllMatches();
+			System.out.println(pmc2.getMatchCount("r2_lhs"));
 			pmc2.discardEngine();
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		System.out.println(Runtimer.getInstance());
 	}
 	
 	public static PatternMatchingController createSimplePMC_Viatra() {

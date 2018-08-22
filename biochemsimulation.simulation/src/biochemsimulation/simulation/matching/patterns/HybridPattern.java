@@ -124,7 +124,6 @@ public class HybridPattern {
 			for(ValidAgentPattern vap : vaps) {
 				String signatureNodeGlobal = genericLhs.getSignature().getSignatureNode(vap);
 				String signatureNodeLocal = genericSubPattern.getSignature().getSignatureNode(vap);
-				System.out.println("N: "+subPatternName+" sng: "+signatureNodeGlobal+" snl: "+signatureNodeLocal);
 				globaltoLocalSignatureMap.put(signatureNodeGlobal, signatureNodeLocal);
 			}
 			

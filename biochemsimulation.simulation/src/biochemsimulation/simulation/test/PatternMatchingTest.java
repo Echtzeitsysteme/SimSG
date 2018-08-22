@@ -23,6 +23,9 @@ import biochemsimulation.simulation.matching.PatternMatchingEngineFactory;
 import biochemsimulation.simulation.persistence.PersistenceManager;
 import biochemsimulation.simulation.persistence.PersistenceManagerEnum;
 import biochemsimulation.simulation.persistence.PersistenceManagerFactory;
+import biochemsimulation.simulation.pmc.PatternMatchingController;
+import biochemsimulation.simulation.pmc.PatternMatchingControllerEnum;
+import biochemsimulation.simulation.pmc.PatternMatchingControllerFactory;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 abstract class PatternMatchingTest {
@@ -37,31 +40,39 @@ abstract class PatternMatchingTest {
 	protected PatternMatchingEngine engine;
 	protected PatternMatchingEngineEnum engineType;
 	
+	protected PatternMatchingController pmc;
+	protected PatternMatchingControllerEnum pmcType;
+	
+	
 	protected PatternMatchingTest() {
 		setPersistenceType();
-		persistence = PersistenceManagerFactory.create(persistenceType);
-		persistence.init();
 		setEngineType();
-		engine = PatternMatchingEngineFactory.create(engineType);
+		setPMCType();
 	}
 	
 	abstract protected void setPersistenceType();
 	
 	abstract protected void setEngineType();
 	
+	abstract protected void setPMCType();
+	
 	@BeforeAll
 	void beforeAllTest() throws Exception {
+		persistence = PersistenceManagerFactory.create(persistenceType);
+		persistence.init();
 		ruleModel = persistence.loadReactionRuleModel(TEST_MODEL_NAME);
 		containerModel = persistence.loadReactionContainerModel(TEST_MODEL_NAME);
-		engine.setReactionRules(ruleModel);
-		engine.setReactionContainer(containerModel);
-		engine.loadModels();
-		engine.initEngine();
+		engine = PatternMatchingEngineFactory.create(engineType);
+		pmc = PatternMatchingControllerFactory.create(pmcType);
+		pmc.setEngine(engine);
+		pmc.loadModels(ruleModel, containerModel);
+		pmc.initEngine();
+		pmc.initController();
 	}
 	
 	@AfterAll
 	void afterAllTests() throws Exception {
-		engine.disposeEngine();
+		pmc.discardEngine();
 		persistence.unloadReactionContainerModel(TEST_MODEL_NAME);
 	}
 	
@@ -70,7 +81,8 @@ abstract class PatternMatchingTest {
 		Collection<String> patternNames = PatternUtils.getPatterns(ruleModel).keySet();
 		Map<String, Collection<IMatch>> matches = null;
 		try {
-			matches = engine.getAllMatches();
+			pmc.collectAllMatches();
+			matches = pmc.getAllMatches();
 		} catch (Exception e) {
 			fail("Couldn't get all matches. Error: "+e.getMessage());
 			return;
@@ -83,13 +95,14 @@ abstract class PatternMatchingTest {
 	private void getAndCheckMatches(String patternName, int numOfMatches) {
 		Collection<IMatch> matches = null;
 		try {
-			matches = engine.getMatches(patternName);
+			pmc.collectMatches(patternName);
+			matches = pmc.getMatches(patternName);
 		} catch (Exception e) {
 			fail("Couldn't get matches for pattern: "+patternName+". Error: "+e.getMessage());
 			return;
 		}
 		assertNotNull(matches, "Couldn't get matches for pattern: "+patternName);
-		assertEquals(numOfMatches, matches.size(), "Number of matches weren't equal!");
+		assertEquals(numOfMatches, pmc.getMatchCount(patternName), "Number of matches weren't equal!");
 	}
 
 	@Test
