@@ -10,12 +10,12 @@ agent B3(x, z)
 var p = {A(x[free]),A(x[free]),A(x[free]),A(x[free])}
 var p1 = {A(x[1]), B(x[1], b[2]), C(v[2])}
 var p2 = {A3(x[1]), B3(x[1], z[2]), C1(v[2])}
-init i 30 {A(x[free])}
-init i1 2 {A(x[1]), B(x[1], b[2]), C(v[2])}
+//init i 30 {A(x[free])}
+//init i1 2 {A(x[1]), B(x[1], b[2]), C(v[2])}
 init i2 7 {A3(x[1]), B3(x[1], z[2]), C1(v[2])}
  
 var dummy_rate = 0.1
 
-rule r p -> {void, void, void, void} @ [dummy_rate]
-rule r1 p1 -> {void, void, void} @ [dummy_rate]
+//rule r p -> {void, void, void, void} @ [dummy_rate]
+//rule r1 p1 -> {void, void, void} @ [dummy_rate]
 rule r2 p2 -> {void, void, void} @ [dummy_rate]

@@ -81,6 +81,13 @@ public class HybridPattern {
 				continue;
 			}
 			outgoingLinks.addAll(agentNodeToLinkConstraintMap.get(currentSubPattern));
+			/*
+			System.out.println("**** Current Node: "+currentSubPattern.getAgentVariableName());
+			outgoingLinks.forEach(x-> {
+				System.out.println("Link: From "+x.getOperand1().getSiteNodeContext().getAgentNodeContext().getAgentVariableName());
+				System.out.print(" -> To "+x.getOperand2().getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+ "\n");
+			});
+			*/
 			
 			while(!outgoingLinks.isEmpty()) {
 				LinkStateConstraint currentLink = outgoingLinks.poll();
@@ -88,7 +95,7 @@ public class HybridPattern {
 					continue;
 				}
 				AgentNodeContext operand1 = currentLink.getOperand1().getSiteNodeContext().getAgentNodeContext();
-				AgentNodeContext operand2 = currentLink.getOperand1().getSiteNodeContext().getAgentNodeContext();
+				AgentNodeContext operand2 = currentLink.getOperand2().getSiteNodeContext().getAgentNodeContext();
 				if(operand1 != currentSubPattern) {
 					if(pattern.contains(operand1)) {
 						pattern.remove(operand1);
@@ -106,6 +113,7 @@ public class HybridPattern {
 			}
 			subPatterns.add(currentSubSet);
 		}
+		//System.out.println(subPatterns.size());
 	}
 	
 	private void generateGenericSubPatterns() {
