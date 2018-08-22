@@ -163,6 +163,18 @@ public class HybridPattern {
 		return globaltoLocalSignatureMap.get(signatureNode);
 	}
 	
+	public boolean isLocalSignatureInGlobalSignature(String subPatternName, String localSignatureNode) {
+		GenericPattern localPattern = genericSubPatterns.get(subPatternName);
+		ValidAgentPattern vap = localPattern.getSignature().getSignaturePattern(localSignatureNode);
+		return genericLhs.getSignature().containsSignaturePattern(vap);
+	}
+	
+	public boolean isGlobalSignatureInLocalSignature(String subPatternName, String globalSignatureNode) {
+		GenericPattern localPattern = genericSubPatterns.get(subPatternName);
+		ValidAgentPattern vap = genericLhs.getSignature().getSignaturePattern(globalSignatureNode);
+		return localPattern.getSignature().containsSignaturePattern(vap);
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

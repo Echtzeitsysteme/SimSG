@@ -80,6 +80,10 @@ public class GenericPatternSignature {
 		return signatureNodes.containsKey(signatureNode);
 	}
 	
+	public boolean containsSignaturePattern(ValidAgentPattern pattern) {
+		return patternSignatureMapping.containsKey(pattern);
+	}
+	
 	public Map<String, List<String>> getInjectivityConflicts() {
 		return injectivityConflicts;
 	}

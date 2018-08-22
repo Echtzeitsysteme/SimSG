@@ -157,16 +157,20 @@ public class HybridPMC extends PatternMatchingController {
 			}
 			
 			for(String predecessor : predecessors) {
-				GenericPatternSignature predecessorSignature = hybridPattern.getGenericSubPatterns().get(predecessor).getSignature();
-				GenericPatternSignature currentSignature = hybridPattern.getGenericSubPatterns().get(subPatternName).getSignature();
+				GenericPattern predecessorPattern = hybridPattern.getGenericSubPatterns().get(predecessor);
+				GenericPattern currentPattern = hybridPattern.getGenericSubPatterns().get(subPatternName);
 				
 				for(AgentNodeConstraint constraint : constraints) {
-					String op1 = hybridPattern.globalToLocalSignature(constraint.getOperand1().getAgentVariableName());
-					String op2 = hybridPattern.globalToLocalSignature(constraint.getOperand2().getAgentVariableName());
-					if((predecessorSignature.containsSignatureNode(op1) || predecessorSignature.containsSignatureNode(op2)) && 
-							(currentSignature.containsSignatureNode(op1) || currentSignature.containsSignatureNode(op2))) {
+					if(!(hybridPattern.isGlobalSignatureInLocalSignature(currentPattern.getName(), constraint.getOperand1().getAgentVariableName()) ||
+							hybridPattern.isGlobalSignatureInLocalSignature(currentPattern.getName(), constraint.getOperand2().getAgentVariableName())	)) {
+						continue;
+					}
+					
+					if((hybridPattern.isGlobalSignatureInLocalSignature(predecessorPattern.getName(), constraint.getOperand1().getAgentVariableName()) ||
+							hybridPattern.isGlobalSignatureInLocalSignature(predecessorPattern.getName(), constraint.getOperand2().getAgentVariableName())	)) {
 						currentCount--;
 					}
+					
 				}
 			}
 			
