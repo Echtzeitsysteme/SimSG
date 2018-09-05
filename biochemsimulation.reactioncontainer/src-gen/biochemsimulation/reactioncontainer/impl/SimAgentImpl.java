@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactioncontainer.impl.SimAgentImpl#getName <em>Name</em>}</li>
  *   <li>{@link biochemsimulation.reactioncontainer.impl.SimAgentImpl#getType <em>Type</em>}</li>
  *   <li>{@link biochemsimulation.reactioncontainer.impl.SimAgentImpl#getSimSites <em>Sim Sites</em>}</li>
  * </ul>
@@ -54,24 +53,6 @@ public class SimAgentImpl extends DefaultPersistentEObject implements SimAgent {
 	@Override
 	protected int eStaticFeatureCount() {
 		return 0;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-		return (String) eGet(ReactionContainerPackage.Literals.SIM_AGENT__NAME, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		eSet(ReactionContainerPackage.Literals.SIM_AGENT__NAME, newName);
 	}
 
 	/**

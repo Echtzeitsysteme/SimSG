@@ -3,7 +3,6 @@
 package biochemsimulation.reactioncontainer.impl;
 
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
-import biochemsimulation.reactioncontainer.SimAgent;
 import biochemsimulation.reactioncontainer.SimLinkState;
 import biochemsimulation.reactioncontainer.SimSite;
 import biochemsimulation.reactioncontainer.SimSiteState;
@@ -21,7 +20,6 @@ import org.eclipse.emf.ecore.EClass;
  * <ul>
  *   <li>{@link biochemsimulation.reactioncontainer.impl.SimSiteImpl#getType <em>Type</em>}</li>
  *   <li>{@link biochemsimulation.reactioncontainer.impl.SimSiteImpl#getSimSiteState <em>Sim Site State</em>}</li>
- *   <li>{@link biochemsimulation.reactioncontainer.impl.SimSiteImpl#getSimAgent <em>Sim Agent</em>}</li>
  *   <li>{@link biochemsimulation.reactioncontainer.impl.SimSiteImpl#getSimLinkState <em>Sim Link State</em>}</li>
  * </ul>
  *
@@ -91,24 +89,6 @@ public class SimSiteImpl extends DefaultPersistentEObject implements SimSite {
 	 */
 	public void setSimSiteState(SimSiteState newSimSiteState) {
 		eSet(ReactionContainerPackage.Literals.SIM_SITE__SIM_SITE_STATE, newSimSiteState);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SimAgent getSimAgent() {
-		return (SimAgent) eGet(ReactionContainerPackage.Literals.SIM_SITE__SIM_AGENT, true);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSimAgent(SimAgent newSimAgent) {
-		eSet(ReactionContainerPackage.Literals.SIM_SITE__SIM_AGENT, newSimAgent);
 	}
 
 	/**

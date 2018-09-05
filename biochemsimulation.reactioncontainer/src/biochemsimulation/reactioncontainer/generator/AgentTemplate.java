@@ -64,7 +64,7 @@ public class AgentTemplate {
 		currentNumOfInstances++;
 		// missing name
 		newAgent.setType(type);
-		newAgent.setName(generateAgentInstanceName(currentNumOfInstances, type, init.getName(), "", indexInPattern));
+		//newAgent.setName(generateAgentInstanceName(currentNumOfInstances, type, init.getName(), "", indexInPattern));
 		
 		for(SiteTemplate st : siteTemplates) {
 			newAgent.getSimSites().add(st.createInstance(factory, simLinkStates, newAgent));

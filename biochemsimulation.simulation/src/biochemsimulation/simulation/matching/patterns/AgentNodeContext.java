@@ -13,9 +13,9 @@ public class AgentNodeContext {
 	private String agentVariableName;
 	public final static EClassifier SIM_AGENT_TYPE = ReactionContainerPackage.Literals.SIM_AGENT;
 	
-	public final static EDataType TYPE_ATTRIBUTE_TYPE = ReactionContainerPackage.Literals.SIM_AGENT.getEAttributes().get(1).getEAttributeType();
+	public final static EDataType TYPE_ATTRIBUTE_TYPE = ReactionContainerPackage.Literals.SIM_AGENT.getEAttributes().get(0).getEAttributeType();
 	
-	public final static EAttribute TYPE_ATTRIBUTE = ReactionContainerPackage.Literals.SIM_AGENT.getEAttributes().get(1);
+	public final static EAttribute TYPE_ATTRIBUTE = ReactionContainerPackage.Literals.SIM_AGENT.getEAttributes().get(0);
 	private String uniqueTypeAttributeName;
 	
 	private String agentType;

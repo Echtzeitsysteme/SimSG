@@ -15,7 +15,6 @@ import fr.inria.atlanmod.neoemf.core.PersistentEObject;
  * <ul>
  *   <li>{@link biochemsimulation.reactioncontainer.SimSite#getType <em>Type</em>}</li>
  *   <li>{@link biochemsimulation.reactioncontainer.SimSite#getSimSiteState <em>Sim Site State</em>}</li>
- *   <li>{@link biochemsimulation.reactioncontainer.SimSite#getSimAgent <em>Sim Agent</em>}</li>
  *   <li>{@link biochemsimulation.reactioncontainer.SimSite#getSimLinkState <em>Sim Link State</em>}</li>
  * </ul>
  *
@@ -76,32 +75,6 @@ public interface SimSite extends PersistentEObject {
 	 * @generated
 	 */
 	void setSimSiteState(SimSiteState value);
-
-	/**
-	 * Returns the value of the '<em><b>Sim Agent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Sim Agent</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sim Agent</em>' reference.
-	 * @see #setSimAgent(SimAgent)
-	 * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getSimSite_SimAgent()
-	 * @model required="true"
-	 * @generated
-	 */
-	SimAgent getSimAgent();
-
-	/**
-	 * Sets the value of the '{@link biochemsimulation.reactioncontainer.SimSite#getSimAgent <em>Sim Agent</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sim Agent</em>' reference.
-	 * @see #getSimAgent()
-	 * @generated
-	 */
-	void setSimAgent(SimAgent value);
 
 	/**
 	 * Returns the value of the '<em><b>Sim Link State</b></em>' reference.

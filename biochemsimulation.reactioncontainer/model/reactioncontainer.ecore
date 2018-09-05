@@ -10,7 +10,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SimAgent">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="simSites" upperBound="-1"
         eType="#//SimSite" containment="true"/>
@@ -19,8 +18,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="simSiteState" eType="#//SimSiteState"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="simAgent" lowerBound="1"
-        eType="#//SimAgent"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="simLinkState" eType="#//SimLinkState"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SimSiteState">

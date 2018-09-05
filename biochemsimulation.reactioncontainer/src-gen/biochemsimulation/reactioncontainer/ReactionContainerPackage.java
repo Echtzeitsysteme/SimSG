@@ -122,22 +122,13 @@ public interface ReactionContainerPackage extends EPackage {
 	int SIM_AGENT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIM_AGENT__NAME = 0;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIM_AGENT__TYPE = 1;
+	int SIM_AGENT__TYPE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Sim Sites</b></em>' containment reference list.
@@ -146,7 +137,7 @@ public interface ReactionContainerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIM_AGENT__SIM_SITES = 2;
+	int SIM_AGENT__SIM_SITES = 1;
 
 	/**
 	 * The number of structural features of the '<em>Sim Agent</em>' class.
@@ -155,7 +146,7 @@ public interface ReactionContainerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIM_AGENT_FEATURE_COUNT = 3;
+	int SIM_AGENT_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Sim Agent</em>' class.
@@ -195,22 +186,13 @@ public interface ReactionContainerPackage extends EPackage {
 	int SIM_SITE__SIM_SITE_STATE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Sim Agent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIM_SITE__SIM_AGENT = 2;
-
-	/**
 	 * The feature id for the '<em><b>Sim Link State</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIM_SITE__SIM_LINK_STATE = 3;
+	int SIM_SITE__SIM_LINK_STATE = 2;
 
 	/**
 	 * The number of structural features of the '<em>Sim Site</em>' class.
@@ -219,7 +201,7 @@ public interface ReactionContainerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIM_SITE_FEATURE_COUNT = 4;
+	int SIM_SITE_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Sim Site</em>' class.
@@ -404,17 +386,6 @@ public interface ReactionContainerPackage extends EPackage {
 	EClass getSimAgent();
 
 	/**
-	 * Returns the meta object for the attribute '{@link biochemsimulation.reactioncontainer.SimAgent#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see biochemsimulation.reactioncontainer.SimAgent#getName()
-	 * @see #getSimAgent()
-	 * @generated
-	 */
-	EAttribute getSimAgent_Name();
-
-	/**
 	 * Returns the meta object for the attribute '{@link biochemsimulation.reactioncontainer.SimAgent#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -467,17 +438,6 @@ public interface ReactionContainerPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSimSite_SimSiteState();
-
-	/**
-	 * Returns the meta object for the reference '{@link biochemsimulation.reactioncontainer.SimSite#getSimAgent <em>Sim Agent</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Sim Agent</em>'.
-	 * @see biochemsimulation.reactioncontainer.SimSite#getSimAgent()
-	 * @see #getSimSite()
-	 * @generated
-	 */
-	EReference getSimSite_SimAgent();
 
 	/**
 	 * Returns the meta object for the reference '{@link biochemsimulation.reactioncontainer.SimSite#getSimLinkState <em>Sim Link State</em>}'.
@@ -621,14 +581,6 @@ public interface ReactionContainerPackage extends EPackage {
 		EClass SIM_AGENT = eINSTANCE.getSimAgent();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SIM_AGENT__NAME = eINSTANCE.getSimAgent_Name();
-
-		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -669,14 +621,6 @@ public interface ReactionContainerPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SIM_SITE__SIM_SITE_STATE = eINSTANCE.getSimSite_SimSiteState();
-
-		/**
-		 * The meta object literal for the '<em><b>Sim Agent</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SIM_SITE__SIM_AGENT = eINSTANCE.getSimSite_SimAgent();
 
 		/**
 		 * The meta object literal for the '<em><b>Sim Link State</b></em>' reference feature.

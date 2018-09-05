@@ -85,7 +85,7 @@ public class SiteTemplate {
 		SimSite newSite = factory.createSimSite();
 		// missing name
 		newSite.setType(type);
-		newSite.setSimAgent(agent);
+		//newSite.setSimAgent(agent);
 		
 		if(hasSiteState) {
 			SimSiteState newSiteState = factory.createSimSiteState();

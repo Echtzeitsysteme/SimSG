@@ -8,8 +8,8 @@ import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 public class LinkStateContext {
 	private SiteNodeContext siteNodeContext;
 	
-	public final static EClassifier SIM_LINK_STATE_CONTAINER_ATTRIBUTE_TYPE = ReactionContainerPackage.Literals.SIM_SITE.getEAllReferences().get(2).getEType();
-	public final static EReference SIM_LINK_STATE_CONTAINER_ATTRIBUTE = ReactionContainerPackage.Literals.SIM_SITE.getEAllReferences().get(2);
+	public final static EClassifier SIM_LINK_STATE_CONTAINER_ATTRIBUTE_TYPE = ReactionContainerPackage.Literals.SIM_SITE.getEAllReferences().get(1).getEType();
+	public final static EReference SIM_LINK_STATE_CONTAINER_ATTRIBUTE = ReactionContainerPackage.Literals.SIM_SITE.getEAllReferences().get(1);
 	private String uniqueSimLinkStateContainerAttributeName;
 	
 	public final static EClassifier SIM_LINK_STATE_TYPE = ReactionContainerPackage.Literals.SIM_LINK_STATE;

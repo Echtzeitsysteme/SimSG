@@ -48,7 +48,7 @@ public class AgentCreationTemplate {
 		for(String site : sites) {
 			SimSite simSite = factory.createSimSite();
 			simAgent.getSimSites().add(simSite);
-			simSite.setSimAgent(simAgent);
+			//simSite.setSimAgent(simAgent);
 			simSite.setType(site);
 			if(siteStates.containsKey(site)) {
 				SimSiteState simSiteState = factory.createSimSiteState();
