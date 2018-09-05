@@ -218,6 +218,15 @@ ruleReactionProperty returns [EObject current=null]
 			$current = $this_Rule_4.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getReactionPropertyAccess().getTerminateParserRuleCall_5());
+		}
+		this_Terminate_5=ruleTerminate
+		{
+			$current = $this_Terminate_5.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -2564,6 +2573,272 @@ ruleRule returns [EObject current=null]
 						"rule",
 						lv_rule_2_0,
 						"biochemsimulation.reactionrules.ReactionRules.RuleBody");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleIterations
+entryRuleIterations returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getIterationsRule()); }
+	iv_ruleIterations=ruleIterations
+	{ $current=$iv_ruleIterations.current; }
+	EOF;
+
+// Rule Iterations
+ruleIterations returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='iterations'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getIterationsAccess().getIterationsKeyword_0());
+		}
+		otherlv_1='='
+		{
+			newLeafNode(otherlv_1, grammarAccess.getIterationsAccess().getEqualsSignKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getIterationsAccess().getValueUnsignedIntegerParserRuleCall_2_0());
+				}
+				lv_value_2_0=ruleUnsignedInteger
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getIterationsRule());
+					}
+					set(
+						$current,
+						"value",
+						lv_value_2_0,
+						"biochemsimulation.reactionrules.ReactionRules.UnsignedInteger");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleTime
+entryRuleTime returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTimeRule()); }
+	iv_ruleTime=ruleTime
+	{ $current=$iv_ruleTime.current; }
+	EOF;
+
+// Rule Time
+ruleTime returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='time'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getTimeAccess().getTimeKeyword_0());
+		}
+		otherlv_1='='
+		{
+			newLeafNode(otherlv_1, grammarAccess.getTimeAccess().getEqualsSignKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getTimeAccess().getValueUnsignedIntegerParserRuleCall_2_0());
+				}
+				lv_value_2_0=ruleUnsignedInteger
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getTimeRule());
+					}
+					set(
+						$current,
+						"value",
+						lv_value_2_0,
+						"biochemsimulation.reactionrules.ReactionRules.UnsignedInteger");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRulePopulation
+entryRulePopulation returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getPopulationRule()); }
+	iv_rulePopulation=rulePopulation
+	{ $current=$iv_rulePopulation.current; }
+	EOF;
+
+// Rule Population
+rulePopulation returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='|'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getPopulationAccess().getVerticalLineKeyword_0());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getPopulationAccess().getPaPatternAssignmentParserRuleCall_1_0());
+				}
+				lv_pa_1_0=rulePatternAssignment
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getPopulationRule());
+					}
+					set(
+						$current,
+						"pa",
+						lv_pa_1_0,
+						"biochemsimulation.reactionrules.ReactionRules.PatternAssignment");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_2='|'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getPopulationAccess().getVerticalLineKeyword_2());
+		}
+		otherlv_3='==>'
+		{
+			newLeafNode(otherlv_3, grammarAccess.getPopulationAccess().getEqualsSignEqualsSignGreaterThanSignKeyword_3());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getPopulationAccess().getValueUnsignedIntegerParserRuleCall_4_0());
+				}
+				lv_value_4_0=ruleUnsignedInteger
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getPopulationRule());
+					}
+					set(
+						$current,
+						"value",
+						lv_value_4_0,
+						"biochemsimulation.reactionrules.ReactionRules.UnsignedInteger");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleTerminationCondition
+entryRuleTerminationCondition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTerminationConditionRule()); }
+	iv_ruleTerminationCondition=ruleTerminationCondition
+	{ $current=$iv_ruleTerminationCondition.current; }
+	EOF;
+
+// Rule TerminationCondition
+ruleTerminationCondition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			newCompositeNode(grammarAccess.getTerminationConditionAccess().getIterationsParserRuleCall_0());
+		}
+		this_Iterations_0=ruleIterations
+		{
+			$current = $this_Iterations_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getTerminationConditionAccess().getTimeParserRuleCall_1());
+		}
+		this_Time_1=ruleTime
+		{
+			$current = $this_Time_1.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getTerminationConditionAccess().getPopulationParserRuleCall_2());
+		}
+		this_Population_2=rulePopulation
+		{
+			$current = $this_Population_2.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleTerminate
+entryRuleTerminate returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTerminateRule()); }
+	iv_ruleTerminate=ruleTerminate
+	{ $current=$iv_ruleTerminate.current; }
+	EOF;
+
+// Rule Terminate
+ruleTerminate returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='terminate'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getTerminateAccess().getTerminateKeyword_0());
+		}
+		(
+			(
+				lv_name_1_0=RULE_ID
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getTerminateAccess().getNameIDTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getTerminateRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getTerminateAccess().getConditionTerminationConditionParserRuleCall_2_0());
+				}
+				lv_condition_2_0=ruleTerminationCondition
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getTerminateRule());
+					}
+					set(
+						$current,
+						"condition",
+						lv_condition_2_0,
+						"biochemsimulation.reactionrules.ReactionRules.TerminationCondition");
 					afterParserOrEnumRuleCall();
 				}
 			)

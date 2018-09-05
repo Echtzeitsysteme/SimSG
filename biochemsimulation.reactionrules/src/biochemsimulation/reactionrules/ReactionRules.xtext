@@ -13,7 +13,7 @@ Model:
 ;
 
 ReactionProperty returns ReactionProperty:
-	Agent | Variable | Observation | Initial | Rule
+	Agent | Variable | Observation | Initial | Rule | Terminate
 ;
 
 terminal AT:
@@ -261,4 +261,34 @@ Rule returns Rule:
 	'rule'
 	name = ID
 	rule = RuleBody
+;
+
+Iterations returns Iterations:
+	'iterations'
+	'='
+	value = UnsignedInteger
+;
+
+Time returns Time:
+	'time'
+	'='
+	value = UnsignedInteger
+;
+
+Population returns Population:
+	'|'
+	pa = PatternAssignment
+	'|'
+	'==>'
+	value = UnsignedInteger
+;
+
+TerminationCondition:
+	Iterations | Time | Population 
+;
+
+Terminate returns Terminate:
+	'terminate'
+	name = ID
+	condition = TerminationCondition
 ;

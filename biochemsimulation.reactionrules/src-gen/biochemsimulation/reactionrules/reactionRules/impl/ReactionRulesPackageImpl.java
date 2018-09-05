@@ -16,6 +16,7 @@ import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkSite;
 import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.FreeLink;
 import biochemsimulation.reactionrules.reactionRules.Initial;
+import biochemsimulation.reactionrules.reactionRules.Iterations;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.Model;
 import biochemsimulation.reactionrules.reactionRules.NumericAssignment;
@@ -25,6 +26,7 @@ import biochemsimulation.reactionrules.reactionRules.Observation;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
 import biochemsimulation.reactionrules.reactionRules.PatternVariable;
+import biochemsimulation.reactionrules.reactionRules.Population;
 import biochemsimulation.reactionrules.reactionRules.ReactionProperty;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesFactory;
@@ -39,6 +41,9 @@ import biochemsimulation.reactionrules.reactionRules.SiteState;
 import biochemsimulation.reactionrules.reactionRules.Sites;
 import biochemsimulation.reactionrules.reactionRules.State;
 import biochemsimulation.reactionrules.reactionRules.States;
+import biochemsimulation.reactionrules.reactionRules.Terminate;
+import biochemsimulation.reactionrules.reactionRules.TerminationCondition;
+import biochemsimulation.reactionrules.reactionRules.Time;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.Variable;
 import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern;
@@ -289,6 +294,41 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * @generated
    */
   private EClass ruleEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass iterationsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass timeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass populationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass terminationConditionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass terminateEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1103,6 +1143,86 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getIterations()
+  {
+    return iterationsEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTime()
+  {
+    return timeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPopulation()
+  {
+    return populationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPopulation_Pa()
+  {
+    return (EReference)populationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTerminationCondition()
+  {
+    return terminationConditionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTerminationCondition_Value()
+  {
+    return (EAttribute)terminationConditionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTerminate()
+  {
+    return terminateEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTerminate_Condition()
+  {
+    return (EReference)terminateEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBoundAnyLink()
   {
     return boundAnyLinkEClass;
@@ -1342,6 +1462,19 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     ruleEClass = createEClass(RULE);
     createEReference(ruleEClass, RULE__RULE);
 
+    iterationsEClass = createEClass(ITERATIONS);
+
+    timeEClass = createEClass(TIME);
+
+    populationEClass = createEClass(POPULATION);
+    createEReference(populationEClass, POPULATION__PA);
+
+    terminationConditionEClass = createEClass(TERMINATION_CONDITION);
+    createEAttribute(terminationConditionEClass, TERMINATION_CONDITION__VALUE);
+
+    terminateEClass = createEClass(TERMINATE);
+    createEReference(terminateEClass, TERMINATE__CONDITION);
+
     boundAnyLinkEClass = createEClass(BOUND_ANY_LINK);
     createEAttribute(boundAnyLinkEClass, BOUND_ANY_LINK__NAME);
 
@@ -1401,6 +1534,10 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     assignFromPatternEClass.getESuperTypes().add(this.getPatternAssignment());
     assignFromVariableEClass.getESuperTypes().add(this.getPatternAssignment());
     ruleEClass.getESuperTypes().add(this.getReactionProperty());
+    iterationsEClass.getESuperTypes().add(this.getTerminationCondition());
+    timeEClass.getESuperTypes().add(this.getTerminationCondition());
+    populationEClass.getESuperTypes().add(this.getTerminationCondition());
+    terminateEClass.getESuperTypes().add(this.getReactionProperty());
     boundAnyLinkEClass.getESuperTypes().add(this.getLinkState());
     freeLinkEClass.getESuperTypes().add(this.getLinkState());
     whatEverEClass.getESuperTypes().add(this.getLinkState());
@@ -1511,6 +1648,19 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
 
     initEClass(ruleEClass, Rule.class, "Rule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRule_Rule(), this.getRuleBody(), null, "rule", null, 0, 1, Rule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(iterationsEClass, Iterations.class, "Iterations", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(timeEClass, Time.class, "Time", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(populationEClass, Population.class, "Population", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPopulation_Pa(), this.getPatternAssignment(), null, "pa", null, 0, 1, Population.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(terminationConditionEClass, TerminationCondition.class, "TerminationCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTerminationCondition_Value(), ecorePackage.getEString(), "value", null, 0, 1, TerminationCondition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(terminateEClass, Terminate.class, "Terminate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getTerminate_Condition(), this.getTerminationCondition(), null, "condition", null, 0, 1, Terminate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(boundAnyLinkEClass, BoundAnyLink.class, "BoundAnyLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getBoundAnyLink_Name(), ecorePackage.getEString(), "name", null, 0, 1, BoundAnyLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

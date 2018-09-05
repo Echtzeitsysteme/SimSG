@@ -126,6 +126,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="rule" eType="#//RuleBody"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Iterations" eSuperTypes="#//TerminationCondition"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Time" eSuperTypes="#//TerminationCondition"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Population" eSuperTypes="#//TerminationCondition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pa" eType="#//PatternAssignment"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TerminationCondition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Terminate" eSuperTypes="#//ReactionProperty">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//TerminationCondition"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BoundAnyLink" eSuperTypes="#//LinkState">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>

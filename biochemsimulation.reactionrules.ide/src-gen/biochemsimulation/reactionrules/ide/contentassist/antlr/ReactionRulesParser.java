@@ -40,6 +40,7 @@ public class ReactionRulesParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNumericAssignmentAccess().getAlternatives(), "rule__NumericAssignment__Alternatives");
 					put(grammarAccess.getPatternAssignmentAccess().getAlternatives(), "rule__PatternAssignment__Alternatives");
 					put(grammarAccess.getRuleBodyAccess().getAlternatives(), "rule__RuleBody__Alternatives");
+					put(grammarAccess.getTerminationConditionAccess().getAlternatives(), "rule__TerminationCondition__Alternatives");
 					put(grammarAccess.getReactionRuleModelAccess().getGroup(), "rule__ReactionRuleModel__Group__0");
 					put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
 					put(grammarAccess.getFloatAccess().getGroup(), "rule__Float__Group__0");
@@ -79,6 +80,10 @@ public class ReactionRulesParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnidirectionalRuleAccess().getGroup(), "rule__UnidirectionalRule__Group__0");
 					put(grammarAccess.getBidirectionalRuleAccess().getGroup(), "rule__BidirectionalRule__Group__0");
 					put(grammarAccess.getRuleAccess().getGroup(), "rule__Rule__Group__0");
+					put(grammarAccess.getIterationsAccess().getGroup(), "rule__Iterations__Group__0");
+					put(grammarAccess.getTimeAccess().getGroup(), "rule__Time__Group__0");
+					put(grammarAccess.getPopulationAccess().getGroup(), "rule__Population__Group__0");
+					put(grammarAccess.getTerminateAccess().getGroup(), "rule__Terminate__Group__0");
 					put(grammarAccess.getReactionRuleModelAccess().getModelAssignment_0(), "rule__ReactionRuleModel__ModelAssignment_0");
 					put(grammarAccess.getReactionRuleModelAccess().getReactionPropertiesAssignment_1(), "rule__ReactionRuleModel__ReactionPropertiesAssignment_1");
 					put(grammarAccess.getModelAccess().getNameAssignment_1(), "rule__Model__NameAssignment_1");
@@ -137,6 +142,12 @@ public class ReactionRulesParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBidirectionalRuleAccess().getVariablesAssignment_5(), "rule__BidirectionalRule__VariablesAssignment_5");
 					put(grammarAccess.getRuleAccess().getNameAssignment_1(), "rule__Rule__NameAssignment_1");
 					put(grammarAccess.getRuleAccess().getRuleAssignment_2(), "rule__Rule__RuleAssignment_2");
+					put(grammarAccess.getIterationsAccess().getValueAssignment_2(), "rule__Iterations__ValueAssignment_2");
+					put(grammarAccess.getTimeAccess().getValueAssignment_2(), "rule__Time__ValueAssignment_2");
+					put(grammarAccess.getPopulationAccess().getPaAssignment_1(), "rule__Population__PaAssignment_1");
+					put(grammarAccess.getPopulationAccess().getValueAssignment_4(), "rule__Population__ValueAssignment_4");
+					put(grammarAccess.getTerminateAccess().getNameAssignment_1(), "rule__Terminate__NameAssignment_1");
+					put(grammarAccess.getTerminateAccess().getConditionAssignment_2(), "rule__Terminate__ConditionAssignment_2");
 				}
 			};
 		}

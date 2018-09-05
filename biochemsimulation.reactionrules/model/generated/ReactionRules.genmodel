@@ -106,6 +106,17 @@
     <genClasses ecoreClass="ReactionRules.ecore#//Rule">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//Rule/rule"/>
     </genClasses>
+    <genClasses ecoreClass="ReactionRules.ecore#//Iterations"/>
+    <genClasses ecoreClass="ReactionRules.ecore#//Time"/>
+    <genClasses ecoreClass="ReactionRules.ecore#//Population">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//Population/pa"/>
+    </genClasses>
+    <genClasses ecoreClass="ReactionRules.ecore#//TerminationCondition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//TerminationCondition/value"/>
+    </genClasses>
+    <genClasses ecoreClass="ReactionRules.ecore#//Terminate">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//Terminate/condition"/>
+    </genClasses>
     <genClasses ecoreClass="ReactionRules.ecore#//BoundAnyLink">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//BoundAnyLink/name"/>
     </genClasses>

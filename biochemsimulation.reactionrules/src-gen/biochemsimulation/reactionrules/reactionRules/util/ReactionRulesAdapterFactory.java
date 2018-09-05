@@ -241,6 +241,31 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
         return createRuleAdapter();
       }
       @Override
+      public Adapter caseIterations(Iterations object)
+      {
+        return createIterationsAdapter();
+      }
+      @Override
+      public Adapter caseTime(Time object)
+      {
+        return createTimeAdapter();
+      }
+      @Override
+      public Adapter casePopulation(Population object)
+      {
+        return createPopulationAdapter();
+      }
+      @Override
+      public Adapter caseTerminationCondition(TerminationCondition object)
+      {
+        return createTerminationConditionAdapter();
+      }
+      @Override
+      public Adapter caseTerminate(Terminate object)
+      {
+        return createTerminateAdapter();
+      }
+      @Override
       public Adapter caseBoundAnyLink(BoundAnyLink object)
       {
         return createBoundAnyLinkAdapter();
@@ -778,6 +803,81 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createRuleAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.Iterations <em>Iterations</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.Iterations
+   * @generated
+   */
+  public Adapter createIterationsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.Time <em>Time</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.Time
+   * @generated
+   */
+  public Adapter createTimeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.Population <em>Population</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.Population
+   * @generated
+   */
+  public Adapter createPopulationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.TerminationCondition <em>Termination Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.TerminationCondition
+   * @generated
+   */
+  public Adapter createTerminationConditionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.Terminate <em>Terminate</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.Terminate
+   * @generated
+   */
+  public Adapter createTerminateAdapter()
   {
     return null;
   }

@@ -319,6 +319,45 @@ public class ReactionRulesSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ReactionRulesPackage.ITERATIONS:
+      {
+        Iterations iterations = (Iterations)theEObject;
+        T result = caseIterations(iterations);
+        if (result == null) result = caseTerminationCondition(iterations);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReactionRulesPackage.TIME:
+      {
+        Time time = (Time)theEObject;
+        T result = caseTime(time);
+        if (result == null) result = caseTerminationCondition(time);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReactionRulesPackage.POPULATION:
+      {
+        Population population = (Population)theEObject;
+        T result = casePopulation(population);
+        if (result == null) result = caseTerminationCondition(population);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReactionRulesPackage.TERMINATION_CONDITION:
+      {
+        TerminationCondition terminationCondition = (TerminationCondition)theEObject;
+        T result = caseTerminationCondition(terminationCondition);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReactionRulesPackage.TERMINATE:
+      {
+        Terminate terminate = (Terminate)theEObject;
+        T result = caseTerminate(terminate);
+        if (result == null) result = caseReactionProperty(terminate);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ReactionRulesPackage.BOUND_ANY_LINK:
       {
         BoundAnyLink boundAnyLink = (BoundAnyLink)theEObject;
@@ -887,6 +926,86 @@ public class ReactionRulesSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseRule(Rule object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Iterations</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Iterations</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIterations(Iterations object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Time</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Time</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTime(Time object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Population</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Population</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePopulation(Population object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Termination Condition</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Termination Condition</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTerminationCondition(TerminationCondition object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Terminate</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Terminate</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTerminate(Terminate object)
   {
     return null;
   }

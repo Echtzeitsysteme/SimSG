@@ -1090,6 +1090,164 @@ public interface ReactionRulesPackage extends EPackage
   int RULE_FEATURE_COUNT = REACTION_PROPERTY_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.TerminationConditionImpl <em>Termination Condition</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see biochemsimulation.reactionrules.reactionRules.impl.TerminationConditionImpl
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getTerminationCondition()
+   * @generated
+   */
+  int TERMINATION_CONDITION = 36;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TERMINATION_CONDITION__VALUE = 0;
+
+  /**
+   * The number of structural features of the '<em>Termination Condition</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TERMINATION_CONDITION_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.IterationsImpl <em>Iterations</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see biochemsimulation.reactionrules.reactionRules.impl.IterationsImpl
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getIterations()
+   * @generated
+   */
+  int ITERATIONS = 33;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ITERATIONS__VALUE = TERMINATION_CONDITION__VALUE;
+
+  /**
+   * The number of structural features of the '<em>Iterations</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ITERATIONS_FEATURE_COUNT = TERMINATION_CONDITION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.TimeImpl <em>Time</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see biochemsimulation.reactionrules.reactionRules.impl.TimeImpl
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getTime()
+   * @generated
+   */
+  int TIME = 34;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TIME__VALUE = TERMINATION_CONDITION__VALUE;
+
+  /**
+   * The number of structural features of the '<em>Time</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TIME_FEATURE_COUNT = TERMINATION_CONDITION_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.PopulationImpl <em>Population</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see biochemsimulation.reactionrules.reactionRules.impl.PopulationImpl
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getPopulation()
+   * @generated
+   */
+  int POPULATION = 35;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POPULATION__VALUE = TERMINATION_CONDITION__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Pa</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POPULATION__PA = TERMINATION_CONDITION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Population</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int POPULATION_FEATURE_COUNT = TERMINATION_CONDITION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.TerminateImpl <em>Terminate</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see biochemsimulation.reactionrules.reactionRules.impl.TerminateImpl
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getTerminate()
+   * @generated
+   */
+  int TERMINATE = 37;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TERMINATE__NAME = REACTION_PROPERTY__NAME;
+
+  /**
+   * The feature id for the '<em><b>Condition</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TERMINATE__CONDITION = REACTION_PROPERTY_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Terminate</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TERMINATE_FEATURE_COUNT = REACTION_PROPERTY_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.BoundAnyLinkImpl <em>Bound Any Link</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1097,7 +1255,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getBoundAnyLink()
    * @generated
    */
-  int BOUND_ANY_LINK = 33;
+  int BOUND_ANY_LINK = 38;
 
   /**
    * The feature id for the '<em><b>Link State</b></em>' containment reference.
@@ -1134,7 +1292,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getFreeLink()
    * @generated
    */
-  int FREE_LINK = 34;
+  int FREE_LINK = 39;
 
   /**
    * The feature id for the '<em><b>Link State</b></em>' containment reference.
@@ -1171,7 +1329,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getWhatEver()
    * @generated
    */
-  int WHAT_EVER = 35;
+  int WHAT_EVER = 40;
 
   /**
    * The feature id for the '<em><b>Link State</b></em>' containment reference.
@@ -1208,7 +1366,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getBoundLink()
    * @generated
    */
-  int BOUND_LINK = 36;
+  int BOUND_LINK = 41;
 
   /**
    * The feature id for the '<em><b>Link State</b></em>' containment reference.
@@ -1245,7 +1403,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getBoundAnyOfTypeLink()
    * @generated
    */
-  int BOUND_ANY_OF_TYPE_LINK = 37;
+  int BOUND_ANY_OF_TYPE_LINK = 42;
 
   /**
    * The feature id for the '<em><b>Link State</b></em>' containment reference.
@@ -2033,6 +2191,89 @@ public interface ReactionRulesPackage extends EPackage
   EReference getRule_Rule();
 
   /**
+   * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.Iterations <em>Iterations</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Iterations</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.Iterations
+   * @generated
+   */
+  EClass getIterations();
+
+  /**
+   * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.Time <em>Time</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Time</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.Time
+   * @generated
+   */
+  EClass getTime();
+
+  /**
+   * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.Population <em>Population</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Population</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.Population
+   * @generated
+   */
+  EClass getPopulation();
+
+  /**
+   * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.Population#getPa <em>Pa</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Pa</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.Population#getPa()
+   * @see #getPopulation()
+   * @generated
+   */
+  EReference getPopulation_Pa();
+
+  /**
+   * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.TerminationCondition <em>Termination Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Termination Condition</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.TerminationCondition
+   * @generated
+   */
+  EClass getTerminationCondition();
+
+  /**
+   * Returns the meta object for the attribute '{@link biochemsimulation.reactionrules.reactionRules.TerminationCondition#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.TerminationCondition#getValue()
+   * @see #getTerminationCondition()
+   * @generated
+   */
+  EAttribute getTerminationCondition_Value();
+
+  /**
+   * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.Terminate <em>Terminate</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Terminate</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.Terminate
+   * @generated
+   */
+  EClass getTerminate();
+
+  /**
+   * Returns the meta object for the containment reference '{@link biochemsimulation.reactionrules.reactionRules.Terminate#getCondition <em>Condition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Condition</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.Terminate#getCondition()
+   * @see #getTerminate()
+   * @generated
+   */
+  EReference getTerminate_Condition();
+
+  /**
    * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.BoundAnyLink <em>Bound Any Link</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2804,6 +3045,80 @@ public interface ReactionRulesPackage extends EPackage
      * @generated
      */
     EReference RULE__RULE = eINSTANCE.getRule_Rule();
+
+    /**
+     * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.IterationsImpl <em>Iterations</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see biochemsimulation.reactionrules.reactionRules.impl.IterationsImpl
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getIterations()
+     * @generated
+     */
+    EClass ITERATIONS = eINSTANCE.getIterations();
+
+    /**
+     * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.TimeImpl <em>Time</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see biochemsimulation.reactionrules.reactionRules.impl.TimeImpl
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getTime()
+     * @generated
+     */
+    EClass TIME = eINSTANCE.getTime();
+
+    /**
+     * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.PopulationImpl <em>Population</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see biochemsimulation.reactionrules.reactionRules.impl.PopulationImpl
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getPopulation()
+     * @generated
+     */
+    EClass POPULATION = eINSTANCE.getPopulation();
+
+    /**
+     * The meta object literal for the '<em><b>Pa</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference POPULATION__PA = eINSTANCE.getPopulation_Pa();
+
+    /**
+     * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.TerminationConditionImpl <em>Termination Condition</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see biochemsimulation.reactionrules.reactionRules.impl.TerminationConditionImpl
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getTerminationCondition()
+     * @generated
+     */
+    EClass TERMINATION_CONDITION = eINSTANCE.getTerminationCondition();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TERMINATION_CONDITION__VALUE = eINSTANCE.getTerminationCondition_Value();
+
+    /**
+     * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.TerminateImpl <em>Terminate</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see biochemsimulation.reactionrules.reactionRules.impl.TerminateImpl
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getTerminate()
+     * @generated
+     */
+    EClass TERMINATE = eINSTANCE.getTerminate();
+
+    /**
+     * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TERMINATE__CONDITION = eINSTANCE.getTerminate_Condition();
 
     /**
      * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.BoundAnyLinkImpl <em>Bound Any Link</em>}' class.

@@ -98,6 +98,11 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
       case ReactionRulesPackage.RULE_VARIABLES: return createRuleVariables();
       case ReactionRulesPackage.RULE_BODY: return createRuleBody();
       case ReactionRulesPackage.RULE: return createRule();
+      case ReactionRulesPackage.ITERATIONS: return createIterations();
+      case ReactionRulesPackage.TIME: return createTime();
+      case ReactionRulesPackage.POPULATION: return createPopulation();
+      case ReactionRulesPackage.TERMINATION_CONDITION: return createTerminationCondition();
+      case ReactionRulesPackage.TERMINATE: return createTerminate();
       case ReactionRulesPackage.BOUND_ANY_LINK: return createBoundAnyLink();
       case ReactionRulesPackage.FREE_LINK: return createFreeLink();
       case ReactionRulesPackage.WHAT_EVER: return createWhatEver();
@@ -469,6 +474,61 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
   {
     RuleImpl rule = new RuleImpl();
     return rule;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Iterations createIterations()
+  {
+    IterationsImpl iterations = new IterationsImpl();
+    return iterations;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Time createTime()
+  {
+    TimeImpl time = new TimeImpl();
+    return time;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Population createPopulation()
+  {
+    PopulationImpl population = new PopulationImpl();
+    return population;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TerminationCondition createTerminationCondition()
+  {
+    TerminationConditionImpl terminationCondition = new TerminationConditionImpl();
+    return terminationCondition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Terminate createTerminate()
+  {
+    TerminateImpl terminate = new TerminateImpl();
+    return terminate;
   }
 
   /**

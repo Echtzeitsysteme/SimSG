@@ -321,6 +321,51 @@ public interface ReactionRulesFactory extends EFactory
   Rule createRule();
 
   /**
+   * Returns a new object of class '<em>Iterations</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Iterations</em>'.
+   * @generated
+   */
+  Iterations createIterations();
+
+  /**
+   * Returns a new object of class '<em>Time</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Time</em>'.
+   * @generated
+   */
+  Time createTime();
+
+  /**
+   * Returns a new object of class '<em>Population</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Population</em>'.
+   * @generated
+   */
+  Population createPopulation();
+
+  /**
+   * Returns a new object of class '<em>Termination Condition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Termination Condition</em>'.
+   * @generated
+   */
+  TerminationCondition createTerminationCondition();
+
+  /**
+   * Returns a new object of class '<em>Terminate</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Terminate</em>'.
+   * @generated
+   */
+  Terminate createTerminate();
+
+  /**
    * Returns a new object of class '<em>Bound Any Link</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
