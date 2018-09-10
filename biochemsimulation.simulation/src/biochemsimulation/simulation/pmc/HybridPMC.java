@@ -2,11 +2,9 @@ package biochemsimulation.simulation.pmc;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.utils.PatternUtils;
@@ -14,7 +12,6 @@ import biochemsimulation.simulation.matching.HybridMatch;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.patterns.AgentNodeConstraint;
 import biochemsimulation.simulation.matching.patterns.GenericPattern;
-import biochemsimulation.simulation.matching.patterns.GenericPatternSignature;
 import biochemsimulation.simulation.matching.patterns.HybridPattern;
 
 public class HybridPMC extends PatternMatchingController {
@@ -58,12 +55,6 @@ public class HybridPMC extends PatternMatchingController {
 			hybridMatchCount.put(hybridPattern, 0);
 		}
 		
-	}
-
-	@Override
-	public void performTransformations() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -136,7 +127,6 @@ public class HybridPMC extends PatternMatchingController {
 		return true;
 	}
 	
-	// For now, a very primitive and also wrong method to calculate hybrid match counts
 	private void calculateHybridMatchCount(String patternName) {
 		HybridPattern hybridPattern = hybridPatterns.get(patternName);
 		Collection<String> subPatterNames = hybridPattern.getGenericSubPatterns().keySet();

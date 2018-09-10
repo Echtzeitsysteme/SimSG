@@ -30,16 +30,14 @@ public class Sandbox {
 	public static void main(String[] args) {
 		/*
 		test1();
-		test2();
-		test5();
 		test4();
 		test6();
 		*/
-		//test7();
+		test7();
 		//test8_kill();
 		//benchmark();
 		//test4();
-		hybridTest();
+		//hybridTest();
 	}
 
 	public static void test1() {
@@ -67,92 +65,6 @@ public class Sandbox {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void test2() {
-		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
-		pm.init();
-
-		try {
-			double ns = 1E9;
-			ReactionRuleModel model1 = pm.loadReactionRuleModel("test3");
-			System.out.println("Loading reaction container model ...");
-			long start = System.nanoTime();
-			ReactionContainer model2 = pm.loadReactionContainerModel("test3");
-			long end = System.nanoTime();
-			System.out.println("time diff = " + (end - start) + " ns");
-			System.out.println("time diff = " + (end - start) / ns + " s");
-
-			PatternMatchingController pmc = createSimplePMC_Viatra();
-			System.out.println("Initializing pmc: loading models...");
-			start = System.nanoTime();
-			pmc.loadModels(model1, model2);
-			end = System.nanoTime();
-			System.out.println("time diff = " + (end - start) + " ns");
-			System.out.println("time diff = " + (end - start) / ns + " s");
-			System.out.println("Initializing pmc: init engine...");
-			start = System.nanoTime();
-			pmc.initEngine();
-			end = System.nanoTime();
-			System.out.println("time diff = " + (end - start) + " ns");
-			System.out.println("time diff = " + (end - start) / ns + " s");
-			System.out.println("Initializing pmc: init controller...");
-			start = System.nanoTime();
-			pmc.initController();
-			pmc.randomizeRuleOrder(false);
-			pmc.useReactionRate(false);
-			end = System.nanoTime();
-			System.out.println("time diff = " + (end - start) + " ns");
-			System.out.println("time diff = " + (end - start) / ns + " s");
-			start = System.nanoTime();
-			int iterations = 100;
-			System.out.println("Running sim with " + iterations + " iterations ...");
-
-			for (int i = 0; i < iterations; i++) {
-				/*
-				// <-- debugging stuff starts here
-				pmc.collectAllMatches();
-				Map<String, Collection<IMatch>> results = pmc.getAllMatches();
-				for (String key : results.keySet()) {
-					if (results.get(key) != null) {
-						System.out.println("IterPre: " + i + " // Pattern: " + key + ", size: " + results.get(key).size());
-					}
-				}
-				// debugging stuff ends here -->
-				*/
-				pmc.performTransformations();
-				/*
-				// <-- debugging stuff starts here
-				pmc.collectAllMatches();
-				results = pmc.getAllMatches();
-				for (String key : results.keySet()) {
-					if (results.get(key) != null) {
-						System.out.println("IterPost: " + i + " // Pattern: " + key + ", size: " + results.get(key).size());
-					}
-				}
-				// debugging stuff ends here -->
-				*/
-			}
-			
-			// <-- debugging stuff starts here
-			pmc.collectAllMatches();
-			Map<String, Collection<IMatch>> results = pmc.getAllMatches();
-			for (String key : results.keySet()) {
-				if (results.get(key) != null) {
-					System.out.println("Pattern: " + key + ", size: " + results.get(key).size());
-				}
-			}
-			// debugging stuff ends here -->
-
-			end = System.nanoTime();
-			System.out.println("time diff = " + (end - start) + " ns");
-			System.out.println("time diff = " + (end - start) / ns + " s");
-			pmc.discardEngine();
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -185,93 +97,6 @@ public class Sandbox {
 		
 	}
 	
-	public static void test5() {
-		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
-		pm.init();
-
-		try {
-			double ns = 1E9;
-			ReactionRuleModel model1 = pm.loadReactionRuleModel("test3");
-			System.out.println("Loading reaction container model ...");
-			long start = System.nanoTime();
-			ReactionContainer model2 = pm.loadReactionContainerModel("test3");
-			long end = System.nanoTime();
-			System.out.println("time diff = " + (end - start) + " ns");
-			System.out.println("time diff = " + (end - start) / ns + " s");
-
-			PatternMatchingController pmc = createSimplePMC_Democles();
-			System.out.println("Initializing pmc: loading models...");
-			start = System.nanoTime();
-			pmc.loadModels(model1, model2);
-			end = System.nanoTime();
-			System.out.println("time diff = " + (end - start) + " ns");
-			System.out.println("time diff = " + (end - start) / ns + " s");
-			System.out.println("Initializing pmc: init engine...");
-			start = System.nanoTime();
-			pmc.initEngine();
-			end = System.nanoTime();
-			System.out.println("time diff = " + (end - start) + " ns");
-			System.out.println("time diff = " + (end - start) / ns + " s");
-			System.out.println("Initializing pmc: init controller...");
-			start = System.nanoTime();
-			pmc.initController();
-			pmc.randomizeRuleOrder(false);
-			pmc.useReactionRate(false);
-			end = System.nanoTime();
-			System.out.println("time diff = " + (end - start) + " ns");
-			System.out.println("time diff = " + (end - start) / ns + " s");
-			start = System.nanoTime();
-			int iterations = 100;
-			System.out.println("Running sim with " + iterations + " iterations ...");
-
-			for (int i = 0; i < iterations; i++) {
-				/*
-				// <-- debugging stuff starts here
-				pmc.collectAllMatches();
-				Map<String, Collection<IMatch>> results = pmc.getAllMatches();
-				for (String key : results.keySet()) {
-					if (results.get(key) != null) {
-						System.out.println("IterPre: " + i + " // Pattern: " + key + ", size: " + results.get(key).size());
-					}
-				}
-				// debugging stuff ends here -->
-				*/
-				pmc.performTransformations();
-				/*
-				// <-- debugging stuff starts here
-				pmc.collectAllMatches();
-				results = pmc.getAllMatches();
-				for (String key : results.keySet()) {
-					if (results.get(key) != null) {
-						System.out.println("IterPost: " + i + " // Pattern: " + key + ", size: " + results.get(key).size());
-					}
-				}
-				// debugging stuff ends here -->
-				*/
-			}
-			
-			// <-- debugging stuff starts here
-			pmc.collectAllMatches();
-			Map<String, Collection<IMatch>> results = pmc.getAllMatches();
-			for (String key : results.keySet()) {
-				if (results.get(key) != null) {
-					System.out.println("Pattern: " + key + ", size: " + results.get(key).size());
-				}
-			}
-			// debugging stuff ends here -->
-
-			end = System.nanoTime();
-			System.out.println("time diff = " + (end - start) + " ns");
-			System.out.println("time diff = " + (end - start) / ns + " s");
-			
-			pmc.discardEngine();
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
 	public static void test6() {
 		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
 		pm.init();
@@ -301,7 +126,9 @@ public class Sandbox {
 		simConfig.setSimplePersistence();
 		simConfig.setViatraAsEngine();
 		simConfig.setSimplePMC();
-		simConfig.setPMCDeterministic(true);
+		//simConfig.setSimpleSimulation();
+		simConfig.setStochasticSimulation();
+		//simConfig.setPMCDeterministic(true);
 		simConfig.setSimpleTerminationCondition(10);
 		
 		Simulation viatraSim = simConfig.createSimulation();
@@ -332,6 +159,7 @@ public class Sandbox {
 		SimulationConfigurator simConfig = new SimulationConfigurator();
 		simConfig.setSimplePersistence();
 		simConfig.setSimplePMC();
+		simConfig.setSimpleSimulation();
 		simConfig.setPMCDeterministic(true);
 		simConfig.setSimpleTerminationCondition(10);
 		/*

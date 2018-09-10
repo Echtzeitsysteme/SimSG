@@ -32,5 +32,5 @@ obs o1 { A(x[free]), B(x[free]) }
 
 /* Termination Conditions */
 terminate tc1 iterations = 5 
-terminate tc2 time = 10
+terminate tc2 time = 10 
 terminate tc3 |{A(x[1]), B(x[1])}| ==> 3

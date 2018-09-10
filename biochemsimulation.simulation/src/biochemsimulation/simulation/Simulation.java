@@ -1,21 +1,33 @@
 package biochemsimulation.simulation;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
+import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral;
+import biochemsimulation.reactionrules.reactionRules.NumericFromVariable;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
+import biochemsimulation.reactionrules.utils.PatternUtils;
 import biochemsimulation.simulation.benchmark.Runtimer;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.persistence.PersistenceManager;
 import biochemsimulation.simulation.pmc.PatternMatchingController;
+import biochemsimulation.simulation.pmc.GT.ReactionRuleTransformer;
 
-public class Simulation {
+public abstract class Simulation {
 	
-	private String modelName;
-	private PersistenceManager persistence;
-	private PatternMatchingController pmc;
-	private SimulationTerminationCondition terminationCondition;
+	protected String modelName;
+	protected PersistenceManager persistence;
+	protected PatternMatchingController pmc;
+	protected SimulationTerminationCondition terminationCondition;
+	protected SimulationState state;
+	protected ReactionRuleModel ruleModel;
+	protected ReactionContainer reactionContainer;
+	protected ReactionRuleTransformer gt;
+	protected Map<String, Double> staticReactionRates;
 
 	Simulation() {
 		
@@ -37,13 +49,36 @@ public class Simulation {
 		this.terminationCondition = terminationCondition;
 	}
 	
+	protected void initStaticReactionRates() {
+		staticReactionRates = new HashMap<String, Double>();
+		gt.getRuleMap().forEach((name, r) -> {
+			List<Double> reactionRate = new LinkedList<Double>();
+			r.getRule().getVariables().getVariables().forEach(y->{
+				if(y instanceof NumericFromLiteral) {
+					reactionRate.add(Double.valueOf(((NumericFromLiteral) y).getValue().getValue()));
+				}else {
+					reactionRate.add(Double.valueOf(((NumericFromVariable) y).getValueVar().getValue().getValue()));
+				}
+			});
+			staticReactionRates.put(name+PatternUtils.PATTERN_NAME_SUFFIX_LHS, reactionRate.get(0));
+			if(r.getRule().getOperator().equals(PatternUtils.RULE_OPERATOR_BI)) {
+				staticReactionRates.put(name+PatternUtils.PATTERN_NAME_SUFFIX_RHS, reactionRate.get(1));
+			}
+		});
+	}
+	
 	public void initialize() throws Exception {
 		persistence.init();
-		ReactionRuleModel ruleModel = persistence.loadReactionRuleModel(modelName);
-		ReactionContainer reactionContainer = persistence.loadReactionContainerModel(modelName);
+		ruleModel = persistence.loadReactionRuleModel(modelName);
+		reactionContainer = persistence.loadReactionContainerModel(modelName);
 		pmc.loadModels(ruleModel, reactionContainer);
 		pmc.initEngine();
 		pmc.initController();
+		gt = new ReactionRuleTransformer(ruleModel, reactionContainer);
+		gt.init();
+		initStaticReactionRates();
+		state = new SimulationState();
+		state.setPmc(pmc);
 	}
 	
 	public void initializeClocked() {
@@ -87,6 +122,12 @@ public class Simulation {
 				e.printStackTrace();
 			}
 		});
+		
+		gt = new ReactionRuleTransformer(ruleModel, reactionContainer);
+		gt.init();
+		initStaticReactionRates();
+		state = new SimulationState();
+		state.setPmc(pmc);
 	}
 	
 	public void runClocked() {
@@ -101,12 +142,7 @@ public class Simulation {
 		});
 	}
 	
-	public void run() throws Exception {
-		while(!terminationCondition.isTerminated(pmc)) {
-			pmc.performTransformations();
-		}
-		pmc.collectAllMatches();
-	}
+	public abstract void run() throws Exception;
 	
 	public Map<String, Collection<IMatch>> getResults() {
 		return pmc.getAllMatches();

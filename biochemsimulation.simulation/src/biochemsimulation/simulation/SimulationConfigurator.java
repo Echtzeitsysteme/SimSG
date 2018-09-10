@@ -15,6 +15,7 @@ public class SimulationConfigurator {
 	private PersistenceManagerEnum persistenceType;
 	private PatternMatchingEngineEnum engineType;
 	private PatternMatchingControllerEnum controllerType;
+	private SimulationType simulationType;
 	private SimulationTerminationConditionEnum conditionType;
 	private int maxIterations;
 	private boolean deterministic;
@@ -51,22 +52,30 @@ public class SimulationConfigurator {
 		this.deterministic = deterministic;
 	}
 	
+	public void setSimpleSimulation() {
+		simulationType = SimulationType.SimpleSimulation;
+	}
+	
+	public void setStochasticSimulation() {
+		simulationType = SimulationType.StochasticSimulation;
+	}
+	
 	public void setSimpleTerminationCondition(int maxIterations) {
 		conditionType = SimulationTerminationConditionEnum.SimpleCondition;
 		this.maxIterations = maxIterations;
 	}
 	
 	public Simulation createSimulation() {
-		Simulation simulation = new Simulation();
+		Simulation simulation = SimulationFactory.create(simulationType);
 		simulation.setModel(modelName);
 		simulation.setPersistence(PersistenceManagerFactory.create(persistenceType));
 		// create and set pattern matching engine and controller
 		PatternMatchingEngine engine = PatternMatchingEngineFactory.create(engineType);
 		PatternMatchingController pmc = PatternMatchingControllerFactory.create(controllerType);
 		pmc.setEngine(engine);
-		if(deterministic) {
-			pmc.useReactionRate(false);
-			pmc.randomizeRuleOrder(false);
+		if(deterministic && (simulationType == SimulationType.SimpleSimulation)) {
+			((SimpleSimulation)simulation).useReactionRate(false);
+			((SimpleSimulation)simulation).randomizeRuleOrder(false);
 		}
 		simulation.setPmc(pmc);
 		// create and set termination condition

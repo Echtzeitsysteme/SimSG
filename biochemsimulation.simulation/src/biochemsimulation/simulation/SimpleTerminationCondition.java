@@ -1,7 +1,5 @@
 package biochemsimulation.simulation;
 
-import biochemsimulation.simulation.pmc.PatternMatchingController;
-
 public class SimpleTerminationCondition implements SimulationTerminationCondition {
 	
 	private int maxIterations;
@@ -19,8 +17,8 @@ public class SimpleTerminationCondition implements SimulationTerminationConditio
 	}
 
 	@Override
-	public boolean isTerminated(PatternMatchingController pmc) {
-		return pmc.getIterations()>=maxIterations;
+	public boolean isTerminated(SimulationState state) {
+		return state.getIterations()>=maxIterations;
 	}
 
 }

@@ -23,6 +23,7 @@ import biochemsimulation.simulation.persistence.PersistenceManagerFactory;
 import biochemsimulation.simulation.pmc.PatternMatchingController;
 import biochemsimulation.simulation.pmc.PatternMatchingControllerEnum;
 import biochemsimulation.simulation.pmc.PatternMatchingControllerFactory;
+import biochemsimulation.simulation.pmc.GT.ReactionRuleTransformer;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -37,6 +38,8 @@ abstract class GraphTransformTest {
 	
 	protected PatternMatchingEngineEnum engineType;
 	protected PatternMatchingControllerEnum pmcType;
+	
+	protected ReactionRuleTransformer gt;
 	
 	protected GraphTransformTest() {
 		setPersistenceType();
@@ -62,6 +65,8 @@ abstract class GraphTransformTest {
 		pmc.loadModels(ruleModel, containerModel);
 		pmc.initEngine();
 		pmc.initController();
+		gt = new ReactionRuleTransformer(ruleModel, containerModel);
+		gt.init();
 	}
 	
 	@AfterAll
@@ -110,11 +115,11 @@ abstract class GraphTransformTest {
 		
 		collectMatches(lhs, rhs);
 		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
-		pmc.transform(lhsMatch);
+		gt.applyRuleToMatch(lhsMatch);
 		
 		collectMatches(lhs, rhs);
 		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
-		pmc.transform(rhsMatch);
+		gt.applyRuleToMatch(rhsMatch);
 		
 		collectMatches(lhs, rhs);
 		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
@@ -132,11 +137,11 @@ abstract class GraphTransformTest {
 		
 		collectMatches(lhs, rhs);
 		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
-		pmc.transform(lhsMatch);
+		gt.applyRuleToMatch(lhsMatch);
 		
 		collectMatches(lhs, rhs);
 		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
-		pmc.transform(rhsMatch);
+		gt.applyRuleToMatch(rhsMatch);
 		
 		collectMatches(lhs, rhs);
 		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
@@ -153,11 +158,11 @@ abstract class GraphTransformTest {
 		
 		collectMatches(lhs, rhs);
 		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
-		pmc.transform(lhsMatch);
+		gt.applyRuleToMatch(lhsMatch);
 		
 		collectMatches(lhs, rhs);
 		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
-		pmc.transform(rhsMatch);
+		gt.applyRuleToMatch(rhsMatch);
 		
 		collectMatches(lhs, rhs);
 		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
@@ -174,11 +179,11 @@ abstract class GraphTransformTest {
 		
 		collectMatches(lhs, rhs);
 		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
-		pmc.transform(lhsMatch);
+		gt.applyRuleToMatch(lhsMatch);
 		
 		collectMatches(lhs, rhs);
 		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
-		pmc.transform(rhsMatch);
+		gt.applyRuleToMatch(rhsMatch);
 		
 		collectMatches(lhs, rhs);
 		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
@@ -195,11 +200,11 @@ abstract class GraphTransformTest {
 		
 		collectMatches(lhs, rhs);
 		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
-		pmc.transform(lhsMatch);
+		gt.applyRuleToMatch(lhsMatch);
 		
 		collectMatches(lhs, rhs);
 		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
-		pmc.transform(rhsMatch);
+		gt.applyRuleToMatch(rhsMatch);
 		
 		collectMatches(lhs, rhs);
 		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
@@ -217,11 +222,11 @@ abstract class GraphTransformTest {
 		
 		collectMatches(lhs, rhs);
 		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
-		pmc.transform(lhsMatch);
+		gt.applyRuleToMatch(lhsMatch);
 		
 		collectMatches(lhs, rhs);
 		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
-		pmc.transform(rhsMatch);
+		gt.applyRuleToMatch(rhsMatch);
 		
 		collectMatches(lhs, rhs);
 		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
