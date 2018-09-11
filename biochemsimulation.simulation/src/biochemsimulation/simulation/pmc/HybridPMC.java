@@ -2,6 +2,7 @@ package biochemsimulation.simulation.pmc;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -35,9 +36,11 @@ public class HybridPMC extends PatternMatchingController {
 		hybridPatterns = new HashMap<String, HybridPattern>();
 		patterns.forEach((name, pattern) -> {
 			hybridPatterns.put(name, new HybridPattern(name, pattern));
+			/*
 			if(name.equals("bindAndChangeStates_rule_lhs")) {
 				System.out.println(hybridPatterns.get(name));
 			}
+			*/
 		});
 		genericPatterns = new HashMap<String, GenericPattern>();
 		hybridPatterns.forEach((name, pattern) -> {
@@ -69,12 +72,15 @@ public class HybridPMC extends PatternMatchingController {
 			return;
 		}
 		Collection<String> subPatterNames = hybridPatterns.get(patternName).getGenericSubPatterns().keySet();
-		
+		/*
+		System.out.println("SubPatternOrder: ");
+		subPatterNames.forEach(x -> System.out.println("Subpattern Name: "+x));
+		*/
 		for(String subPatternName : subPatterNames) {
 			super.collectMatches(subPatternName);
 		}
 		
-		Map<String, IMatch> subMatches = new HashMap<String, IMatch>();
+		Map<String, IMatch> subMatches = new LinkedHashMap<String, IMatch>();
 		for(String subPatternName : subPatterNames) {
 			if(super.getMatchCount(subPatternName) == 0) {
 				subMatches = null;
@@ -97,7 +103,7 @@ public class HybridPMC extends PatternMatchingController {
 				hybridMatchCount.replace(patternName, 0);
 				break;
 			}
-			System.out.println("Sub pattern name: "+subPatternName+" count: "+currentMatchCount);
+			//System.out.println("Sub pattern name: "+subPatternName+" count: "+currentMatchCount);
 			subMatches.put(subPatternName, currentMatch);
 		}
 		
@@ -105,7 +111,10 @@ public class HybridPMC extends PatternMatchingController {
 			hybridMatchCount.replace(patternName, 0);
 			return;
 		}
-		
+		/*
+		System.out.println("SubMatch order2: ");
+		subMatches.values().forEach(x->System.out.println("Type: "+x.patternName()));
+		*/
 		hybridMatches.put(patternName, new HybridMatch(patternName, subMatches.values(), hybridPatterns.get(patternName)));
 		calculateHybridMatchCount(patternName);
 		

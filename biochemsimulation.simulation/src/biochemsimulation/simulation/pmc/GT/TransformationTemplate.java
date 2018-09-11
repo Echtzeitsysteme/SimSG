@@ -332,6 +332,7 @@ public class TransformationTemplate {
 	}
 	
 	public void applyTransformation(IMatch match, ReactionContainer reactionContainer, ReactionContainerFactory factory) {
+		//System.out.println(match.patternName());
 		applyAgentRemovalCandidates(match);
 		applyLinkRemovalTemplates(match);
 		applyStateChangeTemplates(match);

@@ -3,6 +3,7 @@ package biochemsimulation.simulation.matching.patterns;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +11,9 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
 
+import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
+import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 
 public class HybridPattern {
@@ -27,6 +30,8 @@ public class HybridPattern {
 	private Map<String, Map<String, String>> subPatternGlobalSignatureMap;
 	private Map<String, String> globaltoLocalSignatureMap;
 	
+	private Collection<AgentNodeConstraint> gloablInjectivityConstraints;
+	
 	public HybridPattern(String patternName, Pattern lhs) {
 		this.patternName = patternName;
 		
@@ -41,6 +46,7 @@ public class HybridPattern {
 		splitPattern();
 		generateGenericSubPatterns();
 		mapSubSignaturesToSignatures();
+		generateGlobalInjectivityConstraints();
 	}
 	
 	private void mapAgentNodesToLinkConstraints() {
@@ -117,18 +123,30 @@ public class HybridPattern {
 	}
 	
 	private void generateGenericSubPatterns() {
-		genericSubPatterns = new HashMap<String, GenericPattern>();
+		Map<String, GenericPattern>genericSubPatternsTemp = new HashMap<String, GenericPattern>();
 		globaltoLocalSignatureMap = new HashMap<String, String>();
 		int c = 0;
 		for(Set<AgentNodeContext> subPattern : subPatterns) {
-			List<ValidAgentPattern> vaps = subPattern.stream()
+			Set<ValidAgentPattern> vapsTemp = subPattern.stream()
 					.map(agentNode -> genericLhs.getSignature().getSignaturePattern(agentNode.getAgentVariableName()))
-					.collect(Collectors.toList());
+					.collect(Collectors.toSet());
+			List<ValidAgentPattern> vaps = new LinkedList<ValidAgentPattern>();
+			for(ValidAgentPattern vap: genericLhs.getBody().getAgentPatterns()) {
+				if(vapsTemp.contains(vap)) {
+					vaps.add(vap);
+					vapsTemp.remove(vap);
+				}
+			}
 			
 			String subPatternName = patternName+c;
-			GenericPattern genericSubPattern = new GenericPattern(subPatternName, vaps);
-			genericSubPatterns.put(subPatternName, genericSubPattern);
 			
+			GenericPattern genericSubPattern = new GenericPattern(subPatternName, vaps);
+			genericSubPatternsTemp.put(subPatternName, genericSubPattern);
+			
+			/*
+			System.out.println("Local order of: "+subPatternName+", ");
+			genericSubPattern.getBody().getAgentNodeContexts().values().forEach(x->System.out.println("NodeName: "+x.getAgentVariableName()));
+			*/
 			for(ValidAgentPattern vap : vaps) {
 				String signatureNodeGlobal = genericLhs.getSignature().getSignatureNode(vap);
 				String signatureNodeLocal = genericSubPattern.getSignature().getSignatureNode(vap);
@@ -136,6 +154,23 @@ public class HybridPattern {
 			}
 			
 			c++;
+		}
+		
+		genericSubPatterns = new LinkedHashMap<String, GenericPattern>();
+		for(ValidAgentPattern vap: genericLhs.getBody().getAgentPatterns()) {
+			GenericPattern subPattern = null;
+			for(GenericPattern pattern : genericSubPatternsTemp.values()) {
+				if(pattern.getBody().getAgentNodeContexts().containsKey(vap)) {
+					subPattern = pattern;
+					break;
+				}
+			}
+			if(subPattern == null) {
+				continue;
+			}
+			
+			genericSubPatterns.put(subPattern.getName(), subPattern);
+			genericSubPatternsTemp.remove(subPattern.getName());
 		}
 	}
 	
@@ -154,12 +189,106 @@ public class HybridPattern {
 		}
 	}
 	
+	private void generateGlobalInjectivityConstraints() {
+		gloablInjectivityConstraints = new LinkedList<AgentNodeConstraint>();
+		Collection<AgentNodeConstraint> injectivityConstraintsSignature = genericLhs.getBody().getInjectivityConstraintsSignature();
+		for(AgentNodeConstraint anc : injectivityConstraintsSignature) {
+			//System.out.println("PatternName1 : "+anc.getOperand1().getPatternName()+", VarName: "+anc.getOperand1().getAgentVariableName());
+			//System.out.println("PatternName2 : "+anc.getOperand2().getPatternName()+", VarName: "+anc.getOperand2().getAgentVariableName());
+			//String signatureNode1 = localToGlobalSignature(anc.getOperand1().getPatternName(), anc.getOperand1().getAgentVariableName());
+			//String signatureNode2 = localToGlobalSignature(anc.getOperand2().getPatternName(), anc.getOperand2().getAgentVariableName());
+			//ValidAgentPattern vap1 = genericLhs.getSignature().getSignaturePattern(signatureNode1);
+			//ValidAgentPattern vap2 = genericLhs.getSignature().getSignaturePattern(signatureNode2);
+			if(patternsIntersect(genericLhs.getSignature().getSignaturePattern(anc.getOperand1().getAgentVariableName()), 
+					genericLhs.getSignature().getSignaturePattern(anc.getOperand2().getAgentVariableName()))) {
+				gloablInjectivityConstraints.add(anc);
+			}
+		}
+	}
+	
+	boolean patternsIntersect(ValidAgentPattern vap1, ValidAgentPattern vap2) {
+		return patternsIntersectFwd(vap1, vap2) && patternsIntersectFwd(vap2, vap1);
+	}
+	
+	boolean patternsIntersectFwd(ValidAgentPattern vap1, ValidAgentPattern vap2) {
+		for(SitePattern sp1 : vap1.getSitePatterns().getSitePatterns()) {
+			String sp1Name = sp1.getSite().getName();
+			
+			String sp1State = null;
+			if(sp1.getState() != null) {
+				sp1State = sp1.getState().getState().getName();
+			}else if(sp1.getSite().getStates().getState() != null) {
+				if(sp1.getSite().getStates().getState().size()>0) {
+					sp1State = sp1.getSite().getStates().getState().get(0).getName();
+				}
+			}
+			
+			LinkStateType lst1 = null;
+			if(sp1.getLinkState().getLinkState() != null) {
+				lst1 = LinkStateType.enumFromLinkState(sp1.getLinkState().getLinkState());
+			}
+			
+			for(SitePattern sp2 : vap2.getSitePatterns().getSitePatterns()) {
+				String sp2Name = sp2.getSite().getName();
+				if(!sp1Name.equals(sp2Name)) {
+					continue;
+				}
+				
+				if(sp1State != null) {
+					String sp2State = null;
+					if(sp2.getState() != null) {
+						sp2State = sp2.getState().getState().getName();
+					}else if(sp2.getSite().getStates().getState() != null) {
+						sp2State = sp2.getSite().getStates().getState().get(0).getName();
+					}
+					if(!sp1State.equals(sp2State)) {
+						return false;
+					}
+				}
+				
+				LinkStateType lst2 = null;
+				if(sp2.getLinkState().getLinkState() != null) {
+					lst2 = LinkStateType.enumFromLinkState(sp2.getLinkState().getLinkState());
+				}
+				
+				if(lst2 == LinkStateType.WhatEver || lst1 == LinkStateType.WhatEver) {
+					continue;
+				}
+				
+				if(lst1 == LinkStateType.Unbound && !(lst2 == LinkStateType.Unbound || lst2 == LinkStateType.WhatEver)) {
+					return false;
+				}
+				
+				if(lst2 == LinkStateType.Unbound && !(lst1 == LinkStateType.Unbound || lst1 == LinkStateType.WhatEver)) {
+					return false;
+				}
+				
+				if(lst1 == LinkStateType.BoundAnyOfType && lst2 == LinkStateType.BoundAnyOfType) {
+					BoundAnyOfTypeLink baotl1 = (BoundAnyOfTypeLink)sp1.getLinkState().getLinkState();
+					BoundAnyOfTypeLink baotl2 = (BoundAnyOfTypeLink)sp2.getLinkState().getLinkState();
+					if(!baotl1.getLinkAgent().getAgent().getName().equals(baotl2.getLinkAgent().getAgent().getName())) {
+						return false;
+					}
+					if(!baotl1.getLinkSite().getSite().getName().equals(baotl2.getLinkSite().getSite().getName())) {
+						return false;
+					}
+				}
+				
+				
+				
+			}
+			
+		}
+		return true;
+	}
+	
 	public Map<String, GenericPattern> getGenericSubPatterns() {
 		return genericSubPatterns;
 	}
 	
 	public Collection<AgentNodeConstraint> getInjectivityConstraintsSignature() {
-		return genericLhs.getBody().getInjectivityConstraintsSignature();
+		//return genericLhs.getBody().getInjectivityConstraintsSignature();
+		return gloablInjectivityConstraints;
 	}
 	
 	public String localToGlobalSignature(String subPatternName, String signatureNode) {

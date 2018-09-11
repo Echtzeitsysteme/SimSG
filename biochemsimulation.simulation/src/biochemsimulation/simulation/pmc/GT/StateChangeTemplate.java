@@ -24,9 +24,12 @@ public class StateChangeTemplate {
 		SimAgent agent = (SimAgent) match.get(match.parameterNames().get(agentIndex));
 		siteStateMap.forEach( (idx, state) -> {
 			SimSite ss = agent.getSimSites().get(idx);
+			//System.out.println("Agent type: "+agent.getType());
+			//System.out.println("Site type: "+ss.getType());
 			if(!ss.getSimSiteState().getType().equals(state)) {
 				ss.getSimSiteState().setType(state);
 			}
+			
 		});
 	}
 	
