@@ -6,19 +6,22 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import biochemsimulation.simulation.matching.patterns.HybridPattern;
+
 public class HybridMatch implements IMatch {
 	
 	private String patternName;
 	private Map<String, Object> parameters;
 	private List<String> parameterNames;
 	
-	public HybridMatch(String patternName, final Collection<IMatch> subMatches) {
+	public HybridMatch(String patternName, final Collection<IMatch> subMatches, HybridPattern pattern) {
 		this.patternName = patternName;
 		
 		parameters = new HashMap<String, Object>();
 		for(IMatch subMatch : subMatches) {
 			for(String paramName : subMatch.parameterNames()) {
-				parameters.put(paramName, subMatch.get(paramName));
+				//parameters.put(paramName, subMatch.get(paramName));
+				parameters.put(pattern.localToGlobalSignature(subMatch.patternName(), paramName), subMatch.get(paramName));
 			}
 		}
 		

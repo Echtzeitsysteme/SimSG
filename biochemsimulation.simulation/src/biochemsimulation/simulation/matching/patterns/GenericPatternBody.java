@@ -309,7 +309,7 @@ public class GenericPatternBody {
 			sb.append("\t\t\tFrom: Agent("+lsc.getOperand1().getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
 			sb.append(".Site("+lsc.getOperand1().getSiteNodeContext().getSiteType()+") <====> Agent(*).Site(*);\n");
 		}
-		sb.append("\n\t\t BoundToAny-Links:\n");
+		sb.append("\n\t\t WhatEver-Links:\n");
 		for(LinkStateConstraint lsc : linkStateConstraints.values()) {
 			if(lsc.getOperand1().getStateType() != LinkStateType.WhatEver) {
 				continue;
@@ -317,7 +317,7 @@ public class GenericPatternBody {
 			sb.append("\t\t\tFrom: Agent("+lsc.getOperand1().getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
 			sb.append(".Site("+lsc.getOperand1().getSiteNodeContext().getSiteType()+") <==??==> (??);\n");
 		}
-		sb.append("\n\t\t BoundToAny-Links:\n");
+		sb.append("\n\t\t Unbound-Links:\n");
 		for(LinkStateConstraint lsc : linkStateConstraints.values()) {
 			if(lsc.getOperand1().getStateType() != LinkStateType.Unbound) {
 				continue;

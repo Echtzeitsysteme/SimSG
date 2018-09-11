@@ -70,6 +70,10 @@ public abstract class PatternMatchingEngine {
 		allPatterns.addAll(voidPatterns);
 	}
 	
+	public boolean isVoidPattern(String patternName) {
+		return voidPatterns.contains(patternName);
+	}
+	
 	public Collection<String> getNonVoidPatternNames() {
 		return nonVoidPatterns;
 	}

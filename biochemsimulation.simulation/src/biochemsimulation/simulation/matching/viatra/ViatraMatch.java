@@ -18,7 +18,8 @@ public class ViatraMatch implements IMatch {
 
 	@Override
 	public String patternName() {
-		return match.patternName();
+		//return match.patternName();
+		return match.patternName().replaceAll("^(.)*\\.", "");
 	}
 
 	@Override

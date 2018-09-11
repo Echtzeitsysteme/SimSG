@@ -10,6 +10,7 @@ import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.utils.PatternUtils;
 import biochemsimulation.simulation.matching.HybridMatch;
 import biochemsimulation.simulation.matching.IMatch;
+import biochemsimulation.simulation.matching.IMatchImpl;
 import biochemsimulation.simulation.matching.patterns.AgentNodeConstraint;
 import biochemsimulation.simulation.matching.patterns.GenericPattern;
 import biochemsimulation.simulation.matching.patterns.HybridPattern;
@@ -34,6 +35,9 @@ public class HybridPMC extends PatternMatchingController {
 		hybridPatterns = new HashMap<String, HybridPattern>();
 		patterns.forEach((name, pattern) -> {
 			hybridPatterns.put(name, new HybridPattern(name, pattern));
+			if(name.equals("bindAndChangeStates_rule_lhs")) {
+				System.out.println(hybridPatterns.get(name));
+			}
 		});
 		genericPatterns = new HashMap<String, GenericPattern>();
 		hybridPatterns.forEach((name, pattern) -> {
@@ -59,6 +63,11 @@ public class HybridPMC extends PatternMatchingController {
 
 	@Override
 	public void collectMatches(String patternName) throws Exception {
+		if(engine.isVoidPattern(patternName)) {
+			hybridMatches.put(patternName, new IMatchImpl(patternName));
+			hybridMatchCount.replace(patternName, 1);
+			return;
+		}
 		Collection<String> subPatterNames = hybridPatterns.get(patternName).getGenericSubPatterns().keySet();
 		
 		for(String subPatternName : subPatterNames) {
@@ -75,18 +84,20 @@ public class HybridPMC extends PatternMatchingController {
 			
 			int idx = 0;
 			IMatch currentMatch = null;
+			boolean passedInjectivityCheck = false;
 			int currentMatchCount = super.getMatchCount(subPatternName);
 			do{
-				currentMatch = getMatchAt(subPatternName, idx);
+				currentMatch = super.getMatchAt(subPatternName, idx);
 				idx++;
-			}while(idx < currentMatchCount && !checkSubMatchInjectivityConstraints(currentMatch, subMatches));
+				passedInjectivityCheck = checkSubMatchInjectivityConstraints(currentMatch, subMatches);
+			}while(idx < currentMatchCount && !passedInjectivityCheck);
 			
-			if(idx == currentMatchCount) {
+			if(!passedInjectivityCheck) {
 				subMatches = null;
 				hybridMatchCount.replace(patternName, 0);
 				break;
 			}
-			
+			System.out.println("Sub pattern name: "+subPatternName+" count: "+currentMatchCount);
 			subMatches.put(subPatternName, currentMatch);
 		}
 		
@@ -95,7 +106,7 @@ public class HybridPMC extends PatternMatchingController {
 			return;
 		}
 		
-		hybridMatches.put(patternName, new HybridMatch(patternName, subMatches.values()));
+		hybridMatches.put(patternName, new HybridMatch(patternName, subMatches.values(), hybridPatterns.get(patternName)));
 		calculateHybridMatchCount(patternName);
 		
 	}
@@ -174,7 +185,17 @@ public class HybridPMC extends PatternMatchingController {
 		}
 		hybridMatchCount.replace(patternName, count);
 	}
-
+	
+	@Override
+	public IMatch getRandomMatch(String patternName) {
+		return hybridMatches.get(patternName);
+	}
+	
+	@Override
+	public IMatch getMatchAt(String patternName, int idx) {
+		return hybridMatches.get(patternName);
+	}
+	
 	@Override
 	public void collectAllMatches() throws Exception {
 		for(String hybridPatternName : hybridPatterns.keySet()) {

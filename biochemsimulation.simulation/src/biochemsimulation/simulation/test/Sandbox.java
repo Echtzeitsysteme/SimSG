@@ -24,6 +24,7 @@ import biochemsimulation.simulation.persistence.PersistenceManagerFactory;
 import biochemsimulation.simulation.pmc.PatternMatchingController;
 import biochemsimulation.simulation.pmc.PatternMatchingControllerEnum;
 import biochemsimulation.simulation.pmc.PatternMatchingControllerFactory;
+import biochemsimulation.simulation.pmc.GT.ReactionRuleTransformer;
 
 public class Sandbox {
 
@@ -33,11 +34,11 @@ public class Sandbox {
 		test4();
 		test6();
 		*/
-		test7();
+		//test7();
 		//test8_kill();
 		//benchmark();
 		//test4();
-		//hybridTest();
+		hybridGTTest();
 	}
 
 	public static void test1() {
@@ -234,7 +235,7 @@ public class Sandbox {
 		PatternMatchingController pmc = PatternMatchingControllerFactory
 				.create(PatternMatchingControllerEnum.HybridPMC);
 		PatternMatchingEngine engine = PatternMatchingEngineFactory
-				.create(PatternMatchingEngineEnum.DemoclesEngine);
+				.create(PatternMatchingEngineEnum.ViatraEngine);
 		pmc.setEngine(engine);
 		
 		PatternMatchingController pmc2 = createSimplePMC_Viatra();
@@ -316,6 +317,61 @@ public class Sandbox {
 			//pmc.collectAllMatches();
 			System.out.println(pmc2.getMatchCount("r2_lhs"));
 			pmc2.discardEngine();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(Runtimer.getInstance());
+	}
+	
+	public static void hybridGTTest() {
+		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
+		pm.init();
+		
+		PatternMatchingController pmc = PatternMatchingControllerFactory
+				.create(PatternMatchingControllerEnum.HybridPMC);
+		PatternMatchingEngine engine = PatternMatchingEngineFactory
+				.create(PatternMatchingEngineEnum.ViatraEngine);
+		pmc.setEngine(engine);
+		
+		
+		PatternMatchingController pmc2 = createSimplePMC_Democles();
+		
+		try {
+			ReactionRuleModel model1 = pm.loadReactionRuleModel("GraphTransformTest");
+			ReactionContainer model2 = pm.loadReactionContainerModel("GraphTransformTest");
+			ReactionRuleTransformer gt = new ReactionRuleTransformer(model1, model2);
+			gt.init();
+			
+			pmc.loadModels(model1, model2);
+			pmc.initEngine();
+			pmc.initController();
+			pmc.collectAllMatches();
+			System.out.println(pmc.getMatchCount("bindAndChangeStates_rule_lhs"));
+			gt.applyRuleToMatch(pmc.getRandomMatch("bindAndChangeStates_rule_lhs"));
+			pmc.collectAllMatches();
+			System.out.println(pmc.getMatchCount("bindAndChangeStates_rule_lhs"));
+			pmc.discardEngine();
+			pm.unloadReactionContainerModel("GraphTransformTest");
+			
+			/*
+			model2 = pm.loadReactionContainerModel("GraphTransformTest");
+			gt = new ReactionRuleTransformer(model1, model2);
+			gt.init();
+			
+			pmc2.loadModels(model1, model2);
+			pmc2.initEngine();
+			pmc2.initController();
+			pmc2.collectAllMatches();
+			System.out.println(pmc2.getMatchCount("bindAndChangeStates_rule_lhs"));
+			gt.applyRuleToMatch(pmc2.getRandomMatch("bindAndChangeStates_rule_lhs"));
+			pmc2.collectAllMatches();
+			System.out.println(pmc2.getMatchCount("bindAndChangeStates_rule_lhs"));
+			
+			pmc2.discardEngine();
+			*/
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
