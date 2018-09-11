@@ -48,7 +48,16 @@ public class ViatraCodeGenerator {
     HashMap<String, String> _hashMap = new HashMap<String, String>();
     this.supportPatterns = _hashMap;
     this.createAnyLinkSupportPattern();
-    this.genericPatterns = genericPatterns;
+    HashMap<String, GenericPattern> _hashMap_1 = new HashMap<String, GenericPattern>();
+    this.genericPatterns = _hashMap_1;
+    final BiConsumer<String, GenericPattern> _function = (String name, GenericPattern pattern) -> {
+      boolean _isVoidPattern = pattern.isVoidPattern();
+      boolean _not = (!_isVoidPattern);
+      if (_not) {
+        this.genericPatterns.put(name, pattern);
+      }
+    };
+    genericPatterns.forEach(_function);
   }
   
   public String createAnyLinkSupportPattern() {

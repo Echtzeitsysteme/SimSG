@@ -38,7 +38,12 @@ class ViatraCodeGenerator {
 		supportPatterns = new HashMap
 		
 		createAnyLinkSupportPattern()
-		this.genericPatterns = genericPatterns
+		this.genericPatterns = new HashMap
+		genericPatterns.forEach([name, pattern | 
+			if(!pattern.voidPattern) {
+				this.genericPatterns.put(name, pattern)
+			}
+		])
 	}
 	
 	def createAnyLinkSupportPattern() {
@@ -53,7 +58,7 @@ class ViatraCodeGenerator {
 		genericPatterns = new HashMap
 		rulePatterns.forEach([name, pattern | 
 			val gPattern = new GenericPattern(name, pattern)
-			if(!gPattern.isVoidPattern) {
+			if(!gPattern.voidPattern) {
 				genericPatterns.put(name, new GenericPattern(name, pattern))
 			}
 		])
