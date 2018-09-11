@@ -38,7 +38,8 @@ public class Sandbox {
 		//test8_kill();
 		//benchmark();
 		//test4();
-		hybridGTTest();
+		//hybridTest();
+		hybridObsTest();
 	}
 
 	public static void test1() {
@@ -235,14 +236,14 @@ public class Sandbox {
 		PatternMatchingController pmc = PatternMatchingControllerFactory
 				.create(PatternMatchingControllerEnum.HybridPMC);
 		PatternMatchingEngine engine = PatternMatchingEngineFactory
-				.create(PatternMatchingEngineEnum.ViatraEngine);
+				.create(PatternMatchingEngineEnum.DemoclesEngine);
 		pmc.setEngine(engine);
 		
-		PatternMatchingController pmc2 = createSimplePMC_Viatra();
+		PatternMatchingController pmc2 = createSimplePMC_Democles();
 		
 		try {
-			ReactionRuleModel model1 = pm.loadReactionRuleModel("HybridPatternSandbox");
-			ReactionContainer model2 = pm.loadReactionContainerModel("HybridPatternSandbox");
+			ReactionRuleModel model1 = pm.loadReactionRuleModel("Bench_C8Entities_Var5PatternSize");
+			ReactionContainer model2 = pm.loadReactionContainerModel("Bench_C8Entities_Var5PatternSize");
 			/*
 			Map<String, biochemsimulation.reactionrules.reactionRules.Pattern> rulePatterns = PatternUtils.getPatterns(model1);
 			Map<String, HybridPattern> hybridPatterns = new HashMap<String, HybridPattern>();
@@ -282,11 +283,11 @@ public class Sandbox {
 				}
 			});
 			//pmc.collectAllMatches();
-			System.out.println(pmc.getMatchCount("r2_lhs"));
+			System.out.println(pmc.getMatchCount("destroy_lhs"));
 			pmc.discardEngine();
-			pm.unloadReactionContainerModel("HybridPatternSandbox");
+			pm.unloadReactionContainerModel("Bench_C8Entities_Var5PatternSize");
 			
-			model2 = pm.loadReactionContainerModel("HybridPatternSandbox");
+			model2 = pm.loadReactionContainerModel("Bench_C8Entities_Var5PatternSize");
 			pmc2.loadModels(model1, model2);
 			Runtimer.getInstance().measure(pmc2, "simpleInitEngine", () -> {
 				try {
@@ -315,7 +316,7 @@ public class Sandbox {
 				}
 			});
 			//pmc.collectAllMatches();
-			System.out.println(pmc2.getMatchCount("r2_lhs"));
+			System.out.println(pmc2.getMatchCount("destroy_lhs"));
 			pmc2.discardEngine();
 			
 		} catch (Exception e) {
@@ -355,6 +356,61 @@ public class Sandbox {
 			System.out.println(pmc.getMatchCount("bindAndChangeStates_rule_lhs"));
 			pmc.discardEngine();
 			pm.unloadReactionContainerModel("GraphTransformTest");
+			
+			/*
+			model2 = pm.loadReactionContainerModel("GraphTransformTest");
+			gt = new ReactionRuleTransformer(model1, model2);
+			gt.init();
+			
+			pmc2.loadModels(model1, model2);
+			pmc2.initEngine();
+			pmc2.initController();
+			pmc2.collectAllMatches();
+			System.out.println(pmc2.getMatchCount("bindAndChangeStates_rule_lhs"));
+			gt.applyRuleToMatch(pmc2.getRandomMatch("bindAndChangeStates_rule_lhs"));
+			pmc2.collectAllMatches();
+			System.out.println(pmc2.getMatchCount("bindAndChangeStates_rule_lhs"));
+			
+			pmc2.discardEngine();
+			*/
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println(Runtimer.getInstance());
+	}
+	
+	public static void hybridObsTest() {
+		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
+		pm.init();
+		
+		PatternMatchingController pmc = PatternMatchingControllerFactory
+				.create(PatternMatchingControllerEnum.SimplePMC);
+		PatternMatchingEngine engine = PatternMatchingEngineFactory
+				.create(PatternMatchingEngineEnum.ViatraEngine);
+		pmc.setEngine(engine);
+		
+		
+		PatternMatchingController pmc2 = createSimplePMC_Democles();
+		
+		try {
+			ReactionRuleModel model1 = pm.loadReactionRuleModel("HybridPatternSandbox");
+			ReactionContainer model2 = pm.loadReactionContainerModel("HybridPatternSandbox");
+			ReactionRuleTransformer gt = new ReactionRuleTransformer(model1, model2);
+			gt.init();
+			
+			pmc.loadModels(model1, model2);
+			pmc.initEngine();
+			pmc.initController();
+			pmc.collectAllMatches();
+			System.out.println(pmc.getMatchCount("r2_lhs"));
+			gt.applyRuleToMatch(pmc.getRandomMatch("r2_lhs"));
+			pmc.collectAllMatches();
+			System.out.println(pmc.getMatchCount("r2_lhs"));
+			pmc.discardEngine();
+			pm.unloadReactionContainerModel("HybridPatternSandbox");
 			
 			/*
 			model2 = pm.loadReactionContainerModel("GraphTransformTest");

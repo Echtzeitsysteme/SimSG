@@ -28,6 +28,14 @@ public class DemoclesEngineWrapper extends PatternMatchingEngine {
 		}
 		 
 		patterns = new LinkedList<Pattern>(generator.doGenerate().values());
+		
+		// observables, termination conditions etc.
+		if(!additionalGenericPatterns.isEmpty()) {
+			generator = new DemoclesPatternGenerator(additionalGenericPatterns);
+			patterns.addAll(new LinkedList<Pattern>(generator.doGenerate().values()));
+		}
+		
+		
 	}
 
 	@Override

@@ -37,6 +37,13 @@ public class ViatraEngineWrapper extends PatternMatchingEngine {
 			gen = new ViatraPatternGenerator(genericPatterns);
 		}
 		patternModel = gen.doGenerate("", false);
+		
+		// observables, termination conditions etc.
+		if(!additionalGenericPatterns.isEmpty()) {
+			gen = new ViatraPatternGenerator(genericPatterns);
+			PatternModel patternModel2 = gen.doGenerate("", false);
+			patternModel.getPatterns().addAll(patternModel2.getPatterns());
+		}
 	}
 
 	@Override

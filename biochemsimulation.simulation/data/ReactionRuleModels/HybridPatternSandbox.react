@@ -19,3 +19,5 @@ var dummy_rate = 0.1
 //rule r p -> {void, void, void, void} @ [dummy_rate]
 //rule r1 p1 -> {void, void, void} @ [dummy_rate]
 rule r2 p2 -> {void, void, void} @ [dummy_rate]
+
+obs ob p2
