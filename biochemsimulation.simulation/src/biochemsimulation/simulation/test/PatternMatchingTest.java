@@ -78,7 +78,7 @@ abstract class PatternMatchingTest {
 	
 	@Test
 	void testGetAllMatches() {
-		Collection<String> patternNames = PatternUtils.getPatterns(ruleModel).keySet();
+		Collection<String> patternNames = PatternUtils.getRulePatterns(ruleModel).keySet();
 		Map<String, Collection<IMatch>> matches = null;
 		try {
 			pmc.collectAllMatches();

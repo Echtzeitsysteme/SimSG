@@ -46,7 +46,7 @@ public class ViatraCodeGenerator2 {
     this.importAliases = importAliases;
     HashMap<String, String> _hashMap = new HashMap<String, String>();
     this.supportPatterns = _hashMap;
-    this.rulePatterns = PatternUtils.getPatterns(model);
+    this.rulePatterns = PatternUtils.getRulePatterns(model);
     this.createAnyLinkSupportPattern();
     this.createSimSiteSupportPattern();
     this.createSimSiteStateSupportPattern();

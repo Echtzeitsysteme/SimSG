@@ -32,15 +32,10 @@ public class HybridPMC extends PatternMatchingController {
 
 	@Override
 	protected void feedEngine() throws Exception {
-		Map<String, Pattern> patterns = PatternUtils.getPatterns(ruleModel);
+		Map<String, Pattern> patterns = PatternUtils.getRulePatterns(ruleModel);
 		hybridPatterns = new HashMap<String, HybridPattern>();
 		patterns.forEach((name, pattern) -> {
 			hybridPatterns.put(name, new HybridPattern(name, pattern));
-			/*
-			if(name.equals("bindAndChangeStates_rule_lhs")) {
-				System.out.println(hybridPatterns.get(name));
-			}
-			*/
 		});
 		genericPatterns = new HashMap<String, GenericPattern>();
 		hybridPatterns.forEach((name, pattern) -> {

@@ -32,7 +32,7 @@ class ViatraCodeGenerator2 {
 		this.importAliases = importAliases
 		supportPatterns = new HashMap
 		
-		rulePatterns = PatternUtils.getPatterns(model)
+		rulePatterns = PatternUtils.getRulePatterns(model)
 		createAnyLinkSupportPattern()
 		createSimSiteSupportPattern()
 		createSimSiteStateSupportPattern()

@@ -20,7 +20,6 @@ import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.EMFPatter
 import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternModel;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
-import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.simulation.matching.patterns.GenericPattern;
 import biochemsimulation.simulation.persistence.PersistenceUtils;
 
@@ -34,7 +33,6 @@ public class ViatraPatternGenerator {
 	
 	private String os;
 	private boolean isInitialized;
-	private ReactionRuleModel model;
 	private Map<String, GenericPattern> genericPatterns;
 	private PatternModel patternModel;
 	private String patternModelFolder;
@@ -66,17 +64,9 @@ public class ViatraPatternGenerator {
 		EMFPatternLanguagePackage.eINSTANCE.eClass();
 	}
 	
-	public ViatraPatternGenerator(ReactionRuleModel model) {
-		init();
-		isInitialized = model != null;
-		this.model = model;
-		this.genericPatterns = null;
-	}
-	
 	public ViatraPatternGenerator(Map<String, GenericPattern> genericPatterns) {
 		init();
 		isInitialized = genericPatterns != null;
-		this.model = null;
 		this.genericPatterns = genericPatterns;
 	}
 	
@@ -88,12 +78,7 @@ public class ViatraPatternGenerator {
 		LinkedHashMap<EPackage, String> imports = new LinkedHashMap<EPackage, String>();
 		imports.put(ReactionContainerPackage.eINSTANCE, "reactionContainer");
 		
-		ViatraCodeGenerator pt = null;
-		if(model != null) {
-			pt = new ViatraCodeGenerator(imports, model);
-		}else {
-			pt = new ViatraCodeGenerator(imports, genericPatterns);
-		}
+		ViatraCodeGenerator pt = new ViatraCodeGenerator(imports, genericPatterns);
 			
 		String output = pt.generatePatternCode();
 		

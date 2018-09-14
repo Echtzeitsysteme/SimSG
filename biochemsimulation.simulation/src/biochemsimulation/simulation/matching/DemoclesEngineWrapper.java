@@ -20,13 +20,7 @@ public class DemoclesEngineWrapper extends PatternMatchingEngine {
 	
 	@Override
 	public void loadModels() throws Exception {
-		DemoclesPatternGenerator generator = null;
-		if(rules != null) {
-			generator = new DemoclesPatternGenerator(rules);
-		}else {
-			generator = new DemoclesPatternGenerator(genericPatterns);
-		}
-		 
+		DemoclesPatternGenerator generator = new DemoclesPatternGenerator(genericPatterns);
 		patterns = new LinkedList<Pattern>(generator.doGenerate().values());
 		
 		// observables, termination conditions etc.

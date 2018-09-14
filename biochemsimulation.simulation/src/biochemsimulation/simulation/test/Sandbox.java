@@ -1,23 +1,16 @@
 package biochemsimulation.simulation.test;
 
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.jar.Attributes.Name;
 import java.util.stream.Collectors;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
-import biochemsimulation.reactionrules.utils.PatternUtils;
 import biochemsimulation.simulation.Simulation;
 import biochemsimulation.simulation.SimulationConfigurator;
 import biochemsimulation.simulation.benchmark.Runtimer;
-import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.PatternMatchingEngine;
 import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;
 import biochemsimulation.simulation.matching.PatternMatchingEngineFactory;
-import biochemsimulation.simulation.matching.patterns.HybridPattern;
 import biochemsimulation.simulation.persistence.PersistenceManager;
 import biochemsimulation.simulation.persistence.PersistenceManagerEnum;
 import biochemsimulation.simulation.persistence.PersistenceManagerFactory;
@@ -40,86 +33,6 @@ public class Sandbox {
 		//test4();
 		//hybridTest();
 		hybridObsTest();
-	}
-
-	public static void test1() {
-		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
-		pm.init();
-
-		pm.availableReactionContainerModels().forEach(x -> System.out.println(x));
-		pm.availableReactionRuleModels().forEach(x -> System.out.println(x));
-
-		try {
-			ReactionRuleModel model1 = pm.loadReactionRuleModel("test2");
-			System.out.println("Loaded reaction rule model: " + model1.getModel().getName());
-			ReactionContainer model2 = pm.loadReactionContainerModel("test2");
-			System.out.println("Loaded reaction container model: " + model2.getName());
-
-			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.ViatraEngine);
-			engine.setReactionRules(model1);
-			engine.setReactionContainer(model2);
-			engine.loadModels();
-			engine.initEngine();
-			Map<String, Collection<IMatch>> results = engine.getAllMatches();
-			System.out.println("Found matches on given Models:");
-			for (String key : results.keySet()) {
-				System.out.println("Pattern: " + key + ", size: " + results.get(key).size());
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public static void test4() {
-		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
-		pm.init();
-		
-		try {
-			ReactionRuleModel model1 = pm.loadReactionRuleModel("test3");
-			ReactionContainer model2 = pm.loadReactionContainerModel("test3");
-			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.ViatraEngine);
-			engine.setReactionRules(model1);
-			engine.setReactionContainer(model2);
-			engine.loadModels();
-			engine.initEngine();
-			Map<String, Collection<IMatch>> matches = engine.getAllMatches();
-			matches.forEach((name, m) -> {
-				System.out.println("Pattern: "+name+", size: "+m.size());
-			});
-			engine.disposeEngine();
-			org.eclipse.emf.ecore.util.EcoreUtil.delete(model2.getSimAgent().get(1));
-			// calling unload leads to saving changes to persistence
-			pm.unloadReactionContainerModel("test3");
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-	
-	public static void test6() {
-		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
-		pm.init();
-		try {
-			ReactionRuleModel model1 = pm.loadReactionRuleModel("PatternMatchingTest");
-			ReactionContainer model2 = pm.loadReactionContainerModel("PatternMatchingTest");
-			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.DemoclesEngine);
-			engine.setReactionRules(model1);
-			engine.setReactionContainer(model2);
-			engine.loadModels();
-			engine.initEngine();
-			Map<String, Collection<IMatch>> matches = engine.getAllMatches();
-			matches.forEach((name, m) -> {
-				System.out.println("Pattern: "+name+", size: "+m.size());
-			});
-			engine.disposeEngine();
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	public static void test7() {
@@ -189,43 +102,6 @@ public class Sandbox {
 		
 		
 		Runtimer.getInstance().toFile();
-		
-	}
-	
-	public static void test8_kill() {
-		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
-		pm.init();
-		try {
-			ReactionRuleModel model1 = pm.loadReactionRuleModel("DemoclesKill1");
-			ReactionContainer model2 = pm.loadReactionContainerModel("DemoclesKill1");
-			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.DemoclesEngine);
-			engine.setReactionRules(model1);
-			engine.setReactionContainer(model2);
-			engine.loadModels();
-			Runtimer.getInstance().measure(engine, "init", () -> {
-				try {
-					engine.initEngine();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			});
-			//engine.initEngine();
-			System.out.println(Runtimer.getInstance());
-			Map<String, Collection<IMatch>> matches = engine.getAllMatches();
-			matches.forEach((name, m) -> {
-				if(m != null) {
-					System.out.println("Pattern: "+name+", size: "+m.size());
-				}
-				
-			});
-			
-			engine.disposeEngine();
-
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 	}
 	

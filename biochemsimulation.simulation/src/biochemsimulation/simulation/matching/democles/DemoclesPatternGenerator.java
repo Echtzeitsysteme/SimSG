@@ -22,8 +22,6 @@ import org.gervarro.democles.specification.emf.constraint.relational.RelationalC
 import org.gervarro.democles.specification.emf.constraint.relational.RelationalConstraintFactory;
 
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
-import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
-import biochemsimulation.reactionrules.utils.PatternUtils;
 import biochemsimulation.simulation.matching.patterns.AgentNodeConstraint;
 import biochemsimulation.simulation.matching.patterns.AgentNodeContext;
 import biochemsimulation.simulation.matching.patterns.ConstraintType;
@@ -48,7 +46,6 @@ public class DemoclesPatternGenerator {
 
 	public static final String BOUND_ANY_LINK_PATTERN_KEY = "BoundAnyLink_SupportPattern";
 
-	private Map<String, biochemsimulation.reactionrules.reactionRules.Pattern> rulePatterns;
 	private Map<String, GenericPattern> genericPatterns;
 
 	Map<String, Pattern> generated;
@@ -58,20 +55,8 @@ public class DemoclesPatternGenerator {
 	private Map<SiteNodeContext, EMFVariable> sitesVariables;
 	private Map<SiteNodeContext, EMFVariable> linkVariables;
 
-	public DemoclesPatternGenerator(ReactionRuleModel model) {
-		rulePatterns = PatternUtils.getPatterns(model);
-		generateGenericPatterns();
-	}
-	
 	public DemoclesPatternGenerator(Map<String, GenericPattern> genericPatterns) {
 		this.genericPatterns = genericPatterns;
-	}
-
-	private void generateGenericPatterns() {
-		genericPatterns = new HashMap<String, GenericPattern>();
-		rulePatterns.forEach((name, pattern) -> {
-			genericPatterns.put(name, new GenericPattern(name, pattern));
-		});
 	}
 
 	public Map<String, Pattern> doGenerate() {

@@ -28,7 +28,7 @@ class ViatraCodeGenerator {
 		this.importAliases = importAliases
 		supportPatterns = new HashMap
 		
-		rulePatterns = PatternUtils.getPatterns(model)
+		rulePatterns = PatternUtils.getRulePatterns(model)
 		createAnyLinkSupportPattern()
 		generateGenericPatterns()
 	}

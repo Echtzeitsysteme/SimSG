@@ -1,8 +1,6 @@
 package biochemsimulation.simulation.matching;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
-import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
-import biochemsimulation.reactionrules.utils.PatternUtils;
 import biochemsimulation.simulation.matching.patterns.GenericPattern;
 
 import java.util.Collection;
@@ -17,7 +15,6 @@ public abstract class PatternMatchingEngine {
 	protected PatternMatchingEngineEnum type;
 	
 	protected ReactionContainer model;
-	protected ReactionRuleModel rules;
 	protected Map<String, GenericPattern> genericPatterns;
 	// observables, termination conditions etc.
 	protected Map<String, GenericPattern> additionalGenericPatterns;
@@ -32,18 +29,7 @@ public abstract class PatternMatchingEngine {
 		additionalGenericPatterns = new HashMap<String, GenericPattern>();
 	}
 	
-	public void setReactionRules(ReactionRuleModel rules) {
-		this.rules = rules;
-		PatternUtils.getPatterns(rules).forEach((name, pattern)->{
-			if(PatternUtils.isPatternVoid(pattern)) {
-				voidPatterns.add(name);
-			}
-		});
-		this.genericPatterns = null;
-	}
-	
 	public void setReactionRules(Map<String, GenericPattern> genericPatterns) {
-		this.rules = null;
 		genericPatterns.forEach((name, pattern) -> {
 			if(pattern.isVoidPattern()) {
 				voidPatterns.add(name);
