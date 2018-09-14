@@ -175,5 +175,23 @@ public class PatternUtils {
 		return popPatterns;
 	}
 	
+	public static Map<String, Double> getRates(ReactionRuleModel model) {
+		return extractRatesFromRules(getRules(model));
+	}
+	
+	public static Map<String, Double> extractRatesFromRules(List<Rule> rules) {
+		Map<String, Double> staticReactionRates = new LinkedHashMap<String, Double>();
+		for (Rule rule : rules) {
+			List<Double> reactionRates = new LinkedList<Double>();
+			rule.getRule().getVariables().getVariables().forEach(var -> {
+				reactionRates.add(valueOfNumericAssignment(var));
+			});
+			staticReactionRates.put(rule.getName() + PATTERN_NAME_SUFFIX_LHS, reactionRates.get(0));
+			if (rule.getRule().getOperator().equals(RULE_OPERATOR_BI)) {
+				staticReactionRates.put(rule.getName() + PATTERN_NAME_SUFFIX_RHS, reactionRates.get(1));
+			}
+		}
+		return staticReactionRates;
+	}
 	
 }

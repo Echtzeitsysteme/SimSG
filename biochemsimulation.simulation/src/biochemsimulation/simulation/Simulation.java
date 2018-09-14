@@ -1,14 +1,9 @@
 package biochemsimulation.simulation;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
-import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral;
-import biochemsimulation.reactionrules.reactionRules.NumericFromVariable;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.utils.PatternUtils;
 import biochemsimulation.simulation.benchmark.Runtimer;
@@ -50,21 +45,7 @@ public abstract class Simulation {
 	}
 	
 	protected void initStaticReactionRates() {
-		staticReactionRates = new HashMap<String, Double>();
-		gt.getRuleMap().forEach((name, r) -> {
-			List<Double> reactionRate = new LinkedList<Double>();
-			r.getRule().getVariables().getVariables().forEach(y->{
-				if(y instanceof NumericFromLiteral) {
-					reactionRate.add(Double.valueOf(((NumericFromLiteral) y).getValue().getValue()));
-				}else {
-					reactionRate.add(Double.valueOf(((NumericFromVariable) y).getValueVar().getValue().getValue()));
-				}
-			});
-			staticReactionRates.put(name+PatternUtils.PATTERN_NAME_SUFFIX_LHS, reactionRate.get(0));
-			if(r.getRule().getOperator().equals(PatternUtils.RULE_OPERATOR_BI)) {
-				staticReactionRates.put(name+PatternUtils.PATTERN_NAME_SUFFIX_RHS, reactionRate.get(1));
-			}
-		});
+		staticReactionRates = PatternUtils.getRates(ruleModel);
 	}
 	
 	public void initialize() throws Exception {
@@ -74,7 +55,7 @@ public abstract class Simulation {
 		pmc.loadModels(ruleModel, reactionContainer);
 		pmc.initEngine();
 		pmc.initController();
-		gt = new ReactionRuleTransformer(ruleModel, reactionContainer);
+		gt = new ReactionRuleTransformer(pmc.getPatternContainer(), reactionContainer);
 		gt.init();
 		initStaticReactionRates();
 		state = new SimulationState();
@@ -96,8 +77,8 @@ public abstract class Simulation {
 	private void initializeClockedInternal() throws Exception {
 		Runtimer timer = Runtimer.getInstance();
 		persistence.init();
-		ReactionRuleModel ruleModel = persistence.loadReactionRuleModel(modelName);
-		ReactionContainer reactionContainer = persistence.loadReactionContainerModel(modelName);
+		ruleModel = persistence.loadReactionRuleModel(modelName);
+		reactionContainer = persistence.loadReactionContainerModel(modelName);
 		timer.measure(this, "loadModels", () -> {
 			try {
 				pmc.loadModels(ruleModel, reactionContainer);
@@ -123,7 +104,7 @@ public abstract class Simulation {
 			}
 		});
 		
-		gt = new ReactionRuleTransformer(ruleModel, reactionContainer);
+		gt = new ReactionRuleTransformer(pmc.getPatternContainer(), reactionContainer);
 		gt.init();
 		initStaticReactionRates();
 		state = new SimulationState();
