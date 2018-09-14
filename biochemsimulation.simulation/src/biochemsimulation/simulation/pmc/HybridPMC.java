@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import biochemsimulation.reactionrules.reactionRules.Pattern;
-import biochemsimulation.reactionrules.utils.PatternUtils;
+import biochemsimulation.reactionrules.utils.PatternContainer;
 import biochemsimulation.simulation.matching.HybridMatch;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.IMatchImpl;
@@ -32,10 +32,10 @@ public class HybridPMC extends PatternMatchingController {
 
 	@Override
 	protected void feedEngine() throws Exception {
-		Map<String, Pattern> patterns = PatternUtils.getRulePatterns(ruleModel);
+		Collection<Pattern> patterns = patternContainer.getAllPatterns();
 		hybridPatterns = new HashMap<String, HybridPattern>();
-		patterns.forEach((name, pattern) -> {
-			hybridPatterns.put(name, new HybridPattern(name, pattern));
+		patterns.forEach(pattern -> {
+			hybridPatterns.put(PatternContainer.calcPatternHash(pattern), new HybridPattern(PatternContainer.calcPatternHash(pattern), pattern));
 		});
 		genericPatterns = new HashMap<String, GenericPattern>();
 		hybridPatterns.forEach((name, pattern) -> {
@@ -58,9 +58,15 @@ public class HybridPMC extends PatternMatchingController {
 		}
 		
 	}
-
+	
+	
 	@Override
 	public void collectMatches(String patternName) throws Exception {
+		String patternHash = patternContainer.getPatternHash(patternName);
+		collectMatchesWithHash(patternHash);
+	}
+
+	public void collectMatchesWithHash(String patternName) throws Exception {
 		if(engine.isVoidPattern(patternName)) {
 			hybridMatches.put(patternName, new IMatchImpl(patternName));
 			hybridMatchCount.replace(patternName, 1);
@@ -72,12 +78,12 @@ public class HybridPMC extends PatternMatchingController {
 		subPatterNames.forEach(x -> System.out.println("Subpattern Name: "+x));
 		*/
 		for(String subPatternName : subPatterNames) {
-			super.collectMatches(subPatternName);
+			super.collectMatchesWithHash(subPatternName);
 		}
 		
 		Map<String, IMatch> subMatches = new LinkedHashMap<String, IMatch>();
 		for(String subPatternName : subPatterNames) {
-			if(super.getMatchCount(subPatternName) == 0) {
+			if(super.getMatchCountWithHash(subPatternName) == 0) {
 				subMatches = null;
 				hybridMatchCount.replace(patternName, 0);
 				break;
@@ -86,9 +92,9 @@ public class HybridPMC extends PatternMatchingController {
 			int idx = 0;
 			IMatch currentMatch = null;
 			boolean passedInjectivityCheck = false;
-			int currentMatchCount = super.getMatchCount(subPatternName);
+			int currentMatchCount = super.getMatchCountWithHash(subPatternName);
 			do{
-				currentMatch = super.getMatchAt(subPatternName, idx);
+				currentMatch = super.getMatchAtWitHash(subPatternName, idx);
 				idx++;
 				passedInjectivityCheck = checkSubMatchInjectivityConstraints(currentMatch, subMatches);
 			}while(idx < currentMatchCount && !passedInjectivityCheck);
@@ -150,7 +156,7 @@ public class HybridPMC extends PatternMatchingController {
 		int count = 1;
 		List<String> predecessors = new LinkedList<String>();
 		for(String subPatternName : subPatterNames) {
-			int currentCount = super.getMatchCount(subPatternName);
+			int currentCount = super.getMatchCountWithHash(subPatternName);
 			if(currentCount <= 0) {
 				hybridMatchCount.replace(patternName, 0);
 				return;
@@ -192,30 +198,36 @@ public class HybridPMC extends PatternMatchingController {
 	
 	@Override
 	public IMatch getRandomMatch(String patternName) {
-		return hybridMatches.get(patternName);
+		return hybridMatches.get(patternContainer.getPatternHash(patternName));
 	}
 	
 	@Override
 	public IMatch getMatchAt(String patternName, int idx) {
-		return hybridMatches.get(patternName);
+		return hybridMatches.get(patternContainer.getPatternHash(patternName));
 	}
 	
 	@Override
 	public void collectAllMatches() throws Exception {
 		for(String hybridPatternName : hybridPatterns.keySet()) {
-			collectMatches(hybridPatternName);
+			collectMatchesWithHash(hybridPatternName);
 		}
 	}
 	
 	@Override
 	public int getMatchCount(String patternName) {
-		return hybridMatchCount.get(patternName);
+		return hybridMatchCount.get(patternContainer.getPatternHash(patternName));
 	}
 
 	@Override
 	public Collection<IMatch> getMatches(String patternName) {
 		Collection<IMatch> out = new LinkedList<IMatch>();
-		out.add(hybridMatches.get(patternName));
+		out.add(hybridMatches.get(patternContainer.getPatternHash(patternName)));
+		return out;
+	}
+	
+	public Collection<IMatch> getMatchesWithHash(String patternHash) {
+		Collection<IMatch> out = new LinkedList<IMatch>();
+		out.add(hybridMatches.get(patternHash));
 		return out;
 	}
 
@@ -223,7 +235,7 @@ public class HybridPMC extends PatternMatchingController {
 	public Map<String, Collection<IMatch>> getAllMatches() {
 		Map<String, Collection<IMatch>> out = new HashMap<String, Collection<IMatch>>();
 		for(String hybridPatternName : hybridPatterns.keySet()) {
-			out.put(hybridPatternName, getMatches(hybridPatternName));
+			out.put(hybridPatternName, getMatchesWithHash(hybridPatternName));
 		}
 		return out;
 	}

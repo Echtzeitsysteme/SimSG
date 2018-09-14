@@ -65,7 +65,7 @@ abstract class GraphTransformTest {
 		pmc.loadModels(ruleModel, containerModel);
 		pmc.initEngine();
 		pmc.initController();
-		gt = new ReactionRuleTransformer(ruleModel, containerModel);
+		gt = new ReactionRuleTransformer(pmc.getPatternContainer(), containerModel);
 		gt.init();
 	}
 	

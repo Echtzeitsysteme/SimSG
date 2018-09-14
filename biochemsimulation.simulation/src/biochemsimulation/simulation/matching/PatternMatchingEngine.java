@@ -16,8 +16,6 @@ public abstract class PatternMatchingEngine {
 	
 	protected ReactionContainer model;
 	protected Map<String, GenericPattern> genericPatterns;
-	// observables, termination conditions etc.
-	protected Map<String, GenericPattern> additionalGenericPatterns;
 	
 	protected Set<String> voidPatterns;
 	protected Collection<String> nonVoidPatterns;
@@ -25,8 +23,6 @@ public abstract class PatternMatchingEngine {
 	
 	protected PatternMatchingEngine() {
 		this.voidPatterns = new HashSet<String>();
-		// observables, termination conditions etc.
-		additionalGenericPatterns = new HashMap<String, GenericPattern>();
 	}
 	
 	public void setReactionRules(Map<String, GenericPattern> genericPatterns) {
@@ -40,11 +36,6 @@ public abstract class PatternMatchingEngine {
 	
 	public void setReactionContainer(ReactionContainer container) {
 		this.model = container;
-	}
-	
-	// observables, termination conditions etc.
-	public void addAdditionalPatterns(Map<String, GenericPattern> genericPatterns) {
-		additionalGenericPatterns.putAll(genericPatterns);
 	}
 	
 	abstract public void loadModels() throws Exception;

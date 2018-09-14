@@ -219,12 +219,15 @@ public class Sandbox {
 		try {
 			ReactionRuleModel model1 = pm.loadReactionRuleModel("GraphTransformTest");
 			ReactionContainer model2 = pm.loadReactionContainerModel("GraphTransformTest");
-			ReactionRuleTransformer gt = new ReactionRuleTransformer(model1, model2);
-			gt.init();
+			
 			
 			pmc.loadModels(model1, model2);
 			pmc.initEngine();
 			pmc.initController();
+			
+			ReactionRuleTransformer gt = new ReactionRuleTransformer(pmc.getPatternContainer(), model2);
+			gt.init();
+			
 			pmc.collectAllMatches();
 			System.out.println(pmc.getMatchCount("bindAndChangeStates_rule_lhs"));
 			gt.applyRuleToMatch(pmc.getRandomMatch("bindAndChangeStates_rule_lhs"));
@@ -274,12 +277,15 @@ public class Sandbox {
 		try {
 			ReactionRuleModel model1 = pm.loadReactionRuleModel("HybridPatternSandbox");
 			ReactionContainer model2 = pm.loadReactionContainerModel("HybridPatternSandbox");
-			ReactionRuleTransformer gt = new ReactionRuleTransformer(model1, model2);
-			gt.init();
+			
 			
 			pmc.loadModels(model1, model2);
 			pmc.initEngine();
 			pmc.initController();
+			
+			ReactionRuleTransformer gt = new ReactionRuleTransformer(pmc.getPatternContainer(), model2);
+			gt.init();
+			
 			pmc.collectAllMatches();
 			System.out.println(pmc.getMatchCount("r2_lhs"));
 			gt.applyRuleToMatch(pmc.getRandomMatch("r2_lhs"));

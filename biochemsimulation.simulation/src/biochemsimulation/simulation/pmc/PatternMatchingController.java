@@ -8,14 +8,18 @@ import java.util.Random;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
+import biochemsimulation.reactionrules.utils.PatternContainer;
+import biochemsimulation.reactionrules.utils.PatternUtils;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.PatternMatchingEngine;
 import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;
 
 public abstract class PatternMatchingController{
 	
-	protected ReactionRuleModel ruleModel;
+	//protected ReactionRuleModel ruleModel;
 	protected ReactionContainer reactionContainer;
+	
+	protected PatternContainer patternContainer;
 	
 	protected PatternMatchingControllerEnum pmcType;
 	
@@ -35,9 +39,16 @@ public abstract class PatternMatchingController{
 	protected abstract void feedEngine() throws Exception;
 
 	public void collectMatches(String patternName) throws Exception {
-		Collection<IMatch> matches = engine.getMatches(patternName);
-		this.matches.replace(patternName, matches);
-		this.matchCount.replace(patternName, matches.size());
+		String patternHash = patternContainer.getPatternHash(patternName);
+		Collection<IMatch> matches = engine.getMatches(patternHash);
+		this.matches.replace(patternHash, matches);
+		this.matchCount.replace(patternHash, matches.size());
+	}
+	
+	protected void collectMatchesWithHash(String patternHash) throws Exception {
+		Collection<IMatch> matches = engine.getMatches(patternHash);
+		this.matches.replace(patternHash, matches);
+		this.matchCount.replace(patternHash, matches.size());
 	}
 	
 	public void collectAllMatches() throws Exception {
@@ -48,19 +59,39 @@ public abstract class PatternMatchingController{
 	}
 	
 	public int getMatchCount(String patternName) {
-		return matchCount.get(patternName);
+		String patternHash = patternContainer.getPatternHash(patternName);
+		return matchCount.get(patternHash);
+	}
+	
+	public int getMatchCountWithHash(String patternHash) {
+		return matchCount.get(patternHash);
 	}
 	
 	protected int getRandomMatchIdx(String patternName) {
-		return (int)(getMatchCount(patternName)*random.nextDouble());
+		String patternHash = patternContainer.getPatternHash(patternName);
+		return (int)(getMatchCountWithHash(patternHash)*random.nextDouble());
+	}
+	
+	protected int getRandomMatchIdxWithHash(String patternHash) {
+		return (int)(getMatchCountWithHash(patternHash)*random.nextDouble());
 	}
 	
 	public IMatch getRandomMatch(String patternName) {
-		return (IMatch) matches.get(patternName).toArray()[getRandomMatchIdx(patternName)];
+		String patternHash = patternContainer.getPatternHash(patternName);
+		return (IMatch) matches.get(patternHash).toArray()[getRandomMatchIdxWithHash(patternHash)];
+	}
+	
+	public IMatch getRandomMatchWithHash(String patternHash) {
+		return (IMatch) matches.get(patternHash).toArray()[getRandomMatchIdxWithHash(patternHash)];
 	}
 	
 	public IMatch getMatchAt(String patternName, int idx) {
-		return (IMatch) matches.get(patternName).toArray()[idx];
+		String patternHash = patternContainer.getPatternHash(patternName);
+		return (IMatch) matches.get(patternHash).toArray()[idx];
+	}
+	
+	public IMatch getMatchAtWitHash(String patternHash, int idx) {
+		return (IMatch) matches.get(patternHash).toArray()[idx];
 	}
 	
 	public abstract Collection<IMatch> getMatches(String patternName);
@@ -72,8 +103,9 @@ public abstract class PatternMatchingController{
 	}
 	
 	public void loadModels(ReactionRuleModel ruleModel, ReactionContainer reactionContainer) throws Exception {
-		this.ruleModel = ruleModel;
+		//this.ruleModel = ruleModel;
 		this.reactionContainer = reactionContainer;
+		this.patternContainer = PatternUtils.createPatternContainer(ruleModel);
 		feedEngine();
 	}
 	
@@ -109,6 +141,10 @@ public abstract class PatternMatchingController{
 
 	public PatternMatchingEngineEnum getEngineType() {
 		return engine.getEngineType();
+	}
+	
+	public PatternContainer getPatternContainer() {
+		return patternContainer;
 	}
 	
 }

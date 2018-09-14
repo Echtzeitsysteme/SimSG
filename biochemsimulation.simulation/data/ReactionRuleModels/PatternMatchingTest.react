@@ -65,8 +65,8 @@ var p26 = {A7(x[1]), B7(y[1], z[2]), A7(x[2], w[3]), B7(z[3], y[5]), B7(z[5])}
 var p27 = {A7(x[1]), A7(x{d}[1], w[2]), A7(x[2])}
 var p28 = {A7(x{d}[1]), B7(y[1], z[2]), A7(x[2], w[3]), B7(z{h}[3], y[5]), B7(z[5])}
 // evil versions of: injectivity constraint & BoundAny tests
-var p29 = {A7(x[A7.x]), A7(x[A7.x], w[A7.x]), A7(x[A7.w])}
-var p30 = {A7(x[A7.x]), A7(x{d}[A7.x], w[A7.x]), A7(x[A7.w])}
+//var p29 = {A7(x[A7.x]), A7(x[A7.x], w[A7.x]), A7(x[A7.w])}
+//var p30 = {A7(x[A7.x]), A7(x{d}[A7.x], w[A7.x]), A7(x[A7.w])}
 // ligh version of: injectivity constraint & BoundAny tests
 var p31 = {A7(x[A7.x], w[A7.x]), A7(x[A7.w])}
 

@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.Map;
 
 import biochemsimulation.reactionrules.reactionRules.Pattern;
-import biochemsimulation.reactionrules.utils.PatternUtils;
+import biochemsimulation.reactionrules.utils.PatternContainer;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.patterns.GenericPattern;
 
@@ -23,11 +23,12 @@ public class SimplePMC extends PatternMatchingController {
 	
 	@Override
 	protected void feedEngine() throws Exception{
-		Map<String, Pattern> patterns = PatternUtils.getRulePatterns(ruleModel);
+		//Map<String, Pattern> patterns = PatternUtils.getRulePatterns(ruleModel);
+		Collection<Pattern> patterns = patternContainer.getAllPatterns();
 		Map<String, GenericPattern> genericPatterns = new HashMap<String, GenericPattern>();
-		patterns.forEach((name, pattern) -> {
-			genericPatterns.put(name, new GenericPattern(name, pattern));
-		});
+		for(Pattern pattern : patterns) {
+			genericPatterns.put(PatternContainer.calcPatternHash(pattern), new GenericPattern(PatternContainer.calcPatternHash(pattern), pattern));
+		}
 		engine.setReactionRules(genericPatterns);
 		engine.setReactionContainer(reactionContainer);
 		engine.loadModels();
@@ -35,8 +36,9 @@ public class SimplePMC extends PatternMatchingController {
 
 	@Override
 	public Collection<IMatch> getMatches(String patternName) {
-		if(matches.get(patternName) != null) {
-			return matches.get(patternName);
+		String patternHash = patternContainer.getPatternHash(patternName);
+		if(matches.get(patternHash) != null) {
+			return matches.get(patternHash);
 		}
 		return new LinkedList<IMatch>();
 	}

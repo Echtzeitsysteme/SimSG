@@ -1,5 +1,6 @@
 package biochemsimulation.reactionrules.utils;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -19,26 +20,64 @@ import biochemsimulation.reactionrules.reactionRules.WhatEver;
 
 public class PatternContainer {
 	Set<Pattern> patterns;
-	Map<String, Pattern> allPatterns;
+	Set<String> patternNames;
 	Map<String, Pattern> rulePatterns;
 	Map<String, Pattern> observablesPatterns;
 	Map<String, Pattern> termCondPopulationPatterns;
 	
 	public PatternContainer() {
 		patterns = new HashSet<Pattern>();
+		patternNames = new HashSet<String>();
 		rulePatterns = new HashMap<String, Pattern>();
 		observablesPatterns = new HashMap<String, Pattern>();
 		termCondPopulationPatterns = new HashMap<String, Pattern>();
 	}
 	
+	public Collection<Pattern> getAllPatterns() {
+		return patterns;
+	}
+	
+	public Collection<String> getAllPatternNames() {
+		return patternNames;
+	}
+	
+	public Collection<String> getAllPatternHashes() {
+		Collection<String> hashes = new HashSet<String>();
+		for(Pattern pattern : patterns) {
+			hashes.add(calcPatternHash(pattern));
+		}
+		return hashes;
+	}
+	
+	public Map<String, Pattern> getRulePatterns() {
+		return rulePatterns;
+	}
+	
+	public static String calcPatternHash(Pattern pattern) {
+		return "pattern"+String.valueOf(pattern.hashCode());
+	}
+	
+	public String getPatternHash(String patternName) {
+		if(rulePatterns.containsKey(patternName)) {
+			return calcPatternHash(rulePatterns.get(patternName));
+		}else if(observablesPatterns.containsKey(patternName)) {
+			return calcPatternHash(observablesPatterns.get(patternName));
+		}else if(termCondPopulationPatterns.containsKey(patternName)) {
+			return calcPatternHash(termCondPopulationPatterns.get(patternName));
+		}else {
+			return null;
+		}
+	}
 	public void addRulePatterns(Map<String, Pattern> rulePatterns) {
 		rulePatterns.forEach((name, pattern) -> {
 			Pattern p = findEqualPattern(pattern);
 			if(p != null) {
-				rulePatterns.put(name, p);
+				this.rulePatterns.put(name, p);
+				patternNames.add(name);
 			}else {
 				patterns.add(pattern);
-				rulePatterns.put(name, pattern);
+				this.rulePatterns.put(name, pattern);
+				patternNames.add(name);
 			}
 		});
 	}
@@ -57,9 +96,11 @@ public class PatternContainer {
 			Pattern p = findEqualPattern(pattern);
 			if(p != null) {
 				observablesPatterns.put(name, p);
+				patternNames.add(name);
 			}else {
 				patterns.add(pattern);
 				observablesPatterns.put(name, pattern);
+				patternNames.add(name);
 			}
 		});
 	}
@@ -69,9 +110,11 @@ public class PatternContainer {
 			Pattern p = findEqualPattern(pattern);
 			if(p != null) {
 				termCondPopulationPatterns.put(name, p);
+				patternNames.add(name);
 			}else {
 				patterns.add(pattern);
 				termCondPopulationPatterns.put(name, pattern);
+				patternNames.add(name);
 			}
 		});
 	}
@@ -120,8 +163,8 @@ public class PatternContainer {
 			}
 			
 			for(int j = 0; j<vap1.getSitePatterns().getSitePatterns().size(); j++) {
-				SitePattern sp1 = vap1.getSitePatterns().getSitePatterns().get(i);
-				SitePattern sp2 = vap2.getSitePatterns().getSitePatterns().get(i);
+				SitePattern sp1 = vap1.getSitePatterns().getSitePatterns().get(j);
+				SitePattern sp2 = vap2.getSitePatterns().getSitePatterns().get(j);
 				
 				if(!sp1.getSite().getName().equals(sp2.getSite().getName())) {
 					return false;
@@ -149,7 +192,7 @@ public class PatternContainer {
 				}
 				
 				LinkState ls1 = sp1.getLinkState().getLinkState();
-				LinkState ls2 = sp1.getLinkState().getLinkState();
+				LinkState ls2 = sp2.getLinkState().getLinkState();
 				
 				if(!ls1.getClass().equals(ls2.getClass())) {
 					return false;
