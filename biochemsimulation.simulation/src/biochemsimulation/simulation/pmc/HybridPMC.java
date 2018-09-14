@@ -217,6 +217,11 @@ public class HybridPMC extends PatternMatchingController {
 	public int getMatchCount(String patternName) {
 		return hybridMatchCount.get(patternContainer.getPatternHash(patternName));
 	}
+	
+	@Override
+	public int getMatchCountWithHash(String patternHash) {
+		return hybridMatchCount.get(patternHash);
+	}
 
 	@Override
 	public Collection<IMatch> getMatches(String patternName) {

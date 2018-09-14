@@ -40,11 +40,11 @@ public class Sandbox {
 		simConfig.setModel("Bench_C8Entities_Var2PatternSize");
 		simConfig.setSimplePersistence();
 		simConfig.setViatraAsEngine();
-		simConfig.setSimplePMC();
+		simConfig.setHybridPMC();
 		//simConfig.setSimpleSimulation();
 		simConfig.setStochasticSimulation();
 		//simConfig.setPMCDeterministic(true);
-		simConfig.setSimpleTerminationCondition(25);
+		simConfig.setSimpleTerminationCondition(10);
 		
 		Simulation viatraSim = simConfig.createSimulation();
 		

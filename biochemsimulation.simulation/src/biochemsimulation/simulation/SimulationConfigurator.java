@@ -48,6 +48,10 @@ public class SimulationConfigurator {
 		controllerType = PatternMatchingControllerEnum.SimplePMC;
 	}
 	
+	public void setHybridPMC() {
+		controllerType = PatternMatchingControllerEnum.HybridPMC;
+	}
+	
 	public void setPMCDeterministic(boolean deterministic) {
 		this.deterministic = deterministic;
 	}

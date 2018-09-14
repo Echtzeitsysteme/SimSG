@@ -133,8 +133,9 @@ public abstract class Simulation {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Current "+toString()+"\n *******     RESULTS:     *****\n");
 		for (String key : getResults().keySet()) {
+			System.out.println(key);
 			if (getResults().get(key) != null) {
-				sb.append("Pattern: " + key + ", size: " + getResults().get(key).size()+"\n");
+				sb.append("Pattern: " + key + ", size: " + pmc.getMatchCountWithHash(key) +"\n");
 			}
 		}
 		sb.append("*******   END   *****\n");
