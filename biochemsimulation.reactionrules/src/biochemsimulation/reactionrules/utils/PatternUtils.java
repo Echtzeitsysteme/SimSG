@@ -25,8 +25,6 @@ import biochemsimulation.reactionrules.reactionRules.Rule;
 import biochemsimulation.reactionrules.reactionRules.Terminate;
 import biochemsimulation.reactionrules.reactionRules.Time;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
-import biochemsimulation.reactionrules.reactionRules.impl.IterationsImpl;
-import biochemsimulation.reactionrules.reactionRules.impl.TimeImpl;
 
 public class PatternUtils {
 	
@@ -137,7 +135,10 @@ public class PatternUtils {
 	}
 	
 	public static List<Population> getTermCondPopulation(ReactionRuleModel model){
-		return model.getReactionProperties().stream().filter(item -> (item instanceof Population)).map(pop -> (Population) pop)
+		return model.getReactionProperties().stream()
+				.filter(item -> (item instanceof Terminate))
+				.filter(terminate -> (((Terminate)terminate).getCondition() instanceof Population))
+				.map(terminate -> (Population)(((Terminate)terminate).getCondition()))
 				.collect(Collectors.toList());
 	}
 	
