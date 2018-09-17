@@ -37,14 +37,14 @@ public class Sandbox {
 	
 	public static void test7() {
 		SimulationConfigurator simConfig = new SimulationConfigurator();
-		simConfig.setModel("Bench_C8Entities_Var2PatternSize");
+		simConfig.setModel("Goldbeter_Koshland");
 		simConfig.setSimplePersistence();
 		simConfig.setViatraAsEngine();
 		simConfig.setHybridPMC();
 		//simConfig.setSimpleSimulation();
 		simConfig.setStochasticSimulation();
 		//simConfig.setPMCDeterministic(true);
-		simConfig.setSimpleTerminationCondition(10);
+		simConfig.setSimpleTerminationCondition(7000);
 		
 		Simulation viatraSim = simConfig.createSimulation();
 		
@@ -55,6 +55,7 @@ public class Sandbox {
 		viatraSim.initializeClocked();
 		viatraSim.runClocked();
 		System.out.println(viatraSim.results());
+		viatraSim.displayResults();
 		viatraSim.finish();
 		
 		democlesSim.initializeClocked();

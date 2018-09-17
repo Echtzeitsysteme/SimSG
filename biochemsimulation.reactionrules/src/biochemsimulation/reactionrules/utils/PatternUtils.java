@@ -142,10 +142,14 @@ public class PatternUtils {
 		for (Rule rule : rules) {
 			rulePatterns.put(rule.getName() + PATTERN_NAME_SUFFIX_LHS,
 					PatternUtils.patternFromPatternAssignment(rule.getRule().getLhs()));
+			rulePatterns.put(rule.getName() + PATTERN_NAME_SUFFIX_RHS,
+					PatternUtils.patternFromPatternAssignment(rule.getRule().getRhs()));
+			/*
 			if (rule.getRule().getOperator().equals(RULE_OPERATOR_BI)) {
 				rulePatterns.put(rule.getName() + PATTERN_NAME_SUFFIX_RHS,
 						PatternUtils.patternFromPatternAssignment(rule.getRule().getRhs()));
 			}
+			*/
 		}
 		return rulePatterns;
 	}

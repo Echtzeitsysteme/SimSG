@@ -53,6 +53,10 @@ public class PatternContainer {
 		return rulePatterns;
 	}
 	
+	public Map<String, Pattern> getObservablesPatterns() {
+		return observablesPatterns;
+	}
+	
 	public static String calcPatternHash(Pattern pattern) {
 		return "pattern"+String.valueOf(pattern.hashCode());
 	}

@@ -23,6 +23,7 @@ public class SimpleSimulation extends Simulation {
 	public void run() throws Exception {
 		while(!terminationCondition.isTerminated(state)) {
 			performTransformations();
+			simStats.logCurrentState(state);
 		}
 		pmc.collectAllMatches();
 
@@ -74,11 +75,11 @@ public class SimpleSimulation extends Simulation {
 	}
 	
 	private ConcurrentLinkedQueue<String> generatePatternQueue() {
-		return new ConcurrentLinkedQueue<String>(gt.getPatternMap().keySet());
+		return new ConcurrentLinkedQueue<String>(staticReactionRates.keySet());
 	}
 	
 	private ConcurrentLinkedQueue<String> generateRndPatternQueue(){
-		List<String> rndPatternList = new LinkedList<String>(gt.getPatternMap().keySet());
+		List<String> rndPatternList = new LinkedList<String>(staticReactionRates.keySet());
 		Collections.shuffle(rndPatternList);
 		return new ConcurrentLinkedQueue<String>(rndPatternList);
 	}

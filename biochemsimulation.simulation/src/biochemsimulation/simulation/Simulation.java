@@ -19,6 +19,7 @@ public abstract class Simulation {
 	protected PatternMatchingController pmc;
 	protected SimulationTerminationCondition terminationCondition;
 	protected SimulationState state;
+	protected SimulationStatistics simStats;
 	protected ReactionRuleModel ruleModel;
 	protected ReactionContainer reactionContainer;
 	protected ReactionRuleTransformer gt;
@@ -60,6 +61,8 @@ public abstract class Simulation {
 		initStaticReactionRates();
 		state = new SimulationState();
 		state.setPmc(pmc);
+		simStats = new SimulationStatistics();
+		simStats.initObservables(pmc.getPatternContainer());
 	}
 	
 	public void initializeClocked() {
@@ -109,6 +112,8 @@ public abstract class Simulation {
 		initStaticReactionRates();
 		state = new SimulationState();
 		state.setPmc(pmc);
+		simStats = new SimulationStatistics();
+		simStats.initObservables(pmc.getPatternContainer());
 	}
 	
 	public void runClocked() {
@@ -144,6 +149,10 @@ public abstract class Simulation {
 	
 	public void finish() {
 		pmc.discardEngine();
+	}
+	
+	public void displayResults() {
+		simStats.displayStatistics();
 	}
 	
 	@Override
