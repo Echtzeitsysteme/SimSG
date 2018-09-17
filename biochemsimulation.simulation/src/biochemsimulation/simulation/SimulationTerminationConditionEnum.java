@@ -2,7 +2,7 @@ package biochemsimulation.simulation;
 
 public enum SimulationTerminationConditionEnum {
 	
-	SimpleCondition("SimpleCondition");
+	SimpleCondition("SimpleCondition"), ComplexCondition("ComplexCondition");
 	
 	private String name;
 	

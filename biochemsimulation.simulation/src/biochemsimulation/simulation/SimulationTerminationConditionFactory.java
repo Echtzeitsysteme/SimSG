@@ -10,6 +10,10 @@ public class SimulationTerminationConditionFactory {
 			condition = new SimpleTerminationCondition();
 			break;
 		}
+		case ComplexCondition : {
+			condition = new ComplexTerminationCondition();
+			break;
+		}
 		}
 		
 		return condition;

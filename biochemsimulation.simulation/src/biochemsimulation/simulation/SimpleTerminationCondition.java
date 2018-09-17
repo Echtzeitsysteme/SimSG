@@ -1,24 +1,22 @@
 package biochemsimulation.simulation;
 
-public class SimpleTerminationCondition implements SimulationTerminationCondition {
-	
-	private int maxIterations;
-	
+import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
+import biochemsimulation.reactionrules.utils.PatternContainer;
+
+public class SimpleTerminationCondition extends SimulationTerminationCondition {
+
 	public SimpleTerminationCondition() {
-	}
-	
-	public SimpleTerminationCondition(int maxIterations) {
-		this.maxIterations = maxIterations;
-	}
-	
-	@Override
-	public void setMaxIterations(int maxIterations) {
-		this.maxIterations = maxIterations;
 	}
 
 	@Override
 	public boolean isTerminated(SimulationState state) {
-		return state.getIterations()>=maxIterations;
+		return (state.getIterations()>=maxIterations) || (state.getTime() >= maxElapsedTime);
+	}
+
+	@Override
+	public void initCondition(PatternContainer patternContainer, ReactionRuleModel ruleModel) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

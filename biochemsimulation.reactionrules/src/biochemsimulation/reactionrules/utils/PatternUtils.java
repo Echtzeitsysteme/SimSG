@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.EList;
 import biochemsimulation.reactionrules.reactionRules.AgentPattern;
 import biochemsimulation.reactionrules.reactionRules.AssignFromPattern;
 import biochemsimulation.reactionrules.reactionRules.AssignFromVariable;
+import biochemsimulation.reactionrules.reactionRules.Iterations;
 import biochemsimulation.reactionrules.reactionRules.NumericAssignment;
 import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral;
 import biochemsimulation.reactionrules.reactionRules.NumericFromVariable;
@@ -22,7 +23,10 @@ import biochemsimulation.reactionrules.reactionRules.Population;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.Rule;
 import biochemsimulation.reactionrules.reactionRules.Terminate;
+import biochemsimulation.reactionrules.reactionRules.Time;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
+import biochemsimulation.reactionrules.reactionRules.impl.IterationsImpl;
+import biochemsimulation.reactionrules.reactionRules.impl.TimeImpl;
 
 public class PatternUtils {
 	
@@ -134,6 +138,22 @@ public class PatternUtils {
 	
 	public static List<Population> getTermCondPopulation(ReactionRuleModel model){
 		return model.getReactionProperties().stream().filter(item -> (item instanceof Population)).map(pop -> (Population) pop)
+				.collect(Collectors.toList());
+	}
+	
+	public static List<Time> getTermCondTime(ReactionRuleModel model){
+		return model.getReactionProperties().stream()
+				.filter(item -> (item instanceof Terminate))
+				.filter(terminate -> (((Terminate)terminate).getCondition() instanceof Time))
+				.map(terminate -> (Time)(((Terminate)terminate).getCondition()))
+				.collect(Collectors.toList());
+	}
+	
+	public static List<Iterations> getTermCondIteration(ReactionRuleModel model){
+		return model.getReactionProperties().stream()
+				.filter(item -> (item instanceof Terminate))
+				.filter(terminate -> (((Terminate)terminate).getCondition() instanceof Iterations))
+				.map(terminate -> (Iterations)(((Terminate)terminate).getCondition()))
 				.collect(Collectors.toList());
 	}
 	

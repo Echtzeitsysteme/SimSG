@@ -57,6 +57,10 @@ public class PatternContainer {
 		return observablesPatterns;
 	}
 	
+	public Map<String, Pattern> getTermCondPatterns() {
+		return termCondPopulationPatterns;
+	}
+	
 	public static String calcPatternHash(Pattern pattern) {
 		return "pattern"+String.valueOf(pattern.hashCode());
 	}

@@ -18,10 +18,12 @@ public class SimulationConfigurator {
 	private SimulationType simulationType;
 	private SimulationTerminationConditionEnum conditionType;
 	private int maxIterations;
+	private double maxElapsedTime;
 	private boolean deterministic;
 	
 	public SimulationConfigurator() {
 		deterministic = false;
+		conditionType = SimulationTerminationConditionEnum.ComplexCondition;
 	}
 	
 	public void setModel(String modelName) {
@@ -64,9 +66,16 @@ public class SimulationConfigurator {
 		simulationType = SimulationType.StochasticSimulation;
 	}
 	
-	public void setSimpleTerminationCondition(int maxIterations) {
+	public void setSimpleTerminationCondition(int maxIterations, double maxElapsedTime) {
 		conditionType = SimulationTerminationConditionEnum.SimpleCondition;
 		this.maxIterations = maxIterations;
+		this.maxElapsedTime = maxElapsedTime;
+	}
+	
+	public void setComplexTerminationCondition() {
+		conditionType = SimulationTerminationConditionEnum.ComplexCondition;
+		this.maxIterations = SimulationTerminationCondition.MAX_ITERATIONS;
+		this.maxElapsedTime = SimulationTerminationCondition.MAX_ELAPSED_TIME;
 	}
 	
 	public Simulation createSimulation() {
@@ -85,6 +94,7 @@ public class SimulationConfigurator {
 		// create and set termination condition
 		SimulationTerminationCondition condition = SimulationTerminationConditionFactory.create(conditionType);
 		condition.setMaxIterations(maxIterations);
+		condition.setMaxElapsedTime(maxElapsedTime);
 		simulation.setTerminationCondition(condition);
 		return simulation;
 	}

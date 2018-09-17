@@ -61,6 +61,7 @@ public abstract class Simulation {
 		initStaticReactionRates();
 		state = new SimulationState();
 		state.setPmc(pmc);
+		terminationCondition.initCondition(pmc.getPatternContainer(), ruleModel);
 		simStats = new SimulationStatistics();
 		simStats.initObservables(pmc.getPatternContainer());
 	}
@@ -112,6 +113,7 @@ public abstract class Simulation {
 		initStaticReactionRates();
 		state = new SimulationState();
 		state.setPmc(pmc);
+		terminationCondition.initCondition(pmc.getPatternContainer(), ruleModel);
 		simStats = new SimulationStatistics();
 		simStats.initObservables(pmc.getPatternContainer());
 	}

@@ -44,7 +44,8 @@ public class Sandbox {
 		//simConfig.setSimpleSimulation();
 		simConfig.setStochasticSimulation();
 		//simConfig.setPMCDeterministic(true);
-		simConfig.setSimpleTerminationCondition(7000);
+		//simConfig.setSimpleTerminationCondition(7000, 30);
+		simConfig.setComplexTerminationCondition();
 		
 		Simulation viatraSim = simConfig.createSimulation();
 		
@@ -77,7 +78,7 @@ public class Sandbox {
 		simConfig.setSimplePMC();
 		simConfig.setSimpleSimulation();
 		simConfig.setPMCDeterministic(true);
-		simConfig.setSimpleTerminationCondition(10);
+		simConfig.setSimpleTerminationCondition(10, 100);
 		/*
 		simConfig.setDemoclesAsEngine();
 		models.forEach(x-> {
