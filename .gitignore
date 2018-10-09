@@ -30,6 +30,7 @@
 */data/ReactionContainerModels/*
 */data/ReactionRuleModels/*.xmi
 */data/ViatraPatternModels/*
+!*/libs/*.jar
 
 !.gitignore
 

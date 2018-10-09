@@ -27,12 +27,12 @@ public class Sandbox {
 		test4();
 		test6();
 		*/
-		test7();
+		//test7();
 		//test8_kill();
 		//benchmark();
 		//test4();
 		//hybridTest();
-		//hybridObsTest();
+		hybridObsTest();
 	}
 	
 	public static void test7() {
@@ -58,14 +58,14 @@ public class Sandbox {
 		System.out.println(viatraSim.results());
 		viatraSim.displayResults();
 		viatraSim.finish();
-		
+		/*
 		democlesSim.initializeClocked();
 		democlesSim.runClocked();
 		System.out.println(democlesSim.results());
 		democlesSim.finish();
-		
+		*/
 		System.out.println(Runtimer.getInstance());
-		Runtimer.getInstance().toFile();
+		//Runtimer.getInstance().toFile();
 		
 	}
 	
@@ -289,10 +289,10 @@ public class Sandbox {
 			gt.init();
 			
 			pmc.collectAllMatches();
-			System.out.println(pmc.getMatchCount("r2_lhs"));
-			gt.applyRuleToMatch(pmc.getRandomMatch("r2_lhs"));
+			System.out.println(pmc.getMatchCount("r3_lhs"));
+			gt.applyRuleToMatch(pmc.getRandomMatch("r3_lhs"));
 			pmc.collectAllMatches();
-			System.out.println(pmc.getMatchCount("r2_lhs"));
+			System.out.println(pmc.getMatchCount("r3_lhs"));
 			pmc.discardEngine();
 			pm.unloadReactionContainerModel("HybridPatternSandbox");
 			
