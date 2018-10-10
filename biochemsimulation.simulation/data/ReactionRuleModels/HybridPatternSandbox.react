@@ -6,22 +6,28 @@ agent C(v)
 agent C1(v, w)
 agent A3(x, y)
 agent B3(x, z)
-agent A2(x)
+agent A2(x{q,t}, y)
+agent A8(x, y)
+agent A9(x, y)
 
 //var p = {A(x[free]),A(x[free]),A(x[free]),A(x[free])}
 //var p1 = {A(x[1]), B(x[1], b[2]), C(v[2])}
 //var p2 = {A3(x[1]), B3(x[1], z[2]), C1(v[2])}
 var p3 = {A2(x[1]), A2(x[1]), A2(x[2]), A2(x[2])}
+var p32 = {A8(x[1]), A8(x[1]), A8(x[2]), A8(x[2])}
+var p34 = {A9(x[1]), A9(x[1]), A9(x[2]), A9(x[2]), A9(x[3]), A9(x[3])}
 //init i 30 {A(x[free])}
 //init i1 2 {A(x[1]), B(x[1], b[2]), C(v[2])}
 //init i2 7 {A3(x[1]), B3(x[1], z[2]), C1(v[2])}
-init i3 1 p3
+init i3 4 p3
+init i18 4 p32
+init i19 2 p34
  
 var dummy_rate = 0.1
 
 //rule r p -> {void, void, void, void} @ [dummy_rate]
 //rule r1 p1 -> {void, void, void} @ [dummy_rate]
 //rule r2 p2 -> {void, void, void} @ [dummy_rate]
-rule r3 p3 -> {void, void, void, void} @ [dummy_rate]
+rule r3 p34 -> {void, void, void, void, void, void} @ [dummy_rate]
 
 //obs ob p2

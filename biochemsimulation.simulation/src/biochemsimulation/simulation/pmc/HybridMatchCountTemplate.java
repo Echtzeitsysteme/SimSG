@@ -37,11 +37,13 @@ public class HybridMatchCountTemplate {
 				factorMap.put(currentPatternName, 0);
 				continue;
 			}
-			
+			/*
 			Map<ValidAgentPattern, List<AgentNodeConstraint>> constraintToNodeMap = new LinkedHashMap<ValidAgentPattern, List<AgentNodeConstraint>>();
 			for(ValidAgentPattern p : currentPattern.getBody().getAgentPatterns()) {
 				constraintToNodeMap.put(p, new LinkedList<AgentNodeConstraint>());
 			}
+			*/
+			int constraintCount = 0;
 			
 			for(int j = (i-1); j >= 0; j--) {
 				String predecessorName = patternNames.get(j);
@@ -52,6 +54,7 @@ public class HybridMatchCountTemplate {
 							pattern.isGlobalSignatureInLocalSignature(predecessorName, operand2))) {
 						continue;
 					}
+					/*
 					ValidAgentPattern src = null;
 					if(pattern.isGlobalSignatureInLocalSignature(currentPatternName, operand1)) {
 						src = currentPattern.getSignature().getSignaturePattern(pattern.globalToLocalSignature(operand1));
@@ -59,9 +62,12 @@ public class HybridMatchCountTemplate {
 						src = currentPattern.getSignature().getSignaturePattern(pattern.globalToLocalSignature(operand2));
 					}
 					constraintToNodeMap.get(src).add(constraint);
+					*/
+					constraintCount++;
+					break;
 				}
 			}
-			
+			/*
 			int maxConstraints = 0;
 			for(List<AgentNodeConstraint> cList : constraintToNodeMap.values()) {
 				if(cList.size()>maxConstraints) {
@@ -69,6 +75,11 @@ public class HybridMatchCountTemplate {
 				}
 			}
 			factorMap.put(currentPatternName, maxConstraints);
+			*/
+			if(currentPattern.getBody().isPermutable()) {
+				constraintCount*=2;
+			}
+			factorMap.put(currentPatternName, constraintCount);
 		}
 	}
 	

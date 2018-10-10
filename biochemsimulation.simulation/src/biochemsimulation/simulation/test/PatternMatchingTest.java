@@ -288,6 +288,27 @@ abstract class PatternMatchingTest {
 	}
 	
 	@Test
+	void hardInjectivityTest() {
+		final int numOfMatches = 224;
+		final String patternName = "hardInjectivity_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void hardInjectivityTest2() {
+		final int numOfMatches = 12;
+		final String patternName = "hardInjectivity2_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void hardInjectivityTest3() {
+		final int numOfMatches = 960;
+		final String patternName = "hardInjectivity3_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
 	void simpleInjectivityWithStatesTest() {
 		final int numOfMatches = 7;
 		final String patternName = "simpleInjectivityWithStates_rule_lhs";

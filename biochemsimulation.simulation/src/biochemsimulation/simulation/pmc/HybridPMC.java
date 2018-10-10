@@ -152,58 +152,17 @@ public class HybridPMC extends PatternMatchingController {
 	}
 	
 	private void calculateHybridMatchCount(String patternName) {
-		/*
-		HybridPattern hybridPattern = hybridPatterns.get(patternName);
-		Collection<String> subPatterNames = hybridPattern.getGenericSubPatterns().keySet();
-		Collection<AgentNodeConstraint> constraints = hybridPattern.getInjectivityConstraintsSignature();
-		
-		int count = 1;
-		List<String> predecessors = new LinkedList<String>();
-		for(String subPatternName : subPatterNames) {
+		Map<String, Integer> countMap = new LinkedHashMap<String, Integer>();
+		for(String subPatternName : hybridPatterns.get(patternName).getGenericSubPatterns().keySet()) {
 			int currentCount = super.getMatchCountWithHash(subPatternName);
 			if(currentCount <= 0) {
 				hybridMatchCount.replace(patternName, 0);
 				return;
 			}
-			if(predecessors.size()==0) {
-				count = currentCount;
-				predecessors.add(subPatternName);
-				continue;
-			}
-			
-			for(String predecessor : predecessors) {
-				GenericPattern predecessorPattern = hybridPattern.getGenericSubPatterns().get(predecessor);
-				GenericPattern currentPattern = hybridPattern.getGenericSubPatterns().get(subPatternName);
-				
-				for(AgentNodeConstraint constraint : constraints) {
-					if(!(hybridPattern.isGlobalSignatureInLocalSignature(currentPattern.getName(), constraint.getOperand1().getAgentVariableName()) ||
-							hybridPattern.isGlobalSignatureInLocalSignature(currentPattern.getName(), constraint.getOperand2().getAgentVariableName())	)) {
-						continue;
-					}
-					
-					if((hybridPattern.isGlobalSignatureInLocalSignature(predecessorPattern.getName(), constraint.getOperand1().getAgentVariableName()) ||
-							hybridPattern.isGlobalSignatureInLocalSignature(predecessorPattern.getName(), constraint.getOperand2().getAgentVariableName())	)) {
-						currentCount--;
-					}
-					
-				}
-			}
-			
-			if(currentCount <= 0) {
-				hybridMatchCount.replace(patternName, 0);
-				return;
-			}
-			
-			count *= currentCount;
-			predecessors.add(subPatternName);
-		}
-		hybridMatchCount.replace(patternName, count);
-		*/
-		Map<String, Integer> countMap = new LinkedHashMap<String, Integer>();
-		for(String subPatternName : hybridPatterns.get(patternName).getGenericSubPatterns().keySet()) {
-			countMap.put(subPatternName, super.getMatchCountWithHash(subPatternName));
+			countMap.put(subPatternName, currentCount);
 		}
 		hybridMatchCount.replace(patternName, matchCountTemplates.get(patternName).calculateMatchCount(countMap));
+		
 	}
 	
 	@Override

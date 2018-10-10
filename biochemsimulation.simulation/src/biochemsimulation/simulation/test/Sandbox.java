@@ -8,6 +8,7 @@ import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.simulation.Simulation;
 import biochemsimulation.simulation.SimulationConfigurator;
 import biochemsimulation.simulation.benchmark.Runtimer;
+import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.PatternMatchingEngine;
 import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;
 import biochemsimulation.simulation.matching.PatternMatchingEngineFactory;
@@ -27,12 +28,12 @@ public class Sandbox {
 		test4();
 		test6();
 		*/
-		test7();
+		//test7();
 		//test8_kill();
 		//benchmark();
 		//test4();
 		//hybridTest();
-		//hybridObsTest();
+		hybridObsTest();
 	}
 	
 	public static void test7() {
@@ -292,6 +293,10 @@ public class Sandbox {
 			
 			pmc.collectAllMatches();
 			System.out.println(pmc.getMatchCount("r3_lhs"));
+			IMatch match = pmc.getRandomMatch("r3_lhs");
+			match.parameterNames().forEach(name -> {
+				System.out.println(match.get(name));
+			});
 			gt.applyRuleToMatch(pmc.getRandomMatch("r3_lhs"));
 			pmc.collectAllMatches();
 			System.out.println(pmc.getMatchCount("r3_lhs"));

@@ -32,6 +32,8 @@ public class GenericPatternBody {
 	private Map<AgentNodeContext, SiteNodeContext> localSiteNodes;
 	private Map<SiteNodeContext, LinkStateContext> localLinkStates;
 	
+	private boolean permutable;
+	
 	public GenericPatternBody(GenericPattern pattern, GenericPatternSignature signature, List<ValidAgentPattern> agentPatterns) {
 		this.pattern = pattern;
 		this.signature = signature;
@@ -44,6 +46,8 @@ public class GenericPatternBody {
 		buildSiteNodeContexts();
 		buildConstraintsAndLocalNodes();
 		buildInjectivityConstraints();
+		permutable = false;
+		checkPermutability();
 	}
 	
 	
@@ -118,6 +122,10 @@ public class GenericPatternBody {
 
 	public Map<SiteNodeContext, LinkStateContext> getLocalLinkStates() {
 		return localLinkStates;
+	}
+	
+	public boolean isPermutable() {
+		return permutable;
 	}
 
 
@@ -274,6 +282,92 @@ public class GenericPatternBody {
 		}
 			
 		return other;
+	}
+	
+	private void checkPermutability() {
+		if(agentPatterns.size() != 2) {
+			permutable = false;
+			return;
+		}
+		ValidAgentPattern vap1 = agentPatterns.get(0);
+		ValidAgentPattern vap2 = agentPatterns.get(1);
+		if(!vap1.getAgent().getName().equals(vap2.getAgent().getName())) {
+			permutable = false;
+			return;
+		}
+		if(vap1.getSitePatterns().getSitePatterns().size() != vap2.getSitePatterns().getSitePatterns().size()) {
+			permutable = false;
+			return;
+		}
+		for(int i = 0; i< vap1.getSitePatterns().getSitePatterns().size(); i++) {
+			SitePattern sp1 = vap1.getSitePatterns().getSitePatterns().get(i);
+			SitePattern sp2 = vap2.getSitePatterns().getSitePatterns().get(i);
+			if(!sp1.getSite().getName().equals(sp2.getSite().getName())) {
+				permutable = false;
+				return;
+			}
+			
+			String sp1State = null;
+			if(sp1.getState() != null) {
+				sp1State = sp1.getState().getState().getName();
+			}else if(sp1.getSite().getStates().getState() != null) {
+				if(sp1.getSite().getStates().getState().size()>0) {
+					sp1State = sp1.getSite().getStates().getState().get(0).getName();
+				}
+			}
+			
+			String sp2State = null;
+			if(sp2.getState() != null) {
+				sp2State = sp2.getState().getState().getName();
+			}else if(sp2.getSite().getStates().getState() != null) {
+				if(sp2.getSite().getStates().getState().size()>0) {
+					sp2State = sp2.getSite().getStates().getState().get(0).getName();
+				}
+			}
+			
+			
+			if(sp1State == null ^ sp2State == null) {
+				permutable = false;
+				return;
+			}
+			
+			if(sp1State != null && sp2State != null) {
+				if(!sp1State.equals(sp2State)) {
+					permutable = false;
+					return;
+				}
+			}
+			
+			LinkStateType lst1 = null;
+			if(sp1.getLinkState().getLinkState() != null) {
+				lst1 = LinkStateType.enumFromLinkState(sp1.getLinkState().getLinkState());
+			}
+			
+			LinkStateType lst2 = null;
+			if(sp2.getLinkState().getLinkState() != null) {
+				lst2 = LinkStateType.enumFromLinkState(sp2.getLinkState().getLinkState());
+			}
+			
+			if(lst1 != lst2) {
+				permutable = false;
+				return;
+			}
+			
+			if(lst1 == LinkStateType.BoundAnyOfType && lst2 == LinkStateType.BoundAnyOfType) {
+				BoundAnyOfTypeLink baotl1 = (BoundAnyOfTypeLink)sp1.getLinkState().getLinkState();
+				BoundAnyOfTypeLink baotl2 = (BoundAnyOfTypeLink)sp2.getLinkState().getLinkState();
+				if(!baotl1.getLinkAgent().getAgent().getName().equals(baotl2.getLinkAgent().getAgent().getName())) {
+					permutable = false;
+					return;
+				}
+				if(!baotl1.getLinkSite().getSite().getName().equals(baotl2.getLinkSite().getSite().getName())) {
+					permutable = false;
+					return;
+				}
+			}
+			
+		}
+		permutable = true;
 	}
 	
 	@Override

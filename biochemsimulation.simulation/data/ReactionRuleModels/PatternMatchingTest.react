@@ -18,6 +18,8 @@ agent B6(u, v{l, m, n}, w{r, s, t})
 agent C3(a{i, j}, b{e, f, g}, c)
 agent A7(w{a, b}, x{c, d})
 agent B7(y{e, f}, z{g, h}) 
+agent A8(x, y)
+agent A9(x, y)
 
 // mockup rate variable
 var dummy_rate = 0.1
@@ -64,11 +66,16 @@ var p26 = {A7(x[1]), B7(y[1], z[2]), A7(x[2], w[3]), B7(z[3], y[5]), B7(z[5])}
 // injectivity constraint tests with states
 var p27 = {A7(x[1]), A7(x{d}[1], w[2]), A7(x[2])}
 var p28 = {A7(x{d}[1]), B7(y[1], z[2]), A7(x[2], w[3]), B7(z{h}[3], y[5]), B7(z[5])}
+// hard injectivity
+var p32 = {A8(x[1]), A8(x[1]), A8(x[2]), A8(x[2])}
+var p33 = {A8(x[1]), A8(x[1], y[2]), A8(y[2]), A8(x[3]), A8(x[3], y[4]), A8(y[4])}
+var p34 = {A9(x[1]), A9(x[1]), A9(x[2]), A9(x[2]), A9(x[3]), A9(x[3])}
 // evil versions of: injectivity constraint & BoundAny tests
 //var p29 = {A7(x[A7.x]), A7(x[A7.x], w[A7.x]), A7(x[A7.w])}
 //var p30 = {A7(x[A7.x]), A7(x{d}[A7.x], w[A7.x]), A7(x[A7.w])}
 // ligh version of: injectivity constraint & BoundAny tests
 var p31 = {A7(x[A7.x], w[A7.x]), A7(x[A7.w])}
+
 
 // Initial variables for disjunct tests
 init i1 10 {A1(), B1()}
@@ -93,6 +100,10 @@ init i14 3 {A7(x[1]), A7(x[1], w[2]), A7(x[2])}
 init i15 5 {A7(x[1]), B7(y[1], z[2]), A7(x[2], w[3]), B7(z[3], y[5]), B7(z[5])}
 init i16 7 {A7(x[1]), A7(x{d}[1], w[2]), A7(x[2])}
 init i17 4 {A7(x{d}[1]), B7(y[1], z[2]), A7(x[2], w[3]), B7(z{h}[3], y[5]), B7(z[5])}
+// Harder injectivity constraints
+init i18 2 p32
+init i19 2 p33
+init i20 2 p34
 
 // mockup rules to register patterns as relevant for pattern generators
 rule simpleDisjunct_rule p1 -> {void, void} @ [dummy_rate] // 10*10 = 100 Matches
@@ -129,6 +140,10 @@ rule simpleInjectivity_rule p25 -> {void, void, void} @ [dummy_rate] // 3+7 = 10
 rule mediumInjectivity_rule p26 -> {void, void, void, void, void} @ [dummy_rate] // 5 + 4 = 9 Matches
 rule simpleInjectivityWithStates_rule p27 -> {void, void, void} @ [dummy_rate] // 7 Matches
 rule mediumInjectivityWithStates_rule p28 -> {void, void, void, void, void} @ [dummy_rate] // 4 Matches
+// Hard injectivity constraint
+rule hardInjectivity_rule p32 -> {void, void, void, void} @ [dummy_rate] // 16 * 14 = 224  Matches
+rule hardInjectivity2_rule p33 -> {void, void, void, void, void, void} @ [dummy_rate] // 4 * 3 = 12  Matches
+rule hardInjectivity3_rule p34 -> {void, void, void, void, void, void} @ [dummy_rate] // 12 * 10 * 8 = 720  Matches
 
 // Important: These lhs patterns will cause democles to crash or run indefinitely
 //rule evilInjectivityAndBoundAny_rule p29 -> {void, void, void} @ [dummy_rate] // [(3+3)+(7+7)]*(3+7)*(3+7) = 20 * 10 * 10 = 2000 Matches (2000 - 10*10 = 1900 for now..)
