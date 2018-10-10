@@ -27,12 +27,12 @@ public class Sandbox {
 		test4();
 		test6();
 		*/
-		//test7();
+		test7();
 		//test8_kill();
 		//benchmark();
 		//test4();
 		//hybridTest();
-		hybridObsTest();
+		//hybridObsTest();
 	}
 	
 	public static void test7() {
@@ -58,10 +58,12 @@ public class Sandbox {
 		System.out.println(viatraSim.results());
 		viatraSim.displayResults();
 		viatraSim.finish();
+		
 		/*
 		democlesSim.initializeClocked();
 		democlesSim.runClocked();
 		System.out.println(democlesSim.results());
+		democlesSim.displayResults();
 		democlesSim.finish();
 		*/
 		System.out.println(Runtimer.getInstance());
@@ -268,7 +270,7 @@ public class Sandbox {
 		pm.init();
 		
 		PatternMatchingController pmc = PatternMatchingControllerFactory
-				.create(PatternMatchingControllerEnum.SimplePMC);
+				.create(PatternMatchingControllerEnum.HybridPMC);
 		PatternMatchingEngine engine = PatternMatchingEngineFactory
 				.create(PatternMatchingEngineEnum.ViatraEngine);
 		pmc.setEngine(engine);

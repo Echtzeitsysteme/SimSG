@@ -20,6 +20,7 @@ public class HybridPMC extends PatternMatchingController {
 	
 	private Map<String, HybridPattern> hybridPatterns;
 	private Map<String, GenericPattern> genericPatterns;
+	private Map<String, HybridMatchCountTemplate> matchCountTemplates;
 	
 	private Map<String, IMatch> hybridMatches;
 	private Map<String, Integer> hybridMatchCount;
@@ -52,9 +53,11 @@ public class HybridPMC extends PatternMatchingController {
 		super.initController();
 		hybridMatches = new HashMap<String, IMatch>();
 		hybridMatchCount = new HashMap<String, Integer>();
+		matchCountTemplates = new HashMap<String, HybridMatchCountTemplate>();
 		for(String hybridPattern : hybridPatterns.keySet()) {
 			hybridMatches.put(hybridPattern, null);
 			hybridMatchCount.put(hybridPattern, 0);
+			matchCountTemplates.put(hybridPattern, new HybridMatchCountTemplate(hybridPatterns.get(hybridPattern)));
 		}
 		
 	}
@@ -149,6 +152,7 @@ public class HybridPMC extends PatternMatchingController {
 	}
 	
 	private void calculateHybridMatchCount(String patternName) {
+		/*
 		HybridPattern hybridPattern = hybridPatterns.get(patternName);
 		Collection<String> subPatterNames = hybridPattern.getGenericSubPatterns().keySet();
 		Collection<AgentNodeConstraint> constraints = hybridPattern.getInjectivityConstraintsSignature();
@@ -194,6 +198,12 @@ public class HybridPMC extends PatternMatchingController {
 			predecessors.add(subPatternName);
 		}
 		hybridMatchCount.replace(patternName, count);
+		*/
+		Map<String, Integer> countMap = new LinkedHashMap<String, Integer>();
+		for(String subPatternName : hybridPatterns.get(patternName).getGenericSubPatterns().keySet()) {
+			countMap.put(subPatternName, super.getMatchCountWithHash(subPatternName));
+		}
+		hybridMatchCount.replace(patternName, matchCountTemplates.get(patternName).calculateMatchCount(countMap));
 	}
 	
 	@Override
