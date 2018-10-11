@@ -29,7 +29,7 @@ init init1 4 { A(),B() }
 init init2 4 { C(x1{u}[free], x2{u}[free]) }
 
 /* Rules */
-rule AtoB { A(x[free]), B(x[free]) } <-> { A(x[1]), B(x[1]) } @ [on_rate, off_rate]
+rule AtoB { A(x[free]), B(x[free]) } <-> { A(x[1]), B(x[1]) } @ [on_rate, off_rate] 
 			
 rule ABtoC { A(x[bound], c[free]), C(x1{u}[free]) } -> 
 			{ A(x[bound], c[2]), C(x1{u}[2]) } @ [on_rate]

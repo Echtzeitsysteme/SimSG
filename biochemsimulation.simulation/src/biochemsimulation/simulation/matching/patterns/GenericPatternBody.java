@@ -170,7 +170,9 @@ public class GenericPatternBody {
 		for(ValidAgentPattern pattern : agentPatterns) {
 			AgentNodeContext currentAgentNodeContext = agentNodeContexts.get(pattern);
 			List<SiteNodeContext> currentSiteNodeContexts = siteNodeContexts.get(currentAgentNodeContext);
-			
+			if(currentSiteNodeContexts == null) {
+				continue;
+			}
 			List<AgentNodeContext> localAgentNodeList = new LinkedList<AgentNodeContext>();
 			int idx = -1;
 			for(SiteNodeContext currentSiteNodeContext : currentSiteNodeContexts) {

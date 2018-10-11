@@ -96,7 +96,9 @@ public class DemoclesPatternGenerator {
 
 		for (AgentNodeContext agentNode : body.getAgentNodeContexts().values()) {
 			transformAgentNodeContext(trgPatternBody, agentNode);
-
+			if(body.getSiteNodeContexts().get(agentNode) == null) {
+				continue;
+			}
 			for (SiteNodeContext siteNode : body.getSiteNodeContexts().get(agentNode)) {
 				transformSiteNodeContext(trgPatternBody, siteNode);
 

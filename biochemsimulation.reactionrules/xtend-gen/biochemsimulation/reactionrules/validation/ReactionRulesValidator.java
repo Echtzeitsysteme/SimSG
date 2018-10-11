@@ -334,6 +334,20 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
               this.error("Two arguments at the same index on lhs and rhs can not be of void type.", 
                 ReactionRulesPackage.Literals.RULE_BODY__RHS);
             }
+          } else {
+            final ValidAgentPattern ap_1 = ((ValidAgentPattern) ap);
+            final AgentPattern ap2_1 = rhs.getAgentPatterns().get(idx);
+            if ((!(ap2_1 instanceof VoidAgentPattern))) {
+              final ValidAgentPattern ap_2 = ((ValidAgentPattern) ap2_1);
+              boolean _equals = ap_1.getAgent().getName().equals(ap_2.getAgent().getName());
+              boolean _not = (!_equals);
+              if (_not) {
+                this.error("Two arguments at the same index on lhs and rhs must have the same agent type.", 
+                  ReactionRulesPackage.Literals.RULE_BODY__LHS);
+                this.error("Two arguments at the same index on lhs and rhs must have the same agent type.", 
+                  ReactionRulesPackage.Literals.RULE_BODY__RHS);
+              }
+            }
           }
           idx++;
         }

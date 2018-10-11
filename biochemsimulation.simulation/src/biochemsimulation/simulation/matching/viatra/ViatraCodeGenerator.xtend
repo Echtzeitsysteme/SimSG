@@ -79,13 +79,15 @@ class ViatraCodeGenerator {
 			«FOR genericPattern : genericPatterns.values SEPARATOR "\n"»
 				pattern «genericPattern.name»(«FOR node : genericPattern.signature.signature.keySet SEPARATOR ", "» «node» : «AgentNodeContext.SIM_AGENT_TYPE.name»«ENDFOR») {
 					«FOR agentNode : genericPattern.body.agentNodeContexts.values SEPARATOR "\n"»«
-					AgentNodeContext.SIM_AGENT_TYPE.name».«AgentNodeContext.TYPE_ATTRIBUTE.name»(«agentNode.agentVariableName», "«agentNode.agentType»");
+					AgentNodeContext.SIM_AGENT_TYPE.name».«AgentNodeContext.TYPE_ATTRIBUTE.name»(«agentNode.agentVariableName», "«agentNode.agentType»");«
+					IF(genericPattern.body.siteNodeContexts.get(agentNode) != null)»
 					«FOR siteNode : genericPattern.body.siteNodeContexts.get(agentNode) SEPARATOR "\n"»«
 					AgentNodeContext.SIM_AGENT_TYPE.name».«SiteNodeContext.SIM_SITE_CONTAINER_ATTRIBUTE.name»(«agentNode.agentVariableName», «siteNode.localSimSiteVariableName»);
 					«SiteNodeContext.SIM_SITE_TYPE.name».«SiteNodeContext.TYPE_ATTRIBUTE.name»(«siteNode.localSimSiteVariableName», "«siteNode.siteType»");
 					«siteStateConstraint(genericPattern, siteNode)»
 					«trivialLinkStateConstraints(genericPattern, siteNode)»
 					«ENDFOR»
+					«ENDIF»
 					«ENDFOR»
 					«FOR constraint : genericPattern.body.linkStateConstraints.values SEPARATOR "\n"»
 					«complexLinkStateConstraint(constraint)»

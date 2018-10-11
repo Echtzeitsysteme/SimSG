@@ -189,52 +189,58 @@ public class ViatraCodeGenerator {
             String _agentType = agentNode.getAgentType();
             _builder.append(_agentType, "\t");
             _builder.append("\");");
-            _builder.newLineIfNotEmpty();
-            _builder.append("\t");
             {
               List<SiteNodeContext> _get_1 = genericPattern.getBody().getSiteNodeContexts().get(agentNode);
-              boolean _hasElements_4 = false;
-              for(final SiteNodeContext siteNode : _get_1) {
-                if (!_hasElements_4) {
-                  _hasElements_4 = true;
-                } else {
-                  _builder.appendImmediate("\n", "\t");
+              boolean _notEquals = (!Objects.equal(_get_1, null));
+              if (_notEquals) {
+                _builder.newLineIfNotEmpty();
+                _builder.append("\t");
+                {
+                  List<SiteNodeContext> _get_2 = genericPattern.getBody().getSiteNodeContexts().get(agentNode);
+                  boolean _hasElements_4 = false;
+                  for(final SiteNodeContext siteNode : _get_2) {
+                    if (!_hasElements_4) {
+                      _hasElements_4 = true;
+                    } else {
+                      _builder.appendImmediate("\n", "\t");
+                    }
+                    String _name_4 = AgentNodeContext.SIM_AGENT_TYPE.getName();
+                    _builder.append(_name_4, "\t");
+                    _builder.append(".");
+                    String _name_5 = SiteNodeContext.SIM_SITE_CONTAINER_ATTRIBUTE.getName();
+                    _builder.append(_name_5, "\t");
+                    _builder.append("(");
+                    String _agentVariableName_1 = agentNode.getAgentVariableName();
+                    _builder.append(_agentVariableName_1, "\t");
+                    _builder.append(", ");
+                    String _localSimSiteVariableName = siteNode.getLocalSimSiteVariableName();
+                    _builder.append(_localSimSiteVariableName, "\t");
+                    _builder.append(");");
+                    _builder.newLineIfNotEmpty();
+                    _builder.append("\t");
+                    String _name_6 = SiteNodeContext.SIM_SITE_TYPE.getName();
+                    _builder.append(_name_6, "\t");
+                    _builder.append(".");
+                    String _name_7 = SiteNodeContext.TYPE_ATTRIBUTE.getName();
+                    _builder.append(_name_7, "\t");
+                    _builder.append("(");
+                    String _localSimSiteVariableName_1 = siteNode.getLocalSimSiteVariableName();
+                    _builder.append(_localSimSiteVariableName_1, "\t");
+                    _builder.append(", \"");
+                    String _siteType = siteNode.getSiteType();
+                    _builder.append(_siteType, "\t");
+                    _builder.append("\");");
+                    _builder.newLineIfNotEmpty();
+                    _builder.append("\t");
+                    String _siteStateConstraint = this.siteStateConstraint(genericPattern, siteNode);
+                    _builder.append(_siteStateConstraint, "\t");
+                    _builder.newLineIfNotEmpty();
+                    _builder.append("\t");
+                    String _trivialLinkStateConstraints = this.trivialLinkStateConstraints(genericPattern, siteNode);
+                    _builder.append(_trivialLinkStateConstraints, "\t");
+                    _builder.newLineIfNotEmpty();
+                  }
                 }
-                String _name_4 = AgentNodeContext.SIM_AGENT_TYPE.getName();
-                _builder.append(_name_4, "\t");
-                _builder.append(".");
-                String _name_5 = SiteNodeContext.SIM_SITE_CONTAINER_ATTRIBUTE.getName();
-                _builder.append(_name_5, "\t");
-                _builder.append("(");
-                String _agentVariableName_1 = agentNode.getAgentVariableName();
-                _builder.append(_agentVariableName_1, "\t");
-                _builder.append(", ");
-                String _localSimSiteVariableName = siteNode.getLocalSimSiteVariableName();
-                _builder.append(_localSimSiteVariableName, "\t");
-                _builder.append(");");
-                _builder.newLineIfNotEmpty();
-                _builder.append("\t");
-                String _name_6 = SiteNodeContext.SIM_SITE_TYPE.getName();
-                _builder.append(_name_6, "\t");
-                _builder.append(".");
-                String _name_7 = SiteNodeContext.TYPE_ATTRIBUTE.getName();
-                _builder.append(_name_7, "\t");
-                _builder.append("(");
-                String _localSimSiteVariableName_1 = siteNode.getLocalSimSiteVariableName();
-                _builder.append(_localSimSiteVariableName_1, "\t");
-                _builder.append(", \"");
-                String _siteType = siteNode.getSiteType();
-                _builder.append(_siteType, "\t");
-                _builder.append("\");");
-                _builder.newLineIfNotEmpty();
-                _builder.append("\t");
-                String _siteStateConstraint = this.siteStateConstraint(genericPattern, siteNode);
-                _builder.append(_siteStateConstraint, "\t");
-                _builder.newLineIfNotEmpty();
-                _builder.append("\t");
-                String _trivialLinkStateConstraints = this.trivialLinkStateConstraints(genericPattern, siteNode);
-                _builder.append(_trivialLinkStateConstraints, "\t");
-                _builder.newLineIfNotEmpty();
               }
             }
           }

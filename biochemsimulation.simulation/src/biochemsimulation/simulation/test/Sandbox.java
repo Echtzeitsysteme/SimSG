@@ -275,7 +275,7 @@ public class Sandbox {
 		PatternMatchingController pmc = PatternMatchingControllerFactory
 				.create(PatternMatchingControllerEnum.HybridPMC);
 		PatternMatchingEngine engine = PatternMatchingEngineFactory
-				.create(PatternMatchingEngineEnum.ViatraEngine);
+				.create(PatternMatchingEngineEnum.DemoclesEngine);
 		pmc.setEngine(engine);
 		
 		
@@ -294,21 +294,21 @@ public class Sandbox {
 			gt.init();
 			
 			pmc.collectAllMatches();
-			System.out.println(pmc.getMatchCount("createAndDestroyFullVoidInjectivity2_rule2_lhs"));
-			IMatch match = pmc.getRandomMatch("createAndDestroyFullVoidInjectivity2_rule2_lhs");
+			System.out.println(pmc.getMatchCount("ab_lhs"));
+			IMatch match = pmc.getRandomMatch("ab_lhs");
 			match.parameterNames().forEach(name -> {
 				System.out.println("Param: "+name+": "+match.get(name));
 			});
-			gt.applyRuleToMatch(match, "createAndDestroyFullVoidInjectivity2_rule2_lhs");
+			gt.applyRuleToMatch(match, "ab_lhs");
 			pmc.collectAllMatches();
-			System.out.println(pmc.getMatchCount("createAndDestroyFullVoidInjectivity2_rule2_lhs"));
+			System.out.println(pmc.getMatchCount("ab_lhs"));
 			match.parameterNames().forEach(name -> {
 				System.out.println("Param: "+name+": "+match.get(name));
 			});
-			IMatch match2 = pmc.getRandomMatch("createAndDestroyFullVoidInjectivity2_rule2_rhs");
-			gt.applyRuleToMatch(match2, "createAndDestroyFullVoidInjectivity2_rule2_rhs");
+			IMatch match2 = pmc.getRandomMatch("ab_rhs");
+			gt.applyRuleToMatch(match2, "ab_rhs");
 			pmc.collectAllMatches();
-			System.out.println(pmc.getMatchCount("createAndDestroyFullVoidInjectivity2_rule2_lhs"));
+			System.out.println(pmc.getMatchCount("ab_lhs"));
 			match.parameterNames().forEach(name -> {
 				System.out.println("Param: "+name+": "+match.get(name));
 			});

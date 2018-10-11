@@ -306,6 +306,20 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 							ReactionRulesPackage.Literals.RULE_BODY__RHS
 						)
 					}
+				}else {
+					val ap_1 = ap as ValidAgentPattern
+					val ap2 = rhs.agentPatterns.get(idx)
+					if(!(ap2 instanceof VoidAgentPattern)) {
+						val ap_2 = ap2 as ValidAgentPattern
+						if(!ap_1.agent.name.equals(ap_2.agent.name)) {
+							error('Two arguments at the same index on lhs and rhs must have the same agent type.', 
+							ReactionRulesPackage.Literals.RULE_BODY__LHS
+							)
+							error('Two arguments at the same index on lhs and rhs must have the same agent type.', 
+							ReactionRulesPackage.Literals.RULE_BODY__RHS
+							)
+						}
+					}
 				}
 				idx++;	
 			}
