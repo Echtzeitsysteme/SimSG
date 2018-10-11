@@ -1,10 +1,13 @@
 package biochemsimulation.simulation.matching;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import com.google.common.base.Objects;
 
 import biochemsimulation.simulation.matching.patterns.HybridPattern;
 
@@ -54,6 +57,16 @@ public class HybridMatch implements IMatch {
 	@Override
 	public boolean contains(String parameterName) {
 		return parameters.containsKey(parameterName);
+	}
+	
+	@Override
+	public int hashCode() {
+		return Arrays.hashCode(parameters.values().toArray());
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		return this.hashCode()==other.hashCode();
 	}
 
 }

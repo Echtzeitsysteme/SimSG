@@ -1,9 +1,11 @@
 package biochemsimulation.simulation.matching.democles;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.gervarro.democles.common.DataFrame;
 import org.gervarro.democles.specification.emf.Pattern;
@@ -48,6 +50,16 @@ class DemoclesMatch implements IMatch {
 	@Override
 	public boolean contains(String parameterName) {
 		return parameters.containsKey(parameterName);
+	}
+	
+	@Override
+	public int hashCode() {
+		return Arrays.hashCode(parameters.values().toArray());
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		return this.hashCode()==other.hashCode();
 	}
 
 }

@@ -273,7 +273,7 @@ public class Sandbox {
 		PatternMatchingController pmc = PatternMatchingControllerFactory
 				.create(PatternMatchingControllerEnum.HybridPMC);
 		PatternMatchingEngine engine = PatternMatchingEngineFactory
-				.create(PatternMatchingEngineEnum.ViatraEngine);
+				.create(PatternMatchingEngineEnum.DemoclesEngine);
 		pmc.setEngine(engine);
 		
 		
@@ -295,9 +295,9 @@ public class Sandbox {
 			System.out.println(pmc.getMatchCount("r3_lhs"));
 			IMatch match = pmc.getRandomMatch("r3_lhs");
 			match.parameterNames().forEach(name -> {
-				System.out.println(match.get(name));
+				System.out.println("Param: "+name+": "+match.get(name));
 			});
-			gt.applyRuleToMatch(pmc.getRandomMatch("r3_lhs"));
+			gt.applyRuleToMatch(match);
 			pmc.collectAllMatches();
 			System.out.println(pmc.getMatchCount("r3_lhs"));
 			pmc.discardEngine();

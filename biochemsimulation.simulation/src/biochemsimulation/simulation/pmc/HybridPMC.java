@@ -3,6 +3,7 @@ package biochemsimulation.simulation.pmc;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -75,15 +76,20 @@ public class HybridPMC extends PatternMatchingController {
 			hybridMatchCount.replace(patternName, 1);
 			return;
 		}
-		Collection<String> subPatterNames = hybridPatterns.get(patternName).getGenericSubPatterns().keySet();
-		/*
-		System.out.println("SubPatternOrder: ");
-		subPatterNames.forEach(x -> System.out.println("Subpattern Name: "+x));
-		*/
-		for(String subPatternName : subPatterNames) {
-			super.collectMatchesWithHash(subPatternName);
-		}
 		
+		Collection<IMatch> subMatches = new LinkedHashSet<IMatch>();
+		
+		for(String subPatternName : hybridPatterns.get(patternName).getGenericSubPatterns().keySet()) {
+			super.collectMatchesWithHash(subPatternName);
+			for(IMatch currentMatch : matches.get(subPatternName)) {
+				//System.out.println(currentMatch.hashCode());
+				if(!subMatches.contains(currentMatch)) {
+					subMatches.add(currentMatch);
+					break;
+				}
+			}
+		}
+		/*
 		Map<String, IMatch> subMatches = new LinkedHashMap<String, IMatch>();
 		for(String subPatternName : subPatterNames) {
 			if(super.getMatchCountWithHash(subPatternName) == 0) {
@@ -115,12 +121,15 @@ public class HybridPMC extends PatternMatchingController {
 			hybridMatchCount.replace(patternName, 0);
 			return;
 		}
-		/*
-		System.out.println("SubMatch order2: ");
-		subMatches.values().forEach(x->System.out.println("Type: "+x.patternName()));
 		*/
-		hybridMatches.put(patternName, new HybridMatch(patternName, subMatches.values(), hybridPatterns.get(patternName)));
+		
 		calculateHybridMatchCount(patternName);
+		if(hybridMatchCount.get(patternName) <= 0) {
+			return;
+		}
+		
+		hybridMatches.put(patternName, new HybridMatch(patternName, subMatches, hybridPatterns.get(patternName)));
+		
 		
 	}
 	
