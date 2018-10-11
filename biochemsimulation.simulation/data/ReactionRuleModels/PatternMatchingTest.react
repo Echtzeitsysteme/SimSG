@@ -143,7 +143,7 @@ rule mediumInjectivityWithStates_rule p28 -> {void, void, void, void, void} @ [d
 // Hard injectivity constraint
 rule hardInjectivity_rule p32 -> {void, void, void, void} @ [dummy_rate] // 16 * 14 = 224  Matches
 rule hardInjectivity2_rule p33 -> {void, void, void, void, void, void} @ [dummy_rate] // 4 * 3 = 12  Matches
-rule hardInjectivity3_rule p34 -> {void, void, void, void, void, void} @ [dummy_rate] // 12 * 10 * 8 = 720  Matches
+rule hardInjectivity3_rule p34 -> {void, void, void, void, void, void} @ [dummy_rate] // 12 * 10 * 8 = 960  Matches
 
 // Important: These lhs patterns will cause democles to crash or run indefinitely
 //rule evilInjectivityAndBoundAny_rule p29 -> {void, void, void} @ [dummy_rate] // [(3+3)+(7+7)]*(3+7)*(3+7) = 20 * 10 * 10 = 2000 Matches (2000 - 10*10 = 1900 for now..)

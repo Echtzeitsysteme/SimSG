@@ -1,6 +1,9 @@
 package biochemsimulation.simulation.matching.viatra;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,9 +13,11 @@ import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 public class ViatraMatch implements IMatch {
 	
 	final private IPatternMatch match;
+	private int hashCode;
 	
 	public ViatraMatch(final IPatternMatch match) {
 		this.match = match;
+		hashCode = 0;
 	}
 	
 	public IPatternMatch getIPatternMatch() {
@@ -42,8 +47,14 @@ public class ViatraMatch implements IMatch {
 	
 	@Override
 	public int hashCode() {
-		//return Objects.hashCode(match.toArray());
-		return Arrays.hashCode(match.toArray());
+		if(hashCode == 0) {
+			int fwd = Arrays.hashCode(match.toArray());
+			List<Object> reverseList = new LinkedList<Object>(Arrays.asList(match.toArray()));
+			Collections.reverse(reverseList);
+			int bwd = Arrays.hashCode(reverseList.toArray());
+			hashCode =  (fwd > bwd)?fwd:bwd;
+		}
+		return hashCode;
 	}
 	
 	@Override

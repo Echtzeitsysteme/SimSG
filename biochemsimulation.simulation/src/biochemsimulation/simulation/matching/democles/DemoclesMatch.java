@@ -1,6 +1,7 @@
 package biochemsimulation.simulation.matching.democles;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,6 +18,7 @@ class DemoclesMatch implements IMatch {
 	private String patternName;
 	private Map<String, Object> parameters;
 	private List<String> parameterNames;
+	private int hashCode;
 	
 	public DemoclesMatch(final DataFrame frame, final Pattern pattern) {
 		patternName = pattern.getName();
@@ -29,6 +31,7 @@ class DemoclesMatch implements IMatch {
 		}
 		
 		parameterNames = new LinkedList<String>(parameters.keySet());
+		hashCode = 0;
 		
 	}
 
@@ -54,7 +57,14 @@ class DemoclesMatch implements IMatch {
 	
 	@Override
 	public int hashCode() {
-		return Arrays.hashCode(parameters.values().toArray());
+		if(hashCode == 0) {
+			int fwd = Arrays.hashCode(parameters.values().toArray());
+			List<Object> reverseList = new LinkedList<Object>(parameters.values());
+			Collections.reverse(reverseList);
+			int bwd = Arrays.hashCode(reverseList.toArray());
+			hashCode =  (fwd > bwd)?fwd:bwd;
+		}
+		return hashCode;
 	}
 	
 	@Override

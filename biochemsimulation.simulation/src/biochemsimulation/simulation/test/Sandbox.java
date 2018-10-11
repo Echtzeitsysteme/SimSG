@@ -41,7 +41,9 @@ public class Sandbox {
 		simConfig.setModel("Goldbeter_Koshland");
 		simConfig.setSimplePersistence();
 		simConfig.setViatraAsEngine();
+		//simConfig.setDemoclesAsEngine();
 		simConfig.setHybridPMC();
+		//simConfig.setSimplePMC();
 		//simConfig.setSimpleSimulation();
 		simConfig.setStochasticSimulation();
 		//simConfig.setPMCDeterministic(true);
@@ -50,9 +52,9 @@ public class Sandbox {
 		
 		Simulation viatraSim = simConfig.createSimulation();
 		
-		simConfig.setDemoclesAsEngine();
+		//simConfig.setDemoclesAsEngine();
 		
-		Simulation democlesSim = simConfig.createSimulation();
+		//Simulation democlesSim = simConfig.createSimulation();
 		
 		viatraSim.initializeClocked();
 		viatraSim.runClocked();
@@ -273,7 +275,7 @@ public class Sandbox {
 		PatternMatchingController pmc = PatternMatchingControllerFactory
 				.create(PatternMatchingControllerEnum.HybridPMC);
 		PatternMatchingEngine engine = PatternMatchingEngineFactory
-				.create(PatternMatchingEngineEnum.DemoclesEngine);
+				.create(PatternMatchingEngineEnum.ViatraEngine);
 		pmc.setEngine(engine);
 		
 		
@@ -300,6 +302,16 @@ public class Sandbox {
 			gt.applyRuleToMatch(match);
 			pmc.collectAllMatches();
 			System.out.println(pmc.getMatchCount("r3_lhs"));
+			match.parameterNames().forEach(name -> {
+				System.out.println("Param: "+name+": "+match.get(name));
+			});
+			IMatch match2 = pmc.getRandomMatch("r3_rhs");
+			gt.applyRuleToMatch(match2);
+			pmc.collectAllMatches();
+			System.out.println(pmc.getMatchCount("r3_lhs"));
+			match.parameterNames().forEach(name -> {
+				System.out.println("Param: "+name+": "+match.get(name));
+			});
 			pmc.discardEngine();
 			pm.unloadReactionContainerModel("HybridPatternSandbox");
 			

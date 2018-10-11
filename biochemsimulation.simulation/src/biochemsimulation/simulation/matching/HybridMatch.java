@@ -2,6 +2,7 @@ package biochemsimulation.simulation.matching;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,6 +17,7 @@ public class HybridMatch implements IMatch {
 	private String patternName;
 	private Map<String, Object> parameters;
 	private List<String> parameterNames;
+	private int hashCode;
 	
 	public HybridMatch(String patternName, final Collection<IMatch> subMatches, HybridPattern pattern) {
 		this.patternName = patternName;
@@ -23,20 +25,11 @@ public class HybridMatch implements IMatch {
 		parameters = new LinkedHashMap<String, Object>();
 		for(IMatch subMatch : subMatches) {
 			for(String paramName : subMatch.parameterNames()) {
-				//parameters.put(paramName, subMatch.get(paramName));
 				parameters.put(pattern.localToGlobalSignature(subMatch.patternName(), paramName), subMatch.get(paramName));
 			}
 		}
 		parameterNames = new LinkedList<String>(parameters.keySet());
-		/*
-		System.out.println("HybridMatch: "+patternName + ", order:");
-		parameters.forEach((s, o) -> System.out.println("Param: "+s));
-		System.out.println("HybridPattern: "+patternName + ", order:");
-		pattern.getGenericSubPatterns().forEach((name, p) -> {
-			System.out.println("Subpattern: "+p.getName()+", order:");
-			p.getSignature().getSignature().forEach((name2, sig) -> System.out.println("NodeName: "+name2));
-		});
-		*/
+		hashCode = 0;
 	}
 
 	@Override
@@ -61,7 +54,14 @@ public class HybridMatch implements IMatch {
 	
 	@Override
 	public int hashCode() {
-		return Arrays.hashCode(parameters.values().toArray());
+		if(hashCode == 0) {
+			int fwd = Arrays.hashCode(parameters.values().toArray());
+			List<Object> reverseList = new LinkedList<Object>(parameters.values());
+			Collections.reverse(reverseList);
+			int bwd = Arrays.hashCode(reverseList.toArray());
+			hashCode =  (fwd > bwd)?fwd:bwd;
+		}
+		return hashCode;
 	}
 	
 	@Override

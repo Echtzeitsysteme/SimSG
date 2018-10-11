@@ -233,5 +233,49 @@ abstract class GraphTransformTest {
 		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
 		
 	}
-
+	/*
+	@Test
+	void createAndDestroyFullVoidInjectivity() {
+		final int lhsPre = 12;
+		final int lhsPost = 2;
+		final int rhsPre = 1;
+		final int rhsPost = 1;
+		final String lhs = "createAndDestroyFullVoidInjectivity_rule_lhs";
+		final String rhs = "createAndDestroyFullVoidInjectivity_rule_rhs";
+		
+		collectMatches(lhs, rhs);
+		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
+		gt.applyRuleToMatch(lhsMatch);
+		
+		collectMatches(lhs, rhs);
+		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
+		gt.applyRuleToMatch(rhsMatch);
+		
+		collectMatches(lhs, rhs);
+		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
+		
+	}
+	*/
+	@Test
+	void createAndDestroyFullVoidInjectivity2() {
+		final int lhsPre = 960;
+		final int lhsPost = 48;
+		final int rhsPre = 1;
+		final int rhsPost = 1;
+		final String lhs = "createAndDestroyFullVoidInjectivity2_rule_lhs";
+		final String rhs = "createAndDestroyFullVoidInjectivity2_rule_rhs";
+		
+		collectMatches(lhs, rhs);
+		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
+		gt.applyRuleToMatch(lhsMatch);
+		
+		collectMatches(lhs, rhs);
+		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
+		gt.applyRuleToMatch(rhsMatch);
+		
+		collectMatches(lhs, rhs);
+		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
+		
+	}
+	
 }
