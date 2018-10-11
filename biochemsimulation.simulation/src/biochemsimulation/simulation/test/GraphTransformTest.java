@@ -116,11 +116,11 @@ abstract class GraphTransformTest {
 		
 		collectMatches(lhs, rhs);
 		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
-		gt.applyRuleToMatch(lhsMatch);
+		gt.applyRuleToMatch(lhsMatch, lhs);
 		
 		collectMatches(lhs, rhs);
 		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
-		gt.applyRuleToMatch(rhsMatch);
+		gt.applyRuleToMatch(rhsMatch, rhs);
 		
 		collectMatches(lhs, rhs);
 		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
@@ -138,11 +138,11 @@ abstract class GraphTransformTest {
 		
 		collectMatches(lhs, rhs);
 		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
-		gt.applyRuleToMatch(lhsMatch);
+		gt.applyRuleToMatch(lhsMatch, lhs);
 		
 		collectMatches(lhs, rhs);
 		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
-		gt.applyRuleToMatch(rhsMatch);
+		gt.applyRuleToMatch(rhsMatch, rhs);
 		
 		collectMatches(lhs, rhs);
 		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
@@ -159,11 +159,11 @@ abstract class GraphTransformTest {
 		
 		collectMatches(lhs, rhs);
 		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
-		gt.applyRuleToMatch(lhsMatch);
+		gt.applyRuleToMatch(lhsMatch, lhs);
 		
 		collectMatches(lhs, rhs);
 		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
-		gt.applyRuleToMatch(rhsMatch);
+		gt.applyRuleToMatch(rhsMatch, rhs);
 		
 		collectMatches(lhs, rhs);
 		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
@@ -180,11 +180,11 @@ abstract class GraphTransformTest {
 		
 		collectMatches(lhs, rhs);
 		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
-		gt.applyRuleToMatch(lhsMatch);
+		gt.applyRuleToMatch(lhsMatch, lhs);
 		
 		collectMatches(lhs, rhs);
 		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
-		gt.applyRuleToMatch(rhsMatch);
+		gt.applyRuleToMatch(rhsMatch, rhs);
 		
 		collectMatches(lhs, rhs);
 		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
@@ -201,11 +201,11 @@ abstract class GraphTransformTest {
 		
 		collectMatches(lhs, rhs);
 		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
-		gt.applyRuleToMatch(lhsMatch);
+		gt.applyRuleToMatch(lhsMatch, lhs);
 		
 		collectMatches(lhs, rhs);
 		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
-		gt.applyRuleToMatch(rhsMatch);
+		gt.applyRuleToMatch(rhsMatch, rhs);
 		
 		collectMatches(lhs, rhs);
 		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
@@ -223,17 +223,17 @@ abstract class GraphTransformTest {
 		
 		collectMatches(lhs, rhs);
 		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
-		gt.applyRuleToMatch(lhsMatch);
+		gt.applyRuleToMatch(lhsMatch, lhs);
 		
 		collectMatches(lhs, rhs);
 		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
-		gt.applyRuleToMatch(rhsMatch);
+		gt.applyRuleToMatch(rhsMatch, rhs);
 		
 		collectMatches(lhs, rhs);
 		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
 		
 	}
-	/*
+	
 	@Test
 	void createAndDestroyFullVoidInjectivity() {
 		final int lhsPre = 12;
@@ -245,17 +245,17 @@ abstract class GraphTransformTest {
 		
 		collectMatches(lhs, rhs);
 		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
-		gt.applyRuleToMatch(lhsMatch);
+		gt.applyRuleToMatch(lhsMatch, lhs);
 		
 		collectMatches(lhs, rhs);
 		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
-		gt.applyRuleToMatch(rhsMatch);
+		gt.applyRuleToMatch(rhsMatch, rhs);
 		
 		collectMatches(lhs, rhs);
 		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
 		
 	}
-	*/
+	
 	@Test
 	void createAndDestroyFullVoidInjectivity2() {
 		final int lhsPre = 960;
@@ -267,11 +267,11 @@ abstract class GraphTransformTest {
 		
 		collectMatches(lhs, rhs);
 		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
-		gt.applyRuleToMatch(lhsMatch);
+		gt.applyRuleToMatch(lhsMatch, lhs);
 		
 		collectMatches(lhs, rhs);
 		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
-		gt.applyRuleToMatch(rhsMatch);
+		gt.applyRuleToMatch(rhsMatch, rhs);
 		
 		collectMatches(lhs, rhs);
 		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);

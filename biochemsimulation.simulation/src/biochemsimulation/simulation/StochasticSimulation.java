@@ -45,7 +45,7 @@ public class StochasticSimulation extends Simulation {
 			updateTimeStep();
 			pickRule();
 			if(currentRule != null) {
-				gt.applyRuleToMatch(pmc.getRandomMatch(currentRule));
+				gt.applyRuleToMatch(pmc.getRandomMatch(currentRule), currentRule);
 			}
 			simStats.logCurrentState(state);
 			

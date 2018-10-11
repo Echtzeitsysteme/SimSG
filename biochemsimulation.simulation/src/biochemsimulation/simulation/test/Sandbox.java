@@ -237,7 +237,7 @@ public class Sandbox {
 			
 			pmc.collectAllMatches();
 			System.out.println(pmc.getMatchCount("bindAndChangeStates_rule_lhs"));
-			gt.applyRuleToMatch(pmc.getRandomMatch("bindAndChangeStates_rule_lhs"));
+			gt.applyRuleToMatch(pmc.getRandomMatch("bindAndChangeStates_rule_lhs"), "bindAndChangeStates_rule_lhs");
 			pmc.collectAllMatches();
 			System.out.println(pmc.getMatchCount("bindAndChangeStates_rule_lhs"));
 			pmc.discardEngine();
@@ -294,21 +294,21 @@ public class Sandbox {
 			gt.init();
 			
 			pmc.collectAllMatches();
-			System.out.println(pmc.getMatchCount("r3_lhs"));
-			IMatch match = pmc.getRandomMatch("r3_lhs");
+			System.out.println(pmc.getMatchCount("createAndDestroyFullVoidInjectivity2_rule2_lhs"));
+			IMatch match = pmc.getRandomMatch("createAndDestroyFullVoidInjectivity2_rule2_lhs");
 			match.parameterNames().forEach(name -> {
 				System.out.println("Param: "+name+": "+match.get(name));
 			});
-			gt.applyRuleToMatch(match);
+			gt.applyRuleToMatch(match, "createAndDestroyFullVoidInjectivity2_rule2_lhs");
 			pmc.collectAllMatches();
-			System.out.println(pmc.getMatchCount("r3_lhs"));
+			System.out.println(pmc.getMatchCount("createAndDestroyFullVoidInjectivity2_rule2_lhs"));
 			match.parameterNames().forEach(name -> {
 				System.out.println("Param: "+name+": "+match.get(name));
 			});
-			IMatch match2 = pmc.getRandomMatch("r3_rhs");
-			gt.applyRuleToMatch(match2);
+			IMatch match2 = pmc.getRandomMatch("createAndDestroyFullVoidInjectivity2_rule2_rhs");
+			gt.applyRuleToMatch(match2, "createAndDestroyFullVoidInjectivity2_rule2_rhs");
 			pmc.collectAllMatches();
-			System.out.println(pmc.getMatchCount("r3_lhs"));
+			System.out.println(pmc.getMatchCount("createAndDestroyFullVoidInjectivity2_rule2_lhs"));
 			match.parameterNames().forEach(name -> {
 				System.out.println("Param: "+name+": "+match.get(name));
 			});

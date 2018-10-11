@@ -55,7 +55,8 @@ public class ReactionRuleTransformer {
 		templateMap = new HashMap<String, TransformationTemplate>();
 		patternMap.forEach((patternName, lhsPattern) -> {
 			Pattern rhsPattern = targetPatternMap.get(patternName);
-			templateMap.put(PatternContainer.calcPatternHash(lhsPattern), new TransformationTemplate(lhsPattern, rhsPattern));
+			//templateMap.put(PatternContainer.calcPatternHash(lhsPattern), new TransformationTemplate(lhsPattern, rhsPattern));
+			templateMap.put(patternName, new TransformationTemplate(lhsPattern, rhsPattern));
 		});
 	}
 	
@@ -64,8 +65,8 @@ public class ReactionRuleTransformer {
 		initTransformationTemplates();
 	}
 	
-	public void applyRuleToMatch(IMatch match) {
-		String patternName = match.patternName().replaceAll("^(.)*\\.", "");
+	public void applyRuleToMatch(IMatch match, String patternName) {
+		//String patternName = match.patternName().replaceAll("^(.)*\\.", "");
 		templateMap.get(patternName).applyTransformation(match, reactionContainer, factory);
 	}
 	

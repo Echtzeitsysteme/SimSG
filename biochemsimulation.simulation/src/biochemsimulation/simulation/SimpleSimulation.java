@@ -52,11 +52,11 @@ public class SimpleSimulation extends Simulation {
 				double pRule = 1.0 - Math.pow((1.0-reactionRate), pmc.getMatchCount(current));
 				double rnd = random.nextDouble();
 				if(rnd <= pRule) {
-					gt.applyRuleToMatch(pmc.getRandomMatch(current));
+					gt.applyRuleToMatch(pmc.getRandomMatch(current), current);
 				}
 			}else {
 				if(pmc.getMatchCount(current) != 0) {
-					gt.applyRuleToMatch(pmc.getMatchAt(current, 0));
+					gt.applyRuleToMatch(pmc.getMatchAt(current, 0), current);
 				}
 			}
 			
