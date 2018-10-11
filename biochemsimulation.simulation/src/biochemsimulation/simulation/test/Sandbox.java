@@ -28,12 +28,12 @@ public class Sandbox {
 		test4();
 		test6();
 		*/
-		//test7();
+		test7();
 		//test8_kill();
 		//benchmark();
 		//test4();
 		//hybridTest();
-		hybridObsTest();
+		//hybridObsTest();
 	}
 	
 	public static void test7() {
