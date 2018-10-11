@@ -3,6 +3,7 @@ package biochemsimulation.reactionrules.utils;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
@@ -25,7 +26,7 @@ public class PatternContainer {
 	Map<String, Pattern> observablesPatterns;
 	Map<String, Pattern> termCondPopulationPatterns;
 	
-	public PatternContainer() {
+	PatternContainer() {
 		patterns = new HashSet<Pattern>();
 		patternNames = new HashSet<String>();
 		rulePatterns = new HashMap<String, Pattern>();
@@ -125,6 +126,24 @@ public class PatternContainer {
 				patternNames.add(name);
 			}
 		});
+	}
+	
+	public void removeUnusedPatterns() {
+		Collection<Pattern> markedForRemoval = new LinkedList<Pattern>();
+		for(Pattern p : patterns) {
+			if(rulePatterns.containsValue(p)) {
+				continue;
+			}
+			if(observablesPatterns.containsValue(p)) {
+				continue;
+			}
+			if(termCondPopulationPatterns.containsValue(p)) {
+				continue;
+			}
+			markedForRemoval.add(p);
+		}
+		
+		patterns.removeAll(markedForRemoval);
 	}
 	
 	private Pattern findEqualPattern(Pattern other) {

@@ -299,6 +299,7 @@ public class Sandbox {
 			match.parameterNames().forEach(name -> {
 				System.out.println("Param: "+name+": "+match.get(name));
 			});
+			System.out.println(pmc.getAllMatches().size());
 			gt.applyRuleToMatch(match, "ab_lhs");
 			pmc.collectAllMatches();
 			System.out.println(pmc.getMatchCount("ab_lhs"));
