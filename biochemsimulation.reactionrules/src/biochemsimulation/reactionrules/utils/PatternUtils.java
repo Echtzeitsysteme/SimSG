@@ -100,7 +100,7 @@ public class PatternUtils {
 		container.addRulePatterns(getRulePatterns(model));
 		container.addObservablePatterns(getObservablesPatterns(model));
 		container.addtermCondPopulationPatterns(getTerminationConditionPatterns(model));
-		container.removeUnusedPatterns();
+		container.removeUnusedPatterns(getRules(model));
 		return container;
 	}
 	

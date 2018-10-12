@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -14,6 +15,7 @@ import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.FreeLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
+import biochemsimulation.reactionrules.reactionRules.Rule;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern;
@@ -128,7 +130,7 @@ public class PatternContainer {
 		});
 	}
 	
-	public void removeUnusedPatterns() {
+	public void removeUnusedPatterns(List<Rule> rules) {
 		Collection<Pattern> markedForRemoval = new LinkedList<Pattern>();
 		for(Pattern p : patterns) {
 			if(rulePatterns.containsValue(p)) {
@@ -142,7 +144,33 @@ public class PatternContainer {
 			}
 			markedForRemoval.add(p);
 		}
-		
+		/*
+		for(Rule rule : rules) {
+			if(rule.getRule().getOperator().equals(PatternUtils.RULE_OPERATOR_BI)) {
+				continue;
+			}
+			Pattern p = PatternUtils.patternFromPatternAssignment(rule.getRule().getRhs());
+			if(observablesPatterns.containsValue(p)) {
+				continue;
+			}
+			if(termCondPopulationPatterns.containsValue(p)) {
+				continue;
+			}
+			boolean isUsed = false;
+			for(String pName : rulePatterns.keySet()) {
+				if(pName.contains(PatternUtils.PATTERN_NAME_SUFFIX_LHS)) {
+					Pattern pattern =rulePatterns.get(pName);
+					if(equals(p, pattern)) {
+						isUsed = true;
+						break;
+					}
+				}
+			}
+			if(!isUsed) {
+				markedForRemoval.add(p);
+			}
+		}
+		*/
 		patterns.removeAll(markedForRemoval);
 	}
 	
