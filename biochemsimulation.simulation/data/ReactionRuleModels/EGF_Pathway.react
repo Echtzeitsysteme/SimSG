@@ -147,4 +147,4 @@ obs Raf_p {Raf(x{p}[?])}
 obs Ras_gtp {Ras(S1S2{gtp}[?])}
 
 // Terminates
-terminate t_it time=300000
+terminate t_it time=30000

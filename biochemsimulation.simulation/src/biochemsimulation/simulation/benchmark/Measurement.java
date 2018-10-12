@@ -3,9 +3,17 @@ package biochemsimulation.simulation.benchmark;
 public class Measurement {
 	
 	final public static double NANOSECONDS = 1E9;
+	final public static int MB = 1024*1024;
+	
+	private Runtime runtime;
 	
 	private double start;
 	private double end;
+	private long usedMemory;
+	
+	public Measurement() {
+		runtime = Runtime.getRuntime();
+	}
 	
 	public void start() {
 		start = System.nanoTime();
@@ -13,6 +21,7 @@ public class Measurement {
 	
 	public void end() {
 		end = System.nanoTime();
+		usedMemory = (runtime.totalMemory() - runtime.freeMemory()) / MB;
 	}
 	
 	public double durationSeconds() {
@@ -23,8 +32,12 @@ public class Measurement {
 		return end-start;
 	}
 	
+	public long usedMemoryMB() {
+		return usedMemory;
+	}
+	
 	@Override
 	public String toString() {
-		return "Execution took: "+durationSeconds()+"s ("+durationNanoSeconds()+"ns)";
+		return "Execution took: "+durationSeconds()+"s ("+durationNanoSeconds()+"ns) and required "+usedMemory+"MB of memory.";
 	}
 }
