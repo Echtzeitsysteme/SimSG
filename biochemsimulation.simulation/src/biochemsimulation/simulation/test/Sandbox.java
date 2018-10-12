@@ -38,7 +38,7 @@ public class Sandbox {
 	
 	public static void test7() {
 		SimulationConfigurator simConfig = new SimulationConfigurator();
-		simConfig.setModel("Goldbeter_Koshland");
+		simConfig.setModel("EGF_Pathway");
 		simConfig.setSimplePersistence();
 		simConfig.setViatraAsEngine();
 		//simConfig.setDemoclesAsEngine();
