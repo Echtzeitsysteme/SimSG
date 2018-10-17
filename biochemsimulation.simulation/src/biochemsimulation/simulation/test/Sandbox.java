@@ -28,9 +28,9 @@ public class Sandbox {
 		test4();
 		test6();
 		*/
-		test7();
+		//test7();
 		//test8_kill();
-		//benchmark();
+		benchmark();
 		//test4();
 		//hybridTest();
 		//hybridObsTest();
@@ -75,39 +75,30 @@ public class Sandbox {
 	}
 	
 	public static void benchmark() {
-		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.NeoEMFPersistence);
-		pm.init();
-		List<String> models = pm.availableReactionRuleModels().stream().filter(x->x.contains("Bench_konj_Var1000")).collect(Collectors.toList());
 		SimulationConfigurator simConfig = new SimulationConfigurator();
 		simConfig.setSimplePersistence();
 		simConfig.setSimplePMC();
-		simConfig.setSimpleSimulation();
-		simConfig.setPMCDeterministic(true);
-		simConfig.setSimpleTerminationCondition(10, 100);
-		/*
-		simConfig.setDemoclesAsEngine();
-		models.forEach(x-> {
-			simConfig.setModel(x);
-			Simulation democlesSim = simConfig.createSimulation();
-			democlesSim.initializeClocked();
-			democlesSim.runClocked();
-			System.out.println(democlesSim.results());
-			democlesSim.finish();
-		});
-		*/
+		simConfig.setStochasticSimulation();
+		simConfig.setComplexTerminationCondition();
+		simConfig.setModel("Bench_C8Entities_Var2PatternSize");
 		
 		simConfig.setViatraAsEngine();
-		models.forEach(x-> {
-			simConfig.setModel(x);
-			Simulation viatraSim = simConfig.createSimulation();
-			viatraSim.initializeClocked();
-			viatraSim.runClocked();
-			System.out.println(viatraSim.results());
-			viatraSim.finish();
-		});
+		Simulation viatraSim = simConfig.createSimulation();
+		viatraSim.initializeClocked();
+		viatraSim.runClocked();
+		viatraSim.displayResults();
+		viatraSim.finish();
 		
+		/*
+		simConfig.setDemoclesAsEngine();
+		Simulation democlesSim = simConfig.createSimulation();
+		democlesSim.initializeClocked();
+		democlesSim.runClocked();
+		democlesSim.displayResults();
+		democlesSim.finish();
+		*/
 		
-		
+		System.out.println(Runtimer.getInstance());
 		Runtimer.getInstance().toFile();
 		
 	}

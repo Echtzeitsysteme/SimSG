@@ -4,8 +4,12 @@ agent A(x, y)
 agent B(x, y)
 agent C(x, y)
 
-init i1 8 {A(x[free])}
-init i2 8 {B(x[free])}
-init i3 8 {C(x[free])}
+init i1 10 {A(x[free]), B(x[free]), C(x[free])}
 
-rule destroy {A(x[free]), B(x[free], y[free]), C(x[free])} <-> {A(x[1]), B(x[1], y[2]), C(x[2])} @ [0.01, 0.01]
+rule destroy {A(x[free]), B(x[free], y[free]), C(x[free])} <-> {A(x[1]), B(x[1], y[2]), C(x[2])} @ [1, 600]
+
+
+obs o1 {A(x[free]), B(x[free], y[free]), C(x[free])}
+obs o2 {A(x[1]), B(x[1], y[2]), C(x[2])}
+
+terminate it iterations=300

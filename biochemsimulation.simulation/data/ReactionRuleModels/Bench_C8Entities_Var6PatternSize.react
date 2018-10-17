@@ -7,11 +7,11 @@ agent D(x, y)
 agent F(x, y)
 agent G(x, y)
 
-init i1 8 {A(x[free])}
-init i2 8 {B(x[free])}
-init i3 8 {C(x[free])}
-init i4 8 {D(x[free])}
-init i5 8 {F(x[free])}
-init i6 8 {G(x[free])}
+init i1 10 {A(x[free]), B(x[free]), C(x[free]), D(x[free]), F(x[free]), G(x[free])}
 
-rule destroy {A(x[free]), B(x[free]), C(x[free]), D(x[free]), F(x[free]), G(x[free])} <-> {A(x[1]), B(x[1]), C(x[2]), D(x[2]), F(x[3]), G(x[3])} @ [0.01, 0.01]
+rule destroy {A(x[free]), B(x[free]), C(x[free]), D(x[free]), F(x[free]), G(x[free])} <-> {A(x[1]), B(x[1]), C(x[2]), D(x[2]), F(x[3]), G(x[3])} @ [1, 600000]
+
+obs o1 {A(x[free]), B(x[free]), C(x[free]), D(x[free]), F(x[free]), G(x[free])}
+obs o2 {A(x[1]), B(x[1]), C(x[2]), D(x[2]), F(x[3]), G(x[3])}
+
+terminate it iterations=300
