@@ -6,7 +6,7 @@ agent C(x, y)
 agent D(x, y)
 agent F(x, y)
 
-init i1 10 {A(x[free]), B(x[free]), C(x[free]), D(x[free]), F(x[free])}
+init i1 8 {A(x[free]), B(x[free]), C(x[free]), D(x[free]), F(x[free])}
 
 
 rule destroy {A(x[free]), B(x[free]), C(x[free]), D(x[free], y[free]), F(x[free])} <-> {A(x[1]), B(x[1]), C(x[2]), D(x[2], y[3]), F(x[3])} @ [1, 60000]
@@ -14,4 +14,4 @@ rule destroy {A(x[free]), B(x[free]), C(x[free]), D(x[free], y[free]), F(x[free]
 obs o1 {A(x[free]), B(x[free]), C(x[free]), D(x[free], y[free]), F(x[free])}
 obs o2 {A(x[1]), B(x[1]), C(x[2]), D(x[2], y[3]), F(x[3])}
 
-terminate it iterations=300
+terminate it iterations=100

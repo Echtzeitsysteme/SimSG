@@ -244,11 +244,13 @@ public class DemoclesPatternGenerator {
 		createConstraintParameter(linkConstraint, linkVariableA);
 		createConstraintParameter(linkConstraint, linkVariableB);
 		
-		// this is just to make sure everything is working correctly 
+		// this is just to make sure everything is working correctly
+		/*
 		RelationalConstraint injectivityConstraint = createRelationalConstraint(trgPatternBody,
 				ConstraintType.unequal);
 		createConstraintParameter(injectivityConstraint, sitesVariables.get(linkState.getSiteNodeContext()));
 		createConstraintParameter(injectivityConstraint, sitesVariables.get(otherLinkStateContext.getSiteNodeContext()));
+		*/
 	}
 
 	private void transformBoundToTypeLink(PatternBody trgPatternBody, LinkStateContext linkState,

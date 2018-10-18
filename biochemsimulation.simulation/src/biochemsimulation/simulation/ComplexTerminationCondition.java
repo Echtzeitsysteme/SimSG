@@ -16,9 +16,19 @@ public class ComplexTerminationCondition extends SimulationTerminationCondition 
 	
 	final public static double MILLISEC = 0.001;
 	private Map<String, Integer> terminationPatterns;
+	private int itStatusStep;
+	private double tStatusStep;
+	private double currentTStep;
 
 	@Override
 	public boolean isTerminated(SimulationState state) {
+		if(state.getIterations()%itStatusStep==0) {
+			System.out.println(100.0*(double)state.getIterations() / (double)maxIterations + "% of iterations("+state.getIterations()+") completed!");
+		}
+		if(state.getTime()>= currentTStep) {
+			System.out.println(Math.ceil(100.0*state.getTime()/maxElapsedTime) + "% of simulation time completed!");
+			currentTStep += tStatusStep;
+		}
 		if((state.getIterations()>=maxIterations) || (state.getTime() >= maxElapsedTime)) {
 			return true;
 		}
@@ -65,6 +75,10 @@ public class ComplexTerminationCondition extends SimulationTerminationCondition 
 				}
 			}
 		}
+		
+		itStatusStep = maxIterations/20;
+		tStatusStep = maxElapsedTime/20;
+		currentTStep = 0;
 		
 	}
 

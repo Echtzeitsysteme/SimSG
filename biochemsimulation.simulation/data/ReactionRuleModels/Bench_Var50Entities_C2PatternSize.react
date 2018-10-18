@@ -3,7 +3,11 @@ ModelID Bench_Var50Entities_C2PatternSize
 agent A(x, y)
 agent B(x, y)
 
-init i1 50 {A(x[free])}
-init i2 50 {B(x[free])}
+init i1 250 {A(x[free]), B(x[free])}
 
-rule destroy {A(x[free]), B(x[free])} <-> {A(x[1]), B(x[1])} @ [0.01, 0.01]
+rule destroy {A(x[free]), B(x[free])} <-> {A(x[1]), B(x[1])} @ [1, 1500]
+
+obs o1 {A(x[free]), B(x[free])}
+obs o2 {A(x[1]), B(x[1])}
+
+terminate it iterations=300

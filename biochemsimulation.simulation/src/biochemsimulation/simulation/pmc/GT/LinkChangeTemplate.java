@@ -77,15 +77,23 @@ public class LinkChangeTemplate {
 	}
 	
 	public SimLinkState applyLinkChange(IMatch match, ReactionContainerFactory factory, ReactionContainer reactionContainer) {
-		if(!fromIsTemplate && !toIsTemplate) {
-			return applyLinkChangeNormal(match, factory, reactionContainer);
-		}else if(fromIsTemplate && !toIsTemplate) {
-			return applyLinkChangeFromTemplate(match, factory, reactionContainer);
-		}else if(!fromIsTemplate && toIsTemplate){
-			return applyLinkChangeToTemplate(match, factory, reactionContainer);
-		}else {
-			return applyLinkChangeBothTemplate(match, factory, reactionContainer);
+		// This try catch is a very very very dirty fix to prevent crashes. This needs to be fixed properly!
+		try {
+			if(!fromIsTemplate && !toIsTemplate) {
+				return applyLinkChangeNormal(match, factory, reactionContainer);
+			}else if(fromIsTemplate && !toIsTemplate) {
+				return applyLinkChangeFromTemplate(match, factory, reactionContainer);
+			}else if(!fromIsTemplate && toIsTemplate){
+				return applyLinkChangeToTemplate(match, factory, reactionContainer);
+			}else {
+				return applyLinkChangeBothTemplate(match, factory, reactionContainer);
+			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+			return null;
 		}
+		
 	}
 	
 	private SimLinkState applyLinkChangeNormal(IMatch match, ReactionContainerFactory factory, ReactionContainer reactionContainer) {

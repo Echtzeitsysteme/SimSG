@@ -21,13 +21,20 @@ public class LinkDeletionTemplate {
 	}
 	
 	public void applyRemovalCandidates(IMatch match) {
-		SimAgent agent = (SimAgent) match.get(match.parameterNames().get(agentIndex));
-		for(Integer siteIdx : siteIndexes) {
-			SimSite ss = agent.getSimSites().get(siteIdx);
-			if(ss.getSimLinkState() != null) {
-				org.eclipse.emf.ecore.util.EcoreUtil.delete(ss.getSimLinkState());
+		// This try catch is a very very very dirty fix to prevent crashes. This needs to be fixed properly!
+		try {
+			SimAgent agent = (SimAgent) match.get(match.parameterNames().get(agentIndex));
+			for(Integer siteIdx : siteIndexes) {
+				SimSite ss = agent.getSimSites().get(siteIdx);
+				if(ss.getSimLinkState() != null) {
+					org.eclipse.emf.ecore.util.EcoreUtil.delete(ss.getSimLinkState());
+				}
 			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
+		
 	}
 	
 	public boolean isEmpty() {

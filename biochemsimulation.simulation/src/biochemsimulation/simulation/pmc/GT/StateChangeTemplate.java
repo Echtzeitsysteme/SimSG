@@ -21,16 +21,23 @@ public class StateChangeTemplate {
 	}
 	
 	public void applyStateChangeCandidates(IMatch match) {
-		SimAgent agent = (SimAgent) match.get(match.parameterNames().get(agentIndex));
-		siteStateMap.forEach( (idx, state) -> {
-			SimSite ss = agent.getSimSites().get(idx);
-			//System.out.println("Agent type: "+agent.getType());
-			//System.out.println("Site type: "+ss.getType());
-			if(!ss.getSimSiteState().getType().equals(state)) {
-				ss.getSimSiteState().setType(state);
-			}
-			
-		});
+		// This try catch is a very very very dirty fix to prevent crashes. This needs to be fixed properly!
+		try {
+			SimAgent agent = (SimAgent) match.get(match.parameterNames().get(agentIndex));
+			siteStateMap.forEach( (idx, state) -> {
+				SimSite ss = agent.getSimSites().get(idx);
+				//System.out.println("Agent type: "+agent.getType());
+				//System.out.println("Site type: "+ss.getType());
+				if(!ss.getSimSiteState().getType().equals(state)) {
+					ss.getSimSiteState().setType(state);
+				}
+				
+			});
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public boolean isEmpty() {

@@ -77,10 +77,10 @@ public class Sandbox {
 	public static void benchmark() {
 		SimulationConfigurator simConfig = new SimulationConfigurator();
 		simConfig.setSimplePersistence();
-		simConfig.setSimplePMC();
+		simConfig.setHybridPMC();
 		simConfig.setStochasticSimulation();
 		simConfig.setComplexTerminationCondition();
-		simConfig.setModel("Bench_C8Entities_Var2PatternSize");
+		simConfig.setModel("Goldbeter_Koshland");
 		
 		simConfig.setViatraAsEngine();
 		Simulation viatraSim = simConfig.createSimulation();

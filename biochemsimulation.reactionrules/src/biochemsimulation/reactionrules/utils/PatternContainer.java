@@ -172,6 +172,18 @@ public class PatternContainer {
 		}
 		*/
 		patterns.removeAll(markedForRemoval);
+		
+		//debug..
+		rulePatterns.forEach((name, pattern) -> {
+			System.out.println("Pattern name: "+name+", hash: "+calcPatternHash(pattern));
+		});
+		observablesPatterns.forEach((name, pattern) -> {
+			System.out.println("Pattern name: "+name+", hash: "+calcPatternHash(pattern));
+		});
+		termCondPopulationPatterns.forEach((name, pattern) -> {
+			System.out.println("Pattern name: "+name+", hash: "+calcPatternHash(pattern));
+		});
+		
 	}
 	
 	private Pattern findEqualPattern(Pattern other) {

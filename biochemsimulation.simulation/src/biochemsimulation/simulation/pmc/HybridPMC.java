@@ -76,7 +76,6 @@ public class HybridPMC extends PatternMatchingController {
 			hybridMatchCount.replace(patternName, 1);
 			return;
 		}
-		
 		Collection<IMatch> subMatches = new LinkedHashSet<IMatch>();
 		
 		for(String subPatternName : hybridPatterns.get(patternName).getGenericSubPatterns().keySet()) {
@@ -125,6 +124,7 @@ public class HybridPMC extends PatternMatchingController {
 		
 		calculateHybridMatchCount(patternName);
 		if(hybridMatchCount.get(patternName) <= 0) {
+			hybridMatches.put(patternName, null);
 			return;
 		}
 		
