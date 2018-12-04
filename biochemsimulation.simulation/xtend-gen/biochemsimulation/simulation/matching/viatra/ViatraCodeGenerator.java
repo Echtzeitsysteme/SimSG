@@ -24,7 +24,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class ViatraCodeGenerator {
-  public final static String BOUND_ANY_LINK_PATTERN_KEY = "BoundAnyLink_SupportPattern";
+  public static final String BOUND_ANY_LINK_PATTERN_KEY = "BoundAnyLink_SupportPattern";
   
   private LinkedHashMap<EPackage, String> importAliases;
   

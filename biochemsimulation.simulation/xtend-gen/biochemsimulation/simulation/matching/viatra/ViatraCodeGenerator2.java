@@ -24,15 +24,15 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class ViatraCodeGenerator2 {
-  public final static String BOUND_ANY_LINK_PATTERN_KEY = "BoundAnyLink_SupportPattern";
+  public static final String BOUND_ANY_LINK_PATTERN_KEY = "BoundAnyLink_SupportPattern";
   
-  public final static String SITE_TYPE_PATTERN_KEY = "SiteType_SupportPattern";
+  public static final String SITE_TYPE_PATTERN_KEY = "SiteType_SupportPattern";
   
-  public final static String SITE_STATE_PATTERN_KEY = "SiteState_SupportPattern";
+  public static final String SITE_STATE_PATTERN_KEY = "SiteState_SupportPattern";
   
-  public final static String BOUND_LINK_PATTERN_KEY = "BoundLink_SupportPattern";
+  public static final String BOUND_LINK_PATTERN_KEY = "BoundLink_SupportPattern";
   
-  public final static String BOUND_LINK_TYPE_PATTERN_KEY = "BoundLinkType_SupportPattern";
+  public static final String BOUND_LINK_TYPE_PATTERN_KEY = "BoundLinkType_SupportPattern";
   
   private LinkedHashMap<EPackage, String> importAliases;
   
