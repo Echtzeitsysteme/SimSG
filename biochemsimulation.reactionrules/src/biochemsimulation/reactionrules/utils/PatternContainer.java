@@ -173,6 +173,7 @@ public class PatternContainer {
 		*/
 		patterns.removeAll(markedForRemoval);
 		
+		/*
 		//debug..
 		rulePatterns.forEach((name, pattern) -> {
 			System.out.println("Pattern name: "+name+", hash: "+calcPatternHash(pattern));
@@ -183,6 +184,7 @@ public class PatternContainer {
 		termCondPopulationPatterns.forEach((name, pattern) -> {
 			System.out.println("Pattern name: "+name+", hash: "+calcPatternHash(pattern));
 		});
+		*/
 		
 	}
 	
