@@ -1,8 +1,5 @@
 package biochemsimulation.simulation.test;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.simulation.Simulation;
@@ -81,22 +78,22 @@ public class Sandbox {
 		simConfig.setStochasticSimulation();
 		simConfig.setComplexTerminationCondition();
 		simConfig.setModel("Goldbeter_Koshland");
-		
+		/*
 		simConfig.setViatraAsEngine();
 		Simulation viatraSim = simConfig.createSimulation();
 		viatraSim.initializeClocked();
 		viatraSim.runClocked();
 		viatraSim.displayResults();
 		viatraSim.finish();
+		*/
 		
-		/*
 		simConfig.setDemoclesAsEngine();
 		Simulation democlesSim = simConfig.createSimulation();
 		democlesSim.initializeClocked();
 		democlesSim.runClocked();
 		democlesSim.displayResults();
 		democlesSim.finish();
-		*/
+		
 		
 		System.out.println(Runtimer.getInstance());
 		Runtimer.getInstance().toFile();

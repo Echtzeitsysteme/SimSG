@@ -8,9 +8,10 @@ import org.eclipse.viatra.query.runtime.api.AdvancedViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryMatcher;
 import org.eclipse.viatra.query.runtime.emf.EMFScope;
-import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternModel;
+import org.eclipse.viatra.query.patternlanguage.emf.vql.*;
+//import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternModel;
 import org.eclipse.viatra.query.patternlanguage.emf.specification.SpecificationBuilder;
-import org.eclipse.viatra.query.patternlanguage.patternLanguage.Pattern;
+//import org.eclipse.viatra.query.patternlanguage.patternLanguage.Pattern;
 
 import biochemsimulation.simulation.matching.viatra.ViatraMatch;
 import biochemsimulation.simulation.matching.viatra.ViatraPatternGenerator;
@@ -18,6 +19,7 @@ import biochemsimulation.simulation.matching.viatra.ViatraPatternGenerator;
 public class ViatraEngineWrapper extends PatternMatchingEngine {
 	
 	private AdvancedViatraQueryEngine queryEngine;
+	@SuppressWarnings("restriction")
 	private PatternModel patternModel;
 	private SpecificationBuilder builder;
 	private HashMap<String, ViatraQueryMatcher<? extends IPatternMatch>> matcher;
@@ -34,6 +36,7 @@ public class ViatraEngineWrapper extends PatternMatchingEngine {
 		patternModel = gen.doGenerate("", false);
 	}
 
+	@SuppressWarnings("restriction")
 	@Override
 	public void initEngineInternal() throws Exception {
 		EMFScope scope = new EMFScope(model);

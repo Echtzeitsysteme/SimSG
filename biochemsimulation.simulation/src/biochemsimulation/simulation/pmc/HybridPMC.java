@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import biochemsimulation.reactionrules.reactionRules.Pattern;
@@ -13,7 +12,6 @@ import biochemsimulation.reactionrules.utils.PatternContainer;
 import biochemsimulation.simulation.matching.HybridMatch;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.IMatchImpl;
-import biochemsimulation.simulation.matching.patterns.AgentNodeConstraint;
 import biochemsimulation.simulation.matching.patterns.GenericPattern;
 import biochemsimulation.simulation.matching.patterns.HybridPattern;
 
@@ -131,33 +129,6 @@ public class HybridPMC extends PatternMatchingController {
 		hybridMatches.put(patternName, new HybridMatch(patternName, subMatches, hybridPatterns.get(patternName)));
 		
 		
-	}
-	
-	private boolean checkSubMatchInjectivityConstraints(IMatch subMatch, Map<String, IMatch> subMatches) {
-		GenericPattern genericPattern = genericPatterns.get(subMatch.patternName());
-		Collection<AgentNodeConstraint> injectivityConstraints = genericPattern.getBody().getInjectivityConstraintsBody();
-		if(injectivityConstraints.size()==0) {
-			return true;
-		}
-		
-		for(String currentPatternName : subMatches.keySet()) {
-			if(currentPatternName.equals(subMatch.patternName())) {
-				continue;
-			}
-			IMatch currentMatch = subMatches.get(currentPatternName);
-			for(AgentNodeConstraint constraint : injectivityConstraints) {
-				String paramName = constraint.getOperand2().getAgentType();
-				if(!currentMatch.contains(paramName)) {
-					continue;
-				}
-				if(subMatch.get(paramName).equals(currentMatch.get(paramName))) {
-					return false;
-				}
-			}
-			
-		}
-		
-		return true;
 	}
 	
 	private void calculateHybridMatchCount(String patternName) {

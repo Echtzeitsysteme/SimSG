@@ -19,10 +19,10 @@ import biochemsimulation.simulation.matching.patterns.LinkStateConstraint
 class ViatraCodeGenerator {
 	public static final String BOUND_ANY_LINK_PATTERN_KEY = "BoundAnyLink_SupportPattern";
 	
-	private LinkedHashMap<EPackage, String> importAliases;
-	private Map<String, Pattern> rulePatterns;
-	private Map<String, GenericPattern> genericPatterns;
-	private Map<String, String> supportPatterns;
+	LinkedHashMap<EPackage, String> importAliases;
+	Map<String, Pattern> rulePatterns;
+	Map<String, GenericPattern> genericPatterns;
+	Map<String, String> supportPatterns;
 	
 	new(LinkedHashMap<EPackage, String> importAliases, ReactionRuleModel model) {
 		this.importAliases = importAliases
@@ -80,7 +80,7 @@ class ViatraCodeGenerator {
 				pattern «genericPattern.name»(«FOR node : genericPattern.signature.signature.keySet SEPARATOR ", "» «node» : «AgentNodeContext.SIM_AGENT_TYPE.name»«ENDFOR») {
 					«FOR agentNode : genericPattern.body.agentNodeContexts.values SEPARATOR "\n"»«
 					AgentNodeContext.SIM_AGENT_TYPE.name».«AgentNodeContext.TYPE_ATTRIBUTE.name»(«agentNode.agentVariableName», "«agentNode.agentType»");«
-					IF(genericPattern.body.siteNodeContexts.get(agentNode) != null)»
+					IF(genericPattern.body.siteNodeContexts.get(agentNode) !== null)»
 					«FOR siteNode : genericPattern.body.siteNodeContexts.get(agentNode) SEPARATOR "\n"»«
 					AgentNodeContext.SIM_AGENT_TYPE.name».«SiteNodeContext.SIM_SITE_CONTAINER_ATTRIBUTE.name»(«agentNode.agentVariableName», «siteNode.localSimSiteVariableName»);
 					«SiteNodeContext.SIM_SITE_TYPE.name».«SiteNodeContext.TYPE_ATTRIBUTE.name»(«siteNode.localSimSiteVariableName», "«siteNode.siteType»");

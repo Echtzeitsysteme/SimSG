@@ -16,8 +16,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.viatra.query.patternlanguage.emf.EMFPatternLanguageStandaloneSetup;
-import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.EMFPatternLanguagePackage;
-import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternModel;
+import org.eclipse.viatra.query.patternlanguage.emf.vql.*;
+//import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.EMFPatternLanguagePackage;
+//import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternModel;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.simulation.matching.patterns.GenericPattern;
@@ -34,8 +35,10 @@ public class ViatraPatternGenerator {
 	private String os;
 	private boolean isInitialized;
 	private Map<String, GenericPattern> genericPatterns;
+	@SuppressWarnings("restriction")
 	private PatternModel patternModel;
 	private String patternModelFolder;
+	private EMFPatternLanguageStandaloneSetup setup;
 	
 	private void setOSspecificSeparators() {
 		os = System.getProperty(SYSTEM_OS_PROPERTY);
@@ -60,8 +63,10 @@ public class ViatraPatternGenerator {
 		patternModelFolder += "/";
 		
 		isInitialized = false;
-		EMFPatternLanguageStandaloneSetup.doSetup();
-		EMFPatternLanguagePackage.eINSTANCE.eClass();
+		setup = new EMFPatternLanguageStandaloneSetup();
+		setup.createInjectorAndDoEMFRegistration();
+		//EMFPatternLanguageStandaloneSetup.doSetup();
+		//EMFPatternLanguagePackage.eINSTANCE.eClass();
 	}
 	
 	public ViatraPatternGenerator(Map<String, GenericPattern> genericPatterns) {
@@ -70,6 +75,7 @@ public class ViatraPatternGenerator {
 		this.genericPatterns = genericPatterns;
 	}
 	
+	@SuppressWarnings("restriction")
 	public PatternModel doGenerate(String path, boolean saveToFile) throws Exception{
 		if(!isInitialized) {
 			throw new RuntimeException("ViatraPatternGenerator is uninitialized because the given resource containing the ReactionRules model could not be loaded.");

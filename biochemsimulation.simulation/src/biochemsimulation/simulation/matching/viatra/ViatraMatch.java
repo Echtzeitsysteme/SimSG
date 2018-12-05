@@ -1,11 +1,9 @@
 package biochemsimulation.simulation.matching.viatra;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 
 import biochemsimulation.simulation.matching.IMatch;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;

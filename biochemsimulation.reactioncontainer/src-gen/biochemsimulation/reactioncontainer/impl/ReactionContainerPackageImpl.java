@@ -97,7 +97,7 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link ReactionContainerPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -112,9 +112,10 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 			return (ReactionContainerPackage) EPackage.Registry.INSTANCE.getEPackage(ReactionContainerPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ReactionContainerPackageImpl theReactionContainerPackage = (ReactionContainerPackageImpl) (EPackage.Registry.INSTANCE
-				.get(eNS_URI) instanceof ReactionContainerPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
-						: new ReactionContainerPackageImpl());
+		Object registeredReactionContainerPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		ReactionContainerPackageImpl theReactionContainerPackage = registeredReactionContainerPackage instanceof ReactionContainerPackageImpl
+				? (ReactionContainerPackageImpl) registeredReactionContainerPackage
+				: new ReactionContainerPackageImpl();
 
 		isInited = true;
 

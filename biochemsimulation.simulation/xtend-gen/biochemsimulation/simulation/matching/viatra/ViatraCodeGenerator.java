@@ -191,8 +191,8 @@ public class ViatraCodeGenerator {
             _builder.append("\");");
             {
               List<SiteNodeContext> _get_1 = genericPattern.getBody().getSiteNodeContexts().get(agentNode);
-              boolean _notEquals = (!Objects.equal(_get_1, null));
-              if (_notEquals) {
+              boolean _tripleNotEquals = (_get_1 != null);
+              if (_tripleNotEquals) {
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t");
                 {

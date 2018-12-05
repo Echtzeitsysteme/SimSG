@@ -91,14 +91,14 @@ abstract class GraphTransformTest {
 	
 	private IMatch getLhsAndCheckMatches(String lhs, String rhs, int lhsCount, int rhsCount) {
 		Collection<IMatch> lhsMatches = pmc.getMatches(lhs);
-		Collection<IMatch> rhsMatches = pmc.getMatches(rhs);
+		pmc.getMatches(rhs);
 		assertEquals(lhsCount, pmc.getMatchCount(lhs), "Number of matches weren't equal!");
 		assertEquals(rhsCount, pmc.getMatchCount(rhs), "Number of matches weren't equal!");
 		return lhsMatches.iterator().next();
 	}
 	
 	private IMatch getRhsAndCheckMatches(String lhs, String rhs, int lhsCount, int rhsCount) {
-		Collection<IMatch> lhsMatches = pmc.getMatches(lhs);
+		pmc.getMatches(lhs);
 		Collection<IMatch> rhsMatches = pmc.getMatches(rhs);
 		assertEquals(lhsCount, pmc.getMatchCount(lhs), "Number of matches weren't equal!");
 		assertEquals(rhsCount, pmc.getMatchCount(rhs), "Number of matches weren't equal!");

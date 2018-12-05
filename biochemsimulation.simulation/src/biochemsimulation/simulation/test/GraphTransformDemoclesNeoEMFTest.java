@@ -1,6 +1,6 @@
 package biochemsimulation.simulation.test;
 
-import biochemsimulation.simulation.persistence.PersistenceManagerEnum;
+//import biochemsimulation.simulation.persistence.PersistenceManagerEnum;
 
 public class GraphTransformDemoclesNeoEMFTest {
 	

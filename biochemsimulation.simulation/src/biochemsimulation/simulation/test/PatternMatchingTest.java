@@ -15,7 +15,6 @@ import org.junit.jupiter.api.TestInstance;
 
 import biochemsimulation.reactioncontainer.ReactionContainer;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
-import biochemsimulation.reactionrules.utils.PatternUtils;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.PatternMatchingEngine;
 import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;
