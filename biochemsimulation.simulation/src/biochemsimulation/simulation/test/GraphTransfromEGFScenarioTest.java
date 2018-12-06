@@ -124,53 +124,105 @@ public class GraphTransfromEGFScenarioTest {
 		bwdRuleApplication(rule, lhsPre, lhsPost, rhsPre, rhsPost);
 	}
 	
+	/* Helper Methods..*/
+	void fromEGFto2xEGFR_FWD() {
+		fwdRuleApplication("EGF_EGFR", 36, 25, 0, 1);
+		fwdRuleApplication("EGF_EGFR", 25, 16, 1, 2);
+	}
+	
+	void fromEGFto2xEGFR_BWD() {
+		bwdRuleApplication("EGF_EGFR", 25, 16, 1, 2);
+		bwdRuleApplication("EGF_EGFR", 36, 25, 0, 1);
+	}
+	
+	void fromEGFtoEGFR_EGFR_FWD() {
+		fromEGFto2xEGFR_FWD();
+		fwdRuleApplication("EGFR_EGFR", 2, 0, 0, 2);
+	}
+	
+	void fromEGFtoEGFR_EGFR_BWD() {
+		bwdRuleApplication("EGFR_EGFR", 2, 0, 0, 2);
+		fromEGFto2xEGFR_BWD();
+	}
+	
+	void fromEGFtoEGFR_EGFR_at_992_FWD() {
+		fromEGFtoEGFR_EGFR_FWD();
+		fwdRuleApplication("EGFR_at_992", 2, 1, 0, 1);
+	}
+	
+	void fromEGFtoEGFR_EGFR_at_1068_FWD() {
+		fromEGFtoEGFR_EGFR_FWD();
+		fwdRuleApplication("EGFR_at_1068", 2, 1, 0, 1);
+	}
+	
+	void fromEGFtoEGFR_EGFR_at_1148_FWD() {
+		fromEGFtoEGFR_EGFR_FWD();
+		fwdRuleApplication("EGFR_at_1148", 2, 1, 0, 1);
+	}
+	
+	void fromEGFtoEGFR_EGFR_at_992_BWD() {
+		bwdRuleApplication("EGFR_at_992", 2, 1, 0, 1);
+		fromEGFtoEGFR_EGFR_BWD();
+	}
+	
+	void fromEGFtoEGFR_EGFR_at_1068_BWD() {
+		bwdRuleApplication("EGFR_at_1068", 2, 1, 0, 1);
+		fromEGFtoEGFR_EGFR_BWD();
+	}
+	
+	void fromEGFtoEGFR_EGFR_at_1148_BWD() {
+		bwdRuleApplication("EGFR_at_1148", 2, 1, 0, 1);
+		fromEGFtoEGFR_EGFR_BWD();
+	}
+	
+	/* Actual Test Cases */
 	@Test
 	void EGF_EGFR_Test() {
-		neutralRuleApplication("EGF_EGFR", 9, 4, 0, 1);
+		neutralRuleApplication("EGF_EGFR", 36, 25, 0, 1);
 	}
 	
 	@Test
 	void EGFR_EGFR_Test() {
-		fwdRuleApplication("EGF_EGFR", 9, 4, 0, 1);
-		fwdRuleApplication("EGF_EGFR", 4, 1, 1, 2);
+		fromEGFto2xEGFR_FWD();
 		neutralRuleApplication("EGFR_EGFR", 2, 0, 0, 2);
-		bwdRuleApplication("EGF_EGFR", 4, 1, 1, 2);
-		bwdRuleApplication("EGF_EGFR", 9, 4, 0, 1);
+		fromEGFto2xEGFR_BWD();
 	}
 	
 	@Test
 	void EGFR_at_x_Test() {
-		fwdRuleApplication("EGF_EGFR", 9, 4, 0, 1);
-		fwdRuleApplication("EGF_EGFR", 4, 1, 1, 2);
-		fwdRuleApplication("EGFR_EGFR", 2, 0, 0, 2);
+		fromEGFtoEGFR_EGFR_FWD();
 		neutralRuleApplication("EGFR_at_992", 2, 1, 0, 1);
 		neutralRuleApplication("EGFR_at_1068", 2, 1, 0, 1);
 		neutralRuleApplication("EGFR_at_1148", 2, 1, 0, 1);
-		bwdRuleApplication("EGFR_EGFR", 2, 0, 0, 2);
-		bwdRuleApplication("EGF_EGFR", 4, 1, 1, 2);
-		bwdRuleApplication("EGF_EGFR", 9, 4, 0, 1);
+		fromEGFtoEGFR_EGFR_BWD();
 	}
 	
 	@Test
 	void EGFR_at_x_op_Test() {
-		fwdRuleApplication("EGF_EGFR", 9, 4, 0, 1);
-		fwdRuleApplication("EGF_EGFR", 4, 1, 1, 2);
-		fwdRuleApplication("EGFR_EGFR", 2, 0, 0, 2);
+		fromEGFtoEGFR_EGFR_at_992_FWD();
+		neutralRuleApplication("_992_op", 1, 0, 5, 6);
+		fromEGFtoEGFR_EGFR_at_992_BWD();
 		
-		fwdRuleApplication("EGFR_at_992", 2, 1, 0, 1);
-		neutralRuleApplication("_992_op", 1, 0, 2, 3);
-		bwdRuleApplication("EGFR_at_992", 2, 1, 0, 1);
+		fromEGFtoEGFR_EGFR_at_1068_FWD();
+		neutralRuleApplication("_1068_op", 1, 0, 5, 6);
+		fromEGFtoEGFR_EGFR_at_1068_BWD();
 		
-		fwdRuleApplication("EGFR_at_1068", 2, 1, 0, 1);
-		neutralRuleApplication("_1068_op", 1, 0, 2, 3);
-		bwdRuleApplication("EGFR_at_1068", 2, 1, 0, 1);
-		
-		fwdRuleApplication("EGFR_at_1148", 2, 1, 0, 1);
-		neutralRuleApplication("_1148_op", 1, 0, 2, 3);
-		bwdRuleApplication("EGFR_at_1148", 2, 1, 0, 1);
-		
-		bwdRuleApplication("EGFR_EGFR", 2, 0, 0, 2);
-		bwdRuleApplication("EGF_EGFR", 4, 1, 1, 2);
-		bwdRuleApplication("EGF_EGFR", 9, 4, 0, 1);
+		fromEGFtoEGFR_EGFR_at_1148_FWD();
+		neutralRuleApplication("_1148_op", 1, 0, 5, 6);
+		fromEGFtoEGFR_EGFR_at_1148_BWD();
+	}
+	
+	@Test
+	void int_monomer_Test() {
+		fromEGFto2xEGFR_FWD();
+		neutralRuleApplication("int_monomer", 2, 1, 0, 1);
+		fromEGFto2xEGFR_BWD();
+	}
+	
+	@Test
+	void int_dimer_Test() {
+		fromEGFtoEGFR_EGFR_FWD();
+		neutralRuleApplication("int_dimer", 2, 0, 0, 2);
+		fromEGFtoEGFR_EGFR_BWD();
 	}
 }
