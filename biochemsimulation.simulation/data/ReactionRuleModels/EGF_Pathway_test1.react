@@ -75,6 +75,7 @@ var p_Raf2 = {PP2A1(s[1]), Raf(x{p}[1])}
 rule PP2A1_Raf {PP2A1(s[free]), Raf(x{p}[free])} -> p_Raf2 @ [1]
 rule Raf_op p_Raf2 -> {PP2A1(s[1]), Raf(x{u}[1])} @ [1]
 rule PP2A1_Raf_op {PP2A1(s[1]), Raf(x[1])} -> {PP2A1(s[free]), Raf(x[free])} @ [1]
+
 // Activating MEK
 // #activation:
 var p_MEK = {Raf(x{p}[1]), MEK(S222{u}[1])}
