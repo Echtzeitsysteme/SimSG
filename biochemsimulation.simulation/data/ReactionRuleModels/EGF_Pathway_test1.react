@@ -43,26 +43,26 @@ rule rec_EGFR {EGFR(L{int}[free], Y992{u}[free], Y1068{u}[free], Y1148{u}[free])
 // SoS and RasGAP recruitment
 rule EGFR_RasGAP {EGFR(Y992{p}[free]), RasGap(SH2[free])} <-> {EGFR(Y992{p}[1]), RasGap(SH2[1])} @ [1,1]
 rule EGFR_Grb2 {EGFR(Y1068{p}[free]), Grb2(SH2[free])} <-> {EGFR(Y1068{p}[1]), Grb2(SH2[1])} @ [1,1]
-rule Grb2_SoS {Grb2(SH3[free]), SoS(a[free], SS{u}[free])} -> {Grb2(SH3[1]), SoS(a[1], SS{u}[free])} @ [1]
-rule Grb2_SoS_op {Grb2(SH3[1]), SoS(a[1])} -> {Grb2(SH3[free]), SoS(a[free])} @ [1]
+rule Grb2_SoS {Grb2(SH3[free]), SoS(a[free], SS{u}[free])} <-> {Grb2(SH3[1]), SoS(a[1], SS{u}[free])} @ [1,1]
+rule Grb2_SoS_op {Grb2(SH3[1]), SoS(a[1])} <-> {Grb2(SH3[free]), SoS(a[free])} @ [1,1]
 rule EGFR_Shc {EGFR(Y1148{p}[free]), Shc(PTB[free])} <-> {EGFR(Y1148{p}[1]), Shc(PTB[1])} @ [1,1]
 rule Shc_Grb2 {Shc(Y318{p}[free]), Grb2(SH2[free])} <-> {Shc(Y318{p}[1]), Grb2(SH2[1])} @ [1,1]
-rule Shc_at_318 {EGFR(CR[bound], Y1148{p}[1]), Shc(PTB[1], Y318{u}[free])} -> {EGFR(CR[bound], Y1148{p}[1]), Shc(PTB[1], Y318{p}[free])} @ [1]
-rule Shc_at_318_op {Shc(Y318{p}[free])} -> {Shc(Y318{u}[free])} @ [1]
+rule Shc_at_318 {EGFR(CR[bound], Y1148{p}[1]), Shc(PTB[1], Y318{u}[free])} <-> {EGFR(CR[bound], Y1148{p}[1]), Shc(PTB[1], Y318{p}[free])} @ [1,1]
+rule Shc_at_318_op {Shc(Y318{p}[free])} <-> {Shc(Y318{u}[free])} @ [1,1]
 
 // Activating Ras
 // #activate:
-rule long_arm_SoS_Ras {EGFR(Y1148{p}[1]), Shc(PTB[1], Y318{p}[2]), Grb2(SH2[2], SH3[3]), SoS(a[3], b[free]), Ras(S1S2{gdp}[free])} -> 
-						{EGFR(Y1148{p}[1]), Shc(PTB[1], Y318{p}[2]), Grb2(SH2[2], SH3[3]), SoS(a[3], b[4]), Ras(S1S2{gdp}[4])} @ [1]
-rule short_arm_SoS_Ras {EGFR(Y1068{p}[1]), Grb2(SH2[1], SH3[2]), SoS(a[2], b[free]), Ras(S1S2{gdp}[free])} -> 
-						{EGFR(Y1068{p}[1]), Grb2(SH2[1], SH3[2]), SoS(a[2], b[3]), Ras(S1S2{gdp}[3])} @ [1]
-rule Ras_GTP {SoS(b[1]), Ras(S1S2{gdp}[1])} -> {SoS(b[1]), Ras(S1S2{gtp}[1])} @ [1]
-rule SoS_Ras_op {SoS(b[1]), Ras(S1S2[1])} -> {SoS(b[free]), Ras(S1S2[free])} @ [1]
+rule long_arm_SoS_Ras {EGFR(Y1148{p}[1]), Shc(PTB[1], Y318{p}[2]), Grb2(SH2[2], SH3[3]), SoS(a[3], b[free]), Ras(S1S2{gdp}[free])} <-> 
+						{EGFR(Y1148{p}[1]), Shc(PTB[1], Y318{p}[2]), Grb2(SH2[2], SH3[3]), SoS(a[3], b[4]), Ras(S1S2{gdp}[4])} @ [1,1]
+rule short_arm_SoS_Ras {EGFR(Y1068{p}[1]), Grb2(SH2[1], SH3[2]), SoS(a[2], b[free]), Ras(S1S2{gdp}[free])} <-> 
+						{EGFR(Y1068{p}[1]), Grb2(SH2[1], SH3[2]), SoS(a[2], b[3]), Ras(S1S2{gdp}[3])} @ [1,1]
+rule Ras_GTP {SoS(b[1]), Ras(S1S2{gdp}[1])} <-> {SoS(b[1]), Ras(S1S2{gtp}[1])} @ [1,1]
+rule SoS_Ras_op {SoS(b[1]), Ras(S1S2[1])} <-> {SoS(b[free]), Ras(S1S2[free])} @ [1,1]
 // #deactivate:
-rule direct_RasGap_Ras {EGFR(Y992{p}[1]), RasGap(SH2[1], s[free]), Ras(S1S2{gtp}[free])} -> {EGFR(Y992{p}[1]), RasGap(SH2[1], s[2]), Ras(S1S2{gtp}[2])} @ [1]
-rule Ras_GDP {RasGap(s[1]), Ras(S1S2{gtp}[1])} -> {RasGap(s[1]), Ras(S1S2{gdp}[1])} @ [1]
-rule RasGAP_Ras_op {RasGap(s[1]), Ras(S1S2[1])} -> {RasGap(s[free]), Ras(S1S2[free])} @ [1]
-rule intrinsic_Ras_GDP {Ras(S1S2{gtp}[free])} -> {Ras(S1S2{gdp}[free])} @ [1]
+rule direct_RasGap_Ras {EGFR(Y992{p}[1]), RasGap(SH2[1], s[free]), Ras(S1S2{gtp}[free])} <-> {EGFR(Y992{p}[1]), RasGap(SH2[1], s[2]), Ras(S1S2{gtp}[2])} @ [1,1]
+rule Ras_GDP {RasGap(s[1]), Ras(S1S2{gtp}[1])} <-> {RasGap(s[1]), Ras(S1S2{gdp}[1])} @ [1,1]
+rule RasGAP_Ras_op {RasGap(s[1]), Ras(S1S2[1])} <-> {RasGap(s[free]), Ras(S1S2[free])} @ [1,1]
+rule intrinsic_Ras_GDP {Ras(S1S2{gtp}[free])} <-> {Ras(S1S2{gdp}[free])} @ [1,1]
 
 // Activating Raf
 // #activation:
