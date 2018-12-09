@@ -67,14 +67,14 @@ rule intrinsic_Ras_GDP {Ras(S1S2{gtp}[free])} <-> {Ras(S1S2{gdp}[free])} @ [1,1]
 // Activating Raf
 // #activation:
 var p_Raf = {Ras(S1S2{gtp}[1]), Raf(x{u}[1])}
-rule Ras_Raf {Ras(S1S2{gtp}[free]), Raf(x{u}[free])} -> p_Raf @ [1]
-rule Raf p_Raf -> {Ras(S1S2{gtp}[1]), Raf(x{p}[1])} @ [1]
-rule Ras_Raf_op {Ras(S1S2{gtp}[1]), Raf(x[1])} -> {Ras(S1S2{gtp}[free]), Raf(x[free])} @ [1]
+rule Ras_Raf {Ras(S1S2{gtp}[free]), Raf(x{u}[free])} <-> p_Raf @ [1,1]
+rule Raf p_Raf <-> {Ras(S1S2{gtp}[1]), Raf(x{p}[1])} @ [1,1]
+rule Ras_Raf_op {Ras(S1S2{gtp}[1]), Raf(x[1])} <-> {Ras(S1S2{gtp}[free]), Raf(x[free])} @ [1,1]
 // #deactivation
 var p_Raf2 = {PP2A1(s[1]), Raf(x{p}[1])}
-rule PP2A1_Raf {PP2A1(s[free]), Raf(x{p}[free])} -> p_Raf2 @ [1]
-rule Raf_op p_Raf2 -> {PP2A1(s[1]), Raf(x{u}[1])} @ [1]
-rule PP2A1_Raf_op {PP2A1(s[1]), Raf(x[1])} -> {PP2A1(s[free]), Raf(x[free])} @ [1]
+rule PP2A1_Raf {PP2A1(s[free]), Raf(x{p}[free])} <-> p_Raf2 @ [1,1]
+rule Raf_op p_Raf2 <-> {PP2A1(s[1]), Raf(x{u}[1])} @ [1,1]
+rule PP2A1_Raf_op {PP2A1(s[1]), Raf(x[1])} <-> {PP2A1(s[free]), Raf(x[free])} @ [1,1]
 
 // Activating MEK
 // #activation:
@@ -133,10 +133,10 @@ init i_EGFR 6 {EGFR(L{ext}[free], CR[free], Y992{u}[free], Y1068{u}[free], Y1148
 init i_Shc 2 {Shc(PTB[free], Y318{u}[free])}
 init i_Grb_SoS 2 {Grb2(SH2[free], SH3[1]), SoS(a[1], b[free], SS{u}[free])}
 init i_RasGap 2 {RasGap(SH2[free], s[free])}
-init i_Ras 2 {Ras(S1S2{gdp}[free])}
-init i_Raf 2 {Raf(x{u}[free])}
-init i_PP2A1 2 {PP2A1(s[free])}
-init i_PP2A2 2 {PP2A2(s[free])}
-init i_MEK 2 {MEK(s[free], S222{u}[free], S218{u}[free])}
-init i_ERK 2 {ERK(s[free], T185{u}[free], Y187{u}[free])}
-init i_MKP3 2 {MKP3(s[free])}
+init i_Ras 1 {Ras(S1S2{gdp}[free])}
+init i_Raf 1 {Raf(x{u}[free])}
+init i_PP2A1 1 {PP2A1(s[free])}
+init i_PP2A2 1 {PP2A2(s[free])}
+init i_MEK 1 {MEK(s[free], S222{u}[free], S218{u}[free])}
+init i_ERK 1 {ERK(s[free], T185{u}[free], Y187{u}[free])}
+init i_MKP3 1 {MKP3(s[free])}

@@ -249,11 +249,11 @@ public class GraphTransfromEGFScenarioTest {
 	
 	void to_long_arm_SoS_Ras_FWD() {
 		to_Shc_Grb2_FWD();
-		fwdRuleApplication("long_arm_SoS_Ras", 2, 0, 0, 1);
+		fwdRuleApplication("long_arm_SoS_Ras", 1, 0, 0, 1);
 	}
 	
 	void to_long_arm_SoS_Ras_BWD() {
-		bwdRuleApplication("long_arm_SoS_Ras", 2, 0, 0, 1);
+		bwdRuleApplication("long_arm_SoS_Ras", 1, 0, 0, 1);
 		to_Shc_Grb2_BWD();
 	}
 	
@@ -282,9 +282,9 @@ public class GraphTransfromEGFScenarioTest {
 		fwdRuleApplication("EGFR_Shc", 2, 0, 0, 1);
 		fwdRuleApplication("Shc_at_318", 1, 0, 0, 1);
 		fwdRuleApplication("Shc_Grb2", 2, 0, 0, 1);
-		fwdRuleApplication("long_arm_SoS_Ras", 2, 0, 0, 1);
+		fwdRuleApplication("long_arm_SoS_Ras", 1, 0, 0, 1);
 		fwdRuleApplication("Ras_GTP", 1, 0, 0, 1);
-		fwdRuleApplication("SoS_Ras_op", 1, 0, 1, 4);
+		fwdRuleApplication("SoS_Ras_op", 1, 0, 0, 2);
 		
 		fwdRuleApplication("EGFR_RasGAP", 2, 0, 0, 1);
 		fwdRuleApplication("direct_RasGap_Ras", 1, 0, 0, 1);
@@ -294,9 +294,9 @@ public class GraphTransfromEGFScenarioTest {
 		bwdRuleApplication("direct_RasGap_Ras", 1, 0, 0, 1);
 		bwdRuleApplication("EGFR_RasGAP", 2, 0, 0, 1);
 		
-		bwdRuleApplication("SoS_Ras_op", 1, 0, 1, 4);
+		bwdRuleApplication("SoS_Ras_op", 1, 0, 0, 2);
 		bwdRuleApplication("Ras_GTP", 1, 0, 0, 1);
-		bwdRuleApplication("long_arm_SoS_Ras", 2, 0, 0, 1);
+		bwdRuleApplication("long_arm_SoS_Ras", 1, 0, 0, 1);
 		bwdRuleApplication("Shc_Grb2", 2, 0, 0, 1);
 		bwdRuleApplication("Shc_at_318", 1, 0, 0, 1);
 		bwdRuleApplication("EGFR_Shc", 2, 0, 0, 1);
@@ -325,26 +325,68 @@ public class GraphTransfromEGFScenarioTest {
 	
 	void to_RasGAP_Ras_op_FWD() {
 		to_Ras_GDP_FWD();
-		fwdRuleApplication("RasGAP_Ras_op", 1, 0, 1, 4);
+		fwdRuleApplication("RasGAP_Ras_op", 1, 0, 1, 2);
 	}
 	
 	void to_RasGAP_Ras_op_BWD() {
-		bwdRuleApplication("RasGAP_Ras_op", 1, 0, 1, 4);
+		bwdRuleApplication("RasGAP_Ras_op", 1, 0, 1, 2);
 		to_Ras_GDP_BWD();
 	}
 	
 	void to_RasGTP_free_FWD() {
 		to_long_arm_SoS_Ras_FWD();
 		fwdRuleApplication("Ras_GTP", 1, 0, 0, 1);
-		fwdRuleApplication("SoS_Ras_op", 1, 0, 1, 4);
+		fwdRuleApplication("SoS_Ras_op", 1, 0, 0, 2);
 	}
 	
 	void to_RasGTP_free_BWD() {
-		bwdRuleApplication("SoS_Ras_op", 1, 0, 1, 4);
+		bwdRuleApplication("SoS_Ras_op", 1, 0, 0, 2);
 		bwdRuleApplication("Ras_GTP", 1, 0, 0, 1);
 		to_long_arm_SoS_Ras_BWD();
 	}
 	
+	void to_Ras_Raf_FWD() {
+		to_RasGTP_free_FWD();
+		fwdRuleApplication("Ras_Raf", 1, 0, 0, 1);
+	}
+	
+	void to_Ras_Raf_BWD() {
+		bwdRuleApplication("Ras_Raf", 1, 0, 0, 1);
+		to_RasGTP_free_BWD();
+	}
+	
+	void to_Ras_Raf_op_FWD() {
+		to_Ras_Raf_FWD();
+		fwdRuleApplication("Ras_Raf_op", 1, 0, 0, 1);
+	}
+	
+	void to_Ras_Raf_op_BWD() {
+		bwdRuleApplication("Ras_Raf_op", 1, 0, 0, 1);
+		to_Ras_Raf_BWD();
+	}
+	
+	void to_Raf_active_FWD() {
+		to_Ras_Raf_FWD();
+		fwdRuleApplication("Raf", 1, 0, 0, 1);
+		fwdRuleApplication("Ras_Raf_op", 1, 0, 0, 1);
+	}
+	
+	void to_Raf_active_BWD() {
+		bwdRuleApplication("Ras_Raf_op", 1, 0, 0, 1);
+		bwdRuleApplication("Raf", 1, 0, 0, 1);
+		to_Ras_Raf_BWD();
+	}
+	
+	void to_PP2A1_Raf_FWD() {
+		to_Raf_active_FWD();
+		fwdRuleApplication("PP2A1_Raf", 1, 0, 0, 1);
+	}
+	
+	void to_PP2A1_Raf_BWD() {
+		bwdRuleApplication("PP2A1_Raf", 1, 0, 0, 1);
+		to_Raf_active_BWD();
+	}
+
 	/* Actual Test Cases */
 	
 	/* Part1: Activating receptor dimers */
@@ -502,14 +544,14 @@ public class GraphTransfromEGFScenarioTest {
 	@Test
 	void long_arm_SoS_Ras_Test() {
 		to_Shc_Grb2_FWD();
-		neutralRuleApplication("long_arm_SoS_Ras", 2, 0, 0, 1);
+		neutralRuleApplication("long_arm_SoS_Ras", 1, 0, 0, 1);
 		to_Shc_Grb2_BWD();
 	}
 	
 	@Test
 	void short_arm_SoS_Ras_Test() {
 		to_EGFR_Grb2_FWD();
-		neutralRuleApplication("short_arm_SoS_Ras", 2, 0, 0, 1);
+		neutralRuleApplication("short_arm_SoS_Ras", 1, 0, 0, 1);
 		to_EGFR_Grb2_BWD();
 	}
 	
@@ -526,14 +568,14 @@ public class GraphTransfromEGFScenarioTest {
 		// This test case has non-deterministic results, which might result in occasional failures.
 		/*
 		to_long_arm_SoS_Ras_FWD();
-		neutralRuleApplication("SoS_Ras_op", 1, 0, 1, 4);
+		neutralRuleApplication("SoS_Ras_op", 1, 0, 0, 2);
 		to_long_arm_SoS_Ras_BWD();
 		*/
 	}
 	
 	@Test
 	void direct_RasGap_Ras_Test() {
-		// This test case has non-deterministic results, which results in failures.
+		// This test case has non-deterministic results, which results in failures.	
 		/*
 		fwdRuleApplication("EGF_EGFR", 36, 25, 0, 1);
 		fwdRuleApplication("EGF_EGFR", 25, 16, 1, 2);
@@ -549,17 +591,17 @@ public class GraphTransfromEGFScenarioTest {
 		fwdRuleApplication("EGFR_Shc", 2, 0, 0, 1);
 		fwdRuleApplication("Shc_at_318", 1, 0, 0, 1);
 		fwdRuleApplication("Shc_Grb2", 2, 0, 0, 1);
-		fwdRuleApplication("long_arm_SoS_Ras", 2, 0, 0, 1);
+		fwdRuleApplication("long_arm_SoS_Ras", 1, 0, 0, 1);
 		fwdRuleApplication("Ras_GTP", 1, 0, 0, 1);
-		fwdRuleApplication("SoS_Ras_op", 1, 0, 1, 4);
+		fwdRuleApplication("SoS_Ras_op", 1, 0, 0, 2);
 		
 		fwdRuleApplication("EGFR_RasGAP", 2, 0, 0, 1);
 		neutralRuleApplication("direct_RasGap_Ras", 1, 0, 0, 1);
 		bwdRuleApplication("EGFR_RasGAP", 2, 0, 0, 1);
 		
-		bwdRuleApplication("SoS_Ras_op", 1, 0, 1, 4);
+		bwdRuleApplication("SoS_Ras_op", 1, 0, 0, 2);
 		bwdRuleApplication("Ras_GTP", 1, 0, 0, 1);
-		bwdRuleApplication("long_arm_SoS_Ras", 2, 0, 0, 1);
+		bwdRuleApplication("long_arm_SoS_Ras", 1, 0, 0, 1);
 		bwdRuleApplication("Shc_Grb2", 2, 0, 0, 1);
 		bwdRuleApplication("Shc_at_318", 1, 0, 0, 1);
 		bwdRuleApplication("EGFR_Shc", 2, 0, 0, 1);
@@ -575,6 +617,7 @@ public class GraphTransfromEGFScenarioTest {
 		bwdRuleApplication("EGF_EGFR", 25, 16, 1, 2);
 		bwdRuleApplication("EGF_EGFR", 36, 25, 0, 1);
 		*/
+		
 	}
 	
 	@Test
@@ -592,7 +635,7 @@ public class GraphTransfromEGFScenarioTest {
 		// This test case has non-deterministic results, which results in failures.
 		/*
 		to_Ras_GDP_FWD();
-		neutralRuleApplication("RasGAP_Ras_op", 1, 0, 1, 4);
+		neutralRuleApplication("RasGAP_Ras_op", 1, 0, 0, 2);
 		to_Ras_GDP_BWD();
 		*/
 	}
@@ -602,7 +645,7 @@ public class GraphTransfromEGFScenarioTest {
 		// This test case has non-deterministic results, which results in failures.
 		/*
 		to_RasGTP_free_FWD();
-		neutralRuleApplication("intrinsic_Ras_GDP", 1, 0, 1, 2);
+		neutralRuleApplication("intrinsic_Ras_GDP", 1, 0, 0, 1);
 		to_RasGTP_free_BWD();
 		*/
 	}
@@ -613,9 +656,53 @@ public class GraphTransfromEGFScenarioTest {
 		// This test case has non-deterministic results, which results in failures.
 		/*
 		to_RasGTP_free_FWD();
-		neutralRuleApplication("Ras_Raf", 2, 0, 0, 1);
+		neutralRuleApplication("Ras_Raf", 1, 0, 0, 1);
 		to_RasGTP_free_BWD();
 		*/
+	}
+	
+	@Test
+	void Raf_Test() {
+		// This test case has non-deterministic results, which results in failures.
+		/*
+		to_Ras_Raf_FWD();
+		neutralRuleApplication("Raf", 1, 0, 0, 1);
+		to_Ras_Raf_BWD();
+		*/
+	}
+	
+	@Test
+	void Ras_Raf_op_Test() {
+		// This test case has non-deterministic results, which results in failures.
+		/*
+		to_Ras_Raf_FWD();
+		neutralRuleApplication("Ras_Raf_op", 1, 0, 0, 1);
+		to_Ras_Raf_BWD();
+		*/
+	}
+	
+	@Test
+	void PP2A1_Raf_Test() {
+		// This test case has non-deterministic results, which results in failures.
+		/*
+		to_Raf_active_FWD();
+		neutralRuleApplication("PP2A1_Raf", 1, 0, 0, 1);
+		to_Raf_active_BWD();
+		*/
+	}
+	
+	@Test
+	void Raf_op_Test() {
+		to_PP2A1_Raf_FWD();
+		neutralRuleApplication("Raf_op", 1, 0, 0, 1);
+		to_PP2A1_Raf_BWD();
+	}
+	
+	@Test
+	void PP2A1_Raf_op_Test() {
+		to_PP2A1_Raf_FWD();
+		neutralRuleApplication("PP2A1_Raf_op", 1, 0, 0, 1);
+		to_PP2A1_Raf_BWD();
 	}
 	
 }
