@@ -9,11 +9,11 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-import biochemsimulation.reactioncontainer.ReactionContainer;
+import biochemsimulation.reactioncontainer.Container;
 import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
-import biochemsimulation.reactioncontainer.SimAgent;
-import biochemsimulation.reactioncontainer.SimLinkState;
+import biochemsimulation.reactioncontainer.Agent;
+import biochemsimulation.reactioncontainer.State;
 import biochemsimulation.reactioncontainer.impl.ReactionContainerFactoryImpl;
 import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
@@ -27,13 +27,13 @@ public abstract class ReactionContainerGenerator {
 	private String projectPath;
 	private URI modelLocation;
 	private Resource modelResource;
-	private ReactionRuleModelImpl model;
+	protected ReactionRuleModelImpl model;
 	private boolean isInitialized;
 	
-	private List<AgentTemplate> templates;
+	//private List<AgentTemplate> templates;
 	
 	private ReactionContainerFactory factory;
-	protected ReactionContainer containerModel;
+	protected Container containerModel;
 	protected URI containerURI;
 	protected ResourceSet containerResSet;
 	protected Resource containerRes;
@@ -111,6 +111,7 @@ public abstract class ReactionContainerGenerator {
 	protected abstract void saveModel() throws Exception;
 	
 	public void doGenerate(String path) throws Exception{
+		/*
 		if(!isInitialized) {
 			throw new RuntimeException("ReactionContainerGenerator is uninitialized because the given resource containing the ReactionRules model could not be loaded.");
 		}
@@ -129,9 +130,11 @@ public abstract class ReactionContainerGenerator {
 		saveModel();
 		
 		containerRes.unload();
+		*/
 	}
 	
 	private void generateAgentTemplates(){
+		/*
 		List<Initial> initials = new LinkedList<Initial>();
 		model.getReactionProperties().forEach(x -> { 
 			if(x instanceof Initial) initials.add((Initial) x); 
@@ -148,8 +151,10 @@ public abstract class ReactionContainerGenerator {
 				}
 			}
 		}
+		*/
 	}
 	
+	/*
 	private void createInstances(ReactionContainer containerModel){
 		List<SimAgent> agents = new LinkedList<SimAgent>();
 		List<SimLinkState> links = new LinkedList<SimLinkState>();
@@ -161,5 +166,5 @@ public abstract class ReactionContainerGenerator {
 		containerModel.getSimAgent().addAll(agents);
 		containerModel.getSimLinkStates().addAll(links);
 	}
-	
+	*/
 }

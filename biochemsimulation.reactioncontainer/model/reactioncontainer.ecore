@@ -2,33 +2,18 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="reactioncontainer" nsURI="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer"
     nsPrefix="reactioncontainer">
-  <eClassifiers xsi:type="ecore:EClass" name="ReactionContainer">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="simAgent" upperBound="-1"
-        eType="#//SimAgent" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="simLinkStates" upperBound="-1"
-        eType="#//SimLinkState" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Container">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="agents" upperBound="-1"
+        eType="#//Agent" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ModelName" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="states" upperBound="-1"
+        eType="#//State" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SimAgent">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="simSites" upperBound="-1"
-        eType="#//SimSite" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Agent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="state" upperBound="-1"
+        eType="#//State"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SimSite">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="simSiteState" eType="#//SimSiteState"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="simLinkState" eType="#//SimLinkState"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SimSiteState">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SimLinkState" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="simSite1" lowerBound="1"
-        eType="#//SimSite"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SimBound" eSuperTypes="#//SimLinkState">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="simSite2" lowerBound="1"
-        eType="#//SimSite"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="State" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SiteState" eSuperTypes="#//State"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AgentState" eSuperTypes="#//State"/>
 </ecore:EPackage>

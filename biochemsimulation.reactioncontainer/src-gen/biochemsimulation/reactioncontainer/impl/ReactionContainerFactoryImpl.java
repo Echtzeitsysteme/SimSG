@@ -56,16 +56,14 @@ public class ReactionContainerFactoryImpl extends EFactoryImpl implements Reacti
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case ReactionContainerPackage.REACTION_CONTAINER:
-			return (EObject) createReactionContainer();
-		case ReactionContainerPackage.SIM_AGENT:
-			return (EObject) createSimAgent();
-		case ReactionContainerPackage.SIM_SITE:
-			return (EObject) createSimSite();
-		case ReactionContainerPackage.SIM_SITE_STATE:
-			return (EObject) createSimSiteState();
-		case ReactionContainerPackage.SIM_BOUND:
-			return (EObject) createSimBound();
+		case ReactionContainerPackage.CONTAINER:
+			return (EObject) createContainer();
+		case ReactionContainerPackage.AGENT:
+			return (EObject) createAgent();
+		case ReactionContainerPackage.SITE_STATE:
+			return (EObject) createSiteState();
+		case ReactionContainerPackage.AGENT_STATE:
+			return (EObject) createAgentState();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -76,9 +74,9 @@ public class ReactionContainerFactoryImpl extends EFactoryImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReactionContainer createReactionContainer() {
-		ReactionContainerImpl reactionContainer = new ReactionContainerImpl();
-		return reactionContainer;
+	public biochemsimulation.reactioncontainer.Container createContainer() {
+		ContainerImpl container = new ContainerImpl();
+		return container;
 	}
 
 	/**
@@ -86,9 +84,9 @@ public class ReactionContainerFactoryImpl extends EFactoryImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimAgent createSimAgent() {
-		SimAgentImpl simAgent = new SimAgentImpl();
-		return simAgent;
+	public Agent createAgent() {
+		AgentImpl agent = new AgentImpl();
+		return agent;
 	}
 
 	/**
@@ -96,9 +94,9 @@ public class ReactionContainerFactoryImpl extends EFactoryImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimSite createSimSite() {
-		SimSiteImpl simSite = new SimSiteImpl();
-		return simSite;
+	public SiteState createSiteState() {
+		SiteStateImpl siteState = new SiteStateImpl();
+		return siteState;
 	}
 
 	/**
@@ -106,19 +104,9 @@ public class ReactionContainerFactoryImpl extends EFactoryImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimSiteState createSimSiteState() {
-		SimSiteStateImpl simSiteState = new SimSiteStateImpl();
-		return simSiteState;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SimBound createSimBound() {
-		SimBoundImpl simBound = new SimBoundImpl();
-		return simBound;
+	public AgentState createAgentState() {
+		AgentStateImpl agentState = new AgentStateImpl();
+		return agentState;
 	}
 
 	/**

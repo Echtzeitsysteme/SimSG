@@ -2,14 +2,12 @@
  */
 package biochemsimulation.reactioncontainer.impl;
 
-import biochemsimulation.reactioncontainer.ReactionContainer;
+import biochemsimulation.reactioncontainer.Agent;
+import biochemsimulation.reactioncontainer.AgentState;
 import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
-import biochemsimulation.reactioncontainer.SimAgent;
-import biochemsimulation.reactioncontainer.SimBound;
-import biochemsimulation.reactioncontainer.SimLinkState;
-import biochemsimulation.reactioncontainer.SimSite;
-import biochemsimulation.reactioncontainer.SimSiteState;
+import biochemsimulation.reactioncontainer.SiteState;
+import biochemsimulation.reactioncontainer.State;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -32,42 +30,35 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass reactionContainerEClass = null;
+	private EClass containerEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass simAgentEClass = null;
+	private EClass agentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass simSiteEClass = null;
+	private EClass stateEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass simSiteStateEClass = null;
+	private EClass siteStateEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass simLinkStateEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass simBoundEClass = null;
+	private EClass agentStateEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -141,8 +132,8 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getReactionContainer() {
-		return reactionContainerEClass;
+	public EClass getContainer() {
+		return containerEClass;
 	}
 
 	/**
@@ -150,8 +141,8 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReactionContainer_SimAgent() {
-		return (EReference) reactionContainerEClass.getEStructuralFeatures().get(0);
+	public EReference getContainer_Agents() {
+		return (EReference) containerEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -159,8 +150,8 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getReactionContainer_SimLinkStates() {
-		return (EReference) reactionContainerEClass.getEStructuralFeatures().get(1);
+	public EAttribute getContainer_ModelName() {
+		return (EAttribute) containerEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -168,8 +159,8 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getReactionContainer_Name() {
-		return (EAttribute) reactionContainerEClass.getEStructuralFeatures().get(2);
+	public EReference getContainer_States() {
+		return (EReference) containerEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -177,8 +168,8 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSimAgent() {
-		return simAgentEClass;
+	public EClass getAgent() {
+		return agentEClass;
 	}
 
 	/**
@@ -186,8 +177,8 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSimAgent_Type() {
-		return (EAttribute) simAgentEClass.getEStructuralFeatures().get(0);
+	public EReference getAgent_State() {
+		return (EReference) agentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -195,8 +186,8 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSimAgent_SimSites() {
-		return (EReference) simAgentEClass.getEStructuralFeatures().get(1);
+	public EClass getState() {
+		return stateEClass;
 	}
 
 	/**
@@ -204,8 +195,8 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSimSite() {
-		return simSiteEClass;
+	public EClass getSiteState() {
+		return siteStateEClass;
 	}
 
 	/**
@@ -213,80 +204,8 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSimSite_Type() {
-		return (EAttribute) simSiteEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSimSite_SimSiteState() {
-		return (EReference) simSiteEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSimSite_SimLinkState() {
-		return (EReference) simSiteEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getSimSiteState() {
-		return simSiteStateEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getSimSiteState_Type() {
-		return (EAttribute) simSiteStateEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getSimLinkState() {
-		return simLinkStateEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSimLinkState_SimSite1() {
-		return (EReference) simLinkStateEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getSimBound() {
-		return simBoundEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSimBound_SimSite2() {
-		return (EReference) simBoundEClass.getEStructuralFeatures().get(0);
+	public EClass getAgentState() {
+		return agentStateEClass;
 	}
 
 	/**
@@ -318,28 +237,19 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 		isCreated = true;
 
 		// Create classes and their features
-		reactionContainerEClass = createEClass(REACTION_CONTAINER);
-		createEReference(reactionContainerEClass, REACTION_CONTAINER__SIM_AGENT);
-		createEReference(reactionContainerEClass, REACTION_CONTAINER__SIM_LINK_STATES);
-		createEAttribute(reactionContainerEClass, REACTION_CONTAINER__NAME);
+		containerEClass = createEClass(CONTAINER);
+		createEReference(containerEClass, CONTAINER__AGENTS);
+		createEAttribute(containerEClass, CONTAINER__MODEL_NAME);
+		createEReference(containerEClass, CONTAINER__STATES);
 
-		simAgentEClass = createEClass(SIM_AGENT);
-		createEAttribute(simAgentEClass, SIM_AGENT__TYPE);
-		createEReference(simAgentEClass, SIM_AGENT__SIM_SITES);
+		agentEClass = createEClass(AGENT);
+		createEReference(agentEClass, AGENT__STATE);
 
-		simSiteEClass = createEClass(SIM_SITE);
-		createEAttribute(simSiteEClass, SIM_SITE__TYPE);
-		createEReference(simSiteEClass, SIM_SITE__SIM_SITE_STATE);
-		createEReference(simSiteEClass, SIM_SITE__SIM_LINK_STATE);
+		stateEClass = createEClass(STATE);
 
-		simSiteStateEClass = createEClass(SIM_SITE_STATE);
-		createEAttribute(simSiteStateEClass, SIM_SITE_STATE__TYPE);
+		siteStateEClass = createEClass(SITE_STATE);
 
-		simLinkStateEClass = createEClass(SIM_LINK_STATE);
-		createEReference(simLinkStateEClass, SIM_LINK_STATE__SIM_SITE1);
-
-		simBoundEClass = createEClass(SIM_BOUND);
-		createEReference(simBoundEClass, SIM_BOUND__SIM_SITE2);
+		agentStateEClass = createEClass(AGENT_STATE);
 	}
 
 	/**
@@ -375,55 +285,34 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		simBoundEClass.getESuperTypes().add(this.getSimLinkState());
+		siteStateEClass.getESuperTypes().add(this.getState());
+		agentStateEClass.getESuperTypes().add(this.getState());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(reactionContainerEClass, ReactionContainer.class, "ReactionContainer", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getReactionContainer_SimAgent(), this.getSimAgent(), null, "simAgent", null, 0, -1,
-				ReactionContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getReactionContainer_SimLinkStates(), this.getSimLinkState(), null, "simLinkStates", null, 0, -1,
-				ReactionContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getReactionContainer_Name(), theXMLTypePackage.getString(), "Name", null, 0, 1,
-				ReactionContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
+		initEClass(containerEClass, biochemsimulation.reactioncontainer.Container.class, "Container", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getContainer_Agents(), this.getAgent(), null, "agents", null, 0, -1,
+				biochemsimulation.reactioncontainer.Container.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getContainer_ModelName(), theXMLTypePackage.getString(), "ModelName", null, 0, 1,
+				biochemsimulation.reactioncontainer.Container.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getContainer_States(), this.getState(), null, "states", null, 0, -1,
+				biochemsimulation.reactioncontainer.Container.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(simAgentEClass, SimAgent.class, "SimAgent", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSimAgent_Type(), theXMLTypePackage.getString(), "Type", null, 0, 1, SimAgent.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSimAgent_SimSites(), this.getSimSite(), null, "simSites", null, 0, -1, SimAgent.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(agentEClass, Agent.class, "Agent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAgent_State(), this.getState(), null, "state", null, 0, -1, Agent.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
 
-		initEClass(simSiteEClass, SimSite.class, "SimSite", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSimSite_Type(), theXMLTypePackage.getString(), "Type", null, 0, 1, SimSite.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSimSite_SimSiteState(), this.getSimSiteState(), null, "simSiteState", null, 0, 1,
-				SimSite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSimSite_SimLinkState(), this.getSimLinkState(), null, "simLinkState", null, 0, 1,
-				SimSite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(stateEClass, State.class, "State", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(simSiteStateEClass, SimSiteState.class, "SimSiteState", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(siteStateEClass, SiteState.class, "SiteState", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSimSiteState_Type(), theXMLTypePackage.getString(), "Type", null, 0, 1, SimSiteState.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(simLinkStateEClass, SimLinkState.class, "SimLinkState", IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(agentStateEClass, AgentState.class, "AgentState", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSimLinkState_SimSite1(), this.getSimSite(), null, "simSite1", null, 1, 1, SimLinkState.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(simBoundEClass, SimBound.class, "SimBound", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSimBound_SimSite2(), this.getSimSite(), null, "simSite2", null, 1, 1, SimBound.class,
-				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
-				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

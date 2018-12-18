@@ -67,33 +67,28 @@ public class ReactionContainerAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected ReactionContainerSwitch<Adapter> modelSwitch = new ReactionContainerSwitch<Adapter>() {
 		@Override
-		public Adapter caseReactionContainer(ReactionContainer object) {
-			return createReactionContainerAdapter();
+		public Adapter caseContainer(Container object) {
+			return createContainerAdapter();
 		}
 
 		@Override
-		public Adapter caseSimAgent(SimAgent object) {
-			return createSimAgentAdapter();
+		public Adapter caseAgent(Agent object) {
+			return createAgentAdapter();
 		}
 
 		@Override
-		public Adapter caseSimSite(SimSite object) {
-			return createSimSiteAdapter();
+		public Adapter caseState(State object) {
+			return createStateAdapter();
 		}
 
 		@Override
-		public Adapter caseSimSiteState(SimSiteState object) {
-			return createSimSiteStateAdapter();
+		public Adapter caseSiteState(SiteState object) {
+			return createSiteStateAdapter();
 		}
 
 		@Override
-		public Adapter caseSimLinkState(SimLinkState object) {
-			return createSimLinkStateAdapter();
-		}
-
-		@Override
-		public Adapter caseSimBound(SimBound object) {
-			return createSimBoundAdapter();
+		public Adapter caseAgentState(AgentState object) {
+			return createAgentStateAdapter();
 		}
 
 		@Override
@@ -116,86 +111,72 @@ public class ReactionContainerAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link biochemsimulation.reactioncontainer.ReactionContainer <em>Reaction Container</em>}'.
+	 * Creates a new adapter for an object of class '{@link biochemsimulation.reactioncontainer.Container <em>Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see biochemsimulation.reactioncontainer.ReactionContainer
+	 * @see biochemsimulation.reactioncontainer.Container
 	 * @generated
 	 */
-	public Adapter createReactionContainerAdapter() {
+	public Adapter createContainerAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link biochemsimulation.reactioncontainer.SimAgent <em>Sim Agent</em>}'.
+	 * Creates a new adapter for an object of class '{@link biochemsimulation.reactioncontainer.Agent <em>Agent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see biochemsimulation.reactioncontainer.SimAgent
+	 * @see biochemsimulation.reactioncontainer.Agent
 	 * @generated
 	 */
-	public Adapter createSimAgentAdapter() {
+	public Adapter createAgentAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link biochemsimulation.reactioncontainer.SimSite <em>Sim Site</em>}'.
+	 * Creates a new adapter for an object of class '{@link biochemsimulation.reactioncontainer.State <em>State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see biochemsimulation.reactioncontainer.SimSite
+	 * @see biochemsimulation.reactioncontainer.State
 	 * @generated
 	 */
-	public Adapter createSimSiteAdapter() {
+	public Adapter createStateAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link biochemsimulation.reactioncontainer.SimSiteState <em>Sim Site State</em>}'.
+	 * Creates a new adapter for an object of class '{@link biochemsimulation.reactioncontainer.SiteState <em>Site State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see biochemsimulation.reactioncontainer.SimSiteState
+	 * @see biochemsimulation.reactioncontainer.SiteState
 	 * @generated
 	 */
-	public Adapter createSimSiteStateAdapter() {
+	public Adapter createSiteStateAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link biochemsimulation.reactioncontainer.SimLinkState <em>Sim Link State</em>}'.
+	 * Creates a new adapter for an object of class '{@link biochemsimulation.reactioncontainer.AgentState <em>Agent State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see biochemsimulation.reactioncontainer.SimLinkState
+	 * @see biochemsimulation.reactioncontainer.AgentState
 	 * @generated
 	 */
-	public Adapter createSimLinkStateAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link biochemsimulation.reactioncontainer.SimBound <em>Sim Bound</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see biochemsimulation.reactioncontainer.SimBound
-	 * @generated
-	 */
-	public Adapter createSimBoundAdapter() {
+	public Adapter createAgentStateAdapter() {
 		return null;
 	}
 
