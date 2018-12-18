@@ -126,7 +126,28 @@ public class HybridPMC extends PatternMatchingController {
 			return;
 		}
 		
-		hybridMatches.put(patternName, new HybridMatch(patternName, subMatches, hybridPatterns.get(patternName)));
+		IMatch hybMatch = new HybridMatch(patternName, subMatches, hybridPatterns.get(patternName));
+		if(hybMatch.parameterNames().size()< hybridPatterns.get(patternName).getOriginalPattern().getSignature().getSignature().size()) {
+			//System.out.println(hybMatch);
+			hybridMatches.put(patternName, null);
+			hybridMatchCount.replace(patternName, 0);
+			return;
+		}
+		
+		// Debug
+		/*
+		Object hybParams[] = hybMatch.parameterNames().toArray();
+		Object originalParams[] = hybridPatterns.get(patternName).getOriginalPattern().getSignature().getSignature().keySet().toArray();
+		for(int i = 0; i<hybParams.length; i++) {
+			String hybParam = (String)hybParams[i];
+			String originalParam = (String)originalParams[i];
+			if(!hybParam.equals(originalParam)) {
+				System.out.println("dafuq?");
+			}
+		}
+		*/
+		
+		hybridMatches.put(patternName, hybMatch);
 		
 		
 	}

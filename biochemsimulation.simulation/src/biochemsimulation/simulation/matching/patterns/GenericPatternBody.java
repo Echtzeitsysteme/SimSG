@@ -369,6 +369,7 @@ public class GenericPatternBody {
 			}
 			
 		}
+		//System.out.println("Perm. Pattern: "+pattern.getName());
 		permutable = true;
 	}
 	

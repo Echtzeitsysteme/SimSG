@@ -172,6 +172,7 @@ public class HybridPattern {
 			genericSubPatterns.put(subPattern.getName(), subPattern);
 			genericSubPatternsTemp.remove(subPattern.getName());
 		}
+
 	}
 	
 	private void mapSubSignaturesToSignatures() {
@@ -280,6 +281,10 @@ public class HybridPattern {
 			
 		}
 		return true;
+	}
+	
+	public GenericPattern getOriginalPattern() {
+		return genericLhs;
 	}
 	
 	public Map<String, GenericPattern> getGenericSubPatterns() {

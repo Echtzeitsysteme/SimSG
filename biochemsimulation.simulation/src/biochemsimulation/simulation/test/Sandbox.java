@@ -25,9 +25,9 @@ public class Sandbox {
 		test4();
 		test6();
 		*/
-		//test7();
+		test7();
 		//test8_kill();
-		benchmark();
+		//benchmark();
 		//test4();
 		//hybridTest();
 		//hybridObsTest();
@@ -35,23 +35,14 @@ public class Sandbox {
 	
 	public static void test7() {
 		SimulationConfigurator simConfig = new SimulationConfigurator();
-		simConfig.setModel("EGF_Pathway");
+		simConfig.setModel("EGF_Pathway_50Percent");
 		simConfig.setSimplePersistence();
 		simConfig.setViatraAsEngine();
-		//simConfig.setDemoclesAsEngine();
 		simConfig.setHybridPMC();
-		//simConfig.setSimplePMC();
-		//simConfig.setSimpleSimulation();
 		simConfig.setStochasticSimulation();
-		//simConfig.setPMCDeterministic(true);
-		//simConfig.setSimpleTerminationCondition(7000, 30);
 		simConfig.setComplexTerminationCondition();
 		
 		Simulation viatraSim = simConfig.createSimulation();
-		
-		//simConfig.setDemoclesAsEngine();
-		
-		//Simulation democlesSim = simConfig.createSimulation();
 		
 		viatraSim.initializeClocked();
 		viatraSim.runClocked();
@@ -59,15 +50,7 @@ public class Sandbox {
 		viatraSim.displayResults();
 		viatraSim.finish();
 		
-		/*
-		democlesSim.initializeClocked();
-		democlesSim.runClocked();
-		System.out.println(democlesSim.results());
-		democlesSim.displayResults();
-		democlesSim.finish();
-		*/
 		System.out.println(Runtimer.getInstance());
-		//Runtimer.getInstance().toFile();
 		
 	}
 	

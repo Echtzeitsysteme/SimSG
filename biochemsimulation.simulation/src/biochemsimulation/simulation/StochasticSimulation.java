@@ -4,6 +4,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
+import biochemsimulation.simulation.matching.IMatch;
+
 public class StochasticSimulation extends Simulation {
 	
 	Random random;
@@ -41,11 +43,20 @@ public class StochasticSimulation extends Simulation {
 	public void run() throws Exception {
 		while(!terminationCondition.isTerminated(state)) {
 			pmc.collectAllMatches();
+			// debug
+			//pmc2.collectAllMatches();
 			updateProbabilities();
 			updateTimeStep();
 			pickRule();
 			if(currentRule != null) {
-				gt.applyRuleToMatch(pmc.getRandomMatch(currentRule), currentRule);
+				if(currentRule.contains("EGFR_EGFR")) {
+					System.out.println(currentRule);
+				}
+				IMatch rndMatch = pmc.getRandomMatch(currentRule);
+				gt.applyRuleToMatch(rndMatch, currentRule);
+				if(currentRule.contains("EGFR_EGFR")) {
+					System.out.println(currentRule);
+				}
 			}
 			simStats.logCurrentState(state);
 			
@@ -62,6 +73,12 @@ public class StochasticSimulation extends Simulation {
 			double p = pmc.getMatchCount(rule)*staticReactionRates.get(rule);
 			ruleProbabilities.replace(rule, p);
 			systemActivity+=p;
+			// debug
+			/*
+			if(pmc.getMatchCount(rule) != pmc2.getMatchCount(rule)) {
+				System.out.println("Count mismatch for rule: "+rule);
+			}
+			*/
 		}
 		
 	}
