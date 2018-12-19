@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="http://www.eclipse.org/emf/2002/Ecore java://org.eclipse.emf.ecore.EcorePackage" name="Goldbeter_Koshland" nsURI="platform:/resource/reactioncontainer/generated/Goldbeter_Koshland.ecore" nsPrefix="Goldbeter_Koshland">
+  <eClassifiers xmi:type="ecore:EClass" name="K">
+    <eSuperTypes xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="K_a">
+      <eType xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="P">
+    <eSuperTypes xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="P_a">
+      <eType xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="T">
+    <eSuperTypes xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="T_x">
+      <eType xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="T_y">
+      <eType xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>

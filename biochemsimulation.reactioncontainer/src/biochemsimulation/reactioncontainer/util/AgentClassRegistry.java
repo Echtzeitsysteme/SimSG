@@ -6,20 +6,10 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 
 public class AgentClassRegistry {
-	public static final AgentClassRegistry eInstance = init(); 
-	
-	protected static AgentClassRegistry instance;
 	protected Map<String, EClass> classes;
 	
-	protected AgentClassRegistry() {
+	public AgentClassRegistry() {
 		classes = new HashMap<String, EClass>();
-	}
-	
-	public static synchronized AgentClassRegistry init() {
-		if(instance == null){
-            instance = new AgentClassRegistry();
-		}
-		return instance;
 	}
 	
 	public void registerClass(EClass newClass) {
@@ -28,5 +18,9 @@ public class AgentClassRegistry {
 	
 	public EClass getRegisteredClass(String className) {
 		return classes.get(className);
+	}
+	
+	public boolean containsClass(String className) {
+		return classes.containsKey(className);
 	}
 }

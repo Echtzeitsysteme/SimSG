@@ -1,12 +1,18 @@
 package biochemsimulation.reactioncontainer.generator;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import biochemsimulation.reactioncontainer.Container;
@@ -15,6 +21,9 @@ import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactioncontainer.Agent;
 import biochemsimulation.reactioncontainer.State;
 import biochemsimulation.reactioncontainer.impl.ReactionContainerFactoryImpl;
+import biochemsimulation.reactioncontainer.util.AgentClassFactory;
+import biochemsimulation.reactioncontainer.util.AgentClassRegistry;
+import biochemsimulation.reactioncontainer.util.AgentFactory;
 import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
@@ -34,6 +43,12 @@ public abstract class ReactionContainerGenerator {
 	
 	private ReactionContainerFactory factory;
 	protected Container containerModel;
+	
+	protected EPackage dynamicMetaModel;
+	protected AgentClassRegistry agentClassRegistry;
+	protected AgentClassFactory agentClassFactory;
+	protected AgentFactory agentFactory;
+	
 	protected URI containerURI;
 	protected ResourceSet containerResSet;
 	protected Resource containerRes;
@@ -133,7 +148,7 @@ public abstract class ReactionContainerGenerator {
 		*/
 	}
 	
-	private void generateAgentTemplates(){
+	private void generateInitializationTemplates(){
 		/*
 		List<Initial> initials = new LinkedList<Initial>();
 		model.getReactionProperties().forEach(x -> { 
@@ -167,4 +182,46 @@ public abstract class ReactionContainerGenerator {
 		containerModel.getSimLinkStates().addAll(links);
 	}
 	*/
+	
+	protected void generateAgentClasses() {
+		dynamicMetaModel = EcoreFactory.eINSTANCE.createEPackage();
+
+		dynamicMetaModel.setName(model.getModel().getName());
+		dynamicMetaModel.setNsPrefix(model.getModel().getName());
+		dynamicMetaModel.setNsURI("platform:/resource/reactioncontainer/generated/" + model.getModel().getName() + ".ecore");
+		
+		agentClassRegistry = new AgentClassRegistry();
+		agentClassFactory = new AgentClassFactory(dynamicMetaModel, agentClassRegistry);
+		
+		model.getReactionProperties().forEach(x -> {
+			if(x instanceof biochemsimulation.reactionrules.reactionRules.Agent) {
+				biochemsimulation.reactionrules.reactionRules.Agent agnt = (biochemsimulation.reactionrules.reactionRules.Agent)x;
+				agentClassFactory.createAgentClass(agnt);
+			}
+		});
+		
+		agentFactory = new AgentFactory(dynamicMetaModel, agentClassRegistry);
+		
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( ).put( "ecore",
+				new XMIResourceFactoryImpl());
+		ResourceSet resSet = new ResourceSetImpl();
+		Resource res = resSet.createResource(URI.createFileURI(projectPath+"/generated/"+ model.getModel().getName() + ".ecore"));
+		
+		res.getContents().add(dynamicMetaModel);
+		
+		
+		Map<Object, Object> saveOptions = ((XMIResource)res).getDefaultSaveOptions();
+		saveOptions.put(XMIResource.OPTION_ENCODING,"UTF-8");
+		saveOptions.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
+		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION,Boolean.TRUE);
+		saveOptions.put(XMIResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION, Boolean.TRUE);
+		
+		try {
+			((XMIResource)res).save(saveOptions);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 }
