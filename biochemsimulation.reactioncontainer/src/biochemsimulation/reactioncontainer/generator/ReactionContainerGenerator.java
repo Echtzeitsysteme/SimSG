@@ -24,6 +24,7 @@ import biochemsimulation.reactioncontainer.impl.ReactionContainerFactoryImpl;
 import biochemsimulation.reactioncontainer.util.AgentClassFactory;
 import biochemsimulation.reactioncontainer.util.AgentClassRegistry;
 import biochemsimulation.reactioncontainer.util.AgentFactory;
+import biochemsimulation.reactioncontainer.util.StateClassRegistry;
 import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
@@ -46,6 +47,7 @@ public abstract class ReactionContainerGenerator {
 	
 	protected EPackage dynamicMetaModel;
 	protected AgentClassRegistry agentClassRegistry;
+	protected StateClassRegistry stateClassRegistry;
 	protected AgentClassFactory agentClassFactory;
 	protected AgentFactory agentFactory;
 	
@@ -126,6 +128,7 @@ public abstract class ReactionContainerGenerator {
 	protected abstract void saveModel() throws Exception;
 	
 	public void doGenerate(String path) throws Exception{
+		generateAgentClasses();
 		/*
 		if(!isInitialized) {
 			throw new RuntimeException("ReactionContainerGenerator is uninitialized because the given resource containing the ReactionRules model could not be loaded.");
@@ -191,7 +194,8 @@ public abstract class ReactionContainerGenerator {
 		dynamicMetaModel.setNsURI("platform:/resource/reactioncontainer/generated/" + model.getModel().getName() + ".ecore");
 		
 		agentClassRegistry = new AgentClassRegistry();
-		agentClassFactory = new AgentClassFactory(dynamicMetaModel, agentClassRegistry);
+		stateClassRegistry = new StateClassRegistry();
+		agentClassFactory = new AgentClassFactory(dynamicMetaModel, agentClassRegistry, stateClassRegistry);
 		
 		model.getReactionProperties().forEach(x -> {
 			if(x instanceof biochemsimulation.reactionrules.reactionRules.Agent) {

@@ -9,11 +9,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="states" upperBound="-1"
         eType="#//State" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Agent">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="state" upperBound="-1"
-        eType="#//State"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="State" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SiteState" eSuperTypes="#//State"/>
-  <eClassifiers xsi:type="ecore:EClass" name="AgentState" eSuperTypes="#//State"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Agent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="State"/>
 </ecore:EPackage>

@@ -122,22 +122,13 @@ public interface ReactionContainerPackage extends EPackage {
 	int AGENT = 1;
 
 	/**
-	 * The feature id for the '<em><b>State</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AGENT__STATE = 0;
-
-	/**
 	 * The number of structural features of the '<em>Agent</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AGENT_FEATURE_COUNT = 1;
+	int AGENT_FEATURE_COUNT = 0;
 
 	/**
 	 * The number of operations of the '<em>Agent</em>' class.
@@ -149,10 +140,10 @@ public interface ReactionContainerPackage extends EPackage {
 	int AGENT_OPERATION_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link biochemsimulation.reactioncontainer.State <em>State</em>}' class.
+	 * The meta object id for the '{@link biochemsimulation.reactioncontainer.impl.StateImpl <em>State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see biochemsimulation.reactioncontainer.State
+	 * @see biochemsimulation.reactioncontainer.impl.StateImpl
 	 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getState()
 	 * @generated
 	 */
@@ -175,62 +166,6 @@ public interface ReactionContainerPackage extends EPackage {
 	 * @ordered
 	 */
 	int STATE_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link biochemsimulation.reactioncontainer.impl.SiteStateImpl <em>Site State</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see biochemsimulation.reactioncontainer.impl.SiteStateImpl
-	 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getSiteState()
-	 * @generated
-	 */
-	int SITE_STATE = 3;
-
-	/**
-	 * The number of structural features of the '<em>Site State</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SITE_STATE_FEATURE_COUNT = STATE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Site State</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SITE_STATE_OPERATION_COUNT = STATE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link biochemsimulation.reactioncontainer.impl.AgentStateImpl <em>Agent State</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see biochemsimulation.reactioncontainer.impl.AgentStateImpl
-	 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getAgentState()
-	 * @generated
-	 */
-	int AGENT_STATE = 4;
-
-	/**
-	 * The number of structural features of the '<em>Agent State</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AGENT_STATE_FEATURE_COUNT = STATE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Agent State</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AGENT_STATE_OPERATION_COUNT = STATE_OPERATION_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link biochemsimulation.reactioncontainer.Container <em>Container</em>}'.
@@ -286,17 +221,6 @@ public interface ReactionContainerPackage extends EPackage {
 	EClass getAgent();
 
 	/**
-	 * Returns the meta object for the reference list '{@link biochemsimulation.reactioncontainer.Agent#getState <em>State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>State</em>'.
-	 * @see biochemsimulation.reactioncontainer.Agent#getState()
-	 * @see #getAgent()
-	 * @generated
-	 */
-	EReference getAgent_State();
-
-	/**
 	 * Returns the meta object for class '{@link biochemsimulation.reactioncontainer.State <em>State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -305,26 +229,6 @@ public interface ReactionContainerPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getState();
-
-	/**
-	 * Returns the meta object for class '{@link biochemsimulation.reactioncontainer.SiteState <em>Site State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Site State</em>'.
-	 * @see biochemsimulation.reactioncontainer.SiteState
-	 * @generated
-	 */
-	EClass getSiteState();
-
-	/**
-	 * Returns the meta object for class '{@link biochemsimulation.reactioncontainer.AgentState <em>Agent State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Agent State</em>'.
-	 * @see biochemsimulation.reactioncontainer.AgentState
-	 * @generated
-	 */
-	EClass getAgentState();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -394,42 +298,14 @@ public interface ReactionContainerPackage extends EPackage {
 		EClass AGENT = eINSTANCE.getAgent();
 
 		/**
-		 * The meta object literal for the '<em><b>State</b></em>' reference list feature.
+		 * The meta object literal for the '{@link biochemsimulation.reactioncontainer.impl.StateImpl <em>State</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference AGENT__STATE = eINSTANCE.getAgent_State();
-
-		/**
-		 * The meta object literal for the '{@link biochemsimulation.reactioncontainer.State <em>State</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see biochemsimulation.reactioncontainer.State
+		 * @see biochemsimulation.reactioncontainer.impl.StateImpl
 		 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getState()
 		 * @generated
 		 */
 		EClass STATE = eINSTANCE.getState();
-
-		/**
-		 * The meta object literal for the '{@link biochemsimulation.reactioncontainer.impl.SiteStateImpl <em>Site State</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see biochemsimulation.reactioncontainer.impl.SiteStateImpl
-		 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getSiteState()
-		 * @generated
-		 */
-		EClass SITE_STATE = eINSTANCE.getSiteState();
-
-		/**
-		 * The meta object literal for the '{@link biochemsimulation.reactioncontainer.impl.AgentStateImpl <em>Agent State</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see biochemsimulation.reactioncontainer.impl.AgentStateImpl
-		 * @see biochemsimulation.reactioncontainer.impl.ReactionContainerPackageImpl#getAgentState()
-		 * @generated
-		 */
-		EClass AGENT_STATE = eINSTANCE.getAgentState();
 
 	}
 

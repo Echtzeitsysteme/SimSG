@@ -2,8 +2,8 @@
  */
 package biochemsimulation.reactioncontainer.impl;
 
-import biochemsimulation.reactioncontainer.AgentState;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
+import biochemsimulation.reactioncontainer.State;
 
 import fr.inria.atlanmod.neoemf.core.DefaultPersistentEObject;
 
@@ -11,18 +11,18 @@ import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Agent State</b></em>'.
+ * An implementation of the model object '<em><b>State</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class AgentStateImpl extends DefaultPersistentEObject implements AgentState {
+public class StateImpl extends DefaultPersistentEObject implements State {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AgentStateImpl() {
+	protected StateImpl() {
 		super();
 	}
 
@@ -33,7 +33,7 @@ public class AgentStateImpl extends DefaultPersistentEObject implements AgentSta
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ReactionContainerPackage.Literals.AGENT_STATE;
+		return ReactionContainerPackage.Literals.STATE;
 	}
 
 	/**
@@ -46,4 +46,4 @@ public class AgentStateImpl extends DefaultPersistentEObject implements AgentSta
 		return 0;
 	}
 
-} //AgentStateImpl
+} //StateImpl

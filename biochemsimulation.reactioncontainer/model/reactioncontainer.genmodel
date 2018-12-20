@@ -18,11 +18,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute reactioncontainer.ecore#//Container/ModelName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference reactioncontainer.ecore#//Container/states"/>
     </genClasses>
-    <genClasses ecoreClass="reactioncontainer.ecore#//Agent">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference reactioncontainer.ecore#//Agent/state"/>
-    </genClasses>
+    <genClasses ecoreClass="reactioncontainer.ecore#//Agent"/>
     <genClasses ecoreClass="reactioncontainer.ecore#//State"/>
-    <genClasses ecoreClass="reactioncontainer.ecore#//SiteState"/>
-    <genClasses ecoreClass="reactioncontainer.ecore#//AgentState"/>
   </genPackages>
 </genmodel:GenModel>

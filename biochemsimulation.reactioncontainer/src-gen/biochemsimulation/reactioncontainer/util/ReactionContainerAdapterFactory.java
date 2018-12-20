@@ -82,16 +82,6 @@ public class ReactionContainerAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseSiteState(SiteState object) {
-			return createSiteStateAdapter();
-		}
-
-		@Override
-		public Adapter caseAgentState(AgentState object) {
-			return createAgentStateAdapter();
-		}
-
-		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -149,34 +139,6 @@ public class ReactionContainerAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createStateAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link biochemsimulation.reactioncontainer.SiteState <em>Site State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see biochemsimulation.reactioncontainer.SiteState
-	 * @generated
-	 */
-	public Adapter createSiteStateAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link biochemsimulation.reactioncontainer.AgentState <em>Agent State</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see biochemsimulation.reactioncontainer.AgentState
-	 * @generated
-	 */
-	public Adapter createAgentStateAdapter() {
 		return null;
 	}
 

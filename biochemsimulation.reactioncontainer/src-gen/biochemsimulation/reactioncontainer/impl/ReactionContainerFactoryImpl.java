@@ -60,10 +60,8 @@ public class ReactionContainerFactoryImpl extends EFactoryImpl implements Reacti
 			return (EObject) createContainer();
 		case ReactionContainerPackage.AGENT:
 			return (EObject) createAgent();
-		case ReactionContainerPackage.SITE_STATE:
-			return (EObject) createSiteState();
-		case ReactionContainerPackage.AGENT_STATE:
-			return (EObject) createAgentState();
+		case ReactionContainerPackage.STATE:
+			return (EObject) createState();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -94,19 +92,9 @@ public class ReactionContainerFactoryImpl extends EFactoryImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SiteState createSiteState() {
-		SiteStateImpl siteState = new SiteStateImpl();
-		return siteState;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AgentState createAgentState() {
-		AgentStateImpl agentState = new AgentStateImpl();
-		return agentState;
+	public State createState() {
+		StateImpl state = new StateImpl();
+		return state;
 	}
 
 	/**

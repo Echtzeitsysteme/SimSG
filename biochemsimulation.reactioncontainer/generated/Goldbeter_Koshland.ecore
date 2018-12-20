@@ -17,8 +17,18 @@
     <eStructuralFeatures xmi:type="ecore:EReference" name="T_x">
       <eType xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="T_x_u" eType="//u"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="T_x_p" eType="//p"/>
     <eStructuralFeatures xmi:type="ecore:EReference" name="T_y">
       <eType xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="T_y_u" eType="//u"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="T_y_p" eType="//p"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="u">
+    <eSuperTypes xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//State"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="p">
+    <eSuperTypes xmi:type="ecore:EClass" href="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//State"/>
   </eClassifiers>
 </ecore:EPackage>

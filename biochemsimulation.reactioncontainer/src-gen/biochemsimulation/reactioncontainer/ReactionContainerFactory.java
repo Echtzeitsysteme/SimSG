@@ -40,22 +40,13 @@ public interface ReactionContainerFactory extends EFactory {
 	Agent createAgent();
 
 	/**
-	 * Returns a new object of class '<em>Site State</em>'.
+	 * Returns a new object of class '<em>State</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Site State</em>'.
+	 * @return a new object of class '<em>State</em>'.
 	 * @generated
 	 */
-	SiteState createSiteState();
-
-	/**
-	 * Returns a new object of class '<em>Agent State</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Agent State</em>'.
-	 * @generated
-	 */
-	AgentState createAgentState();
+	State createState();
 
 	/**
 	 * Returns the package supported by this factory.

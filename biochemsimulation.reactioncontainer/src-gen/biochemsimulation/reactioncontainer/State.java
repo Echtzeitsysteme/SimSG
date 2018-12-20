@@ -11,7 +11,7 @@ import fr.inria.atlanmod.neoemf.core.PersistentEObject;
  *
  *
  * @see biochemsimulation.reactioncontainer.ReactionContainerPackage#getState()
- * @model interface="true" abstract="true"
+ * @model
  * @extends PersistentEObject
  * @generated
  */

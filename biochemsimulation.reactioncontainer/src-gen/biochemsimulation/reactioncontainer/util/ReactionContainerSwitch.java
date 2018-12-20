@@ -87,24 +87,6 @@ public class ReactionContainerSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ReactionContainerPackage.SITE_STATE: {
-			SiteState siteState = (SiteState) theEObject;
-			T result = caseSiteState(siteState);
-			if (result == null)
-				result = caseState(siteState);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ReactionContainerPackage.AGENT_STATE: {
-			AgentState agentState = (AgentState) theEObject;
-			T result = caseAgentState(agentState);
-			if (result == null)
-				result = caseState(agentState);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -152,36 +134,6 @@ public class ReactionContainerSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseState(State object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Site State</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Site State</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSiteState(SiteState object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Agent State</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Agent State</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAgentState(AgentState object) {
 		return null;
 	}
 

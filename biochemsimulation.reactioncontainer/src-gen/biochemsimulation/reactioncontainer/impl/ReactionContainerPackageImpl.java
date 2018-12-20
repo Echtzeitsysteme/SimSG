@@ -3,10 +3,8 @@
 package biochemsimulation.reactioncontainer.impl;
 
 import biochemsimulation.reactioncontainer.Agent;
-import biochemsimulation.reactioncontainer.AgentState;
 import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
-import biochemsimulation.reactioncontainer.SiteState;
 import biochemsimulation.reactioncontainer.State;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -45,20 +43,6 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 	 * @generated
 	 */
 	private EClass stateEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass siteStateEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass agentStateEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -177,35 +161,8 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAgent_State() {
-		return (EReference) agentEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getState() {
 		return stateEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getSiteState() {
-		return siteStateEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getAgentState() {
-		return agentStateEClass;
 	}
 
 	/**
@@ -243,13 +200,8 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 		createEReference(containerEClass, CONTAINER__STATES);
 
 		agentEClass = createEClass(AGENT);
-		createEReference(agentEClass, AGENT__STATE);
 
 		stateEClass = createEClass(STATE);
-
-		siteStateEClass = createEClass(SITE_STATE);
-
-		agentStateEClass = createEClass(AGENT_STATE);
 	}
 
 	/**
@@ -285,8 +237,6 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		siteStateEClass.getESuperTypes().add(this.getState());
-		agentStateEClass.getESuperTypes().add(this.getState());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(containerEClass, biochemsimulation.reactioncontainer.Container.class, "Container", !IS_ABSTRACT,
@@ -302,17 +252,8 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(agentEClass, Agent.class, "Agent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAgent_State(), this.getState(), null, "state", null, 0, -1, Agent.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
 
-		initEClass(stateEClass, State.class, "State", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(siteStateEClass, SiteState.class, "SiteState", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(agentStateEClass, AgentState.class, "AgentState", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
+		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
