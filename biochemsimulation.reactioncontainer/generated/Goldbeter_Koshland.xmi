@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reactioncontainer:Container xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Goldbeter_Koshland="platform:/resource/reactioncontainer/generated/Goldbeter_Koshland.ecore" xmlns:reactioncontainer="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer" xsi:schemaLocation="platform:/resource/reactioncontainer/generated/Goldbeter_Koshland.ecore file:/C:/Users/sehmes/Workspaces/BioChemSimulation/biochemsimulation.reactioncontainer//generated/Goldbeter_Koshland.ecore http://www.reactioncontainer.biochemsimulation.org/reactioncontainer java://biochemsimulation.reactioncontainer.ReactionContainerPackage" ModelName="Goldbeter_Koshland">
+  <agents xmi:type="Goldbeter_Koshland:P"/>
+  <agents xmi:type="Goldbeter_Koshland:T"/>
+  <agents xmi:type="Goldbeter_Koshland:K"/>
+  <agents xmi:type="Goldbeter_Koshland:P"/>
+  <agents xmi:type="Goldbeter_Koshland:T"/>
+  <agents xmi:type="Goldbeter_Koshland:K"/>
+  <agents xmi:type="Goldbeter_Koshland:P"/>
+  <agents xmi:type="Goldbeter_Koshland:T"/>
+  <agents xmi:type="Goldbeter_Koshland:K"/>
+  <agents xmi:type="Goldbeter_Koshland:P"/>
+  <agents xmi:type="Goldbeter_Koshland:T"/>
+  <agents xmi:type="Goldbeter_Koshland:K"/>
+  <agents xmi:type="Goldbeter_Koshland:P"/>
+  <agents xmi:type="Goldbeter_Koshland:T"/>
+  <agents xmi:type="Goldbeter_Koshland:K"/>
+  <states xmi:type="Goldbeter_Koshland:p"/>
+  <states xmi:type="Goldbeter_Koshland:u"/>
+</reactioncontainer:Container>

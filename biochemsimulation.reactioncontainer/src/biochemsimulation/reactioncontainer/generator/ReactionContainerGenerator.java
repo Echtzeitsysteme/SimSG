@@ -1,6 +1,7 @@
 package biochemsimulation.reactioncontainer.generator;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -8,28 +9,26 @@ import java.util.Map;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
+import biochemsimulation.reactioncontainer.Agent;
 import biochemsimulation.reactioncontainer.Container;
 import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
-import biochemsimulation.reactioncontainer.Agent;
 import biochemsimulation.reactioncontainer.State;
 import biochemsimulation.reactioncontainer.impl.ReactionContainerFactoryImpl;
 import biochemsimulation.reactioncontainer.util.AgentClassFactory;
 import biochemsimulation.reactioncontainer.util.AgentClassRegistry;
 import biochemsimulation.reactioncontainer.util.AgentFactory;
 import biochemsimulation.reactioncontainer.util.StateClassRegistry;
+import biochemsimulation.reactioncontainer.util.StateFactory;
 import biochemsimulation.reactionrules.reactionRules.Initial;
-import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
-import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.impl.ReactionRuleModelImpl;
 import biochemsimulation.reactionrules.utils.PatternUtils;
 
@@ -40,7 +39,7 @@ public abstract class ReactionContainerGenerator {
 	protected ReactionRuleModelImpl model;
 	private boolean isInitialized;
 	
-	//private List<AgentTemplate> templates;
+	
 	
 	private ReactionContainerFactory factory;
 	protected Container containerModel;
@@ -50,6 +49,10 @@ public abstract class ReactionContainerGenerator {
 	protected StateClassRegistry stateClassRegistry;
 	protected AgentClassFactory agentClassFactory;
 	protected AgentFactory agentFactory;
+	protected StateFactory stateFactory;
+	protected Map<String, State> stateInstances;
+	
+	private Map<Initial, InitializationTemplate> templates;
 	
 	protected URI containerURI;
 	protected ResourceSet containerResSet;
@@ -129,62 +132,45 @@ public abstract class ReactionContainerGenerator {
 	
 	public void doGenerate(String path) throws Exception{
 		generateAgentClasses();
-		/*
-		if(!isInitialized) {
-			throw new RuntimeException("ReactionContainerGenerator is uninitialized because the given resource containing the ReactionRules model could not be loaded.");
-		}
-		generateAgentTemplates();
 		
 		createAndSetResourceSet();
-		setContainerURI(path);
+		setContainerURI(projectPath+"/generated/"+ model.getModel().getName() + ".xmi");
 		createAndSetResource();
 		
-		containerModel = factory.createReactionContainer();
-		containerModel.setName(model.getModel().getName());
-		createInstances(containerModel);
+		containerModel = factory.createContainer();
+		containerModel.setModelName(model.getModel().getName());
+		
+		createStateInstances();
+		generateInitializationTemplates();
+		createInstances();
 		
 		containerRes.getContents().add(containerModel);
-		
 		saveModel();
 		
 		containerRes.unload();
-		*/
+		
 	}
 	
 	private void generateInitializationTemplates(){
-		/*
-		List<Initial> initials = new LinkedList<Initial>();
-		model.getReactionProperties().forEach(x -> { 
-			if(x instanceof Initial) initials.add((Initial) x); 
-			});
-		
-		templates = new LinkedList<AgentTemplate>();
+		templates = new HashMap<Initial, InitializationTemplate>();
+		List<Initial> initials = PatternUtils.getInitials(model);
 		for(Initial init : initials) {
-			Pattern pa = PatternUtils.patternFromPatternAssignment(init.getInitialPattern());
-			if(!PatternUtils.isPatternEmpty(pa)) {
-				int idx = 0;
-				for(ValidAgentPattern ap : PatternUtils.getValidAgentPatterns(pa.getAgentPatterns())) {
-					templates.add(new AgentTemplate(init, ap, idx));
-					idx++;
-				}
-			}
+			templates.put(init, 
+					new InitializationTemplate(PatternUtils.patternFromPatternAssignment(init.getInitialPattern()), 
+							agentFactory, stateInstances));
 		}
-		*/
 	}
 	
-	/*
-	private void createInstances(ReactionContainer containerModel){
-		List<SimAgent> agents = new LinkedList<SimAgent>();
-		List<SimLinkState> links = new LinkedList<SimLinkState>();
-		for(AgentTemplate at : templates) {
-			for(int i = 0; i<at.getCount(); i++) {
-				agents.add(at.createInstance(factory, links));
-			}
+	
+	private void createInstances(){
+		List<Agent> agents = new LinkedList<Agent>();
+		for(Initial init : templates.keySet()) {
+			int amount = (int) PatternUtils.valueOfNumericAssignment(init.getCount());
+			agents.addAll(templates.get(init).createInstances(amount));
 		}
-		containerModel.getSimAgent().addAll(agents);
-		containerModel.getSimLinkStates().addAll(links);
+		containerModel.getAgents().addAll(agents);
 	}
-	*/
+	
 	
 	protected void generateAgentClasses() {
 		dynamicMetaModel = EcoreFactory.eINSTANCE.createEPackage();
@@ -205,6 +191,7 @@ public abstract class ReactionContainerGenerator {
 		});
 		
 		agentFactory = new AgentFactory(dynamicMetaModel, agentClassRegistry);
+		stateFactory = new StateFactory(dynamicMetaModel, stateClassRegistry);
 		
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( ).put( "ecore",
 				new XMIResourceFactoryImpl());
@@ -227,5 +214,15 @@ public abstract class ReactionContainerGenerator {
 			e.printStackTrace();
 		}
 
+	}
+	
+	protected void createStateInstances() {
+		stateInstances = new HashMap<String, State>();
+		
+		stateClassRegistry.getAllClasses().forEach(stateClass -> {
+			State state = stateFactory.createState(stateClass);
+			containerModel.getStates().add(state);
+			stateInstances.put(state.eClass().getName(), state);
+		});;
 	}
 }

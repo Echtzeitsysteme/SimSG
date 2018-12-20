@@ -1,5 +1,6 @@
 package biochemsimulation.reactioncontainer.util;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,5 +24,9 @@ public class StateClassRegistry {
 	
 	public boolean containsClass(String className) {
 		return classes.containsKey(className);
+	}
+	
+	public Collection<EClass> getAllClasses() {
+		return classes.values();
 	}
 }
