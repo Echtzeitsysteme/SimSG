@@ -1,0 +1,1344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reactioncontainer:Container xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:EGF_Pathway="platform:/resource/reactioncontainer/generated/EGF_Pathway.ecore" xmlns:reactioncontainer="http://www.reactioncontainer.biochemsimulation.org/reactioncontainer" xsi:schemaLocation="platform:/resource/reactioncontainer/generated/EGF_Pathway.ecore file:/C:/Users/sehmes/Workspaces/BioChemSimulation/biochemsimulation.reactioncontainer//generated/EGF_Pathway.ecore http://www.reactioncontainer.biochemsimulation.org/reactioncontainer java://biochemsimulation.reactioncontainer.ReactionContainerPackage" ModelName="EGF_Pathway">
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:MKP3"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:PP2A2"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:ERK" ERK_T185_u="//@states.4" ERK_Y187_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGFR" EGFR_L_ext="//@states.0" EGFR_Y992_u="//@states.4" EGFR_Y1068_u="//@states.4" EGFR_Y1148_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.401" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.400"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.403" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.402"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.405" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.404"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.407" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.406"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.409" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.408"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.411" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.410"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.413" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.412"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.415" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.414"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.417" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.416"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.419" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.418"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.421" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.420"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.423" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.422"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.425" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.424"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.427" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.426"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.429" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.428"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.431" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.430"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.433" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.432"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.435" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.434"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.437" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.436"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.439" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.438"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.441" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.440"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.443" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.442"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.445" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.444"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.447" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.446"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.449" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.448"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.451" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.450"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.453" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.452"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.455" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.454"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.457" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.456"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.459" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.458"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.461" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.460"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.463" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.462"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.465" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.464"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.467" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.466"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.469" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.468"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.471" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.470"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.473" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.472"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.475" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.474"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.477" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.476"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.479" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.478"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.481" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.480"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.483" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.482"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.485" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.484"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.487" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.486"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.489" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.488"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.491" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.490"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.493" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.492"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.495" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.494"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.497" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.496"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.499" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.498"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.501" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.500"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.503" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.502"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.505" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.504"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.507" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.506"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.509" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.508"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.511" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.510"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.513" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.512"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.515" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.514"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.517" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.516"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.519" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.518"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.521" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.520"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.523" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.522"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.525" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.524"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.527" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.526"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.529" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.528"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.531" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.530"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.533" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.532"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.535" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.534"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.537" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.536"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.539" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.538"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.541" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.540"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.543" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.542"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.545" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.544"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.547" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.546"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.549" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.548"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.551" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.550"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.553" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.552"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.555" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.554"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.557" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.556"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.559" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.558"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.561" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.560"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.563" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.562"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.565" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.564"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.567" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.566"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.569" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.568"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.571" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.570"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.573" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.572"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.575" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.574"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.577" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.576"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.579" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.578"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.581" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.580"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.583" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.582"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.585" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.584"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.587" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.586"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.589" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.588"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.591" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.590"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.593" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.592"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.595" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.594"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.597" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.596"/>
+  <agents xmi:type="EGF_Pathway:SoS" SoS_a="//@agents.599" SoS_SS_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Grb2" Grb2_SH3="//@agents.598"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:PP2A1"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Ras" Ras_S1S2_gdp="//@states.2"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Shc" Shc_Y318_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:Raf" Raf_x_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:EGF" EGF_r_ext="//@states.0"/>
+  <agents xmi:type="EGF_Pathway:EGF" EGF_r_ext="//@states.0"/>
+  <agents xmi:type="EGF_Pathway:EGF" EGF_r_ext="//@states.0"/>
+  <agents xmi:type="EGF_Pathway:EGF" EGF_r_ext="//@states.0"/>
+  <agents xmi:type="EGF_Pathway:EGF" EGF_r_ext="//@states.0"/>
+  <agents xmi:type="EGF_Pathway:EGF" EGF_r_ext="//@states.0"/>
+  <agents xmi:type="EGF_Pathway:EGF" EGF_r_ext="//@states.0"/>
+  <agents xmi:type="EGF_Pathway:EGF" EGF_r_ext="//@states.0"/>
+  <agents xmi:type="EGF_Pathway:EGF" EGF_r_ext="//@states.0"/>
+  <agents xmi:type="EGF_Pathway:EGF" EGF_r_ext="//@states.0"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:RasGap"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <agents xmi:type="EGF_Pathway:MEK" MEK_S218_u="//@states.4" MEK_S222_u="//@states.4"/>
+  <states xmi:type="EGF_Pathway:ext"/>
+  <states xmi:type="EGF_Pathway:p"/>
+  <states xmi:type="EGF_Pathway:gdp"/>
+  <states xmi:type="EGF_Pathway:gtp"/>
+  <states xmi:type="EGF_Pathway:u"/>
+  <states xmi:type="EGF_Pathway:int"/>
+</reactioncontainer:Container>

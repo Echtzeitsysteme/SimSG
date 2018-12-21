@@ -1,24 +1,23 @@
 package biochemsimulation.reactioncontainer.util;
 
-import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
 import biochemsimulation.reactioncontainer.Agent;
 
-public class AgentFactory {
-
-	protected EPackage ecorePackage;
-	protected EFactory ecoreFactory;
-	protected AgentClassRegistry classRegistry;
+public class AgentFactory extends EObjectFactory<Agent, biochemsimulation.reactionrules.reactionRules.Agent>{
 	
-	public AgentFactory(EPackage ecorePackage, AgentClassRegistry classRegistry) {
-		this.ecorePackage = ecorePackage;
-		this.classRegistry = classRegistry;
-		
-		ecoreFactory = ecorePackage.getEFactoryInstance();
+	public AgentFactory(EPackage ecorePackage, EClassRegistry<biochemsimulation.reactionrules.reactionRules.Agent> agentClassRegistry) {
+		super(ecorePackage, agentClassRegistry);
 	}
 	
-	public Agent createAgent(String agentClass) {
-		return (Agent)ecoreFactory.create(classRegistry.getRegisteredClass(agentClass));
+	@Override
+	public Agent createObject(String typeClass) {
+		return (Agent)ecoreFactory.create(classRegistry.getRegisteredClass(typeClass));
+	}
+
+	@Override
+	public Agent createObject(EClass typeClass) {
+		return (Agent)ecoreFactory.create(typeClass);
 	}
 }

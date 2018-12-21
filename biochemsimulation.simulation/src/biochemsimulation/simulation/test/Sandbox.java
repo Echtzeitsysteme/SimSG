@@ -13,7 +13,7 @@ public class Sandbox {
 	public static void main(String[] args) {
 		Resource modelResource = null;
 		try {
-			modelResource = PersistenceUtils.loadResource("C:\\Users\\sehmes\\Workspaces\\BioChemSimulation\\biochemsimulation.simulation\\data\\ReactionRuleModels\\Goldbeter_Koshland.xmi");
+			modelResource = PersistenceUtils.loadResource("C:\\Users\\sehmes\\Workspaces\\BioChemSimulation\\biochemsimulation.simulation\\data\\ReactionRuleModels\\EGF_Pathway.xmi");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

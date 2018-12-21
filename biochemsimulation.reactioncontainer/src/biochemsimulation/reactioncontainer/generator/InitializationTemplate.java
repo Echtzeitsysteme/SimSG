@@ -8,42 +8,71 @@ import java.util.Map;
 
 import biochemsimulation.reactioncontainer.Agent;
 import biochemsimulation.reactioncontainer.State;
-import biochemsimulation.reactioncontainer.util.AgentFactory;
+import biochemsimulation.reactioncontainer.util.AgentClassFactory;
+import biochemsimulation.reactioncontainer.util.StateClassFactory;
 import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
+import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.utils.PatternUtils;
 
 public class InitializationTemplate {
 
-	List<ValidAgentPattern> agentPatterns;
-	AgentFactory factory;
-	Map<String, State> stateInstances;
-	Map<ValidAgentPattern, AgentTemplate> agentTemplates;
+	private List<ValidAgentPattern> agentPatterns;
+	private AgentClassFactory agentFactory;
+	private StateClassFactory stateFactory;
+	private Map<String, State> stateInstances;
+	private Map<ValidAgentPattern, AgentTemplate> agentTemplates;
 	
-	public InitializationTemplate(Pattern pattern, AgentFactory factory, Map<String, State> stateInstances) {
-		agentPatterns = PatternUtils.getValidAgentPatterns(pattern.getAgentPatterns());
-		this.factory = factory;
+	public InitializationTemplate(Pattern pattern, AgentClassFactory agentFactory, 
+			StateClassFactory stateFactory, Map<String, State> stateInstances) {
+		
+		this.agentFactory = agentFactory;
+		this.stateFactory = stateFactory;
 		this.stateInstances = stateInstances;
+		
+		agentPatterns = PatternUtils.getValidAgentPatterns(pattern.getAgentPatterns());
+		
 		createAgentTemplates();
+		findStates();
 		findReferences();
 	}
 	
 	private void createAgentTemplates() {
 		agentTemplates = new HashMap<ValidAgentPattern, AgentTemplate>();
 		for(ValidAgentPattern vap : agentPatterns) {
-			agentTemplates.put(vap, new AgentTemplate(vap.getAgent(), stateInstances));
+			agentTemplates.put(vap, new AgentTemplate(vap.getAgent(), agentFactory, stateFactory, stateInstances));
+		}
+	}
+	
+	private void findStates() {
+		for(ValidAgentPattern vap : agentPatterns) {
+			Map<Site, biochemsimulation.reactionrules.reactionRules.State> states = new HashMap<>();
+			for(Site site : vap.getAgent().getSites().getSites()) {
+				if(site.getStates().getState().size() > 0) {
+					states.put(site, site.getStates().getState().get(0));
+				}
+			}
+			for(SitePattern sp : vap.getSitePatterns().getSitePatterns()) {
+				if(sp == null) continue;
+				if(sp.getState() == null) continue;
+				states.replace(sp.getSite(), sp.getState().getState());
+			}
+			states.forEach((site, state) -> {
+				agentTemplates.get(vap).defineState(site, state);
+			});
 		}
 	}
 	
 	private void findReferences() {
 		for(ValidAgentPattern vap : agentPatterns) {
+			
 			for(SitePattern sp : vap.getSitePatterns().getSitePatterns()) {
 				if(sp == null) continue;
 				
-				LinkState ls1 = sp.getLinkState();
+				LinkState ls1 = sp.getLinkState().getLinkState();
 				if(ls1 == null) continue;
 				if(!(ls1 instanceof BoundLink)) continue;
 				
@@ -56,7 +85,7 @@ public class InitializationTemplate {
 					for(SitePattern sp2 : vap2.getSitePatterns().getSitePatterns()) {
 						if(sp2 == null) continue;
 						
-						LinkState ls2 = sp2.getLinkState();
+						LinkState ls2 = sp2.getLinkState().getLinkState();
 						if(ls2 == null) continue;
 						if(!(ls2 instanceof BoundLink)) continue;
 						
@@ -81,7 +110,7 @@ public class InitializationTemplate {
 		for(;amount>0;amount--) {
 			
 			for(AgentTemplate template : agentTemplates.values()) {
-				Agent agent = factory.createAgent(template.getAgentClassName());
+				Agent agent = agentFactory.getEObjectFactory().createObject(template.getAgentClassName());
 				template.setStates(agent);
 				tempInstances.replace(template, agent);
 			}

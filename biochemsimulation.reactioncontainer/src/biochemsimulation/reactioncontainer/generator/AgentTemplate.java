@@ -3,55 +3,62 @@ package biochemsimulation.reactioncontainer.generator;
 import java.util.HashMap;
 import java.util.Map;
 
-import biochemsimulation.reactioncontainer.util.AgentClassReferenceFactory;
-import biochemsimulation.reactioncontainer.util.StateClassReferenceFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+
+import biochemsimulation.reactioncontainer.util.AgentClassFactory;
+import biochemsimulation.reactioncontainer.util.StateClassFactory;
 import biochemsimulation.reactionrules.reactionRules.Agent;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.State;
 
 public class AgentTemplate {
-	
-	private Agent agent;
+
 	Map<String, biochemsimulation.reactioncontainer.State> stateInstances;
+	AgentClassFactory agentFactory;
+	StateClassFactory stateFactory;
+	
 	private String agentClassName;
 	private Map<String, String> stateReferences;
 	private Map<String, AgentTemplate> agentReferences; 
 	
-	public AgentTemplate(Agent agent, Map<String, biochemsimulation.reactioncontainer.State> stateInstances) {
-		this.agent = agent;
+	public AgentTemplate(Agent agent, AgentClassFactory agentFactory, 
+			StateClassFactory stateFactory, Map<String, biochemsimulation.reactioncontainer.State> stateInstances) {
+
 		this.stateInstances = stateInstances;
-		agentClassName = agent.getName();
+		this.agentFactory = agentFactory;
+		this.stateFactory = stateFactory;
 		
-		createStateReferences();
+		agentClassName = agent.getName();
 		agentReferences = new HashMap<String, AgentTemplate>();
+		stateReferences = new HashMap<String, String>();
 	}
 	
-	private void createStateReferences() {
-		stateReferences = new HashMap<String, String>();
-		
-		for(Site site : agent.getSites().getSites()) {
-			if(site.getStates().getState().size() > 0) {
-				for(State state : site.getStates().getState()) {
-					stateReferences.put(StateClassReferenceFactory.createReferenceName(agent, site, state), state.getName());
-				}
-			}
-		}
+	public void defineState(Site site, State state) {
+		stateReferences.put(StateClassFactory
+				.createCombinedClassName(agentClassName, site.getName(), state.getName())
+				, state.getName());
 	}
 	
 	public void defineReference(Site site, AgentTemplate other) {
-		agentReferences.put(AgentClassReferenceFactory.createReferenceName(agent, site), other);
+		agentReferences.put(AgentClassFactory
+				.createCombinedClassName(agentClassName, site.getName())
+				, other);
 	}
 	
 	public void setStates(biochemsimulation.reactioncontainer.Agent thisAgent) {
 		for(String refName : stateReferences.keySet()) {
-			
+			EReference ref = stateFactory.getEClassRegistry().getRegisteredReference(refName);
+			EObject state = stateInstances.get(stateReferences.get(refName));
+			thisAgent.eSet(ref, state);
 		}
 	}
 	
 	public void setReferences(biochemsimulation.reactioncontainer.Agent thisAgent, Map<AgentTemplate, biochemsimulation.reactioncontainer.Agent> tempInstances) {
 		for(String refName : agentReferences.keySet()) {
 			biochemsimulation.reactioncontainer.Agent otherAgent = tempInstances.get(agentReferences.get(refName));
-			// set Reference to other agent
+			EReference ref = agentFactory.getEClassRegistry().getRegisteredReference(refName);
+			thisAgent.eSet(ref, otherAgent);
 		}
 	}
 	

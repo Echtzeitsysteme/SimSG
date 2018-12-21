@@ -1,28 +1,24 @@
 package biochemsimulation.reactioncontainer.util;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EPackage;
 
 import biochemsimulation.reactioncontainer.State;
 
-public class StateFactory {
-	protected EPackage ecorePackage;
-	protected EFactory ecoreFactory;
-	protected StateClassRegistry classRegistry;
+public class StateFactory extends EObjectFactory<State, biochemsimulation.reactionrules.reactionRules.State> {
 	
-	public StateFactory(EPackage ecorePackage, StateClassRegistry classRegistry) {
-		this.ecorePackage = ecorePackage;
-		this.classRegistry = classRegistry;
-		
-		ecoreFactory = ecorePackage.getEFactoryInstance();
+	public StateFactory(EPackage ecorePackage, EClassRegistry<biochemsimulation.reactionrules.reactionRules.State> stateClassRegistry) {
+		super(ecorePackage, stateClassRegistry);
 	}
 	
-	public State createState(String stateClass) {
-		return (State)ecoreFactory.create(classRegistry.getRegisteredClass(stateClass));
+	@Override
+	public State createObject(String typeClass) {
+		return (State)ecoreFactory.create(classRegistry.getRegisteredClass(typeClass));
 	}
-	
-	public State createState(EClass stateClass) {
-		return (State)ecoreFactory.create(stateClass);
+
+	@Override
+	public State createObject(EClass typeClass) {
+		return (State)ecoreFactory.create(typeClass);
 	}
+
 }

@@ -22,10 +22,7 @@ import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactioncontainer.State;
 import biochemsimulation.reactioncontainer.impl.ReactionContainerFactoryImpl;
 import biochemsimulation.reactioncontainer.util.AgentClassFactory;
-import biochemsimulation.reactioncontainer.util.AgentClassRegistry;
-import biochemsimulation.reactioncontainer.util.AgentFactory;
-import biochemsimulation.reactioncontainer.util.StateClassRegistry;
-import biochemsimulation.reactioncontainer.util.StateFactory;
+import biochemsimulation.reactioncontainer.util.StateClassFactory;
 import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
@@ -39,17 +36,12 @@ public abstract class ReactionContainerGenerator {
 	protected ReactionRuleModelImpl model;
 	private boolean isInitialized;
 	
-	
-	
 	private ReactionContainerFactory factory;
 	protected Container containerModel;
 	
 	protected EPackage dynamicMetaModel;
-	protected AgentClassRegistry agentClassRegistry;
-	protected StateClassRegistry stateClassRegistry;
 	protected AgentClassFactory agentClassFactory;
-	protected AgentFactory agentFactory;
-	protected StateFactory stateFactory;
+	protected StateClassFactory stateClassFactory;
 	protected Map<String, State> stateInstances;
 	
 	private Map<Initial, InitializationTemplate> templates;
@@ -155,9 +147,8 @@ public abstract class ReactionContainerGenerator {
 		templates = new HashMap<Initial, InitializationTemplate>();
 		List<Initial> initials = PatternUtils.getInitials(model);
 		for(Initial init : initials) {
-			templates.put(init, 
-					new InitializationTemplate(PatternUtils.patternFromPatternAssignment(init.getInitialPattern()), 
-							agentFactory, stateInstances));
+			templates.put(init, new InitializationTemplate(PatternUtils.patternFromPatternAssignment(init.getInitialPattern()), 
+					agentClassFactory, stateClassFactory, stateInstances));
 		}
 	}
 	
@@ -179,19 +170,16 @@ public abstract class ReactionContainerGenerator {
 		dynamicMetaModel.setNsPrefix(model.getModel().getName());
 		dynamicMetaModel.setNsURI("platform:/resource/reactioncontainer/generated/" + model.getModel().getName() + ".ecore");
 		
-		agentClassRegistry = new AgentClassRegistry();
-		stateClassRegistry = new StateClassRegistry();
-		agentClassFactory = new AgentClassFactory(dynamicMetaModel, agentClassRegistry, stateClassRegistry);
+		stateClassFactory = new StateClassFactory(dynamicMetaModel);
+		agentClassFactory = new AgentClassFactory(dynamicMetaModel, stateClassFactory);
+		
 		
 		model.getReactionProperties().forEach(x -> {
 			if(x instanceof biochemsimulation.reactionrules.reactionRules.Agent) {
 				biochemsimulation.reactionrules.reactionRules.Agent agnt = (biochemsimulation.reactionrules.reactionRules.Agent)x;
-				agentClassFactory.createAgentClass(agnt);
+				agentClassFactory.createClass(agnt);
 			}
 		});
-		
-		agentFactory = new AgentFactory(dynamicMetaModel, agentClassRegistry);
-		stateFactory = new StateFactory(dynamicMetaModel, stateClassRegistry);
 		
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( ).put( "ecore",
 				new XMIResourceFactoryImpl());
@@ -219,8 +207,8 @@ public abstract class ReactionContainerGenerator {
 	protected void createStateInstances() {
 		stateInstances = new HashMap<String, State>();
 		
-		stateClassRegistry.getAllClasses().forEach(stateClass -> {
-			State state = stateFactory.createState(stateClass);
+		stateClassFactory.getEClassRegistry().getAllClasses().forEach(stateClass -> {
+			State state = stateClassFactory.getEObjectFactory().createObject(stateClass);
 			containerModel.getStates().add(state);
 			stateInstances.put(state.eClass().getName(), state);
 		});;

@@ -5,8 +5,11 @@
     <semanticResources>reactioncontainer.genmodel</semanticResources>
     <semanticResources>Goldbeter_Koshland.ecore</semanticResources>
     <semanticResources>../generated/Goldbeter_Koshland.ecore</semanticResources>
-    <semanticResources>../generated/Goldbeter_Koshland.xmi</semanticResources>
     <semanticResources>file:/C:/Users/sehmes/Workspaces/BioChemSimulation/biochemsimulation.reactioncontainer//generated/Goldbeter_Koshland.ecore</semanticResources>
+    <semanticResources>../generated/Goldbeter_Koshland.xmi</semanticResources>
+    <semanticResources>../generated/EGF_Pathway.ecore</semanticResources>
+    <semanticResources>http://www.reactioncontainer.biochemsimulation.org/reactioncontainer</semanticResources>
+    <semanticResources>../generated/EGF_Pathway.xmi</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" xmi:id="_XUHXkGNbEeijrKUi_nMUJg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" xmi:id="_XXv6YGNbEeijrKUi_nMUJg" name="reactioncontainer" repPath="#_XVLHgGNbEeijrKUi_nMUJg">
