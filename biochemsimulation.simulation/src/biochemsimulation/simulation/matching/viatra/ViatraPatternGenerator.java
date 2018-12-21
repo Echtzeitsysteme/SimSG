@@ -34,6 +34,7 @@ public class ViatraPatternGenerator {
 	
 	private String os;
 	private boolean isInitialized;
+	EPackage dynamicMetaModel;
 	private Map<String, GenericPattern> genericPatterns;
 	@SuppressWarnings("restriction")
 	private PatternModel patternModel;
@@ -65,14 +66,13 @@ public class ViatraPatternGenerator {
 		isInitialized = false;
 		setup = new EMFPatternLanguageStandaloneSetup();
 		setup.createInjectorAndDoEMFRegistration();
-		//EMFPatternLanguageStandaloneSetup.doSetup();
-		//EMFPatternLanguagePackage.eINSTANCE.eClass();
 	}
 	
-	public ViatraPatternGenerator(Map<String, GenericPattern> genericPatterns) {
+	public ViatraPatternGenerator(EPackage dynamicMetaModel, Map<String, GenericPattern> genericPatterns) {
 		init();
 		isInitialized = genericPatterns != null;
 		this.genericPatterns = genericPatterns;
+		this.dynamicMetaModel = dynamicMetaModel;
 	}
 	
 	@SuppressWarnings("restriction")
@@ -83,6 +83,7 @@ public class ViatraPatternGenerator {
 		
 		LinkedHashMap<EPackage, String> imports = new LinkedHashMap<EPackage, String>();
 		imports.put(ReactionContainerPackage.eINSTANCE, "reactionContainer");
+		imports.put(dynamicMetaModel, dynamicMetaModel.getNsPrefix());
 		
 		ViatraCodeGenerator pt = new ViatraCodeGenerator(imports, genericPatterns);
 			
