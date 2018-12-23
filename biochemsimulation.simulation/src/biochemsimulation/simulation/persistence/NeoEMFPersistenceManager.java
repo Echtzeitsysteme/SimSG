@@ -24,6 +24,7 @@ public class NeoEMFPersistenceManager extends PersistenceManager {
 			gen.doGenerate(path,path2);
 			reactionModelPaths.put(name, path);
 		}
+		loadAndRegisterMetamodel(name);
 		
 		Resource modelResource = PersistenceUtils.loadDBResource(reactionModelPaths.get(name));
 		Container containerModel = (Container) modelResource.getContents().get(0);
@@ -33,7 +34,6 @@ public class NeoEMFPersistenceManager extends PersistenceManager {
 		}
 		
 		reactionContainerModelCache.put(name, containerModel);
-		loadAndRegisterMetamodel(name);
 		return containerModel;
 	}
 
