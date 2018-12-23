@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.resource.Resource;
 
-import biochemsimulation.reactioncontainer.ReactionContainer;
+import biochemsimulation.reactioncontainer.Container;
 import biochemsimulation.reactioncontainer.generator.ReactionContainerEMF;
 import biochemsimulation.reactioncontainer.generator.ReactionContainerGenerator;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
@@ -26,17 +26,19 @@ public class SimplePersistenceManager extends PersistenceManager {
 	}
 	
 	@Override
-	public ReactionContainer loadReactionContainerModel(String name) throws Exception {
+	public Container loadReactionContainerModel(String name) throws Exception {
 		if(!checkExistenceAndIndex(name, true)) {
 			ReactionRuleModel ruleModel = loadReactionRuleModel(name);
 			ReactionContainerGenerator gen = new ReactionContainerEMF(ruleModel);
 			String path = reactionModelFolder+"/"+name+containerModelSuffix;
-			gen.doGenerate(path);
+			String path2 = reactionMetamodelFolder+"/"+name+".ecore";
+			gen.doGenerate(path, path2);
 			reactionModelPaths.put(name, path);
 		}
+		loadAndRegisterMetamodel(name);
 		
 		Resource modelResource = PersistenceUtils.loadResource(reactionModelPaths.get(name));
-		ReactionContainer containerModel = (ReactionContainer) modelResource.getContents().get(0);
+		Container containerModel = (Container) modelResource.getContents().get(0);
 		
 		if(reactionContainerModelCache.containsKey(name)) {
 			unloadReactionContainerModel(name);

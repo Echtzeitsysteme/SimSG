@@ -13,7 +13,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.neo4j.helpers.UTF8;
 
 import biochemsimulation.reactioncontainer.Agent;
 import biochemsimulation.reactioncontainer.Container;
@@ -47,6 +49,7 @@ public abstract class ReactionContainerGenerator {
 	private Map<Initial, InitializationTemplate> templates;
 	
 	protected URI containerURI;
+	protected String metaModelPath;
 	protected ResourceSet containerResSet;
 	protected Resource containerRes;
 	
@@ -116,17 +119,48 @@ public abstract class ReactionContainerGenerator {
 	
 	protected abstract void setContainerURI(String path);
 	
+	protected void setMetaModelPath(String path) {
+		this.metaModelPath = path;
+	}
+	
 	protected abstract void createAndSetResourceSet();
 	
 	protected abstract void createAndSetResource();
 	
 	protected abstract void saveModel() throws Exception;
 	
-	public void doGenerate(String path) throws Exception{
+	protected void saveMetaModel() throws Exception {
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
+		//Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( ).put( "ecore",
+		//		new XMIResourceFactoryImpl());
+		ResourceSet resSet = new ResourceSetImpl();
+		Resource res = resSet.createResource(URI.createFileURI(metaModelPath));
+		
+		res.getContents().add(dynamicMetaModel);
+		//EPackage.Registry.INSTANCE.put(dynamicMetaModel.getNsURI(), dynamicMetaModel);
+		
+		Map<Object, Object> saveOptions = ((XMIResource)res).getDefaultSaveOptions();
+		saveOptions.put(XMIResource.OPTION_ENCODING,"UTF-8");
+		saveOptions.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
+		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION,Boolean.TRUE);
+		saveOptions.put(XMIResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION, Boolean.TRUE);
+		
+		try {
+			((XMIResource)res).save(saveOptions);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void doGenerate(String modelPath, String metaModelPath) throws Exception{
+		//setMetaModelPath(projectPath+"generated/"+ model.getModel().getName() + ".ecore");
+		setMetaModelPath(metaModelPath);
 		generateAgentClasses();
 		
 		createAndSetResourceSet();
-		setContainerURI(projectPath+"/generated/"+ model.getModel().getName() + ".xmi");
+		//setContainerURI(projectPath+"generated/"+ model.getModel().getName() + ".xmi");
+		setContainerURI(modelPath);
 		createAndSetResource();
 		
 		containerModel = factory.createContainer();
@@ -138,6 +172,7 @@ public abstract class ReactionContainerGenerator {
 		
 		containerRes.getContents().add(containerModel);
 		saveModel();
+		saveMetaModel();
 		
 		containerRes.unload();
 		
@@ -168,7 +203,10 @@ public abstract class ReactionContainerGenerator {
 
 		dynamicMetaModel.setName(model.getModel().getName());
 		dynamicMetaModel.setNsPrefix(model.getModel().getName());
-		dynamicMetaModel.setNsURI("platform:/resource/reactioncontainer/generated/" + model.getModel().getName() + ".ecore");
+		URI uri = URI.createPlatformResourceURI("biochemsimulation.reactioncontainer/generated/"+model.getModel().getName(), true);
+		//dynamicMetaModel.setNsURI("platform:/resource/reactioncontainer/generated/" + model.getModel().getName() + ".ecore");
+		//System.out.println(uri.toString());
+		dynamicMetaModel.setNsURI(uri.toString());
 		
 		stateClassFactory = new StateClassFactory(dynamicMetaModel);
 		agentClassFactory = new AgentClassFactory(dynamicMetaModel, stateClassFactory);
@@ -180,27 +218,6 @@ public abstract class ReactionContainerGenerator {
 				agentClassFactory.createClass(agnt);
 			}
 		});
-		
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( ).put( "ecore",
-				new XMIResourceFactoryImpl());
-		ResourceSet resSet = new ResourceSetImpl();
-		Resource res = resSet.createResource(URI.createFileURI(projectPath+"/generated/"+ model.getModel().getName() + ".ecore"));
-		
-		res.getContents().add(dynamicMetaModel);
-		
-		
-		Map<Object, Object> saveOptions = ((XMIResource)res).getDefaultSaveOptions();
-		saveOptions.put(XMIResource.OPTION_ENCODING,"UTF-8");
-		saveOptions.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
-		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION,Boolean.TRUE);
-		saveOptions.put(XMIResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION, Boolean.TRUE);
-		
-		try {
-			((XMIResource)res).save(saveOptions);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 	}
 	

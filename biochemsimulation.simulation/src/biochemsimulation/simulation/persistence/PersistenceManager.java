@@ -11,10 +11,12 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.json.simple.JSONObject;
 
-import biochemsimulation.reactioncontainer.ReactionContainer;
+import biochemsimulation.reactioncontainer.Container;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
@@ -22,6 +24,7 @@ import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 public abstract class PersistenceManager {
 	
 	final public static String REACTION_CONTAINER_MODELS_FOLDER = "ReactionContainerModels";
+	final public static String REACTION_CONTAINER_METAMODELS_FOLDER = "ReactionContainerMetaModels";
 	final public static String REACTION_RULE_MODELS_FOLDER = "ReactionRuleModels";
 	final public static String REACTION_RULE_MODELS_HEADER = "<reactionRules:ReactionRuleModel xmi:version=\"2.0\" xmlns:xmi=\"http://www.omg.org/XMI\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:reactionRules=\"http://www.reactionrules.biochemsimulation/ReactionRules\" xsi:schemaLocation=\"http://www.reactionrules.biochemsimulation/ReactionRules java://biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage\">";
 	final public static String REACTION_RULE_MODELS_NAME_LOCATION = "<model xmi:type=\"reactionRules:Model\" name=";
@@ -38,18 +41,20 @@ public abstract class PersistenceManager {
 	protected String dataFolder;
 	protected String indexPath;
 	protected String reactionModelFolder;
+	protected String reactionMetamodelFolder;
 	protected String ruleModelFolder;
 	protected String containerModelSuffix;
 	
 	protected JSONObject modelIndex;
 	protected HashMap<String, String> reactionModelPaths;
+	protected HashMap<String, String> reactionMetamodelPaths;
 	protected HashMap<String, String> ruleModelPaths;
 	protected HashMap<String, ReactionRuleModel> ruleModelCache;
-	protected HashMap<String, ReactionContainer> reactionContainerModelCache;
+	protected HashMap<String, Container> reactionContainerModelCache;
 	
 	public PersistenceManager() {
 		ruleModelCache = new HashMap<String, ReactionRuleModel>();
-		reactionContainerModelCache = new HashMap<String, ReactionContainer>();
+		reactionContainerModelCache = new HashMap<String, Container>();
 		setContainerModelSuffix();
 		setOSspecificSeparators();
 	}
@@ -58,19 +63,38 @@ public abstract class PersistenceManager {
 	
 	protected abstract void fetchExistingReactionModelPaths();
 	
-	public abstract ReactionContainer loadReactionContainerModel(String name) throws Exception;
+	protected void fetchExistingReactionMetamodelPaths() {
+		reactionMetamodelPaths = new HashMap<String, String>();
+		
+		List<String> allFiles = PersistenceUtils.getAllFilesInFolder(reactionMetamodelFolder);
+		Pattern pattern = Pattern.compile(".+\\\\(.+)\\"+".ecore");
+		
+		for(String filePath : allFiles) {
+			if(filePath.matches(".+(\\"+".ecore"+")$")) {
+				Matcher matcher = pattern.matcher(filePath);
+				if(matcher.find()) {
+					String modelName = matcher.group(1);
+					reactionMetamodelPaths.put(modelName, filePath);
+				}
+			}
+		}
+	}
+	
+	public abstract Container loadReactionContainerModel(String name) throws Exception;
 	
 	public void init() {
 		classLoader();
 		setFolderPaths();
 		fetchExistingRuleModelPaths();
 		fetchExistingReactionModelPaths();
+		fetchExistingReactionMetamodelPaths();
 		fetchIndex();
 	}
 	
 	private void classLoader() {
 		ReactionRulesPackage.eINSTANCE.eClass();
 		ReactionContainerPackage.eINSTANCE.eClass();
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 	}
 	
 	private void setOSspecificSeparators() {
@@ -119,6 +143,9 @@ public abstract class PersistenceManager {
 		
 		reactionModelFolder = dataFolder + REACTION_CONTAINER_MODELS_FOLDER;
 		PersistenceUtils.createFolderIfNotExist(reactionModelFolder);
+		
+		reactionMetamodelFolder = dataFolder + REACTION_CONTAINER_METAMODELS_FOLDER;
+		PersistenceUtils.createFolderIfNotExist(reactionMetamodelFolder);
 		
 		ruleModelFolder = dataFolder + REACTION_RULE_MODELS_FOLDER;
 		PersistenceUtils.createFolderIfNotExist(ruleModelFolder);
@@ -193,6 +220,17 @@ public abstract class PersistenceManager {
 		model = (ReactionRuleModel) modelResource.getContents().get(0);
 		ruleModelCache.put(name, model);
 		return model;
+	}
+	
+	synchronized public void loadAndRegisterMetamodel(String name) throws java.lang.Exception {
+		if(!reactionMetamodelPaths.containsKey(name))
+			throw new IndexOutOfBoundsException("Requested container metamodel with given name does not exist.");
+		
+		Resource metaModelResource = null;
+		metaModelResource = PersistenceUtils.loadResource(reactionMetamodelPaths.get(name));
+		
+		EPackage metaModel = (EPackage) metaModelResource.getContents().get(0);
+		EPackage.Registry.INSTANCE.put(metaModel.getNsURI(), metaModel);
 	}
 	
 	synchronized public void unloadReactionContainerModel(String name) {
