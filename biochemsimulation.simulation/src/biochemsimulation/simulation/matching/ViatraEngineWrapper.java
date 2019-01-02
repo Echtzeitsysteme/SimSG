@@ -32,7 +32,7 @@ public class ViatraEngineWrapper extends PatternMatchingEngine {
 	
 	@Override
 	public void loadModels() throws Exception {
-		ViatraPatternGenerator gen = new ViatraPatternGenerator(genericPatterns);
+		ViatraPatternGenerator gen = new ViatraPatternGenerator(metaModel, genericPatterns);
 		patternModel = gen.doGenerate("", false);
 	}
 

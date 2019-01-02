@@ -51,7 +51,7 @@ public class AgentClassFactory extends EClassFactory<Agent, biochemsimulation.re
 	}
 	
 	public EReference createReference(Agent agent, Site site) {
-		String refName = createCombinedClassName(agent.getName(), site.getName());
+		String refName = createReferenceName(agent, site);
 		if(classRegistry.containsReference(refName)) {
 			return classRegistry.getRegisteredReference(refName);
 		}
@@ -72,6 +72,10 @@ public class AgentClassFactory extends EClassFactory<Agent, biochemsimulation.re
 	@Override
 	public EClassRegistry<Agent> getEClassRegistry() {
 		return classRegistry;
+	}
+	
+	public static String createReferenceName(Agent agent, Site site) {
+		return createCombinedClassName(agent.getName(), site.getName());
 	}
 
 

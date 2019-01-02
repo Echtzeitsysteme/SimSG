@@ -27,10 +27,10 @@ public class SimplePMC extends PatternMatchingController {
 		Collection<Pattern> patterns = patternContainer.getAllPatterns();
 		Map<String, GenericPattern> genericPatterns = new HashMap<String, GenericPattern>();
 		for(Pattern pattern : patterns) {
-			genericPatterns.put(PatternContainer.calcPatternHash(pattern), new GenericPattern(PatternContainer.calcPatternHash(pattern), pattern));
+			genericPatterns.put(PatternContainer.calcPatternHash(pattern), new GenericPattern(PatternContainer.calcPatternHash(pattern), metaModel, pattern));
 		}
 		engine.setReactionRules(genericPatterns);
-		engine.setReactionContainer(reactionContainer);
+		engine.setReactionContainer(reactionContainer, metaModel.getPackage());
 		engine.loadModels();
 	}
 

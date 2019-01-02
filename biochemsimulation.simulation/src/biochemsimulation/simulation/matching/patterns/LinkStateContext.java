@@ -1,5 +1,6 @@
 package biochemsimulation.simulation.matching.patterns;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EReference;
 
@@ -8,53 +9,72 @@ import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 public class LinkStateContext {
 	private SiteNodeContext siteNodeContext;
 	
-	public final static EClassifier SIM_LINK_STATE_CONTAINER_ATTRIBUTE_TYPE = ReactionContainerPackage.Literals.SIM_SITE.getEAllReferences().get(1).getEType();
-	public final static EReference SIM_LINK_STATE_CONTAINER_ATTRIBUTE = ReactionContainerPackage.Literals.SIM_SITE.getEAllReferences().get(1);
-	private String uniqueSimLinkStateContainerAttributeName;
+	private EClassifier agentReferenceType;
+	private EReference agentReference;
 	
-	public final static EClassifier SIM_LINK_STATE_TYPE = ReactionContainerPackage.Literals.SIM_LINK_STATE;
-	private String localSimLinkStateVariableName;
+	private final static EClass targetAgentType = ReactionContainerPackage.Literals.AGENT;
 	
 	private LinkStateType stateType;
 	
-	public LinkStateContext(SiteNodeContext siteNodeContext, LinkStateType stateType) {
+	private LinkStateContext target;
+	
+	public LinkStateContext(SiteNodeContext siteNodeContext, LinkStateType stateType, EReference agentReference) {
 		this.siteNodeContext = siteNodeContext;
 		this.stateType = stateType;
-		
-		uniqueSimLinkStateContainerAttributeName =  siteNodeContext.getAgentNodeContext().getAgentVariableName()
-				+"_"+siteNodeContext.getLocalSimSiteVariableName()
-				+"_"+getSimLinkStateContainerAttributeName();
-		localSimLinkStateVariableName = siteNodeContext.getAgentNodeContext().getAgentVariableName()
-				+"_"+siteNodeContext.getLocalSimSiteVariableName()
-				+"_"+stateType.toString();
+		this.agentReference = agentReference;
+		this.agentReferenceType = agentReference.getEType();
 	}
 	
-	public static String getSimLinkStateContainerAttributeName() {
-		return SIM_LINK_STATE_CONTAINER_ATTRIBUTE.getName();
+	public String getAgentReferenceName() {
+		return agentReference.getName();
 	}
 	
-	public static String getSimLinkStateContainerAttributeTypeName() {
-		return SIM_LINK_STATE_CONTAINER_ATTRIBUTE_TYPE.getName();
+	public EReference getAgentReference() {
+		return agentReference;
 	}
 	
-	public static String getSimLinkStateTypeName() {
-		return SIM_LINK_STATE_TYPE.getName();
+	public EClassifier getAgentReferenceType() {
+		return agentReferenceType;
+	}
+	
+	public EClass getTargetAgentType() {
+		return targetAgentType;
 	}
 
 	public SiteNodeContext getSiteNodeContext() {
 		return siteNodeContext;
 	}
 
-	public String getUniqueSimLinkStateContainerAttributeName() {
-		return uniqueSimLinkStateContainerAttributeName;
-	}
-
-	public String getLocalSimLinkStateVariableName() {
-		return localSimLinkStateVariableName;
-	}
-
 	public LinkStateType getStateType() {
 		return stateType;
+	}
+	
+	public String getSourceAgentTypeName() {
+		return siteNodeContext.getAgentNodeContext().getAgentTypeName();
+	}
+	
+	public String getSourceAgentVariableName() {
+		return siteNodeContext.getAgentNodeContext().getAgentVariableName();
+	}
+	
+	public boolean isSourceAgentLocal() {
+		return siteNodeContext.getAgentNodeContext().isLocal();
+	}
+	
+	public void setTargetLinkState(LinkStateContext target) {
+		this.target = target;
+	}
+	
+	public LinkStateContext getTargetLinkState() {
+		return target;
+	}
+	
+	public String getTargetAgentTypeName() {
+		return target.getSiteNodeContext().getAgentNodeContext().getAgentTypeName();
+	}
+	
+	public String getTargetAgentVariableName() {
+		return target.getSiteNodeContext().getAgentNodeContext().getAgentVariableName();
 	}
 	
 }

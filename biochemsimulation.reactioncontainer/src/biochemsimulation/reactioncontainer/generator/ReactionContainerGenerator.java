@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.neo4j.helpers.UTF8;
 
 import biochemsimulation.reactioncontainer.Agent;
 import biochemsimulation.reactioncontainer.Container;
@@ -203,7 +202,8 @@ public abstract class ReactionContainerGenerator {
 
 		dynamicMetaModel.setName(model.getModel().getName());
 		dynamicMetaModel.setNsPrefix(model.getModel().getName());
-		URI uri = URI.createPlatformResourceURI("biochemsimulation.reactioncontainer/generated/"+model.getModel().getName(), true);
+		//URI uri = URI.createPlatformResourceURI("biochemsimulation.reactioncontainer/generated/"+model.getModel().getName(), true);
+		URI uri = createMetaModelURI(model.getModel().getName());
 		//dynamicMetaModel.setNsURI("platform:/resource/reactioncontainer/generated/" + model.getModel().getName() + ".ecore");
 		//System.out.println(uri.toString());
 		dynamicMetaModel.setNsURI(uri.toString());
@@ -229,5 +229,9 @@ public abstract class ReactionContainerGenerator {
 			containerModel.getStates().add(state);
 			stateInstances.put(state.eClass().getName(), state);
 		});;
+	}
+	
+	public static URI createMetaModelURI(String modelName) {
+		return URI.createPlatformResourceURI("biochemsimulation.reactioncontainer/generated/"+modelName, true);
 	}
 }

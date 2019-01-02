@@ -6,6 +6,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import biochemsimulation.reactioncontainer.util.AgentClassFactory;
+import biochemsimulation.reactioncontainer.util.EPackageWrapper;
+import biochemsimulation.reactioncontainer.util.StateClassFactory;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
 import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
@@ -14,7 +17,8 @@ import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 
 public class GenericPatternBody {
 	
-	private GenericPattern pattern;
+	private String patternName;
+	private EPackageWrapper metaModel;
 	private GenericPatternSignature signature;
 	private List<ValidAgentPattern> agentPatterns;
 	
@@ -23,7 +27,7 @@ public class GenericPatternBody {
 	private Map<SiteNodeContext, SiteStateContext> siteStateContexts;
 	private Map<SiteNodeContext, LinkStateContext> linkStateContexts;
 	
-	private Map<Integer, LinkStateConstraint> linkStateConstraints;
+	//private Map<Integer, LinkStateConstraint> linkStateConstraints;
 	private Collection<AgentNodeConstraint> injectivityConstraintsSignature;
 	private Collection<AgentNodeConstraint> injectivityConstraintsBody;
 	private Collection<AgentNodeConstraint> injectivityConstraints;
@@ -34,8 +38,10 @@ public class GenericPatternBody {
 	
 	private boolean permutable;
 	
-	public GenericPatternBody(GenericPattern pattern, GenericPatternSignature signature, List<ValidAgentPattern> agentPatterns) {
-		this.pattern = pattern;
+	public GenericPatternBody(String patternName, EPackageWrapper metaModel, 
+			GenericPatternSignature signature, List<ValidAgentPattern> agentPatterns) {
+		this.patternName = patternName;
+		this.metaModel = metaModel;
 		this.signature = signature;
 		this.agentPatterns = agentPatterns;
 		injectivityConstraints = new LinkedList<AgentNodeConstraint>();
@@ -87,11 +93,11 @@ public class GenericPatternBody {
 	}
 
 
-
+	/*
 	public Map<Integer, LinkStateConstraint> getLinkStateConstraints() {
 		return linkStateConstraints;
 	}
-
+	*/
 
 
 	public Collection<AgentNodeConstraint> getInjectivityConstraintsBody() {
@@ -133,7 +139,7 @@ public class GenericPatternBody {
 	private void buildAgentNodeContexts() {
 		agentNodeContexts = new HashMap<ValidAgentPattern, AgentNodeContext>();
 		for(ValidAgentPattern pattern : agentPatterns) {
-			agentNodeContexts.put(pattern, new AgentNodeContext(this.pattern.getName(),signature.getSignatureNode(pattern), pattern.getAgent().getName()));
+			agentNodeContexts.put(pattern, new AgentNodeContext(patternName, signature.getSignatureNode(pattern), metaModel.getClass(pattern.getAgent().getName())));
 		}
 	}
 	
@@ -148,10 +154,14 @@ public class GenericPatternBody {
 			for(SitePattern sitePattern : pattern.getSitePatterns().getSitePatterns()) {
 				SiteNodeContext currentSiteNodeContext = new SiteNodeContext(currentAgentNodeContext, sitePattern.getSite().getName());
 				if(sitePattern.getState() != null) {
-					siteStateContexts.put(currentSiteNodeContext, new SiteStateContext(currentSiteNodeContext, sitePattern.getState().getState().getName()));
+					String refName = StateClassFactory.createReferenceName(pattern.getAgent(), sitePattern.getSite(), sitePattern.getState().getState());
+					String stateName = sitePattern.getState().getState().getName();
+					siteStateContexts.put(currentSiteNodeContext, new SiteStateContext(currentSiteNodeContext, metaModel.getEReference(refName), metaModel.getClass(stateName)));
 				}
 				if(sitePattern.getLinkState().getLinkState() != null) {
-					linkStateContexts.put(currentSiteNodeContext, new LinkStateContext(currentSiteNodeContext, LinkStateType.enumFromLinkState(sitePattern.getLinkState().getLinkState())));
+					String refName = AgentClassFactory.createReferenceName(pattern.getAgent(), sitePattern.getSite());
+					LinkState ls = sitePattern.getLinkState().getLinkState();
+					linkStateContexts.put(currentSiteNodeContext, new LinkStateContext(currentSiteNodeContext, LinkStateType.enumFromLinkState(ls), metaModel.getEReference(refName)));
 				}
 				currentSiteNodeContexts.add(currentSiteNodeContext);
 			}
@@ -165,7 +175,7 @@ public class GenericPatternBody {
 		localAgentNodes = new HashMap<ValidAgentPattern, List<AgentNodeContext>>();
 		localSiteNodes = new HashMap<AgentNodeContext, SiteNodeContext>();
 		localLinkStates = new HashMap<SiteNodeContext, LinkStateContext>();
-		linkStateConstraints = new HashMap<Integer, LinkStateConstraint>();
+		//linkStateConstraints = new HashMap<Integer, LinkStateConstraint>();
 		
 		for(ValidAgentPattern pattern : agentPatterns) {
 			AgentNodeContext currentAgentNodeContext = agentNodeContexts.get(pattern);
@@ -191,17 +201,21 @@ public class GenericPatternBody {
 					String otherSiteType = boundLink.getLinkSite().getSite().getName();
 					String localAgentVariableName = currentAgentNodeContext.getAgentVariableName() + "_" + otherAgentType + idx;
 					
-					AgentNodeContext localAgentNodeContext = new AgentNodeContext(this.pattern.getName(),localAgentVariableName, otherAgentType);
+					AgentNodeContext localAgentNodeContext = new AgentNodeContext(patternName, localAgentVariableName, metaModel.getClass(otherAgentType));
 					localAgentNodeContext.setLocal();
 					SiteNodeContext localSiteNodeContext = new SiteNodeContext(localAgentNodeContext, otherSiteType);
-					LinkStateContext localLinkStateContext = new LinkStateContext(localSiteNodeContext, LinkStateType.BoundAnyOfType);
+					String refName = AgentClassFactory.createReferenceName(boundLink.getLinkAgent().getAgent(), boundLink.getLinkSite().getSite());
+					LinkStateContext localLinkStateContext = new LinkStateContext(localSiteNodeContext, LinkStateType.BoundAnyOfType, metaModel.getEReference(refName));
 					
 					localAgentNodeList.add(localAgentNodeContext);
 					localSiteNodes.put(localAgentNodeContext, localSiteNodeContext);
 					localLinkStates.put(localSiteNodeContext, localLinkStateContext);
 					
-					LinkStateConstraint constraint = new LinkStateConstraint(currentLinkStateContext, localLinkStateContext, ConstraintType.equal);
-					linkStateConstraints.put(currentLinkStateContext.getLocalSimLinkStateVariableName().hashCode(), constraint);
+					currentLinkStateContext.setTargetLinkState(localLinkStateContext);
+					localLinkStateContext.setTargetLinkState(currentLinkStateContext);
+					
+					//LinkStateConstraint constraint = new LinkStateConstraint(currentLinkStateContext, localLinkStateContext, ConstraintType.equal);
+					//linkStateConstraints.put(currentLinkStateContext.getLocalSimLinkStateVariableName().hashCode(), constraint);
 					// remove self occurences
 					AgentNodeConstraint localInjConstraint = new AgentNodeConstraint(currentAgentNodeContext, localAgentNodeContext, ConstraintType.unequal);
 					localInjConstraint.setLocal();
@@ -211,11 +225,15 @@ public class GenericPatternBody {
 					BoundLink boundLink = (BoundLink)link;
 					int linkIdx = Integer.valueOf(boundLink.getState());
 					LinkStateContext otherSite = findLinkedSite(pattern, linkIdx);
+					/*
 					LinkStateConstraint constraint = new LinkStateConstraint(currentLinkStateContext, otherSite, ConstraintType.equal);
 					int key2 = otherSite.getLocalSimLinkStateVariableName().hashCode();
 					int key1 = currentLinkStateContext.getLocalSimLinkStateVariableName().hashCode();
 					int key = (key1>key2)?key1:key2;
 					linkStateConstraints.putIfAbsent(key, constraint);
+					*/
+					currentLinkStateContext.setTargetLinkState(otherSite);
+					otherSite.setTargetLinkState(currentLinkStateContext);
 				}
 				
 			}
@@ -379,14 +397,15 @@ public class GenericPatternBody {
 		sb.append("##<Body>:");
 		sb.append("\n\t<Links>:");
 		sb.append("\n\t\t Bound-Links:\n");
+		/*
 		for(LinkStateConstraint lsc : linkStateConstraints.values()) {
 			if(lsc.getOperand1().getStateType() != LinkStateType.Bound) {
 				continue;
 			}
 			sb.append("\t\t\tFrom: Agent("+lsc.getOperand1().getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
-			sb.append(".Site("+lsc.getOperand1().getSiteNodeContext().getSiteType()+") <====> ");
+			sb.append(".Site("+lsc.getOperand1().getSiteNodeContext().getSiteTypeName()+") <====> ");
 			sb.append("To: Agent("+lsc.getOperand2().getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
-			sb.append(".Site("+lsc.getOperand2().getSiteNodeContext().getSiteType()+");\n");
+			sb.append(".Site("+lsc.getOperand2().getSiteNodeContext().getSiteTypeName()+");\n");
 		}
 		sb.append("\n\t\t BoundToAnyOfType-Links:\n");
 		for(LinkStateConstraint lsc : linkStateConstraints.values()) {
@@ -394,9 +413,9 @@ public class GenericPatternBody {
 				continue;
 			}
 			sb.append("\t\t\tFrom: Agent("+lsc.getOperand1().getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
-			sb.append(".Site("+lsc.getOperand1().getSiteNodeContext().getSiteType()+") <====> ");
+			sb.append(".Site("+lsc.getOperand1().getSiteNodeContext().getSiteTypeName()+") <====> ");
 			sb.append("To: Agent("+lsc.getOperand2().getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
-			sb.append(".Site("+lsc.getOperand2().getSiteNodeContext().getSiteType()+");\n");
+			sb.append(".Site("+lsc.getOperand2().getSiteNodeContext().getSiteTypeName()+");\n");
 		}
 		sb.append("\n\t\t BoundToAny-Links:\n");
 		for(LinkStateConstraint lsc : linkStateConstraints.values()) {
@@ -404,7 +423,7 @@ public class GenericPatternBody {
 				continue;
 			}
 			sb.append("\t\t\tFrom: Agent("+lsc.getOperand1().getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
-			sb.append(".Site("+lsc.getOperand1().getSiteNodeContext().getSiteType()+") <====> Agent(*).Site(*);\n");
+			sb.append(".Site("+lsc.getOperand1().getSiteNodeContext().getSiteTypeName()+") <====> Agent(*).Site(*);\n");
 		}
 		sb.append("\n\t\t WhatEver-Links:\n");
 		for(LinkStateConstraint lsc : linkStateConstraints.values()) {
@@ -412,7 +431,7 @@ public class GenericPatternBody {
 				continue;
 			}
 			sb.append("\t\t\tFrom: Agent("+lsc.getOperand1().getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
-			sb.append(".Site("+lsc.getOperand1().getSiteNodeContext().getSiteType()+") <==??==> (??);\n");
+			sb.append(".Site("+lsc.getOperand1().getSiteNodeContext().getSiteTypeName()+") <==??==> (??);\n");
 		}
 		sb.append("\n\t\t Unbound-Links:\n");
 		for(LinkStateConstraint lsc : linkStateConstraints.values()) {
@@ -420,13 +439,14 @@ public class GenericPatternBody {
 				continue;
 			}
 			sb.append("\t\t\tFrom: Agent("+lsc.getOperand1().getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
-			sb.append(".Site("+lsc.getOperand1().getSiteNodeContext().getSiteType()+") <==!!==> (Unbound);\n");
+			sb.append(".Site("+lsc.getOperand1().getSiteNodeContext().getSiteTypeName()+") <==!!==> (Unbound);\n");
 		}
+		*/
 		sb.append("\n\t</Links>");
 		sb.append("\n\t<States>:\n");
 		for(SiteStateContext state: siteStateContexts.values()) {
 			sb.append("\t\tAgent("+state.getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
-			sb.append(".Site("+state.getSiteNodeContext().getSiteType()+") ==> State("+state.getStateType()+");\n");
+			sb.append(".Site("+state.getSiteNodeContext().getSiteTypeName()+") ==> State("+state.getStateType()+");\n");
 		}
 		sb.append("\n\t</States>");
 		sb.append("\n\t<Injectivity Constraints>:\n");

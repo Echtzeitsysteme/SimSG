@@ -3,10 +3,12 @@ package biochemsimulation.simulation.matching.patterns;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import biochemsimulation.reactioncontainer.util.EPackageWrapper;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 
 public class GenericPattern {
+	private EPackageWrapper metaModel;
 	private String patternName;
 	private Pattern lhs;
 	private List<ValidAgentPattern> agentPatterns;
@@ -15,14 +17,16 @@ public class GenericPattern {
 	private GenericPatternSignature signature;
 	private GenericPatternBody body;
 	
-	public GenericPattern(String patternName) {
+	public GenericPattern(String patternName, EPackageWrapper metaModel) {
 		this.patternName = patternName;
+		this.metaModel = metaModel;
 		this.lhs = null;
 		voidPattern = true;
 	}
 	
-	public GenericPattern(String patternName, Pattern lhs) {
+	public GenericPattern(String patternName, EPackageWrapper metaModel, Pattern lhs) {
 		this.patternName = patternName;
+		this.metaModel = metaModel;
 		this.lhs = lhs;
 		voidPattern = false;
 		
@@ -31,13 +35,14 @@ public class GenericPattern {
 			return;
 		}
 		
-		signature = new GenericPatternSignature(agentPatterns);
-		body = new GenericPatternBody(this, signature, agentPatterns);
+		signature = new GenericPatternSignature(agentPatterns, this.metaModel);
+		body = new GenericPatternBody(this.getName(), this.metaModel, signature, agentPatterns);
 		
 	}
 	
-	public GenericPattern(String patternName, List<ValidAgentPattern>  agentPatterns) {
+	public GenericPattern(String patternName, EPackageWrapper metaModel, List<ValidAgentPattern>  agentPatterns) {
 		this.patternName = patternName;
+		this.metaModel = metaModel;
 		voidPattern = agentPatterns.size() == 0;
 		if(voidPattern) {
 			return;
@@ -45,8 +50,8 @@ public class GenericPattern {
 		this.agentPatterns = agentPatterns;
 		this.lhs = null;
 		
-		signature = new GenericPatternSignature(agentPatterns);
-		body = new GenericPatternBody(this, signature, agentPatterns);
+		signature = new GenericPatternSignature(agentPatterns, this.metaModel);
+		body = new GenericPatternBody(this.getName(), this.metaModel, signature, agentPatterns);
 		
 	}
 	

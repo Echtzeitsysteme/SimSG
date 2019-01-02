@@ -6,7 +6,12 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Random;
 
-import biochemsimulation.reactioncontainer.ReactionContainer;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.common.util.URI;
+
+import biochemsimulation.reactioncontainer.Container;
+import biochemsimulation.reactioncontainer.generator.ReactionContainerGenerator;
+import biochemsimulation.reactioncontainer.util.EPackageWrapper;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.utils.PatternContainer;
 import biochemsimulation.reactionrules.utils.PatternUtils;
@@ -17,7 +22,8 @@ import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;
 public abstract class PatternMatchingController{
 	
 	//protected ReactionRuleModel ruleModel;
-	protected ReactionContainer reactionContainer;
+	protected Container reactionContainer;
+	protected EPackageWrapper metaModel;
 	
 	protected PatternContainer patternContainer;
 	
@@ -102,10 +108,13 @@ public abstract class PatternMatchingController{
 		this.engine = engine;
 	}
 	
-	public void loadModels(ReactionRuleModel ruleModel, ReactionContainer reactionContainer) throws Exception {
+	public void loadModels(ReactionRuleModel ruleModel, Container reactionContainer) throws Exception {
 		//this.ruleModel = ruleModel;
 		this.reactionContainer = reactionContainer;
 		this.patternContainer = PatternUtils.createPatternContainer(ruleModel);
+		URI metaModelURI = ReactionContainerGenerator.createMetaModelURI(ruleModel.getModel().getName());
+		EPackage ePack = EPackage.Registry.INSTANCE.getEPackage(metaModelURI.toString());
+		metaModel = new EPackageWrapper(ePack);
 		feedEngine();
 	}
 	

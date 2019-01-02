@@ -38,7 +38,7 @@ public class StateClassFactory extends EClassFactory<State, biochemsimulation.re
 	}
 	
 	public EReference createReference(Agent agent, Site site, State state, EClass stateClass) {
-		String refName = createCombinedClassName(agent.getName(), site.getName(), state.getName());
+		String refName = createReferenceName(agent, site, state);
 		if(classRegistry.containsReference(refName)) {
 			return classRegistry.getRegisteredReference(refName);
 		}
@@ -59,6 +59,10 @@ public class StateClassFactory extends EClassFactory<State, biochemsimulation.re
 	@Override
 	public EClassRegistry<State> getEClassRegistry() {
 		return classRegistry;
+	}
+	
+	public static String createReferenceName(Agent agent, Site site, State state) {
+		return createCombinedClassName(agent.getName(), site.getName(), state.getName());
 	}
 
 	
