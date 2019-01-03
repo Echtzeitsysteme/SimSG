@@ -30,6 +30,10 @@ public class EClassRegistry<Template extends EObject> {
 		return classes.containsKey(className);
 	}
 	
+	public void addAllClasses(Map<String, EClass> classes) {
+		this.classes.putAll(classes);
+	}
+	
 	public Collection<EClass> getAllClasses() {
 		return classes.values();
 	}

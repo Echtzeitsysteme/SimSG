@@ -3,7 +3,7 @@ package biochemsimulation.simulation;
 import java.util.Collection;
 import java.util.Map;
 
-import biochemsimulation.reactioncontainer.ReactionContainer;
+import biochemsimulation.reactioncontainer.Container;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.utils.PatternUtils;
 import biochemsimulation.simulation.benchmark.Runtimer;
@@ -22,7 +22,7 @@ public abstract class Simulation {
 	protected SimulationState state;
 	protected SimulationStatistics simStats;
 	protected ReactionRuleModel ruleModel;
-	protected ReactionContainer reactionContainer;
+	protected Container reactionContainer;
 	protected ReactionRuleTransformer gt;
 	protected Map<String, Double> staticReactionRates;
 
@@ -68,7 +68,7 @@ public abstract class Simulation {
 		pmc2.initController();
 		*/
 		
-		gt = new ReactionRuleTransformer(pmc.getPatternContainer(), reactionContainer);
+		gt = new ReactionRuleTransformer(pmc.getPatternContainer(), reactionContainer, pmc.getEPackageWrapper());
 		gt.init();
 		initStaticReactionRates();
 		state = new SimulationState();
@@ -126,7 +126,7 @@ public abstract class Simulation {
 		pmc2.initEngine();
 		pmc2.initController();
 		*/
-		gt = new ReactionRuleTransformer(pmc.getPatternContainer(), reactionContainer);
+		gt = new ReactionRuleTransformer(pmc.getPatternContainer(), reactionContainer, pmc.getEPackageWrapper());
 		gt.init();
 		initStaticReactionRates();
 		state = new SimulationState();

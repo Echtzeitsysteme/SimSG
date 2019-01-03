@@ -156,4 +156,8 @@ public abstract class PatternMatchingController{
 		return patternContainer;
 	}
 	
+	public EPackageWrapper getEPackageWrapper() {
+		return metaModel;
+	}
+	
 }

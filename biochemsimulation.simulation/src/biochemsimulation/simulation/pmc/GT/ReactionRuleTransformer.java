@@ -3,9 +3,8 @@ package biochemsimulation.simulation.pmc.GT;
 import java.util.HashMap;
 import java.util.Map;
 
-import biochemsimulation.reactioncontainer.ReactionContainer;
-import biochemsimulation.reactioncontainer.ReactionContainerFactory;
-import biochemsimulation.reactioncontainer.impl.ReactionContainerFactoryImpl;
+import biochemsimulation.reactioncontainer.Container;
+import biochemsimulation.reactioncontainer.util.EPackageWrapper;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.utils.PatternContainer;
 import biochemsimulation.reactionrules.utils.PatternUtils;
@@ -14,20 +13,17 @@ import biochemsimulation.simulation.matching.IMatch;
 public class ReactionRuleTransformer {
 	
 	private PatternContainer patternContainer;
-	private ReactionContainer reactionContainer;
+	private Container reactionContainer;
+	private EPackageWrapper metaModel;
 	
 	private Map<String, Pattern> patternMap;
 	private Map<String, Pattern> targetPatternMap;
 	private Map<String, TransformationTemplate> templateMap;
 	
-	private ReactionContainerFactory factory;
-	
-	public ReactionRuleTransformer(PatternContainer patternContainer, ReactionContainer reactionContainer) {
-		//this.ruleModel = ruleModel;
+	public ReactionRuleTransformer(PatternContainer patternContainer, Container reactionContainer, EPackageWrapper metaModel) {
 		this.patternContainer = patternContainer;
 		this.reactionContainer = reactionContainer;
-		
-		factory = ReactionContainerFactoryImpl.init();
+		this.metaModel = metaModel;
 	}
 	
 	private void initPatternMaps() {
@@ -55,8 +51,7 @@ public class ReactionRuleTransformer {
 		templateMap = new HashMap<String, TransformationTemplate>();
 		patternMap.forEach((patternName, lhsPattern) -> {
 			Pattern rhsPattern = targetPatternMap.get(patternName);
-			//templateMap.put(PatternContainer.calcPatternHash(lhsPattern), new TransformationTemplate(lhsPattern, rhsPattern));
-			templateMap.put(patternName, new TransformationTemplate(lhsPattern, rhsPattern));
+			templateMap.put(patternName, new TransformationTemplate(lhsPattern, rhsPattern, reactionContainer, metaModel));
 		});
 	}
 	
@@ -66,8 +61,7 @@ public class ReactionRuleTransformer {
 	}
 	
 	public void applyRuleToMatch(IMatch match, String patternName) {
-		//String patternName = match.patternName().replaceAll("^(.)*\\.", "");
-		templateMap.get(patternName).applyTransformation(match, reactionContainer, factory);
+		templateMap.get(patternName).applyTransformation(match);
 	}
 	
 	public Map<String, Pattern> getPatternMap() {

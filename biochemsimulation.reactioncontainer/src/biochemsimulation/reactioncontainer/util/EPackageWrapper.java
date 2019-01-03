@@ -6,16 +6,21 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import biochemsimulation.reactionrules.reactionRules.Agent;
 
 public class EPackageWrapper {
 	EPackage ePack;
 	
 	private Map<String, EClass> classMap;
 	private Map<String, EReference> referenceMap;
+	private AgentFactory agentFactory;
+	private EClassRegistry<Agent> classRegistry;
 	
 	public EPackageWrapper(EPackage ePack) {
 		this.ePack = ePack;
 		mapElements();
+		initClassRegistry();
+		agentFactory = new AgentFactory(ePack, classRegistry);
 	}
 	
 	private void mapElements() {
@@ -37,8 +42,17 @@ public class EPackageWrapper {
 		});
 	}
 	
+	private void initClassRegistry() {
+		classRegistry = new EClassRegistry<Agent>();
+		classRegistry.addAllClasses(classMap);
+	}
+	
 	public EPackage getPackage( ) {
 		return ePack;
+	}
+	
+	public AgentFactory getAgentFactory() {
+		return agentFactory;
 	}
 	
 	public EClass getClass(String typeName) {

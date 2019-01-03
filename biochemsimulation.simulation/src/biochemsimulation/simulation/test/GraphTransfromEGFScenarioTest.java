@@ -10,7 +10,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
-import biochemsimulation.reactioncontainer.ReactionContainer;
+import biochemsimulation.reactioncontainer.Container;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.PatternMatchingEngine;
@@ -31,7 +31,7 @@ public class GraphTransfromEGFScenarioTest {
 	protected PersistenceManager persistence;
 	
 	protected ReactionRuleModel ruleModel;
-	protected ReactionContainer containerModel;
+	protected Container containerModel;
 	protected PatternMatchingController pmc;
 	
 	protected PatternMatchingEngineEnum engineType;
@@ -57,7 +57,7 @@ public class GraphTransfromEGFScenarioTest {
 		pmc.loadModels(ruleModel, containerModel);
 		pmc.initEngine();
 		pmc.initController();
-		gt = new ReactionRuleTransformer(pmc.getPatternContainer(), containerModel);
+		gt = new ReactionRuleTransformer(pmc.getPatternContainer(), containerModel, pmc.getEPackageWrapper());
 		gt.init();
 	}
 	
