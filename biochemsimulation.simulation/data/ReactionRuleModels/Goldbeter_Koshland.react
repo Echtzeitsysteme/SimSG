@@ -4,7 +4,7 @@ agent K(a)
 agent P(a)
 agent T(x{u,p}, y{u,p})
 
-init i1 100 {K(), P(), T(x{u}[free], y{u}[free])}
+init i1 100 {K(), P(), T(x{u}[free], y{u}[free])} 
 
 rule KT_x {K(a[free]), T(x[free])} <-> {K(a[1]), T(x[1])} @ [1, 10]
 rule Tp_x {K(a[1]), T(x{u}[1])} -> {K(a[1]), T(x{p}[1])} @ [1]

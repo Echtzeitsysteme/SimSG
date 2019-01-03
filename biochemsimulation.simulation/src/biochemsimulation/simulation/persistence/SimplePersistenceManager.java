@@ -19,7 +19,7 @@ import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 
 public class SimplePersistenceManager extends PersistenceManager {
 	
-	final public static String REACTION_CONTAINER_MODELS_HEADER = "<reactioncontainer:ReactionContainer xmi:version=\"2.0\" xmlns:xmi=\"http://www.omg.org/XMI\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:reactioncontainer=\"http://www.reactioncontainer.biochemsimulation.org/reactioncontainer\" xsi:schemaLocation=\"http://www.reactioncontainer.biochemsimulation.org/reactioncontainer java://biochemsimulation.reactioncontainer.ReactionContainerPackage\"";
+	final public static String REACTION_CONTAINER_MODELS_HEADER = "<reactioncontainer:Container xmi:version=\"2.0\"";
 	
 	SimplePersistenceManager() {
 		super();
@@ -27,13 +27,14 @@ public class SimplePersistenceManager extends PersistenceManager {
 	
 	@Override
 	public Container loadReactionContainerModel(String name) throws Exception {
-		if(!checkExistenceAndIndex(name, true)) {
+		if((!checkExistenceAndIndexContainer(name, true)) || (!checkExistenceAndIndexMetamodel(name, true))) {
 			ReactionRuleModel ruleModel = loadReactionRuleModel(name);
 			ReactionContainerGenerator gen = new ReactionContainerEMF(ruleModel);
 			String path = reactionModelFolder+"/"+name+containerModelSuffix;
 			String path2 = reactionMetamodelFolder+"/"+name+".ecore";
 			gen.doGenerate(path, path2);
 			reactionModelPaths.put(name, path);
+			reactionMetamodelPaths.put(name, path2);
 		}
 		loadAndRegisterMetamodel(name);
 		

@@ -202,11 +202,12 @@ public abstract class ReactionContainerGenerator {
 
 		dynamicMetaModel.setName(model.getModel().getName());
 		dynamicMetaModel.setNsPrefix(model.getModel().getName());
-		//URI uri = URI.createPlatformResourceURI("biochemsimulation.reactioncontainer/generated/"+model.getModel().getName(), true);
+		
 		URI uri = createMetaModelURI(model.getModel().getName());
-		//dynamicMetaModel.setNsURI("platform:/resource/reactioncontainer/generated/" + model.getModel().getName() + ".ecore");
-		//System.out.println(uri.toString());
 		dynamicMetaModel.setNsURI(uri.toString());
+		
+		ReactionContainerPackage.eINSTANCE.getESubpackages().clear();
+		ReactionContainerPackage.eINSTANCE.getESubpackages().add(dynamicMetaModel);
 		
 		stateClassFactory = new StateClassFactory(dynamicMetaModel);
 		agentClassFactory = new AgentClassFactory(dynamicMetaModel, stateClassFactory);

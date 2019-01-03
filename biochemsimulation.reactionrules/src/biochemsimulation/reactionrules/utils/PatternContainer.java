@@ -200,6 +200,7 @@ public class PatternContainer {
 		
 		
 		//debug..
+		/*
 		rulePatterns.forEach((name, pattern) -> {
 			System.out.println("Pattern name: "+name+", hash: "+getPatternHash(pattern));
 		});
@@ -209,7 +210,7 @@ public class PatternContainer {
 		termCondPopulationPatterns.forEach((name, pattern) -> {
 			System.out.println("Pattern name: "+name+", hash: "+getPatternHash(pattern));
 		});
-		
+		*/
 		
 	}
 	

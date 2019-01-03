@@ -180,7 +180,7 @@ public abstract class PersistenceManager {
 		}
 	}
 	
-	protected boolean checkExistenceAndIndex(String modelName, boolean deleteOutdated) {
+	protected boolean checkExistenceAndIndexContainer(String modelName, boolean deleteOutdated) {
 		if(!ruleModelPaths.containsKey(modelName)) {
 			return false;
 		}
@@ -192,6 +192,25 @@ public abstract class PersistenceManager {
 		if(index >= file) {
 			if(deleteOutdated) {
 				PersistenceUtils.deleteFile(reactionModelPaths.get(modelName));
+			}
+			return false;
+		}
+		
+		return true;
+	}
+	
+	protected boolean checkExistenceAndIndexMetamodel(String modelName, boolean deleteOutdated) {
+		if(!ruleModelPaths.containsKey(modelName)) {
+			return false;
+		}
+		if(!reactionMetamodelPaths.containsKey(modelName)) {
+			return false;
+		}
+		long index = (long) modelIndex.get(modelName);
+		long file = PersistenceUtils.getLastModified(reactionMetamodelPaths.get(modelName));
+		if(index >= file) {
+			if(deleteOutdated) {
+				PersistenceUtils.deleteFile(reactionMetamodelPaths.get(modelName));
 			}
 			return false;
 		}

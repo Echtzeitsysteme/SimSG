@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import biochemsimulation.simulation.persistence.PersistenceUtils;
+
 public class Runtimer {
 	
 	private static Runtimer instance;
@@ -62,6 +64,7 @@ public class Runtimer {
 	}
 	
 	public void toFile() {
+		PersistenceUtils.createFolderIfNotExist("data/Benchmarks");
 		String path = "data/Benchmarks/"+System.nanoTime()+".txt";
 		Path file = Paths.get(path);
 		List<String> lines = Arrays.asList(toString());

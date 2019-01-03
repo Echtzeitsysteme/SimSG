@@ -16,13 +16,14 @@ public class NeoEMFPersistenceManager extends PersistenceManager {
 
 	@Override
 	public Container loadReactionContainerModel(String name) throws Exception {
-		if(!checkExistenceAndIndex(name, true)) {
+		if(!checkExistenceAndIndexContainer(name, true) || !checkExistenceAndIndexMetamodel(name, true)) {
 			ReactionRuleModel ruleModel = loadReactionRuleModel(name);
 			ReactionContainerGenerator gen = new ReactionContainerNeoEMF(ruleModel);
 			String path = reactionModelFolder+"/"+name+containerModelSuffix;
 			String path2 = reactionMetamodelFolder+"/"+name+".ecore";
 			gen.doGenerate(path,path2);
 			reactionModelPaths.put(name, path);
+			reactionMetamodelPaths.put(name, path2);
 		}
 		loadAndRegisterMetamodel(name);
 		
