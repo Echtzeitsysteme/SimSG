@@ -8,7 +8,6 @@ import java.util.LinkedList;
 import java.util.Map;
 
 import biochemsimulation.reactionrules.reactionRules.Pattern;
-import biochemsimulation.reactionrules.utils.PatternContainer;
 import biochemsimulation.simulation.matching.HybridMatch;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.IMatchImpl;
@@ -35,7 +34,7 @@ public class HybridPMC extends PatternMatchingController {
 		Collection<Pattern> patterns = patternContainer.getAllPatterns();
 		hybridPatterns = new HashMap<String, HybridPattern>();
 		patterns.forEach(pattern -> {
-			hybridPatterns.put(PatternContainer.calcPatternHash(pattern), new HybridPattern(PatternContainer.calcPatternHash(pattern), pattern));
+			hybridPatterns.put(patternContainer.getPatternHash(pattern), new HybridPattern(patternContainer.getPatternHash(pattern), pattern, metaModel));
 		});
 		genericPatterns = new HashMap<String, GenericPattern>();
 		hybridPatterns.forEach((name, pattern) -> {
@@ -43,7 +42,7 @@ public class HybridPMC extends PatternMatchingController {
 		});
 		
 		engine.setReactionRules(genericPatterns);
-		engine.setReactionContainer(reactionContainer);
+		engine.setReactionContainer(reactionContainer, metaModel.getPackage());
 		engine.loadModels();
 	}
 	

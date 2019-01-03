@@ -27,7 +27,7 @@ public class GenericPatternBody {
 	private Map<SiteNodeContext, SiteStateContext> siteStateContexts;
 	private Map<SiteNodeContext, LinkStateContext> linkStateContexts;
 	
-	//private Map<Integer, LinkStateConstraint> linkStateConstraints;
+	private Map<Integer, LinkStateConstraint> linkStateConstraints;
 	private Collection<AgentNodeConstraint> injectivityConstraintsSignature;
 	private Collection<AgentNodeConstraint> injectivityConstraintsBody;
 	private Collection<AgentNodeConstraint> injectivityConstraints;
@@ -93,12 +93,9 @@ public class GenericPatternBody {
 	}
 
 
-	/*
 	public Map<Integer, LinkStateConstraint> getLinkStateConstraints() {
 		return linkStateConstraints;
 	}
-	*/
-
 
 	public Collection<AgentNodeConstraint> getInjectivityConstraintsBody() {
 		return injectivityConstraintsBody;
@@ -175,7 +172,7 @@ public class GenericPatternBody {
 		localAgentNodes = new HashMap<ValidAgentPattern, List<AgentNodeContext>>();
 		localSiteNodes = new HashMap<AgentNodeContext, SiteNodeContext>();
 		localLinkStates = new HashMap<SiteNodeContext, LinkStateContext>();
-		//linkStateConstraints = new HashMap<Integer, LinkStateConstraint>();
+		linkStateConstraints = new HashMap<Integer, LinkStateConstraint>();
 		
 		for(ValidAgentPattern pattern : agentPatterns) {
 			AgentNodeContext currentAgentNodeContext = agentNodeContexts.get(pattern);
@@ -214,8 +211,8 @@ public class GenericPatternBody {
 					currentLinkStateContext.setTargetLinkState(localLinkStateContext);
 					localLinkStateContext.setTargetLinkState(currentLinkStateContext);
 					
-					//LinkStateConstraint constraint = new LinkStateConstraint(currentLinkStateContext, localLinkStateContext, ConstraintType.equal);
-					//linkStateConstraints.put(currentLinkStateContext.getLocalSimLinkStateVariableName().hashCode(), constraint);
+					LinkStateConstraint constraint = new LinkStateConstraint(currentLinkStateContext, localLinkStateContext, ConstraintType.equal);
+					linkStateConstraints.put(currentLinkStateContext.hashCode(), constraint);
 					// remove self occurences
 					AgentNodeConstraint localInjConstraint = new AgentNodeConstraint(currentAgentNodeContext, localAgentNodeContext, ConstraintType.unequal);
 					localInjConstraint.setLocal();
@@ -225,13 +222,13 @@ public class GenericPatternBody {
 					BoundLink boundLink = (BoundLink)link;
 					int linkIdx = Integer.valueOf(boundLink.getState());
 					LinkStateContext otherSite = findLinkedSite(pattern, linkIdx);
-					/*
+					
 					LinkStateConstraint constraint = new LinkStateConstraint(currentLinkStateContext, otherSite, ConstraintType.equal);
-					int key2 = otherSite.getLocalSimLinkStateVariableName().hashCode();
-					int key1 = currentLinkStateContext.getLocalSimLinkStateVariableName().hashCode();
+					int key2 = otherSite.hashCode();
+					int key1 = currentLinkStateContext.hashCode();
 					int key = (key1>key2)?key1:key2;
 					linkStateConstraints.putIfAbsent(key, constraint);
-					*/
+					
 					currentLinkStateContext.setTargetLinkState(otherSite);
 					otherSite.setTargetLinkState(currentLinkStateContext);
 				}
@@ -397,7 +394,7 @@ public class GenericPatternBody {
 		sb.append("##<Body>:");
 		sb.append("\n\t<Links>:");
 		sb.append("\n\t\t Bound-Links:\n");
-		/*
+		
 		for(LinkStateConstraint lsc : linkStateConstraints.values()) {
 			if(lsc.getOperand1().getStateType() != LinkStateType.Bound) {
 				continue;
@@ -441,7 +438,7 @@ public class GenericPatternBody {
 			sb.append("\t\t\tFrom: Agent("+lsc.getOperand1().getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
 			sb.append(".Site("+lsc.getOperand1().getSiteNodeContext().getSiteTypeName()+") <==!!==> (Unbound);\n");
 		}
-		*/
+		
 		sb.append("\n\t</Links>");
 		sb.append("\n\t<States>:\n");
 		for(SiteStateContext state: siteStateContexts.values()) {

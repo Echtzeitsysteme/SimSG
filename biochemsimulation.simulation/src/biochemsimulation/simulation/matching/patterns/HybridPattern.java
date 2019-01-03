@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
 
+import biochemsimulation.reactioncontainer.util.EPackageWrapper;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
@@ -19,6 +20,7 @@ import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 public class HybridPattern {
 	
 	private String patternName;
+	private EPackageWrapper metaModel;
 	
 	private GenericPattern genericLhs;
 	
@@ -32,10 +34,11 @@ public class HybridPattern {
 	
 	private Collection<AgentNodeConstraint> gloablInjectivityConstraints;
 	
-	public HybridPattern(String patternName, Pattern lhs) {
+	public HybridPattern(String patternName, Pattern lhs, EPackageWrapper metaModel) {
 		this.patternName = patternName;
+		this.metaModel = metaModel;
 		
-		genericLhs = new GenericPattern(patternName, lhs);
+		genericLhs = new GenericPattern(patternName, this.metaModel, lhs);
 		if(genericLhs.isVoidPattern()) {
 			genericSubPatterns = new HashMap<String, GenericPattern>();
 			genericSubPatterns.put(patternName, genericLhs);
@@ -140,7 +143,7 @@ public class HybridPattern {
 			
 			String subPatternName = patternName+c;
 			
-			GenericPattern genericSubPattern = new GenericPattern(subPatternName, vaps);
+			GenericPattern genericSubPattern = new GenericPattern(subPatternName, metaModel, vaps);
 			genericSubPatternsTemp.put(subPatternName, genericSubPattern);
 			
 			/*
