@@ -1,6 +1,8 @@
 package biochemsimulation.simulation.matching.viatra;
 
+import biochemsimulation.simulation.matching.patterns.AgentNodeConstraint;
 import biochemsimulation.simulation.matching.patterns.AgentNodeContext;
+import biochemsimulation.simulation.matching.patterns.ConstraintType;
 import biochemsimulation.simulation.matching.patterns.GenericPattern;
 import biochemsimulation.simulation.matching.patterns.LinkStateContext;
 import biochemsimulation.simulation.matching.patterns.LinkStateType;
@@ -106,6 +108,28 @@ public class ViatraCodeGenerator {
             }
           }
         }
+        {
+          Collection<List<AgentNodeContext>> _values_2 = genericPattern.getBody().getLocalAgentNodes().values();
+          for(final List<AgentNodeContext> agents : _values_2) {
+            {
+              for(final AgentNodeContext agent_1 : agents) {
+                _builder.append("\t");
+                String _generateLink_1 = this.generateLink(genericPattern.getBody().getLocalLinkStates().get(genericPattern.getBody().getLocalSiteNodes().get(agent_1)));
+                _builder.append(_generateLink_1, "\t");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          Collection<AgentNodeConstraint> _injectivityConstraints = genericPattern.getBody().getInjectivityConstraints();
+          for(final AgentNodeConstraint constraint : _injectivityConstraints) {
+            _builder.append("\t");
+            String _generateConstraint = this.generateConstraint(constraint);
+            _builder.append(_generateConstraint, "\t");
+            _builder.newLineIfNotEmpty();
+          }
+        }
         _builder.append("}\t");
         _builder.newLine();
       }
@@ -125,7 +149,7 @@ public class ViatraCodeGenerator {
         case BoundAny:
           return this.generateBoundAny(link);
         case BoundAnyOfType:
-          return this.generateBoundAnfOfType(link);
+          return this.generateBoundAnyOfType(link);
         case Unbound:
           return this.generateUnbound(link);
         case WhatEver:
@@ -168,10 +192,11 @@ public class ViatraCodeGenerator {
     return _builder.toString();
   }
   
-  public String generateBoundAnfOfType(final LinkStateContext link) {
+  public String generateBoundAnyOfType(final LinkStateContext link) {
     String prefix = "";
     boolean _isSourceAgentLocal = link.isSourceAgentLocal();
-    if (_isSourceAgentLocal) {
+    boolean _not = (!_isSourceAgentLocal);
+    if (_not) {
       StringConcatenation _builder = new StringConcatenation();
       String _targetAgentTypeName = link.getTargetAgentTypeName();
       _builder.append(_targetAgentTypeName);
@@ -229,5 +254,55 @@ public class ViatraCodeGenerator {
     _builder.append(_sourceAgentVariableName);
     _builder.append(", _);");
     return _builder.toString();
+  }
+  
+  public String generateConstraint(final AgentNodeConstraint constraint) {
+    if ((constraint == null)) {
+      return "";
+    }
+    ConstraintType _type = constraint.getType();
+    if (_type != null) {
+      switch (_type) {
+        case equal:
+          StringConcatenation _builder = new StringConcatenation();
+          String _agentVariableName = constraint.getOperand1().getAgentVariableName();
+          _builder.append(_agentVariableName);
+          _builder.append("==");
+          String _agentVariableName_1 = constraint.getOperand2().getAgentVariableName();
+          _builder.append(_agentVariableName_1);
+          _builder.append(";");
+          return _builder.toString();
+        case unequal:
+          StringConcatenation _builder_1 = new StringConcatenation();
+          String _agentVariableName_2 = constraint.getOperand1().getAgentVariableName();
+          _builder_1.append(_agentVariableName_2);
+          _builder_1.append("!=");
+          String _agentVariableName_3 = constraint.getOperand2().getAgentVariableName();
+          _builder_1.append(_agentVariableName_3);
+          _builder_1.append(";");
+          return _builder_1.toString();
+        case greaterOrEqual:
+          StringConcatenation _builder_2 = new StringConcatenation();
+          String _agentVariableName_4 = constraint.getOperand1().getAgentVariableName();
+          _builder_2.append(_agentVariableName_4);
+          _builder_2.append(">=");
+          String _agentVariableName_5 = constraint.getOperand2().getAgentVariableName();
+          _builder_2.append(_agentVariableName_5);
+          _builder_2.append(";");
+          return _builder_2.toString();
+        case greater:
+          StringConcatenation _builder_3 = new StringConcatenation();
+          String _agentVariableName_6 = constraint.getOperand1().getAgentVariableName();
+          _builder_3.append(_agentVariableName_6);
+          _builder_3.append(">");
+          String _agentVariableName_7 = constraint.getOperand2().getAgentVariableName();
+          _builder_3.append(_agentVariableName_7);
+          _builder_3.append(";");
+          return _builder_3.toString();
+        default:
+          break;
+      }
+    }
+    return null;
   }
 }

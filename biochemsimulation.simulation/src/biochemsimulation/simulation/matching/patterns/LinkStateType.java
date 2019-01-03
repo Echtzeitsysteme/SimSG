@@ -7,7 +7,7 @@ import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.WhatEver;
 
 public enum LinkStateType {
-	Unbound("Unbound"), BoundAny("BoundAny"), BoundAnyOfType("BoundAny"), Bound("BoundExact"), WhatEver("WhatEver");
+	Unbound("Unbound"), BoundAny("BoundAny"), BoundAnyOfType("BoundAnyOfType"), Bound("BoundExact"), WhatEver("WhatEver");
 	
 	private String name;
 	

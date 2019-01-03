@@ -7,8 +7,8 @@ import java.util.HashMap
 
 import biochemsimulation.simulation.matching.patterns.GenericPattern
 import biochemsimulation.simulation.matching.patterns.LinkStateContext
-import biochemsimulation.simulation.matching.patterns.LinkStateType
 import biochemsimulation.simulation.matching.patterns.SiteStateContext
+import biochemsimulation.simulation.matching.patterns.AgentNodeConstraint
 
 class ViatraCodeGenerator {
 	
@@ -41,6 +41,12 @@ class ViatraCodeGenerator {
 					«generateState(genericPattern.body.siteStateContexts.get(site))»
 					«ENDFOR»
 					«ENDFOR»
+					«FOR agents : genericPattern.body.localAgentNodes.values»«FOR agent : agents»
+					«generateLink(genericPattern.body.localLinkStates.get(genericPattern.body.localSiteNodes.get(agent)))»
+					«ENDFOR»«ENDFOR»
+					«FOR constraint : genericPattern.body.injectivityConstraints»
+					«generateConstraint(constraint)»
+					«ENDFOR»
 				}	
 			«ENDFOR»
 		'''
@@ -51,7 +57,7 @@ class ViatraCodeGenerator {
 		switch(link.stateType) {
 			case Bound : return generateBoundLink(link)
 			case BoundAny : return generateBoundAny(link)
-			case BoundAnyOfType : return generateBoundAnfOfType(link)
+			case BoundAnyOfType : return generateBoundAnyOfType(link)
 			case Unbound: return generateUnbound(link)
 			case WhatEver: return ""
 		}
@@ -65,9 +71,9 @@ class ViatraCodeGenerator {
 		return '''«link.sourceAgentTypeName».«link.agentReferenceName»(«link.sourceAgentVariableName», _);'''
 	}
 	
-	def String generateBoundAnfOfType(LinkStateContext link){
+	def String generateBoundAnyOfType(LinkStateContext link){
 		var prefix = "";
-		if(link.sourceAgentLocal){
+		if(!link.sourceAgentLocal){
 			prefix = '''«link.targetAgentTypeName»(«link.targetAgentVariableName»);
 			'''
 		}
@@ -81,6 +87,24 @@ class ViatraCodeGenerator {
 	def String generateState(SiteStateContext state){
 		if(state === null) return "";
 		return '''«state.sourceAgentTypeName».«state.stateReferenceName»(«state.sourceAgentVariableName», _);'''
+	}
+	
+	def String generateConstraint(AgentNodeConstraint constraint) {
+		if(constraint === null) return "";
+		switch(constraint.type) {
+			case equal: {
+				return '''«constraint.operand1.agentVariableName»==«constraint.operand2.agentVariableName»;'''
+			}
+			case unequal: {
+				return '''«constraint.operand1.agentVariableName»!=«constraint.operand2.agentVariableName»;'''
+			}
+			case greaterOrEqual: {
+				return '''«constraint.operand1.agentVariableName»>=«constraint.operand2.agentVariableName»;'''
+			}
+			case greater: {
+				return '''«constraint.operand1.agentVariableName»>«constraint.operand2.agentVariableName»;'''
+			}
+		}
 	}
 	
 }

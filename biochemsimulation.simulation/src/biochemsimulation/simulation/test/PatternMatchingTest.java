@@ -13,7 +13,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
-import biochemsimulation.reactioncontainer.ReactionContainer;
+import biochemsimulation.reactioncontainer.Container;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.PatternMatchingEngine;
@@ -34,7 +34,7 @@ abstract class PatternMatchingTest {
 	protected PersistenceManager persistence;
 	
 	protected ReactionRuleModel ruleModel;
-	protected ReactionContainer containerModel;
+	protected Container containerModel;
 	
 	protected PatternMatchingEngine engine;
 	protected PatternMatchingEngineEnum engineType;
