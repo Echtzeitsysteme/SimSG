@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.Map;
 
 import biochemsimulation.reactionrules.reactionRules.Pattern;
-import biochemsimulation.reactionrules.utils.PatternContainer;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.patterns.GenericPattern;
 
@@ -27,7 +26,7 @@ public class SimplePMC extends PatternMatchingController {
 		Collection<Pattern> patterns = patternContainer.getAllPatterns();
 		Map<String, GenericPattern> genericPatterns = new HashMap<String, GenericPattern>();
 		for(Pattern pattern : patterns) {
-			genericPatterns.put(PatternContainer.calcPatternHash(pattern), new GenericPattern(PatternContainer.calcPatternHash(pattern), metaModel, pattern));
+			genericPatterns.put(patternContainer.getPatternHash(pattern), new GenericPattern(patternContainer.getPatternHash(pattern), metaModel, pattern));
 		}
 		engine.setReactionRules(genericPatterns);
 		engine.setReactionContainer(reactionContainer, metaModel.getPackage());
