@@ -25,6 +25,7 @@ import biochemsimulation.reactionrules.reactionRules.Rule;
 import biochemsimulation.reactionrules.reactionRules.RuleBody;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
+import biochemsimulation.reactionrules.reactionRules.SiteState;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.Variable;
 import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern;
@@ -346,6 +347,43 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
                   ReactionRulesPackage.Literals.RULE_BODY__LHS);
                 this.error("Two arguments at the same index on lhs and rhs must have the same agent type.", 
                   ReactionRulesPackage.Literals.RULE_BODY__RHS);
+              }
+            }
+            if ((!(ap2_1 instanceof VoidAgentPattern))) {
+              final ValidAgentPattern ap_2_1 = ((ValidAgentPattern) ap2_1);
+              int _size_2 = ap_1.getSitePatterns().getSitePatterns().size();
+              int _size_3 = ap_2_1.getSitePatterns().getSitePatterns().size();
+              boolean _notEquals_1 = (_size_2 != _size_3);
+              if (_notEquals_1) {
+                this.error("Two arguments at the same index on lhs and rhs must have the same amount of sites.", 
+                  ReactionRulesPackage.Literals.RULE_BODY__LHS);
+                this.error("Two arguments at the same index on lhs and rhs must have the same amount of sites.", 
+                  ReactionRulesPackage.Literals.RULE_BODY__RHS);
+              }
+              for (int i = 0; (i < ap_1.getSitePatterns().getSitePatterns().size()); i++) {
+                {
+                  final SitePattern sp_1 = ap_1.getSitePatterns().getSitePatterns().get(i);
+                  final SitePattern sp_2 = ap_2_1.getSitePatterns().getSitePatterns().get(i);
+                  Site _site = sp_1.getSite();
+                  Site _site_1 = sp_2.getSite();
+                  boolean _notEquals_2 = (!Objects.equal(_site, _site_1));
+                  if (_notEquals_2) {
+                    this.error("Two arguments at the same index on lhs and rhs must have the same sites.", 
+                      ReactionRulesPackage.Literals.RULE_BODY__LHS);
+                    this.error("Two arguments at the same index on lhs and rhs must have the same sites.", 
+                      ReactionRulesPackage.Literals.RULE_BODY__RHS);
+                  }
+                  final SiteState st_1 = sp_1.getState();
+                  final SiteState st_2 = sp_2.getState();
+                  if (((st_1 == null) && (st_2 != null))) {
+                    this.error("If an argument on the rhs defines a state, the corresponding argument on the lhs must define a state as well.", 
+                      ReactionRulesPackage.Literals.RULE_BODY__RHS);
+                  }
+                  if (((st_2 == null) && (st_1 != null))) {
+                    this.error("If an argument on the lhs defines a state, the corresponding argument on the rhs must define a state as well.", 
+                      ReactionRulesPackage.Literals.RULE_BODY__LHS);
+                  }
+                }
               }
             }
           }

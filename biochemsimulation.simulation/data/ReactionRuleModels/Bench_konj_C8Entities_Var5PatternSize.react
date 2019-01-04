@@ -9,4 +9,4 @@ agent F(x, y)
 init i1 8 {A(x[1]), B(x[1], y[2]), C(x[2], y[3]), D(x[3], y[4]), F(x[4])}
 
 
-rule destroy {A(x[1]), B(x[1], y[2]), C(x[2], y[3]), D(x[3], y[4]), F(x[4], y[free])} <-> {A(x[1]), B(x[2], y[1]), C(x[2], y[3]), D(x[4], y[3]), F(y[4], x[free])} @ [0.01, 0.01]
+rule destroy {A(x[1]), B(x[1], y[2]), C(x[2], y[3]), D(x[3], y[4]), F(x[4], y[free])} <-> {A(x[1]), B(x[2], y[1]), C(x[2], y[3]), D(x[4], y[3]), F(x[free], y[4])} @ [0.01, 0.01]

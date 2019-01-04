@@ -307,6 +307,7 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 						)
 					}
 				}else {
+					// check consistency of agent types
 					val ap_1 = ap as ValidAgentPattern
 					val ap2 = rhs.agentPatterns.get(idx)
 					if(!(ap2 instanceof VoidAgentPattern)) {
@@ -318,6 +319,42 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 							error('Two arguments at the same index on lhs and rhs must have the same agent type.', 
 							ReactionRulesPackage.Literals.RULE_BODY__RHS
 							)
+						}
+					}
+					// check order and consistency of sites, link states and site states
+					if(!(ap2 instanceof VoidAgentPattern)) {
+						val ap_2 = ap2 as ValidAgentPattern
+						if(ap_1.sitePatterns.sitePatterns.size != ap_2.sitePatterns.sitePatterns.size){
+							error('Two arguments at the same index on lhs and rhs must have the same amount of sites.', 
+							ReactionRulesPackage.Literals.RULE_BODY__LHS
+							)
+							error('Two arguments at the same index on lhs and rhs must have the same amount of sites.', 
+							ReactionRulesPackage.Literals.RULE_BODY__RHS
+							)
+						}
+						for(var i=0; i<ap_1.sitePatterns.sitePatterns.size; i++) {
+							val sp_1 = ap_1.sitePatterns.sitePatterns.get(i);
+							val sp_2 = ap_2.sitePatterns.sitePatterns.get(i);
+							if(sp_1.site != sp_2.site){
+								error('Two arguments at the same index on lhs and rhs must have the same sites.', 
+								ReactionRulesPackage.Literals.RULE_BODY__LHS
+								)
+								error('Two arguments at the same index on lhs and rhs must have the same sites.', 
+								ReactionRulesPackage.Literals.RULE_BODY__RHS
+								)
+							}
+							val st_1 = sp_1.state;
+							val st_2 = sp_2.state;
+							if(st_1 === null && st_2 !== null){
+								error('If an argument on the rhs defines a state, the corresponding argument on the lhs must define a state as well.', 
+								ReactionRulesPackage.Literals.RULE_BODY__RHS
+								)
+							}
+							if(st_2 === null && st_1 !== null){
+								error('If an argument on the lhs defines a state, the corresponding argument on the rhs must define a state as well.', 
+								ReactionRulesPackage.Literals.RULE_BODY__LHS
+								)
+							}
 						}
 					}
 				}

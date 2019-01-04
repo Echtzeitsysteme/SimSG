@@ -15,7 +15,6 @@ public class AgentFactory extends EObjectFactory<Agent, biochemsimulation.reacti
 	public Agent createObject(String typeClass) {
 		Agent agent = (Agent)ecoreFactory.create(classRegistry.getRegisteredClass(typeClass));
 		agent.setID(System.nanoTime());
-		System.out.println(agent.getID());
 		return agent;
 	}
 
@@ -23,7 +22,6 @@ public class AgentFactory extends EObjectFactory<Agent, biochemsimulation.reacti
 	public Agent createObject(EClass typeClass) {
 		Agent agent = (Agent)ecoreFactory.create(typeClass);
 		agent.setID(System.nanoTime());
-		System.out.println(agent.getID());
 		return agent;
 	}
 }

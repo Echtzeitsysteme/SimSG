@@ -206,7 +206,7 @@ public abstract class ReactionContainerGenerator {
 		URI uri = createMetaModelURI(model.getModel().getName());
 		dynamicMetaModel.setNsURI(uri.toString());
 		
-		ReactionContainerPackage.eINSTANCE.getESubpackages().clear();
+		//ReactionContainerPackage.eINSTANCE.getESubpackages().clear();
 		ReactionContainerPackage.eINSTANCE.getESubpackages().add(dynamicMetaModel);
 		
 		stateClassFactory = new StateClassFactory(dynamicMetaModel);

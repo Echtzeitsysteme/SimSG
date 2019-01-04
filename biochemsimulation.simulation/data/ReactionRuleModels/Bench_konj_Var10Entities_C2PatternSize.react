@@ -5,4 +5,4 @@ agent B(x, y)
 
 init i1 10 {A(x[1]), B(x[1])}
 
-rule destroy {A(x[1]), B(x[1])} <-> {A(x[free], y[1]), B(x[free], y[1])} @ [0.01, 0.01]
+rule destroy {A(x[1], y[free]), B(x[1], y[free])} <-> {A(x[free], y[1]), B(x[free], y[1])} @ [0.01, 0.01]

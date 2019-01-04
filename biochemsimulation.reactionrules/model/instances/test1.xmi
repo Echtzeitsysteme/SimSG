@@ -74,7 +74,13 @@
   <reactionProperties xmi:type="reactionRules:PatternVariable" name="pattern">
     <pattern xmi:type="reactionRules:Pattern">
       <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
-        <sitePatterns xmi:type="reactionRules:SitePatterns"/>
+        <sitePatterns xmi:type="reactionRules:SitePatterns">
+          <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.0/@sites/@sites.0">
+            <linkState xmi:type="reactionRules:LinkState">
+              <linkState xmi:type="reactionRules:WhatEver" name="?"/>
+            </linkState>
+          </sitePatterns>
+        </sitePatterns>
       </agentPatterns>
       <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.1">
         <sitePatterns xmi:type="reactionRules:SitePatterns">
