@@ -323,33 +323,93 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_1_3() { return cRightCurlyBracketKeyword_1_3; }
 	}
-	public class SiteElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.Site");
+	public class SingleSiteElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.SingleSite");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIDTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Assignment cStatesAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cStatesStatesParserRuleCall_1_0 = (RuleCall)cStatesAssignment_1.eContents().get(0);
+		private final Action cSingleSiteAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cStatesAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cStatesStatesParserRuleCall_2_0 = (RuleCall)cStatesAssignment_2.eContents().get(0);
 		
-		//Site:
-		//	name=ID
+		//SingleSite Site:
+		//	{SingleSite} name=ID
 		//	states=States;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID states=States
+		//{SingleSite} name=ID states=States
 		public Group getGroup() { return cGroup; }
 		
+		//{SingleSite}
+		public Action getSingleSiteAction_0() { return cSingleSiteAction_0; }
+		
 		//name=ID
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 		
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 		
 		//states=States
-		public Assignment getStatesAssignment_1() { return cStatesAssignment_1; }
+		public Assignment getStatesAssignment_2() { return cStatesAssignment_2; }
 		
 		//States
-		public RuleCall getStatesStatesParserRuleCall_1_0() { return cStatesStatesParserRuleCall_1_0; }
+		public RuleCall getStatesStatesParserRuleCall_2_0() { return cStatesStatesParserRuleCall_2_0; }
+	}
+	public class MultiSiteElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.MultiSite");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cMultiSiteAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cAsteriskKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Assignment cStatesAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cStatesStatesParserRuleCall_3_0 = (RuleCall)cStatesAssignment_3.eContents().get(0);
+		
+		//MultiSite Site:
+		//	{MultiSite}
+		//	'*' name=ID
+		//	states=States;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{MultiSite} '*' name=ID states=States
+		public Group getGroup() { return cGroup; }
+		
+		//{MultiSite}
+		public Action getMultiSiteAction_0() { return cMultiSiteAction_0; }
+		
+		//'*'
+		public Keyword getAsteriskKeyword_1() { return cAsteriskKeyword_1; }
+		
+		//name=ID
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
+		
+		//states=States
+		public Assignment getStatesAssignment_3() { return cStatesAssignment_3; }
+		
+		//States
+		public RuleCall getStatesStatesParserRuleCall_3_0() { return cStatesStatesParserRuleCall_3_0; }
+	}
+	public class SiteElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.Site");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cSingleSiteParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cMultiSiteParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//Site:
+		//	SingleSite | MultiSite;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//SingleSite | MultiSite
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//SingleSite
+		public RuleCall getSingleSiteParserRuleCall_0() { return cSingleSiteParserRuleCall_0; }
+		
+		//MultiSite
+		public RuleCall getMultiSiteParserRuleCall_1() { return cMultiSiteParserRuleCall_1; }
 	}
 	public class SitesElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.Sites");
@@ -622,6 +682,65 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		//UnsignedInteger
 		public RuleCall getStateUnsignedIntegerParserRuleCall_1_0() { return cStateUnsignedIntegerParserRuleCall_1_0; }
 	}
+	public class MultiLinkElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.MultiLink");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cMultiLinkAction_0 = (Action)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Assignment cStatesAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final Alternatives cStatesAlternatives_1_0_0 = (Alternatives)cStatesAssignment_1_0.eContents().get(0);
+		private final RuleCall cStatesBoundLinkParserRuleCall_1_0_0_0 = (RuleCall)cStatesAlternatives_1_0_0.eContents().get(0);
+		private final RuleCall cStatesFreeLinkParserRuleCall_1_0_0_1 = (RuleCall)cStatesAlternatives_1_0_0.eContents().get(1);
+		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
+		private final Keyword cCommaKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
+		private final Assignment cStatesAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
+		private final Alternatives cStatesAlternatives_1_1_1_0 = (Alternatives)cStatesAssignment_1_1_1.eContents().get(0);
+		private final RuleCall cStatesBoundLinkParserRuleCall_1_1_1_0_0 = (RuleCall)cStatesAlternatives_1_1_1_0.eContents().get(0);
+		private final RuleCall cStatesFreeLinkParserRuleCall_1_1_1_0_1 = (RuleCall)cStatesAlternatives_1_1_1_0.eContents().get(1);
+		
+		//MultiLink LinkState:
+		//	{MultiLink} (states+=(BoundLink | FreeLink) (',' states+=(BoundLink | FreeLink))+)?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{MultiLink} (states+=(BoundLink | FreeLink) (',' states+=(BoundLink | FreeLink))+)?
+		public Group getGroup() { return cGroup; }
+		
+		//{MultiLink}
+		public Action getMultiLinkAction_0() { return cMultiLinkAction_0; }
+		
+		//(states+=(BoundLink | FreeLink) (',' states+=(BoundLink | FreeLink))+)?
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//states+=(BoundLink | FreeLink)
+		public Assignment getStatesAssignment_1_0() { return cStatesAssignment_1_0; }
+		
+		//(BoundLink | FreeLink)
+		public Alternatives getStatesAlternatives_1_0_0() { return cStatesAlternatives_1_0_0; }
+		
+		//BoundLink
+		public RuleCall getStatesBoundLinkParserRuleCall_1_0_0_0() { return cStatesBoundLinkParserRuleCall_1_0_0_0; }
+		
+		//FreeLink
+		public RuleCall getStatesFreeLinkParserRuleCall_1_0_0_1() { return cStatesFreeLinkParserRuleCall_1_0_0_1; }
+		
+		//(',' states+=(BoundLink | FreeLink))+
+		public Group getGroup_1_1() { return cGroup_1_1; }
+		
+		//','
+		public Keyword getCommaKeyword_1_1_0() { return cCommaKeyword_1_1_0; }
+		
+		//states+=(BoundLink | FreeLink)
+		public Assignment getStatesAssignment_1_1_1() { return cStatesAssignment_1_1_1; }
+		
+		//(BoundLink | FreeLink)
+		public Alternatives getStatesAlternatives_1_1_1_0() { return cStatesAlternatives_1_1_1_0; }
+		
+		//BoundLink
+		public RuleCall getStatesBoundLinkParserRuleCall_1_1_1_0_0() { return cStatesBoundLinkParserRuleCall_1_1_1_0_0; }
+		
+		//FreeLink
+		public RuleCall getStatesFreeLinkParserRuleCall_1_1_1_0_1() { return cStatesFreeLinkParserRuleCall_1_1_1_0_1; }
+	}
 	public class BoundAnyOfTypeLinkAgentElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.BoundAnyOfTypeLinkAgent");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -801,37 +920,85 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		//']'
 		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
 	}
-	public class SitePatternElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.SitePattern");
+	public class MultiLinkStateElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.MultiLinkState");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cSitePatternAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cMultiLinkStateAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cAsteriskLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cLinkStateAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cLinkStateAlternatives_2_0 = (Alternatives)cLinkStateAssignment_2.eContents().get(0);
+		private final RuleCall cLinkStateWhatEverParserRuleCall_2_0_0 = (RuleCall)cLinkStateAlternatives_2_0.eContents().get(0);
+		private final RuleCall cLinkStateFreeLinkParserRuleCall_2_0_1 = (RuleCall)cLinkStateAlternatives_2_0.eContents().get(1);
+		private final RuleCall cLinkStateBoundAnyLinkParserRuleCall_2_0_2 = (RuleCall)cLinkStateAlternatives_2_0.eContents().get(2);
+		private final RuleCall cLinkStateMultiLinkParserRuleCall_2_0_3 = (RuleCall)cLinkStateAlternatives_2_0.eContents().get(3);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//MultiLinkState:
+		//	{MultiLinkState}
+		//	'*[' linkState=(WhatEver | FreeLink | BoundAnyLink | MultiLink) ']';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{MultiLinkState} '*[' linkState=(WhatEver | FreeLink | BoundAnyLink | MultiLink) ']'
+		public Group getGroup() { return cGroup; }
+		
+		//{MultiLinkState}
+		public Action getMultiLinkStateAction_0() { return cMultiLinkStateAction_0; }
+		
+		//'*['
+		public Keyword getAsteriskLeftSquareBracketKeyword_1() { return cAsteriskLeftSquareBracketKeyword_1; }
+		
+		//linkState=(WhatEver | FreeLink | BoundAnyLink | MultiLink)
+		public Assignment getLinkStateAssignment_2() { return cLinkStateAssignment_2; }
+		
+		//(WhatEver | FreeLink | BoundAnyLink | MultiLink)
+		public Alternatives getLinkStateAlternatives_2_0() { return cLinkStateAlternatives_2_0; }
+		
+		//WhatEver
+		public RuleCall getLinkStateWhatEverParserRuleCall_2_0_0() { return cLinkStateWhatEverParserRuleCall_2_0_0; }
+		
+		//FreeLink
+		public RuleCall getLinkStateFreeLinkParserRuleCall_2_0_1() { return cLinkStateFreeLinkParserRuleCall_2_0_1; }
+		
+		//BoundAnyLink
+		public RuleCall getLinkStateBoundAnyLinkParserRuleCall_2_0_2() { return cLinkStateBoundAnyLinkParserRuleCall_2_0_2; }
+		
+		//MultiLink
+		public RuleCall getLinkStateMultiLinkParserRuleCall_2_0_3() { return cLinkStateMultiLinkParserRuleCall_2_0_3; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+	}
+	public class SingleSitePatternElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.SingleSitePattern");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cSingleSitePatternAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cSiteAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cSiteSiteCrossReference_1_0 = (CrossReference)cSiteAssignment_1.eContents().get(0);
-		private final RuleCall cSiteSiteIDTerminalRuleCall_1_0_1 = (RuleCall)cSiteSiteCrossReference_1_0.eContents().get(1);
+		private final CrossReference cSiteSingleSiteCrossReference_1_0 = (CrossReference)cSiteAssignment_1.eContents().get(0);
+		private final RuleCall cSiteSingleSiteIDTerminalRuleCall_1_0_1 = (RuleCall)cSiteSingleSiteCrossReference_1_0.eContents().get(1);
 		private final Assignment cStateAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cStateSiteStateParserRuleCall_2_0 = (RuleCall)cStateAssignment_2.eContents().get(0);
 		private final Assignment cLinkStateAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cLinkStateLinkStateParserRuleCall_3_0 = (RuleCall)cLinkStateAssignment_3.eContents().get(0);
 		
-		//SitePattern:
-		//	{SitePattern} site=[Site] state=SiteState?
+		//SingleSitePattern SitePattern:
+		//	{SingleSitePattern} site=[SingleSite] state=SiteState?
 		//	linkState=LinkState;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{SitePattern} site=[Site] state=SiteState? linkState=LinkState
+		//{SingleSitePattern} site=[SingleSite] state=SiteState? linkState=LinkState
 		public Group getGroup() { return cGroup; }
 		
-		//{SitePattern}
-		public Action getSitePatternAction_0() { return cSitePatternAction_0; }
+		//{SingleSitePattern}
+		public Action getSingleSitePatternAction_0() { return cSingleSitePatternAction_0; }
 		
-		//site=[Site]
+		//site=[SingleSite]
 		public Assignment getSiteAssignment_1() { return cSiteAssignment_1; }
 		
-		//[Site]
-		public CrossReference getSiteSiteCrossReference_1_0() { return cSiteSiteCrossReference_1_0; }
+		//[SingleSite]
+		public CrossReference getSiteSingleSiteCrossReference_1_0() { return cSiteSingleSiteCrossReference_1_0; }
 		
 		//ID
-		public RuleCall getSiteSiteIDTerminalRuleCall_1_0_1() { return cSiteSiteIDTerminalRuleCall_1_0_1; }
+		public RuleCall getSiteSingleSiteIDTerminalRuleCall_1_0_1() { return cSiteSingleSiteIDTerminalRuleCall_1_0_1; }
 		
 		//state=SiteState?
 		public Assignment getStateAssignment_2() { return cStateAssignment_2; }
@@ -844,6 +1011,69 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//LinkState
 		public RuleCall getLinkStateLinkStateParserRuleCall_3_0() { return cLinkStateLinkStateParserRuleCall_3_0; }
+	}
+	public class MultiLinkSitePatternElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.MultiLinkSitePattern");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cMultiLinkSitePatternAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cSiteAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cSiteMultiSiteCrossReference_1_0 = (CrossReference)cSiteAssignment_1.eContents().get(0);
+		private final RuleCall cSiteMultiSiteIDTerminalRuleCall_1_0_1 = (RuleCall)cSiteMultiSiteCrossReference_1_0.eContents().get(1);
+		private final Assignment cStateAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cStateSiteStateParserRuleCall_2_0 = (RuleCall)cStateAssignment_2.eContents().get(0);
+		private final Assignment cLinkStateAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cLinkStateMultiLinkStateParserRuleCall_3_0 = (RuleCall)cLinkStateAssignment_3.eContents().get(0);
+		
+		//MultiLinkSitePattern SitePattern:
+		//	{MultiLinkSitePattern} site=[MultiSite] state=SiteState?
+		//	linkState=MultiLinkState;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{MultiLinkSitePattern} site=[MultiSite] state=SiteState? linkState=MultiLinkState
+		public Group getGroup() { return cGroup; }
+		
+		//{MultiLinkSitePattern}
+		public Action getMultiLinkSitePatternAction_0() { return cMultiLinkSitePatternAction_0; }
+		
+		//site=[MultiSite]
+		public Assignment getSiteAssignment_1() { return cSiteAssignment_1; }
+		
+		//[MultiSite]
+		public CrossReference getSiteMultiSiteCrossReference_1_0() { return cSiteMultiSiteCrossReference_1_0; }
+		
+		//ID
+		public RuleCall getSiteMultiSiteIDTerminalRuleCall_1_0_1() { return cSiteMultiSiteIDTerminalRuleCall_1_0_1; }
+		
+		//state=SiteState?
+		public Assignment getStateAssignment_2() { return cStateAssignment_2; }
+		
+		//SiteState
+		public RuleCall getStateSiteStateParserRuleCall_2_0() { return cStateSiteStateParserRuleCall_2_0; }
+		
+		//linkState=MultiLinkState
+		public Assignment getLinkStateAssignment_3() { return cLinkStateAssignment_3; }
+		
+		//MultiLinkState
+		public RuleCall getLinkStateMultiLinkStateParserRuleCall_3_0() { return cLinkStateMultiLinkStateParserRuleCall_3_0; }
+	}
+	public class SitePatternElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.SitePattern");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cSingleSitePatternParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cMultiLinkSitePatternParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//SitePattern:
+		//	SingleSitePattern | MultiLinkSitePattern;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//SingleSitePattern | MultiLinkSitePattern
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//SingleSitePattern
+		public RuleCall getSingleSitePatternParserRuleCall_0() { return cSingleSitePatternParserRuleCall_0; }
+		
+		//MultiLinkSitePattern
+		public RuleCall getMultiLinkSitePatternParserRuleCall_1() { return cMultiLinkSitePatternParserRuleCall_1; }
 	}
 	public class SitePatternsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "biochemsimulation.reactionrules.ReactionRules.SitePatterns");
@@ -1583,6 +1813,8 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	private final ArithmeticValueElements pArithmeticValue;
 	private final StateElements pState;
 	private final StatesElements pStates;
+	private final SingleSiteElements pSingleSite;
+	private final MultiSiteElements pMultiSite;
 	private final SiteElements pSite;
 	private final SitesElements pSites;
 	private final AgentElements pAgent;
@@ -1593,11 +1825,15 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 	private final FreeLinkElements pFreeLink;
 	private final WhatEverElements pWhatEver;
 	private final BoundLinkElements pBoundLink;
+	private final MultiLinkElements pMultiLink;
 	private final BoundAnyOfTypeLinkAgentElements pBoundAnyOfTypeLinkAgent;
 	private final BoundAnyOfTypeLinkSiteElements pBoundAnyOfTypeLinkSite;
 	private final BoundAnyOfTypeLinkElements pBoundAnyOfTypeLink;
 	private final SiteStateElements pSiteState;
 	private final LinkStateElements pLinkState;
+	private final MultiLinkStateElements pMultiLinkState;
+	private final SingleSitePatternElements pSingleSitePattern;
+	private final MultiLinkSitePatternElements pMultiLinkSitePattern;
 	private final SitePatternElements pSitePattern;
 	private final SitePatternsElements pSitePatterns;
 	private final ValidAgentPatternElements pValidAgentPattern;
@@ -1652,6 +1888,8 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		this.pArithmeticValue = new ArithmeticValueElements();
 		this.pState = new StateElements();
 		this.pStates = new StatesElements();
+		this.pSingleSite = new SingleSiteElements();
+		this.pMultiSite = new MultiSiteElements();
 		this.pSite = new SiteElements();
 		this.pSites = new SitesElements();
 		this.pAgent = new AgentElements();
@@ -1662,11 +1900,15 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		this.pFreeLink = new FreeLinkElements();
 		this.pWhatEver = new WhatEverElements();
 		this.pBoundLink = new BoundLinkElements();
+		this.pMultiLink = new MultiLinkElements();
 		this.pBoundAnyOfTypeLinkAgent = new BoundAnyOfTypeLinkAgentElements();
 		this.pBoundAnyOfTypeLinkSite = new BoundAnyOfTypeLinkSiteElements();
 		this.pBoundAnyOfTypeLink = new BoundAnyOfTypeLinkElements();
 		this.pSiteState = new SiteStateElements();
 		this.pLinkState = new LinkStateElements();
+		this.pMultiLinkState = new MultiLinkStateElements();
+		this.pSingleSitePattern = new SingleSitePatternElements();
+		this.pMultiLinkSitePattern = new MultiLinkSitePatternElements();
 		this.pSitePattern = new SitePatternElements();
 		this.pSitePatterns = new SitePatternsElements();
 		this.pValidAgentPattern = new ValidAgentPatternElements();
@@ -1887,9 +2129,31 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		return getStatesAccess().getRule();
 	}
 	
-	//Site:
-	//	name=ID
+	//SingleSite Site:
+	//	{SingleSite} name=ID
 	//	states=States;
+	public SingleSiteElements getSingleSiteAccess() {
+		return pSingleSite;
+	}
+	
+	public ParserRule getSingleSiteRule() {
+		return getSingleSiteAccess().getRule();
+	}
+	
+	//MultiSite Site:
+	//	{MultiSite}
+	//	'*' name=ID
+	//	states=States;
+	public MultiSiteElements getMultiSiteAccess() {
+		return pMultiSite;
+	}
+	
+	public ParserRule getMultiSiteRule() {
+		return getMultiSiteAccess().getRule();
+	}
+	
+	//Site:
+	//	SingleSite | MultiSite;
 	public SiteElements getSiteAccess() {
 		return pSite;
 	}
@@ -1996,6 +2260,16 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		return getBoundLinkAccess().getRule();
 	}
 	
+	//MultiLink LinkState:
+	//	{MultiLink} (states+=(BoundLink | FreeLink) (',' states+=(BoundLink | FreeLink))+)?;
+	public MultiLinkElements getMultiLinkAccess() {
+		return pMultiLink;
+	}
+	
+	public ParserRule getMultiLinkRule() {
+		return getMultiLinkAccess().getRule();
+	}
+	
 	//BoundAnyOfTypeLinkAgent:
 	//	{BoundAnyOfTypeLinkAgent} agent=[Agent];
 	public BoundAnyOfTypeLinkAgentElements getBoundAnyOfTypeLinkAgentAccess() {
@@ -2050,9 +2324,41 @@ public class ReactionRulesGrammarAccess extends AbstractGrammarElementFinder {
 		return getLinkStateAccess().getRule();
 	}
 	
-	//SitePattern:
-	//	{SitePattern} site=[Site] state=SiteState?
+	//MultiLinkState:
+	//	{MultiLinkState}
+	//	'*[' linkState=(WhatEver | FreeLink | BoundAnyLink | MultiLink) ']';
+	public MultiLinkStateElements getMultiLinkStateAccess() {
+		return pMultiLinkState;
+	}
+	
+	public ParserRule getMultiLinkStateRule() {
+		return getMultiLinkStateAccess().getRule();
+	}
+	
+	//SingleSitePattern SitePattern:
+	//	{SingleSitePattern} site=[SingleSite] state=SiteState?
 	//	linkState=LinkState;
+	public SingleSitePatternElements getSingleSitePatternAccess() {
+		return pSingleSitePattern;
+	}
+	
+	public ParserRule getSingleSitePatternRule() {
+		return getSingleSitePatternAccess().getRule();
+	}
+	
+	//MultiLinkSitePattern SitePattern:
+	//	{MultiLinkSitePattern} site=[MultiSite] state=SiteState?
+	//	linkState=MultiLinkState;
+	public MultiLinkSitePatternElements getMultiLinkSitePatternAccess() {
+		return pMultiLinkSitePattern;
+	}
+	
+	public ParserRule getMultiLinkSitePatternRule() {
+		return getMultiLinkSitePatternAccess().getRule();
+	}
+	
+	//SitePattern:
+	//	SingleSitePattern | MultiLinkSitePattern;
 	public SitePatternElements getSitePatternAccess() {
 		return pSitePattern;
 	}

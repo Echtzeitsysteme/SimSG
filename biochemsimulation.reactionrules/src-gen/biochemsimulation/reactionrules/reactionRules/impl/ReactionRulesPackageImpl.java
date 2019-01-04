@@ -19,6 +19,10 @@ import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.Iterations;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.Model;
+import biochemsimulation.reactionrules.reactionRules.MultiLink;
+import biochemsimulation.reactionrules.reactionRules.MultiLinkSitePattern;
+import biochemsimulation.reactionrules.reactionRules.MultiLinkState;
+import biochemsimulation.reactionrules.reactionRules.MultiSite;
 import biochemsimulation.reactionrules.reactionRules.NumericAssignment;
 import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral;
 import biochemsimulation.reactionrules.reactionRules.NumericFromVariable;
@@ -34,6 +38,8 @@ import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 import biochemsimulation.reactionrules.reactionRules.Rule;
 import biochemsimulation.reactionrules.reactionRules.RuleBody;
 import biochemsimulation.reactionrules.reactionRules.RuleVariables;
+import biochemsimulation.reactionrules.reactionRules.SingleSite;
+import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.SitePatterns;
@@ -175,6 +181,13 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * @generated
    */
   private EClass siteStateEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass multiLinkStateEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -335,6 +348,20 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass singleSiteEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass multiSiteEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass boundAnyLinkEClass = null;
 
   /**
@@ -363,7 +390,28 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass multiLinkEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass boundAnyOfTypeLinkEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass singleSitePatternEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass multiLinkSitePatternEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -763,6 +811,26 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getMultiLinkState()
+  {
+    return multiLinkStateEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMultiLinkState_LinkState()
+  {
+    return (EReference)multiLinkStateEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getSitePattern()
   {
     return sitePatternEClass;
@@ -773,29 +841,9 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSitePattern_Site()
-  {
-    return (EReference)sitePatternEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getSitePattern_State()
   {
-    return (EReference)sitePatternEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getSitePattern_LinkState()
-  {
-    return (EReference)sitePatternEClass.getEStructuralFeatures().get(2);
+    return (EReference)sitePatternEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1223,6 +1271,26 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getSingleSite()
+  {
+    return singleSiteEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMultiSite()
+  {
+    return multiSiteEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBoundAnyLink()
   {
     return boundAnyLinkEClass;
@@ -1303,6 +1371,26 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getMultiLink()
+  {
+    return multiLinkEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMultiLink_States()
+  {
+    return (EReference)multiLinkEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBoundAnyOfTypeLink()
   {
     return boundAnyOfTypeLinkEClass;
@@ -1326,6 +1414,66 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
   public EReference getBoundAnyOfTypeLink_LinkSite()
   {
     return (EReference)boundAnyOfTypeLinkEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getSingleSitePattern()
+  {
+    return singleSitePatternEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSingleSitePattern_Site()
+  {
+    return (EReference)singleSitePatternEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSingleSitePattern_LinkState()
+  {
+    return (EReference)singleSitePatternEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMultiLinkSitePattern()
+  {
+    return multiLinkSitePatternEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMultiLinkSitePattern_Site()
+  {
+    return (EReference)multiLinkSitePatternEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMultiLinkSitePattern_LinkState()
+  {
+    return (EReference)multiLinkSitePatternEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1407,10 +1555,11 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     siteStateEClass = createEClass(SITE_STATE);
     createEReference(siteStateEClass, SITE_STATE__STATE);
 
+    multiLinkStateEClass = createEClass(MULTI_LINK_STATE);
+    createEReference(multiLinkStateEClass, MULTI_LINK_STATE__LINK_STATE);
+
     sitePatternEClass = createEClass(SITE_PATTERN);
-    createEReference(sitePatternEClass, SITE_PATTERN__SITE);
     createEReference(sitePatternEClass, SITE_PATTERN__STATE);
-    createEReference(sitePatternEClass, SITE_PATTERN__LINK_STATE);
 
     sitePatternsEClass = createEClass(SITE_PATTERNS);
     createEReference(sitePatternsEClass, SITE_PATTERNS__SITE_PATTERNS);
@@ -1475,6 +1624,10 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     terminateEClass = createEClass(TERMINATE);
     createEReference(terminateEClass, TERMINATE__CONDITION);
 
+    singleSiteEClass = createEClass(SINGLE_SITE);
+
+    multiSiteEClass = createEClass(MULTI_SITE);
+
     boundAnyLinkEClass = createEClass(BOUND_ANY_LINK);
     createEAttribute(boundAnyLinkEClass, BOUND_ANY_LINK__NAME);
 
@@ -1487,9 +1640,20 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     boundLinkEClass = createEClass(BOUND_LINK);
     createEAttribute(boundLinkEClass, BOUND_LINK__STATE);
 
+    multiLinkEClass = createEClass(MULTI_LINK);
+    createEReference(multiLinkEClass, MULTI_LINK__STATES);
+
     boundAnyOfTypeLinkEClass = createEClass(BOUND_ANY_OF_TYPE_LINK);
     createEReference(boundAnyOfTypeLinkEClass, BOUND_ANY_OF_TYPE_LINK__LINK_AGENT);
     createEReference(boundAnyOfTypeLinkEClass, BOUND_ANY_OF_TYPE_LINK__LINK_SITE);
+
+    singleSitePatternEClass = createEClass(SINGLE_SITE_PATTERN);
+    createEReference(singleSitePatternEClass, SINGLE_SITE_PATTERN__SITE);
+    createEReference(singleSitePatternEClass, SINGLE_SITE_PATTERN__LINK_STATE);
+
+    multiLinkSitePatternEClass = createEClass(MULTI_LINK_SITE_PATTERN);
+    createEReference(multiLinkSitePatternEClass, MULTI_LINK_SITE_PATTERN__SITE);
+    createEReference(multiLinkSitePatternEClass, MULTI_LINK_SITE_PATTERN__LINK_STATE);
   }
 
   /**
@@ -1538,11 +1702,16 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     timeEClass.getESuperTypes().add(this.getTerminationCondition());
     populationEClass.getESuperTypes().add(this.getTerminationCondition());
     terminateEClass.getESuperTypes().add(this.getReactionProperty());
+    singleSiteEClass.getESuperTypes().add(this.getSite());
+    multiSiteEClass.getESuperTypes().add(this.getSite());
     boundAnyLinkEClass.getESuperTypes().add(this.getLinkState());
     freeLinkEClass.getESuperTypes().add(this.getLinkState());
     whatEverEClass.getESuperTypes().add(this.getLinkState());
     boundLinkEClass.getESuperTypes().add(this.getLinkState());
+    multiLinkEClass.getESuperTypes().add(this.getLinkState());
     boundAnyOfTypeLinkEClass.getESuperTypes().add(this.getLinkState());
+    singleSitePatternEClass.getESuperTypes().add(this.getSitePattern());
+    multiLinkSitePatternEClass.getESuperTypes().add(this.getSitePattern());
 
     // Initialize classes and features; add operations and parameters
     initEClass(reactionRuleModelEClass, ReactionRuleModel.class, "ReactionRuleModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1594,10 +1763,11 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     initEClass(siteStateEClass, SiteState.class, "SiteState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getSiteState_State(), this.getState(), null, "state", null, 0, 1, SiteState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(multiLinkStateEClass, MultiLinkState.class, "MultiLinkState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMultiLinkState_LinkState(), this.getLinkState(), null, "linkState", null, 0, 1, MultiLinkState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(sitePatternEClass, SitePattern.class, "SitePattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSitePattern_Site(), this.getSite(), null, "site", null, 0, 1, SitePattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSitePattern_State(), this.getSiteState(), null, "state", null, 0, 1, SitePattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSitePattern_LinkState(), this.getLinkState(), null, "linkState", null, 0, 1, SitePattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(sitePatternsEClass, SitePatterns.class, "SitePatterns", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getSitePatterns_SitePatterns(), this.getSitePattern(), null, "sitePatterns", null, 0, -1, SitePatterns.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1662,6 +1832,10 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     initEClass(terminateEClass, Terminate.class, "Terminate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTerminate_Condition(), this.getTerminationCondition(), null, "condition", null, 0, 1, Terminate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(singleSiteEClass, SingleSite.class, "SingleSite", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(multiSiteEClass, MultiSite.class, "MultiSite", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
     initEClass(boundAnyLinkEClass, BoundAnyLink.class, "BoundAnyLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getBoundAnyLink_Name(), ecorePackage.getEString(), "name", null, 0, 1, BoundAnyLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1674,9 +1848,20 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     initEClass(boundLinkEClass, BoundLink.class, "BoundLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getBoundLink_State(), ecorePackage.getEString(), "state", null, 0, 1, BoundLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(multiLinkEClass, MultiLink.class, "MultiLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMultiLink_States(), this.getLinkState(), null, "states", null, 0, -1, MultiLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(boundAnyOfTypeLinkEClass, BoundAnyOfTypeLink.class, "BoundAnyOfTypeLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getBoundAnyOfTypeLink_LinkAgent(), this.getBoundAnyOfTypeLinkAgent(), null, "linkAgent", null, 0, 1, BoundAnyOfTypeLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getBoundAnyOfTypeLink_LinkSite(), this.getBoundAnyOfTypeLinkSite(), null, "linkSite", null, 0, 1, BoundAnyOfTypeLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(singleSitePatternEClass, SingleSitePattern.class, "SingleSitePattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSingleSitePattern_Site(), this.getSingleSite(), null, "site", null, 0, 1, SingleSitePattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSingleSitePattern_LinkState(), this.getLinkState(), null, "linkState", null, 0, 1, SingleSitePattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(multiLinkSitePatternEClass, MultiLinkSitePattern.class, "MultiLinkSitePattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMultiLinkSitePattern_Site(), this.getMultiSite(), null, "site", null, 0, 1, MultiLinkSitePattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMultiLinkSitePattern_LinkState(), this.getMultiLinkState(), null, "linkState", null, 0, 1, MultiLinkSitePattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

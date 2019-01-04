@@ -13,6 +13,7 @@ import biochemsimulation.reactioncontainer.util.StateClassFactory;
 import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
+import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
@@ -58,7 +59,10 @@ public class InitializationTemplate {
 			for(SitePattern sp : vap.getSitePatterns().getSitePatterns()) {
 				if(sp == null) continue;
 				if(sp.getState() == null) continue;
-				states.replace(sp.getSite(), sp.getState().getState());
+				// ignore multi-link site patterns for now
+				if(!(sp instanceof SingleSitePattern)) continue;
+				SingleSitePattern ssp = (SingleSitePattern) sp;
+				states.replace(ssp.getSite(), sp.getState().getState());
 			}
 			states.forEach((site, state) -> {
 				agentTemplates.get(vap).defineState(site, state);
@@ -71,8 +75,11 @@ public class InitializationTemplate {
 			
 			for(SitePattern sp : vap.getSitePatterns().getSitePatterns()) {
 				if(sp == null) continue;
+				// ignore multi-link site patterns for now
+				if(!(sp instanceof SingleSitePattern)) continue;
+				SingleSitePattern ssp = (SingleSitePattern) sp;
 				
-				LinkState ls1 = sp.getLinkState().getLinkState();
+				LinkState ls1 = ssp.getLinkState().getLinkState();
 				if(ls1 == null) continue;
 				if(!(ls1 instanceof BoundLink)) continue;
 				
@@ -84,15 +91,18 @@ public class InitializationTemplate {
 					
 					for(SitePattern sp2 : vap2.getSitePatterns().getSitePatterns()) {
 						if(sp2 == null) continue;
+						// ignore multi-link site patterns for now
+						if(!(sp2 instanceof SingleSitePattern)) continue;
+						SingleSitePattern ssp2 = (SingleSitePattern) sp2;
 						
-						LinkState ls2 = sp2.getLinkState().getLinkState();
+						LinkState ls2 = ssp2.getLinkState().getLinkState();
 						if(ls2 == null) continue;
 						if(!(ls2 instanceof BoundLink)) continue;
 						
 						BoundLink bl2 = (BoundLink)ls2;
 						int idx2 = Integer.valueOf(bl2.getState());
 						if(idx1 != idx2) continue;
-						agentTemplates.get(vap).defineReference(sp.getSite(), agentTemplates.get(vap2));
+						agentTemplates.get(vap).defineReference(ssp.getSite(), agentTemplates.get(vap2));
 						
 					}
 				}

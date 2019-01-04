@@ -191,6 +191,13 @@ public class ReactionRulesSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ReactionRulesPackage.MULTI_LINK_STATE:
+      {
+        MultiLinkState multiLinkState = (MultiLinkState)theEObject;
+        T result = caseMultiLinkState(multiLinkState);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ReactionRulesPackage.SITE_PATTERN:
       {
         SitePattern sitePattern = (SitePattern)theEObject;
@@ -358,6 +365,22 @@ public class ReactionRulesSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ReactionRulesPackage.SINGLE_SITE:
+      {
+        SingleSite singleSite = (SingleSite)theEObject;
+        T result = caseSingleSite(singleSite);
+        if (result == null) result = caseSite(singleSite);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReactionRulesPackage.MULTI_SITE:
+      {
+        MultiSite multiSite = (MultiSite)theEObject;
+        T result = caseMultiSite(multiSite);
+        if (result == null) result = caseSite(multiSite);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ReactionRulesPackage.BOUND_ANY_LINK:
       {
         BoundAnyLink boundAnyLink = (BoundAnyLink)theEObject;
@@ -390,11 +413,35 @@ public class ReactionRulesSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ReactionRulesPackage.MULTI_LINK:
+      {
+        MultiLink multiLink = (MultiLink)theEObject;
+        T result = caseMultiLink(multiLink);
+        if (result == null) result = caseLinkState(multiLink);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK:
       {
         BoundAnyOfTypeLink boundAnyOfTypeLink = (BoundAnyOfTypeLink)theEObject;
         T result = caseBoundAnyOfTypeLink(boundAnyOfTypeLink);
         if (result == null) result = caseLinkState(boundAnyOfTypeLink);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReactionRulesPackage.SINGLE_SITE_PATTERN:
+      {
+        SingleSitePattern singleSitePattern = (SingleSitePattern)theEObject;
+        T result = caseSingleSitePattern(singleSitePattern);
+        if (result == null) result = caseSitePattern(singleSitePattern);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ReactionRulesPackage.MULTI_LINK_SITE_PATTERN:
+      {
+        MultiLinkSitePattern multiLinkSitePattern = (MultiLinkSitePattern)theEObject;
+        T result = caseMultiLinkSitePattern(multiLinkSitePattern);
+        if (result == null) result = caseSitePattern(multiLinkSitePattern);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -654,6 +701,22 @@ public class ReactionRulesSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseSiteState(SiteState object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Multi Link State</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Multi Link State</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMultiLinkState(MultiLinkState object)
   {
     return null;
   }
@@ -1011,6 +1074,38 @@ public class ReactionRulesSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Single Site</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Single Site</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSingleSite(SingleSite object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Multi Site</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Multi Site</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMultiSite(MultiSite object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Bound Any Link</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1075,6 +1170,22 @@ public class ReactionRulesSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Multi Link</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Multi Link</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMultiLink(MultiLink object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Bound Any Of Type Link</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1086,6 +1197,38 @@ public class ReactionRulesSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseBoundAnyOfTypeLink(BoundAnyOfTypeLink object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Single Site Pattern</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Single Site Pattern</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSingleSitePattern(SingleSitePattern object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Multi Link Site Pattern</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Multi Link Site Pattern</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMultiLinkSitePattern(MultiLinkSitePattern object)
   {
     return null;
   }

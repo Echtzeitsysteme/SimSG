@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="http://www.eclipse.org/emf/2002/Ecore java://org.eclipse.emf.ecore.EcorePackage"
+    name="Goldbeter_Koshland" nsURI="platform:/resource/biochemsimulation.reactioncontainer/generated/Goldbeter_Koshland"
+    nsPrefix="Goldbeter_Koshland">
+  <eClassifiers xmi:type="ecore:EClass" name="K" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent">
+    <eStructuralFeatures xmi:type="ecore:EReference" name="K_a" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="P" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent">
+    <eStructuralFeatures xmi:type="ecore:EReference" name="P_a" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="T" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent">
+    <eStructuralFeatures xmi:type="ecore:EReference" name="T_x" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="T_x_u" eType="#//u"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="T_x_p" eType="#//p"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="T_y" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="T_y_u" eType="#//u"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="T_y_p" eType="#//p"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="u" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//State"/>
+  <eClassifiers xmi:type="ecore:EClass" name="p" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//State"/>
+</ecore:EPackage>

@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import biochemsimulation.reactioncontainer.util.EPackageWrapper;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
+import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 
@@ -216,34 +217,42 @@ public class HybridPattern {
 	
 	boolean patternsIntersectFwd(ValidAgentPattern vap1, ValidAgentPattern vap2) {
 		for(SitePattern sp1 : vap1.getSitePatterns().getSitePatterns()) {
-			String sp1Name = sp1.getSite().getName();
+			// ignore multi-link site patterns for now
+			if(!(sp1 instanceof SingleSitePattern)) continue;
+			SingleSitePattern ssp1 = (SingleSitePattern) sp1;
+			
+			String sp1Name = ssp1.getSite().getName();
 			
 			String sp1State = null;
-			if(sp1.getState() != null) {
-				sp1State = sp1.getState().getState().getName();
-			}else if(sp1.getSite().getStates().getState() != null) {
-				if(sp1.getSite().getStates().getState().size()>0) {
-					sp1State = sp1.getSite().getStates().getState().get(0).getName();
+			if(ssp1.getState() != null) {
+				sp1State = ssp1.getState().getState().getName();
+			}else if(ssp1.getSite().getStates().getState() != null) {
+				if(ssp1.getSite().getStates().getState().size()>0) {
+					sp1State = ssp1.getSite().getStates().getState().get(0).getName();
 				}
 			}
 			
 			LinkStateType lst1 = null;
-			if(sp1.getLinkState().getLinkState() != null) {
-				lst1 = LinkStateType.enumFromLinkState(sp1.getLinkState().getLinkState());
+			if(ssp1.getLinkState().getLinkState() != null) {
+				lst1 = LinkStateType.enumFromLinkState(ssp1.getLinkState().getLinkState());
 			}
 			
 			for(SitePattern sp2 : vap2.getSitePatterns().getSitePatterns()) {
-				String sp2Name = sp2.getSite().getName();
+				// ignore multi-link site patterns for now
+				if(!(sp2 instanceof SingleSitePattern)) continue;
+				SingleSitePattern ssp2 = (SingleSitePattern) sp2;
+				
+				String sp2Name = ssp2.getSite().getName();
 				if(!sp1Name.equals(sp2Name)) {
 					continue;
 				}
 				
 				if(sp1State != null) {
 					String sp2State = null;
-					if(sp2.getState() != null) {
-						sp2State = sp2.getState().getState().getName();
-					}else if(sp2.getSite().getStates().getState() != null) {
-						sp2State = sp2.getSite().getStates().getState().get(0).getName();
+					if(ssp2.getState() != null) {
+						sp2State = ssp2.getState().getState().getName();
+					}else if(ssp2.getSite().getStates().getState() != null) {
+						sp2State = ssp2.getSite().getStates().getState().get(0).getName();
 					}
 					if(!sp1State.equals(sp2State)) {
 						return false;
@@ -251,8 +260,8 @@ public class HybridPattern {
 				}
 				
 				LinkStateType lst2 = null;
-				if(sp2.getLinkState().getLinkState() != null) {
-					lst2 = LinkStateType.enumFromLinkState(sp2.getLinkState().getLinkState());
+				if(ssp2.getLinkState().getLinkState() != null) {
+					lst2 = LinkStateType.enumFromLinkState(ssp2.getLinkState().getLinkState());
 				}
 				
 				if(lst2 == LinkStateType.WhatEver || lst1 == LinkStateType.WhatEver) {
@@ -268,8 +277,8 @@ public class HybridPattern {
 				}
 				
 				if(lst1 == LinkStateType.BoundAnyOfType && lst2 == LinkStateType.BoundAnyOfType) {
-					BoundAnyOfTypeLink baotl1 = (BoundAnyOfTypeLink)sp1.getLinkState().getLinkState();
-					BoundAnyOfTypeLink baotl2 = (BoundAnyOfTypeLink)sp2.getLinkState().getLinkState();
+					BoundAnyOfTypeLink baotl1 = (BoundAnyOfTypeLink)ssp1.getLinkState().getLinkState();
+					BoundAnyOfTypeLink baotl2 = (BoundAnyOfTypeLink)ssp2.getLinkState().getLinkState();
 					if(!baotl1.getLinkAgent().getAgent().getName().equals(baotl2.getLinkAgent().getAgent().getName())) {
 						return false;
 					}

@@ -3,30 +3,30 @@
   <model xmi:type="reactionRules:Model" name="test2"/>
   <reactionProperties xmi:type="reactionRules:Agent" name="A">
     <sites xmi:type="reactionRules:Sites">
-      <sites xmi:type="reactionRules:Site" name="x">
+      <sites xmi:type="reactionRules:SingleSite" name="x">
         <states xmi:type="reactionRules:States"/>
       </sites>
-      <sites xmi:type="reactionRules:Site" name="c">
+      <sites xmi:type="reactionRules:SingleSite" name="c">
         <states xmi:type="reactionRules:States"/>
       </sites>
     </sites>
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:Agent" name="B">
     <sites xmi:type="reactionRules:Sites">
-      <sites xmi:type="reactionRules:Site" name="x">
+      <sites xmi:type="reactionRules:SingleSite" name="x">
         <states xmi:type="reactionRules:States"/>
       </sites>
     </sites>
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:Agent" name="C">
     <sites xmi:type="reactionRules:Sites">
-      <sites xmi:type="reactionRules:Site" name="x">
+      <sites xmi:type="reactionRules:SingleSite" name="x">
         <states xmi:type="reactionRules:States">
           <state xmi:type="reactionRules:State" name="u"/>
           <state xmi:type="reactionRules:State" name="p"/>
         </states>
       </sites>
-      <sites xmi:type="reactionRules:Site" name="c">
+      <sites xmi:type="reactionRules:SingleSite" name="c">
         <states xmi:type="reactionRules:States">
           <state xmi:type="reactionRules:State" name="u"/>
           <state xmi:type="reactionRules:State" name="p"/>
@@ -36,7 +36,14 @@
   </reactionProperties>
   <reactionProperties xmi:type="reactionRules:Agent" name="D">
     <sites xmi:type="reactionRules:Sites">
-      <sites xmi:type="reactionRules:Site" name="c">
+      <sites xmi:type="reactionRules:SingleSite" name="c">
+        <states xmi:type="reactionRules:States"/>
+      </sites>
+    </sites>
+  </reactionProperties>
+  <reactionProperties xmi:type="reactionRules:Agent" name="M">
+    <sites xmi:type="reactionRules:Sites">
+      <sites xmi:type="reactionRules:MultiSite" name="a">
         <states xmi:type="reactionRules:States"/>
       </sites>
     </sites>
@@ -73,7 +80,7 @@
       <pattern xmi:type="reactionRules:Pattern">
         <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
           <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.0/@sites/@sites.0">
+            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.0">
               <linkState xmi:type="reactionRules:LinkState">
                 <linkState xmi:type="reactionRules:BoundLink" state="1"/>
               </linkState>
@@ -82,7 +89,7 @@
         </agentPatterns>
         <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.1">
           <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.1/@sites/@sites.0">
+            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.0">
               <linkState xmi:type="reactionRules:LinkState">
                 <linkState xmi:type="reactionRules:BoundLink" state="1"/>
               </linkState>
@@ -100,7 +107,7 @@
       <pattern xmi:type="reactionRules:Pattern">
         <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.2">
           <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.2/@sites/@sites.0">
+            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.2/@sites/@sites.0">
               <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.2/@sites/@sites.0/@states/@state.0"/>
               <linkState xmi:type="reactionRules:LinkState">
                 <linkState xmi:type="reactionRules:FreeLink" name="free"/>
@@ -119,7 +126,7 @@
       <pattern xmi:type="reactionRules:Pattern">
         <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
           <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.0/@sites/@sites.0">
+            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.0">
               <linkState xmi:type="reactionRules:LinkState">
                 <linkState xmi:type="reactionRules:BoundLink" state="1"/>
               </linkState>
@@ -128,7 +135,7 @@
         </agentPatterns>
         <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.2">
           <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.2/@sites/@sites.0">
+            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.2/@sites/@sites.0">
               <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.2/@sites/@sites.0/@states/@state.1"/>
               <linkState xmi:type="reactionRules:LinkState">
                 <linkState xmi:type="reactionRules:BoundLink" state="1"/>
@@ -157,7 +164,7 @@
         <pattern xmi:type="reactionRules:Pattern">
           <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
             <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.0/@sites/@sites.0">
+              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.0">
                 <linkState xmi:type="reactionRules:LinkState">
                   <linkState xmi:type="reactionRules:FreeLink" name="free"/>
                 </linkState>
@@ -166,7 +173,7 @@
           </agentPatterns>
           <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.1">
             <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.1/@sites/@sites.0">
+              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.0">
                 <linkState xmi:type="reactionRules:LinkState">
                   <linkState xmi:type="reactionRules:FreeLink" name="free"/>
                 </linkState>
@@ -179,7 +186,7 @@
         <pattern xmi:type="reactionRules:Pattern">
           <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
             <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.0/@sites/@sites.0">
+              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.0">
                 <linkState xmi:type="reactionRules:LinkState">
                   <linkState xmi:type="reactionRules:BoundLink" state="1"/>
                 </linkState>
@@ -188,7 +195,7 @@
           </agentPatterns>
           <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.1">
             <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.1/@sites/@sites.0">
+              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.0">
                 <linkState xmi:type="reactionRules:LinkState">
                   <linkState xmi:type="reactionRules:BoundLink" state="1"/>
                 </linkState>
@@ -198,8 +205,8 @@
         </pattern>
       </rhs>
       <variables xmi:type="reactionRules:RuleVariables">
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.4"/>
         <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.5"/>
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.6"/>
       </variables>
     </rule>
   </reactionProperties>
@@ -209,7 +216,7 @@
         <pattern xmi:type="reactionRules:Pattern">
           <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
             <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.0/@sites/@sites.0">
+              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.0">
                 <linkState xmi:type="reactionRules:LinkState">
                   <linkState xmi:type="reactionRules:WhatEver" name="?"/>
                 </linkState>
@@ -218,7 +225,7 @@
           </agentPatterns>
           <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.1">
             <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.1/@sites/@sites.0">
+              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.0">
                 <linkState xmi:type="reactionRules:LinkState">
                   <linkState xmi:type="reactionRules:WhatEver" name="?"/>
                 </linkState>
@@ -234,8 +241,8 @@
         </pattern>
       </rhs>
       <variables xmi:type="reactionRules:RuleVariables">
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.4"/>
         <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.5"/>
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.6"/>
       </variables>
     </rule>
   </reactionProperties>
@@ -245,7 +252,7 @@
         <pattern xmi:type="reactionRules:Pattern">
           <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.2">
             <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.2/@sites/@sites.0">
+              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.2/@sites/@sites.0">
                 <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.2/@sites/@sites.0/@states/@state.0"/>
                 <linkState xmi:type="reactionRules:LinkState">
                   <linkState xmi:type="reactionRules:WhatEver" name="?"/>
@@ -261,7 +268,7 @@
         </pattern>
       </rhs>
       <variables xmi:type="reactionRules:RuleVariables">
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.4"/>
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.5"/>
       </variables>
     </rule>
   </reactionProperties>
@@ -271,7 +278,7 @@
         <pattern xmi:type="reactionRules:Pattern">
           <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.2">
             <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.2/@sites/@sites.0">
+              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.2/@sites/@sites.0">
                 <linkState xmi:type="reactionRules:LinkState">
                   <linkState xmi:type="reactionRules:WhatEver" name="?"/>
                 </linkState>
@@ -286,7 +293,7 @@
         </pattern>
       </rhs>
       <variables xmi:type="reactionRules:RuleVariables">
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.4"/>
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.5"/>
       </variables>
     </rule>
   </reactionProperties>
@@ -296,7 +303,7 @@
         <pattern xmi:type="reactionRules:Pattern">
           <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
             <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.0/@sites/@sites.0">
+              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.0">
                 <linkState xmi:type="reactionRules:LinkState">
                   <linkState xmi:type="reactionRules:BoundAnyOfTypeLink">
                     <linkAgent xmi:type="reactionRules:BoundAnyOfTypeLinkAgent" agent="//@reactionProperties.1"/>
@@ -314,7 +321,7 @@
         </pattern>
       </rhs>
       <variables xmi:type="reactionRules:RuleVariables">
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.4"/>
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.5"/>
       </variables>
     </rule>
   </reactionProperties>
@@ -324,7 +331,7 @@
         <pattern xmi:type="reactionRules:Pattern">
           <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
             <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.0/@sites/@sites.0">
+              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.0">
                 <linkState xmi:type="reactionRules:LinkState">
                   <linkState xmi:type="reactionRules:BoundAnyLink" name="bound"/>
                 </linkState>
@@ -339,7 +346,7 @@
         </pattern>
       </rhs>
       <variables xmi:type="reactionRules:RuleVariables">
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.4"/>
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.5"/>
       </variables>
     </rule>
   </reactionProperties>
@@ -349,7 +356,7 @@
         <pattern xmi:type="reactionRules:Pattern">
           <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.3">
             <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.3/@sites/@sites.0">
+              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.3/@sites/@sites.0">
                 <linkState xmi:type="reactionRules:LinkState">
                   <linkState xmi:type="reactionRules:FreeLink" name="free"/>
                 </linkState>
@@ -358,7 +365,7 @@
           </agentPatterns>
           <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.3">
             <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.3/@sites/@sites.0">
+              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.3/@sites/@sites.0">
                 <linkState xmi:type="reactionRules:LinkState">
                   <linkState xmi:type="reactionRules:FreeLink" name="free"/>
                 </linkState>
@@ -374,7 +381,82 @@
         </pattern>
       </rhs>
       <variables xmi:type="reactionRules:RuleVariables">
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.4"/>
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.5"/>
+      </variables>
+    </rule>
+  </reactionProperties>
+  <reactionProperties xmi:type="reactionRules:Rule" name="multi">
+    <rule xmi:type="reactionRules:RuleBody" operator="->">
+      <lhs xmi:type="reactionRules:AssignFromPattern">
+        <pattern xmi:type="reactionRules:Pattern">
+          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.4">
+            <sitePatterns xmi:type="reactionRules:SitePatterns">
+              <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.4/@sites/@sites.0">
+                <linkState xmi:type="reactionRules:MultiLinkState">
+                  <linkState xmi:type="reactionRules:MultiLink">
+                    <states xmi:type="reactionRules:BoundLink" state="1"/>
+                    <states xmi:type="reactionRules:BoundLink" state="2"/>
+                  </linkState>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
+            <sitePatterns xmi:type="reactionRules:SitePatterns">
+              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.0">
+                <linkState xmi:type="reactionRules:LinkState">
+                  <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.1">
+            <sitePatterns xmi:type="reactionRules:SitePatterns">
+              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.0">
+                <linkState xmi:type="reactionRules:LinkState">
+                  <linkState xmi:type="reactionRules:BoundLink" state="2"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+        </pattern>
+      </lhs>
+      <rhs xmi:type="reactionRules:AssignFromPattern">
+        <pattern xmi:type="reactionRules:Pattern">
+          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.4">
+            <sitePatterns xmi:type="reactionRules:SitePatterns">
+              <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.4/@sites/@sites.0">
+                <linkState xmi:type="reactionRules:MultiLinkState">
+                  <linkState xmi:type="reactionRules:MultiLink">
+                    <states xmi:type="reactionRules:BoundLink" state="1"/>
+                    <states xmi:type="reactionRules:FreeLink" name="free"/>
+                  </linkState>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
+            <sitePatterns xmi:type="reactionRules:SitePatterns">
+              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.0">
+                <linkState xmi:type="reactionRules:LinkState">
+                  <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.1">
+            <sitePatterns xmi:type="reactionRules:SitePatterns">
+              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.0">
+                <linkState xmi:type="reactionRules:LinkState">
+                  <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+        </pattern>
+      </rhs>
+      <variables xmi:type="reactionRules:RuleVariables">
+        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.5"/>
       </variables>
     </rule>
   </reactionProperties>
@@ -383,7 +465,7 @@
       <pattern xmi:type="reactionRules:Pattern">
         <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
           <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.0/@sites/@sites.0">
+            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.0">
               <linkState xmi:type="reactionRules:LinkState">
                 <linkState xmi:type="reactionRules:FreeLink" name="free"/>
               </linkState>
@@ -392,7 +474,7 @@
         </agentPatterns>
         <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.1">
           <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.1/@sites/@sites.0">
+            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.0">
               <linkState xmi:type="reactionRules:LinkState">
                 <linkState xmi:type="reactionRules:FreeLink" name="free"/>
               </linkState>
@@ -414,7 +496,7 @@
         <pattern xmi:type="reactionRules:Pattern">
           <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
             <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.0/@sites/@sites.0">
+              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.0">
                 <linkState xmi:type="reactionRules:LinkState">
                   <linkState xmi:type="reactionRules:BoundLink" state="1"/>
                 </linkState>
@@ -423,7 +505,7 @@
           </agentPatterns>
           <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.1">
             <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SitePattern" site="//@reactionProperties.1/@sites/@sites.0">
+              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.0">
                 <linkState xmi:type="reactionRules:LinkState">
                   <linkState xmi:type="reactionRules:BoundLink" state="1"/>
                 </linkState>

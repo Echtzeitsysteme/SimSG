@@ -30,6 +30,7 @@ import biochemsimulation.reactionrules.reactionRules.WhatEver
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern
 import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern
+import biochemsimulation.reactionrules.reactionRules.SingleSitePattern
 
 /**
  * This class contains custom validation rules. 
@@ -132,10 +133,16 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 			if(ap instanceof ValidAgentPattern) {
 				val vap = ap  as ValidAgentPattern
 				for(sp : vap.sitePatterns.sitePatterns) {
-					val linkState = sp.linkState.linkState
-					if(linkState instanceof BoundAnyLink || linkState instanceof WhatEver || linkState instanceof BoundAnyOfTypeLink) {
-						error('Illegal initial link state! A pattern may only be instantiated with link states of Type: FreeLink("free"), IndexedLink("INT")', null)
+					if(sp instanceof SingleSitePattern){
+						val slsp = sp as SingleSitePattern
+						val linkState = slsp.linkState.linkState
+						if(linkState instanceof BoundAnyLink || linkState instanceof WhatEver || linkState instanceof BoundAnyOfTypeLink) {
+							error('Illegal initial link state! A pattern may only be instantiated with link states of Type: FreeLink("free"), IndexedLink("INT")', null)
+						}
+					}else {
+						//ToDo MultiLink validation
 					}
+					
 				}
 			}
 			
@@ -335,26 +342,32 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 						for(var i=0; i<ap_1.sitePatterns.sitePatterns.size; i++) {
 							val sp_1 = ap_1.sitePatterns.sitePatterns.get(i);
 							val sp_2 = ap_2.sitePatterns.sitePatterns.get(i);
-							if(sp_1.site != sp_2.site){
-								error('Two arguments at the same index on lhs and rhs must have the same sites.', 
-								ReactionRulesPackage.Literals.RULE_BODY__LHS
-								)
-								error('Two arguments at the same index on lhs and rhs must have the same sites.', 
-								ReactionRulesPackage.Literals.RULE_BODY__RHS
-								)
+							if(sp_1 instanceof SingleSitePattern && sp_2 instanceof SingleSitePattern) {
+								val ssp_1 = sp_1 as SingleSitePattern;
+								val ssp_2 = sp_2 as SingleSitePattern;
+								
+								if(ssp_1.site != ssp_2.site){
+									error('Two arguments at the same index on lhs and rhs must have the same sites.', 
+									ReactionRulesPackage.Literals.RULE_BODY__LHS
+									)
+									error('Two arguments at the same index on lhs and rhs must have the same sites.', 
+									ReactionRulesPackage.Literals.RULE_BODY__RHS
+									)
+								}
+								val st_1 = ssp_1.state;
+								val st_2 = ssp_2.state;
+								if(st_1 === null && st_2 !== null){
+									error('If an argument on the rhs defines a state, the corresponding argument on the lhs must define a state as well.', 
+									ReactionRulesPackage.Literals.RULE_BODY__RHS
+									)
+								}
+								if(st_2 === null && st_1 !== null){
+									error('If an argument on the lhs defines a state, the corresponding argument on the rhs must define a state as well.', 
+									ReactionRulesPackage.Literals.RULE_BODY__LHS
+									)
+								}
 							}
-							val st_1 = sp_1.state;
-							val st_2 = sp_2.state;
-							if(st_1 === null && st_2 !== null){
-								error('If an argument on the rhs defines a state, the corresponding argument on the lhs must define a state as well.', 
-								ReactionRulesPackage.Literals.RULE_BODY__RHS
-								)
-							}
-							if(st_2 === null && st_1 !== null){
-								error('If an argument on the lhs defines a state, the corresponding argument on the rhs must define a state as well.', 
-								ReactionRulesPackage.Literals.RULE_BODY__LHS
-								)
-							}
+							
 						}
 					}
 				}
@@ -385,11 +398,14 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 		siteSet.addAll(sites)
 		
 		for(candidate : candidates) {
-			var sp = candidate as SitePattern
-			var spSite = sp.site
-			if(!siteSet.contains(spSite)) {
-				error('This Agent does not have a site with ID='+spSite.name, ReactionRulesPackage.Literals.VALID_AGENT_PATTERN__SITE_PATTERNS)
+			if(candidate instanceof SingleSitePattern) {
+				var sp = candidate as SingleSitePattern
+				var spSite = sp.site
+				if(!siteSet.contains(spSite)) {
+					error('This Agent does not have a site with ID='+spSite.name, ReactionRulesPackage.Literals.VALID_AGENT_PATTERN__SITE_PATTERNS)
+				}
 			}
+			
 		}
 	}
 	

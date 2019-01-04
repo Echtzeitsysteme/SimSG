@@ -12,6 +12,7 @@ import biochemsimulation.reactioncontainer.util.StateClassFactory;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
 import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
+import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 
@@ -149,15 +150,19 @@ public class GenericPatternBody {
 			AgentNodeContext currentAgentNodeContext = agentNodeContexts.get(pattern);
 			List<SiteNodeContext> currentSiteNodeContexts = new LinkedList<SiteNodeContext>();
 			for(SitePattern sitePattern : pattern.getSitePatterns().getSitePatterns()) {
-				SiteNodeContext currentSiteNodeContext = new SiteNodeContext(currentAgentNodeContext, sitePattern.getSite().getName());
-				if(sitePattern.getState() != null) {
-					String refName = StateClassFactory.createReferenceName(pattern.getAgent(), sitePattern.getSite(), sitePattern.getState().getState());
-					String stateName = sitePattern.getState().getState().getName();
+				// ignore multi-link site patterns for now
+				if(!(sitePattern instanceof SingleSitePattern)) continue;
+				SingleSitePattern ssp = (SingleSitePattern) sitePattern;
+				
+				SiteNodeContext currentSiteNodeContext = new SiteNodeContext(currentAgentNodeContext, ssp.getSite().getName());
+				if(ssp.getState() != null) {
+					String refName = StateClassFactory.createReferenceName(pattern.getAgent(), ssp.getSite(), ssp.getState().getState());
+					String stateName = ssp.getState().getState().getName();
 					siteStateContexts.put(currentSiteNodeContext, new SiteStateContext(currentSiteNodeContext, metaModel.getEReference(refName), metaModel.getClass(stateName)));
 				}
-				if(sitePattern.getLinkState().getLinkState() != null) {
-					String refName = AgentClassFactory.createReferenceName(pattern.getAgent(), sitePattern.getSite());
-					LinkState ls = sitePattern.getLinkState().getLinkState();
+				if(ssp.getLinkState().getLinkState() != null) {
+					String refName = AgentClassFactory.createReferenceName(pattern.getAgent(), ssp.getSite());
+					LinkState ls = ssp.getLinkState().getLinkState();
 					linkStateContexts.put(currentSiteNodeContext, new LinkStateContext(currentSiteNodeContext, LinkStateType.enumFromLinkState(ls), metaModel.getEReference(refName)));
 				}
 				currentSiteNodeContexts.add(currentSiteNodeContext);
@@ -190,7 +195,11 @@ public class GenericPatternBody {
 				}
 				
 				LinkStateContext currentLinkStateContext = linkStateContexts.get(currentSiteNodeContext);
-				LinkState link = pattern.getSitePatterns().getSitePatterns().get(idx).getLinkState().getLinkState();
+				// ignore multi-link site patterns for now
+				if(!(pattern.getSitePatterns().getSitePatterns().get(idx) instanceof SingleSitePattern)) continue;
+				SingleSitePattern ssp = (SingleSitePattern) pattern.getSitePatterns().getSitePatterns().get(idx);
+				
+				LinkState link = ssp.getLinkState().getLinkState();
 				
 				if(currentLinkStateContext.getStateType() == LinkStateType.BoundAnyOfType) {
 					BoundAnyOfTypeLink boundLink = (BoundAnyOfTypeLink)link;
@@ -280,7 +289,11 @@ public class GenericPatternBody {
 			int idx = -1;
 			for(SitePattern sitePattern : otherPattern.getSitePatterns().getSitePatterns()) {
 				idx++;
-				LinkState link = sitePattern.getLinkState().getLinkState();
+				// ignore multi-link site patterns for now
+				if(!(sitePattern instanceof SingleSitePattern)) continue;
+				SingleSitePattern ssp = (SingleSitePattern) sitePattern;
+				
+				LinkState link = ssp.getLinkState().getLinkState();
 				if(link == null) {
 					continue;
 				}
@@ -317,8 +330,14 @@ public class GenericPatternBody {
 			return;
 		}
 		for(int i = 0; i< vap1.getSitePatterns().getSitePatterns().size(); i++) {
-			SitePattern sp1 = vap1.getSitePatterns().getSitePatterns().get(i);
-			SitePattern sp2 = vap2.getSitePatterns().getSitePatterns().get(i);
+			SitePattern superSp1 = vap1.getSitePatterns().getSitePatterns().get(i);
+			SitePattern superSp2 = vap2.getSitePatterns().getSitePatterns().get(i);
+			// ignore multi-link site patterns for now
+			if(!(superSp1 instanceof SingleSitePattern) || !(superSp2 instanceof SingleSitePattern)) continue;
+			SingleSitePattern sp1 = (SingleSitePattern) superSp1;
+			SingleSitePattern sp2 = (SingleSitePattern) superSp2;
+			
+			
 			if(!sp1.getSite().getName().equals(sp2.getSite().getName())) {
 				permutable = false;
 				return;

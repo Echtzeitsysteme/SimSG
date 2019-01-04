@@ -19,6 +19,9 @@ import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkSite
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink
 import biochemsimulation.reactionrules.reactionRules.NumericFromVariable
 import biochemsimulation.reactionrules.reactionRules.ArithmeticVariable
+import biochemsimulation.reactionrules.reactionRules.SingleSitePattern
+import biochemsimulation.reactionrules.reactionRules.MultiLinkSitePattern
+import biochemsimulation.reactionrules.reactionRules.States
 
 /**
  * This class contains custom scoping description.
@@ -77,11 +80,22 @@ class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvider {
 	    if(sitePattern === null) {
 	    	return super.getScope(context, reference);
 	    }
-	    if(sitePattern.site.states === null){
+	    
+	    var states = null as States
+	    
+	    if(sitePattern instanceof MultiLinkSitePattern) {
+	    	val mlsp = sitePattern as MultiLinkSitePattern
+	    	states = mlsp.site.states
+	    }else {
+	    	val slsp = sitePattern as SingleSitePattern
+	    	states = slsp.site.states
+	    }
+	    
+	    if(states === null){
 	    	return super.getScope(context, reference);
 	    }
 	    
-	    var list = sitePattern.site.states.state
+	    var list = states.state
 	    val existingScope = Scopes.scopeFor(list)
 	    
 	    return new FilteringScope(existingScope, [getEObjectOrProxy != context])

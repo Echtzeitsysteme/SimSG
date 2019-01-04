@@ -17,6 +17,7 @@ import biochemsimulation.reactionrules.reactionRules.FreeLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.Rule;
+import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern;
@@ -258,8 +259,12 @@ public class PatternContainer {
 			}
 			
 			for(int j = 0; j<vap1.getSitePatterns().getSitePatterns().size(); j++) {
-				SitePattern sp1 = vap1.getSitePatterns().getSitePatterns().get(j);
-				SitePattern sp2 = vap2.getSitePatterns().getSitePatterns().get(j);
+				SitePattern superSp1 = vap1.getSitePatterns().getSitePatterns().get(j);
+				SitePattern superSp2 = vap2.getSitePatterns().getSitePatterns().get(j);
+				// ignore MultiLinks for now
+				if(!(superSp1 instanceof SingleSitePattern) || !(superSp1 instanceof SingleSitePattern)) continue;
+				SingleSitePattern sp1 = (SingleSitePattern)superSp1;
+				SingleSitePattern sp2 = (SingleSitePattern)superSp2;
 				
 				if(!sp1.getSite().getName().equals(sp2.getSite().getName())) {
 					return false;

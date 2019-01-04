@@ -18,6 +18,10 @@ import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.Iterations;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.Model;
+import biochemsimulation.reactionrules.reactionRules.MultiLink;
+import biochemsimulation.reactionrules.reactionRules.MultiLinkSitePattern;
+import biochemsimulation.reactionrules.reactionRules.MultiLinkState;
+import biochemsimulation.reactionrules.reactionRules.MultiSite;
 import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral;
 import biochemsimulation.reactionrules.reactionRules.NumericFromVariable;
 import biochemsimulation.reactionrules.reactionRules.Observation;
@@ -29,8 +33,8 @@ import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 import biochemsimulation.reactionrules.reactionRules.Rule;
 import biochemsimulation.reactionrules.reactionRules.RuleBody;
 import biochemsimulation.reactionrules.reactionRules.RuleVariables;
-import biochemsimulation.reactionrules.reactionRules.Site;
-import biochemsimulation.reactionrules.reactionRules.SitePattern;
+import biochemsimulation.reactionrules.reactionRules.SingleSite;
+import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
 import biochemsimulation.reactionrules.reactionRules.SitePatterns;
 import biochemsimulation.reactionrules.reactionRules.SiteState;
 import biochemsimulation.reactionrules.reactionRules.Sites;
@@ -113,6 +117,18 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 			case ReactionRulesPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
 				return; 
+			case ReactionRulesPackage.MULTI_LINK:
+				sequence_MultiLink(context, (MultiLink) semanticObject); 
+				return; 
+			case ReactionRulesPackage.MULTI_LINK_SITE_PATTERN:
+				sequence_MultiLinkSitePattern(context, (MultiLinkSitePattern) semanticObject); 
+				return; 
+			case ReactionRulesPackage.MULTI_LINK_STATE:
+				sequence_MultiLinkState(context, (MultiLinkState) semanticObject); 
+				return; 
+			case ReactionRulesPackage.MULTI_SITE:
+				sequence_MultiSite(context, (MultiSite) semanticObject); 
+				return; 
 			case ReactionRulesPackage.NUMERIC_FROM_LITERAL:
 				sequence_NumericFromLiteral(context, (NumericFromLiteral) semanticObject); 
 				return; 
@@ -154,11 +170,11 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 			case ReactionRulesPackage.RULE_VARIABLES:
 				sequence_RuleVariables(context, (RuleVariables) semanticObject); 
 				return; 
-			case ReactionRulesPackage.SITE:
-				sequence_Site(context, (Site) semanticObject); 
+			case ReactionRulesPackage.SINGLE_SITE:
+				sequence_SingleSite(context, (SingleSite) semanticObject); 
 				return; 
-			case ReactionRulesPackage.SITE_PATTERN:
-				sequence_SitePattern(context, (SitePattern) semanticObject); 
+			case ReactionRulesPackage.SINGLE_SITE_PATTERN:
+				sequence_SingleSitePattern(context, (SingleSitePattern) semanticObject); 
 				return; 
 			case ReactionRulesPackage.SITE_PATTERNS:
 				sequence_SitePatterns(context, (SitePatterns) semanticObject); 
@@ -525,6 +541,65 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Contexts:
+	 *     MultiLinkSitePattern returns MultiLinkSitePattern
+	 *     SitePattern returns MultiLinkSitePattern
+	 *
+	 * Constraint:
+	 *     (site=[MultiSite|ID] state=SiteState? linkState=MultiLinkState)
+	 */
+	protected void sequence_MultiLinkSitePattern(ISerializationContext context, MultiLinkSitePattern semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     MultiLinkState returns MultiLinkState
+	 *
+	 * Constraint:
+	 *     (linkState=WhatEver | linkState=FreeLink | linkState=BoundAnyLink | linkState=MultiLink)
+	 */
+	protected void sequence_MultiLinkState(ISerializationContext context, MultiLinkState semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     MultiLink returns MultiLink
+	 *
+	 * Constraint:
+	 *     ((states+=BoundLink | states+=FreeLink) (states+=BoundLink | states+=FreeLink)+)?
+	 */
+	protected void sequence_MultiLink(ISerializationContext context, MultiLink semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     MultiSite returns MultiSite
+	 *     Site returns MultiSite
+	 *
+	 * Constraint:
+	 *     (name=ID states=States)
+	 */
+	protected void sequence_MultiSite(ISerializationContext context, MultiSite semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.SITE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.SITE__NAME));
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.SITE__STATES) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.SITE__STATES));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getMultiSiteAccess().getNameIDTerminalRuleCall_2_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getMultiSiteAccess().getStatesStatesParserRuleCall_3_0(), semanticObject.getStates());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     NumericFromLiteral returns NumericFromLiteral
 	 *     NumericAssignment returns NumericFromLiteral
 	 *
@@ -688,13 +763,36 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Contexts:
-	 *     SitePattern returns SitePattern
+	 *     SingleSitePattern returns SingleSitePattern
+	 *     SitePattern returns SingleSitePattern
 	 *
 	 * Constraint:
-	 *     (site=[Site|ID] state=SiteState? linkState=LinkState)
+	 *     (site=[SingleSite|ID] state=SiteState? linkState=LinkState)
 	 */
-	protected void sequence_SitePattern(ISerializationContext context, SitePattern semanticObject) {
+	protected void sequence_SingleSitePattern(ISerializationContext context, SingleSitePattern semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     SingleSite returns SingleSite
+	 *     Site returns SingleSite
+	 *
+	 * Constraint:
+	 *     (name=ID states=States)
+	 */
+	protected void sequence_SingleSite(ISerializationContext context, SingleSite semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.SITE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.SITE__NAME));
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.SITE__STATES) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.SITE__STATES));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSingleSiteAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getSingleSiteAccess().getStatesStatesParserRuleCall_2_0(), semanticObject.getStates());
+		feeder.finish();
 	}
 	
 	
@@ -724,27 +822,6 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getSiteStateAccess().getStateStateIDTerminalRuleCall_2_0_1(), semanticObject.eGet(ReactionRulesPackage.Literals.SITE_STATE__STATE, false));
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Site returns Site
-	 *
-	 * Constraint:
-	 *     (name=ID states=States)
-	 */
-	protected void sequence_Site(ISerializationContext context, Site semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.SITE__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.SITE__NAME));
-			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.SITE__STATES) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.SITE__STATES));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getSiteAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getSiteAccess().getStatesStatesParserRuleCall_1_0(), semanticObject.getStates());
 		feeder.finish();
 	}
 	

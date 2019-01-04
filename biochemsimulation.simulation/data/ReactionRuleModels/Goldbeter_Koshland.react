@@ -2,7 +2,7 @@ ModelID Goldbeter_Koshland
 
 agent K(a)
 agent P(a)
-agent T(x{u,p}, y{u,p})
+agent T(x{u,p}, y{u,p}) 
 
 init i1 100 {K(), P(), T(x{u}[free], y{u}[free])} 
 

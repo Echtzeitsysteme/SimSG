@@ -11,7 +11,10 @@ import org.eclipse.xtext.util.CancelIndicator;
 import biochemsimulation.reactionrules.reactionRules.ArithmeticValue;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
+import biochemsimulation.reactionrules.reactionRules.MultiLinkSitePattern;
 import biochemsimulation.reactionrules.reactionRules.RuleVariables;
+import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
+import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.SiteState;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
@@ -77,7 +80,13 @@ public class ReactionRulesSemanticHighlightingCalculator implements ISemanticHig
 			
 			if(semanticElement instanceof SitePattern ) {
 				SitePattern sp = (SitePattern)semanticElement;
-				acceptor.addPosition(node.getOffset(), sp.getSite().getName().length(), ReactionRulesHighlightingConfiguration.SITE_PATTERN_ID);
+				Site site = null;
+				if(sp instanceof SingleSitePattern) {
+					site = ((SingleSitePattern)sp).getSite();
+				}else {
+					site = ((MultiLinkSitePattern)sp).getSite();
+				}
+				acceptor.addPosition(node.getOffset(), site.getName().length(), ReactionRulesHighlightingConfiguration.SITE_PATTERN_ID);
 			}
 		
 		}

@@ -23,6 +23,8 @@ import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 import biochemsimulation.reactionrules.reactionRules.Rule;
 import biochemsimulation.reactionrules.reactionRules.RuleBody;
+import biochemsimulation.reactionrules.reactionRules.SingleSite;
+import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.SiteState;
@@ -148,11 +150,13 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
         final ValidAgentPattern vap = ((ValidAgentPattern) ap);
         EList<SitePattern> _sitePatterns = vap.getSitePatterns().getSitePatterns();
         for (final SitePattern sp : _sitePatterns) {
-          {
-            final LinkState linkState = sp.getLinkState().getLinkState();
+          if ((sp instanceof SingleSitePattern)) {
+            final SingleSitePattern slsp = ((SingleSitePattern) sp);
+            final LinkState linkState = slsp.getLinkState().getLinkState();
             if ((((linkState instanceof BoundAnyLink) || (linkState instanceof WhatEver)) || (linkState instanceof BoundAnyOfTypeLink))) {
               this.error("Illegal initial link state! A pattern may only be instantiated with link states of Type: FreeLink(\"free\"), IndexedLink(\"INT\")", null);
             }
+          } else {
           }
         }
       }
@@ -364,24 +368,28 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
                 {
                   final SitePattern sp_1 = ap_1.getSitePatterns().getSitePatterns().get(i);
                   final SitePattern sp_2 = ap_2_1.getSitePatterns().getSitePatterns().get(i);
-                  Site _site = sp_1.getSite();
-                  Site _site_1 = sp_2.getSite();
-                  boolean _notEquals_2 = (!Objects.equal(_site, _site_1));
-                  if (_notEquals_2) {
-                    this.error("Two arguments at the same index on lhs and rhs must have the same sites.", 
-                      ReactionRulesPackage.Literals.RULE_BODY__LHS);
-                    this.error("Two arguments at the same index on lhs and rhs must have the same sites.", 
-                      ReactionRulesPackage.Literals.RULE_BODY__RHS);
-                  }
-                  final SiteState st_1 = sp_1.getState();
-                  final SiteState st_2 = sp_2.getState();
-                  if (((st_1 == null) && (st_2 != null))) {
-                    this.error("If an argument on the rhs defines a state, the corresponding argument on the lhs must define a state as well.", 
-                      ReactionRulesPackage.Literals.RULE_BODY__RHS);
-                  }
-                  if (((st_2 == null) && (st_1 != null))) {
-                    this.error("If an argument on the lhs defines a state, the corresponding argument on the rhs must define a state as well.", 
-                      ReactionRulesPackage.Literals.RULE_BODY__LHS);
+                  if (((sp_1 instanceof SingleSitePattern) && (sp_2 instanceof SingleSitePattern))) {
+                    final SingleSitePattern ssp_1 = ((SingleSitePattern) sp_1);
+                    final SingleSitePattern ssp_2 = ((SingleSitePattern) sp_2);
+                    SingleSite _site = ssp_1.getSite();
+                    SingleSite _site_1 = ssp_2.getSite();
+                    boolean _notEquals_2 = (!Objects.equal(_site, _site_1));
+                    if (_notEquals_2) {
+                      this.error("Two arguments at the same index on lhs and rhs must have the same sites.", 
+                        ReactionRulesPackage.Literals.RULE_BODY__LHS);
+                      this.error("Two arguments at the same index on lhs and rhs must have the same sites.", 
+                        ReactionRulesPackage.Literals.RULE_BODY__RHS);
+                    }
+                    final SiteState st_1 = ssp_1.getState();
+                    final SiteState st_2 = ssp_2.getState();
+                    if (((st_1 == null) && (st_2 != null))) {
+                      this.error("If an argument on the rhs defines a state, the corresponding argument on the lhs must define a state as well.", 
+                        ReactionRulesPackage.Literals.RULE_BODY__RHS);
+                    }
+                    if (((st_2 == null) && (st_1 != null))) {
+                      this.error("If an argument on the lhs defines a state, the corresponding argument on the rhs must define a state as well.", 
+                        ReactionRulesPackage.Literals.RULE_BODY__LHS);
+                    }
                   }
                 }
               }
@@ -414,9 +422,9 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
     HashSet<Site> siteSet = new HashSet<Site>(_size);
     siteSet.addAll(sites);
     for (final SitePattern candidate : candidates) {
-      {
-        SitePattern sp = ((SitePattern) candidate);
-        Site spSite = sp.getSite();
+      if ((candidate instanceof SingleSitePattern)) {
+        SingleSitePattern sp = ((SingleSitePattern) candidate);
+        SingleSite spSite = sp.getSite();
         boolean _contains = siteSet.contains(spSite);
         boolean _not = (!_contains);
         if (_not) {

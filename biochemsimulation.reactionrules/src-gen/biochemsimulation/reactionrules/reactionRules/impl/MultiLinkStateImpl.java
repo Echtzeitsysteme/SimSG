@@ -3,9 +3,9 @@
  */
 package biochemsimulation.reactionrules.reactionRules.impl;
 
+import biochemsimulation.reactionrules.reactionRules.LinkState;
+import biochemsimulation.reactionrules.reactionRules.MultiLinkState;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
-import biochemsimulation.reactionrules.reactionRules.SitePattern;
-import biochemsimulation.reactionrules.reactionRules.SiteState;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -18,35 +18,35 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Site Pattern</b></em>'.
+ * An implementation of the model object '<em><b>Multi Link State</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.SitePatternImpl#getState <em>State</em>}</li>
+ *   <li>{@link biochemsimulation.reactionrules.reactionRules.impl.MultiLinkStateImpl#getLinkState <em>Link State</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SitePatternImpl extends MinimalEObjectImpl.Container implements SitePattern
+public class MultiLinkStateImpl extends MinimalEObjectImpl.Container implements MultiLinkState
 {
   /**
-   * The cached value of the '{@link #getState() <em>State</em>}' containment reference.
+   * The cached value of the '{@link #getLinkState() <em>Link State</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getState()
+   * @see #getLinkState()
    * @generated
    * @ordered
    */
-  protected SiteState state;
+  protected LinkState linkState;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected SitePatternImpl()
+  protected MultiLinkStateImpl()
   {
     super();
   }
@@ -59,7 +59,7 @@ public class SitePatternImpl extends MinimalEObjectImpl.Container implements Sit
   @Override
   protected EClass eStaticClass()
   {
-    return ReactionRulesPackage.Literals.SITE_PATTERN;
+    return ReactionRulesPackage.Literals.MULTI_LINK_STATE;
   }
 
   /**
@@ -67,9 +67,9 @@ public class SitePatternImpl extends MinimalEObjectImpl.Container implements Sit
    * <!-- end-user-doc -->
    * @generated
    */
-  public SiteState getState()
+  public LinkState getLinkState()
   {
-    return state;
+    return linkState;
   }
 
   /**
@@ -77,13 +77,13 @@ public class SitePatternImpl extends MinimalEObjectImpl.Container implements Sit
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetState(SiteState newState, NotificationChain msgs)
+  public NotificationChain basicSetLinkState(LinkState newLinkState, NotificationChain msgs)
   {
-    SiteState oldState = state;
-    state = newState;
+    LinkState oldLinkState = linkState;
+    linkState = newLinkState;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.SITE_PATTERN__STATE, oldState, newState);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.MULTI_LINK_STATE__LINK_STATE, oldLinkState, newLinkState);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -94,20 +94,20 @@ public class SitePatternImpl extends MinimalEObjectImpl.Container implements Sit
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setState(SiteState newState)
+  public void setLinkState(LinkState newLinkState)
   {
-    if (newState != state)
+    if (newLinkState != linkState)
     {
       NotificationChain msgs = null;
-      if (state != null)
-        msgs = ((InternalEObject)state).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.SITE_PATTERN__STATE, null, msgs);
-      if (newState != null)
-        msgs = ((InternalEObject)newState).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.SITE_PATTERN__STATE, null, msgs);
-      msgs = basicSetState(newState, msgs);
+      if (linkState != null)
+        msgs = ((InternalEObject)linkState).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.MULTI_LINK_STATE__LINK_STATE, null, msgs);
+      if (newLinkState != null)
+        msgs = ((InternalEObject)newLinkState).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ReactionRulesPackage.MULTI_LINK_STATE__LINK_STATE, null, msgs);
+      msgs = basicSetLinkState(newLinkState, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.SITE_PATTERN__STATE, newState, newState));
+      eNotify(new ENotificationImpl(this, Notification.SET, ReactionRulesPackage.MULTI_LINK_STATE__LINK_STATE, newLinkState, newLinkState));
   }
 
   /**
@@ -120,8 +120,8 @@ public class SitePatternImpl extends MinimalEObjectImpl.Container implements Sit
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.SITE_PATTERN__STATE:
-        return basicSetState(null, msgs);
+      case ReactionRulesPackage.MULTI_LINK_STATE__LINK_STATE:
+        return basicSetLinkState(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -136,8 +136,8 @@ public class SitePatternImpl extends MinimalEObjectImpl.Container implements Sit
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.SITE_PATTERN__STATE:
-        return getState();
+      case ReactionRulesPackage.MULTI_LINK_STATE__LINK_STATE:
+        return getLinkState();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -152,8 +152,8 @@ public class SitePatternImpl extends MinimalEObjectImpl.Container implements Sit
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.SITE_PATTERN__STATE:
-        setState((SiteState)newValue);
+      case ReactionRulesPackage.MULTI_LINK_STATE__LINK_STATE:
+        setLinkState((LinkState)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -169,8 +169,8 @@ public class SitePatternImpl extends MinimalEObjectImpl.Container implements Sit
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.SITE_PATTERN__STATE:
-        setState((SiteState)null);
+      case ReactionRulesPackage.MULTI_LINK_STATE__LINK_STATE:
+        setLinkState((LinkState)null);
         return;
     }
     super.eUnset(featureID);
@@ -186,10 +186,10 @@ public class SitePatternImpl extends MinimalEObjectImpl.Container implements Sit
   {
     switch (featureID)
     {
-      case ReactionRulesPackage.SITE_PATTERN__STATE:
-        return state != null;
+      case ReactionRulesPackage.MULTI_LINK_STATE__LINK_STATE:
+        return linkState != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //SitePatternImpl
+} //MultiLinkStateImpl

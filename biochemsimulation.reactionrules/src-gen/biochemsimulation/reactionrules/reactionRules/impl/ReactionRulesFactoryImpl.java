@@ -81,6 +81,7 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
       case ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK_AGENT: return createBoundAnyOfTypeLinkAgent();
       case ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK_SITE: return createBoundAnyOfTypeLinkSite();
       case ReactionRulesPackage.SITE_STATE: return createSiteState();
+      case ReactionRulesPackage.MULTI_LINK_STATE: return createMultiLinkState();
       case ReactionRulesPackage.SITE_PATTERN: return createSitePattern();
       case ReactionRulesPackage.SITE_PATTERNS: return createSitePatterns();
       case ReactionRulesPackage.VALID_AGENT_PATTERN: return createValidAgentPattern();
@@ -103,11 +104,16 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
       case ReactionRulesPackage.POPULATION: return createPopulation();
       case ReactionRulesPackage.TERMINATION_CONDITION: return createTerminationCondition();
       case ReactionRulesPackage.TERMINATE: return createTerminate();
+      case ReactionRulesPackage.SINGLE_SITE: return createSingleSite();
+      case ReactionRulesPackage.MULTI_SITE: return createMultiSite();
       case ReactionRulesPackage.BOUND_ANY_LINK: return createBoundAnyLink();
       case ReactionRulesPackage.FREE_LINK: return createFreeLink();
       case ReactionRulesPackage.WHAT_EVER: return createWhatEver();
       case ReactionRulesPackage.BOUND_LINK: return createBoundLink();
+      case ReactionRulesPackage.MULTI_LINK: return createMultiLink();
       case ReactionRulesPackage.BOUND_ANY_OF_TYPE_LINK: return createBoundAnyOfTypeLink();
+      case ReactionRulesPackage.SINGLE_SITE_PATTERN: return createSingleSitePattern();
+      case ReactionRulesPackage.MULTI_LINK_SITE_PATTERN: return createMultiLinkSitePattern();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -287,6 +293,17 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
   {
     SiteStateImpl siteState = new SiteStateImpl();
     return siteState;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MultiLinkState createMultiLinkState()
+  {
+    MultiLinkStateImpl multiLinkState = new MultiLinkStateImpl();
+    return multiLinkState;
   }
 
   /**
@@ -536,6 +553,28 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  public SingleSite createSingleSite()
+  {
+    SingleSiteImpl singleSite = new SingleSiteImpl();
+    return singleSite;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MultiSite createMultiSite()
+  {
+    MultiSiteImpl multiSite = new MultiSiteImpl();
+    return multiSite;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public BoundAnyLink createBoundAnyLink()
   {
     BoundAnyLinkImpl boundAnyLink = new BoundAnyLinkImpl();
@@ -580,10 +619,43 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  public MultiLink createMultiLink()
+  {
+    MultiLinkImpl multiLink = new MultiLinkImpl();
+    return multiLink;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public BoundAnyOfTypeLink createBoundAnyOfTypeLink()
   {
     BoundAnyOfTypeLinkImpl boundAnyOfTypeLink = new BoundAnyOfTypeLinkImpl();
     return boundAnyOfTypeLink;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SingleSitePattern createSingleSitePattern()
+  {
+    SingleSitePatternImpl singleSitePattern = new SingleSitePatternImpl();
+    return singleSitePattern;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public MultiLinkSitePattern createMultiLinkSitePattern()
+  {
+    MultiLinkSitePatternImpl multiLinkSitePattern = new MultiLinkSitePatternImpl();
+    return multiLinkSitePattern;
   }
 
   /**

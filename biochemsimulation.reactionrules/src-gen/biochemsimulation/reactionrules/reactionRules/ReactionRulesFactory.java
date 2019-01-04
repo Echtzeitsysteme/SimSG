@@ -168,6 +168,15 @@ public interface ReactionRulesFactory extends EFactory
   SiteState createSiteState();
 
   /**
+   * Returns a new object of class '<em>Multi Link State</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Multi Link State</em>'.
+   * @generated
+   */
+  MultiLinkState createMultiLinkState();
+
+  /**
    * Returns a new object of class '<em>Site Pattern</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -366,6 +375,24 @@ public interface ReactionRulesFactory extends EFactory
   Terminate createTerminate();
 
   /**
+   * Returns a new object of class '<em>Single Site</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Single Site</em>'.
+   * @generated
+   */
+  SingleSite createSingleSite();
+
+  /**
+   * Returns a new object of class '<em>Multi Site</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Multi Site</em>'.
+   * @generated
+   */
+  MultiSite createMultiSite();
+
+  /**
    * Returns a new object of class '<em>Bound Any Link</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -402,6 +429,15 @@ public interface ReactionRulesFactory extends EFactory
   BoundLink createBoundLink();
 
   /**
+   * Returns a new object of class '<em>Multi Link</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Multi Link</em>'.
+   * @generated
+   */
+  MultiLink createMultiLink();
+
+  /**
    * Returns a new object of class '<em>Bound Any Of Type Link</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -409,6 +445,24 @@ public interface ReactionRulesFactory extends EFactory
    * @generated
    */
   BoundAnyOfTypeLink createBoundAnyOfTypeLink();
+
+  /**
+   * Returns a new object of class '<em>Single Site Pattern</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Single Site Pattern</em>'.
+   * @generated
+   */
+  SingleSitePattern createSingleSitePattern();
+
+  /**
+   * Returns a new object of class '<em>Multi Link Site Pattern</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Multi Link Site Pattern</em>'.
+   * @generated
+   */
+  MultiLinkSitePattern createMultiLinkSitePattern();
 
   /**
    * Returns the package supported by this factory.

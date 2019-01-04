@@ -156,6 +156,11 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
         return createSiteStateAdapter();
       }
       @Override
+      public Adapter caseMultiLinkState(MultiLinkState object)
+      {
+        return createMultiLinkStateAdapter();
+      }
+      @Override
       public Adapter caseSitePattern(SitePattern object)
       {
         return createSitePatternAdapter();
@@ -266,6 +271,16 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
         return createTerminateAdapter();
       }
       @Override
+      public Adapter caseSingleSite(SingleSite object)
+      {
+        return createSingleSiteAdapter();
+      }
+      @Override
+      public Adapter caseMultiSite(MultiSite object)
+      {
+        return createMultiSiteAdapter();
+      }
+      @Override
       public Adapter caseBoundAnyLink(BoundAnyLink object)
       {
         return createBoundAnyLinkAdapter();
@@ -286,9 +301,24 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
         return createBoundLinkAdapter();
       }
       @Override
+      public Adapter caseMultiLink(MultiLink object)
+      {
+        return createMultiLinkAdapter();
+      }
+      @Override
       public Adapter caseBoundAnyOfTypeLink(BoundAnyOfTypeLink object)
       {
         return createBoundAnyOfTypeLinkAdapter();
+      }
+      @Override
+      public Adapter caseSingleSitePattern(SingleSitePattern object)
+      {
+        return createSingleSitePatternAdapter();
+      }
+      @Override
+      public Adapter caseMultiLinkSitePattern(MultiLinkSitePattern object)
+      {
+        return createMultiLinkSitePatternAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -548,6 +578,21 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createSiteStateAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.MultiLinkState <em>Multi Link State</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.MultiLinkState
+   * @generated
+   */
+  public Adapter createMultiLinkStateAdapter()
   {
     return null;
   }
@@ -883,6 +928,36 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.SingleSite <em>Single Site</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.SingleSite
+   * @generated
+   */
+  public Adapter createSingleSiteAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.MultiSite <em>Multi Site</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.MultiSite
+   * @generated
+   */
+  public Adapter createMultiSiteAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.BoundAnyLink <em>Bound Any Link</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -943,6 +1018,21 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.MultiLink <em>Multi Link</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.MultiLink
+   * @generated
+   */
+  public Adapter createMultiLinkAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink <em>Bound Any Of Type Link</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -953,6 +1043,36 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createBoundAnyOfTypeLinkAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.SingleSitePattern <em>Single Site Pattern</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.SingleSitePattern
+   * @generated
+   */
+  public Adapter createSingleSitePatternAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.MultiLinkSitePattern <em>Multi Link Site Pattern</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.MultiLinkSitePattern
+   * @generated
+   */
+  public Adapter createMultiLinkSitePatternAdapter()
   {
     return null;
   }

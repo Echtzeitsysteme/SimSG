@@ -18,6 +18,7 @@ import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.FreeLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
+import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.State;
@@ -75,7 +76,11 @@ public class TransformationTemplate {
 					precondition.getAgentPatterns().get(i) instanceof ValidAgentPattern) {
 				ValidAgentPattern ap = (ValidAgentPattern)postcondition.getAgentPatterns().get(i);
 				for(int j = 0; j<ap.getSitePatterns().getSitePatterns().size(); j++) {
-					SitePattern sp = ap.getSitePatterns().getSitePatterns().get(j);
+					SitePattern superSp = ap.getSitePatterns().getSitePatterns().get(j);
+					// ignore multi-link site patterns for now
+					if(!(superSp instanceof SingleSitePattern)) continue;
+					SingleSitePattern sp = (SingleSitePattern) superSp;
+					
 					// if the site has a link -> check if it needs deletion
 					if(sp.getLinkState().getLinkState() instanceof FreeLink) {
 						String refName = AgentClassFactory.createReferenceName(ap.getAgent(), sp.getSite());
@@ -98,7 +103,11 @@ public class TransformationTemplate {
 				StateChangeTemplate stTemplate = new StateChangeTemplate(i);
 				
 				for(int j = 0; j<ap_trg.getSitePatterns().getSitePatterns().size(); j++) {
-					SitePattern sp_trg = ap_trg.getSitePatterns().getSitePatterns().get(j);
+					SitePattern superSp_trg = ap_trg.getSitePatterns().getSitePatterns().get(j);
+					// ignore multi-link site patterns for now
+					if(!(superSp_trg instanceof SingleSitePattern)) continue;
+					SingleSitePattern sp_trg = (SingleSitePattern) superSp_trg;
+					
 					// if the site has a site state -> state
 					State state_trg = null;
 					State state_src = null;
@@ -125,12 +134,16 @@ public class TransformationTemplate {
 	}
 	
 	// Helper method -> Find the corresponding state of an rhs-pattern on the lhs 
-	private State findLhsState(int lhsAgentPatternIndex, SitePattern rhsSitePattern) {
+	private State findLhsState(int lhsAgentPatternIndex, SingleSitePattern rhsSitePattern) {
 		State lhsState = null;
 		ValidAgentPattern lhsAP = (ValidAgentPattern)precondition.getAgentPatterns().get(lhsAgentPatternIndex);
 		Site rhsSite = rhsSitePattern.getSite();
 		for(SitePattern lhsSitePattern : lhsAP.getSitePatterns().getSitePatterns()) {
-			if(rhsSite.getName().equals(lhsSitePattern.getSite().getName())) {
+			// ignore multi-link site patterns for now
+			if(!(lhsSitePattern instanceof SingleSitePattern)) continue;
+			SingleSitePattern lhsSp = (SingleSitePattern) lhsSitePattern;
+			
+			if(rhsSite.getName().equals(lhsSp.getSite().getName())) {
 				lhsState = lhsSitePattern.getState().getState();
 				break;
 			}
@@ -170,27 +183,31 @@ public class TransformationTemplate {
 					agntTemplate.addSiteState(site, metaModel.getEReference(stateRefName), findStateInstance(state));
 				}
 				for(SitePattern sp : ap.getSitePatterns().getSitePatterns()) {
-					Site site = sp.getSite();
+					// ignore multi-link site patterns for now
+					if(!(sp instanceof SingleSitePattern)) continue;
+					SingleSitePattern ssp = (SingleSitePattern) sp;
+					
+					Site site = ssp.getSite();
 					// define a state if the pattern has a state
-					if(sp.getState() != null) {
-						String stateRefName = StateClassFactory.createReferenceName(ap.getAgent(), site, sp.getState().getState());
-						agntTemplate.addSiteState(site, metaModel.getEReference(stateRefName), findStateInstance(sp.getState().getState()));
+					if(ssp.getState() != null) {
+						String stateRefName = StateClassFactory.createReferenceName(ap.getAgent(), site, ssp.getState().getState());
+						agntTemplate.addSiteState(site, metaModel.getEReference(stateRefName), findStateInstance(ssp.getState().getState()));
 					}else {
 						if(site.getStates().getState().size() > 0) {
 							State state = site.getStates().getState().get(0);
-							String stateRefName = StateClassFactory.createReferenceName(ap.getAgent(), sp.getSite(), state);
+							String stateRefName = StateClassFactory.createReferenceName(ap.getAgent(), ssp.getSite(), state);
 							agntTemplate.addSiteState(site, metaModel.getEReference(stateRefName), findStateInstance(state));
 						}
 					}
 					// create a link change template if the pattern defines an indexed link
-					if(sp.getLinkState().getLinkState() instanceof BoundLink) {
-						int linkIdx = Integer.valueOf(((BoundLink)sp.getLinkState().getLinkState()).getState());
+					if(ssp.getLinkState().getLinkState() instanceof BoundLink) {
+						int linkIdx = Integer.valueOf(((BoundLink)ssp.getLinkState().getLinkState()).getState());
 						if(linkChanges.containsKey(linkIdx)){
 							linkChanges.get(linkIdx).setAgentNotInMatch(ap);
 							continue;
 						}
 						
-						Entry<Integer, Site> indexAndSite = findCorrespondingSiteOnRHS(sp, (BoundLink)sp.getLinkState().getLinkState());
+						Entry<Integer, Site> indexAndSite = findCorrespondingSiteOnRHS(ssp, (BoundLink)ssp.getLinkState().getLinkState());
 						Site otherSite = indexAndSite.getValue();
 						int otherAgentIdx = indexAndSite.getKey();
 						biochemsimulation.reactionrules.reactionRules.Agent otherAgent = ((ValidAgentPattern)postcondition.getAgentPatterns().get(otherAgentIdx)).getAgent();
@@ -219,15 +236,18 @@ public class TransformationTemplate {
 			for(SitePattern sp : vap.getSitePatterns().getSitePatterns()) {
 				if(sp == null) continue;
 				if(sp == sitePattern) continue;
+				// ignore multi-link site patterns for now
+				if(!(sp instanceof SingleSitePattern)) continue;
+				SingleSitePattern ssp = (SingleSitePattern) sp;
 				
-				LinkState ls = sp.getLinkState().getLinkState();
+				LinkState ls = ssp.getLinkState().getLinkState();
 				if(ls == null) continue;
 				if(!(ls instanceof BoundLink)) continue;
 				
 				BoundLink bl = (BoundLink) ls;
 				int idx2 = Integer.valueOf(bl.getState());
 				if(idx == idx2) {
-					return new AbstractMap.SimpleEntry<Integer, Site>(i, sp.getSite());
+					return new AbstractMap.SimpleEntry<Integer, Site>(i, ssp.getSite());
 				}
 				
 			}
@@ -244,16 +264,20 @@ public class TransformationTemplate {
 			ValidAgentPattern ap = (ValidAgentPattern)postcondition.getAgentPatterns().get(i);
 			for(int j = 0; j<ap.getSitePatterns().getSitePatterns().size(); j++) {
 				SitePattern sp = ap.getSitePatterns().getSitePatterns().get(j);
-				if(sp.getLinkState() == null) {
+				// ignore multi-link site patterns for now
+				if(!(sp instanceof SingleSitePattern)) continue;
+				SingleSitePattern ssp = (SingleSitePattern) sp;
+				
+				if(ssp.getLinkState() == null) {
 					continue;
 				}
-				LinkState ls = sp.getLinkState().getLinkState();
+				LinkState ls = ssp.getLinkState().getLinkState();
 				if(!(ls instanceof BoundLink)) {
 					continue;
 				}
 				// current agent node
 				biochemsimulation.reactionrules.reactionRules.Agent agent = ap.getAgent();
-				Site site = sp.getSite();
+				Site site = ssp.getSite();
 				BoundLink link = (BoundLink) ls;
 				int linkIdx = Integer.valueOf(link.getState());
 				
@@ -276,9 +300,17 @@ public class TransformationTemplate {
 				ValidAgentPattern otherApLhs = (ValidAgentPattern)precondition.getAgentPatterns().get(otherAgentIdx);
 				
 				SitePattern spLhs = findSitePatternInAgentPattern(apLhs, site);
+				// ignore multi-link site patterns for now
+				if(!(spLhs instanceof SingleSitePattern)) continue;
+				SingleSitePattern sSpLhs = (SingleSitePattern) spLhs;
+				
 				SitePattern otherSpLhs = findSitePatternInAgentPattern(otherApLhs, otherSite);
-				LinkState lsLhs = spLhs.getLinkState().getLinkState();
-				LinkState otherLsLhs = otherSpLhs.getLinkState().getLinkState();
+				// ignore multi-link site patterns for now
+				if(!(otherSpLhs instanceof SingleSitePattern)) continue;
+				SingleSitePattern otherSspLhs = (SingleSitePattern) otherSpLhs;
+				
+				LinkState lsLhs = sSpLhs.getLinkState().getLinkState();
+				LinkState otherLsLhs = otherSspLhs.getLinkState().getLinkState();
 				
 				if(lsLhs instanceof BoundLink && otherLsLhs instanceof BoundLink) {
 					BoundLink blLhs = (BoundLink)lsLhs;
@@ -303,7 +335,10 @@ public class TransformationTemplate {
 	
 	private SitePattern findSitePatternInAgentPattern(ValidAgentPattern ap, Site site) {
 		for(SitePattern sp: ap.getSitePatterns().getSitePatterns()) {
-			if(sp.getSite() == site) {
+			// ignore multi-link site patterns for now
+			if(!(sp instanceof SingleSitePattern)) continue;
+			SingleSitePattern ssp = (SingleSitePattern) sp;
+			if(ssp.getSite() == site) {
 				return sp; 
 			}
 		}

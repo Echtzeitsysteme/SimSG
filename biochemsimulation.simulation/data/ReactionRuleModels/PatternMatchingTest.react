@@ -21,7 +21,7 @@ agent B7(y{e, f}, z{g, h})
 agent A8(x, y)
 agent A9(x, y)
 
-// mockup rate variable
+// mockup rate variable 
 var dummy_rate = 0.1
 
 // disjunct tests
