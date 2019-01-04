@@ -105,7 +105,10 @@ public class TransformationTemplate {
 					if(sp_trg.getState() != null) {
 						state_trg = sp_trg.getState().getState();
 						state_src = findLhsState(i, sp_trg);
+						// if both states are equal -> do nothing
+						if(state_trg == state_src) continue;
 					}else {
+						// if there is no state -> do nothing
 						continue;
 					}
 					String oldRefName = StateClassFactory.createReferenceName(ap_trg.getAgent(), sp_trg.getSite(), state_src);
@@ -158,17 +161,25 @@ public class TransformationTemplate {
 				// generate agent template
 				ValidAgentPattern ap = (ValidAgentPattern)postcondition.getAgentPatterns().get(i);
 				AgentCreationTemplate agntTemplate = new AgentCreationTemplate(ap);
+				// set all default site states
+				for(Site site : ap.getAgent().getSites().getSites()) {
+					// if a site has no state continue
+					if(site.getStates().getState().size() <= 0) continue;
+					State state = site.getStates().getState().get(0);
+					String stateRefName = StateClassFactory.createReferenceName(ap.getAgent(), site, state);
+					agntTemplate.addSiteState(site, metaModel.getEReference(stateRefName), findStateInstance(state));
+				}
 				for(SitePattern sp : ap.getSitePatterns().getSitePatterns()) {
 					Site site = sp.getSite();
 					// define a state if the pattern has a state
 					if(sp.getState() != null) {
 						String stateRefName = StateClassFactory.createReferenceName(ap.getAgent(), site, sp.getState().getState());
-						agntTemplate.addSiteState(metaModel.getEReference(stateRefName), findStateInstance(sp.getState().getState()));
+						agntTemplate.addSiteState(site, metaModel.getEReference(stateRefName), findStateInstance(sp.getState().getState()));
 					}else {
 						if(site.getStates().getState().size() > 0) {
 							State state = site.getStates().getState().get(0);
 							String stateRefName = StateClassFactory.createReferenceName(ap.getAgent(), sp.getSite(), state);
-							agntTemplate.addSiteState(metaModel.getEReference(stateRefName), findStateInstance(state));
+							agntTemplate.addSiteState(site, metaModel.getEReference(stateRefName), findStateInstance(state));
 						}
 					}
 					// create a link change template if the pattern defines an indexed link

@@ -25,18 +25,11 @@ public class StateChangeTemplate {
 	}
 	
 	public void applyStateChangeCandidates(IMatch match) {
-		// This try catch is a very very very dirty fix to prevent crashes. This needs to be fixed properly!
-		try {
-			Agent agent = (Agent) match.get(match.parameterNames().get(agentIndex));
-			for(Entry<Entry<EReference, EReference>, State> entry : stateRefMap.entrySet()) {
-				agent.eSet(entry.getKey().getKey(), null);
-				agent.eSet(entry.getKey().getValue(), entry.getValue());
-			}
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
+		Agent agent = (Agent) match.get(match.parameterNames().get(agentIndex));
+		for(Entry<Entry<EReference, EReference>, State> entry : stateRefMap.entrySet()) {
+			agent.eSet(entry.getKey().getKey(), null);
+			agent.eSet(entry.getKey().getValue(), entry.getValue());
 		}
-		
 	}
 	
 	public boolean isEmpty() {
