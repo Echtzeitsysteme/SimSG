@@ -122,13 +122,22 @@ public interface ReactionContainerPackage extends EPackage {
 	int AGENT = 1;
 
 	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AGENT__ID = 0;
+
+	/**
 	 * The number of structural features of the '<em>Agent</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AGENT_FEATURE_COUNT = 0;
+	int AGENT_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Agent</em>' class.
@@ -221,6 +230,17 @@ public interface ReactionContainerPackage extends EPackage {
 	EClass getAgent();
 
 	/**
+	 * Returns the meta object for the attribute '{@link biochemsimulation.reactioncontainer.Agent#getID <em>ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>ID</em>'.
+	 * @see biochemsimulation.reactioncontainer.Agent#getID()
+	 * @see #getAgent()
+	 * @generated
+	 */
+	EAttribute getAgent_ID();
+
+	/**
 	 * Returns the meta object for class '{@link biochemsimulation.reactioncontainer.State <em>State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -296,6 +316,14 @@ public interface ReactionContainerPackage extends EPackage {
 		 * @generated
 		 */
 		EClass AGENT = eINSTANCE.getAgent();
+
+		/**
+		 * The meta object literal for the '<em><b>ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute AGENT__ID = eINSTANCE.getAgent_ID();
 
 		/**
 		 * The meta object literal for the '{@link biochemsimulation.reactioncontainer.impl.StateImpl <em>State</em>}' class.

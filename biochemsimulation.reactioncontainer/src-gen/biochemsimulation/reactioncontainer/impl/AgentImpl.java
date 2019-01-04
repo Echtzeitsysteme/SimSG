@@ -11,6 +11,12 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Agent</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * </p>
+ * <ul>
+ *   <li>{@link biochemsimulation.reactioncontainer.impl.AgentImpl#getID <em>ID</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -42,6 +48,24 @@ public class AgentImpl extends DefaultPersistentEObject implements Agent {
 	@Override
 	protected int eStaticFeatureCount() {
 		return 0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public long getID() {
+		return (Long) eGet(ReactionContainerPackage.Literals.AGENT__ID, true);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setID(long newID) {
+		eSet(ReactionContainerPackage.Literals.AGENT__ID, newID);
 	}
 
 } //AgentImpl

@@ -161,6 +161,15 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getAgent_ID() {
+		return (EAttribute) agentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getState() {
 		return stateEClass;
 	}
@@ -200,6 +209,7 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 		createEReference(containerEClass, CONTAINER__STATES);
 
 		agentEClass = createEClass(AGENT);
+		createEAttribute(agentEClass, AGENT__ID);
 
 		stateEClass = createEClass(STATE);
 	}
@@ -252,6 +262,8 @@ public class ReactionContainerPackageImpl extends EPackageImpl implements Reacti
 				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(agentEClass, Agent.class, "Agent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAgent_ID(), theXMLTypePackage.getLong(), "ID", null, 1, 1, Agent.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

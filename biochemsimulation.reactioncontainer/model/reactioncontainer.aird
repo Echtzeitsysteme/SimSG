@@ -26,6 +26,12 @@
             <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_blue']"/>
           </endLabelStyleDescription>
         </computedStyleDescriptions>
+        <computedStyleDescriptions xmi:type="style:BundledImageDescription" xmi:id="_AlYh0BAuEemzUN5wVk_0pg" labelExpression="service:render" labelAlignment="LEFT" tooltipExpression="service:renderTooltip" sizeComputationExpression="1">
+          <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <labelFormat>bold</labelFormat>
+          <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+          <color xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+        </computedStyleDescriptions>
       </data>
     </ownedAnnotationEntries>
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" xmi:id="_XYGfsGNbEeijrKUi_nMUJg" source="GMF_DIAGRAMS">
@@ -46,6 +52,10 @@
         <children xmi:type="notation:Node" xmi:id="_rvdaYGNbEeijrKUi_nMUJg" type="2003" element="_rvZI8GNbEeijrKUi_nMUJg">
           <children xmi:type="notation:Node" xmi:id="_rvdaY2NbEeijrKUi_nMUJg" type="5007"/>
           <children xmi:type="notation:Node" xmi:id="_rveBcGNbEeijrKUi_nMUJg" type="7004">
+            <children xmi:type="notation:Node" xmi:id="_zwlZoBAtEemzUN5wVk_0pg" type="3010" element="_zwPbYBAtEemzUN5wVk_0pg">
+              <styles xmi:type="notation:FontStyle" xmi:id="_zwlZoRAtEemzUN5wVk_0pg" fontColor="2697711" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_zwlZohAtEemzUN5wVk_0pg"/>
+            </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_rveBcWNbEeijrKUi_nMUJg"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_rveBcmNbEeijrKUi_nMUJg"/>
           </children>
@@ -118,10 +128,18 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_baUigGNcEeijrKUi_nMUJg" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" xmi:id="_AlOw0BAuEemzUN5wVk_0pg" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" xmi:id="_zwPbYBAtEemzUN5wVk_0pg" name="ID : Long" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="reactioncontainer.ecore#//Agent/ID"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="reactioncontainer.ecore#//Agent/ID"/>
+        <ownedStyle xmi:type="diagram:BundledImage" xmi:id="_AlYh0RAuEemzUN5wVk_0pg" labelAlignment="LEFT" description="_AlYh0BAuEemzUN5wVk_0pg">
+          <labelFormat>bold</labelFormat>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+      </ownedElements>
     </ownedDiagramElements>
     <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_xAYhcGNbEeijrKUi_nMUJg" name="[0..*] agents" sourceNode="_n-rQYGNbEeijrKUi_nMUJg" targetNode="_rvZI8GNbEeijrKUi_nMUJg">
       <target xmi:type="ecore:EReference" href="reactioncontainer.ecore#//Container/agents"/>
