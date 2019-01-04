@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="http://www.eclipse.org/emf/2002/Ecore java://org.eclipse.emf.ecore.EcorePackage"
+    name="EGF_Pathway_75Percent" nsURI="platform:/resource/biochemsimulation.reactioncontainer/generated/EGF_Pathway_75Percent"
+    nsPrefix="EGF_Pathway_75Percent">
+  <eClassifiers xmi:type="ecore:EClass" name="EGF" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent">
+    <eStructuralFeatures xmi:type="ecore:EReference" name="EGF_r" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="EGF_r_ext" eType="#//ext"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="EGF_r_int" eType="#//int"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="ext" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//State"/>
+  <eClassifiers xmi:type="ecore:EClass" name="int" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//State"/>
+  <eClassifiers xmi:type="ecore:EClass" name="EGFR" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent">
+    <eStructuralFeatures xmi:type="ecore:EReference" name="EGFR_L" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="EGFR_L_ext" eType="#//ext"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="EGFR_L_int" eType="#//int"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="EGFR_CR" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="EGFR_Y992" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="EGFR_Y992_u" eType="#//u"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="EGFR_Y992_p" eType="#//p"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="EGFR_Y1068" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="EGFR_Y1068_u" eType="#//u"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="EGFR_Y1068_p" eType="#//p"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="EGFR_Y1148" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="EGFR_Y1148_u" eType="#//u"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="EGFR_Y1148_p" eType="#//p"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="u" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//State"/>
+  <eClassifiers xmi:type="ecore:EClass" name="p" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//State"/>
+  <eClassifiers xmi:type="ecore:EClass" name="RasGap" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent">
+    <eStructuralFeatures xmi:type="ecore:EReference" name="RasGap_SH2" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="RasGap_s" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="Grb2" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent">
+    <eStructuralFeatures xmi:type="ecore:EReference" name="Grb2_SH2" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="Grb2_SH3" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="SoS" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent">
+    <eStructuralFeatures xmi:type="ecore:EReference" name="SoS_a" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="SoS_b" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="SoS_SS" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="SoS_SS_u" eType="#//u"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="SoS_SS_p" eType="#//p"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="Shc" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent">
+    <eStructuralFeatures xmi:type="ecore:EReference" name="Shc_PTB" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="Shc_Y318" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="Shc_Y318_u" eType="#//u"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="Shc_Y318_p" eType="#//p"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="Ras" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent">
+    <eStructuralFeatures xmi:type="ecore:EReference" name="Ras_S1S2" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="Ras_S1S2_gdp" eType="#//gdp"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="Ras_S1S2_gtp" eType="#//gtp"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="gdp" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//State"/>
+  <eClassifiers xmi:type="ecore:EClass" name="gtp" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//State"/>
+  <eClassifiers xmi:type="ecore:EClass" name="Raf" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent">
+    <eStructuralFeatures xmi:type="ecore:EReference" name="Raf_x" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="Raf_x_u" eType="#//u"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="Raf_x_p" eType="#//p"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="PP2A1" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent">
+    <eStructuralFeatures xmi:type="ecore:EReference" name="PP2A1_s" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="MEK" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent">
+    <eStructuralFeatures xmi:type="ecore:EReference" name="MEK_s" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="MEK_S218" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="MEK_S218_u" eType="#//u"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="MEK_S218_p" eType="#//p"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="MEK_S222" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="MEK_S222_u" eType="#//u"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="MEK_S222_p" eType="#//p"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="PP2A2" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent">
+    <eStructuralFeatures xmi:type="ecore:EReference" name="PP2A2_s" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="ERK" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent">
+    <eStructuralFeatures xmi:type="ecore:EReference" name="ERK_s" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="ERK_T185" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="ERK_T185_u" eType="#//u"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="ERK_T185_p" eType="#//p"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="ERK_Y187" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="ERK_Y187_u" eType="#//u"/>
+    <eStructuralFeatures xmi:type="ecore:EReference" name="ERK_Y187_p" eType="#//p"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="MKP3" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent">
+    <eStructuralFeatures xmi:type="ecore:EReference" name="MKP3_s" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+  </eClassifiers>
+</ecore:EPackage>

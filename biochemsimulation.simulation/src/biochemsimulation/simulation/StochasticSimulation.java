@@ -49,14 +49,18 @@ public class StochasticSimulation extends Simulation {
 			updateTimeStep();
 			pickRule();
 			if(currentRule != null) {
+				/*
 				if(currentRule.contains("EGFR_EGFR")) {
 					System.out.println(currentRule);
 				}
+				*/
 				IMatch rndMatch = pmc.getRandomMatch(currentRule);
 				gt.applyRuleToMatch(rndMatch, currentRule);
+				/*
 				if(currentRule.contains("EGFR_EGFR")) {
 					System.out.println(currentRule);
 				}
+				*/
 			}
 			simStats.logCurrentState(state);
 			

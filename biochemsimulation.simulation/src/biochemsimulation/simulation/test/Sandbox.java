@@ -2,6 +2,9 @@ package biochemsimulation.simulation.test;
 
 import biochemsimulation.reactioncontainer.Container;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
+import biochemsimulation.simulation.Simulation;
+import biochemsimulation.simulation.SimulationConfigurator;
+import biochemsimulation.simulation.benchmark.Runtimer;
 import biochemsimulation.simulation.matching.PatternMatchingEngine;
 import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;
 import biochemsimulation.simulation.matching.PatternMatchingEngineFactory;
@@ -16,7 +19,8 @@ import biochemsimulation.simulation.pmc.PatternMatchingControllerFactory;
 public class Sandbox {
 
 	public static void main(String[] args) {
-
+		
+		/*
 		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
 		pm.init();
 		try {
@@ -36,9 +40,22 @@ public class Sandbox {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		 */
+		SimulationConfigurator simConfigurator = new SimulationConfigurator();
+		simConfigurator.setModel("EGF_Pathway");
+		simConfigurator.setSimplePersistence();
+		simConfigurator.setViatraAsEngine();
+		simConfigurator.setSimplePMC();
+		simConfigurator.setStochasticSimulation();
+		simConfigurator.setComplexTerminationCondition();
+		Simulation viatraSim = simConfigurator.createSimulation();
+		viatraSim.initializeClocked();
+		viatraSim.runClocked();
+		System.out.println(viatraSim.results());
+		viatraSim.displayResults();
+		viatraSim.finish();
 		
-		
+		System.out.println(Runtimer.getInstance());
 	}
 	
 }

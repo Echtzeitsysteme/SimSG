@@ -44,7 +44,7 @@ public class GraphTransfromEGFScenarioTest {
 		persistence = PersistenceManagerFactory.create(persistenceType);
 		persistence.init();
 		engineType = PatternMatchingEngineEnum.ViatraEngine;
-		pmcType = PatternMatchingControllerEnum.HybridPMC;
+		pmcType = PatternMatchingControllerEnum.SimplePMC;
 	}
 	
 	@BeforeAll

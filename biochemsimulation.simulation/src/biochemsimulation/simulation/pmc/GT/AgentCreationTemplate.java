@@ -10,13 +10,16 @@ import biochemsimulation.reactioncontainer.Agent;
 import biochemsimulation.reactioncontainer.Container;
 import biochemsimulation.reactioncontainer.State;
 import biochemsimulation.reactioncontainer.util.AgentFactory;
+import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 
 public class AgentCreationTemplate {
+	private ValidAgentPattern vap;
 	private String type;
 	private Map<EReference, State> states;
 	
-	public AgentCreationTemplate(String type){
-		this.type = type;
+	public AgentCreationTemplate(ValidAgentPattern vap){
+		this.vap = vap;
+		this.type = vap.getAgent().getName();
 		states = new HashMap<EReference, State>();
 	}
 	
@@ -31,6 +34,10 @@ public class AgentCreationTemplate {
 			agent.eSet(entry.getKey(), entry.getValue());
 		}
 		return agent;
+	}
+	
+	public ValidAgentPattern getValidAgentPattern() {
+		return vap;
 	}
 	
 	
