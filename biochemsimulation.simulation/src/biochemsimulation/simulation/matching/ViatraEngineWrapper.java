@@ -58,7 +58,7 @@ public class ViatraEngineWrapper extends PatternMatchingEngine {
 	protected Collection<IMatch> getMatchesAndUpdate(String patternName) throws Exception {
 		Collection<IMatch> iMatches = new LinkedList<IMatch>();
 		for(IPatternMatch match : matcher.get(patternName).getAllMatches()) {
-			iMatches.add(new ViatraMatch(match));
+			iMatches.add(new ViatraMatch(match, patternName));
 		}
 		return iMatches;
 	}

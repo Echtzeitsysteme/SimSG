@@ -42,7 +42,7 @@ public class Sandbox {
 		}
 		 */
 		SimulationConfigurator simConfigurator = new SimulationConfigurator();
-		simConfigurator.setModel("Goldbeter_Koshland");
+		simConfigurator.setModel("EGF_Pathway");
 		simConfigurator.setSimplePersistence();
 		simConfigurator.setViatraAsEngine();
 		simConfigurator.setHybridPMC();

@@ -12,6 +12,7 @@ import biochemsimulation.reactioncontainer.util.AgentClassFactory;
 import biochemsimulation.reactioncontainer.util.StateClassFactory;
 import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
+import biochemsimulation.reactionrules.reactionRules.MultiLinkSitePattern;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
 import biochemsimulation.reactionrules.reactionRules.Site;
@@ -59,10 +60,10 @@ public class InitializationTemplate {
 			for(SitePattern sp : vap.getSitePatterns().getSitePatterns()) {
 				if(sp == null) continue;
 				if(sp.getState() == null) continue;
-				// ignore multi-link site patterns for now
-				if(!(sp instanceof SingleSitePattern)) continue;
-				SingleSitePattern ssp = (SingleSitePattern) sp;
-				states.replace(ssp.getSite(), sp.getState().getState());
+				Site site = null;
+				if(!(sp instanceof SingleSitePattern)) site = ((SingleSitePattern) sp).getSite();
+				if(!(sp instanceof MultiLinkSitePattern)) site = ((MultiLinkSitePattern) sp).getSite();
+				states.replace(site, sp.getState().getState());
 			}
 			states.forEach((site, state) -> {
 				agentTemplates.get(vap).defineState(site, state);
@@ -75,40 +76,79 @@ public class InitializationTemplate {
 			
 			for(SitePattern sp : vap.getSitePatterns().getSitePatterns()) {
 				if(sp == null) continue;
-				// ignore multi-link site patterns for now
-				if(!(sp instanceof SingleSitePattern)) continue;
-				SingleSitePattern ssp = (SingleSitePattern) sp;
 				
-				LinkState ls1 = ssp.getLinkState().getLinkState();
-				if(ls1 == null) continue;
-				if(!(ls1 instanceof BoundLink)) continue;
-				
-				BoundLink bl1 = (BoundLink)ls1;
-				int idx1 = Integer.valueOf(bl1.getState());
-				
-				for(ValidAgentPattern vap2 : agentPatterns) {
-					if(vap == vap2) continue;
-					
-					for(SitePattern sp2 : vap2.getSitePatterns().getSitePatterns()) {
-						if(sp2 == null) continue;
-						// ignore multi-link site patterns for now
-						if(!(sp2 instanceof SingleSitePattern)) continue;
-						SingleSitePattern ssp2 = (SingleSitePattern) sp2;
-						
-						LinkState ls2 = ssp2.getLinkState().getLinkState();
-						if(ls2 == null) continue;
-						if(!(ls2 instanceof BoundLink)) continue;
-						
-						BoundLink bl2 = (BoundLink)ls2;
-						int idx2 = Integer.valueOf(bl2.getState());
-						if(idx1 != idx2) continue;
-						agentTemplates.get(vap).defineReference(ssp.getSite(), agentTemplates.get(vap2));
-						
-					}
+				if(sp instanceof SingleSitePattern) {
+					SingleSitePattern ssp = (SingleSitePattern) sp;
+					findReferenceSingeSite(vap, ssp);
+				}else {
+					MultiLinkSitePattern msp = (MultiLinkSitePattern) sp;
+					findReferenceMultiSite(vap, msp);
 				}
+	
+			}
+		}
+	}
+	
+	private void findReferenceSingeSite(ValidAgentPattern vap, SingleSitePattern ssp) {
+		LinkState ls1 = ssp.getLinkState().getLinkState();
+		if(ls1 == null) return;
+		if(!(ls1 instanceof BoundLink)) return;
+		
+		BoundLink bl1 = (BoundLink)ls1;
+		int idx1 = Integer.valueOf(bl1.getState());
+		
+		for(ValidAgentPattern vap2 : agentPatterns) {
+			if(vap == vap2) continue;
+			
+			for(SitePattern sp2 : vap2.getSitePatterns().getSitePatterns()) {
+				if(sp2 == null) continue;
+				// ignore multi-link site patterns for now
+				if(!(sp2 instanceof SingleSitePattern)) continue;
+				SingleSitePattern ssp2 = (SingleSitePattern) sp2;
+				
+				LinkState ls2 = ssp2.getLinkState().getLinkState();
+				if(ls2 == null) continue;
+				if(!(ls2 instanceof BoundLink)) continue;
+				
+				BoundLink bl2 = (BoundLink)ls2;
+				int idx2 = Integer.valueOf(bl2.getState());
+				if(idx1 != idx2) continue;
+				agentTemplates.get(vap).defineReference(ssp.getSite(), agentTemplates.get(vap2));
 				
 			}
 		}
+	}
+	
+	private void findReferenceMultiSite(ValidAgentPattern vap, MultiLinkSitePattern msp) {
+		/*
+		LinkState ls1 = ssp.getLinkState().getLinkState();
+		if(ls1 == null) return;
+		if(!(ls1 instanceof BoundLink)) return;
+		
+		BoundLink bl1 = (BoundLink)ls1;
+		int idx1 = Integer.valueOf(bl1.getState());
+		
+		for(ValidAgentPattern vap2 : agentPatterns) {
+			if(vap == vap2) continue;
+			
+			for(SitePattern sp2 : vap2.getSitePatterns().getSitePatterns()) {
+				if(sp2 == null) continue;
+				// ignore multi-link site patterns for now
+				if(!(sp2 instanceof SingleSitePattern)) continue;
+				SingleSitePattern ssp2 = (SingleSitePattern) sp2;
+				
+				LinkState ls2 = ssp2.getLinkState().getLinkState();
+				if(ls2 == null) continue;
+				if(!(ls2 instanceof BoundLink)) continue;
+				
+				BoundLink bl2 = (BoundLink)ls2;
+				int idx2 = Integer.valueOf(bl2.getState());
+				if(idx1 != idx2) continue;
+				agentTemplates.get(vap).defineReference(ssp.getSite(), agentTemplates.get(vap2));
+				
+			}
+		}
+		*/
 	}
 	
 	public Collection<Agent> createInstances(int amount) {

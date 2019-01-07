@@ -12,9 +12,12 @@ public class ViatraMatch implements IMatch {
 	
 	final private IPatternMatch match;
 	private int hashCode;
+	private String patternName;
 	
-	public ViatraMatch(final IPatternMatch match) {
+	public ViatraMatch(final IPatternMatch match, String patternName) {
 		this.match = match;
+		//patternName = match.patternName().replaceAll("^(.)*\\.", "");
+		this.patternName = patternName;
 		hashCode = 0;
 	}
 	
@@ -24,8 +27,8 @@ public class ViatraMatch implements IMatch {
 
 	@Override
 	public String patternName() {
-		//return match.patternName();
-		return match.patternName().replaceAll("^(.)*\\.", "");
+		return patternName;
+		//return match.patternName().replaceAll("^(.)*\\.", "");
 	}
 
 	@Override
