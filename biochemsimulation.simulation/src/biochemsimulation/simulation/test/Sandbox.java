@@ -24,8 +24,9 @@ public class Sandbox {
 		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
 		pm.init();
 		try {
-			ReactionRuleModel ruleModel = pm.loadReactionRuleModel("Goldbeter_Koshland");
-			Container reactionContainer = pm.loadReactionContainerModel("Goldbeter_Koshland");
+			ReactionRuleModel ruleModel = pm.loadReactionRuleModel("MultiEdgeTest1");
+			Container reactionContainer = pm.loadReactionContainerModel("MultiEdgeTest1");
+			
 			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.ViatraEngine);
 			PatternMatchingController pmc = PatternMatchingControllerFactory.create(PatternMatchingControllerEnum.SimplePMC);
 			pmc.setEngine(engine);
@@ -36,13 +37,15 @@ public class Sandbox {
 			pmc.getAllMatches().forEach((pattern, matches) -> {
 				System.out.println("Pattern: "+pattern+", "+matches.size()+" matches.");
 			});
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 */
+		*/
+		
 		SimulationConfigurator simConfigurator = new SimulationConfigurator();
-		simConfigurator.setModel("EGF_Pathway");
+		simConfigurator.setModel("Goldbeter_Koshland");
 		simConfigurator.setSimplePersistence();
 		simConfigurator.setViatraAsEngine();
 		simConfigurator.setHybridPMC();
@@ -56,6 +59,7 @@ public class Sandbox {
 		viatraSim.finish();
 		
 		System.out.println(Runtimer.getInstance());
+		
 	}
 	
 }

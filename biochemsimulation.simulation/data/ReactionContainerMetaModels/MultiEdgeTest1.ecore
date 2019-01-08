@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xsi:schemaLocation="http://www.eclipse.org/emf/2002/Ecore java://org.eclipse.emf.ecore.EcorePackage"
+    name="MultiEdgeTest1" nsURI="platform:/resource/biochemsimulation.reactioncontainer/generated/MultiEdgeTest1"
+    nsPrefix="MultiEdgeTest1">
+  <eClassifiers xmi:type="ecore:EClass" name="A" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent">
+    <eStructuralFeatures xmi:type="ecore:EReference" name="A_a" upperBound="-1" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="B" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent">
+    <eStructuralFeatures xmi:type="ecore:EReference" name="B_x" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+  </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="C" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent">
+    <eStructuralFeatures xmi:type="ecore:EReference" name="C_y" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,10 +1,13 @@
 package biochemsimulation.reactioncontainer.generator;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 import biochemsimulation.reactioncontainer.util.AgentClassFactory;
 import biochemsimulation.reactioncontainer.util.StateClassFactory;
@@ -20,7 +23,7 @@ public class AgentTemplate {
 	
 	private String agentClassName;
 	private Map<String, String> stateReferences;
-	private Map<String, AgentTemplate> agentReferences; 
+	private Map<String, List<AgentTemplate>> agentReferences; 
 	
 	public AgentTemplate(Agent agent, AgentClassFactory agentFactory, 
 			StateClassFactory stateFactory, Map<String, biochemsimulation.reactioncontainer.State> stateInstances) {
@@ -30,7 +33,7 @@ public class AgentTemplate {
 		this.stateFactory = stateFactory;
 		
 		agentClassName = agent.getName();
-		agentReferences = new HashMap<String, AgentTemplate>();
+		agentReferences = new HashMap<String, List<AgentTemplate>>();
 		stateReferences = new HashMap<String, String>();
 	}
 	
@@ -40,10 +43,15 @@ public class AgentTemplate {
 				, state.getName());
 	}
 	
-	public void defineReference(Site site, AgentTemplate other) {
-		agentReferences.put(AgentClassFactory
-				.createCombinedClassName(agentClassName, site.getName())
-				, other);
+	public void addReference(Site site, AgentTemplate other) {
+		List<AgentTemplate> templates = agentReferences.get(AgentClassFactory.createCombinedClassName(agentClassName, site.getName()));
+		if(templates == null) {
+			templates = new LinkedList<AgentTemplate>();
+			agentReferences.put(AgentClassFactory
+					.createCombinedClassName(agentClassName, site.getName())
+					, templates);
+		}
+		templates.add(other);
 	}
 	
 	public void setStates(biochemsimulation.reactioncontainer.Agent thisAgent) {
@@ -54,11 +62,22 @@ public class AgentTemplate {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void setReferences(biochemsimulation.reactioncontainer.Agent thisAgent, Map<AgentTemplate, biochemsimulation.reactioncontainer.Agent> tempInstances) {
 		for(String refName : agentReferences.keySet()) {
-			biochemsimulation.reactioncontainer.Agent otherAgent = tempInstances.get(agentReferences.get(refName));
+			List<AgentTemplate> otherTemplates = agentReferences.get(refName);
 			EReference ref = agentFactory.getEClassRegistry().getRegisteredReference(refName);
-			thisAgent.eSet(ref, otherAgent);
+			if(ref.getUpperBound() != EStructuralFeature.UNBOUNDED_MULTIPLICITY) {
+				biochemsimulation.reactioncontainer.Agent otherAgent = tempInstances.get(otherTemplates.get(0));
+				thisAgent.eSet(ref, otherAgent);
+			}else {
+				for(AgentTemplate template : otherTemplates) {
+					biochemsimulation.reactioncontainer.Agent otherAgent = tempInstances.get(template);
+					((List<biochemsimulation.reactioncontainer.Agent>) thisAgent.eGet(ref)).add(otherAgent);
+				}
+				
+			}
+			
 		}
 	}
 	
