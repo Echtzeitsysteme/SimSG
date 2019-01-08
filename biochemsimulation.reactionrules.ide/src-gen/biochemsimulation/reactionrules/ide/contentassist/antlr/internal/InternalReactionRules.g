@@ -1727,9 +1727,15 @@ rule__MultiLinkState__LinkStateAlternatives_2_0
 	)
 	|
 	(
-		{ before(grammarAccess.getMultiLinkStateAccess().getLinkStateMultiLinkParserRuleCall_2_0_3()); }
+		{ before(grammarAccess.getMultiLinkStateAccess().getLinkStateBoundLinkParserRuleCall_2_0_3()); }
+		ruleBoundLink
+		{ after(grammarAccess.getMultiLinkStateAccess().getLinkStateBoundLinkParserRuleCall_2_0_3()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getMultiLinkStateAccess().getLinkStateMultiLinkParserRuleCall_2_0_4()); }
 		ruleMultiLink
-		{ after(grammarAccess.getMultiLinkStateAccess().getLinkStateMultiLinkParserRuleCall_2_0_3()); }
+		{ after(grammarAccess.getMultiLinkStateAccess().getLinkStateMultiLinkParserRuleCall_2_0_4()); }
 	)
 ;
 finally {

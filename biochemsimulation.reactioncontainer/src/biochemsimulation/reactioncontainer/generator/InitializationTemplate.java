@@ -109,13 +109,20 @@ public class InitializationTemplate {
 					return;
 				}else {
 					MultiLinkSitePattern msp2 = (MultiLinkSitePattern) sp2;
-					if(!(msp2.getLinkState().getLinkState() instanceof MultiLink)) continue;
-					MultiLink mls = (MultiLink)msp2.getLinkState().getLinkState();
-					for(LinkState ls3 : mls.getStates()) {
-						if(!boundLinksEqual(ls1, ls3)) continue;
+					if(msp2.getLinkState().getLinkState() instanceof MultiLink) {
+						MultiLink mls = (MultiLink)msp2.getLinkState().getLinkState();
+						for(LinkState ls3 : mls.getStates()) {
+							if(!boundLinksEqual(ls1, ls3)) continue;
+							agentTemplates.get(vap).addReference(ssp.getSite(), agentTemplates.get(vap2));
+							return;
+						}
+					}else {
+						LinkState ls2 = msp2.getLinkState().getLinkState();
+						if(!boundLinksEqual(ls1, ls2)) continue;
 						agentTemplates.get(vap).addReference(ssp.getSite(), agentTemplates.get(vap2));
 						return;
 					}
+					
 				}
 
 			}
@@ -127,10 +134,18 @@ public class InitializationTemplate {
 	private void findReferenceMultiSite(ValidAgentPattern vap, MultiLinkSitePattern msp) {
 		LinkState ls = msp.getLinkState().getLinkState();
 		if(ls == null) return;
-		if(!(ls instanceof MultiLink)) return;
+		if(!(ls instanceof MultiLink || ls instanceof BoundLink)) return;
 		
-		MultiLink mls1 = (MultiLink) ls;
-		for(LinkState ls1 : mls1.getStates()) {
+		List<LinkState> states = new LinkedList<LinkState>();
+		if(ls instanceof MultiLink) {
+			MultiLink mls1 = (MultiLink) ls;
+			states.addAll(mls1.getStates());
+		}else {
+			BoundLink bls1 = (BoundLink) ls;
+			states.add(bls1);
+		}
+		
+		for(LinkState ls1 : states) {
 			for(ValidAgentPattern vap2 : agentPatterns) {
 				if(vap == vap2) continue;
 				
@@ -145,10 +160,16 @@ public class InitializationTemplate {
 						break;
 					}else {
 						MultiLinkSitePattern msp2 = (MultiLinkSitePattern) sp2;
-						if(!(msp2.getLinkState().getLinkState() instanceof MultiLink)) continue;
-						MultiLink mls = (MultiLink)msp2.getLinkState().getLinkState();
-						for(LinkState ls3 : mls.getStates()) {
-							if(!boundLinksEqual(ls1, ls3)) continue;
+						if(msp2.getLinkState().getLinkState() instanceof MultiLink) {
+							MultiLink mls = (MultiLink)msp2.getLinkState().getLinkState();
+							for(LinkState ls3 : mls.getStates()) {
+								if(!boundLinksEqual(ls1, ls3)) continue;
+								agentTemplates.get(vap).addReference(msp.getSite(), agentTemplates.get(vap2));
+								break;
+							}
+						}else {
+							LinkState ls2 = msp2.getLinkState().getLinkState();
+							if(!boundLinksEqual(ls1, ls2)) continue;
 							agentTemplates.get(vap).addReference(msp.getSite(), agentTemplates.get(vap2));
 							break;
 						}

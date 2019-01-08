@@ -557,7 +557,7 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     MultiLinkState returns MultiLinkState
 	 *
 	 * Constraint:
-	 *     (linkState=WhatEver | linkState=FreeLink | linkState=BoundAnyLink | linkState=MultiLink)
+	 *     (linkState=WhatEver | linkState=FreeLink | linkState=BoundAnyLink | linkState=BoundLink | linkState=MultiLink)
 	 */
 	protected void sequence_MultiLinkState(ISerializationContext context, MultiLinkState semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

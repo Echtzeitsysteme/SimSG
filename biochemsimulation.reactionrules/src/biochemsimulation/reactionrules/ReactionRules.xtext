@@ -183,7 +183,7 @@ LinkState:
 
 MultiLinkState:
 	{MultiLinkState}
-	'*['linkState = (WhatEver | FreeLink | BoundAnyLink | MultiLink)']'
+	'*['linkState = (WhatEver | FreeLink | BoundAnyLink | BoundLink | MultiLink)']'
 ;
 
 SingleSitePattern returns SitePattern:

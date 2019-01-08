@@ -44,11 +44,12 @@ public class Sandbox {
 		}
 		*/
 		
+		
 		SimulationConfigurator simConfigurator = new SimulationConfigurator();
 		simConfigurator.setModel("Goldbeter_Koshland");
 		simConfigurator.setSimplePersistence();
 		simConfigurator.setViatraAsEngine();
-		simConfigurator.setHybridPMC();
+		simConfigurator.setSimplePMC();
 		simConfigurator.setStochasticSimulation();
 		simConfigurator.setComplexTerminationCondition();
 		Simulation viatraSim = simConfigurator.createSimulation();
