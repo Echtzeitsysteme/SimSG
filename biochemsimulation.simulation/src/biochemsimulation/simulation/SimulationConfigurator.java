@@ -38,8 +38,12 @@ public class SimulationConfigurator {
 		persistenceType = PersistenceManagerEnum.NeoEMFPersistence;
 	}
 	
-	public void setViatraAsEngine() {
-		engineType = PatternMatchingEngineEnum.ViatraEngine;
+	public void setViatraAsEngine(boolean parallel) {
+		if(parallel) {
+			engineType = PatternMatchingEngineEnum.ParallelViatraEngine;
+		}else {
+			engineType = PatternMatchingEngineEnum.ViatraEngine;
+		}
 	}
 	
 	public void setDemoclesAsEngine() {
