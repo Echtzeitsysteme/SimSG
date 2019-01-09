@@ -1,7 +1,7 @@
 package biochemsimulation.simulation.matching.patterns;
 
 public enum ConstraintType {
-	equal("=="), unequal("!="), greaterOrEqual(">="), greater(">");
+	injectivity("!="), order(">");
 	
 	private String operator;
 	private ConstraintType(String operator) {

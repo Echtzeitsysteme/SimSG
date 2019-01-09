@@ -220,19 +220,26 @@ public class GenericPatternBody {
 					currentLinkStateContext.setTargetLinkState(localLinkStateContext);
 					localLinkStateContext.setTargetLinkState(currentLinkStateContext);
 					
-					LinkStateConstraint constraint = new LinkStateConstraint(currentLinkStateContext, localLinkStateContext, ConstraintType.equal);
+					LinkStateConstraint constraint = new LinkStateConstraint(currentLinkStateContext, localLinkStateContext, null);
 					linkStateConstraints.put(currentLinkStateContext.hashCode(), constraint);
 					// remove self occurences
-					AgentNodeConstraint localInjConstraint = new AgentNodeConstraint(currentAgentNodeContext, localAgentNodeContext, ConstraintType.unequal);
-					localInjConstraint.setLocal();
-					injectivityConstraints.add(localInjConstraint);
+					if(currentAgentNodeContext.getAgentType() == localAgentNodeContext.getAgentType()) {
+						AgentNodeConstraint localInjConstraint = new AgentNodeConstraint(currentAgentNodeContext, localAgentNodeContext, ConstraintType.injectivity);
+						localInjConstraint.setLocal();
+						injectivityConstraints.add(localInjConstraint);
+						/*
+						AgentNodeConstraint localOrderConstraint = new AgentNodeConstraint(currentAgentNodeContext, localAgentNodeContext, ConstraintType.order);
+						localOrderConstraint.setLocal();
+						injectivityConstraints.add(localOrderConstraint);
+						*/
+					}
 					
 				}else if(currentLinkStateContext.getStateType() == LinkStateType.Bound) {
 					BoundLink boundLink = (BoundLink)link;
 					int linkIdx = Integer.valueOf(boundLink.getState());
 					LinkStateContext otherSite = findLinkedSite(pattern, linkIdx);
 					
-					LinkStateConstraint constraint = new LinkStateConstraint(currentLinkStateContext, otherSite, ConstraintType.equal);
+					LinkStateConstraint constraint = new LinkStateConstraint(currentLinkStateContext, otherSite, null);
 					int key2 = otherSite.hashCode();
 					int key1 = currentLinkStateContext.hashCode();
 					int key = (key1>key2)?key1:key2;
@@ -266,7 +273,13 @@ public class GenericPatternBody {
 					int key = (key1 > key2)?key1:key2;
 					AgentNodeContext agentNode = agentNodeContexts.get(signature.getSignaturePattern(node));
 					AgentNodeContext agentNode2 = agentNodeContexts.get(signature.getSignaturePattern(node2));
-					constraints.putIfAbsent(key, new AgentNodeConstraint(agentNode, agentNode2, ConstraintType.unequal));
+					if(null == constraints.putIfAbsent(key, new AgentNodeConstraint(agentNode, agentNode2, ConstraintType.injectivity))) {
+						/*
+						AgentNodeConstraint orderConstraint = new AgentNodeConstraint(agentNode, agentNode2, ConstraintType.order);
+						injectivityConstraints.add(orderConstraint);
+						*/
+					}
+					
 				}
 			}
 		}

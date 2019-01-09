@@ -263,42 +263,41 @@ public class ViatraCodeGenerator {
     ConstraintType _type = constraint.getType();
     if (_type != null) {
       switch (_type) {
-        case equal:
+        case injectivity:
           StringConcatenation _builder = new StringConcatenation();
           String _agentVariableName = constraint.getOperand1().getAgentVariableName();
           _builder.append(_agentVariableName);
-          _builder.append("==");
+          _builder.append(" != ");
           String _agentVariableName_1 = constraint.getOperand2().getAgentVariableName();
           _builder.append(_agentVariableName_1);
           _builder.append(";");
           return _builder.toString();
-        case unequal:
+        case order:
           StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("Agent.ID(");
           String _agentVariableName_2 = constraint.getOperand1().getAgentVariableName();
           _builder_1.append(_agentVariableName_2);
-          _builder_1.append("!=");
-          String _agentVariableName_3 = constraint.getOperand2().getAgentVariableName();
+          _builder_1.append(",");
+          String _agentVariableName_3 = constraint.getOperand1().getAgentVariableName();
           _builder_1.append(_agentVariableName_3);
-          _builder_1.append(";");
-          return _builder_1.toString();
-        case greaterOrEqual:
-          StringConcatenation _builder_2 = new StringConcatenation();
-          String _agentVariableName_4 = constraint.getOperand1().getAgentVariableName();
-          _builder_2.append(_agentVariableName_4);
-          _builder_2.append(">=");
+          _builder_1.append("_id);");
+          _builder_1.newLineIfNotEmpty();
+          _builder_1.append("Agent.ID(");
+          String _agentVariableName_4 = constraint.getOperand2().getAgentVariableName();
+          _builder_1.append(_agentVariableName_4);
+          _builder_1.append(",");
           String _agentVariableName_5 = constraint.getOperand2().getAgentVariableName();
-          _builder_2.append(_agentVariableName_5);
-          _builder_2.append(";");
-          return _builder_2.toString();
-        case greater:
-          StringConcatenation _builder_3 = new StringConcatenation();
+          _builder_1.append(_agentVariableName_5);
+          _builder_1.append("_id);");
+          _builder_1.newLineIfNotEmpty();
+          _builder_1.append("check(");
           String _agentVariableName_6 = constraint.getOperand1().getAgentVariableName();
-          _builder_3.append(_agentVariableName_6);
-          _builder_3.append(">");
+          _builder_1.append(_agentVariableName_6);
+          _builder_1.append("_id > ");
           String _agentVariableName_7 = constraint.getOperand2().getAgentVariableName();
-          _builder_3.append(_agentVariableName_7);
-          _builder_3.append(";");
-          return _builder_3.toString();
+          _builder_1.append(_agentVariableName_7);
+          _builder_1.append("_id);");
+          return _builder_1.toString();
         default:
           break;
       }

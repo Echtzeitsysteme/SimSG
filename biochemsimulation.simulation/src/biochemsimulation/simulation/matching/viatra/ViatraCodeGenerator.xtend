@@ -92,17 +92,14 @@ class ViatraCodeGenerator {
 	def String generateConstraint(AgentNodeConstraint constraint) {
 		if(constraint === null) return "";
 		switch(constraint.type) {
-			case equal: {
-				return '''«constraint.operand1.agentVariableName»==«constraint.operand2.agentVariableName»;'''
+			
+			case injectivity: {
+				return '''«constraint.operand1.agentVariableName» != «constraint.operand2.agentVariableName»;'''
 			}
-			case unequal: {
-				return '''«constraint.operand1.agentVariableName»!=«constraint.operand2.agentVariableName»;'''
-			}
-			case greaterOrEqual: {
-				return '''«constraint.operand1.agentVariableName»>=«constraint.operand2.agentVariableName»;'''
-			}
-			case greater: {
-				return '''«constraint.operand1.agentVariableName»>«constraint.operand2.agentVariableName»;'''
+			case order: {
+				return '''Agent.ID(«constraint.operand1.agentVariableName»,«constraint.operand1.agentVariableName»_id);
+Agent.ID(«constraint.operand2.agentVariableName»,«constraint.operand2.agentVariableName»_id);
+check(«constraint.operand1.agentVariableName»_id > «constraint.operand2.agentVariableName»_id);'''
 			}
 		}
 	}
