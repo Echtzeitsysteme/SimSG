@@ -368,5 +368,63 @@ abstract class PatternMatchingTest {
 		final String patternName = "lightInjectivityAndBoundAny_rule_lhs";
 		getAndCheckMatches(patternName, numOfMatches);
 	}
+	
+	@Test
+	void simpleMultiEdgeTest() {
+		final int numOfMatches = 3;
+		final String patternName = "simpleMultiEdge_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	// Pattern is symmetric -> hence 6 instead of 3 matches
+	@Test
+	void simpleMultiEdgeTest2() {
+		final int numOfMatches = 6;
+		final String patternName = "simpleMultiEdge2_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	// Pattern is symmetric -> hence 6 instead of 3 matches
+	@Test
+	void simpleMultiEdgeTest3() {
+		final int numOfMatches = 6;
+		final String patternName = "simpleMultiEdge3_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void simpleMixedMultiEdgeTest() {
+		final int numOfMatches = 4;
+		final String patternName = "simpleMixedMultiEdge_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void simpleDisjunctMultiEdgeTest() {
+		final int numOfMatches = 4;
+		final String patternName = "simpleDisjunctMultiEdge_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void simpleDisjunctMultiEdgeTest2() {
+		final int numOfMatches = 9;
+		final String patternName = "simpleDisjunctMultiEdge2_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void simpleMixedDisjunctMultiEdgeTest() {
+		final int numOfMatches = 9;
+		final String patternName = "simpleMixedDisjunctMultiEdge_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void simpleMixedDisjunctMultiEdgeTest2() {
+		final int numOfMatches = 24;
+		final String patternName = "simpleMixedDisjunctMultiEdge2_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
 
 }
