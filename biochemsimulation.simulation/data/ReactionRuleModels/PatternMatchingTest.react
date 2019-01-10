@@ -91,6 +91,8 @@ var p39 = {mA(x*[free]), mB(y*[free])}
 var p40 = {mC(z*[free]), mD(a*[free])}
 var p41 = {mA(x*[1,2]), mB(y*[1]), mC(z*[2]), mC(z*[free])}
 var p42 = {mB(y*[1]), mA(x*[1,2]), mB(y*[2]), mA(x*[free]), mB(y*[free])}
+var p43 = {mA(x*[1,2]), mB(y*[1]), mC(z*[2]), mD(a*[free])}
+var p44 = {mB(y*[1]), mA(x*[1,2]), mB(y*[2]), mC(z*[free]), mD(a*[free])}
 
 // Initial variables for disjunct tests
 init i1 10 {A1(), B1()}
@@ -184,3 +186,5 @@ rule simpleDisjunctMultiEdge2_rule p40 -> {void, void} @ [dummy_rate]
 
 rule simpleMixedDisjunctMultiEdge_rule p41 -> {void, void, void, void} @ [dummy_rate]
 rule simpleMixedDisjunctMultiEdge2_rule p42 -> {void, void, void, void, void} @ [dummy_rate]
+rule simpleMixedDisjunctMultiEdge3_rule p43 -> {void, void, void, void} @ [dummy_rate]
+rule simpleMixedDisjunctMultiEdge4_rule p44 -> {void, void, void, void, void} @ [dummy_rate]
