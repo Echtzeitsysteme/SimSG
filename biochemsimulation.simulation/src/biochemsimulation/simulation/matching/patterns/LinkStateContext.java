@@ -16,6 +16,7 @@ public class LinkStateContext {
 	
 	private LinkStateType stateType;
 	
+	private int linkIndex;
 	private LinkStateContext target;
 	
 	public LinkStateContext(SiteNodeContext siteNodeContext, LinkStateType stateType, EReference agentReference) {
@@ -61,12 +62,17 @@ public class LinkStateContext {
 		return siteNodeContext.getAgentNodeContext().isLocal();
 	}
 	
-	public void setTargetLinkState(LinkStateContext target) {
+	public void setTargetLinkState(LinkStateContext target, int linkIndex) {
 		this.target = target;
+		this.linkIndex = linkIndex;
 	}
 	
 	public LinkStateContext getTargetLinkState() {
 		return target;
+	}
+	
+	public int getLinkIndex() {
+		return linkIndex;
 	}
 	
 	public String getTargetAgentTypeName() {

@@ -137,6 +137,19 @@ public class ViatraCodeGenerator {
     return _builder.toString();
   }
   
+  public String generateLink(final List<LinkStateContext> links) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      for(final LinkStateContext link : links) {
+        _builder.newLineIfNotEmpty();
+        String _generateLink = this.generateLink(link);
+        _builder.append(_generateLink);
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder.toString();
+  }
+  
   public String generateLink(final LinkStateContext link) {
     if ((link == null)) {
       return "";

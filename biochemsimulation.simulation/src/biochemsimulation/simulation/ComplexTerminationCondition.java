@@ -22,9 +22,11 @@ public class ComplexTerminationCondition extends SimulationTerminationCondition 
 
 	@Override
 	public boolean isTerminated(SimulationState state) {
+		/*
 		if(state.getIterations()%itStatusStep==0) {
 			System.out.println(100.0*(double)state.getIterations() / (double)maxIterations + "% of iterations("+state.getIterations()+") completed!");
 		}
+		*/
 		if(state.getTime()>= currentTStep) {
 			System.out.println(Math.ceil(100.0*state.getTime()/maxElapsedTime) + "% of simulation time completed!");
 			currentTStep += tStatusStep;

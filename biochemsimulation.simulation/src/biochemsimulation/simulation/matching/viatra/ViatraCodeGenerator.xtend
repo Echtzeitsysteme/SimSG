@@ -9,6 +9,7 @@ import biochemsimulation.simulation.matching.patterns.GenericPattern
 import biochemsimulation.simulation.matching.patterns.LinkStateContext
 import biochemsimulation.simulation.matching.patterns.SiteStateContext
 import biochemsimulation.simulation.matching.patterns.AgentNodeConstraint
+import java.util.List
 
 class ViatraCodeGenerator {
 	
@@ -49,6 +50,13 @@ class ViatraCodeGenerator {
 					«ENDFOR»
 				}	
 			«ENDFOR»
+		'''
+	}
+	
+	def String generateLink(List<LinkStateContext> links){
+		return'''«FOR link : links»
+		«generateLink(link)»
+		«ENDFOR»
 		'''
 	}
 	

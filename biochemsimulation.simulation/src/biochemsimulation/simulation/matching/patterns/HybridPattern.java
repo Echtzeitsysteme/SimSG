@@ -7,6 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
@@ -25,7 +26,7 @@ public class HybridPattern {
 	
 	private GenericPattern genericLhs;
 	
-	private Map<AgentNodeContext, List<LinkStateConstraint>> agentNodeToLinkConstraintMap;
+	private Map<AgentNodeContext, List<Entry<LinkStateContext, LinkStateContext>>> agentNodeToLinkConstraintMap;
 	
 	private List<Set<AgentNodeContext>> subPatterns;
 	private Map<String, GenericPattern> genericSubPatterns;
@@ -54,21 +55,21 @@ public class HybridPattern {
 	}
 	
 	private void mapAgentNodesToLinkConstraints() {
-		agentNodeToLinkConstraintMap = new HashMap<AgentNodeContext, List<LinkStateConstraint>>();
-		for(LinkStateConstraint lsc : genericLhs.getBody().getLinkStateConstraints().values()) {
-			List<LinkStateConstraint> links = agentNodeToLinkConstraintMap.get(lsc.getOperand1().getSiteNodeContext().getAgentNodeContext());
+		agentNodeToLinkConstraintMap = new HashMap<AgentNodeContext, List<Entry<LinkStateContext, LinkStateContext>>>();
+		for(Entry<LinkStateContext, LinkStateContext> pair : genericLhs.getBody().getBoundLinkStateContexts().values()) {
+			List<Entry<LinkStateContext, LinkStateContext>> links = agentNodeToLinkConstraintMap.get(pair.getKey().getSiteNodeContext().getAgentNodeContext());
 			if(links == null) {
-				links = new LinkedList<LinkStateConstraint>();
-				agentNodeToLinkConstraintMap.put(lsc.getOperand1().getSiteNodeContext().getAgentNodeContext(), links);
+				links = new LinkedList<Map.Entry<LinkStateContext,LinkStateContext>>();
+				agentNodeToLinkConstraintMap.put(pair.getKey().getSiteNodeContext().getAgentNodeContext(), links);
 			}
-			links.add(lsc);
+			links.add(pair);
 			
-			List<LinkStateConstraint> links2 = agentNodeToLinkConstraintMap.get(lsc.getOperand2().getSiteNodeContext().getAgentNodeContext());
+			List<Entry<LinkStateContext, LinkStateContext>> links2 = agentNodeToLinkConstraintMap.get(pair.getValue().getSiteNodeContext().getAgentNodeContext());
 			if(links2 == null) {
-				links2 = new LinkedList<LinkStateConstraint>();
-				agentNodeToLinkConstraintMap.put(lsc.getOperand2().getSiteNodeContext().getAgentNodeContext(), links);
+				links2 = new LinkedList<Map.Entry<LinkStateContext,LinkStateContext>>();
+				agentNodeToLinkConstraintMap.put(pair.getValue().getSiteNodeContext().getAgentNodeContext(), links);
 			}
-			links2.add(lsc);
+			links2.add(pair);
 		}
 	}
 	
@@ -85,7 +86,7 @@ public class HybridPattern {
 			Set<AgentNodeContext> currentSubSet = new HashSet<AgentNodeContext>();
 			currentSubSet.add(currentSubPattern);
 			
-			ConcurrentLinkedQueue<LinkStateConstraint> outgoingLinks =  new ConcurrentLinkedQueue<LinkStateConstraint>();
+			ConcurrentLinkedQueue<Entry<LinkStateContext, LinkStateContext>> outgoingLinks =  new ConcurrentLinkedQueue<Map.Entry<LinkStateContext,LinkStateContext>>();
 			if(!agentNodeToLinkConstraintMap.containsKey(currentSubPattern)) {
 				subPatterns.add(currentSubSet);
 				continue;
@@ -100,12 +101,12 @@ public class HybridPattern {
 			*/
 			
 			while(!outgoingLinks.isEmpty()) {
-				LinkStateConstraint currentLink = outgoingLinks.poll();
-				if(currentLink.getOperand1().getStateType() != LinkStateType.Bound) {
+				Entry<LinkStateContext, LinkStateContext> currentLink = outgoingLinks.poll();
+				if(currentLink.getKey().getStateType() != LinkStateType.Bound) {
 					continue;
 				}
-				AgentNodeContext operand1 = currentLink.getOperand1().getSiteNodeContext().getAgentNodeContext();
-				AgentNodeContext operand2 = currentLink.getOperand2().getSiteNodeContext().getAgentNodeContext();
+				AgentNodeContext operand1 = currentLink.getKey().getSiteNodeContext().getAgentNodeContext();
+				AgentNodeContext operand2 = currentLink.getValue().getSiteNodeContext().getAgentNodeContext();
 				if(operand1 != currentSubPattern) {
 					if(pattern.contains(operand1)) {
 						pattern.remove(operand1);

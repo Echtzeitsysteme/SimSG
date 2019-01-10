@@ -20,5 +20,5 @@ obs o1 {T(x{p}[?], y{p}[?])}
 obs o2 {T(x{p}[free], y{p}[free])}
 
 terminate t1 time=20000
-//terminate it1 iterations=7000
+//terminate it1 iterations=100
 //terminate tp1 |{T(x{p}[?], y{p}[?])}| ==> 45
