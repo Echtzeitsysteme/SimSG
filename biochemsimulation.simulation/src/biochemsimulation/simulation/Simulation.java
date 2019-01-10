@@ -6,11 +6,11 @@ import java.util.Map;
 import biochemsimulation.reactioncontainer.Container;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.utils.PatternUtils;
+import biochemsimulation.simulation.GT.ReactionRuleTransformer;
 import biochemsimulation.simulation.benchmark.Runtimer;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.persistence.PersistenceManager;
 import biochemsimulation.simulation.pmc.PatternMatchingController;
-import biochemsimulation.simulation.pmc.GT.ReactionRuleTransformer;
 
 public abstract class Simulation {
 	

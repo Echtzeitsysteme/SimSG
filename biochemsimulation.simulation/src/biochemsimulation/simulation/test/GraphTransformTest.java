@@ -13,6 +13,7 @@ import org.junit.runners.MethodSorters;
 
 import biochemsimulation.reactioncontainer.Container;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
+import biochemsimulation.simulation.GT.ReactionRuleTransformer;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.PatternMatchingEngine;
 import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;
@@ -23,7 +24,6 @@ import biochemsimulation.simulation.persistence.PersistenceManagerFactory;
 import biochemsimulation.simulation.pmc.PatternMatchingController;
 import biochemsimulation.simulation.pmc.PatternMatchingControllerEnum;
 import biochemsimulation.simulation.pmc.PatternMatchingControllerFactory;
-import biochemsimulation.simulation.pmc.GT.ReactionRuleTransformer;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)

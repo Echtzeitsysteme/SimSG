@@ -1,4 +1,4 @@
-package biochemsimulation.simulation.pmc.GT;
+package biochemsimulation.simulation.GT;
 
 import java.util.AbstractMap;
 import java.util.Collection;
@@ -17,6 +17,7 @@ import biochemsimulation.reactionrules.reactionRules.AgentPattern;
 import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.FreeLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
+import biochemsimulation.reactionrules.reactionRules.MultiLinkSitePattern;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
 import biochemsimulation.reactionrules.reactionRules.Site;
@@ -71,27 +72,35 @@ public class TransformationTemplate {
 		linkRemovals = new LinkedList<LinkDeletionTemplate>();
 		
 		for(int i = 0; i<postcondition.getAgentPatterns().size(); i++) {
-			LinkDeletionTemplate linkRemoveTemplate = new LinkDeletionTemplate(i);
 			if(postcondition.getAgentPatterns().get(i) instanceof ValidAgentPattern && 
 					precondition.getAgentPatterns().get(i) instanceof ValidAgentPattern) {
 				ValidAgentPattern ap = (ValidAgentPattern)postcondition.getAgentPatterns().get(i);
 				for(int j = 0; j<ap.getSitePatterns().getSitePatterns().size(); j++) {
 					SitePattern superSp = ap.getSitePatterns().getSitePatterns().get(j);
-					// ignore multi-link site patterns for now
-					if(!(superSp instanceof SingleSitePattern)) continue;
-					SingleSitePattern sp = (SingleSitePattern) superSp;
-					
-					// if the site has a link -> check if it needs deletion
-					if(sp.getLinkState().getLinkState() instanceof FreeLink) {
-						String refName = AgentClassFactory.createReferenceName(ap.getAgent(), sp.getSite());
-						linkRemoveTemplate.addLinkRemovalCandidate(metaModel.getEReference(refName));
+
+					if(superSp instanceof SingleSitePattern) {
+						singleLinkRemoval(ap, i, (SingleSitePattern) superSp);
+					}else {
+						multiLinkRemoval((MultiLinkSitePattern) superSp);
 					}
+					
 				}
 			}
-			if(!linkRemoveTemplate.isEmpty()) {
-				linkRemovals.add(linkRemoveTemplate);
-			}
 		}
+	}
+	
+	private void singleLinkRemoval(ValidAgentPattern vap, int nodeIndex, SingleSitePattern ssp) {
+		// if the site has a link -> check if it needs deletion
+		if(ssp.getLinkState().getLinkState() instanceof FreeLink) {
+			String refName = AgentClassFactory.createReferenceName(vap.getAgent(), ssp.getSite());
+			LinkDeletionTemplate linkRemoveTemplate = new LinkDeletionTemplate(nodeIndex);
+			linkRemoveTemplate.addLinkRemovalCandidate(metaModel.getEReference(refName));
+			linkRemovals.add(linkRemoveTemplate);
+		}
+	}
+	
+	private void multiLinkRemoval(MultiLinkSitePattern msp) {
+		
 	}
 	
 	private void findSiteStateChangeCandidates() {
