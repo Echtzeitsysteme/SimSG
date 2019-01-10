@@ -14,7 +14,7 @@ import biochemsimulation.reactioncontainer.util.StateClassFactory;
 import biochemsimulation.reactionrules.reactionRules.Agent;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
 import biochemsimulation.reactionrules.reactionRules.BoundLink;
-import biochemsimulation.reactionrules.reactionRules.FreeLink;
+import biochemsimulation.reactionrules.reactionRules.IndexedFreeLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.MultiLink;
 import biochemsimulation.reactionrules.reactionRules.MultiLinkSitePattern;
@@ -35,6 +35,7 @@ public class GenericPatternBody {
 	private Map<SiteNodeContext, SiteStateContext> siteStateContexts;
 	private Map<SiteNodeContext, List<LinkStateContext>> linkStateContexts;
 	private Map<Integer, Entry<LinkStateContext, LinkStateContext>> boundLinkStateContexts;
+	private Map<Integer, Entry<LinkStateContext, LinkStateContext>> indexedFreeLinkStateContexts;
 	
 	private Collection<AgentNodeConstraint> injectivityConstraintsSignature;
 	private Collection<AgentNodeConstraint> injectivityConstraintsBody;
@@ -152,6 +153,7 @@ public class GenericPatternBody {
 		siteStateContexts = new HashMap<SiteNodeContext, SiteStateContext>();
 		linkStateContexts = new HashMap<SiteNodeContext, List<LinkStateContext>>();
 		boundLinkStateContexts = new HashMap<Integer, Map.Entry<LinkStateContext,LinkStateContext>>();
+		indexedFreeLinkStateContexts = new HashMap<Integer, Map.Entry<LinkStateContext,LinkStateContext>>();
 		
 		for(ValidAgentPattern pattern : agentPatterns) {
 			AgentNodeContext currentAgentNodeContext = agentNodeContexts.get(pattern);
@@ -210,11 +212,14 @@ public class GenericPatternBody {
 			if(ls instanceof MultiLink) {
 				MultiLink mls = (MultiLink)ls;
 				for(LinkState ls1 : mls.getStates()) {
-					// free links in multi-links are ignored -> they do not make sense within a pm context (either a site is free or it is not)
-					if(ls1 instanceof FreeLink) continue;
-					LinkStateContext link = createLinkStateContext(vap.getAgent(), msp.getSite(), ls1, snc);
-					lsc.add(link);
-					if(ls1 instanceof BoundLink) {
+					// indexed free links 
+					if(ls1 instanceof IndexedFreeLink) {
+						//ToDo....
+					}
+					// bound links
+					else {
+						LinkStateContext link = createLinkStateContext(vap.getAgent(), msp.getSite(), ls1, snc);
+						lsc.add(link);
 						addBoundLinkStateContexts((BoundLink)ls1, link);
 					}
 					
