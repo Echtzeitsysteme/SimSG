@@ -12,8 +12,10 @@ import biochemsimulation.reactionrules.reactionRules.AssignFromVariable;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyLink;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
 import biochemsimulation.reactionrules.reactionRules.BoundLink;
+import biochemsimulation.reactionrules.reactionRules.IndexedFreeLink;
 import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
+import biochemsimulation.reactionrules.reactionRules.MultiLinkSitePattern;
 import biochemsimulation.reactionrules.reactionRules.NumericAssignment;
 import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral;
 import biochemsimulation.reactionrules.reactionRules.NumericFromVariable;
@@ -421,16 +423,27 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
     int _size = sites.size();
     HashSet<Site> siteSet = new HashSet<Site>(_size);
     siteSet.addAll(sites);
+    HashSet<Site> sitePatternSet = new HashSet<Site>();
     for (final SitePattern candidate : candidates) {
-      if ((candidate instanceof SingleSitePattern)) {
-        SingleSitePattern sp = ((SingleSitePattern) candidate);
-        SingleSite spSite = sp.getSite();
-        boolean _contains = siteSet.contains(spSite);
+      {
+        Site site = ((Site) null);
+        if ((candidate instanceof SingleSitePattern)) {
+          site = ((SingleSitePattern) candidate).getSite();
+        } else {
+          site = ((MultiLinkSitePattern) candidate).getSite();
+        }
+        boolean _contains = siteSet.contains(site);
         boolean _not = (!_contains);
         if (_not) {
-          String _name = spSite.getName();
+          String _name = site.getName();
           String _plus = ("This Agent does not have a site with ID=" + _name);
           this.error(_plus, ReactionRulesPackage.Literals.VALID_AGENT_PATTERN__SITE_PATTERNS);
+        }
+        boolean _contains_1 = sitePatternSet.contains(site);
+        if (_contains_1) {
+          this.error("You may not redefine the same site multiple times.", ReactionRulesPackage.Literals.VALID_AGENT_PATTERN__SITE_PATTERNS);
+        } else {
+          sitePatternSet.add(site);
         }
       }
     }
@@ -463,6 +476,36 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
     }
     if ((c < 2)) {
       this.error("This indexed link must refer to exactly two end-points aka. sites.", ReactionRulesPackage.Literals.BOUND_LINK__STATE);
+    }
+  }
+  
+  @Check
+  public void checkIndexedFreeLinkConstraint(final IndexedFreeLink freeLink) {
+    Pattern pattern = ((Pattern) null);
+    EObject eObj = freeLink.eContainer();
+    while (((!(eObj instanceof Pattern)) && (eObj != null))) {
+      eObj = eObj.eContainer();
+    }
+    if ((eObj instanceof Pattern)) {
+      pattern = ((Pattern)eObj);
+    }
+    List<IndexedFreeLink> candidates = EcoreUtil2.<IndexedFreeLink>getAllContentsOfType(pattern, IndexedFreeLink.class);
+    int c = 1;
+    final Integer thisNum = Integer.valueOf(freeLink.getState());
+    for (final IndexedFreeLink cnd : candidates) {
+      {
+        final IndexedFreeLink candidate = ((IndexedFreeLink) cnd);
+        final Integer cNum = Integer.valueOf(candidate.getState());
+        if ((Objects.equal(cNum, thisNum) && (!candidate.equals(freeLink)))) {
+          c++;
+        }
+        if ((c > 2)) {
+          this.error("This indexed link deletion refers to more than two end-points aka. sites.", ReactionRulesPackage.Literals.INDEXED_FREE_LINK__STATE);
+        }
+      }
+    }
+    if ((c < 2)) {
+      this.error("This indexed link deletion must refer to exactly two end-points aka. sites.", ReactionRulesPackage.Literals.INDEXED_FREE_LINK__STATE);
     }
   }
 }

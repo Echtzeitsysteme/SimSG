@@ -15,6 +15,7 @@ import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkAgent;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkSite;
 import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.FreeLink;
+import biochemsimulation.reactionrules.reactionRules.IndexedFreeLink;
 import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.Iterations;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
@@ -370,6 +371,13 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * @generated
    */
   private EClass freeLinkEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass indexedFreeLinkEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1331,6 +1339,36 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getIndexedFreeLink()
+  {
+    return indexedFreeLinkEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getIndexedFreeLink_Name()
+  {
+    return (EAttribute)indexedFreeLinkEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getIndexedFreeLink_State()
+  {
+    return (EAttribute)indexedFreeLinkEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getWhatEver()
   {
     return whatEverEClass;
@@ -1634,6 +1672,10 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     freeLinkEClass = createEClass(FREE_LINK);
     createEAttribute(freeLinkEClass, FREE_LINK__NAME);
 
+    indexedFreeLinkEClass = createEClass(INDEXED_FREE_LINK);
+    createEAttribute(indexedFreeLinkEClass, INDEXED_FREE_LINK__NAME);
+    createEAttribute(indexedFreeLinkEClass, INDEXED_FREE_LINK__STATE);
+
     whatEverEClass = createEClass(WHAT_EVER);
     createEAttribute(whatEverEClass, WHAT_EVER__NAME);
 
@@ -1706,6 +1748,7 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     multiSiteEClass.getESuperTypes().add(this.getSite());
     boundAnyLinkEClass.getESuperTypes().add(this.getLinkState());
     freeLinkEClass.getESuperTypes().add(this.getLinkState());
+    indexedFreeLinkEClass.getESuperTypes().add(this.getLinkState());
     whatEverEClass.getESuperTypes().add(this.getLinkState());
     boundLinkEClass.getESuperTypes().add(this.getLinkState());
     multiLinkEClass.getESuperTypes().add(this.getLinkState());
@@ -1841,6 +1884,10 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
 
     initEClass(freeLinkEClass, FreeLink.class, "FreeLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getFreeLink_Name(), ecorePackage.getEString(), "name", null, 0, 1, FreeLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(indexedFreeLinkEClass, IndexedFreeLink.class, "IndexedFreeLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIndexedFreeLink_Name(), ecorePackage.getEString(), "name", null, 0, 1, IndexedFreeLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getIndexedFreeLink_State(), ecorePackage.getEString(), "state", null, 0, 1, IndexedFreeLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(whatEverEClass, WhatEver.class, "WhatEver", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getWhatEver_Name(), ecorePackage.getEString(), "name", null, 0, 1, WhatEver.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

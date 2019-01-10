@@ -429,7 +429,7 @@
                 <linkState xmi:type="reactionRules:MultiLinkState">
                   <linkState xmi:type="reactionRules:MultiLink">
                     <states xmi:type="reactionRules:BoundLink" state="1"/>
-                    <states xmi:type="reactionRules:FreeLink" name="free"/>
+                    <states xmi:type="reactionRules:IndexedFreeLink" name="free" state="2"/>
                   </linkState>
                 </linkState>
               </sitePatterns>
@@ -448,7 +448,7 @@
             <sitePatterns xmi:type="reactionRules:SitePatterns">
               <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.0">
                 <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+                  <linkState xmi:type="reactionRules:IndexedFreeLink" name="free" state="2"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
@@ -504,7 +504,7 @@
                 <linkState xmi:type="reactionRules:MultiLinkState">
                   <linkState xmi:type="reactionRules:MultiLink">
                     <states xmi:type="reactionRules:BoundLink" state="1"/>
-                    <states xmi:type="reactionRules:FreeLink" name="free"/>
+                    <states xmi:type="reactionRules:IndexedFreeLink" name="free" state="2"/>
                   </linkState>
                 </linkState>
               </sitePatterns>
@@ -523,7 +523,7 @@
             <sitePatterns xmi:type="reactionRules:SitePatterns">
               <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.4/@sites/@sites.0">
                 <linkState xmi:type="reactionRules:MultiLinkState">
-                  <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+                  <linkState xmi:type="reactionRules:IndexedFreeLink" name="free" state="2"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>

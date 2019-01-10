@@ -1406,6 +1406,52 @@ public interface ReactionRulesPackage extends EPackage
   int FREE_LINK_FEATURE_COUNT = LINK_STATE_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.IndexedFreeLinkImpl <em>Indexed Free Link</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see biochemsimulation.reactionrules.reactionRules.impl.IndexedFreeLinkImpl
+   * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getIndexedFreeLink()
+   * @generated
+   */
+  int INDEXED_FREE_LINK = 43;
+
+  /**
+   * The feature id for the '<em><b>Link State</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INDEXED_FREE_LINK__LINK_STATE = LINK_STATE__LINK_STATE;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INDEXED_FREE_LINK__NAME = LINK_STATE_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>State</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INDEXED_FREE_LINK__STATE = LINK_STATE_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Indexed Free Link</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INDEXED_FREE_LINK_FEATURE_COUNT = LINK_STATE_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link biochemsimulation.reactionrules.reactionRules.impl.WhatEverImpl <em>What Ever</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1413,7 +1459,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getWhatEver()
    * @generated
    */
-  int WHAT_EVER = 43;
+  int WHAT_EVER = 44;
 
   /**
    * The feature id for the '<em><b>Link State</b></em>' containment reference.
@@ -1450,7 +1496,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getBoundLink()
    * @generated
    */
-  int BOUND_LINK = 44;
+  int BOUND_LINK = 45;
 
   /**
    * The feature id for the '<em><b>Link State</b></em>' containment reference.
@@ -1487,7 +1533,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getMultiLink()
    * @generated
    */
-  int MULTI_LINK = 45;
+  int MULTI_LINK = 46;
 
   /**
    * The feature id for the '<em><b>Link State</b></em>' containment reference.
@@ -1524,7 +1570,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getBoundAnyOfTypeLink()
    * @generated
    */
-  int BOUND_ANY_OF_TYPE_LINK = 46;
+  int BOUND_ANY_OF_TYPE_LINK = 47;
 
   /**
    * The feature id for the '<em><b>Link State</b></em>' containment reference.
@@ -1570,7 +1616,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getSingleSitePattern()
    * @generated
    */
-  int SINGLE_SITE_PATTERN = 47;
+  int SINGLE_SITE_PATTERN = 48;
 
   /**
    * The feature id for the '<em><b>State</b></em>' containment reference.
@@ -1616,7 +1662,7 @@ public interface ReactionRulesPackage extends EPackage
    * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getMultiLinkSitePattern()
    * @generated
    */
-  int MULTI_LINK_SITE_PATTERN = 48;
+  int MULTI_LINK_SITE_PATTERN = 49;
 
   /**
    * The feature id for the '<em><b>State</b></em>' containment reference.
@@ -2546,6 +2592,38 @@ public interface ReactionRulesPackage extends EPackage
    * @generated
    */
   EAttribute getFreeLink_Name();
+
+  /**
+   * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.IndexedFreeLink <em>Indexed Free Link</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Indexed Free Link</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.IndexedFreeLink
+   * @generated
+   */
+  EClass getIndexedFreeLink();
+
+  /**
+   * Returns the meta object for the attribute '{@link biochemsimulation.reactionrules.reactionRules.IndexedFreeLink#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.IndexedFreeLink#getName()
+   * @see #getIndexedFreeLink()
+   * @generated
+   */
+  EAttribute getIndexedFreeLink_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link biochemsimulation.reactionrules.reactionRules.IndexedFreeLink#getState <em>State</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>State</em>'.
+   * @see biochemsimulation.reactionrules.reactionRules.IndexedFreeLink#getState()
+   * @see #getIndexedFreeLink()
+   * @generated
+   */
+  EAttribute getIndexedFreeLink_State();
 
   /**
    * Returns the meta object for class '{@link biochemsimulation.reactionrules.reactionRules.WhatEver <em>What Ever</em>}'.
@@ -3494,6 +3572,32 @@ public interface ReactionRulesPackage extends EPackage
      * @generated
      */
     EAttribute FREE_LINK__NAME = eINSTANCE.getFreeLink_Name();
+
+    /**
+     * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.IndexedFreeLinkImpl <em>Indexed Free Link</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see biochemsimulation.reactionrules.reactionRules.impl.IndexedFreeLinkImpl
+     * @see biochemsimulation.reactionrules.reactionRules.impl.ReactionRulesPackageImpl#getIndexedFreeLink()
+     * @generated
+     */
+    EClass INDEXED_FREE_LINK = eINSTANCE.getIndexedFreeLink();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INDEXED_FREE_LINK__NAME = eINSTANCE.getIndexedFreeLink_Name();
+
+    /**
+     * The meta object literal for the '<em><b>State</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INDEXED_FREE_LINK__STATE = eINSTANCE.getIndexedFreeLink_State();
 
     /**
      * The meta object literal for the '{@link biochemsimulation.reactionrules.reactionRules.impl.WhatEverImpl <em>What Ever</em>}' class.

@@ -126,6 +126,10 @@
     <genClasses ecoreClass="ReactionRules.ecore#//FreeLink">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//FreeLink/name"/>
     </genClasses>
+    <genClasses ecoreClass="ReactionRules.ecore#//IndexedFreeLink">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//IndexedFreeLink/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//IndexedFreeLink/state"/>
+    </genClasses>
     <genClasses ecoreClass="ReactionRules.ecore#//WhatEver">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//WhatEver/name"/>
     </genClasses>

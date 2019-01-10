@@ -291,6 +291,11 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
         return createFreeLinkAdapter();
       }
       @Override
+      public Adapter caseIndexedFreeLink(IndexedFreeLink object)
+      {
+        return createIndexedFreeLinkAdapter();
+      }
+      @Override
       public Adapter caseWhatEver(WhatEver object)
       {
         return createWhatEverAdapter();
@@ -983,6 +988,21 @@ public class ReactionRulesAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createFreeLinkAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link biochemsimulation.reactionrules.reactionRules.IndexedFreeLink <em>Indexed Free Link</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see biochemsimulation.reactionrules.reactionRules.IndexedFreeLink
+   * @generated
+   */
+  public Adapter createIndexedFreeLinkAdapter()
   {
     return null;
   }

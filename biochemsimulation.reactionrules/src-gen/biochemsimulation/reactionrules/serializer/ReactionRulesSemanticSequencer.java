@@ -14,6 +14,7 @@ import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkAgent;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkSite;
 import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.FreeLink;
+import biochemsimulation.reactionrules.reactionRules.IndexedFreeLink;
 import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.Iterations;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
@@ -104,6 +105,9 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 				return; 
 			case ReactionRulesPackage.FREE_LINK:
 				sequence_FreeLink(context, (FreeLink) semanticObject); 
+				return; 
+			case ReactionRulesPackage.INDEXED_FREE_LINK:
+				sequence_IndexedFreeLink(context, (IndexedFreeLink) semanticObject); 
 				return; 
 			case ReactionRulesPackage.INITIAL:
 				sequence_Initial(context, (Initial) semanticObject); 
@@ -467,6 +471,27 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	
 	/**
 	 * Contexts:
+	 *     IndexedFreeLink returns IndexedFreeLink
+	 *
+	 * Constraint:
+	 *     (name=FREE_LINK state=UnsignedInteger)
+	 */
+	protected void sequence_IndexedFreeLink(ISerializationContext context, IndexedFreeLink semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.INDEXED_FREE_LINK__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.INDEXED_FREE_LINK__NAME));
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.INDEXED_FREE_LINK__STATE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.INDEXED_FREE_LINK__STATE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getIndexedFreeLinkAccess().getNameFREE_LINKTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getIndexedFreeLinkAccess().getStateUnsignedIntegerParserRuleCall_3_0(), semanticObject.getState());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     ReactionProperty returns Initial
 	 *     Initial returns Initial
 	 *
@@ -514,7 +539,14 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     LinkState returns LinkState
 	 *
 	 * Constraint:
-	 *     (linkState=BoundAnyLink | linkState=FreeLink | linkState=BoundAnyOfTypeLink | linkState=BoundLink | linkState=WhatEver)
+	 *     (
+	 *         linkState=BoundAnyLink | 
+	 *         linkState=FreeLink | 
+	 *         linkState=IndexedFreeLink | 
+	 *         linkState=BoundAnyOfTypeLink | 
+	 *         linkState=BoundLink | 
+	 *         linkState=WhatEver
+	 *     )
 	 */
 	protected void sequence_LinkState(ISerializationContext context, LinkState semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -557,7 +589,14 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     MultiLinkState returns MultiLinkState
 	 *
 	 * Constraint:
-	 *     (linkState=WhatEver | linkState=FreeLink | linkState=BoundAnyLink | linkState=BoundLink | linkState=MultiLink)
+	 *     (
+	 *         linkState=WhatEver | 
+	 *         linkState=FreeLink | 
+	 *         linkState=IndexedFreeLink | 
+	 *         linkState=BoundAnyLink | 
+	 *         linkState=BoundLink | 
+	 *         linkState=MultiLink
+	 *     )
 	 */
 	protected void sequence_MultiLinkState(ISerializationContext context, MultiLinkState semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -569,7 +608,7 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     MultiLink returns MultiLink
 	 *
 	 * Constraint:
-	 *     ((states+=BoundLink | states+=FreeLink) (states+=BoundLink | states+=FreeLink)+)?
+	 *     ((states+=BoundLink | states+=IndexedFreeLink) (states+=BoundLink | states+=IndexedFreeLink)+)?
 	 */
 	protected void sequence_MultiLink(ISerializationContext context, MultiLink semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

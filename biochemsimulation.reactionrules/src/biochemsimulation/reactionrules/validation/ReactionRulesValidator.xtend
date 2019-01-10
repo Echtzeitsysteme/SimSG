@@ -31,6 +31,8 @@ import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern
 import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern
 import biochemsimulation.reactionrules.reactionRules.SingleSitePattern
+import biochemsimulation.reactionrules.reactionRules.IndexedFreeLink
+import biochemsimulation.reactionrules.reactionRules.MultiLinkSitePattern
 
 /**
  * This class contains custom validation rules. 
@@ -396,14 +398,23 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 		var sites = agentPattern.agent.sites.sites
 		var siteSet = new HashSet<Site>(sites.size())
 		siteSet.addAll(sites)
+		var sitePatternSet = new HashSet<Site>()
 		
 		for(candidate : candidates) {
+			var site = null as Site
 			if(candidate instanceof SingleSitePattern) {
-				var sp = candidate as SingleSitePattern
-				var spSite = sp.site
-				if(!siteSet.contains(spSite)) {
-					error('This Agent does not have a site with ID='+spSite.name, ReactionRulesPackage.Literals.VALID_AGENT_PATTERN__SITE_PATTERNS)
-				}
+				site = (candidate as SingleSitePattern).site
+			}else {
+				site = (candidate as MultiLinkSitePattern).site
+			}
+			
+			if(!siteSet.contains(site)) {
+				error('This Agent does not have a site with ID='+site.name, ReactionRulesPackage.Literals.VALID_AGENT_PATTERN__SITE_PATTERNS)
+			}
+			if(sitePatternSet.contains(site)) {
+				error('You may not redefine the same site multiple times.', ReactionRulesPackage.Literals.VALID_AGENT_PATTERN__SITE_PATTERNS)
+			}else {
+				sitePatternSet.add(site)
 			}
 			
 		}
@@ -434,6 +445,34 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 		}
 		if(c<2) {
 			error('This indexed link must refer to exactly two end-points aka. sites.', ReactionRulesPackage.Literals.BOUND_LINK__STATE)
+		}
+	}
+	
+	@Check
+	def checkIndexedFreeLinkConstraint(IndexedFreeLink freeLink) {
+		var pattern = null as Pattern
+		var eObj = freeLink.eContainer
+		while(!(eObj instanceof Pattern) && eObj !== null) {
+			eObj = eObj.eContainer
+		}
+		if(eObj instanceof Pattern) {
+			pattern = eObj
+		}
+		var candidates = EcoreUtil2.getAllContentsOfType(pattern, IndexedFreeLink);
+		var c = 1
+		val thisNum = Integer.valueOf(freeLink.state)
+		for(cnd : candidates) {
+			val candidate = cnd as IndexedFreeLink
+			val cNum = Integer.valueOf(candidate.state)
+			if(cNum == thisNum && !candidate.equals(freeLink)) {
+				c++
+			}
+			if(c>2){
+				error('This indexed link deletion refers to more than two end-points aka. sites.', ReactionRulesPackage.Literals.INDEXED_FREE_LINK__STATE)
+			}
+		}
+		if(c<2) {
+			error('This indexed link deletion must refer to exactly two end-points aka. sites.', ReactionRulesPackage.Literals.INDEXED_FREE_LINK__STATE)
 		}
 	}
 	

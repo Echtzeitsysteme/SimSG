@@ -1209,6 +1209,77 @@ ruleFreeLink returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleIndexedFreeLink
+entryRuleIndexedFreeLink returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getIndexedFreeLinkRule()); }
+	iv_ruleIndexedFreeLink=ruleIndexedFreeLink
+	{ $current=$iv_ruleIndexedFreeLink.current; }
+	EOF;
+
+// Rule IndexedFreeLink
+ruleIndexedFreeLink returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getIndexedFreeLinkAccess().getIndexedFreeLinkAction_0(),
+					$current);
+			}
+		)
+		(
+			(
+				lv_name_1_0=RULE_FREE_LINK
+				{
+					newLeafNode(lv_name_1_0, grammarAccess.getIndexedFreeLinkAccess().getNameFREE_LINKTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getIndexedFreeLinkRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_1_0,
+						"biochemsimulation.reactionrules.ReactionRules.FREE_LINK");
+				}
+			)
+		)
+		otherlv_2='('
+		{
+			newLeafNode(otherlv_2, grammarAccess.getIndexedFreeLinkAccess().getLeftParenthesisKeyword_2());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getIndexedFreeLinkAccess().getStateUnsignedIntegerParserRuleCall_3_0());
+				}
+				lv_state_3_0=ruleUnsignedInteger
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getIndexedFreeLinkRule());
+					}
+					set(
+						$current,
+						"state",
+						lv_state_3_0,
+						"biochemsimulation.reactionrules.ReactionRules.UnsignedInteger");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_4=')'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getIndexedFreeLinkAccess().getRightParenthesisKeyword_4());
+		}
+	)
+;
+
 // Entry rule entryRuleWhatEver
 entryRuleWhatEver returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getWhatEverRule()); }
@@ -1342,9 +1413,9 @@ ruleMultiLink returns [EObject current=null]
 						}
 						    |
 						{
-							newCompositeNode(grammarAccess.getMultiLinkAccess().getStatesFreeLinkParserRuleCall_1_0_0_1());
+							newCompositeNode(grammarAccess.getMultiLinkAccess().getStatesIndexedFreeLinkParserRuleCall_1_0_0_1());
 						}
-						lv_states_1_2=ruleFreeLink
+						lv_states_1_2=ruleIndexedFreeLink
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getMultiLinkRule());
@@ -1353,7 +1424,7 @@ ruleMultiLink returns [EObject current=null]
 								$current,
 								"states",
 								lv_states_1_2,
-								"biochemsimulation.reactionrules.ReactionRules.FreeLink");
+								"biochemsimulation.reactionrules.ReactionRules.IndexedFreeLink");
 							afterParserOrEnumRuleCall();
 						}
 					)
@@ -1384,9 +1455,9 @@ ruleMultiLink returns [EObject current=null]
 							}
 							    |
 							{
-								newCompositeNode(grammarAccess.getMultiLinkAccess().getStatesFreeLinkParserRuleCall_1_1_1_0_1());
+								newCompositeNode(grammarAccess.getMultiLinkAccess().getStatesIndexedFreeLinkParserRuleCall_1_1_1_0_1());
 							}
-							lv_states_3_2=ruleFreeLink
+							lv_states_3_2=ruleIndexedFreeLink
 							{
 								if ($current==null) {
 									$current = createModelElementForParent(grammarAccess.getMultiLinkRule());
@@ -1395,7 +1466,7 @@ ruleMultiLink returns [EObject current=null]
 									$current,
 									"states",
 									lv_states_3_2,
-									"biochemsimulation.reactionrules.ReactionRules.FreeLink");
+									"biochemsimulation.reactionrules.ReactionRules.IndexedFreeLink");
 								afterParserOrEnumRuleCall();
 							}
 						)
@@ -1662,9 +1733,9 @@ ruleLinkState returns [EObject current=null]
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getLinkStateAccess().getLinkStateBoundAnyOfTypeLinkParserRuleCall_2_0_2());
+						newCompositeNode(grammarAccess.getLinkStateAccess().getLinkStateIndexedFreeLinkParserRuleCall_2_0_2());
 					}
-					lv_linkState_2_3=ruleBoundAnyOfTypeLink
+					lv_linkState_2_3=ruleIndexedFreeLink
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getLinkStateRule());
@@ -1673,14 +1744,14 @@ ruleLinkState returns [EObject current=null]
 							$current,
 							"linkState",
 							lv_linkState_2_3,
-							"biochemsimulation.reactionrules.ReactionRules.BoundAnyOfTypeLink");
+							"biochemsimulation.reactionrules.ReactionRules.IndexedFreeLink");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getLinkStateAccess().getLinkStateBoundLinkParserRuleCall_2_0_3());
+						newCompositeNode(grammarAccess.getLinkStateAccess().getLinkStateBoundAnyOfTypeLinkParserRuleCall_2_0_3());
 					}
-					lv_linkState_2_4=ruleBoundLink
+					lv_linkState_2_4=ruleBoundAnyOfTypeLink
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getLinkStateRule());
@@ -1689,14 +1760,14 @@ ruleLinkState returns [EObject current=null]
 							$current,
 							"linkState",
 							lv_linkState_2_4,
-							"biochemsimulation.reactionrules.ReactionRules.BoundLink");
+							"biochemsimulation.reactionrules.ReactionRules.BoundAnyOfTypeLink");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getLinkStateAccess().getLinkStateWhatEverParserRuleCall_2_0_4());
+						newCompositeNode(grammarAccess.getLinkStateAccess().getLinkStateBoundLinkParserRuleCall_2_0_4());
 					}
-					lv_linkState_2_5=ruleWhatEver
+					lv_linkState_2_5=ruleBoundLink
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getLinkStateRule());
@@ -1705,6 +1776,22 @@ ruleLinkState returns [EObject current=null]
 							$current,
 							"linkState",
 							lv_linkState_2_5,
+							"biochemsimulation.reactionrules.ReactionRules.BoundLink");
+						afterParserOrEnumRuleCall();
+					}
+					    |
+					{
+						newCompositeNode(grammarAccess.getLinkStateAccess().getLinkStateWhatEverParserRuleCall_2_0_5());
+					}
+					lv_linkState_2_6=ruleWhatEver
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getLinkStateRule());
+						}
+						set(
+							$current,
+							"linkState",
+							lv_linkState_2_6,
 							"biochemsimulation.reactionrules.ReactionRules.WhatEver");
 						afterParserOrEnumRuleCall();
 					}
@@ -1781,9 +1868,9 @@ ruleMultiLinkState returns [EObject current=null]
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getMultiLinkStateAccess().getLinkStateBoundAnyLinkParserRuleCall_2_0_2());
+						newCompositeNode(grammarAccess.getMultiLinkStateAccess().getLinkStateIndexedFreeLinkParserRuleCall_2_0_2());
 					}
-					lv_linkState_2_3=ruleBoundAnyLink
+					lv_linkState_2_3=ruleIndexedFreeLink
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getMultiLinkStateRule());
@@ -1792,14 +1879,14 @@ ruleMultiLinkState returns [EObject current=null]
 							$current,
 							"linkState",
 							lv_linkState_2_3,
-							"biochemsimulation.reactionrules.ReactionRules.BoundAnyLink");
+							"biochemsimulation.reactionrules.ReactionRules.IndexedFreeLink");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getMultiLinkStateAccess().getLinkStateBoundLinkParserRuleCall_2_0_3());
+						newCompositeNode(grammarAccess.getMultiLinkStateAccess().getLinkStateBoundAnyLinkParserRuleCall_2_0_3());
 					}
-					lv_linkState_2_4=ruleBoundLink
+					lv_linkState_2_4=ruleBoundAnyLink
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getMultiLinkStateRule());
@@ -1808,14 +1895,14 @@ ruleMultiLinkState returns [EObject current=null]
 							$current,
 							"linkState",
 							lv_linkState_2_4,
-							"biochemsimulation.reactionrules.ReactionRules.BoundLink");
+							"biochemsimulation.reactionrules.ReactionRules.BoundAnyLink");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getMultiLinkStateAccess().getLinkStateMultiLinkParserRuleCall_2_0_4());
+						newCompositeNode(grammarAccess.getMultiLinkStateAccess().getLinkStateBoundLinkParserRuleCall_2_0_4());
 					}
-					lv_linkState_2_5=ruleMultiLink
+					lv_linkState_2_5=ruleBoundLink
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getMultiLinkStateRule());
@@ -1824,6 +1911,22 @@ ruleMultiLinkState returns [EObject current=null]
 							$current,
 							"linkState",
 							lv_linkState_2_5,
+							"biochemsimulation.reactionrules.ReactionRules.BoundLink");
+						afterParserOrEnumRuleCall();
+					}
+					    |
+					{
+						newCompositeNode(grammarAccess.getMultiLinkStateAccess().getLinkStateMultiLinkParserRuleCall_2_0_5());
+					}
+					lv_linkState_2_6=ruleMultiLink
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getMultiLinkStateRule());
+						}
+						set(
+							$current,
+							"linkState",
+							lv_linkState_2_6,
 							"biochemsimulation.reactionrules.ReactionRules.MultiLink");
 						afterParserOrEnumRuleCall();
 					}
