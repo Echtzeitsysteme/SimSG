@@ -10,14 +10,17 @@ import biochemsimulation.simulation.matching.patterns.LinkStateContext
 import biochemsimulation.simulation.matching.patterns.SiteStateContext
 import biochemsimulation.simulation.matching.patterns.AgentNodeConstraint
 import java.util.List
+import java.util.Map.Entry
 
 class ViatraCodeGenerator {
 	
 	LinkedHashMap<EPackage, String> importAliases;
 	Map<String, GenericPattern> genericPatterns;
+	Map<LinkStateContext, String> supportPatterns;
 	
 	new(LinkedHashMap<EPackage, String> importAliases, Map<String, GenericPattern> genericPatterns) {
 		this.importAliases = importAliases
+		supportPatterns = new HashMap
 		
 		this.genericPatterns = new HashMap
 		genericPatterns.forEach([name, pattern | 
@@ -42,6 +45,9 @@ class ViatraCodeGenerator {
 					«generateState(genericPattern.body.siteStateContexts.get(site))»
 					«ENDFOR»
 					«ENDFOR»
+					«FOR freePair : genericPattern.body.indexedFreeLinkStateContexts.values»
+					«generateIndexedUnboundLink(genericPattern.name, freePair)»
+					«ENDFOR»
 					«FOR agents : genericPattern.body.localAgentNodes.values»«FOR agent : agents»
 					«generateLink(genericPattern.body.localLinkStates.get(genericPattern.body.localSiteNodes.get(agent)))»
 					«ENDFOR»«ENDFOR»
@@ -49,6 +55,10 @@ class ViatraCodeGenerator {
 					«generateConstraint(constraint)»
 					«ENDFOR»
 				}	
+			«ENDFOR»
+			
+			«FOR supportPattern : supportPatterns.values SEPARATOR "\n"»
+				«supportPattern»
 			«ENDFOR»
 		'''
 	}
@@ -68,7 +78,30 @@ class ViatraCodeGenerator {
 			case BoundAnyOfType : return generateBoundAnyOfType(link)
 			case Unbound: return generateUnbound(link)
 			case WhatEver: return ""
+			case IndexedUnbound: return ""
 		}
+	}
+	
+	def String generateIndexedUnboundLink(String patternName, Entry<LinkStateContext, LinkStateContext> link){
+		val supPatternName1 = '''supportPattern_«patternName»_«link.key.agentReferenceName»'''
+		val supPattern1 = '''pattern «supPatternName1»(«link.key.sourceAgentVariableName» : «link.key.sourceAgentTypeName»){
+	«link.key.sourceAgentTypeName».«link.key.agentReferenceName»(«link.key.sourceAgentVariableName», _);
+	«link.key.sourceAgentTypeName».«link.key.agentReferenceName»(«link.key.sourceAgentVariableName», agent);
+	«link.key.targetAgentTypeName»(agent);
+}'''
+		val supPatternName2 = '''supportPattern_«patternName»_«link.value.agentReferenceName»'''
+		val supPattern2 = '''pattern «supPatternName2»(«link.value.sourceAgentVariableName» : «link.value.sourceAgentTypeName»){
+	«link.value.sourceAgentTypeName».«link.value.agentReferenceName»(«link.value.sourceAgentVariableName», _);
+	«link.value.sourceAgentTypeName».«link.value.agentReferenceName»(«link.value.sourceAgentVariableName», agent);
+	«link.value.targetAgentTypeName»(agent);
+}'''
+		supportPatterns.put(link.key, supPattern1);
+		supportPatterns.put(link.value, supPattern2);
+		
+		
+		return '''neg find «supPatternName1»(«link.key.sourceAgentVariableName»);
+neg find «supPatternName2»(«link.value.sourceAgentVariableName»);
+'''
 	}
 	
 	def String generateBoundLink(LinkStateContext link){

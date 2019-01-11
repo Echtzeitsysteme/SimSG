@@ -105,6 +105,10 @@ public class GenericPatternBody {
 		return boundLinkStateContexts;
 	}
 	
+	public Map<Integer, Entry<LinkStateContext, LinkStateContext>> getIndexedFreeLinkStateContexts() {
+		return indexedFreeLinkStateContexts;
+	}
+	
 	public Collection<AgentNodeConstraint> getInjectivityConstraintsBody() {
 		return injectivityConstraintsBody;
 	}
@@ -202,6 +206,8 @@ public class GenericPatternBody {
 			lsc.add(link);
 			if(ls instanceof BoundLink) {
 				addBoundLinkStateContexts((BoundLink)ls, link);
+			}else if(ls instanceof IndexedFreeLink) {
+				addIndexedUnboundLinkStateContexts((IndexedFreeLink) ls, link);
 			}
 			
 		}else {
@@ -214,7 +220,9 @@ public class GenericPatternBody {
 				for(LinkState ls1 : mls.getStates()) {
 					// indexed free links 
 					if(ls1 instanceof IndexedFreeLink) {
-						//ToDo....
+						LinkStateContext link = createLinkStateContext(vap.getAgent(), msp.getSite(), ls1, snc);
+						lsc.add(link);
+						addIndexedUnboundLinkStateContexts((IndexedFreeLink) ls1, link);
 					}
 					// bound links
 					else {
@@ -229,12 +237,27 @@ public class GenericPatternBody {
 				lsc.add(link);
 				if(ls instanceof BoundLink) {
 					addBoundLinkStateContexts((BoundLink)ls, link);
+				}else if(ls instanceof IndexedFreeLink) {
+					addIndexedUnboundLinkStateContexts((IndexedFreeLink) ls, link);
 				}
 			}
 		}
 		
 		linkStateContexts.put(snc, lsc);
 		
+	}
+	
+	private void addIndexedUnboundLinkStateContexts(IndexedFreeLink ifl, LinkStateContext link) {
+		int idx = Integer.valueOf(ifl.getState());
+		Entry<LinkStateContext, LinkStateContext> pair = indexedFreeLinkStateContexts.get(idx);
+		if(pair == null) {
+			pair = new AbstractMap.SimpleEntry<LinkStateContext, LinkStateContext>(link, null);
+			indexedFreeLinkStateContexts.put(idx, pair);
+		}else {
+			link.setTargetLinkState(pair.getKey(), idx);
+			pair.setValue(link);
+			pair.getKey().setTargetLinkState(link, idx);
+		}
 	}
 	
 	private void addBoundLinkStateContexts(BoundLink bl, LinkStateContext link) {
@@ -259,7 +282,6 @@ public class GenericPatternBody {
 		localAgentNodes = new HashMap<ValidAgentPattern, List<AgentNodeContext>>();
 		localSiteNodes = new HashMap<AgentNodeContext, SiteNodeContext>();
 		localLinkStates = new HashMap<SiteNodeContext, LinkStateContext>();
-		//linkStateConstraints = new HashMap<Integer, LinkStateConstraint>();
 		
 		for(ValidAgentPattern pattern : agentPatterns) {
 			AgentNodeContext currentAgentNodeContext = agentNodeContexts.get(pattern);
@@ -280,9 +302,6 @@ public class GenericPatternBody {
 					if(sitePattern instanceof SingleSitePattern) {
 						connectSingleLinks(pattern, currentAgentNodeContext, idx, (SingleSitePattern)sitePattern, lsc);
 					}
-					/*else {
-						connectMultiLinks();
-					}*/
 				}
 				
 				
@@ -476,6 +495,14 @@ public class GenericPatternBody {
 				sb.append("\t\t\tFrom: Agent("+ls.getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
 				sb.append(".Site("+ls.getSiteNodeContext().getSiteTypeName()+") <==!!==> (Unbound);\n");
 			}
+		}
+		sb.append("\n\t\t IndexedUnbound-Links:\n");
+		for(Entry<LinkStateContext, LinkStateContext> pair : indexedFreeLinkStateContexts.values()) {
+			if(pair.getKey().getStateType() != LinkStateType.Bound) continue;
+			sb.append("\t\t\tFrom: Agent("+pair.getKey().getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
+			sb.append(".Site("+pair.getKey().getSiteNodeContext().getSiteTypeName()+") x==["+pair.getKey().getLinkIndex()+"]==x ");
+			sb.append("To: Agent("+pair.getValue().getSiteNodeContext().getAgentNodeContext().getAgentVariableName()+")");
+			sb.append(".Site("+pair.getValue().getSiteNodeContext().getSiteTypeName()+");\n");
 		}
 		sb.append("\n\t\t WhatEver-Links:\n");
 		for(List<LinkStateContext>  lsc : linkStateContexts.values()) {

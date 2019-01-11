@@ -440,5 +440,27 @@ abstract class PatternMatchingTest {
 		final String patternName = "simpleMixedDisjunctMultiEdge4_rule_lhs";
 		getAndCheckMatches(patternName, numOfMatches);
 	}
+	
+	@Test
+	void mediumDisjunctMultiEdgeTest() {
+		final int numOfMatches = 27;
+		final String patternName = "mediumDisjunctMultiEdge_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void mediumDisjunctMultiEdgeTest2() {
+		final int numOfMatches = 13;
+		final String patternName = "mediumDisjunctMultiEdge2_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+
+	@Test
+	void mediumDisjunctMultiEdgeTest3() {
+		final int numOfMatches = 24;
+		final String patternName = "mediumDisjunctMultiEdge3_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+
 
 }

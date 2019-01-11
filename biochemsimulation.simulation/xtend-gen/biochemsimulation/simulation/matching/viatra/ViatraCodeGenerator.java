@@ -25,10 +25,14 @@ public class ViatraCodeGenerator {
   
   private Map<String, GenericPattern> genericPatterns;
   
+  private Map<LinkStateContext, String> supportPatterns;
+  
   public ViatraCodeGenerator(final LinkedHashMap<EPackage, String> importAliases, final Map<String, GenericPattern> genericPatterns) {
     this.importAliases = importAliases;
-    HashMap<String, GenericPattern> _hashMap = new HashMap<String, GenericPattern>();
-    this.genericPatterns = _hashMap;
+    HashMap<LinkStateContext, String> _hashMap = new HashMap<LinkStateContext, String>();
+    this.supportPatterns = _hashMap;
+    HashMap<String, GenericPattern> _hashMap_1 = new HashMap<String, GenericPattern>();
+    this.genericPatterns = _hashMap_1;
     final BiConsumer<String, GenericPattern> _function = (String name, GenericPattern pattern) -> {
       boolean _isVoidPattern = pattern.isVoidPattern();
       boolean _not = (!_isVoidPattern);
@@ -109,8 +113,17 @@ public class ViatraCodeGenerator {
           }
         }
         {
-          Collection<List<AgentNodeContext>> _values_2 = genericPattern.getBody().getLocalAgentNodes().values();
-          for(final List<AgentNodeContext> agents : _values_2) {
+          Collection<Map.Entry<LinkStateContext, LinkStateContext>> _values_2 = genericPattern.getBody().getIndexedFreeLinkStateContexts().values();
+          for(final Map.Entry<LinkStateContext, LinkStateContext> freePair : _values_2) {
+            _builder.append("\t");
+            String _generateIndexedUnboundLink = this.generateIndexedUnboundLink(genericPattern.getName(), freePair);
+            _builder.append(_generateIndexedUnboundLink, "\t");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        {
+          Collection<List<AgentNodeContext>> _values_3 = genericPattern.getBody().getLocalAgentNodes().values();
+          for(final List<AgentNodeContext> agents : _values_3) {
             {
               for(final AgentNodeContext agent_1 : agents) {
                 _builder.append("\t");
@@ -132,6 +145,20 @@ public class ViatraCodeGenerator {
         }
         _builder.append("}\t");
         _builder.newLine();
+      }
+    }
+    _builder.newLine();
+    {
+      Collection<String> _values_4 = this.supportPatterns.values();
+      boolean _hasElements_2 = false;
+      for(final String supportPattern : _values_4) {
+        if (!_hasElements_2) {
+          _hasElements_2 = true;
+        } else {
+          _builder.appendImmediate("\n", "");
+        }
+        _builder.append(supportPattern);
+        _builder.newLineIfNotEmpty();
       }
     }
     return _builder.toString();
@@ -167,11 +194,128 @@ public class ViatraCodeGenerator {
           return this.generateUnbound(link);
         case WhatEver:
           return "";
+        case IndexedUnbound:
+          return "";
         default:
           break;
       }
     }
     return null;
+  }
+  
+  public String generateIndexedUnboundLink(final String patternName, final Map.Entry<LinkStateContext, LinkStateContext> link) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("supportPattern_");
+    _builder.append(patternName);
+    _builder.append("_");
+    String _agentReferenceName = link.getKey().getAgentReferenceName();
+    _builder.append(_agentReferenceName);
+    final String supPatternName1 = _builder.toString();
+    StringConcatenation _builder_1 = new StringConcatenation();
+    _builder_1.append("pattern ");
+    _builder_1.append(supPatternName1);
+    _builder_1.append("(");
+    String _sourceAgentVariableName = link.getKey().getSourceAgentVariableName();
+    _builder_1.append(_sourceAgentVariableName);
+    _builder_1.append(" : ");
+    String _sourceAgentTypeName = link.getKey().getSourceAgentTypeName();
+    _builder_1.append(_sourceAgentTypeName);
+    _builder_1.append("){");
+    _builder_1.newLineIfNotEmpty();
+    _builder_1.append("\t");
+    String _sourceAgentTypeName_1 = link.getKey().getSourceAgentTypeName();
+    _builder_1.append(_sourceAgentTypeName_1, "\t");
+    _builder_1.append(".");
+    String _agentReferenceName_1 = link.getKey().getAgentReferenceName();
+    _builder_1.append(_agentReferenceName_1, "\t");
+    _builder_1.append("(");
+    String _sourceAgentVariableName_1 = link.getKey().getSourceAgentVariableName();
+    _builder_1.append(_sourceAgentVariableName_1, "\t");
+    _builder_1.append(", _);");
+    _builder_1.newLineIfNotEmpty();
+    _builder_1.append("\t");
+    String _sourceAgentTypeName_2 = link.getKey().getSourceAgentTypeName();
+    _builder_1.append(_sourceAgentTypeName_2, "\t");
+    _builder_1.append(".");
+    String _agentReferenceName_2 = link.getKey().getAgentReferenceName();
+    _builder_1.append(_agentReferenceName_2, "\t");
+    _builder_1.append("(");
+    String _sourceAgentVariableName_2 = link.getKey().getSourceAgentVariableName();
+    _builder_1.append(_sourceAgentVariableName_2, "\t");
+    _builder_1.append(", agent);");
+    _builder_1.newLineIfNotEmpty();
+    _builder_1.append("\t");
+    String _targetAgentTypeName = link.getKey().getTargetAgentTypeName();
+    _builder_1.append(_targetAgentTypeName, "\t");
+    _builder_1.append("(agent);");
+    _builder_1.newLineIfNotEmpty();
+    _builder_1.append("}");
+    final String supPattern1 = _builder_1.toString();
+    StringConcatenation _builder_2 = new StringConcatenation();
+    _builder_2.append("supportPattern_");
+    _builder_2.append(patternName);
+    _builder_2.append("_");
+    String _agentReferenceName_3 = link.getValue().getAgentReferenceName();
+    _builder_2.append(_agentReferenceName_3);
+    final String supPatternName2 = _builder_2.toString();
+    StringConcatenation _builder_3 = new StringConcatenation();
+    _builder_3.append("pattern ");
+    _builder_3.append(supPatternName2);
+    _builder_3.append("(");
+    String _sourceAgentVariableName_3 = link.getValue().getSourceAgentVariableName();
+    _builder_3.append(_sourceAgentVariableName_3);
+    _builder_3.append(" : ");
+    String _sourceAgentTypeName_3 = link.getValue().getSourceAgentTypeName();
+    _builder_3.append(_sourceAgentTypeName_3);
+    _builder_3.append("){");
+    _builder_3.newLineIfNotEmpty();
+    _builder_3.append("\t");
+    String _sourceAgentTypeName_4 = link.getValue().getSourceAgentTypeName();
+    _builder_3.append(_sourceAgentTypeName_4, "\t");
+    _builder_3.append(".");
+    String _agentReferenceName_4 = link.getValue().getAgentReferenceName();
+    _builder_3.append(_agentReferenceName_4, "\t");
+    _builder_3.append("(");
+    String _sourceAgentVariableName_4 = link.getValue().getSourceAgentVariableName();
+    _builder_3.append(_sourceAgentVariableName_4, "\t");
+    _builder_3.append(", _);");
+    _builder_3.newLineIfNotEmpty();
+    _builder_3.append("\t");
+    String _sourceAgentTypeName_5 = link.getValue().getSourceAgentTypeName();
+    _builder_3.append(_sourceAgentTypeName_5, "\t");
+    _builder_3.append(".");
+    String _agentReferenceName_5 = link.getValue().getAgentReferenceName();
+    _builder_3.append(_agentReferenceName_5, "\t");
+    _builder_3.append("(");
+    String _sourceAgentVariableName_5 = link.getValue().getSourceAgentVariableName();
+    _builder_3.append(_sourceAgentVariableName_5, "\t");
+    _builder_3.append(", agent);");
+    _builder_3.newLineIfNotEmpty();
+    _builder_3.append("\t");
+    String _targetAgentTypeName_1 = link.getValue().getTargetAgentTypeName();
+    _builder_3.append(_targetAgentTypeName_1, "\t");
+    _builder_3.append("(agent);");
+    _builder_3.newLineIfNotEmpty();
+    _builder_3.append("}");
+    final String supPattern2 = _builder_3.toString();
+    this.supportPatterns.put(link.getKey(), supPattern1);
+    this.supportPatterns.put(link.getValue(), supPattern2);
+    StringConcatenation _builder_4 = new StringConcatenation();
+    _builder_4.append("neg find ");
+    _builder_4.append(supPatternName1);
+    _builder_4.append("(");
+    String _sourceAgentVariableName_6 = link.getKey().getSourceAgentVariableName();
+    _builder_4.append(_sourceAgentVariableName_6);
+    _builder_4.append(");");
+    _builder_4.newLineIfNotEmpty();
+    _builder_4.append("neg find ");
+    _builder_4.append(supPatternName2);
+    _builder_4.append("(");
+    String _sourceAgentVariableName_7 = link.getValue().getSourceAgentVariableName();
+    _builder_4.append(_sourceAgentVariableName_7);
+    _builder_4.append(");");
+    _builder_4.newLineIfNotEmpty();
+    return _builder_4.toString();
   }
   
   public String generateBoundLink(final LinkStateContext link) {

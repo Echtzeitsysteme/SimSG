@@ -228,7 +228,8 @@ public class PatternContainer {
 	}
 	
 	private boolean equals(Pattern p1, Pattern p2) {
-		
+		return false;
+		/*
 		if(p1.getAgentPatterns().size() != p2.getAgentPatterns().size()) {
 			return false;
 		}
@@ -322,5 +323,6 @@ public class PatternContainer {
 		}
 		
 		return true;
+		*/
 	}
 }

@@ -83,16 +83,19 @@ var p34 = {A9(x[1]), A9(x[1]), A9(x[2]), A9(x[2]), A9(x[3]), A9(x[3])}
 var p31 = {A7(x[A7.x], w[A7.x]), A7(x[A7.w])}
 
 // mulit-edge tests
-var p35 = {mA(x*[1,2]), mB(y*[1]), mC(z*[2])}
-var p36 = {mB(y*[1]), mA(x*[1,2]), mB(y*[2])}
+var p35 = {mA(x*[1,2]), mB(y*[1]), mC(z*[2])} // generates instances
+var p36 = {mB(y*[1]), mA(x*[1,2]), mB(y*[2])} // generates instances
 var p37 = {mA(x*[1,2]), mB(y*[1]), mB(y*[2])}
-var p38 = {mA(x*[1,2]), mB(y*[2,3]), mD(a*[1,3], b[4]), mC(z*[4])}
+var p38 = {mA(x*[1,2]), mB(y*[2,3]), mD(a*[1,3], b[4]), mC(z*[4])} // generates instances
 var p39 = {mA(x*[free]), mB(y*[free])}
 var p40 = {mC(z*[free]), mD(a*[free])}
 var p41 = {mA(x*[1,2]), mB(y*[1]), mC(z*[2]), mC(z*[free])}
 var p42 = {mB(y*[1]), mA(x*[1,2]), mB(y*[2]), mA(x*[free]), mB(y*[free])}
 var p43 = {mA(x*[1,2]), mB(y*[1]), mC(z*[2]), mD(a*[free])}
 var p44 = {mB(y*[1]), mA(x*[1,2]), mB(y*[2]), mC(z*[free]), mD(a*[free])}
+var p45 = {mA(x*[1,free(2)]), mB(y*[1]), mD(a*[free(2)])} 
+var p46 = {mA(x*[1]), mB(y*[1])} 
+var p47 = {mA(x*[free(2)]), mD(a*[free(2)])}
 
 // Initial variables for disjunct tests
 init i1 10 {A1(), B1()}
@@ -188,3 +191,7 @@ rule simpleMixedDisjunctMultiEdge_rule p41 -> {void, void, void, void} @ [dummy_
 rule simpleMixedDisjunctMultiEdge2_rule p42 -> {void, void, void, void, void} @ [dummy_rate]
 rule simpleMixedDisjunctMultiEdge3_rule p43 -> {void, void, void, void} @ [dummy_rate]
 rule simpleMixedDisjunctMultiEdge4_rule p44 -> {void, void, void, void, void} @ [dummy_rate]
+
+rule mediumDisjunctMultiEdge_rule p45 -> {void, void, void} @ [dummy_rate]
+rule mediumDisjunctMultiEdge2_rule p46 -> {void, void} @ [dummy_rate]
+rule mediumDisjunctMultiEdge3_rule p47 -> {void, void} @ [dummy_rate]
