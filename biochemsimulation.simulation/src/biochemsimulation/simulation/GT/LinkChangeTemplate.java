@@ -1,6 +1,7 @@
 package biochemsimulation.simulation.GT;
 
 import java.util.Map;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EReference;
 
@@ -44,6 +45,7 @@ public class LinkChangeTemplate {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void applyLinkChange(IMatch match, Map<ValidAgentPattern, Agent> createdAgents) {
 		Agent srcAgent = null;
 		Agent trgAgent = null;
@@ -58,8 +60,19 @@ public class LinkChangeTemplate {
 			trgAgent = createdAgents.get(trg);
 		}
 		
-		srcAgent.eSet(srcReference, trgAgent);
-		trgAgent.eSet(trgReference, srcAgent);
+		if(srcReference.getUpperBound() != EReference.UNBOUNDED_MULTIPLICITY) {
+			srcAgent.eSet(srcReference, trgAgent);
+		}else {
+			((List<Agent>) srcAgent.eGet(srcReference)).add(trgAgent);
+		}
+		
+		if(trgReference.getUpperBound() != EReference.UNBOUNDED_MULTIPLICITY) {
+			trgAgent.eSet(trgReference, srcAgent);
+		}else {
+			((List<Agent>) trgAgent.eGet(trgReference)).add(srcAgent);
+		}
+		
+		
 	}
 	
 	
