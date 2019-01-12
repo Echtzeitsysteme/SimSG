@@ -26,7 +26,6 @@ agent mA(*x)
 agent mB(*y)
 agent mC(*z)
 agent mD(*a, b, c)
-agent mQ(*b)
 
 // mockup rate variable 
 var dummy_rate = 0.1
@@ -97,9 +96,6 @@ var p44 = {mB(y*[1]), mA(x*[1,2]), mB(y*[2]), mC(z*[free]), mD(a*[free])}
 var p45 = {mA(x*[1,free(mD)]), mB(y*[1]), mD(a*[free(mA)])} 
 var p46 = {mA(x*[1]), mB(y*[1])} 
 var p47 = {mA(x*[free(mD)]), mD(a*[free(mA)])}
-var p48 = {mQ(b*[1]), mQ(b*[1,2]), mQ(b*[2])}
-var p49 = {mQ(b*[1, free(3)]), mQ(b*[1,2]), mQ(b*[2, free(3)])}
-var p50 = {mQ(b*[1,3]), mQ(b*[1,2]), mQ(b*[2,3])}
 
 // Initial variables for disjunct tests
 init i1 10 {A1(), B1()}
@@ -133,8 +129,6 @@ init i22 3 p36
 init i23 4 p38
 init i24 2 {mA(), mB()}
 init i25 3 {mC(), mD()}
-init i26 3 p48
-init i27 2 p50
 
 // mockup rules to register patterns as relevant for pattern generators
 rule simpleDisjunct_rule p1 -> {void, void} @ [dummy_rate] // 10*10 = 100 Matches
@@ -201,7 +195,3 @@ rule simpleMixedDisjunctMultiEdge4_rule p44 -> {void, void, void, void, void} @ 
 rule mediumDisjunctMultiEdge_rule p45 -> {void, void, void} @ [dummy_rate]
 rule mediumDisjunctMultiEdge2_rule p46 -> {void, void} @ [dummy_rate]
 rule mediumDisjunctMultiEdge3_rule p47 -> {void, void} @ [dummy_rate]
-
-rule mediumMultiEdge_rule p48 -> {void, void, void} @ [dummy_rate]
-rule mediumMultiEdge2_rule p49 -> {void, void, void} @ [dummy_rate]
-rule mediumMultiEdge3_rule p50 -> {void, void, void} @ [dummy_rate]

@@ -21,6 +21,7 @@ import biochemsimulation.reactionrules.reactionRules.MultiLinkSitePattern;
 import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
+import biochemsimulation.reactionrules.reactionRules.TypedFreeLink;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 
 public class GenericPatternBody {
@@ -205,9 +206,11 @@ public class GenericPatternBody {
 			LinkStateContext link = createLinkStateContext(vap.getAgent(), ssp.getSite(), ls, snc);
 			lsc.add(link);
 			if(ls instanceof BoundLink) {
-				addBoundLinkStateContexts((BoundLink)ls, link);
+				addBoundLinkStateContexts((BoundLink) ls, link);
 			}else if(ls instanceof IndexedFreeLink) {
 				addIndexedUnboundLinkStateContexts((IndexedFreeLink) ls, link);
+			}else if(ls instanceof TypedFreeLink) {
+				addTypedUnboundLinkStateContexts((TypedFreeLink) ls, link);
 			}
 			
 		}else {
@@ -219,16 +222,18 @@ public class GenericPatternBody {
 				MultiLink mls = (MultiLink)ls;
 				for(LinkState ls1 : mls.getStates()) {
 					// indexed free links 
+					LinkStateContext link = createLinkStateContext(vap.getAgent(), msp.getSite(), ls1, snc);
 					if(ls1 instanceof IndexedFreeLink) {
-						LinkStateContext link = createLinkStateContext(vap.getAgent(), msp.getSite(), ls1, snc);
 						lsc.add(link);
 						addIndexedUnboundLinkStateContexts((IndexedFreeLink) ls1, link);
 					}
 					// bound links
-					else {
-						LinkStateContext link = createLinkStateContext(vap.getAgent(), msp.getSite(), ls1, snc);
+					else if(ls1 instanceof BoundLink) {
 						lsc.add(link);
-						addBoundLinkStateContexts((BoundLink)ls1, link);
+						addBoundLinkStateContexts((BoundLink) ls1, link);
+					}else {
+						lsc.add(link);
+						addTypedUnboundLinkStateContexts((TypedFreeLink) ls1, link);
 					}
 					
 				}
@@ -236,15 +241,25 @@ public class GenericPatternBody {
 				LinkStateContext link = createLinkStateContext(vap.getAgent(), msp.getSite(), ls, snc);
 				lsc.add(link);
 				if(ls instanceof BoundLink) {
-					addBoundLinkStateContexts((BoundLink)ls, link);
+					addBoundLinkStateContexts((BoundLink) ls, link);
 				}else if(ls instanceof IndexedFreeLink) {
 					addIndexedUnboundLinkStateContexts((IndexedFreeLink) ls, link);
+				}else if(ls instanceof TypedFreeLink) {
+					addTypedUnboundLinkStateContexts((TypedFreeLink) ls, link);
 				}
 			}
 		}
 		
 		linkStateContexts.put(snc, lsc);
 		
+	}
+	
+	private void addTypedUnboundLinkStateContexts(TypedFreeLink tfl, LinkStateContext link) {
+		Agent agent = tfl.getState();
+		AgentNodeContext anc = new AgentNodeContext(patternName, null, metaModel.getClass(agent.getName()));
+		SiteNodeContext snc = new SiteNodeContext(anc, null);
+		LinkStateContext dummyLnc =  new LinkStateContext(snc, link.getStateType(), null);
+		link.setTargetLinkState(dummyLnc, -1);
 	}
 	
 	private void addIndexedUnboundLinkStateContexts(IndexedFreeLink ifl, LinkStateContext link) {

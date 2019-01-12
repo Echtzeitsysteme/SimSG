@@ -44,7 +44,6 @@ public class Sandbox {
 		}
 		*/
 		
-		
 		SimulationConfigurator simConfigurator = new SimulationConfigurator();
 		simConfigurator.setModel("Goldbeter_Koshland");
 		simConfigurator.setSimplePersistence();

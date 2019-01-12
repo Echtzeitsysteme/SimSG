@@ -17,6 +17,7 @@ import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.SiteState;
+import biochemsimulation.reactionrules.reactionRules.TypedFreeLink;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern;
 
@@ -87,6 +88,13 @@ public class ReactionRulesSemanticHighlightingCalculator implements ISemanticHig
 					site = ((MultiLinkSitePattern)sp).getSite();
 				}
 				acceptor.addPosition(node.getOffset(), site.getName().length(), ReactionRulesHighlightingConfiguration.SITE_PATTERN_ID);
+			}
+			
+			if(semanticElement instanceof TypedFreeLink ) {
+				if(grammarElement instanceof org.eclipse.xtext.impl.CrossReferenceImpl) {
+					TypedFreeLink link = (TypedFreeLink)semanticElement;
+					acceptor.addPosition(node.getOffset(), link.getState().getName().length(), ReactionRulesHighlightingConfiguration.AGENT_PATTERN_ID);
+				}	
 			}
 		
 		}

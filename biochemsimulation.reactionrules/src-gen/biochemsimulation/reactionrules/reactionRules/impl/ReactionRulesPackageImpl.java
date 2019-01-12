@@ -51,6 +51,7 @@ import biochemsimulation.reactionrules.reactionRules.States;
 import biochemsimulation.reactionrules.reactionRules.Terminate;
 import biochemsimulation.reactionrules.reactionRules.TerminationCondition;
 import biochemsimulation.reactionrules.reactionRules.Time;
+import biochemsimulation.reactionrules.reactionRules.TypedFreeLink;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.Variable;
 import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern;
@@ -378,6 +379,13 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * @generated
    */
   private EClass indexedFreeLinkEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typedFreeLinkEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1369,6 +1377,36 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getTypedFreeLink()
+  {
+    return typedFreeLinkEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTypedFreeLink_Name()
+  {
+    return (EAttribute)typedFreeLinkEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTypedFreeLink_State()
+  {
+    return (EReference)typedFreeLinkEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getWhatEver()
   {
     return whatEverEClass;
@@ -1676,6 +1714,10 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     createEAttribute(indexedFreeLinkEClass, INDEXED_FREE_LINK__NAME);
     createEAttribute(indexedFreeLinkEClass, INDEXED_FREE_LINK__STATE);
 
+    typedFreeLinkEClass = createEClass(TYPED_FREE_LINK);
+    createEAttribute(typedFreeLinkEClass, TYPED_FREE_LINK__NAME);
+    createEReference(typedFreeLinkEClass, TYPED_FREE_LINK__STATE);
+
     whatEverEClass = createEClass(WHAT_EVER);
     createEAttribute(whatEverEClass, WHAT_EVER__NAME);
 
@@ -1749,6 +1791,7 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     boundAnyLinkEClass.getESuperTypes().add(this.getLinkState());
     freeLinkEClass.getESuperTypes().add(this.getLinkState());
     indexedFreeLinkEClass.getESuperTypes().add(this.getLinkState());
+    typedFreeLinkEClass.getESuperTypes().add(this.getLinkState());
     whatEverEClass.getESuperTypes().add(this.getLinkState());
     boundLinkEClass.getESuperTypes().add(this.getLinkState());
     multiLinkEClass.getESuperTypes().add(this.getLinkState());
@@ -1888,6 +1931,10 @@ public class ReactionRulesPackageImpl extends EPackageImpl implements ReactionRu
     initEClass(indexedFreeLinkEClass, IndexedFreeLink.class, "IndexedFreeLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getIndexedFreeLink_Name(), ecorePackage.getEString(), "name", null, 0, 1, IndexedFreeLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getIndexedFreeLink_State(), ecorePackage.getEString(), "state", null, 0, 1, IndexedFreeLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(typedFreeLinkEClass, TypedFreeLink.class, "TypedFreeLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTypedFreeLink_Name(), ecorePackage.getEString(), "name", null, 0, 1, TypedFreeLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTypedFreeLink_State(), this.getAgent(), null, "state", null, 0, 1, TypedFreeLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(whatEverEClass, WhatEver.class, "WhatEver", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getWhatEver_Name(), ecorePackage.getEString(), "name", null, 0, 1, WhatEver.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

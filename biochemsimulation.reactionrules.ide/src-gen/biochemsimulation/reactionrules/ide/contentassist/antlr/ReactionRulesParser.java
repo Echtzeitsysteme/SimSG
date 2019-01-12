@@ -65,6 +65,7 @@ public class ReactionRulesParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBoundAnyLinkAccess().getGroup(), "rule__BoundAnyLink__Group__0");
 			builder.put(grammarAccess.getFreeLinkAccess().getGroup(), "rule__FreeLink__Group__0");
 			builder.put(grammarAccess.getIndexedFreeLinkAccess().getGroup(), "rule__IndexedFreeLink__Group__0");
+			builder.put(grammarAccess.getTypedFreeLinkAccess().getGroup(), "rule__TypedFreeLink__Group__0");
 			builder.put(grammarAccess.getWhatEverAccess().getGroup(), "rule__WhatEver__Group__0");
 			builder.put(grammarAccess.getBoundLinkAccess().getGroup(), "rule__BoundLink__Group__0");
 			builder.put(grammarAccess.getMultiLinkAccess().getGroup(), "rule__MultiLink__Group__0");
@@ -119,6 +120,8 @@ public class ReactionRulesParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFreeLinkAccess().getNameAssignment_1(), "rule__FreeLink__NameAssignment_1");
 			builder.put(grammarAccess.getIndexedFreeLinkAccess().getNameAssignment_1(), "rule__IndexedFreeLink__NameAssignment_1");
 			builder.put(grammarAccess.getIndexedFreeLinkAccess().getStateAssignment_3(), "rule__IndexedFreeLink__StateAssignment_3");
+			builder.put(grammarAccess.getTypedFreeLinkAccess().getNameAssignment_1(), "rule__TypedFreeLink__NameAssignment_1");
+			builder.put(grammarAccess.getTypedFreeLinkAccess().getStateAssignment_3(), "rule__TypedFreeLink__StateAssignment_3");
 			builder.put(grammarAccess.getWhatEverAccess().getNameAssignment_1(), "rule__WhatEver__NameAssignment_1");
 			builder.put(grammarAccess.getBoundLinkAccess().getStateAssignment_1(), "rule__BoundLink__StateAssignment_1");
 			builder.put(grammarAccess.getMultiLinkAccess().getStatesAssignment_1_0(), "rule__MultiLink__StatesAssignment_1_0");

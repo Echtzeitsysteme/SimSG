@@ -109,6 +109,7 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
       case ReactionRulesPackage.BOUND_ANY_LINK: return createBoundAnyLink();
       case ReactionRulesPackage.FREE_LINK: return createFreeLink();
       case ReactionRulesPackage.INDEXED_FREE_LINK: return createIndexedFreeLink();
+      case ReactionRulesPackage.TYPED_FREE_LINK: return createTypedFreeLink();
       case ReactionRulesPackage.WHAT_EVER: return createWhatEver();
       case ReactionRulesPackage.BOUND_LINK: return createBoundLink();
       case ReactionRulesPackage.MULTI_LINK: return createMultiLink();
@@ -602,6 +603,17 @@ public class ReactionRulesFactoryImpl extends EFactoryImpl implements ReactionRu
   {
     IndexedFreeLinkImpl indexedFreeLink = new IndexedFreeLinkImpl();
     return indexedFreeLink;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TypedFreeLink createTypedFreeLink()
+  {
+    TypedFreeLinkImpl typedFreeLink = new TypedFreeLinkImpl();
+    return typedFreeLink;
   }
 
   /**

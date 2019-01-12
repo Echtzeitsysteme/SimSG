@@ -43,6 +43,7 @@ import biochemsimulation.reactionrules.reactionRules.State;
 import biochemsimulation.reactionrules.reactionRules.States;
 import biochemsimulation.reactionrules.reactionRules.Terminate;
 import biochemsimulation.reactionrules.reactionRules.Time;
+import biochemsimulation.reactionrules.reactionRules.TypedFreeLink;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.WhatEver;
@@ -200,6 +201,9 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 				return; 
 			case ReactionRulesPackage.TIME:
 				sequence_Time(context, (Time) semanticObject); 
+				return; 
+			case ReactionRulesPackage.TYPED_FREE_LINK:
+				sequence_TypedFreeLink(context, (TypedFreeLink) semanticObject); 
 				return; 
 			case ReactionRulesPackage.VALID_AGENT_PATTERN:
 				sequence_ValidAgentPattern(context, (ValidAgentPattern) semanticObject); 
@@ -543,6 +547,7 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *         linkState=BoundAnyLink | 
 	 *         linkState=FreeLink | 
 	 *         linkState=IndexedFreeLink | 
+	 *         linkState=TypedFreeLink | 
 	 *         linkState=BoundAnyOfTypeLink | 
 	 *         linkState=BoundLink | 
 	 *         linkState=WhatEver
@@ -593,6 +598,7 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *         linkState=WhatEver | 
 	 *         linkState=FreeLink | 
 	 *         linkState=IndexedFreeLink | 
+	 *         linkState=TypedFreeLink | 
 	 *         linkState=BoundAnyLink | 
 	 *         linkState=BoundLink | 
 	 *         linkState=MultiLink
@@ -608,7 +614,7 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 	 *     MultiLink returns MultiLink
 	 *
 	 * Constraint:
-	 *     ((states+=BoundLink | states+=IndexedFreeLink) (states+=BoundLink | states+=IndexedFreeLink)+)?
+	 *     ((states+=BoundLink | states+=IndexedFreeLink | states+=TypedFreeLink) (states+=BoundLink | states+=IndexedFreeLink | states+=TypedFreeLink)+)?
 	 */
 	protected void sequence_MultiLink(ISerializationContext context, MultiLink semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -944,6 +950,27 @@ public class ReactionRulesSemanticSequencer extends AbstractDelegatingSemanticSe
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getTimeAccess().getValueUnsignedIntegerParserRuleCall_2_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     TypedFreeLink returns TypedFreeLink
+	 *
+	 * Constraint:
+	 *     (name=FREE_LINK state=[Agent|ID])
+	 */
+	protected void sequence_TypedFreeLink(ISerializationContext context, TypedFreeLink semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.TYPED_FREE_LINK__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.TYPED_FREE_LINK__NAME));
+			if (transientValues.isValueTransient(semanticObject, ReactionRulesPackage.Literals.TYPED_FREE_LINK__STATE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ReactionRulesPackage.Literals.TYPED_FREE_LINK__STATE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getTypedFreeLinkAccess().getNameFREE_LINKTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getTypedFreeLinkAccess().getStateAgentIDTerminalRuleCall_3_0_1(), semanticObject.eGet(ReactionRulesPackage.Literals.TYPED_FREE_LINK__STATE, false));
 		feeder.finish();
 	}
 	

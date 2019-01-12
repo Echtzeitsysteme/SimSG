@@ -405,6 +405,14 @@ public class ReactionRulesSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ReactionRulesPackage.TYPED_FREE_LINK:
+      {
+        TypedFreeLink typedFreeLink = (TypedFreeLink)theEObject;
+        T result = caseTypedFreeLink(typedFreeLink);
+        if (result == null) result = caseLinkState(typedFreeLink);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ReactionRulesPackage.WHAT_EVER:
       {
         WhatEver whatEver = (WhatEver)theEObject;
@@ -1157,6 +1165,22 @@ public class ReactionRulesSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseIndexedFreeLink(IndexedFreeLink object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Typed Free Link</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Typed Free Link</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTypedFreeLink(TypedFreeLink object)
   {
     return null;
   }

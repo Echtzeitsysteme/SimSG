@@ -147,6 +147,14 @@ IndexedFreeLink returns LinkState :
 	')'
 ;
 
+TypedFreeLink returns LinkState :
+	{TypedFreeLink}
+	name = FREE_LINK
+	'('
+	state = [Agent]
+	')'
+;
+
 WhatEver returns LinkState :
 	{WhatEver}
 	name = WHATEVER_LINK
@@ -159,7 +167,7 @@ BoundLink returns LinkState :
 
 MultiLink returns LinkState :
 	{MultiLink}
-	(states += (BoundLink|IndexedFreeLink) (',' states += (BoundLink|IndexedFreeLink))+ )?
+	(states += (BoundLink|IndexedFreeLink|TypedFreeLink) (',' states += (BoundLink|IndexedFreeLink|TypedFreeLink))+ )?
 ;
 
 BoundAnyOfTypeLinkAgent returns BoundAnyOfTypeLinkAgent:
@@ -186,12 +194,12 @@ SiteState:
 
 LinkState:
 	{LinkState}
-	 '['linkState = (BoundAnyLink | FreeLink | IndexedFreeLink | BoundAnyOfTypeLink | BoundLink | WhatEver)']'
+	 '['linkState = (BoundAnyLink | FreeLink | IndexedFreeLink | TypedFreeLink | BoundAnyOfTypeLink | BoundLink | WhatEver)']'
 ;
 
 MultiLinkState:
 	{MultiLinkState}
-	'*['linkState = (WhatEver | FreeLink | IndexedFreeLink | BoundAnyLink | BoundLink | MultiLink)']'
+	'*['linkState = (WhatEver | FreeLink | IndexedFreeLink | TypedFreeLink  |BoundAnyLink | BoundLink | MultiLink)']'
 ;
 
 SingleSitePattern returns SitePattern:

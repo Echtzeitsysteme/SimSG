@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.emf.ecore.EClass;
+
 import biochemsimulation.reactioncontainer.Agent;
 import biochemsimulation.reactioncontainer.Container;
 import biochemsimulation.reactioncontainer.util.AgentClassFactory;
@@ -25,6 +27,7 @@ import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.State;
+import biochemsimulation.reactionrules.reactionRules.TypedFreeLink;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern;
 import biochemsimulation.simulation.matching.IMatch;
@@ -52,6 +55,10 @@ public class TransformationTemplate {
 		this.metaModel = metaModel;
 		this.reactionContainer = reactionContainer;
 		initTemplate();
+	}
+	
+	public String getLhsPatternName() {
+		return lhsName;
 	}
 	
 	private void initTemplate() {
@@ -100,6 +107,9 @@ public class TransformationTemplate {
 		}else if(ls instanceof IndexedFreeLink) {
 			int linkIndex = Integer.valueOf(((IndexedFreeLink)ls).getState());
 			buildMultiRemoveTemplate(vap.getAgent(), nodeIndex, ssp.getSite(), findOtherRemoveIndex(vap, nodeIndex, linkIndex));
+		}else if (ls instanceof TypedFreeLink) {
+			TypedFreeLink tfl = (TypedFreeLink)ls;
+			buildTypeRemoveTemplate(vap.getAgent(), nodeIndex, ssp.getSite(), metaModel.getClass(tfl.getState().getName()));
 		}
 	}
 	
@@ -110,12 +120,18 @@ public class TransformationTemplate {
 		}else if(ls instanceof IndexedFreeLink) {
 			int linkIndex = Integer.valueOf(((IndexedFreeLink)ls).getState());
 			buildMultiRemoveTemplate(vap.getAgent(), nodeIndex, msp.getSite(), findOtherRemoveIndex(vap, nodeIndex, linkIndex));
+		}else if(ls instanceof TypedFreeLink) {
+			TypedFreeLink tfl = (TypedFreeLink)ls;
+			buildTypeRemoveTemplate(vap.getAgent(), nodeIndex, msp.getSite(), metaModel.getClass(tfl.getState().getName()));
 		}else if(ls instanceof MultiLink) {
 			MultiLink ml = (MultiLink)ls;
 			for(LinkState mls : ml.getStates()) {
 				if(mls instanceof IndexedFreeLink) {
 					int linkIndex = Integer.valueOf(((IndexedFreeLink)mls).getState());
 					buildMultiRemoveTemplate(vap.getAgent(), nodeIndex, msp.getSite(), findOtherRemoveIndex(vap, nodeIndex, linkIndex));
+				}else if(mls instanceof TypedFreeLink) {
+					TypedFreeLink tfl = (TypedFreeLink)mls;
+					buildTypeRemoveTemplate(vap.getAgent(), nodeIndex, msp.getSite(), metaModel.getClass(tfl.getState().getName()));
 				}
 			}
 		}
@@ -132,6 +148,13 @@ public class TransformationTemplate {
 		String refName = AgentClassFactory.createReferenceName(agent, site);
 		LinkDeletionTemplate linkRemoveTemplate = new LinkDeletionTemplate(nodeIndex);
 		linkRemoveTemplate.addLinkRemovalCandidate(metaModel.getEReference(refName), otherIndex);
+		linkRemovals.add(linkRemoveTemplate);
+	}
+	
+	private void buildTypeRemoveTemplate(biochemsimulation.reactionrules.reactionRules.Agent agent, int nodeIndex, Site site, EClass type) {
+		String refName = AgentClassFactory.createReferenceName(agent, site);
+		LinkDeletionTemplate linkRemoveTemplate = new LinkDeletionTemplate(nodeIndex);
+		linkRemoveTemplate.addLinkRemovalType(metaModel.getEReference(refName), type);
 		linkRemovals.add(linkRemoveTemplate);
 	}
 	

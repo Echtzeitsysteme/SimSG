@@ -420,6 +420,15 @@ public interface ReactionRulesFactory extends EFactory
   IndexedFreeLink createIndexedFreeLink();
 
   /**
+   * Returns a new object of class '<em>Typed Free Link</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Typed Free Link</em>'.
+   * @generated
+   */
+  TypedFreeLink createTypedFreeLink();
+
+  /**
    * Returns a new object of class '<em>What Ever</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

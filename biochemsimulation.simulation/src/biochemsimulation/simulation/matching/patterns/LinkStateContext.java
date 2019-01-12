@@ -23,7 +23,10 @@ public class LinkStateContext {
 		this.siteNodeContext = siteNodeContext;
 		this.stateType = stateType;
 		this.agentReference = agentReference;
-		this.agentReferenceType = agentReference.getEType();
+		if(agentReference != null) {
+			this.agentReferenceType = agentReference.getEType();
+		}
+		
 	}
 	
 	public String getAgentReferenceName() {

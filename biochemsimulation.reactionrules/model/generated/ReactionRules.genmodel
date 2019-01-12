@@ -130,6 +130,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//IndexedFreeLink/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//IndexedFreeLink/state"/>
     </genClasses>
+    <genClasses ecoreClass="ReactionRules.ecore#//TypedFreeLink">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//TypedFreeLink/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ReactionRules.ecore#//TypedFreeLink/state"/>
+    </genClasses>
     <genClasses ecoreClass="ReactionRules.ecore#//WhatEver">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ReactionRules.ecore#//WhatEver/name"/>
     </genClasses>

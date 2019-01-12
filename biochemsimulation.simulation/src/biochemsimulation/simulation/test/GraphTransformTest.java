@@ -104,7 +104,7 @@ abstract class GraphTransformTest {
 		assertEquals(rhsCount, pmc.getMatchCount(rhs), "Number of matches weren't equal!");
 		return rhsMatches.iterator().next();
 	}
-	/*
+
 	@Test
 	void disjuncToBoundTest() {
 		final int lhsPre = 660;
@@ -299,7 +299,7 @@ abstract class GraphTransformTest {
 		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
 		
 	}
-	*/
+
 	@Test
 	void manyEdgeDisjunctToBound() {
 		final int lhsPre = 6;
@@ -308,6 +308,28 @@ abstract class GraphTransformTest {
 		final int rhsPost = 1;
 		final String lhs = "manyEdgeDisjunctToBound_rule_lhs";
 		final String rhs = "manyEdgeDisjunctToBound_rule_rhs";
+		
+		collectMatches(lhs, rhs);
+		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
+		gt.applyRuleToMatch(lhsMatch, lhs);
+		
+		collectMatches(lhs, rhs);
+		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
+		gt.applyRuleToMatch(rhsMatch, rhs);
+		
+		collectMatches(lhs, rhs);
+		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
+		
+	}
+	
+	@Test
+	void manyEdgeTriangle() {
+		final int lhsPre = 6;
+		final int lhsPost = 4;
+		final int rhsPre = 0;
+		final int rhsPost = 6;
+		final String lhs = "manyEdgeTriangle_rule_lhs";
+		final String rhs = "manyEdgeTriangle_rule_rhs";
 		
 		collectMatches(lhs, rhs);
 		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
