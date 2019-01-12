@@ -11,6 +11,9 @@ import biochemsimulation.reactioncontainer.Agent;
 import biochemsimulation.simulation.matching.IMatch;
 
 public class LinkDeletionTemplate {
+	
+	public static final int REMOVE_ALL = -1;
+	
 	private int agentIndex;
 	private Map<EReference, Integer> references;
 	
@@ -33,8 +36,13 @@ public class LinkDeletionTemplate {
 		
 		for(Entry<EReference, Integer> ref : references.entrySet()) {
 			if(ref.getValue() != null) {
-				Agent otherAgent = (Agent) match.get(match.parameterNames().get(ref.getValue().intValue()));
-				((List<Agent>) agent.eGet(ref.getKey())).remove(otherAgent);
+				if(ref.getValue() >= 0) {
+					Agent otherAgent = (Agent) match.get(match.parameterNames().get(ref.getValue().intValue()));
+					((List<Agent>) agent.eGet(ref.getKey())).remove(otherAgent);
+				}else {
+					((List<Agent>) agent.eGet(ref.getKey())).clear();
+				}
+				
 			}else {
 				agent.eSet(ref.getKey(), null);
 			}

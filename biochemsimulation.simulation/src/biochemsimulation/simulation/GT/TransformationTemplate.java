@@ -104,7 +104,7 @@ public class TransformationTemplate {
 	private void multiLinkRemoval(ValidAgentPattern vap, int nodeIndex, MultiLinkSitePattern msp) {
 		LinkState ls = msp.getLinkState().getLinkState();
 		if(ls instanceof FreeLink) {
-			buildSingleRemoveTemplate(vap.getAgent(), nodeIndex, msp.getSite());
+			buildMultiRemoveTemplate(vap.getAgent(), nodeIndex, msp.getSite(), LinkDeletionTemplate.REMOVE_ALL);
 		}else if(ls instanceof IndexedFreeLink) {
 			int linkIndex = Integer.valueOf(((IndexedFreeLink)ls).getState());
 			buildMultiRemoveTemplate(vap.getAgent(), nodeIndex, msp.getSite(), findOtherRemoveIndex(vap, nodeIndex, linkIndex));
@@ -305,17 +305,17 @@ public class TransformationTemplate {
 					if(sp instanceof SingleSitePattern) {
 						SingleSitePattern ssp = (SingleSitePattern) sp;
 						if(ssp.getLinkState().getLinkState() instanceof BoundLink) {
-							buildLinkChangeTemplate(ap, i, sp, (BoundLink)ssp.getLinkState().getLinkState());
+							buildLinkChangeTemplate(ap, i, sp, (BoundLink)ssp.getLinkState().getLinkState(), true);
 						}
 					}else {
 						MultiLinkSitePattern msp = (MultiLinkSitePattern) sp;
 						if(msp.getLinkState().getLinkState() instanceof BoundLink) {
-							buildLinkChangeTemplate(ap, i, sp, (BoundLink)msp.getLinkState().getLinkState());
+							buildLinkChangeTemplate(ap, i, sp, (BoundLink)msp.getLinkState().getLinkState(), true);
 						}else if(msp.getLinkState().getLinkState() instanceof MultiLink) {
 							MultiLink ml = (MultiLink) msp.getLinkState().getLinkState();
 							for(LinkState mls : ml.getStates()) {
 								if(mls instanceof BoundLink) {
-									buildLinkChangeTemplate(ap, i, sp, (BoundLink)mls);
+									buildLinkChangeTemplate(ap, i, sp, (BoundLink)mls, true);
 								}
 							}
 						}
@@ -328,7 +328,7 @@ public class TransformationTemplate {
 		}
 	}
 	
-	private void buildLinkChangeTemplate(ValidAgentPattern vap, int nodeIndex, SitePattern sp, BoundLink bl) {
+	private void buildLinkChangeTemplate(ValidAgentPattern vap, int nodeIndex, SitePattern sp, BoundLink bl, boolean agentNotInMatch) {
 		Site site = null;
 		if(sp instanceof SitePattern) {
 			site = ((SingleSitePattern)sp).getSite();
@@ -337,7 +337,7 @@ public class TransformationTemplate {
 		}
 		
 		int linkIdx = Integer.valueOf(bl.getState());
-		if(linkChanges.containsKey(linkIdx)){
+		if(linkChanges.containsKey(linkIdx) && agentNotInMatch){
 			linkChanges.get(linkIdx).setAgentNotInMatch(vap);
 			return;
 		}
@@ -351,8 +351,10 @@ public class TransformationTemplate {
 		LinkChangeTemplate lct = new LinkChangeTemplate();
 		lct.setSrc(vap, nodeIndex, metaModel.getEReference(srcRefName));
 		lct.setTrg((ValidAgentPattern)postcondition.getAgentPatterns().get(otherAgentIdx), otherAgentIdx, metaModel.getEReference(trgRefName));
-		lct.setAgentNotInMatch(vap);
-		linkChanges.put(linkIdx, lct);
+		if(agentNotInMatch) {
+			lct.setAgentNotInMatch(vap);
+		}
+		linkChanges.putIfAbsent(linkIdx, lct);
 	}
 	
 	private Entry<Integer, Site> findCorrespondingSiteOnRHS(SitePattern sitePattern, BoundLink link) {
@@ -418,81 +420,159 @@ public class TransformationTemplate {
 			ValidAgentPattern ap = (ValidAgentPattern)postcondition.getAgentPatterns().get(i);
 			for(int j = 0; j<ap.getSitePatterns().getSitePatterns().size(); j++) {
 				SitePattern sp = ap.getSitePatterns().getSitePatterns().get(j);
-				// ignore multi-link site patterns for now
-				if(!(sp instanceof SingleSitePattern)) continue;
-				SingleSitePattern ssp = (SingleSitePattern) sp;
+
+				Site site = null;
+				LinkState ls = null;
+				if(sp instanceof SingleSitePattern) {
+					SingleSitePattern ssp = (SingleSitePattern)sp;
+					site = ssp.getSite();
+					ls = ssp.getLinkState().getLinkState();
+				}else {
+					MultiLinkSitePattern msp = (MultiLinkSitePattern)sp;
+					site = msp.getSite();
+					ls = msp.getLinkState().getLinkState();
+				}
 				
-				if(ssp.getLinkState() == null) {
+				if(ls == null) continue;
+				
+				List<BoundLink> bLinks = new LinkedList<BoundLink>();
+				if(ls instanceof BoundLink) {
+					bLinks.add((BoundLink) ls);
+				}else if(ls instanceof MultiLink) {
+					MultiLink ml = (MultiLink) ls;
+					for(LinkState mls : ml.getStates()) {
+						if(mls instanceof BoundLink) {
+							bLinks.add((BoundLink)mls);
+						}
+					}
+				}else {
 					continue;
 				}
-				LinkState ls = ssp.getLinkState().getLinkState();
-				if(!(ls instanceof BoundLink)) {
-					continue;
+				
+				for(BoundLink bl : bLinks) {
+					// find other side and link!
+					Entry<Integer, Site> indexAndSite = findCorrespondingSiteOnRHS(sp, bl);
+					Site otherSite = indexAndSite.getValue();
+					int otherAgentIdx = indexAndSite.getKey();
+					
+					// continue if this node is void -> this was handled in the agent creation method
+					if(!(precondition.getAgentPatterns().get(i) instanceof ValidAgentPattern)) {
+						continue;
+					}
+					ValidAgentPattern apLhs = (ValidAgentPattern)precondition.getAgentPatterns().get(i);
+					// continue if other node is void -> this was handled in the agent creation method
+					if(!(precondition.getAgentPatterns().get(otherAgentIdx) instanceof ValidAgentPattern)) {
+						continue;
+					}
+					
+					// find corresponding nodes on lhs and check if something changed
+					ValidAgentPattern otherApLhs = (ValidAgentPattern)precondition.getAgentPatterns().get(otherAgentIdx);
+					SitePattern spLhs = findSitePatternInAgentPattern(apLhs, site);
+					SitePattern otherSpLhs = findSitePatternInAgentPattern(otherApLhs, otherSite);
+					// if nothing changed -> continue
+					if(sitePatternsLinked(spLhs, otherSpLhs)) continue;
+					buildLinkChangeTemplate(ap, i, sp, bl, false);
 				}
-				// current agent node
-				biochemsimulation.reactionrules.reactionRules.Agent agent = ap.getAgent();
-				Site site = ssp.getSite();
-				BoundLink link = (BoundLink) ls;
-				int linkIdx = Integer.valueOf(link.getState());
-				
-				// find other side and link!
-				Entry<Integer, Site> indexAndSite = findCorrespondingSiteOnRHS(sp, link);
-				Site otherSite = indexAndSite.getValue();
-				int otherAgentIdx = indexAndSite.getKey();
-				biochemsimulation.reactionrules.reactionRules.Agent otherAgent = ((ValidAgentPattern)postcondition.getAgentPatterns().get(otherAgentIdx)).getAgent();
-				
-				// find corresponding nodes on lhs and check if something changed
-				// continue if this node is void -> this was handled in the agent creation method
-				if(!(precondition.getAgentPatterns().get(i) instanceof ValidAgentPattern)) {
-					continue;
-				}
-				ValidAgentPattern apLhs = (ValidAgentPattern)precondition.getAgentPatterns().get(i);
-				// continue if other node is void -> this was handled in the agent creation method
-				if(!(precondition.getAgentPatterns().get(otherAgentIdx) instanceof ValidAgentPattern)) {
-					continue;
-				}
-				ValidAgentPattern otherApLhs = (ValidAgentPattern)precondition.getAgentPatterns().get(otherAgentIdx);
-				
-				SitePattern spLhs = findSitePatternInAgentPattern(apLhs, site);
-				// ignore multi-link site patterns for now
-				if(!(spLhs instanceof SingleSitePattern)) continue;
-				SingleSitePattern sSpLhs = (SingleSitePattern) spLhs;
-				
-				SitePattern otherSpLhs = findSitePatternInAgentPattern(otherApLhs, otherSite);
-				// ignore multi-link site patterns for now
-				if(!(otherSpLhs instanceof SingleSitePattern)) continue;
-				SingleSitePattern otherSspLhs = (SingleSitePattern) otherSpLhs;
-				
-				LinkState lsLhs = sSpLhs.getLinkState().getLinkState();
-				LinkState otherLsLhs = otherSspLhs.getLinkState().getLinkState();
-				
-				if(lsLhs instanceof BoundLink && otherLsLhs instanceof BoundLink) {
-					BoundLink blLhs = (BoundLink)lsLhs;
-					BoundLink otherBlLhs = (BoundLink)otherLsLhs;
-					int idxLhs = Integer.valueOf(blLhs.getState());
-					int otherIdxLhs = Integer.valueOf(otherBlLhs.getState());
-					// if both indexes are equal both nodes are already connected -> nothing to do
-					if(idxLhs == otherIdxLhs) continue;
-				}
-				
-				// Create Link Template
-				LinkChangeTemplate lct = new LinkChangeTemplate();
-				String srcRefName = AgentClassFactory.createReferenceName(agent, site);
-				String trgRefName = AgentClassFactory.createReferenceName(otherAgent, otherSite);
-				lct.setSrc(ap, i, metaModel.getEReference(srcRefName));
-				lct.setTrg((ValidAgentPattern)postcondition.getAgentPatterns().get(otherAgentIdx), otherAgentIdx, metaModel.getEReference(trgRefName));
-				linkChanges.putIfAbsent(linkIdx, lct);
 				
 			}
 		}
 	}
 	
+	private boolean sitePatternsLinked(SitePattern sp1, SitePattern sp2) {
+		if(sp1 instanceof SingleSitePattern && sp2 instanceof SingleSitePattern) {
+			LinkState ls1 = ((SingleSitePattern)sp1).getLinkState().getLinkState();
+			LinkState ls2 = ((SingleSitePattern)sp2).getLinkState().getLinkState();
+			return boundLinksEqual(ls1, ls2);
+			
+		}else if(sp1 instanceof MultiLinkSitePattern && sp2 instanceof SingleSitePattern) {
+			LinkState ls1 = ((MultiLinkSitePattern)sp1).getLinkState().getLinkState();
+			LinkState ls2 = ((SingleSitePattern)sp2).getLinkState().getLinkState();
+			if(ls1 == null) return false;
+			
+			if(ls1 instanceof BoundLink) {
+				return boundLinksEqual(ls1, ls2);
+			}else if(ls1 instanceof MultiLink) {
+				MultiLink ml = (MultiLink) ls1;
+				for(LinkState mls : ml.getStates()) {
+					if(boundLinksEqual(ls2, mls)) return true;
+				}
+				return false;
+			}else {
+				return false;
+			}
+		}else if(sp1 instanceof SingleSitePattern && sp2 instanceof MultiLinkSitePattern) {
+			LinkState ls1 = ((SingleSitePattern)sp1).getLinkState().getLinkState();
+			LinkState ls2 = ((MultiLinkSitePattern)sp2).getLinkState().getLinkState();
+			if(ls2 == null) return false;
+			
+			if(ls2 instanceof BoundLink) {
+				return boundLinksEqual(ls1, ls2);
+			}else if(ls2 instanceof MultiLink) {
+				MultiLink ml = (MultiLink) ls2;
+				for(LinkState mls : ml.getStates()) {
+					if(boundLinksEqual(ls1, mls)) return true;
+				}
+				return false;
+			}else {
+				return false;
+			}
+		}else if(sp1 instanceof MultiLinkSitePattern && sp2 instanceof MultiLinkSitePattern){
+			LinkState ls1 = ((MultiLinkSitePattern)sp1).getLinkState().getLinkState();
+			LinkState ls2 = ((MultiLinkSitePattern)sp2).getLinkState().getLinkState();
+			if(ls1 == null) return false;
+			if(ls2 == null) return false;
+			
+			if(ls1 instanceof BoundLink && ls2 instanceof BoundLink) {
+				return boundLinksEqual(ls1, ls2);
+			}else if(ls1 instanceof BoundLink && ls2 instanceof MultiLink) {
+				MultiLink ml = (MultiLink) ls2;
+				for(LinkState mls : ml.getStates()) {
+					if(boundLinksEqual(ls1, mls)) return true;
+				}
+				return false;
+			}else if(ls1 instanceof MultiLink && ls2 instanceof BoundLink) {
+				MultiLink ml = (MultiLink) ls1;
+				for(LinkState mls : ml.getStates()) {
+					if(boundLinksEqual(ls2, mls)) return true;
+				}
+				return false;
+			}else if(ls1 instanceof MultiLink && ls2 instanceof MultiLink) {
+				MultiLink ml1 = (MultiLink) ls1;
+				MultiLink ml2 = (MultiLink) ls2;
+				for(LinkState mls1 : ml1.getStates()) {
+					for(LinkState mls2 : ml2.getStates()) {
+						if(boundLinksEqual(mls1, mls2)) return true;
+					}
+				}
+				return false;
+			}else return false;
+		}else return false;
+	}
+	
+	private boolean boundLinksEqual(LinkState link1, LinkState link2) {
+		if(link1 == null) return false;
+		if(link2 == null) return false;
+		if(!(link1 instanceof BoundLink)) return false;
+		if(!(link2 instanceof BoundLink)) return false;
+		BoundLink blLhs = (BoundLink)link1;
+		BoundLink otherBlLhs = (BoundLink)link2;
+		int idxLhs = Integer.valueOf(blLhs.getState());
+		int otherIdxLhs = Integer.valueOf(otherBlLhs.getState());
+		// if both indexes are equal both nodes are already connected -> nothing to do
+		if(idxLhs == otherIdxLhs) return false;
+		return true;
+	}
+	
 	private SitePattern findSitePatternInAgentPattern(ValidAgentPattern ap, Site site) {
 		for(SitePattern sp: ap.getSitePatterns().getSitePatterns()) {
 			// ignore multi-link site patterns for now
-			if(!(sp instanceof SingleSitePattern)) continue;
-			SingleSitePattern ssp = (SingleSitePattern) sp;
-			if(ssp.getSite() == site) {
+			Site otherSite = null;
+			if(sp instanceof SingleSitePattern) {
+				otherSite = ((SingleSitePattern)sp).getSite();
+			}else {
+				otherSite = ((MultiLinkSitePattern)sp).getSite();
+			}
+			if(otherSite == site) {
 				return sp; 
 			}
 		}
