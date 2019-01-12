@@ -31,6 +31,7 @@ import biochemsimulation.simulation.matching.IMatch;
 
 public class TransformationTemplate {
 	
+	private String lhsName;
 	private Pattern precondition;
 	private Pattern postcondition;
 	private Container reactionContainer;
@@ -44,7 +45,8 @@ public class TransformationTemplate {
 	
 	private Map<ValidAgentPattern, Agent> createdAgents;
 	
-	public TransformationTemplate(Pattern precondition, Pattern postcondition, Container reactionContainer, EPackageWrapper metaModel) {
+	public TransformationTemplate(String lhsName, Pattern precondition, Pattern postcondition, Container reactionContainer, EPackageWrapper metaModel) {
+		this.lhsName = lhsName;
 		this.precondition = precondition;
 		this.postcondition = postcondition;
 		this.metaModel = metaModel;
@@ -328,9 +330,9 @@ public class TransformationTemplate {
 		}
 	}
 	
-	private void buildLinkChangeTemplate(ValidAgentPattern vap, int nodeIndex, SitePattern sp, BoundLink bl, boolean agentNotInMatch) {
+	private LinkChangeTemplate buildLinkChangeTemplate(ValidAgentPattern vap, int nodeIndex, SitePattern sp, BoundLink bl, boolean agentNotInMatch) {
 		Site site = null;
-		if(sp instanceof SitePattern) {
+		if(sp instanceof SingleSitePattern) {
 			site = ((SingleSitePattern)sp).getSite();
 		}else {
 			site = ((MultiLinkSitePattern)sp).getSite();
@@ -339,7 +341,7 @@ public class TransformationTemplate {
 		int linkIdx = Integer.valueOf(bl.getState());
 		if(linkChanges.containsKey(linkIdx) && agentNotInMatch){
 			linkChanges.get(linkIdx).setAgentNotInMatch(vap);
-			return;
+			return linkChanges.get(linkIdx);
 		}
 		
 		Entry<Integer, Site> indexAndSite = findCorrespondingSiteOnRHS(sp, bl);
@@ -355,6 +357,7 @@ public class TransformationTemplate {
 			lct.setAgentNotInMatch(vap);
 		}
 		linkChanges.putIfAbsent(linkIdx, lct);
+		return lct;
 	}
 	
 	private Entry<Integer, Site> findCorrespondingSiteOnRHS(SitePattern sitePattern, BoundLink link) {
@@ -472,6 +475,7 @@ public class TransformationTemplate {
 					// if nothing changed -> continue
 					if(sitePatternsLinked(spLhs, otherSpLhs)) continue;
 					buildLinkChangeTemplate(ap, i, sp, bl, false);
+					
 				}
 				
 			}
@@ -559,8 +563,12 @@ public class TransformationTemplate {
 		int idxLhs = Integer.valueOf(blLhs.getState());
 		int otherIdxLhs = Integer.valueOf(otherBlLhs.getState());
 		// if both indexes are equal both nodes are already connected -> nothing to do
-		if(idxLhs == otherIdxLhs) return false;
-		return true;
+		if(idxLhs == otherIdxLhs) {
+			return true;
+		}else {
+			return false;
+		}
+		
 	}
 	
 	private SitePattern findSitePatternInAgentPattern(ValidAgentPattern ap, Site site) {
@@ -626,7 +634,6 @@ public class TransformationTemplate {
 	}
 	
 	public void applyTransformation(IMatch match) {
-		//System.out.println(match.patternName());
 		applyAgentRemovalCandidates(match);
 		applyLinkRemovalTemplates(match);
 		applyStateChangeTemplates(match);

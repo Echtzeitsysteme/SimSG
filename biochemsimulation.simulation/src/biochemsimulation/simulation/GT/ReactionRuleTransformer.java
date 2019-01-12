@@ -51,7 +51,7 @@ public class ReactionRuleTransformer {
 		templateMap = new HashMap<String, TransformationTemplate>();
 		patternMap.forEach((patternName, lhsPattern) -> {
 			Pattern rhsPattern = targetPatternMap.get(patternName);
-			templateMap.put(patternName, new TransformationTemplate(lhsPattern, rhsPattern, reactionContainer, metaModel));
+			templateMap.put(patternName, new TransformationTemplate(patternName, lhsPattern, rhsPattern, reactionContainer, metaModel));
 		});
 	}
 	

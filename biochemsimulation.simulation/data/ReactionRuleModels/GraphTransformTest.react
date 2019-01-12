@@ -11,11 +11,16 @@ agent B3(d, e, f{l, m})
 agent C2(g, h{n, o}) 
 agent A8(x, y)
 agent A9(x, y)
+agent mA(*x)
+agent mB(*y)
+agent mC(*z)
  
 var mockup_rate = 0.4 
 
 var p1 = {A8(x[1]), A8(x[1], y[2]), A8(y[2]), A8(x[3]), A8(x[3], y[4]), A8(y[4])}
 var p2 = {A9(x[1]), A9(x[1]), A9(x[2]), A9(x[2]), A9(x[3]), A9(x[3])}
+var p3 = {mA(x*[1]), mB(y*[1])}
+var p4 = {mA(x*[1]), mB(y*[1, free(3)]), mA(x*[2]), mC(z*[2, free(3)])}
 
 init i1 2 {A(a[free], c[1]), B(d[free], e[free], f[1]), A(b[free])}
 init i2 3 {A(a[free], c{p}[1]), B(d[free], e[free], f{m}[1]), A(b{s}[free])}
@@ -27,7 +32,9 @@ init i7 3 {A3(a[free], c{p}[1]), B3(d[free], e[free], f{m}[1]), A3(b{s}[free])}
 init i8 2 {A3(a[free], c{p}[1]), B3(d[free], e[2], f{m}[1]), C2(h{o}[2])}
 init i9 2 p1
 init i10 2 p2
-
+init i11 3 p3
+init i12 2 {mA(x*[2]), mC(z*[2])}
+/*
 // bind and breakup tests
 rule disjuncToBound_rule {A3(a[free]), B3(d[free], e[free]), A3(b[free])} <-> {A3(a[1]), B3(d[1], e[2]), A3(b[2])} @ [mockup_rate, mockup_rate] // lhs: 12*5*11 = 660 -> 11*4*10 = 444, rhs: 0 -> 1 
 // change states tests
@@ -43,3 +50,7 @@ rule createAndDestroyFullVoid_rule {A1(a[free]), B1(d[free])} <-> {void, void} @
 // create and destroy full void injectivtiy
 rule createAndDestroyFullVoidInjectivity_rule p1 <-> {void, void, void, void, void, void} @ [mockup_rate, mockup_rate] // lhs: 4*3 = 12 -> 2*1 = 2, rhs: 1 -> 1
 rule createAndDestroyFullVoidInjectivity2_rule p2 <-> {void, void, void, void, void, void} @ [mockup_rate, mockup_rate] // lhs: 12*10*8 = 960 -> 6*4*2 = 48, rhs: 1 -> 1
+// breakup and bind many edge
+rule manyEdgeBoundToDisjunct_rule p3 <-> {mA(x*[free]), mB(y*[free])} @ [mockup_rate, mockup_rate] // lhs: 3 -> 2, rhs: 0 -> 1
+*/
+rule manyEdgeDisjunctToBound_rule p4 <-> {mA(x*[1]), mB(y*[1, 3]), mA(x*[2]), mC(z*[2, 3])} @ [mockup_rate, mockup_rate] // lhs: 6 -> 2, rhs: 0 -> 1
