@@ -155,4 +155,7 @@
   <eClassifiers xmi:type="ecore:EClass" name="mQ" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent">
     <eStructuralFeatures xmi:type="ecore:EReference" name="mQ_b" upperBound="-1" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
   </eClassifiers>
+  <eClassifiers xmi:type="ecore:EClass" name="mP" eSuperTypes="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent">
+    <eStructuralFeatures xmi:type="ecore:EReference" name="mP_c" upperBound="-1" eType="ecore:EClass http://www.reactioncontainer.biochemsimulation.org/reactioncontainer#//Agent"/>
+  </eClassifiers>
 </ecore:EPackage>

@@ -3,10 +3,13 @@ package biochemsimulation.simulation.matching.patterns;
 import java.util.AbstractMap;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import biochemsimulation.reactioncontainer.util.AgentClassFactory;
 import biochemsimulation.reactioncontainer.util.EPackageWrapper;
@@ -38,6 +41,10 @@ public class GenericPatternBody {
 	private Map<Integer, Entry<LinkStateContext, LinkStateContext>> boundLinkStateContexts;
 	private Map<Integer, Entry<LinkStateContext, LinkStateContext>> indexedFreeLinkStateContexts;
 	
+	private Map<AgentNodeContext, List<Entry<LinkStateContext, LinkStateContext>>> agentNodeToLinkMap;
+	private List<Set<AgentNodeContext>> subPatterns;
+	private Map<AgentNodeContext, Set<AgentNodeContext>> agentNodeToSubPatternMap;
+	
 	private Collection<AgentNodeConstraint> injectivityConstraintsSignature;
 	private Collection<AgentNodeConstraint> injectivityConstraintsBody;
 	private Collection<AgentNodeConstraint> injectivityConstraints;
@@ -62,6 +69,8 @@ public class GenericPatternBody {
 		buildSiteNodeContexts();
 		buildLocalLinksAndLocalNodes();
 		buildInjectivityConstraints();
+		mapAgentNodesToLinks();
+		findSubPatterns();
 		permutable = false;
 		checkPermutability();
 	}
@@ -134,10 +143,16 @@ public class GenericPatternBody {
 		return localSiteNodes;
 	}
 
-
-
 	public Map<SiteNodeContext, LinkStateContext> getLocalLinkStates() {
 		return localLinkStates;
+	}
+	
+	public Set<AgentNodeContext> getSubPattern(AgentNodeContext anc) {
+		return agentNodeToSubPatternMap.get(anc);
+	}
+	
+	public List<Set<AgentNodeContext>> getAllSubPatterns() {
+		return subPatterns;
 	}
 	
 	public boolean isPermutable() {
@@ -401,6 +416,80 @@ public class GenericPatternBody {
 			}
 		}
 		injectivityConstraints.addAll(constraints.values());
+	}
+	
+	private void mapAgentNodesToLinks() {
+		agentNodeToLinkMap = new HashMap<AgentNodeContext, List<Entry<LinkStateContext, LinkStateContext>>>();
+		for(Entry<LinkStateContext, LinkStateContext> pair : boundLinkStateContexts.values()) {
+			List<Entry<LinkStateContext, LinkStateContext>> links = agentNodeToLinkMap.get(pair.getKey().getSiteNodeContext().getAgentNodeContext());
+			if(links == null) {
+				links = new LinkedList<Map.Entry<LinkStateContext,LinkStateContext>>();
+				agentNodeToLinkMap.put(pair.getKey().getSiteNodeContext().getAgentNodeContext(), links);
+			}
+			links.add(pair);
+			
+			List<Entry<LinkStateContext, LinkStateContext>> links2 = agentNodeToLinkMap.get(pair.getValue().getSiteNodeContext().getAgentNodeContext());
+			if(links2 == null) {
+				links2 = new LinkedList<Map.Entry<LinkStateContext,LinkStateContext>>();
+				agentNodeToLinkMap.put(pair.getValue().getSiteNodeContext().getAgentNodeContext(), links);
+			}
+			links2.add(pair);
+		}
+	}
+	
+	private void findSubPatterns() {
+		subPatterns = new LinkedList<Set<AgentNodeContext>>();
+		agentNodeToSubPatternMap = new HashMap<AgentNodeContext, Set<AgentNodeContext>>();
+		
+		Set<AgentNodeContext> pattern = new HashSet<AgentNodeContext>();
+		pattern.addAll(getAgentNodeContexts().values());
+
+		// find minimal spanning tree for each connected sub-graph
+		while(!pattern.isEmpty()) {
+			AgentNodeContext currentSubPattern = pattern.iterator().next();
+			pattern.remove(currentSubPattern);
+			
+			Set<AgentNodeContext> currentSubSet = new HashSet<AgentNodeContext>();
+			currentSubSet.add(currentSubPattern);
+			
+			ConcurrentLinkedQueue<Entry<LinkStateContext, LinkStateContext>> outgoingLinks =  new ConcurrentLinkedQueue<Map.Entry<LinkStateContext,LinkStateContext>>();
+			if(!agentNodeToLinkMap.containsKey(currentSubPattern)) {
+				addSubPattern(currentSubSet);
+				continue;
+			}
+			outgoingLinks.addAll(agentNodeToLinkMap.get(currentSubPattern));
+			
+			while(!outgoingLinks.isEmpty()) {
+				Entry<LinkStateContext, LinkStateContext> currentLink = outgoingLinks.poll();
+				if(currentLink.getKey().getStateType() != LinkStateType.Bound) {
+					continue;
+				}
+				AgentNodeContext operand1 = currentLink.getKey().getSiteNodeContext().getAgentNodeContext();
+				AgentNodeContext operand2 = currentLink.getValue().getSiteNodeContext().getAgentNodeContext();
+				if(operand1 != currentSubPattern) {
+					if(pattern.contains(operand1)) {
+						pattern.remove(operand1);
+						outgoingLinks.addAll(agentNodeToLinkMap.get(operand1));
+						currentSubSet.add(operand1);
+					}
+				}
+				if(operand2 != currentSubPattern) {
+					if(pattern.contains(operand2)) {
+						pattern.remove(operand2);
+						outgoingLinks.addAll(agentNodeToLinkMap.get(operand2));
+						currentSubSet.add(operand2);
+					}
+				}
+			}
+			addSubPattern(currentSubSet);
+		}
+	}
+	
+	private void addSubPattern(Set<AgentNodeContext> subPattern) {
+		subPatterns.add(subPattern);
+		for(AgentNodeContext anc : subPattern) {
+			agentNodeToSubPatternMap.put(anc, subPattern);
+		}
 	}
 	
 	private void checkPermutability() {

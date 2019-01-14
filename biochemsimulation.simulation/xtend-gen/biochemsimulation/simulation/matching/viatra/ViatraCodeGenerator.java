@@ -8,9 +8,11 @@ import biochemsimulation.simulation.matching.patterns.LinkStateContext;
 import biochemsimulation.simulation.matching.patterns.LinkStateType;
 import biochemsimulation.simulation.matching.patterns.SiteNodeContext;
 import biochemsimulation.simulation.matching.patterns.SiteStateContext;
+import com.google.common.base.Objects;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -101,7 +103,7 @@ public class ViatraCodeGenerator {
               List<SiteNodeContext> _get_1 = genericPattern.getBody().getSiteNodeContexts().get(agent);
               for(final SiteNodeContext site : _get_1) {
                 _builder.append("\t");
-                String _generateLink = this.generateLink(genericPattern.getBody().getLinkStateContexts().get(site));
+                String _generateLink = this.generateLink(genericPattern, genericPattern.getBody().getLinkStateContexts().get(site));
                 _builder.append(_generateLink, "\t");
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t");
@@ -127,7 +129,7 @@ public class ViatraCodeGenerator {
             {
               for(final AgentNodeContext agent_1 : agents) {
                 _builder.append("\t");
-                String _generateLink_1 = this.generateLink(genericPattern.getBody().getLocalLinkStates().get(genericPattern.getBody().getLocalSiteNodes().get(agent_1)));
+                String _generateLink_1 = this.generateLink(genericPattern, genericPattern.getBody().getLocalLinkStates().get(genericPattern.getBody().getLocalSiteNodes().get(agent_1)));
                 _builder.append(_generateLink_1, "\t");
                 _builder.newLineIfNotEmpty();
               }
@@ -164,12 +166,12 @@ public class ViatraCodeGenerator {
     return _builder.toString();
   }
   
-  public String generateLink(final List<LinkStateContext> links) {
+  public String generateLink(final GenericPattern gp, final List<LinkStateContext> links) {
     StringConcatenation _builder = new StringConcatenation();
     {
       for(final LinkStateContext link : links) {
         _builder.newLineIfNotEmpty();
-        String _generateLink = this.generateLink(link);
+        String _generateLink = this.generateLink(gp, link);
         _builder.append(_generateLink);
         _builder.newLineIfNotEmpty();
       }
@@ -177,7 +179,7 @@ public class ViatraCodeGenerator {
     return _builder.toString();
   }
   
-  public String generateLink(final LinkStateContext link) {
+  public String generateLink(final GenericPattern gp, final LinkStateContext link) {
     if ((link == null)) {
       return "";
     }
@@ -197,7 +199,7 @@ public class ViatraCodeGenerator {
         case IndexedUnbound:
           return "";
         case TypedUnbound:
-          return this.generateTypedUnboundLink(link);
+          return this.generateTypedUnboundLink(gp, link);
         default:
           break;
       }
@@ -205,7 +207,7 @@ public class ViatraCodeGenerator {
     return null;
   }
   
-  public String generateTypedUnboundLink(final LinkStateContext link) {
+  public String generateTypedUnboundLink(final GenericPattern gp, final LinkStateContext link) {
     final String patternName = link.getSiteNodeContext().getAgentNodeContext().getPatternName();
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("supportPattern_");
@@ -213,7 +215,17 @@ public class ViatraCodeGenerator {
     _builder.append("_");
     String _agentReferenceName = link.getAgentReferenceName();
     _builder.append(_agentReferenceName);
+    _builder.append("_");
+    int _hashCode = link.hashCode();
+    _builder.append(_hashCode);
     final String supPatternName1 = _builder.toString();
+    final LinkedList<AgentNodeContext> otherContextNodes = new LinkedList<AgentNodeContext>();
+    Set<AgentNodeContext> _subPattern = gp.getBody().getSubPattern(link.getSiteNodeContext().getAgentNodeContext());
+    for (final AgentNodeContext anc : _subPattern) {
+      if ((anc.getAgentType().equals(link.getSiteNodeContext().getAgentNodeContext().getAgentType()) && (!Objects.equal(anc, link.getSiteNodeContext().getAgentNodeContext())))) {
+        otherContextNodes.add(anc);
+      }
+    }
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append("pattern ");
     _builder_1.append(supPatternName1);
@@ -223,6 +235,28 @@ public class ViatraCodeGenerator {
     _builder_1.append(" : ");
     String _sourceAgentTypeName = link.getSourceAgentTypeName();
     _builder_1.append(_sourceAgentTypeName);
+    String _xifexpression = null;
+    int _size = otherContextNodes.size();
+    boolean _greaterThan = (_size > 0);
+    if (_greaterThan) {
+      _xifexpression = ", ";
+    }
+    _builder_1.append(_xifexpression);
+    {
+      boolean _hasElements = false;
+      for(final AgentNodeContext otherNode : otherContextNodes) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder_1.appendImmediate(",", "");
+        }
+        String _agentVariableName = otherNode.getAgentVariableName();
+        _builder_1.append(_agentVariableName);
+        _builder_1.append(" : ");
+        String _agentTypeName = otherNode.getAgentTypeName();
+        _builder_1.append(_agentTypeName);
+      }
+    }
     _builder_1.append("){");
     _builder_1.newLineIfNotEmpty();
     _builder_1.append("\t");
@@ -234,24 +268,22 @@ public class ViatraCodeGenerator {
     _builder_1.append("(");
     String _sourceAgentVariableName_1 = link.getSourceAgentVariableName();
     _builder_1.append(_sourceAgentVariableName_1, "\t");
-    _builder_1.append(", _);");
-    _builder_1.newLineIfNotEmpty();
-    _builder_1.append("\t");
-    String _sourceAgentTypeName_2 = link.getSourceAgentTypeName();
-    _builder_1.append(_sourceAgentTypeName_2, "\t");
-    _builder_1.append(".");
-    String _agentReferenceName_2 = link.getAgentReferenceName();
-    _builder_1.append(_agentReferenceName_2, "\t");
-    _builder_1.append("(");
-    String _sourceAgentVariableName_2 = link.getSourceAgentVariableName();
-    _builder_1.append(_sourceAgentVariableName_2, "\t");
     _builder_1.append(", agent);");
     _builder_1.newLineIfNotEmpty();
     _builder_1.append("\t");
     String _targetAgentTypeName = link.getTargetAgentTypeName();
     _builder_1.append(_targetAgentTypeName, "\t");
-    _builder_1.append("(agent);");
+    _builder_1.append("(agent); ");
     _builder_1.newLineIfNotEmpty();
+    {
+      for(final AgentNodeContext otherNode_1 : otherContextNodes) {
+        _builder_1.append("\t");
+        String _agentVariableName_1 = otherNode_1.getAgentVariableName();
+        _builder_1.append(_agentVariableName_1, "\t");
+        _builder_1.append(" != agent;");
+        _builder_1.newLineIfNotEmpty();
+      }
+    }
     _builder_1.append("}");
     final String supPattern1 = _builder_1.toString();
     this.supportPatterns.put(link, supPattern1);
@@ -259,33 +291,45 @@ public class ViatraCodeGenerator {
     _builder_2.append("neg find ");
     _builder_2.append(supPatternName1);
     _builder_2.append("(");
-    String _sourceAgentVariableName_3 = link.getSourceAgentVariableName();
-    _builder_2.append(_sourceAgentVariableName_3);
+    String _sourceAgentVariableName_2 = link.getSourceAgentVariableName();
+    _builder_2.append(_sourceAgentVariableName_2);
+    String _xifexpression_1 = null;
+    int _size_1 = otherContextNodes.size();
+    boolean _greaterThan_1 = (_size_1 > 0);
+    if (_greaterThan_1) {
+      _xifexpression_1 = ", ";
+    }
+    _builder_2.append(_xifexpression_1);
+    {
+      boolean _hasElements_1 = false;
+      for(final AgentNodeContext otherNode_2 : otherContextNodes) {
+        if (!_hasElements_1) {
+          _hasElements_1 = true;
+        } else {
+          _builder_2.appendImmediate(",", "");
+        }
+        String _agentVariableName_2 = otherNode_2.getAgentVariableName();
+        _builder_2.append(_agentVariableName_2);
+      }
+    }
     _builder_2.append(");");
     _builder_2.newLineIfNotEmpty();
     return _builder_2.toString();
   }
   
   /**
-   * def String generateIndexedUnboundLink(String patternName, Entry<LinkStateContext, LinkStateContext> link){
-   * val supPatternName1 = '''supportPattern_«patternName»_«link.key.agentReferenceName»'''
-   * val supPattern1 = '''pattern «supPatternName1»(«link.key.sourceAgentVariableName» : «link.key.sourceAgentTypeName»){
-   * «link.key.sourceAgentTypeName».«link.key.agentReferenceName»(«link.key.sourceAgentVariableName», _);
-   * «link.key.sourceAgentTypeName».«link.key.agentReferenceName»(«link.key.sourceAgentVariableName», agent);
-   * «link.key.targetAgentTypeName»(agent);
+   * def String generateTypedUnboundLink(GenericPattern gp, LinkStateContext link){
+   * val patternName = link.siteNodeContext.agentNodeContext.patternName
+   * val supPatternName1 = '''supportPattern_«patternName»_«link.agentReferenceName»'''
+   * val supPattern1 = '''pattern «supPatternName1»(«link.sourceAgentVariableName» : «link.sourceAgentTypeName»){
+   * «link.sourceAgentTypeName».«link.agentReferenceName»(«link.sourceAgentVariableName», _);
+   * «link.sourceAgentTypeName».«link.agentReferenceName»(«link.sourceAgentVariableName», agent);
+   * «link.targetAgentTypeName»(agent);
    * }'''
-   * val supPatternName2 = '''supportPattern_«patternName»_«link.value.agentReferenceName»'''
-   * val supPattern2 = '''pattern «supPatternName2»(«link.value.sourceAgentVariableName» : «link.value.sourceAgentTypeName»){
-   * «link.value.sourceAgentTypeName».«link.value.agentReferenceName»(«link.value.sourceAgentVariableName», _);
-   * «link.value.sourceAgentTypeName».«link.value.agentReferenceName»(«link.value.sourceAgentVariableName», agent);
-   * «link.value.targetAgentTypeName»(agent);
-   * }'''
-   * supportPatterns.put(link.key, supPattern1);
-   * supportPatterns.put(link.value, supPattern2);
+   * supportPatterns.put(link, supPattern1);
    * 
    * 
-   * return '''neg find «supPatternName1»(«link.key.sourceAgentVariableName»);
-   * neg find «supPatternName2»(«link.value.sourceAgentVariableName»);
+   * return '''neg find «supPatternName1»(«link.sourceAgentVariableName»);
    * '''
    * }
    */
