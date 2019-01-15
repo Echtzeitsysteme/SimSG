@@ -1,4 +1,4 @@
-package biochemsimulation.simulation.persistence;
+package SimSG.Core.Persistence;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +18,7 @@ import org.json.simple.JSONObject;
 
 import SimSG.Container.Container;
 import SimSG.Container.ContainerPackage;
+import SimSG.Core.Utils.PersistenceUtils;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 

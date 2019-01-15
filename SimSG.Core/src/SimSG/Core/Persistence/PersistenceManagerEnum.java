@@ -1,4 +1,4 @@
-package biochemsimulation.simulation.persistence;
+package SimSG.Core.Persistence;
 
 public enum PersistenceManagerEnum {
 	SimplePersistence("SimplePersistence");

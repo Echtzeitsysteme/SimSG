@@ -1,4 +1,4 @@
-package biochemsimulation.simulation.persistence;
+package SimSG.Core.Persistence;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 import SimSG.Container.generator.ContainerEMF;
 import SimSG.Container.generator.ContainerGenerator;
+import SimSG.Core.Utils.PersistenceUtils;
 import SimSG.Container.Container;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 
