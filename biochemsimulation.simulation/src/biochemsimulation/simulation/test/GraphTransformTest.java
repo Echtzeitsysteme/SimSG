@@ -11,8 +11,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.runners.MethodSorters;
 
-import biochemsimulation.reactioncontainer.ReactionContainer;
+import biochemsimulation.reactioncontainer.Container;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
+import biochemsimulation.simulation.GT.ReactionRuleTransformer;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.PatternMatchingEngine;
 import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;
@@ -23,7 +24,6 @@ import biochemsimulation.simulation.persistence.PersistenceManagerFactory;
 import biochemsimulation.simulation.pmc.PatternMatchingController;
 import biochemsimulation.simulation.pmc.PatternMatchingControllerEnum;
 import biochemsimulation.simulation.pmc.PatternMatchingControllerFactory;
-import biochemsimulation.simulation.pmc.GT.ReactionRuleTransformer;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -33,7 +33,7 @@ abstract class GraphTransformTest {
 	protected PersistenceManager persistence;
 	
 	protected ReactionRuleModel ruleModel;
-	protected ReactionContainer containerModel;
+	protected Container containerModel;
 	protected PatternMatchingController pmc;
 	
 	protected PatternMatchingEngineEnum engineType;
@@ -65,7 +65,7 @@ abstract class GraphTransformTest {
 		pmc.loadModels(ruleModel, containerModel);
 		pmc.initEngine();
 		pmc.initController();
-		gt = new ReactionRuleTransformer(pmc.getPatternContainer(), containerModel);
+		gt = new ReactionRuleTransformer(pmc.getPatternContainer(), containerModel, pmc.getEPackageWrapper());
 		gt.init();
 	}
 	
@@ -91,14 +91,14 @@ abstract class GraphTransformTest {
 	
 	private IMatch getLhsAndCheckMatches(String lhs, String rhs, int lhsCount, int rhsCount) {
 		Collection<IMatch> lhsMatches = pmc.getMatches(lhs);
-		Collection<IMatch> rhsMatches = pmc.getMatches(rhs);
+		pmc.getMatches(rhs);
 		assertEquals(lhsCount, pmc.getMatchCount(lhs), "Number of matches weren't equal!");
 		assertEquals(rhsCount, pmc.getMatchCount(rhs), "Number of matches weren't equal!");
 		return lhsMatches.iterator().next();
 	}
 	
 	private IMatch getRhsAndCheckMatches(String lhs, String rhs, int lhsCount, int rhsCount) {
-		Collection<IMatch> lhsMatches = pmc.getMatches(lhs);
+		pmc.getMatches(lhs);
 		Collection<IMatch> rhsMatches = pmc.getMatches(rhs);
 		assertEquals(lhsCount, pmc.getMatchCount(lhs), "Number of matches weren't equal!");
 		assertEquals(rhsCount, pmc.getMatchCount(rhs), "Number of matches weren't equal!");
@@ -264,6 +264,72 @@ abstract class GraphTransformTest {
 		final int rhsPost = 1;
 		final String lhs = "createAndDestroyFullVoidInjectivity2_rule_lhs";
 		final String rhs = "createAndDestroyFullVoidInjectivity2_rule_rhs";
+		
+		collectMatches(lhs, rhs);
+		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
+		gt.applyRuleToMatch(lhsMatch, lhs);
+		
+		collectMatches(lhs, rhs);
+		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
+		gt.applyRuleToMatch(rhsMatch, rhs);
+		
+		collectMatches(lhs, rhs);
+		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
+		
+	}
+	
+	@Test
+	void manyEdgeBoundToDisjunct() {
+		final int lhsPre = 3;
+		final int lhsPost = 2;
+		final int rhsPre = 0;
+		final int rhsPost = 1;
+		final String lhs = "manyEdgeBoundToDisjunct_rule_lhs";
+		final String rhs = "manyEdgeBoundToDisjunct_rule_rhs";
+		
+		collectMatches(lhs, rhs);
+		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
+		gt.applyRuleToMatch(lhsMatch, lhs);
+		
+		collectMatches(lhs, rhs);
+		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
+		gt.applyRuleToMatch(rhsMatch, rhs);
+		
+		collectMatches(lhs, rhs);
+		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
+		
+	}
+
+	@Test
+	void manyEdgeDisjunctToBound() {
+		final int lhsPre = 6;
+		final int lhsPost = 2;
+		final int rhsPre = 0;
+		final int rhsPost = 1;
+		final String lhs = "manyEdgeDisjunctToBound_rule_lhs";
+		final String rhs = "manyEdgeDisjunctToBound_rule_rhs";
+		
+		collectMatches(lhs, rhs);
+		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
+		gt.applyRuleToMatch(lhsMatch, lhs);
+		
+		collectMatches(lhs, rhs);
+		IMatch rhsMatch = getRhsAndCheckMatches(lhs, rhs, lhsPost, rhsPost);
+		gt.applyRuleToMatch(rhsMatch, rhs);
+		
+		collectMatches(lhs, rhs);
+		getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);
+		
+	}
+	
+	@Test
+	void manyEdgeTriangle() {
+		final int lhsPre = 6;
+		final int lhsPost = 4;
+		final int rhsPre = 0;
+		final int rhsPost = 6;
+		final String lhs = "manyEdgeTriangle_rule_lhs";
+		final String rhs = "manyEdgeTriangle_rule_rhs";
 		
 		collectMatches(lhs, rhs);
 		IMatch lhsMatch = getLhsAndCheckMatches(lhs, rhs, lhsPre, rhsPre);

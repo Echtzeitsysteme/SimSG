@@ -1,12 +1,9 @@
 package biochemsimulation.simulation.matching.viatra;
 
-import biochemsimulation.reactionrules.reactionRules.Pattern;
-import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
-import biochemsimulation.reactionrules.utils.PatternUtils;
 import biochemsimulation.simulation.matching.patterns.AgentNodeConstraint;
 import biochemsimulation.simulation.matching.patterns.AgentNodeContext;
+import biochemsimulation.simulation.matching.patterns.ConstraintType;
 import biochemsimulation.simulation.matching.patterns.GenericPattern;
-import biochemsimulation.simulation.matching.patterns.LinkStateConstraint;
 import biochemsimulation.simulation.matching.patterns.LinkStateContext;
 import biochemsimulation.simulation.matching.patterns.LinkStateType;
 import biochemsimulation.simulation.matching.patterns.SiteNodeContext;
@@ -15,39 +12,27 @@ import com.google.common.base.Objects;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.BiConsumer;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class ViatraCodeGenerator {
-  public static final String BOUND_ANY_LINK_PATTERN_KEY = "BoundAnyLink_SupportPattern";
-  
   private LinkedHashMap<EPackage, String> importAliases;
-  
-  private Map<String, Pattern> rulePatterns;
   
   private Map<String, GenericPattern> genericPatterns;
   
-  private Map<String, String> supportPatterns;
-  
-  public ViatraCodeGenerator(final LinkedHashMap<EPackage, String> importAliases, final ReactionRuleModel model) {
-    this.importAliases = importAliases;
-    HashMap<String, String> _hashMap = new HashMap<String, String>();
-    this.supportPatterns = _hashMap;
-    this.rulePatterns = PatternUtils.getRulePatterns(model);
-    this.createAnyLinkSupportPattern();
-    this.generateGenericPatterns();
-  }
+  private Map<LinkStateContext, String> supportPatterns;
   
   public ViatraCodeGenerator(final LinkedHashMap<EPackage, String> importAliases, final Map<String, GenericPattern> genericPatterns) {
     this.importAliases = importAliases;
-    HashMap<String, String> _hashMap = new HashMap<String, String>();
+    HashMap<LinkStateContext, String> _hashMap = new HashMap<LinkStateContext, String>();
     this.supportPatterns = _hashMap;
-    this.createAnyLinkSupportPattern();
     HashMap<String, GenericPattern> _hashMap_1 = new HashMap<String, GenericPattern>();
     this.genericPatterns = _hashMap_1;
     final BiConsumer<String, GenericPattern> _function = (String name, GenericPattern pattern) -> {
@@ -58,49 +43,6 @@ public class ViatraCodeGenerator {
       }
     };
     genericPatterns.forEach(_function);
-  }
-  
-  public String createAnyLinkSupportPattern() {
-    String _xblockexpression = null;
-    {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("pattern ");
-      _builder.append(ViatraCodeGenerator.BOUND_ANY_LINK_PATTERN_KEY);
-      _builder.append("(simSite : ");
-      String _name = SiteNodeContext.SIM_SITE_TYPE.getName();
-      _builder.append(_name);
-      _builder.append(") {");
-      _builder.newLineIfNotEmpty();
-      _builder.append("\t\t\t");
-      String _name_1 = SiteNodeContext.SIM_SITE_TYPE.getName();
-      _builder.append(_name_1, "\t\t\t");
-      _builder.append(".");
-      String _name_2 = LinkStateContext.SIM_LINK_STATE_CONTAINER_ATTRIBUTE.getName();
-      _builder.append(_name_2, "\t\t\t");
-      _builder.append("(simSite, _);");
-      _builder.newLineIfNotEmpty();
-      _builder.append("\t\t");
-      _builder.append("}");
-      _builder.newLine();
-      final String pattern = _builder.toString();
-      _xblockexpression = this.supportPatterns.put(ViatraCodeGenerator.BOUND_ANY_LINK_PATTERN_KEY, pattern);
-    }
-    return _xblockexpression;
-  }
-  
-  public void generateGenericPatterns() {
-    HashMap<String, GenericPattern> _hashMap = new HashMap<String, GenericPattern>();
-    this.genericPatterns = _hashMap;
-    final BiConsumer<String, Pattern> _function = (String name, Pattern pattern) -> {
-      final GenericPattern gPattern = new GenericPattern(name, pattern);
-      boolean _isVoidPattern = gPattern.isVoidPattern();
-      boolean _not = (!_isVoidPattern);
-      if (_not) {
-        GenericPattern _genericPattern = new GenericPattern(name, pattern);
-        this.genericPatterns.put(name, _genericPattern);
-      }
-    };
-    this.rulePatterns.forEach(_function);
   }
   
   public String generatePatternCode() {
@@ -123,25 +65,11 @@ public class ViatraCodeGenerator {
     }
     _builder.newLine();
     {
-      Collection<String> _values = this.supportPatterns.values();
+      Collection<GenericPattern> _values = this.genericPatterns.values();
       boolean _hasElements = false;
-      for(final String supportPattern : _values) {
+      for(final GenericPattern genericPattern : _values) {
         if (!_hasElements) {
           _hasElements = true;
-        } else {
-          _builder.appendImmediate("\n", "");
-        }
-        _builder.append(supportPattern);
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.newLine();
-    {
-      Collection<GenericPattern> _values_1 = this.genericPatterns.values();
-      boolean _hasElements_1 = false;
-      for(final GenericPattern genericPattern : _values_1) {
-        if (!_hasElements_1) {
-          _hasElements_1 = true;
         } else {
           _builder.appendImmediate("\n", "");
         }
@@ -150,347 +78,435 @@ public class ViatraCodeGenerator {
         _builder.append(_name);
         _builder.append("(");
         {
-          Set<String> _keySet_1 = genericPattern.getSignature().getSignature().keySet();
-          boolean _hasElements_2 = false;
-          for(final String node : _keySet_1) {
-            if (!_hasElements_2) {
-              _hasElements_2 = true;
+          Set<Map.Entry<String, EClassifier>> _entrySet = genericPattern.getSignature().getSignature().entrySet();
+          boolean _hasElements_1 = false;
+          for(final Map.Entry<String, EClassifier> node : _entrySet) {
+            if (!_hasElements_1) {
+              _hasElements_1 = true;
             } else {
               _builder.appendImmediate(", ", "");
             }
             _builder.append(" ");
-            _builder.append(node);
+            String _key = node.getKey();
+            _builder.append(_key);
             _builder.append(" : ");
-            String _name_1 = AgentNodeContext.SIM_AGENT_TYPE.getName();
+            String _name_1 = node.getValue().getName();
             _builder.append(_name_1);
           }
         }
         _builder.append(") {");
         _builder.newLineIfNotEmpty();
-        _builder.append("\t");
         {
-          Collection<AgentNodeContext> _values_2 = genericPattern.getBody().getAgentNodeContexts().values();
-          boolean _hasElements_3 = false;
-          for(final AgentNodeContext agentNode : _values_2) {
-            if (!_hasElements_3) {
-              _hasElements_3 = true;
-            } else {
-              _builder.appendImmediate("\n", "\t");
-            }
-            String _name_2 = AgentNodeContext.SIM_AGENT_TYPE.getName();
-            _builder.append(_name_2, "\t");
-            _builder.append(".");
-            String _name_3 = AgentNodeContext.TYPE_ATTRIBUTE.getName();
-            _builder.append(_name_3, "\t");
-            _builder.append("(");
-            String _agentVariableName = agentNode.getAgentVariableName();
-            _builder.append(_agentVariableName, "\t");
-            _builder.append(", \"");
-            String _agentType = agentNode.getAgentType();
-            _builder.append(_agentType, "\t");
-            _builder.append("\");");
+          Collection<AgentNodeContext> _values_1 = genericPattern.getBody().getAgentNodeContexts().values();
+          for(final AgentNodeContext agent : _values_1) {
             {
-              List<SiteNodeContext> _get_1 = genericPattern.getBody().getSiteNodeContexts().get(agentNode);
-              boolean _notEquals = (!Objects.equal(_get_1, null));
-              if (_notEquals) {
+              List<SiteNodeContext> _get_1 = genericPattern.getBody().getSiteNodeContexts().get(agent);
+              for(final SiteNodeContext site : _get_1) {
+                _builder.append("\t");
+                String _generateLink = this.generateLink(genericPattern, genericPattern.getBody().getLinkStateContexts().get(site));
+                _builder.append(_generateLink, "\t");
                 _builder.newLineIfNotEmpty();
                 _builder.append("\t");
-                {
-                  List<SiteNodeContext> _get_2 = genericPattern.getBody().getSiteNodeContexts().get(agentNode);
-                  boolean _hasElements_4 = false;
-                  for(final SiteNodeContext siteNode : _get_2) {
-                    if (!_hasElements_4) {
-                      _hasElements_4 = true;
-                    } else {
-                      _builder.appendImmediate("\n", "\t");
-                    }
-                    String _name_4 = AgentNodeContext.SIM_AGENT_TYPE.getName();
-                    _builder.append(_name_4, "\t");
-                    _builder.append(".");
-                    String _name_5 = SiteNodeContext.SIM_SITE_CONTAINER_ATTRIBUTE.getName();
-                    _builder.append(_name_5, "\t");
-                    _builder.append("(");
-                    String _agentVariableName_1 = agentNode.getAgentVariableName();
-                    _builder.append(_agentVariableName_1, "\t");
-                    _builder.append(", ");
-                    String _localSimSiteVariableName = siteNode.getLocalSimSiteVariableName();
-                    _builder.append(_localSimSiteVariableName, "\t");
-                    _builder.append(");");
-                    _builder.newLineIfNotEmpty();
-                    _builder.append("\t");
-                    String _name_6 = SiteNodeContext.SIM_SITE_TYPE.getName();
-                    _builder.append(_name_6, "\t");
-                    _builder.append(".");
-                    String _name_7 = SiteNodeContext.TYPE_ATTRIBUTE.getName();
-                    _builder.append(_name_7, "\t");
-                    _builder.append("(");
-                    String _localSimSiteVariableName_1 = siteNode.getLocalSimSiteVariableName();
-                    _builder.append(_localSimSiteVariableName_1, "\t");
-                    _builder.append(", \"");
-                    String _siteType = siteNode.getSiteType();
-                    _builder.append(_siteType, "\t");
-                    _builder.append("\");");
-                    _builder.newLineIfNotEmpty();
-                    _builder.append("\t");
-                    String _siteStateConstraint = this.siteStateConstraint(genericPattern, siteNode);
-                    _builder.append(_siteStateConstraint, "\t");
-                    _builder.newLineIfNotEmpty();
-                    _builder.append("\t");
-                    String _trivialLinkStateConstraints = this.trivialLinkStateConstraints(genericPattern, siteNode);
-                    _builder.append(_trivialLinkStateConstraints, "\t");
-                    _builder.newLineIfNotEmpty();
-                  }
-                }
+                String _generateState = this.generateState(genericPattern.getBody().getSiteStateContexts().get(site));
+                _builder.append(_generateState, "\t");
+                _builder.newLineIfNotEmpty();
               }
             }
           }
         }
         {
-          Collection<LinkStateConstraint> _values_3 = genericPattern.getBody().getLinkStateConstraints().values();
-          boolean _hasElements_5 = false;
-          for(final LinkStateConstraint constraint : _values_3) {
-            if (!_hasElements_5) {
-              _hasElements_5 = true;
-            } else {
-              _builder.appendImmediate("\n", "\t");
-            }
+          Collection<Map.Entry<LinkStateContext, LinkStateContext>> _values_2 = genericPattern.getBody().getIndexedFreeLinkStateContexts().values();
+          for(final Map.Entry<LinkStateContext, LinkStateContext> freePair : _values_2) {
             _builder.append("\t");
-            String _complexLinkStateConstraint = this.complexLinkStateConstraint(constraint);
-            _builder.append(_complexLinkStateConstraint, "\t");
+            String _generateIndexedUnboundLink = this.generateIndexedUnboundLink(genericPattern.getName(), freePair);
+            _builder.append(_generateIndexedUnboundLink, "\t");
             _builder.newLineIfNotEmpty();
           }
         }
-        _builder.append("\t");
+        {
+          Collection<List<AgentNodeContext>> _values_3 = genericPattern.getBody().getLocalAgentNodes().values();
+          for(final List<AgentNodeContext> agents : _values_3) {
+            {
+              for(final AgentNodeContext agent_1 : agents) {
+                _builder.append("\t");
+                String _generateLink_1 = this.generateLink(genericPattern, genericPattern.getBody().getLocalLinkStates().get(genericPattern.getBody().getLocalSiteNodes().get(agent_1)));
+                _builder.append(_generateLink_1, "\t");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
         {
           Collection<AgentNodeConstraint> _injectivityConstraints = genericPattern.getBody().getInjectivityConstraints();
-          boolean _hasElements_6 = false;
-          for(final AgentNodeConstraint constraint_1 : _injectivityConstraints) {
-            if (!_hasElements_6) {
-              _hasElements_6 = true;
-            } else {
-              _builder.appendImmediate("\n", "\t");
-            }
-            String _agentVariableName_2 = constraint_1.getOperand1().getAgentVariableName();
-            _builder.append(_agentVariableName_2, "\t");
-            _builder.append("!=");
-            String _agentVariableName_3 = constraint_1.getOperand2().getAgentVariableName();
-            _builder.append(_agentVariableName_3, "\t");
-            _builder.append(";");
+          for(final AgentNodeConstraint constraint : _injectivityConstraints) {
+            _builder.append("\t");
+            String _generateConstraint = this.generateConstraint(constraint);
+            _builder.append(_generateConstraint, "\t");
             _builder.newLineIfNotEmpty();
           }
         }
-        _builder.append("}");
+        _builder.append("}\t");
         _builder.newLine();
       }
     }
-    return _builder.toString();
-  }
-  
-  public String siteStateConstraint(final GenericPattern genericPattern, final SiteNodeContext siteNode) {
-    boolean _containsKey = genericPattern.getBody().getSiteStateContexts().containsKey(siteNode);
-    if (_containsKey) {
-      StringConcatenation _builder = new StringConcatenation();
-      String _name = SiteNodeContext.SIM_SITE_TYPE.getName();
-      _builder.append(_name);
-      _builder.append(".");
-      String _name_1 = SiteStateContext.SIM_SITE_STATE_CONTAINER_ATTRIBUTE.getName();
-      _builder.append(_name_1);
-      _builder.append(".");
-      String _name_2 = SiteStateContext.TYPE_ATTRIBUTE.getName();
-      _builder.append(_name_2);
-      _builder.append("(");
-      String _localSimSiteVariableName = siteNode.getLocalSimSiteVariableName();
-      _builder.append(_localSimSiteVariableName);
-      _builder.append(", \"");
-      String _stateType = genericPattern.getBody().getSiteStateContexts().get(siteNode).getStateType();
-      _builder.append(_stateType);
-      _builder.append("\");");
-      _builder.newLineIfNotEmpty();
-      return _builder.toString();
-    }
-    return "";
-  }
-  
-  public String trivialLinkStateConstraints(final GenericPattern genericPattern, final SiteNodeContext siteNode) {
-    boolean _containsKey = genericPattern.getBody().getLinkStateContexts().containsKey(siteNode);
-    if (_containsKey) {
-      final LinkStateContext link = genericPattern.getBody().getLinkStateContexts().get(siteNode);
-      LinkStateType _stateType = link.getStateType();
-      boolean _equals = Objects.equal(_stateType, LinkStateType.Unbound);
-      if (_equals) {
-        return this.unboundConstraint(siteNode);
-      } else {
-        LinkStateType _stateType_1 = link.getStateType();
-        boolean _equals_1 = Objects.equal(_stateType_1, LinkStateType.BoundAny);
-        if (_equals_1) {
-          return this.boundAnyConstraint(siteNode);
+    _builder.newLine();
+    {
+      Collection<String> _values_4 = this.supportPatterns.values();
+      boolean _hasElements_2 = false;
+      for(final String supportPattern : _values_4) {
+        if (!_hasElements_2) {
+          _hasElements_2 = true;
         } else {
-          return "";
+          _builder.appendImmediate("\n", "");
         }
+        _builder.append(supportPattern);
+        _builder.newLineIfNotEmpty();
       }
     }
-    return "";
+    return _builder.toString();
   }
   
-  public String complexLinkStateConstraint(final LinkStateConstraint constraint) {
-    LinkStateType _stateType = constraint.getOperand1().getStateType();
-    boolean _equals = Objects.equal(_stateType, LinkStateType.Bound);
-    if (_equals) {
-      return this.boundConstraint(constraint);
-    } else {
-      LinkStateType _stateType_1 = constraint.getOperand1().getStateType();
-      boolean _equals_1 = Objects.equal(_stateType_1, LinkStateType.BoundAnyOfType);
-      if (_equals_1) {
-        return this.boundToTypeConstraint(constraint);
-      } else {
-        return "";
+  public String generateLink(final GenericPattern gp, final List<LinkStateContext> links) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      for(final LinkStateContext link : links) {
+        _builder.newLineIfNotEmpty();
+        String _generateLink = this.generateLink(gp, link);
+        _builder.append(_generateLink);
+        _builder.newLineIfNotEmpty();
       }
     }
+    return _builder.toString();
   }
   
-  public String boundConstraint(final LinkStateConstraint constraint) {
+  public String generateLink(final GenericPattern gp, final LinkStateContext link) {
+    if ((link == null)) {
+      return "";
+    }
+    LinkStateType _stateType = link.getStateType();
+    if (_stateType != null) {
+      switch (_stateType) {
+        case Bound:
+          return this.generateBoundLink(link);
+        case BoundAny:
+          return this.generateBoundAny(link);
+        case BoundAnyOfType:
+          return this.generateBoundAnyOfType(link);
+        case Unbound:
+          return this.generateUnbound(link);
+        case WhatEver:
+          return "";
+        case IndexedUnbound:
+          return "";
+        case TypedUnbound:
+          return this.generateTypedUnboundLink(gp, link);
+        default:
+          break;
+      }
+    }
+    return null;
+  }
+  
+  public String generateTypedUnboundLink(final GenericPattern gp, final LinkStateContext link) {
+    final String patternName = link.getSiteNodeContext().getAgentNodeContext().getPatternName();
     StringConcatenation _builder = new StringConcatenation();
-    String _name = SiteNodeContext.SIM_SITE_TYPE.getName();
-    _builder.append(_name);
+    _builder.append("supportPattern_");
+    _builder.append(patternName);
+    _builder.append("_");
+    String _agentReferenceName = link.getAgentReferenceName();
+    _builder.append(_agentReferenceName);
+    _builder.append("_");
+    int _hashCode = link.hashCode();
+    _builder.append(_hashCode);
+    final String supPatternName1 = _builder.toString();
+    final LinkedList<AgentNodeContext> otherContextNodes = new LinkedList<AgentNodeContext>();
+    Set<AgentNodeContext> _subPattern = gp.getBody().getSubPattern(link.getSiteNodeContext().getAgentNodeContext());
+    for (final AgentNodeContext anc : _subPattern) {
+      if ((anc.getAgentType().equals(link.getSiteNodeContext().getAgentNodeContext().getAgentType()) && (!Objects.equal(anc, link.getSiteNodeContext().getAgentNodeContext())))) {
+        otherContextNodes.add(anc);
+      }
+    }
+    StringConcatenation _builder_1 = new StringConcatenation();
+    _builder_1.append("pattern ");
+    _builder_1.append(supPatternName1);
+    _builder_1.append("(");
+    String _sourceAgentVariableName = link.getSourceAgentVariableName();
+    _builder_1.append(_sourceAgentVariableName);
+    _builder_1.append(" : ");
+    String _sourceAgentTypeName = link.getSourceAgentTypeName();
+    _builder_1.append(_sourceAgentTypeName);
+    String _xifexpression = null;
+    int _size = otherContextNodes.size();
+    boolean _greaterThan = (_size > 0);
+    if (_greaterThan) {
+      _xifexpression = ", ";
+    }
+    _builder_1.append(_xifexpression);
+    {
+      boolean _hasElements = false;
+      for(final AgentNodeContext otherNode : otherContextNodes) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder_1.appendImmediate(",", "");
+        }
+        String _agentVariableName = otherNode.getAgentVariableName();
+        _builder_1.append(_agentVariableName);
+        _builder_1.append(" : ");
+        String _agentTypeName = otherNode.getAgentTypeName();
+        _builder_1.append(_agentTypeName);
+      }
+    }
+    _builder_1.append("){");
+    _builder_1.newLineIfNotEmpty();
+    _builder_1.append("\t");
+    String _sourceAgentTypeName_1 = link.getSourceAgentTypeName();
+    _builder_1.append(_sourceAgentTypeName_1, "\t");
+    _builder_1.append(".");
+    String _agentReferenceName_1 = link.getAgentReferenceName();
+    _builder_1.append(_agentReferenceName_1, "\t");
+    _builder_1.append("(");
+    String _sourceAgentVariableName_1 = link.getSourceAgentVariableName();
+    _builder_1.append(_sourceAgentVariableName_1, "\t");
+    _builder_1.append(", agent);");
+    _builder_1.newLineIfNotEmpty();
+    _builder_1.append("\t");
+    String _targetAgentTypeName = link.getTargetAgentTypeName();
+    _builder_1.append(_targetAgentTypeName, "\t");
+    _builder_1.append("(agent); ");
+    _builder_1.newLineIfNotEmpty();
+    {
+      for(final AgentNodeContext otherNode_1 : otherContextNodes) {
+        _builder_1.append("\t");
+        String _agentVariableName_1 = otherNode_1.getAgentVariableName();
+        _builder_1.append(_agentVariableName_1, "\t");
+        _builder_1.append(" != agent;");
+        _builder_1.newLineIfNotEmpty();
+      }
+    }
+    _builder_1.append("}");
+    final String supPattern1 = _builder_1.toString();
+    this.supportPatterns.put(link, supPattern1);
+    StringConcatenation _builder_2 = new StringConcatenation();
+    _builder_2.append("neg find ");
+    _builder_2.append(supPatternName1);
+    _builder_2.append("(");
+    String _sourceAgentVariableName_2 = link.getSourceAgentVariableName();
+    _builder_2.append(_sourceAgentVariableName_2);
+    String _xifexpression_1 = null;
+    int _size_1 = otherContextNodes.size();
+    boolean _greaterThan_1 = (_size_1 > 0);
+    if (_greaterThan_1) {
+      _xifexpression_1 = ", ";
+    }
+    _builder_2.append(_xifexpression_1);
+    {
+      boolean _hasElements_1 = false;
+      for(final AgentNodeContext otherNode_2 : otherContextNodes) {
+        if (!_hasElements_1) {
+          _hasElements_1 = true;
+        } else {
+          _builder_2.appendImmediate(",", "");
+        }
+        String _agentVariableName_2 = otherNode_2.getAgentVariableName();
+        _builder_2.append(_agentVariableName_2);
+      }
+    }
+    _builder_2.append(");");
+    _builder_2.newLineIfNotEmpty();
+    return _builder_2.toString();
+  }
+  
+  /**
+   * def String generateTypedUnboundLink(GenericPattern gp, LinkStateContext link){
+   * val patternName = link.siteNodeContext.agentNodeContext.patternName
+   * val supPatternName1 = '''supportPattern_«patternName»_«link.agentReferenceName»'''
+   * val supPattern1 = '''pattern «supPatternName1»(«link.sourceAgentVariableName» : «link.sourceAgentTypeName»){
+   * «link.sourceAgentTypeName».«link.agentReferenceName»(«link.sourceAgentVariableName», _);
+   * «link.sourceAgentTypeName».«link.agentReferenceName»(«link.sourceAgentVariableName», agent);
+   * «link.targetAgentTypeName»(agent);
+   * }'''
+   * supportPatterns.put(link, supPattern1);
+   * 
+   * 
+   * return '''neg find «supPatternName1»(«link.sourceAgentVariableName»);
+   * '''
+   * }
+   */
+  public String generateIndexedUnboundLink(final String patternName, final Map.Entry<LinkStateContext, LinkStateContext> link) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("neg ");
+    String _sourceAgentTypeName = link.getKey().getSourceAgentTypeName();
+    _builder.append(_sourceAgentTypeName);
     _builder.append(".");
-    String _name_1 = LinkStateContext.SIM_LINK_STATE_CONTAINER_ATTRIBUTE.getName();
-    _builder.append(_name_1);
+    String _agentReferenceName = link.getKey().getAgentReferenceName();
+    _builder.append(_agentReferenceName);
     _builder.append("(");
-    String _localSimSiteVariableName = constraint.getOperand1().getSiteNodeContext().getLocalSimSiteVariableName();
-    _builder.append(_localSimSiteVariableName);
+    String _sourceAgentVariableName = link.getKey().getSourceAgentVariableName();
+    _builder.append(_sourceAgentVariableName);
     _builder.append(", ");
-    String _localSimLinkStateVariableName = constraint.getOperand1().getLocalSimLinkStateVariableName();
-    _builder.append(_localSimLinkStateVariableName);
+    String _targetAgentVariableName = link.getKey().getTargetAgentVariableName();
+    _builder.append(_targetAgentVariableName);
     _builder.append(");");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    String _name_2 = SiteNodeContext.SIM_SITE_TYPE.getName();
-    _builder.append(_name_2, "\t\t");
+    _builder.append("neg ");
+    String _sourceAgentTypeName_1 = link.getValue().getSourceAgentTypeName();
+    _builder.append(_sourceAgentTypeName_1);
     _builder.append(".");
-    String _name_3 = LinkStateContext.SIM_LINK_STATE_CONTAINER_ATTRIBUTE.getName();
-    _builder.append(_name_3, "\t\t");
+    String _agentReferenceName_1 = link.getValue().getAgentReferenceName();
+    _builder.append(_agentReferenceName_1);
     _builder.append("(");
-    String _localSimSiteVariableName_1 = constraint.getOperand2().getSiteNodeContext().getLocalSimSiteVariableName();
-    _builder.append(_localSimSiteVariableName_1, "\t\t");
+    String _sourceAgentVariableName_1 = link.getValue().getSourceAgentVariableName();
+    _builder.append(_sourceAgentVariableName_1);
     _builder.append(", ");
-    String _localSimLinkStateVariableName_1 = constraint.getOperand2().getLocalSimLinkStateVariableName();
-    _builder.append(_localSimLinkStateVariableName_1, "\t\t");
+    String _targetAgentVariableName_1 = link.getValue().getTargetAgentVariableName();
+    _builder.append(_targetAgentVariableName_1);
     _builder.append(");");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    String _localSimLinkStateVariableName_2 = constraint.getOperand1().getLocalSimLinkStateVariableName();
-    _builder.append(_localSimLinkStateVariableName_2, "\t\t");
-    _builder.append("==");
-    String _localSimLinkStateVariableName_3 = constraint.getOperand2().getLocalSimLinkStateVariableName();
-    _builder.append(_localSimLinkStateVariableName_3, "\t\t");
-    _builder.append(";");
     _builder.newLineIfNotEmpty();
     return _builder.toString();
   }
   
-  public String boundToTypeConstraint(final LinkStateConstraint constraint) {
+  public String generateBoundLink(final LinkStateContext link) {
     StringConcatenation _builder = new StringConcatenation();
-    String _name = SiteNodeContext.SIM_SITE_TYPE.getName();
-    _builder.append(_name);
+    String _sourceAgentTypeName = link.getSourceAgentTypeName();
+    _builder.append(_sourceAgentTypeName);
     _builder.append(".");
-    String _name_1 = LinkStateContext.SIM_LINK_STATE_CONTAINER_ATTRIBUTE.getName();
-    _builder.append(_name_1);
+    String _agentReferenceName = link.getAgentReferenceName();
+    _builder.append(_agentReferenceName);
     _builder.append("(");
-    String _localSimSiteVariableName = constraint.getOperand1().getSiteNodeContext().getLocalSimSiteVariableName();
-    _builder.append(_localSimSiteVariableName);
+    String _sourceAgentVariableName = link.getSourceAgentVariableName();
+    _builder.append(_sourceAgentVariableName);
     _builder.append(", ");
-    String _localSimLinkStateVariableName = constraint.getOperand1().getLocalSimLinkStateVariableName();
-    _builder.append(_localSimLinkStateVariableName);
+    String _targetAgentVariableName = link.getTargetAgentVariableName();
+    _builder.append(_targetAgentVariableName);
     _builder.append(");");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    String _name_2 = AgentNodeContext.SIM_AGENT_TYPE.getName();
-    _builder.append(_name_2, "\t\t");
-    _builder.append(".");
-    String _name_3 = AgentNodeContext.TYPE_ATTRIBUTE.getName();
-    _builder.append(_name_3, "\t\t");
-    _builder.append("(");
-    String _agentVariableName = constraint.getOperand2().getSiteNodeContext().getAgentNodeContext().getAgentVariableName();
-    _builder.append(_agentVariableName, "\t\t");
-    _builder.append(", \"");
-    String _agentType = constraint.getOperand2().getSiteNodeContext().getAgentNodeContext().getAgentType();
-    _builder.append(_agentType, "\t\t");
-    _builder.append("\");");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    String _name_4 = AgentNodeContext.SIM_AGENT_TYPE.getName();
-    _builder.append(_name_4, "\t\t");
-    _builder.append(".");
-    String _name_5 = SiteNodeContext.SIM_SITE_CONTAINER_ATTRIBUTE.getName();
-    _builder.append(_name_5, "\t\t");
-    _builder.append("(");
-    String _agentVariableName_1 = constraint.getOperand2().getSiteNodeContext().getAgentNodeContext().getAgentVariableName();
-    _builder.append(_agentVariableName_1, "\t\t");
-    _builder.append(", ");
-    String _localSimSiteVariableName_1 = constraint.getOperand2().getSiteNodeContext().getLocalSimSiteVariableName();
-    _builder.append(_localSimSiteVariableName_1, "\t\t");
-    _builder.append(");");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    String _name_6 = SiteNodeContext.SIM_SITE_TYPE.getName();
-    _builder.append(_name_6, "\t\t");
-    _builder.append(".");
-    String _name_7 = SiteNodeContext.TYPE_ATTRIBUTE.getName();
-    _builder.append(_name_7, "\t\t");
-    _builder.append("(");
-    String _localSimSiteVariableName_2 = constraint.getOperand2().getSiteNodeContext().getLocalSimSiteVariableName();
-    _builder.append(_localSimSiteVariableName_2, "\t\t");
-    _builder.append(", \"");
-    String _siteType = constraint.getOperand2().getSiteNodeContext().getSiteType();
-    _builder.append(_siteType, "\t\t");
-    _builder.append("\");");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    String _name_8 = SiteNodeContext.SIM_SITE_TYPE.getName();
-    _builder.append(_name_8, "\t\t");
-    _builder.append(".");
-    String _name_9 = LinkStateContext.SIM_LINK_STATE_CONTAINER_ATTRIBUTE.getName();
-    _builder.append(_name_9, "\t\t");
-    _builder.append("(");
-    String _localSimSiteVariableName_3 = constraint.getOperand2().getSiteNodeContext().getLocalSimSiteVariableName();
-    _builder.append(_localSimSiteVariableName_3, "\t\t");
-    _builder.append(", ");
-    String _localSimLinkStateVariableName_1 = constraint.getOperand2().getLocalSimLinkStateVariableName();
-    _builder.append(_localSimLinkStateVariableName_1, "\t\t");
-    _builder.append(");");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    String _localSimLinkStateVariableName_2 = constraint.getOperand1().getLocalSimLinkStateVariableName();
-    _builder.append(_localSimLinkStateVariableName_2, "\t\t");
-    _builder.append("==");
-    String _localSimLinkStateVariableName_3 = constraint.getOperand2().getLocalSimLinkStateVariableName();
-    _builder.append(_localSimLinkStateVariableName_3, "\t\t");
-    _builder.append(";");
-    _builder.newLineIfNotEmpty();
     return _builder.toString();
   }
   
-  public String unboundConstraint(final SiteNodeContext siteNode) {
+  public String generateBoundAny(final LinkStateContext link) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("neg find ");
-    _builder.append(ViatraCodeGenerator.BOUND_ANY_LINK_PATTERN_KEY);
+    String _sourceAgentTypeName = link.getSourceAgentTypeName();
+    _builder.append(_sourceAgentTypeName);
+    _builder.append(".");
+    String _agentReferenceName = link.getAgentReferenceName();
+    _builder.append(_agentReferenceName);
     _builder.append("(");
-    String _localSimSiteVariableName = siteNode.getLocalSimSiteVariableName();
-    _builder.append(_localSimSiteVariableName);
-    _builder.append(");");
-    _builder.newLineIfNotEmpty();
+    String _sourceAgentVariableName = link.getSourceAgentVariableName();
+    _builder.append(_sourceAgentVariableName);
+    _builder.append(", _);");
     return _builder.toString();
   }
   
-  public String boundAnyConstraint(final SiteNodeContext siteNode) {
+  public String generateBoundAnyOfType(final LinkStateContext link) {
+    String prefix = "";
+    boolean _isSourceAgentLocal = link.isSourceAgentLocal();
+    boolean _not = (!_isSourceAgentLocal);
+    if (_not) {
+      StringConcatenation _builder = new StringConcatenation();
+      String _targetAgentTypeName = link.getTargetAgentTypeName();
+      _builder.append(_targetAgentTypeName);
+      _builder.append("(");
+      String _targetAgentVariableName = link.getTargetAgentVariableName();
+      _builder.append(_targetAgentVariableName);
+      _builder.append(");");
+      _builder.newLineIfNotEmpty();
+      prefix = _builder.toString();
+    }
+    StringConcatenation _builder_1 = new StringConcatenation();
+    _builder_1.append(prefix);
+    String _sourceAgentTypeName = link.getSourceAgentTypeName();
+    _builder_1.append(_sourceAgentTypeName);
+    _builder_1.append(".");
+    String _agentReferenceName = link.getAgentReferenceName();
+    _builder_1.append(_agentReferenceName);
+    _builder_1.append("(");
+    String _sourceAgentVariableName = link.getSourceAgentVariableName();
+    _builder_1.append(_sourceAgentVariableName);
+    _builder_1.append(", ");
+    String _targetAgentVariableName_1 = link.getTargetAgentVariableName();
+    _builder_1.append(_targetAgentVariableName_1);
+    _builder_1.append(");");
+    return _builder_1.toString();
+  }
+  
+  public String generateUnbound(final LinkStateContext link) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("find ");
-    _builder.append(ViatraCodeGenerator.BOUND_ANY_LINK_PATTERN_KEY);
+    _builder.append("neg ");
+    String _sourceAgentTypeName = link.getSourceAgentTypeName();
+    _builder.append(_sourceAgentTypeName);
+    _builder.append(".");
+    String _agentReferenceName = link.getAgentReferenceName();
+    _builder.append(_agentReferenceName);
     _builder.append("(");
-    String _localSimSiteVariableName = siteNode.getLocalSimSiteVariableName();
-    _builder.append(_localSimSiteVariableName);
-    _builder.append(");");
-    _builder.newLineIfNotEmpty();
+    String _sourceAgentVariableName = link.getSourceAgentVariableName();
+    _builder.append(_sourceAgentVariableName);
+    _builder.append(", _);");
     return _builder.toString();
+  }
+  
+  public String generateState(final SiteStateContext state) {
+    if ((state == null)) {
+      return "";
+    }
+    StringConcatenation _builder = new StringConcatenation();
+    String _sourceAgentTypeName = state.getSourceAgentTypeName();
+    _builder.append(_sourceAgentTypeName);
+    _builder.append(".");
+    String _stateReferenceName = state.getStateReferenceName();
+    _builder.append(_stateReferenceName);
+    _builder.append("(");
+    String _sourceAgentVariableName = state.getSourceAgentVariableName();
+    _builder.append(_sourceAgentVariableName);
+    _builder.append(", _);");
+    return _builder.toString();
+  }
+  
+  public String generateConstraint(final AgentNodeConstraint constraint) {
+    if ((constraint == null)) {
+      return "";
+    }
+    ConstraintType _type = constraint.getType();
+    if (_type != null) {
+      switch (_type) {
+        case injectivity:
+          StringConcatenation _builder = new StringConcatenation();
+          String _agentVariableName = constraint.getOperand1().getAgentVariableName();
+          _builder.append(_agentVariableName);
+          _builder.append(" != ");
+          String _agentVariableName_1 = constraint.getOperand2().getAgentVariableName();
+          _builder.append(_agentVariableName_1);
+          _builder.append(";");
+          return _builder.toString();
+        case order:
+          StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("Agent.ID(");
+          String _agentVariableName_2 = constraint.getOperand1().getAgentVariableName();
+          _builder_1.append(_agentVariableName_2);
+          _builder_1.append(",");
+          String _agentVariableName_3 = constraint.getOperand1().getAgentVariableName();
+          _builder_1.append(_agentVariableName_3);
+          _builder_1.append("_id);");
+          _builder_1.newLineIfNotEmpty();
+          _builder_1.append("Agent.ID(");
+          String _agentVariableName_4 = constraint.getOperand2().getAgentVariableName();
+          _builder_1.append(_agentVariableName_4);
+          _builder_1.append(",");
+          String _agentVariableName_5 = constraint.getOperand2().getAgentVariableName();
+          _builder_1.append(_agentVariableName_5);
+          _builder_1.append("_id);");
+          _builder_1.newLineIfNotEmpty();
+          _builder_1.append("check(");
+          String _agentVariableName_6 = constraint.getOperand1().getAgentVariableName();
+          _builder_1.append(_agentVariableName_6);
+          _builder_1.append("_id > ");
+          String _agentVariableName_7 = constraint.getOperand2().getAgentVariableName();
+          _builder_1.append(_agentVariableName_7);
+          _builder_1.append("_id);");
+          return _builder_1.toString();
+        default:
+          break;
+      }
+    }
+    return null;
   }
 }

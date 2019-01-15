@@ -5,28 +5,28 @@ Bundle-SymbolicName: biochemsimulation.reactionrules;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: My Company
 Export-Package: biochemsimulation.reactionrules,
-  biochemsimulation.reactionrules.generator,
-  biochemsimulation.reactionrules.parser.antlr,
-  biochemsimulation.reactionrules.parser.antlr.internal,
-  biochemsimulation.reactionrules.reactionRules,
-  biochemsimulation.reactionrules.reactionRules.impl,
-  biochemsimulation.reactionrules.reactionRules.util,
-  biochemsimulation.reactionrules.scoping,
-  biochemsimulation.reactionrules.serializer,
-  biochemsimulation.reactionrules.services,
-  biochemsimulation.reactionrules.utils,
-  biochemsimulation.reactionrules.validation
+ biochemsimulation.reactionrules.generator; uses:="org.eclipse.emf.ecore,  org.eclipse.emf.common.util,  org.eclipse.xtext.generator,  org.eclipse.emf.ecore.resource",
+ biochemsimulation.reactionrules.parser.antlr.internal,
+ biochemsimulation.reactionrules.reactionRules;uses:="org.eclipse.emf.ecore,org.eclipse.emf.common.util",
+ biochemsimulation.reactionrules.reactionRules.impl; uses:="org.eclipse.emf.ecore,  org.eclipse.emf.ecore.impl,  org.eclipse.emf.common.util,  org.eclipse.emf.common.notify,  biochemsimulation.reactionrules.reactionRules",
+ biochemsimulation.reactionrules.reactionRules.util; uses:="org.eclipse.emf.ecore,  org.eclipse.emf.common.notify,  org.eclipse.emf.common.notify.impl,  org.eclipse.emf.ecore.util,  biochemsimulation.reactionrules.reactionRules",
+ biochemsimulation.reactionrules.scoping;uses:="org.eclipse.emf.ecore,org.eclipse.xtext.scoping.impl,org.eclipse.xtext.scoping",
+ biochemsimulation.reactionrules.serializer; uses:="org.eclipse.emf.ecore,  org.eclipse.xtext.nodemodel,  biochemsimulation.reactionrules.services,  org.eclipse.xtext.serializer.analysis,  org.eclipse.xtext.serializer.sequencer,  org.eclipse.xtext,  org.eclipse.xtext.serializer,  biochemsimulation.reactionrules.reactionRules",
+ biochemsimulation.reactionrules.services;uses:="org.eclipse.xtext.common.services,org.eclipse.xtext.service,org.eclipse.xtext",
+ biochemsimulation.reactionrules.utils;uses:="org.eclipse.emf.common.util,biochemsimulation.reactionrules.reactionRules",
+ biochemsimulation.reactionrules.validation;uses:="biochemsimulation.reactionrules.reactionRules",
+ biochemsimulation.reactionrules.parser.antlr
 Require-Bundle: org.eclipse.xtext,
-  org.eclipse.xtext.xbase,
-  org.eclipse.equinox.common;bundle-version="3.5.0",
-  org.eclipse.emf.ecore,
-  org.eclipse.xtext.xbase.lib,
-  org.antlr.runtime,
-  org.eclipse.xtext.util,
-  org.eclipse.xtend.lib,
-  org.eclipse.emf.common
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+ org.eclipse.xtext.xbase,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.16.0",
+ org.eclipse.equinox.common;bundle-version="3.10.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.eclipse.xtend.lib;bundle-version="2.14.0",
+ org.antlr.runtime;bundle-version="4.3.0"
 Service-Component: component.xml
 Bundle-ActivationPolicy: lazy
-Import-Package: org.apache.log4j
 Automatic-Module-Name: biochemsimulation.reactionrules
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

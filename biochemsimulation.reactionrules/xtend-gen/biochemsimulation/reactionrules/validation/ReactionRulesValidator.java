@@ -12,8 +12,10 @@ import biochemsimulation.reactionrules.reactionRules.AssignFromVariable;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyLink;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
 import biochemsimulation.reactionrules.reactionRules.BoundLink;
+import biochemsimulation.reactionrules.reactionRules.IndexedFreeLink;
 import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
+import biochemsimulation.reactionrules.reactionRules.MultiLinkSitePattern;
 import biochemsimulation.reactionrules.reactionRules.NumericAssignment;
 import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral;
 import biochemsimulation.reactionrules.reactionRules.NumericFromVariable;
@@ -23,8 +25,11 @@ import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 import biochemsimulation.reactionrules.reactionRules.Rule;
 import biochemsimulation.reactionrules.reactionRules.RuleBody;
+import biochemsimulation.reactionrules.reactionRules.SingleSite;
+import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
+import biochemsimulation.reactionrules.reactionRules.SiteState;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.Variable;
 import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern;
@@ -147,11 +152,13 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
         final ValidAgentPattern vap = ((ValidAgentPattern) ap);
         EList<SitePattern> _sitePatterns = vap.getSitePatterns().getSitePatterns();
         for (final SitePattern sp : _sitePatterns) {
-          {
-            final LinkState linkState = sp.getLinkState().getLinkState();
+          if ((sp instanceof SingleSitePattern)) {
+            final SingleSitePattern slsp = ((SingleSitePattern) sp);
+            final LinkState linkState = slsp.getLinkState().getLinkState();
             if ((((linkState instanceof BoundAnyLink) || (linkState instanceof WhatEver)) || (linkState instanceof BoundAnyOfTypeLink))) {
               this.error("Illegal initial link state! A pattern may only be instantiated with link states of Type: FreeLink(\"free\"), IndexedLink(\"INT\")", null);
             }
+          } else {
           }
         }
       }
@@ -348,6 +355,47 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
                   ReactionRulesPackage.Literals.RULE_BODY__RHS);
               }
             }
+            if ((!(ap2_1 instanceof VoidAgentPattern))) {
+              final ValidAgentPattern ap_2_1 = ((ValidAgentPattern) ap2_1);
+              int _size_2 = ap_1.getSitePatterns().getSitePatterns().size();
+              int _size_3 = ap_2_1.getSitePatterns().getSitePatterns().size();
+              boolean _notEquals_1 = (_size_2 != _size_3);
+              if (_notEquals_1) {
+                this.error("Two arguments at the same index on lhs and rhs must have the same amount of sites.", 
+                  ReactionRulesPackage.Literals.RULE_BODY__LHS);
+                this.error("Two arguments at the same index on lhs and rhs must have the same amount of sites.", 
+                  ReactionRulesPackage.Literals.RULE_BODY__RHS);
+              }
+              for (int i = 0; (i < ap_1.getSitePatterns().getSitePatterns().size()); i++) {
+                {
+                  final SitePattern sp_1 = ap_1.getSitePatterns().getSitePatterns().get(i);
+                  final SitePattern sp_2 = ap_2_1.getSitePatterns().getSitePatterns().get(i);
+                  if (((sp_1 instanceof SingleSitePattern) && (sp_2 instanceof SingleSitePattern))) {
+                    final SingleSitePattern ssp_1 = ((SingleSitePattern) sp_1);
+                    final SingleSitePattern ssp_2 = ((SingleSitePattern) sp_2);
+                    SingleSite _site = ssp_1.getSite();
+                    SingleSite _site_1 = ssp_2.getSite();
+                    boolean _notEquals_2 = (!Objects.equal(_site, _site_1));
+                    if (_notEquals_2) {
+                      this.error("Two arguments at the same index on lhs and rhs must have the same sites.", 
+                        ReactionRulesPackage.Literals.RULE_BODY__LHS);
+                      this.error("Two arguments at the same index on lhs and rhs must have the same sites.", 
+                        ReactionRulesPackage.Literals.RULE_BODY__RHS);
+                    }
+                    final SiteState st_1 = ssp_1.getState();
+                    final SiteState st_2 = ssp_2.getState();
+                    if (((st_1 == null) && (st_2 != null))) {
+                      this.error("If an argument on the rhs defines a state, the corresponding argument on the lhs must define a state as well.", 
+                        ReactionRulesPackage.Literals.RULE_BODY__RHS);
+                    }
+                    if (((st_2 == null) && (st_1 != null))) {
+                      this.error("If an argument on the lhs defines a state, the corresponding argument on the rhs must define a state as well.", 
+                        ReactionRulesPackage.Literals.RULE_BODY__LHS);
+                    }
+                  }
+                }
+              }
+            }
           }
           idx++;
         }
@@ -375,16 +423,27 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
     int _size = sites.size();
     HashSet<Site> siteSet = new HashSet<Site>(_size);
     siteSet.addAll(sites);
+    HashSet<Site> sitePatternSet = new HashSet<Site>();
     for (final SitePattern candidate : candidates) {
       {
-        SitePattern sp = ((SitePattern) candidate);
-        Site spSite = sp.getSite();
-        boolean _contains = siteSet.contains(spSite);
+        Site site = ((Site) null);
+        if ((candidate instanceof SingleSitePattern)) {
+          site = ((SingleSitePattern) candidate).getSite();
+        } else {
+          site = ((MultiLinkSitePattern) candidate).getSite();
+        }
+        boolean _contains = siteSet.contains(site);
         boolean _not = (!_contains);
         if (_not) {
-          String _name = spSite.getName();
+          String _name = site.getName();
           String _plus = ("This Agent does not have a site with ID=" + _name);
           this.error(_plus, ReactionRulesPackage.Literals.VALID_AGENT_PATTERN__SITE_PATTERNS);
+        }
+        boolean _contains_1 = sitePatternSet.contains(site);
+        if (_contains_1) {
+          this.error("You may not redefine the same site multiple times.", ReactionRulesPackage.Literals.VALID_AGENT_PATTERN__SITE_PATTERNS);
+        } else {
+          sitePatternSet.add(site);
         }
       }
     }
@@ -417,6 +476,36 @@ public class ReactionRulesValidator extends AbstractReactionRulesValidator {
     }
     if ((c < 2)) {
       this.error("This indexed link must refer to exactly two end-points aka. sites.", ReactionRulesPackage.Literals.BOUND_LINK__STATE);
+    }
+  }
+  
+  @Check
+  public void checkIndexedFreeLinkConstraint(final IndexedFreeLink freeLink) {
+    Pattern pattern = ((Pattern) null);
+    EObject eObj = freeLink.eContainer();
+    while (((!(eObj instanceof Pattern)) && (eObj != null))) {
+      eObj = eObj.eContainer();
+    }
+    if ((eObj instanceof Pattern)) {
+      pattern = ((Pattern)eObj);
+    }
+    List<IndexedFreeLink> candidates = EcoreUtil2.<IndexedFreeLink>getAllContentsOfType(pattern, IndexedFreeLink.class);
+    int c = 1;
+    final Integer thisNum = Integer.valueOf(freeLink.getState());
+    for (final IndexedFreeLink cnd : candidates) {
+      {
+        final IndexedFreeLink candidate = ((IndexedFreeLink) cnd);
+        final Integer cNum = Integer.valueOf(candidate.getState());
+        if ((Objects.equal(cNum, thisNum) && (!candidate.equals(freeLink)))) {
+          c++;
+        }
+        if ((c > 2)) {
+          this.error("This indexed link deletion refers to more than two end-points aka. sites.", ReactionRulesPackage.Literals.INDEXED_FREE_LINK__STATE);
+        }
+      }
+    }
+    if ((c < 2)) {
+      this.error("This indexed link deletion must refer to exactly two end-points aka. sites.", ReactionRulesPackage.Literals.INDEXED_FREE_LINK__STATE);
     }
   }
 }

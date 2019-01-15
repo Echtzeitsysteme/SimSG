@@ -3,11 +3,13 @@ package biochemsimulation.simulation.matching.patterns;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyLink;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
 import biochemsimulation.reactionrules.reactionRules.BoundLink;
+import biochemsimulation.reactionrules.reactionRules.IndexedFreeLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
+import biochemsimulation.reactionrules.reactionRules.TypedFreeLink;
 import biochemsimulation.reactionrules.reactionRules.WhatEver;
 
 public enum LinkStateType {
-	Unbound("Unbound"), BoundAny("BoundAny"), BoundAnyOfType("BoundAny"), Bound("BoundExact"), WhatEver("WhatEver");
+	Unbound("Unbound"), BoundAny("BoundAny"), BoundAnyOfType("BoundAnyOfType"), Bound("BoundExact"), WhatEver("WhatEver"), IndexedUnbound("IndexedUnbound"), TypedUnbound("TypedUnbound");
 	
 	private String name;
 	
@@ -27,6 +29,12 @@ public enum LinkStateType {
 		}
 		if(linkState instanceof WhatEver) {
 			return WhatEver;
+		}
+		if(linkState instanceof IndexedFreeLink) {
+			return IndexedUnbound;
+		}
+		if(linkState instanceof TypedFreeLink) {
+			return TypedUnbound;
 		}
 		return Unbound;
 	}

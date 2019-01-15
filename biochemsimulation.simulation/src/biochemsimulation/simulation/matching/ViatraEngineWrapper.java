@@ -8,9 +8,10 @@ import org.eclipse.viatra.query.runtime.api.AdvancedViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryMatcher;
 import org.eclipse.viatra.query.runtime.emf.EMFScope;
-import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternModel;
+import org.eclipse.viatra.query.patternlanguage.emf.vql.*;
+//import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternModel;
 import org.eclipse.viatra.query.patternlanguage.emf.specification.SpecificationBuilder;
-import org.eclipse.viatra.query.patternlanguage.patternLanguage.Pattern;
+//import org.eclipse.viatra.query.patternlanguage.patternLanguage.Pattern;
 
 import biochemsimulation.simulation.matching.viatra.ViatraMatch;
 import biochemsimulation.simulation.matching.viatra.ViatraPatternGenerator;
@@ -18,6 +19,7 @@ import biochemsimulation.simulation.matching.viatra.ViatraPatternGenerator;
 public class ViatraEngineWrapper extends PatternMatchingEngine {
 	
 	private AdvancedViatraQueryEngine queryEngine;
+	@SuppressWarnings("restriction")
 	private PatternModel patternModel;
 	private SpecificationBuilder builder;
 	private HashMap<String, ViatraQueryMatcher<? extends IPatternMatch>> matcher;
@@ -30,10 +32,11 @@ public class ViatraEngineWrapper extends PatternMatchingEngine {
 	
 	@Override
 	public void loadModels() throws Exception {
-		ViatraPatternGenerator gen = new ViatraPatternGenerator(genericPatterns);
-		patternModel = gen.doGenerate("", false);
+		ViatraPatternGenerator gen = new ViatraPatternGenerator(metaModel, genericPatterns);
+		patternModel = gen.doGenerate();
 	}
 
+	@SuppressWarnings("restriction")
 	@Override
 	public void initEngineInternal() throws Exception {
 		EMFScope scope = new EMFScope(model);
@@ -55,7 +58,7 @@ public class ViatraEngineWrapper extends PatternMatchingEngine {
 	protected Collection<IMatch> getMatchesAndUpdate(String patternName) throws Exception {
 		Collection<IMatch> iMatches = new LinkedList<IMatch>();
 		for(IPatternMatch match : matcher.get(patternName).getAllMatches()) {
-			iMatches.add(new ViatraMatch(match));
+			iMatches.add(new ViatraMatch(match, patternName));
 		}
 		return iMatches;
 	}

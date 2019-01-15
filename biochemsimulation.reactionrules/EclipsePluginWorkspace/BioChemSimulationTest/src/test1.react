@@ -15,7 +15,7 @@ var mod_rate3 = -1.0E-1
 //new variable features, i.e. signed integer, unsigned integer, scientific floats and patterns
 var int = -1
 var uint = 2
-var pattern = { A(), B(x[free]) }
+var pattern = { A(x[?]), B(x[free]) }
 var pattern2 = { D(x1{e}[free]) }
 var sci = -2.45E-2
 /* Observations */

@@ -1,0 +1,197 @@
+ModelID PatternMatchingTest
+
+// create necessary test agent types
+agent A1(x, y)
+agent B1(x, z)
+agent A2(x, y)
+agent B2(x, z)
+agent C1(v, w) 
+agent A3(x, y)
+agent B3(x, z)
+agent A4(x{p,q}, y{m,n})
+agent B4(x{a,b}, z{o, p})
+agent C4(v, w)
+agent A5(x{u, v}, y)
+agent B5(w, z{p, q})
+agent A6(x{u, v}, y, z{r, t}) 
+agent B6(u, v{l, m, n}, w{r, s, t})
+agent C3(a{i, j}, b{e, f, g}, c)
+agent A7(w{a, b}, x{c, d})
+agent B7(y{e, f}, z{g, h}) 
+agent A8(x, y)
+agent A9(x, y)
+
+// multi agent types
+agent mA(*x)
+agent mB(*y)
+agent mC(*z)
+agent mD(*a, b, c)
+
+// mockup rate variable 
+var dummy_rate = 0.1
+
+// disjunct tests
+var p1 = {A1(x[free]), B1(x[free])}
+var p2 = {A1(x[free]), B1(x[free]), A2(y[free]), B2(z[free])}
+// bound tests
+var p3 = {A2(x[1]), B2(x[1])}
+var p4 = {A3(x[1]), B3(x[1], z[2]), C1(v[2])}
+// disjunct tests with states
+var p5 = {A4(x{q}[free]), B1(x[free])}
+var p6 = {A1(x[free]), B4(x{b}[free]), A4(x{q}[free])}
+// bound tests with states
+var p7 = {A4(x{p}[1]), B4(x{b}[1])}
+var p8 = {A4(y{m}[1]), B4(z{p}[1], x{a}[2]), C4(w[2])}
+// "WhatEver", i.e. wildcard tests
+var p9 = {A2(x[?]), B3(x[?])}
+var p10 = {A4(x[?]), B4(z[?])}
+// "WhatEver", i.e. wildcard tests with states
+var p11 = {B4(z{p}[?])}
+var p12 = {B4(x{b}[?]), A4(x{q}[?])}
+// "Bound to any" tests
+var p13 = {B3(x[bound], z[bound]) }
+var p14 = {B3(x[bound], z[bound]), A2(x[bound]) }
+// "Bound to any" tests with states
+var p15 = {A4(x{p}[bound])}
+var p16 = {A4(x{p}[bound]) , A2(x[bound]) }
+// "Bound to any of type" tests
+var p17 = {A5(x[B5.w])}
+var p18 = {A5(x[B5.w]), B5(z[A5.y])}
+// "Bound to any of type" tests with states
+var p19 = {A5(x{v}[B5.w])}
+var p20 = {A5(x{v}[B5.w]), B5(z{q}[A5.y])}
+// Complex bound tests
+var p21 = {A6(x[1]), B6(u[1], v[C3.a])}
+var p22 = {A6(x[1], y[2]), B6(u[1], v[C3.a], w[3]), C3(b[2], c[3])}
+// Complex bound tests with states
+var p23 = {A6(x{v}[1]), B6(u[1], v{n}[C3.a])}
+var p24 = {A6(x{u}[1], y[2]), B6(u[1], v[C3.a], w[3]), C3(b{g}[2], c[3])}
+// injectivity constraint tests
+var p25 = {A7(x[1]), A7(x[1], w[2]), A7(x[2])}
+var p26 = {A7(x[1]), B7(y[1], z[2]), A7(x[2], w[3]), B7(z[3], y[5]), B7(z[5])}
+// injectivity constraint tests with states
+var p27 = {A7(x[1]), A7(x{d}[1], w[2]), A7(x[2])}
+var p28 = {A7(x{d}[1]), B7(y[1], z[2]), A7(x[2], w[3]), B7(z{h}[3], y[5]), B7(z[5])}
+// hard injectivity
+var p32 = {A8(x[1]), A8(x[1]), A8(x[2]), A8(x[2])}
+var p33 = {A8(x[1]), A8(x[1], y[2]), A8(y[2]), A8(x[3]), A8(x[3], y[4]), A8(y[4])}
+var p34 = {A9(x[1]), A9(x[1]), A9(x[2]), A9(x[2]), A9(x[3]), A9(x[3])}
+// evil versions of: injectivity constraint & BoundAny tests
+//var p29 = {A7(x[A7.x]), A7(x[A7.x], w[A7.x]), A7(x[A7.w])}
+//var p30 = {A7(x[A7.x]), A7(x{d}[A7.x], w[A7.x]), A7(x[A7.w])}
+// ligh version of: injectivity constraint & BoundAny tests
+var p31 = {A7(x[A7.x], w[A7.x]), A7(x[A7.w])}
+
+// mulit-edge tests
+var p35 = {mA(x*[1,2]), mB(y*[1]), mC(z*[2])} // generates instances
+var p36 = {mB(y*[1]), mA(x*[1,2]), mB(y*[2])} // generates instances
+var p37 = {mA(x*[1,2]), mB(y*[1]), mB(y*[2])}
+var p38 = {mA(x*[1,2]), mB(y*[2,3]), mD(a*[1,3], b[4]), mC(z*[4])} // generates instances
+var p39 = {mA(x*[free]), mB(y*[free])}
+var p40 = {mC(z*[free]), mD(a*[free])}
+var p41 = {mA(x*[1,2]), mB(y*[1]), mC(z*[2]), mC(z*[free])}
+var p42 = {mB(y*[1]), mA(x*[1,2]), mB(y*[2]), mA(x*[free]), mB(y*[free])}
+var p43 = {mA(x*[1,2]), mB(y*[1]), mC(z*[2]), mD(a*[free])}
+var p44 = {mB(y*[1]), mA(x*[1,2]), mB(y*[2]), mC(z*[free]), mD(a*[free])}
+var p45 = {mA(x*[1,free(mD)]), mB(y*[1]), mD(a*[free(mA)])} 
+var p46 = {mA(x*[1]), mB(y*[1])} 
+var p47 = {mA(x*[free(mD)]), mD(a*[free(mA)])}
+
+// Initial variables for disjunct tests
+init i1 10 {A1(), B1()}
+// Initial variables for bound tests
+init i2 6 {A2(x[1]), B2(x[1])}
+init i3 7 {A3(x[1]), B3(x[1], z[2]), C1(v[2])}
+// Initial variables for disjunct and bound tests with states
+init i4 5 {A4(x{p}[free]), A4(x{q}[free]), B4(x{b}[free])}
+init i5 9 {A4(x{p}[1]), B4(x{b}[1])}
+init i6 11 {A4(y{m}[1]), B4(z{p}[1], x{a}[2]), C4(w[2])}
+init i7 5 {B3()}
+// Initial variables for "bound to any of type" tests with and w.o. states
+init i8 13 {A5(x[1]), B5(w[1])}
+init i9 3 {A5(y[1]), B5(z[1])}
+init i10 13 {A5(x{v}[1]), B5(w[1])}
+init i11 3 {A5(y[1]), B5(z{q}[1])}
+// Initial variables for complex bound tests with and w.o. states
+init i12 3 {A6(x{v}[1], y[2]), B6(u[1], v{n}[4], w[3]), C3(a[4], b{f}[2], c[3])}
+init i13 8 {A6(x{u}[1], y[2]), B6(u[1], v[4], w[3]), C3(a[4], b{g}[2], c[3])}
+// Initial variables for injectivity constraints
+init i14 3 {A7(x[1]), A7(x[1], w[2]), A7(x[2])}
+init i15 5 {A7(x[1]), B7(y[1], z[2]), A7(x[2], w[3]), B7(z[3], y[5]), B7(z[5])}
+init i16 7 {A7(x[1]), A7(x{d}[1], w[2]), A7(x[2])}
+init i17 4 {A7(x{d}[1]), B7(y[1], z[2]), A7(x[2], w[3]), B7(z{h}[3], y[5]), B7(z[5])}
+// Harder injectivity constraints
+init i18 2 p32
+init i19 2 p33
+init i20 2 p34
+init i21 3 p35
+init i22 3 p36
+init i23 4 p38
+init i24 2 {mA(), mB()}
+init i25 3 {mC(), mD()}
+
+// mockup rules to register patterns as relevant for pattern generators
+rule simpleDisjunct_rule p1 -> {void, void} @ [dummy_rate] // 10*10 = 100 Matches
+rule mediumDisjunct_rule p2 -> {void, void, void, void} @ [dummy_rate] // 10 * 10 * 6 * 6 = 3600 Matches
+rule simpleDisjunctWithStates_rule p5 -> {void, void} @ [dummy_rate] // 5*10 = 50 Matches
+rule mediumDisjunctWithStates_rule p6 ->  {void, void, void} @ [dummy_rate] // 10*5*5 = 250 Matches
+
+rule simpleBound_rule p3 -> {void, void} @ [dummy_rate] // 6 Matches
+rule mediumBound_rule p4 -> {void, void, void} @ [dummy_rate] // 7 Matches
+rule simpleBoundWithStates_rule p7 -> {void, void} @ [dummy_rate] // 9 Matches
+rule mediumBoundWithStates_rule p8 -> {void, void, void} @ [dummy_rate] // 11 Matches
+
+rule simpleWildcard_rule p9 -> {void, void} @ [dummy_rate] // 6*(7+5) = 6*12 = 72 Matches
+rule mediumWildcard_rule p10 -> {void, void} @ [dummy_rate] // (5+5+9+11) * (9+11+5) = 30*25 = 750 Matches
+rule simpleWildcardWithStates_rule p11 -> {void} @ [dummy_rate] // 11 Matches
+rule mediumWildcardWithStates_rule p12 -> {void, void} @ [dummy_rate] // (5+9)*5 = 14*5 = 70 Matches
+
+rule simpleBoundAny_rule p13 -> {void} @ [dummy_rate] // 7 Matches 
+rule mediumBoundAny_rule p14 -> {void, void} @ [dummy_rate] // 7*6 = 42 Matches 
+rule simpleBoundAnyWithStates_rule p15 -> {void} @ [dummy_rate] // 9 Matches
+rule mediumBoundAnyWithStates_rule p16 -> {void, void} @ [dummy_rate] // 9*6 = 54 Matches
+
+rule simpleBoundAnyType_rule p17 -> {void} @ [dummy_rate] // 26 Matches 
+rule mediumBoundAnyType_rule p18 -> {void, void} @ [dummy_rate] // 26*6 = 156 Matches 
+rule simpleBoundAnyTypeWithStates_rule p19 -> {void} @ [dummy_rate] // 13 Matches
+rule mediumBoundAnyTypeWithStates_rule p20 -> {void, void} @ [dummy_rate] // 13*3 = 39 Matches
+
+rule simpleMixedBound_rule p21 -> {void, void} @ [dummy_rate] // 11 Matches
+rule mediumMixedBound_rule p22 -> {void, void, void} @ [dummy_rate] // 11 Matches
+rule simpleMixedBoundWithStates_rule p23 -> {void, void} @ [dummy_rate] // 3 Matches
+rule mediumMixedBoundWithStates_rule p24 -> {void, void, void} @ [dummy_rate] // 8 Matches
+
+rule simpleInjectivity_rule p25 -> {void, void, void} @ [dummy_rate] // 3+7 = 10 Matches
+rule mediumInjectivity_rule p26 -> {void, void, void, void, void} @ [dummy_rate] // 5 + 4 = 9 Matches
+rule simpleInjectivityWithStates_rule p27 -> {void, void, void} @ [dummy_rate] // 7 Matches
+rule mediumInjectivityWithStates_rule p28 -> {void, void, void, void, void} @ [dummy_rate] // 4 Matches
+// Hard injectivity constraint
+rule hardInjectivity_rule p32 -> {void, void, void, void} @ [dummy_rate] // 16 * 14 = 224  Matches
+rule hardInjectivity2_rule p33 -> {void, void, void, void, void, void} @ [dummy_rate] // 4 * 3 = 12  Matches
+rule hardInjectivity3_rule p34 -> {void, void, void, void, void, void} @ [dummy_rate] // 12 * 10 * 8 = 960  Matches
+
+// Important: These lhs patterns will cause democles to crash or run indefinitely
+//rule evilInjectivityAndBoundAny_rule p29 -> {void, void, void} @ [dummy_rate] // [(3+3)+(7+7)]*(3+7)*(3+7) = 20 * 10 * 10 = 2000 Matches (2000 - 10*10 = 1900 for now..)
+//rule evilInjectivityAndBoundAnyWithStates_rule p30 -> {void, void, void} @ [dummy_rate] // [(3+3)+(7+7)]*7*(3+7) = 20 * 7 * 10 = 1400 Matches (1400 - 7*10 = 1330 for now..)
+
+// Light version of the lhs patterns above
+rule lightInjectivityAndBoundAny_rule p31 -> {void, void} @ [dummy_rate] // (3+7)*(3+7)*(4+5) = 10 * 10 = 100 Matches
+
+// Multi-Edge patterns
+rule simpleMultiEdge_rule p35 -> {void, void, void} @ [dummy_rate]
+rule simpleMultiEdge2_rule p36 -> {void, void, void} @ [dummy_rate]
+rule simpleMultiEdge3_rule p37 -> {void, void, void} @ [dummy_rate]
+
+rule simpleMixedMultiEdge_rule p38 -> {void, void, void, void} @ [dummy_rate]
+
+rule simpleDisjunctMultiEdge_rule p39 -> {void, void} @ [dummy_rate]
+rule simpleDisjunctMultiEdge2_rule p40 -> {void, void} @ [dummy_rate]
+
+rule simpleMixedDisjunctMultiEdge_rule p41 -> {void, void, void, void} @ [dummy_rate]
+rule simpleMixedDisjunctMultiEdge2_rule p42 -> {void, void, void, void, void} @ [dummy_rate]
+rule simpleMixedDisjunctMultiEdge3_rule p43 -> {void, void, void, void} @ [dummy_rate]
+rule simpleMixedDisjunctMultiEdge4_rule p44 -> {void, void, void, void, void} @ [dummy_rate]
+
+rule mediumDisjunctMultiEdge_rule p45 -> {void, void, void} @ [dummy_rate]
+rule mediumDisjunctMultiEdge2_rule p46 -> {void, void} @ [dummy_rate]
+rule mediumDisjunctMultiEdge3_rule p47 -> {void, void} @ [dummy_rate]

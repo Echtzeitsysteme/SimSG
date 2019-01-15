@@ -8,21 +8,23 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
 
-import biochemsimulation.reactioncontainer.ReactionContainerPackage;
+import biochemsimulation.reactioncontainer.util.EPackageWrapper;
 import biochemsimulation.reactionrules.reactionRules.Agent;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 
 public class GenericPatternSignature {
-	public final static EClassifier SIM_AGENT_CLASSIFIER = ReactionContainerPackage.Literals.SIM_AGENT;
+	//public final static EClassifier SIM_AGENT_CLASSIFIER = ReactionContainerPackage.Literals.SIM_AGENT;
 	
 	private List<ValidAgentPattern> patterns;
+	private EPackageWrapper metaModel;
 	private Map<String, EClassifier> signatureNodes;
 	private Map<ValidAgentPattern, String> patternSignatureMapping;
 	private Map<String, ValidAgentPattern> signaturePatternMapping;
 	private Map<String, List<String>> injectivityConflicts;
 	
-	public GenericPatternSignature(List<ValidAgentPattern> patterns) {
+	public GenericPatternSignature(List<ValidAgentPattern> patterns, EPackageWrapper metaModel) {
 		this.patterns = patterns;
+		this.metaModel = metaModel;
 		buildSignature();
 		cleanUpInjectivityConflicts();
 	}
@@ -41,7 +43,7 @@ public class GenericPatternSignature {
 			}
 			
 			int occurence = 0;
-			while(signatureNodes.putIfAbsent(name, SIM_AGENT_CLASSIFIER) != null) {
+			while(signatureNodes.putIfAbsent(name, metaModel.getClass(agent.getName())) != null) {
 				occurence++;
 				name = agent.getName() + occurence;
 			}

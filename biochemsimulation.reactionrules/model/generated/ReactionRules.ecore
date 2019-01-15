@@ -59,11 +59,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="SiteState">
     <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//State"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SitePattern">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="site" eType="#//Site"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//SiteState"
-        containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiLinkState">
     <eStructuralFeatures xsi:type="ecore:EReference" name="linkState" eType="#//LinkState"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SitePattern">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//SiteState"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SitePatterns">
@@ -139,11 +140,21 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//TerminationCondition"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SingleSite" eSuperTypes="#//Site"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiSite" eSuperTypes="#//Site"/>
   <eClassifiers xsi:type="ecore:EClass" name="BoundAnyLink" eSuperTypes="#//LinkState">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FreeLink" eSuperTypes="#//LinkState">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IndexedFreeLink" eSuperTypes="#//LinkState">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypedFreeLink" eSuperTypes="#//LinkState">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//Agent"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WhatEver" eSuperTypes="#//LinkState">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -151,10 +162,24 @@
   <eClassifiers xsi:type="ecore:EClass" name="BoundLink" eSuperTypes="#//LinkState">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiLink" eSuperTypes="#//LinkState">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="states" upperBound="-1"
+        eType="#//LinkState" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BoundAnyOfTypeLink" eSuperTypes="#//LinkState">
     <eStructuralFeatures xsi:type="ecore:EReference" name="linkAgent" eType="#//BoundAnyOfTypeLinkAgent"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="linkSite" eType="#//BoundAnyOfTypeLinkSite"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SingleSitePattern" eSuperTypes="#//SitePattern">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="site" eType="#//SingleSite"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkState" eType="#//LinkState"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiLinkSitePattern" eSuperTypes="#//SitePattern">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="site" eType="#//MultiSite"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkState" eType="#//MultiLinkState"
         containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

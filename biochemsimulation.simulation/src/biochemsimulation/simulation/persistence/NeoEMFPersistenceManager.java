@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.resource.Resource;
 
-import biochemsimulation.reactioncontainer.ReactionContainer;
+import biochemsimulation.reactioncontainer.Container;
 import biochemsimulation.reactioncontainer.generator.ReactionContainerGenerator;
 import biochemsimulation.reactioncontainer.generator.ReactionContainerNeoEMF;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
@@ -15,17 +15,20 @@ import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 public class NeoEMFPersistenceManager extends PersistenceManager {
 
 	@Override
-	public ReactionContainer loadReactionContainerModel(String name) throws Exception {
-		if(!checkExistenceAndIndex(name, true)) {
+	public Container loadReactionContainerModel(String name) throws Exception {
+		if(!checkExistenceAndIndexContainer(name, true) || !checkExistenceAndIndexMetamodel(name, true)) {
 			ReactionRuleModel ruleModel = loadReactionRuleModel(name);
 			ReactionContainerGenerator gen = new ReactionContainerNeoEMF(ruleModel);
 			String path = reactionModelFolder+"/"+name+containerModelSuffix;
-			gen.doGenerate(path);
+			String path2 = reactionMetamodelFolder+"/"+name+".ecore";
+			gen.doGenerate(path,path2);
 			reactionModelPaths.put(name, path);
+			reactionMetamodelPaths.put(name, path2);
 		}
+		loadAndRegisterMetamodel(name);
 		
 		Resource modelResource = PersistenceUtils.loadDBResource(reactionModelPaths.get(name));
-		ReactionContainer containerModel = (ReactionContainer) modelResource.getContents().get(0);
+		Container containerModel = (Container) modelResource.getContents().get(0);
 		
 		if(reactionContainerModelCache.containsKey(name)) {
 			unloadReactionContainerModel(name);

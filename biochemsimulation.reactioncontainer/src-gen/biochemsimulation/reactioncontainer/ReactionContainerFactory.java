@@ -22,49 +22,31 @@ public interface ReactionContainerFactory extends EFactory {
 	ReactionContainerFactory eINSTANCE = biochemsimulation.reactioncontainer.impl.ReactionContainerFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Reaction Container</em>'.
+	 * Returns a new object of class '<em>Container</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Reaction Container</em>'.
+	 * @return a new object of class '<em>Container</em>'.
 	 * @generated
 	 */
-	ReactionContainer createReactionContainer();
+	Container createContainer();
 
 	/**
-	 * Returns a new object of class '<em>Sim Agent</em>'.
+	 * Returns a new object of class '<em>Agent</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Sim Agent</em>'.
+	 * @return a new object of class '<em>Agent</em>'.
 	 * @generated
 	 */
-	SimAgent createSimAgent();
+	Agent createAgent();
 
 	/**
-	 * Returns a new object of class '<em>Sim Site</em>'.
+	 * Returns a new object of class '<em>State</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Sim Site</em>'.
+	 * @return a new object of class '<em>State</em>'.
 	 * @generated
 	 */
-	SimSite createSimSite();
-
-	/**
-	 * Returns a new object of class '<em>Sim Site State</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Sim Site State</em>'.
-	 * @generated
-	 */
-	SimSiteState createSimSiteState();
-
-	/**
-	 * Returns a new object of class '<em>Sim Bound</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Sim Bound</em>'.
-	 * @generated
-	 */
-	SimBound createSimBound();
+	State createState();
 
 	/**
 	 * Returns the package supported by this factory.

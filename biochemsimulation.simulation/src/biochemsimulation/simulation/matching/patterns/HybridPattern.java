@@ -7,22 +7,26 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
 
+import biochemsimulation.reactioncontainer.util.EPackageWrapper;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
+import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 
 public class HybridPattern {
 	
 	private String patternName;
+	private EPackageWrapper metaModel;
 	
 	private GenericPattern genericLhs;
 	
-	private Map<AgentNodeContext, List<LinkStateConstraint>> agentNodeToLinkConstraintMap;
+	private Map<AgentNodeContext, List<Entry<LinkStateContext, LinkStateContext>>> agentNodeToLinkConstraintMap;
 	
 	private List<Set<AgentNodeContext>> subPatterns;
 	private Map<String, GenericPattern> genericSubPatterns;
@@ -32,10 +36,11 @@ public class HybridPattern {
 	
 	private Collection<AgentNodeConstraint> gloablInjectivityConstraints;
 	
-	public HybridPattern(String patternName, Pattern lhs) {
+	public HybridPattern(String patternName, Pattern lhs, EPackageWrapper metaModel) {
 		this.patternName = patternName;
+		this.metaModel = metaModel;
 		
-		genericLhs = new GenericPattern(patternName, lhs);
+		genericLhs = new GenericPattern(patternName, this.metaModel, lhs);
 		if(genericLhs.isVoidPattern()) {
 			genericSubPatterns = new HashMap<String, GenericPattern>();
 			genericSubPatterns.put(patternName, genericLhs);
@@ -50,21 +55,21 @@ public class HybridPattern {
 	}
 	
 	private void mapAgentNodesToLinkConstraints() {
-		agentNodeToLinkConstraintMap = new HashMap<AgentNodeContext, List<LinkStateConstraint>>();
-		for(LinkStateConstraint lsc : genericLhs.getBody().getLinkStateConstraints().values()) {
-			List<LinkStateConstraint> links = agentNodeToLinkConstraintMap.get(lsc.getOperand1().getSiteNodeContext().getAgentNodeContext());
+		agentNodeToLinkConstraintMap = new HashMap<AgentNodeContext, List<Entry<LinkStateContext, LinkStateContext>>>();
+		for(Entry<LinkStateContext, LinkStateContext> pair : genericLhs.getBody().getBoundLinkStateContexts().values()) {
+			List<Entry<LinkStateContext, LinkStateContext>> links = agentNodeToLinkConstraintMap.get(pair.getKey().getSiteNodeContext().getAgentNodeContext());
 			if(links == null) {
-				links = new LinkedList<LinkStateConstraint>();
-				agentNodeToLinkConstraintMap.put(lsc.getOperand1().getSiteNodeContext().getAgentNodeContext(), links);
+				links = new LinkedList<Map.Entry<LinkStateContext,LinkStateContext>>();
+				agentNodeToLinkConstraintMap.put(pair.getKey().getSiteNodeContext().getAgentNodeContext(), links);
 			}
-			links.add(lsc);
+			links.add(pair);
 			
-			List<LinkStateConstraint> links2 = agentNodeToLinkConstraintMap.get(lsc.getOperand2().getSiteNodeContext().getAgentNodeContext());
+			List<Entry<LinkStateContext, LinkStateContext>> links2 = agentNodeToLinkConstraintMap.get(pair.getValue().getSiteNodeContext().getAgentNodeContext());
 			if(links2 == null) {
-				links2 = new LinkedList<LinkStateConstraint>();
-				agentNodeToLinkConstraintMap.put(lsc.getOperand2().getSiteNodeContext().getAgentNodeContext(), links);
+				links2 = new LinkedList<Map.Entry<LinkStateContext,LinkStateContext>>();
+				agentNodeToLinkConstraintMap.put(pair.getValue().getSiteNodeContext().getAgentNodeContext(), links);
 			}
-			links2.add(lsc);
+			links2.add(pair);
 		}
 	}
 	
@@ -81,7 +86,7 @@ public class HybridPattern {
 			Set<AgentNodeContext> currentSubSet = new HashSet<AgentNodeContext>();
 			currentSubSet.add(currentSubPattern);
 			
-			ConcurrentLinkedQueue<LinkStateConstraint> outgoingLinks =  new ConcurrentLinkedQueue<LinkStateConstraint>();
+			ConcurrentLinkedQueue<Entry<LinkStateContext, LinkStateContext>> outgoingLinks =  new ConcurrentLinkedQueue<Map.Entry<LinkStateContext,LinkStateContext>>();
 			if(!agentNodeToLinkConstraintMap.containsKey(currentSubPattern)) {
 				subPatterns.add(currentSubSet);
 				continue;
@@ -96,12 +101,12 @@ public class HybridPattern {
 			*/
 			
 			while(!outgoingLinks.isEmpty()) {
-				LinkStateConstraint currentLink = outgoingLinks.poll();
-				if(currentLink.getOperand1().getStateType() != LinkStateType.Bound) {
+				Entry<LinkStateContext, LinkStateContext> currentLink = outgoingLinks.poll();
+				if(currentLink.getKey().getStateType() != LinkStateType.Bound) {
 					continue;
 				}
-				AgentNodeContext operand1 = currentLink.getOperand1().getSiteNodeContext().getAgentNodeContext();
-				AgentNodeContext operand2 = currentLink.getOperand2().getSiteNodeContext().getAgentNodeContext();
+				AgentNodeContext operand1 = currentLink.getKey().getSiteNodeContext().getAgentNodeContext();
+				AgentNodeContext operand2 = currentLink.getValue().getSiteNodeContext().getAgentNodeContext();
 				if(operand1 != currentSubPattern) {
 					if(pattern.contains(operand1)) {
 						pattern.remove(operand1);
@@ -140,7 +145,7 @@ public class HybridPattern {
 			
 			String subPatternName = patternName+c;
 			
-			GenericPattern genericSubPattern = new GenericPattern(subPatternName, vaps);
+			GenericPattern genericSubPattern = new GenericPattern(subPatternName, metaModel, vaps);
 			genericSubPatternsTemp.put(subPatternName, genericSubPattern);
 			
 			/*
@@ -172,6 +177,7 @@ public class HybridPattern {
 			genericSubPatterns.put(subPattern.getName(), subPattern);
 			genericSubPatternsTemp.remove(subPattern.getName());
 		}
+
 	}
 	
 	private void mapSubSignaturesToSignatures() {
@@ -212,34 +218,42 @@ public class HybridPattern {
 	
 	boolean patternsIntersectFwd(ValidAgentPattern vap1, ValidAgentPattern vap2) {
 		for(SitePattern sp1 : vap1.getSitePatterns().getSitePatterns()) {
-			String sp1Name = sp1.getSite().getName();
+			// ignore multi-link site patterns for now
+			if(!(sp1 instanceof SingleSitePattern)) continue;
+			SingleSitePattern ssp1 = (SingleSitePattern) sp1;
+			
+			String sp1Name = ssp1.getSite().getName();
 			
 			String sp1State = null;
-			if(sp1.getState() != null) {
-				sp1State = sp1.getState().getState().getName();
-			}else if(sp1.getSite().getStates().getState() != null) {
-				if(sp1.getSite().getStates().getState().size()>0) {
-					sp1State = sp1.getSite().getStates().getState().get(0).getName();
+			if(ssp1.getState() != null) {
+				sp1State = ssp1.getState().getState().getName();
+			}else if(ssp1.getSite().getStates().getState() != null) {
+				if(ssp1.getSite().getStates().getState().size()>0) {
+					sp1State = ssp1.getSite().getStates().getState().get(0).getName();
 				}
 			}
 			
 			LinkStateType lst1 = null;
-			if(sp1.getLinkState().getLinkState() != null) {
-				lst1 = LinkStateType.enumFromLinkState(sp1.getLinkState().getLinkState());
+			if(ssp1.getLinkState().getLinkState() != null) {
+				lst1 = LinkStateType.enumFromLinkState(ssp1.getLinkState().getLinkState());
 			}
 			
 			for(SitePattern sp2 : vap2.getSitePatterns().getSitePatterns()) {
-				String sp2Name = sp2.getSite().getName();
+				// ignore multi-link site patterns for now
+				if(!(sp2 instanceof SingleSitePattern)) continue;
+				SingleSitePattern ssp2 = (SingleSitePattern) sp2;
+				
+				String sp2Name = ssp2.getSite().getName();
 				if(!sp1Name.equals(sp2Name)) {
 					continue;
 				}
 				
 				if(sp1State != null) {
 					String sp2State = null;
-					if(sp2.getState() != null) {
-						sp2State = sp2.getState().getState().getName();
-					}else if(sp2.getSite().getStates().getState() != null) {
-						sp2State = sp2.getSite().getStates().getState().get(0).getName();
+					if(ssp2.getState() != null) {
+						sp2State = ssp2.getState().getState().getName();
+					}else if(ssp2.getSite().getStates().getState() != null) {
+						sp2State = ssp2.getSite().getStates().getState().get(0).getName();
 					}
 					if(!sp1State.equals(sp2State)) {
 						return false;
@@ -247,8 +261,8 @@ public class HybridPattern {
 				}
 				
 				LinkStateType lst2 = null;
-				if(sp2.getLinkState().getLinkState() != null) {
-					lst2 = LinkStateType.enumFromLinkState(sp2.getLinkState().getLinkState());
+				if(ssp2.getLinkState().getLinkState() != null) {
+					lst2 = LinkStateType.enumFromLinkState(ssp2.getLinkState().getLinkState());
 				}
 				
 				if(lst2 == LinkStateType.WhatEver || lst1 == LinkStateType.WhatEver) {
@@ -264,8 +278,8 @@ public class HybridPattern {
 				}
 				
 				if(lst1 == LinkStateType.BoundAnyOfType && lst2 == LinkStateType.BoundAnyOfType) {
-					BoundAnyOfTypeLink baotl1 = (BoundAnyOfTypeLink)sp1.getLinkState().getLinkState();
-					BoundAnyOfTypeLink baotl2 = (BoundAnyOfTypeLink)sp2.getLinkState().getLinkState();
+					BoundAnyOfTypeLink baotl1 = (BoundAnyOfTypeLink)ssp1.getLinkState().getLinkState();
+					BoundAnyOfTypeLink baotl2 = (BoundAnyOfTypeLink)ssp2.getLinkState().getLinkState();
 					if(!baotl1.getLinkAgent().getAgent().getName().equals(baotl2.getLinkAgent().getAgent().getName())) {
 						return false;
 					}
@@ -280,6 +294,10 @@ public class HybridPattern {
 			
 		}
 		return true;
+	}
+	
+	public GenericPattern getOriginalPattern() {
+		return genericLhs;
 	}
 	
 	public Map<String, GenericPattern> getGenericSubPatterns() {

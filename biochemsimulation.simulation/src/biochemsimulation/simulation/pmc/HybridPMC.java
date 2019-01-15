@@ -5,15 +5,12 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import biochemsimulation.reactionrules.reactionRules.Pattern;
-import biochemsimulation.reactionrules.utils.PatternContainer;
 import biochemsimulation.simulation.matching.HybridMatch;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.IMatchImpl;
-import biochemsimulation.simulation.matching.patterns.AgentNodeConstraint;
 import biochemsimulation.simulation.matching.patterns.GenericPattern;
 import biochemsimulation.simulation.matching.patterns.HybridPattern;
 
@@ -37,7 +34,7 @@ public class HybridPMC extends PatternMatchingController {
 		Collection<Pattern> patterns = patternContainer.getAllPatterns();
 		hybridPatterns = new HashMap<String, HybridPattern>();
 		patterns.forEach(pattern -> {
-			hybridPatterns.put(PatternContainer.calcPatternHash(pattern), new HybridPattern(PatternContainer.calcPatternHash(pattern), pattern));
+			hybridPatterns.put(patternContainer.getPatternHash(pattern), new HybridPattern(patternContainer.getPatternHash(pattern), pattern, metaModel));
 		});
 		genericPatterns = new HashMap<String, GenericPattern>();
 		hybridPatterns.forEach((name, pattern) -> {
@@ -45,7 +42,7 @@ public class HybridPMC extends PatternMatchingController {
 		});
 		
 		engine.setReactionRules(genericPatterns);
-		engine.setReactionContainer(reactionContainer);
+		engine.setReactionContainer(reactionContainer, metaModel.getPackage());
 		engine.loadModels();
 	}
 	
@@ -76,7 +73,7 @@ public class HybridPMC extends PatternMatchingController {
 			hybridMatchCount.replace(patternName, 1);
 			return;
 		}
-		Collection<IMatch> subMatches = new LinkedHashSet<IMatch>();
+		Collection<IMatch> subMatches = new LinkedHashSet<IMatch>(hybridPatterns.get(patternName).getGenericSubPatterns().size());
 		
 		for(String subPatternName : hybridPatterns.get(patternName).getGenericSubPatterns().keySet()) {
 			super.collectMatchesWithHash(subPatternName);
@@ -128,36 +125,30 @@ public class HybridPMC extends PatternMatchingController {
 			return;
 		}
 		
-		hybridMatches.put(patternName, new HybridMatch(patternName, subMatches, hybridPatterns.get(patternName)));
-		
-		
-	}
-	
-	private boolean checkSubMatchInjectivityConstraints(IMatch subMatch, Map<String, IMatch> subMatches) {
-		GenericPattern genericPattern = genericPatterns.get(subMatch.patternName());
-		Collection<AgentNodeConstraint> injectivityConstraints = genericPattern.getBody().getInjectivityConstraintsBody();
-		if(injectivityConstraints.size()==0) {
-			return true;
+		IMatch hybMatch = new HybridMatch(patternName, subMatches, hybridPatterns.get(patternName));
+		if(hybMatch.parameterNames().size()< hybridPatterns.get(patternName).getOriginalPattern().getSignature().getSignature().size()) {
+			//System.out.println(hybMatch);
+			hybridMatches.put(patternName, null);
+			hybridMatchCount.replace(patternName, 0);
+			return;
 		}
 		
-		for(String currentPatternName : subMatches.keySet()) {
-			if(currentPatternName.equals(subMatch.patternName())) {
-				continue;
+		// Debug
+		/*
+		Object hybParams[] = hybMatch.parameterNames().toArray();
+		Object originalParams[] = hybridPatterns.get(patternName).getOriginalPattern().getSignature().getSignature().keySet().toArray();
+		for(int i = 0; i<hybParams.length; i++) {
+			String hybParam = (String)hybParams[i];
+			String originalParam = (String)originalParams[i];
+			if(!hybParam.equals(originalParam)) {
+				System.out.println("dafuq?");
 			}
-			IMatch currentMatch = subMatches.get(currentPatternName);
-			for(AgentNodeConstraint constraint : injectivityConstraints) {
-				String paramName = constraint.getOperand2().getAgentType();
-				if(!currentMatch.contains(paramName)) {
-					continue;
-				}
-				if(subMatch.get(paramName).equals(currentMatch.get(paramName))) {
-					return false;
-				}
-			}
-			
 		}
+		*/
 		
-		return true;
+		hybridMatches.put(patternName, hybMatch);
+		
+		
 	}
 	
 	private void calculateHybridMatchCount(String patternName) {

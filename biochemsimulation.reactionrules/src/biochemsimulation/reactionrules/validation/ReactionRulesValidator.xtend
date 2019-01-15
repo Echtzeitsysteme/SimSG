@@ -30,6 +30,9 @@ import biochemsimulation.reactionrules.reactionRules.WhatEver
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern
 import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern
+import biochemsimulation.reactionrules.reactionRules.SingleSitePattern
+import biochemsimulation.reactionrules.reactionRules.IndexedFreeLink
+import biochemsimulation.reactionrules.reactionRules.MultiLinkSitePattern
 
 /**
  * This class contains custom validation rules. 
@@ -132,10 +135,16 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 			if(ap instanceof ValidAgentPattern) {
 				val vap = ap  as ValidAgentPattern
 				for(sp : vap.sitePatterns.sitePatterns) {
-					val linkState = sp.linkState.linkState
-					if(linkState instanceof BoundAnyLink || linkState instanceof WhatEver || linkState instanceof BoundAnyOfTypeLink) {
-						error('Illegal initial link state! A pattern may only be instantiated with link states of Type: FreeLink("free"), IndexedLink("INT")', null)
+					if(sp instanceof SingleSitePattern){
+						val slsp = sp as SingleSitePattern
+						val linkState = slsp.linkState.linkState
+						if(linkState instanceof BoundAnyLink || linkState instanceof WhatEver || linkState instanceof BoundAnyOfTypeLink) {
+							error('Illegal initial link state! A pattern may only be instantiated with link states of Type: FreeLink("free"), IndexedLink("INT")', null)
+						}
+					}else {
+						//ToDo MultiLink validation
 					}
+					
 				}
 			}
 			
@@ -307,6 +316,7 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 						)
 					}
 				}else {
+					// check consistency of agent types
 					val ap_1 = ap as ValidAgentPattern
 					val ap2 = rhs.agentPatterns.get(idx)
 					if(!(ap2 instanceof VoidAgentPattern)) {
@@ -318,6 +328,48 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 							error('Two arguments at the same index on lhs and rhs must have the same agent type.', 
 							ReactionRulesPackage.Literals.RULE_BODY__RHS
 							)
+						}
+					}
+					// check order and consistency of sites, link states and site states
+					if(!(ap2 instanceof VoidAgentPattern)) {
+						val ap_2 = ap2 as ValidAgentPattern
+						if(ap_1.sitePatterns.sitePatterns.size != ap_2.sitePatterns.sitePatterns.size){
+							error('Two arguments at the same index on lhs and rhs must have the same amount of sites.', 
+							ReactionRulesPackage.Literals.RULE_BODY__LHS
+							)
+							error('Two arguments at the same index on lhs and rhs must have the same amount of sites.', 
+							ReactionRulesPackage.Literals.RULE_BODY__RHS
+							)
+						}
+						for(var i=0; i<ap_1.sitePatterns.sitePatterns.size; i++) {
+							val sp_1 = ap_1.sitePatterns.sitePatterns.get(i);
+							val sp_2 = ap_2.sitePatterns.sitePatterns.get(i);
+							if(sp_1 instanceof SingleSitePattern && sp_2 instanceof SingleSitePattern) {
+								val ssp_1 = sp_1 as SingleSitePattern;
+								val ssp_2 = sp_2 as SingleSitePattern;
+								
+								if(ssp_1.site != ssp_2.site){
+									error('Two arguments at the same index on lhs and rhs must have the same sites.', 
+									ReactionRulesPackage.Literals.RULE_BODY__LHS
+									)
+									error('Two arguments at the same index on lhs and rhs must have the same sites.', 
+									ReactionRulesPackage.Literals.RULE_BODY__RHS
+									)
+								}
+								val st_1 = ssp_1.state;
+								val st_2 = ssp_2.state;
+								if(st_1 === null && st_2 !== null){
+									error('If an argument on the rhs defines a state, the corresponding argument on the lhs must define a state as well.', 
+									ReactionRulesPackage.Literals.RULE_BODY__RHS
+									)
+								}
+								if(st_2 === null && st_1 !== null){
+									error('If an argument on the lhs defines a state, the corresponding argument on the rhs must define a state as well.', 
+									ReactionRulesPackage.Literals.RULE_BODY__LHS
+									)
+								}
+							}
+							
 						}
 					}
 				}
@@ -346,13 +398,25 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 		var sites = agentPattern.agent.sites.sites
 		var siteSet = new HashSet<Site>(sites.size())
 		siteSet.addAll(sites)
+		var sitePatternSet = new HashSet<Site>()
 		
 		for(candidate : candidates) {
-			var sp = candidate as SitePattern
-			var spSite = sp.site
-			if(!siteSet.contains(spSite)) {
-				error('This Agent does not have a site with ID='+spSite.name, ReactionRulesPackage.Literals.VALID_AGENT_PATTERN__SITE_PATTERNS)
+			var site = null as Site
+			if(candidate instanceof SingleSitePattern) {
+				site = (candidate as SingleSitePattern).site
+			}else {
+				site = (candidate as MultiLinkSitePattern).site
 			}
+			
+			if(!siteSet.contains(site)) {
+				error('This Agent does not have a site with ID='+site.name, ReactionRulesPackage.Literals.VALID_AGENT_PATTERN__SITE_PATTERNS)
+			}
+			if(sitePatternSet.contains(site)) {
+				error('You may not redefine the same site multiple times.', ReactionRulesPackage.Literals.VALID_AGENT_PATTERN__SITE_PATTERNS)
+			}else {
+				sitePatternSet.add(site)
+			}
+			
 		}
 	}
 	
@@ -381,6 +445,34 @@ class ReactionRulesValidator extends AbstractReactionRulesValidator {
 		}
 		if(c<2) {
 			error('This indexed link must refer to exactly two end-points aka. sites.', ReactionRulesPackage.Literals.BOUND_LINK__STATE)
+		}
+	}
+	
+	@Check
+	def checkIndexedFreeLinkConstraint(IndexedFreeLink freeLink) {
+		var pattern = null as Pattern
+		var eObj = freeLink.eContainer
+		while(!(eObj instanceof Pattern) && eObj !== null) {
+			eObj = eObj.eContainer
+		}
+		if(eObj instanceof Pattern) {
+			pattern = eObj
+		}
+		var candidates = EcoreUtil2.getAllContentsOfType(pattern, IndexedFreeLink);
+		var c = 1
+		val thisNum = Integer.valueOf(freeLink.state)
+		for(cnd : candidates) {
+			val candidate = cnd as IndexedFreeLink
+			val cNum = Integer.valueOf(candidate.state)
+			if(cNum == thisNum && !candidate.equals(freeLink)) {
+				c++
+			}
+			if(c>2){
+				error('This indexed link deletion refers to more than two end-points aka. sites.', ReactionRulesPackage.Literals.INDEXED_FREE_LINK__STATE)
+			}
+		}
+		if(c<2) {
+			error('This indexed link deletion must refer to exactly two end-points aka. sites.', ReactionRulesPackage.Literals.INDEXED_FREE_LINK__STATE)
 		}
 	}
 	

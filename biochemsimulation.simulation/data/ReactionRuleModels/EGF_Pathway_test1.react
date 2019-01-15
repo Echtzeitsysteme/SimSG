@@ -1,0 +1,142 @@
+ModelID EGF_Pathway_test1
+
+agent EGF(r{ext, int})
+agent EGFR(L{ext, int}, CR, Y992{u,p}, Y1068{u,p}, Y1148{u,p})
+agent RasGap(SH2, s)
+agent Grb2(SH2, SH3)
+agent SoS(a, b, SS{u,p})
+agent Shc(PTB, Y318{u,p})
+agent Ras(S1S2{gdp, gtp})
+agent Raf(x{u,p})
+agent PP2A1(s)
+agent MEK(s, S218{u,p}, S222{u,p})
+agent PP2A2(s)
+agent ERK(s, T185{u,p}, Y187{u,p})
+agent MKP3(s)
+
+// Activating receptor dimers
+// #1 external dimers:
+rule EGF_EGFR {EGF(r{ext}[free]), EGFR(L{ext}[free], CR[free])} <-> {EGF(r{ext}[1]), EGFR(L{ext}[1], CR[free])} @ [1,1]
+rule EGFR_EGFR {EGFR(L{ext}[bound], CR[free]), EGFR(L{ext}[bound], CR[free])} <-> {EGFR(L{ext}[bound], CR[1]), EGFR(L{ext}[bound], CR[1])} @ [1,1]
+// #2 simplified phosphorylation (internal or external)
+rule EGFR_at_992 {EGFR(CR[bound], Y992{u}[free])} <-> {EGFR(CR[bound], Y992{p}[free])} @ [1,1]
+rule EGFR_at_1068 {EGFR(CR[bound], Y1068{u}[free])} <-> {EGFR(CR[bound], Y1068{p}[free])} @ [1,1]
+rule EGFR_at_1148 {EGFR(CR[bound], Y1148{u}[free])} <-> {EGFR(CR[bound], Y1148{p}[free])} @ [1,1]
+// #3 simplified dephosphorylation (internal or external)
+rule _992_op {EGFR(Y992{p}[free])} <-> {EGFR(Y992{u}[free])} @ [1,1]
+rule _1068_op {EGFR(Y1068{p}[free])} <-> {EGFR(Y1068{u}[free])} @ [1,1]
+rule _1148_op {EGFR(Y1148{p}[free])} <-> {EGFR(Y1148{u}[free])} @ [1,1]
+
+// Internalization, degradation and recycling
+// #internalization:
+rule int_monomer {EGF(r{ext}[1]), EGFR(L{ext}[1], CR[free])} <-> {EGF(r{int}[1]), EGFR(L{int}[1], CR[free])} @ [0.02,1]
+rule int_dimer {EGF(r{ext}[1]), EGFR(L{ext}[1], CR[2]), EGF(r{ext}[3]), EGFR(L{ext}[3], CR[2])} <-> {EGF(r{int}[1]), EGFR(L{int}[1], CR[2]), EGF(r{int}[3]), EGFR(L{int}[3], CR[2])} @ [0.02,1]
+// #dissociation:
+rule EGFR_EGFR_op {EGFR(L{int}[bound], CR[1]), EGFR(L{int}[bound], CR[1])} <-> {EGFR(L{int}[bound], CR[free]), EGFR(L{int}[bound], CR[free])} @ [1,1]
+rule EGF_EGFR_op {EGF(r{int}[1]), EGFR(L{int}[1], CR[free])} <-> {EGF(r{int}[free]), EGFR(L{int}[free], CR[free])} @ [1,1]
+// #degradation:
+rule deg_EGF {EGF(r{int}[free])} <-> {void} @ [1,1]
+rule deg_EGFR {EGFR(L{int}[free], CR[free])} <-> {void} @ [1,1]
+// #recycling:
+rule rec_EGFR {EGFR(L{int}[free], Y992{u}[free], Y1068{u}[free], Y1148{u}[free])} <-> {EGFR(L{ext}[free], Y992{u}[free], Y1068{u}[free], Y1148{u}[free])} @ [1,1]
+
+// SoS and RasGAP recruitment
+rule EGFR_RasGAP {EGFR(Y992{p}[free]), RasGap(SH2[free])} <-> {EGFR(Y992{p}[1]), RasGap(SH2[1])} @ [1,1]
+rule EGFR_Grb2 {EGFR(Y1068{p}[free]), Grb2(SH2[free])} <-> {EGFR(Y1068{p}[1]), Grb2(SH2[1])} @ [1,1]
+rule Grb2_SoS {Grb2(SH3[free]), SoS(a[free], SS{u}[free])} <-> {Grb2(SH3[1]), SoS(a[1], SS{u}[free])} @ [1,1]
+rule Grb2_SoS_op {Grb2(SH3[1]), SoS(a[1])} <-> {Grb2(SH3[free]), SoS(a[free])} @ [1,1]
+rule EGFR_Shc {EGFR(Y1148{p}[free]), Shc(PTB[free])} <-> {EGFR(Y1148{p}[1]), Shc(PTB[1])} @ [1,1]
+rule Shc_Grb2 {Shc(Y318{p}[free]), Grb2(SH2[free])} <-> {Shc(Y318{p}[1]), Grb2(SH2[1])} @ [1,1]
+rule Shc_at_318 {EGFR(CR[bound], Y1148{p}[1]), Shc(PTB[1], Y318{u}[free])} <-> {EGFR(CR[bound], Y1148{p}[1]), Shc(PTB[1], Y318{p}[free])} @ [1,1]
+rule Shc_at_318_op {Shc(Y318{p}[free])} <-> {Shc(Y318{u}[free])} @ [1,1]
+
+// Activating Ras
+// #activate:
+rule long_arm_SoS_Ras {EGFR(Y1148{p}[1]), Shc(PTB[1], Y318{p}[2]), Grb2(SH2[2], SH3[3]), SoS(a[3], b[free]), Ras(S1S2{gdp}[free])} <-> 
+						{EGFR(Y1148{p}[1]), Shc(PTB[1], Y318{p}[2]), Grb2(SH2[2], SH3[3]), SoS(a[3], b[4]), Ras(S1S2{gdp}[4])} @ [1,1]
+rule short_arm_SoS_Ras {EGFR(Y1068{p}[1]), Grb2(SH2[1], SH3[2]), SoS(a[2], b[free]), Ras(S1S2{gdp}[free])} <-> 
+						{EGFR(Y1068{p}[1]), Grb2(SH2[1], SH3[2]), SoS(a[2], b[3]), Ras(S1S2{gdp}[3])} @ [1,1]
+rule Ras_GTP {SoS(b[1]), Ras(S1S2{gdp}[1])} <-> {SoS(b[1]), Ras(S1S2{gtp}[1])} @ [1,1]
+rule SoS_Ras_op {SoS(b[1]), Ras(S1S2[1])} <-> {SoS(b[free]), Ras(S1S2[free])} @ [1,1]
+// #deactivate:
+rule direct_RasGap_Ras {EGFR(Y992{p}[1]), RasGap(SH2[1], s[free]), Ras(S1S2{gtp}[free])} <-> {EGFR(Y992{p}[1]), RasGap(SH2[1], s[2]), Ras(S1S2{gtp}[2])} @ [1,1]
+rule Ras_GDP {RasGap(s[1]), Ras(S1S2{gtp}[1])} <-> {RasGap(s[1]), Ras(S1S2{gdp}[1])} @ [1,1]
+rule RasGAP_Ras_op {RasGap(s[1]), Ras(S1S2[1])} <-> {RasGap(s[free]), Ras(S1S2[free])} @ [1,1]
+rule intrinsic_Ras_GDP {Ras(S1S2{gtp}[free])} <-> {Ras(S1S2{gdp}[free])} @ [1,1]
+
+// Activating Raf
+// #activation:
+var p_Raf = {Ras(S1S2{gtp}[1]), Raf(x{u}[1])}
+rule Ras_Raf {Ras(S1S2{gtp}[free]), Raf(x{u}[free])} <-> p_Raf @ [1,1]
+rule Raf p_Raf <-> {Ras(S1S2{gtp}[1]), Raf(x{p}[1])} @ [1,1]
+rule Ras_Raf_op {Ras(S1S2{gtp}[1]), Raf(x[1])} <-> {Ras(S1S2{gtp}[free]), Raf(x[free])} @ [1,1]
+// #deactivation
+var p_Raf2 = {PP2A1(s[1]), Raf(x{p}[1])}
+rule PP2A1_Raf {PP2A1(s[free]), Raf(x{p}[free])} <-> p_Raf2 @ [1,1]
+rule Raf_op p_Raf2 <-> {PP2A1(s[1]), Raf(x{u}[1])} @ [1,1]
+rule PP2A1_Raf_op {PP2A1(s[1]), Raf(x[1])} <-> {PP2A1(s[free]), Raf(x[free])} @ [1,1]
+
+// Activating MEK
+// #activation:
+var p_MEK = {Raf(x{p}[1]), MEK(S222{u}[1])}
+rule Raf_MEK_at_222 {Raf(x{p}[free]), MEK(S222{u}[free])} <-> p_MEK @ [1,1]
+rule MEK_at_222 p_MEK <-> {Raf(x{p}[1]), MEK(S222{p}[1])} @ [1,1]
+rule Raf_MEK_at_222_op {Raf(x{p}[1]), MEK(S222[1])} <-> {Raf(x{p}[free]), MEK(S222[free])} @ [1,1]
+
+var p_MEK2 = {Raf(x{p}[1]), MEK(S218{u}[1])}
+rule Raf_MEK_at_218 {Raf(x{p}[free]), MEK(S218{u}[free])} <-> p_MEK2 @ [1,1]
+rule MEK_at_218 p_MEK2 <-> {Raf(x{p}[1]), MEK(S218{p}[1])} @ [1,1]
+rule Raf_MEK_at_218_op {Raf(x{p}[1]), MEK(S218[1])} <-> {Raf(x{p}[free]), MEK(S218[free])} @ [1,1]
+// #deactivation:
+var p_MEK3 = {PP2A2(s[1]), MEK(S222{p}[1])}
+rule PP2A2_MEK_at_222 {PP2A2(s[free]), MEK(S222{p}[free])} <-> p_MEK3 @ [1,1]
+rule MEK_at_222_op p_MEK3 <-> {PP2A2(s[1]), MEK(S222{u}[1])} @ [1,1]
+rule PP2A2_MEK_at_222_op {PP2A2(s[1]), MEK(S222[1])} <-> {PP2A2(s[free]), MEK(S222[free])} @ [1,1]
+
+var p_MEK4 = {PP2A2(s[1]), MEK(S218{p}[1])}
+rule PP2A2_MEK_at_218 {PP2A2(s[free]), MEK(S218{p}[free])} <-> p_MEK4 @ [1,1]
+rule MEK_at_218_op p_MEK4 <-> {PP2A2(s[1]), MEK(S218{u}[1])} @ [1,1]
+rule PP2A2_MEK_at_218_op {PP2A2(s[1]), MEK(S218[1])} <-> {PP2A2(s[free]), MEK(S218[free])} @ [1,1]
+
+// Activating ERK
+// #activation:
+var p_ERK = {MEK(s[1], S218{p}[free], S222{p}[free]), ERK(T185{u}[1])}
+rule MEK_ERK_at_185 {MEK(s[free], S218{p}[free], S222{p}[free]), ERK(T185{u}[free])} <-> p_ERK @ [1,1]
+rule ERK_at_185 p_ERK <-> {MEK(s[1], S218{p}[free], S222{p}[free]), ERK(T185{p}[1])} @ [1,1]
+rule MEK_ERK_at_185_op {MEK(s[1]), ERK(T185[1])} <-> {MEK(s[free]), ERK(T185[free])} @ [1,1]
+
+var p_ERK2 = {MEK(s[1], S218{p}[free], S222{p}[free]), ERK(Y187{u}[1])}
+rule MEK_ERK_at_187 {MEK(s[free], S218{p}[free], S222{p}[free]), ERK(Y187{u}[free])} <-> p_ERK2 @ [1,1]
+rule ERK_at_187 p_ERK2 <-> {MEK(s[1], S218{p}[free], S222{p}[free]), ERK(Y187{p}[1])} @ [1,1]
+rule MEK_ERK_at_187_op {MEK(s[1]), ERK(Y187[1])} <-> {MEK(s[free]), ERK(Y187[free])} @ [1,1]
+// #deactivation
+var p_ERK3 = {MKP3(s[1]), ERK(T185{p}[1])}
+rule MKP_ERK_at_185 {MKP3(s[free]), ERK(T185{p}[free])} <-> p_ERK3 @ [1,1]
+rule ERK_at_185_op p_ERK3 <-> {MKP3(s[1]), ERK(T185{u}[1])} @ [1,1]
+rule MKP_ERK_at_185_op {MKP3(s[1]), ERK(T185[1])} <-> {MKP3(s[free]), ERK(T185[free])} @ [1,1]
+
+var p_ERK4 = {MKP3(s[1]), ERK(Y187{p}[1])}
+rule MKP_ERK_at_187 {MKP3(s[free]), ERK(Y187{p}[free])} <-> p_ERK4 @ [1,1]
+rule ERK_at_187_op p_ERK4 <-> {MKP3(s[1]), ERK(Y187{u}[1])} @ [1,1]
+rule MKP_ERK_at_187_op {MKP3(s[1]), ERK(Y187[1])} <-> {MKP3(s[free]), ERK(Y187[free])} @ [1,1]
+// Deactivating SoS
+rule SoS_ERK {SoS(SS{u}[free]), ERK(s[free], T185{p}[free], Y187{p}[free])} <-> {SoS(SS{u}[1]), ERK(s[1], T185{p}[free], Y187{p}[free])} @ [1,1]
+rule SoS_ERK_op {SoS(SS[1]), ERK(s[1])} <-> {SoS(SS[free]), ERK(s[free])} @ [1,1]
+// #feedback creation
+rule SoS_at_SS {SoS(SS{u}[1]), ERK(s[1], T185{p}[free], Y187{p}[free])} <-> {SoS(SS{p}[1]), ERK(s[1], T185{p}[free], Y187{p}[free])} @ [1,1]
+// #feedback recovery
+rule SoS_at_SS_op {SoS(SS{p}[free])} <-> {SoS(SS{u}[free])} @ [1,1]
+
+// Initialization
+init i_EGF 6 {EGF(r{ext}[free])}
+init i_EGFR 6 {EGFR(L{ext}[free], CR[free], Y992{u}[free], Y1068{u}[free], Y1148{u}[free])}
+init i_Shc 2 {Shc(PTB[free], Y318{u}[free])}
+init i_Grb_SoS 2 {Grb2(SH2[free], SH3[1]), SoS(a[1], b[free], SS{u}[free])}
+init i_RasGap 2 {RasGap(SH2[free], s[free])}
+init i_Ras 1 {Ras(S1S2{gdp}[free])}
+init i_Raf 1 {Raf(x{u}[free])}
+init i_PP2A1 1 {PP2A1(s[free])}
+init i_PP2A2 1 {PP2A2(s[free])}
+init i_MEK 1 {MEK(s[free], S222{u}[free], S218{u}[free])}
+init i_ERK 1 {ERK(s[free], T185{u}[free], Y187{u}[free])}
+init i_MKP3 1 {MKP3(s[free])}

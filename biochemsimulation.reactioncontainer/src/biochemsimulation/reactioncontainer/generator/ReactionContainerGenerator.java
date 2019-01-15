@@ -1,25 +1,32 @@
 package biochemsimulation.reactioncontainer.generator;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-import biochemsimulation.reactioncontainer.ReactionContainer;
+import biochemsimulation.reactioncontainer.Agent;
+import biochemsimulation.reactioncontainer.Container;
 import biochemsimulation.reactioncontainer.ReactionContainerFactory;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
-import biochemsimulation.reactioncontainer.SimAgent;
-import biochemsimulation.reactioncontainer.SimLinkState;
+import biochemsimulation.reactioncontainer.State;
 import biochemsimulation.reactioncontainer.impl.ReactionContainerFactoryImpl;
+import biochemsimulation.reactioncontainer.util.AgentClassFactory;
+import biochemsimulation.reactioncontainer.util.StateClassFactory;
 import biochemsimulation.reactionrules.reactionRules.Initial;
-import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
-import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.impl.ReactionRuleModelImpl;
 import biochemsimulation.reactionrules.utils.PatternUtils;
 
@@ -27,14 +34,21 @@ public abstract class ReactionContainerGenerator {
 	private String projectPath;
 	private URI modelLocation;
 	private Resource modelResource;
-	private ReactionRuleModelImpl model;
+	protected ReactionRuleModelImpl model;
 	private boolean isInitialized;
 	
-	private List<AgentTemplate> templates;
-	
 	private ReactionContainerFactory factory;
-	protected ReactionContainer containerModel;
+	protected Container containerModel;
+	
+	protected EPackage dynamicMetaModel;
+	protected AgentClassFactory agentClassFactory;
+	protected StateClassFactory stateClassFactory;
+	protected Map<String, State> stateInstances;
+	
+	private Map<Initial, InitializationTemplate> templates;
+	
 	protected URI containerURI;
+	protected String metaModelPath;
 	protected ResourceSet containerResSet;
 	protected Resource containerRes;
 	
@@ -104,62 +118,121 @@ public abstract class ReactionContainerGenerator {
 	
 	protected abstract void setContainerURI(String path);
 	
+	protected void setMetaModelPath(String path) {
+		this.metaModelPath = path;
+	}
+	
 	protected abstract void createAndSetResourceSet();
 	
 	protected abstract void createAndSetResource();
 	
 	protected abstract void saveModel() throws Exception;
 	
-	public void doGenerate(String path) throws Exception{
-		if(!isInitialized) {
-			throw new RuntimeException("ReactionContainerGenerator is uninitialized because the given resource containing the ReactionRules model could not be loaded.");
+	protected void saveMetaModel() throws Exception {
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
+		//Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( ).put( "ecore",
+		//		new XMIResourceFactoryImpl());
+		ResourceSet resSet = new ResourceSetImpl();
+		Resource res = resSet.createResource(URI.createFileURI(metaModelPath));
+		
+		res.getContents().add(dynamicMetaModel);
+		//EPackage.Registry.INSTANCE.put(dynamicMetaModel.getNsURI(), dynamicMetaModel);
+		
+		Map<Object, Object> saveOptions = ((XMIResource)res).getDefaultSaveOptions();
+		saveOptions.put(XMIResource.OPTION_ENCODING,"UTF-8");
+		saveOptions.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
+		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION,Boolean.TRUE);
+		saveOptions.put(XMIResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION, Boolean.TRUE);
+		
+		try {
+			((XMIResource)res).save(saveOptions);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		generateAgentTemplates();
+	}
+	
+	public void doGenerate(String modelPath, String metaModelPath) throws Exception{
+		//setMetaModelPath(projectPath+"generated/"+ model.getModel().getName() + ".ecore");
+		setMetaModelPath(metaModelPath);
+		generateAgentClasses();
 		
 		createAndSetResourceSet();
-		setContainerURI(path);
+		//setContainerURI(projectPath+"generated/"+ model.getModel().getName() + ".xmi");
+		setContainerURI(modelPath);
 		createAndSetResource();
 		
-		containerModel = factory.createReactionContainer();
-		containerModel.setName(model.getModel().getName());
-		createInstances(containerModel);
+		containerModel = factory.createContainer();
+		containerModel.setModelName(model.getModel().getName());
+		
+		createStateInstances();
+		generateInitializationTemplates();
+		createInstances();
 		
 		containerRes.getContents().add(containerModel);
-		
 		saveModel();
+		saveMetaModel();
 		
 		containerRes.unload();
-	}
-	
-	private void generateAgentTemplates(){
-		List<Initial> initials = new LinkedList<Initial>();
-		model.getReactionProperties().forEach(x -> { 
-			if(x instanceof Initial) initials.add((Initial) x); 
-			});
 		
-		templates = new LinkedList<AgentTemplate>();
+	}
+	
+	private void generateInitializationTemplates(){
+		templates = new HashMap<Initial, InitializationTemplate>();
+		List<Initial> initials = PatternUtils.getInitials(model);
 		for(Initial init : initials) {
-			Pattern pa = PatternUtils.patternFromPatternAssignment(init.getInitialPattern());
-			if(!PatternUtils.isPatternEmpty(pa)) {
-				int idx = 0;
-				for(ValidAgentPattern ap : PatternUtils.getValidAgentPatterns(pa.getAgentPatterns())) {
-					templates.add(new AgentTemplate(init, ap, idx));
-					idx++;
-				}
-			}
+			templates.put(init, new InitializationTemplate(PatternUtils.patternFromPatternAssignment(init.getInitialPattern()), 
+					agentClassFactory, stateClassFactory, stateInstances));
 		}
 	}
 	
-	private void createInstances(ReactionContainer containerModel){
-		List<SimAgent> agents = new LinkedList<SimAgent>();
-		List<SimLinkState> links = new LinkedList<SimLinkState>();
-		for(AgentTemplate at : templates) {
-			for(int i = 0; i<at.getCount(); i++) {
-				agents.add(at.createInstance(factory, links));
-			}
+	
+	private void createInstances(){
+		List<Agent> agents = new LinkedList<Agent>();
+		for(Initial init : templates.keySet()) {
+			int amount = (int) PatternUtils.valueOfNumericAssignment(init.getCount());
+			agents.addAll(templates.get(init).createInstances(amount));
 		}
-		containerModel.getSimAgent().addAll(agents);
-		containerModel.getSimLinkStates().addAll(links);
+		containerModel.getAgents().addAll(agents);
 	}
 	
+	
+	protected void generateAgentClasses() {
+		dynamicMetaModel = EcoreFactory.eINSTANCE.createEPackage();
+
+		dynamicMetaModel.setName(model.getModel().getName());
+		dynamicMetaModel.setNsPrefix(model.getModel().getName());
+		
+		URI uri = createMetaModelURI(model.getModel().getName());
+		dynamicMetaModel.setNsURI(uri.toString());
+		
+		//ReactionContainerPackage.eINSTANCE.getESubpackages().clear();
+		ReactionContainerPackage.eINSTANCE.getESubpackages().add(dynamicMetaModel);
+		
+		stateClassFactory = new StateClassFactory(dynamicMetaModel);
+		agentClassFactory = new AgentClassFactory(dynamicMetaModel, stateClassFactory);
+		
+		
+		model.getReactionProperties().forEach(x -> {
+			if(x instanceof biochemsimulation.reactionrules.reactionRules.Agent) {
+				biochemsimulation.reactionrules.reactionRules.Agent agnt = (biochemsimulation.reactionrules.reactionRules.Agent)x;
+				agentClassFactory.createClass(agnt);
+			}
+		});
+
+	}
+	
+	protected void createStateInstances() {
+		stateInstances = new HashMap<String, State>();
+		
+		stateClassFactory.getEClassRegistry().getAllClasses().forEach(stateClass -> {
+			State state = stateClassFactory.getEObjectFactory().createObject(stateClass);
+			containerModel.getStates().add(state);
+			stateInstances.put(state.eClass().getName(), state);
+		});;
+	}
+	
+	public static URI createMetaModelURI(String modelName) {
+		return URI.createPlatformResourceURI("biochemsimulation.reactioncontainer/generated/"+modelName, true);
+	}
 }

@@ -18,19 +18,20 @@ agent MKP3(s)
 // #1 external dimers:
 rule EGF_EGFR {EGF(r{ext}[free]), EGFR(L{ext}[free], CR[free])} <-> {EGF(r{ext}[1]), EGFR(L{ext}[1], CR[free])} @ [1,1]
 rule EGFR_EGFR {EGFR(L{ext}[bound], CR[free]), EGFR(L{ext}[bound], CR[free])} <-> {EGFR(L{ext}[bound], CR[1]), EGFR(L{ext}[bound], CR[1])} @ [1,1]
-// #2 simplified phosphorylation (internal or external)
+// #2 simplified phosphorylation (internal or external) 
 rule EGFR_at_992 {EGFR(CR[bound], Y992{u}[free])} -> {EGFR(CR[bound], Y992{p}[free])} @ [1]
-rule EGFR_at_1068 {EGFR(CR[bound], Y1068{u}[free])} -> {EGFR(CR[bound], Y1068{p}[free])} @ [1]
+rule EGFR_at_1068 {EGFR(CR[bound], Y1068{u}[free])} -> {EGFR(CR[bound], Y1068{p}[free])} @ [1] 
 rule EGFR_at_1148 {EGFR(CR[bound], Y1148{u}[free])} -> {EGFR(CR[bound], Y1148{p}[free])} @ [1]
 // #3 simplified dephosphorylation (internal or external)
 rule _992_op {EGFR(Y992{p}[free])} -> {EGFR(Y992{u}[free])} @ [1]
 rule _1068_op {EGFR(Y1068{p}[free])} -> {EGFR(Y1068{u}[free])} @ [1]
 rule _1148_op {EGFR(Y1148{p}[free])} -> {EGFR(Y1148{u}[free])} @ [1]
 
+
 // Internalization, degradation and recycling
 // #internalization:
-rule int_monomer {EGF(r{ext}[1]), EGFR(L{ext}[1], CR[free])} -> {EGF(r{int}[1]), EGFR(L{int}[1], CR[free])} @ [0.02]
-rule int_dimer {EGF(r{ext}[1]), EGFR(L{ext}[1], CR[2]), EGF(r{ext}[3]), EGFR(L{ext}[3], CR[2])} -> {EGF(r{int}[1]), EGFR(L{int}[1], CR[2]), EGF(r{int}[3]), EGFR(L{int}[3], CR[2])} @ [0.02]
+//rule int_monomer {EGF(r{ext}[1]), EGFR(L{ext}[1], CR[free])} -> {EGF(r{int}[1]), EGFR(L{int}[1], CR[free])} @ [0.02]
+//rule int_dimer {EGF(r{ext}[1]), EGFR(L{ext}[1], CR[2]), EGF(r{ext}[3]), EGFR(L{ext}[3], CR[2])} -> {EGF(r{int}[1]), EGFR(L{int}[1], CR[2]), EGF(r{int}[3]), EGFR(L{int}[3], CR[2])} @ [0.02]
 // #dissociation:
 rule EGFR_EGFR_op {EGFR(L{int}[bound], CR[1]), EGFR(L{int}[bound], CR[1])} -> {EGFR(L{int}[bound], CR[free]), EGFR(L{int}[bound], CR[free])} @ [1]
 rule EGF_EGFR_op {EGF(r{int}[1]), EGFR(L{int}[1], CR[free])} -> {EGF(r{int}[free]), EGFR(L{int}[free], CR[free])} @ [1]
@@ -144,7 +145,54 @@ init i_MKP3 25 {MKP3(s[free])}
 obs ERK_pp {ERK(Y187{p}[?], T185{p}[?])}
 obs MEK_pp {MEK(S222{p}[?], S218{p}[?])}
 obs Raf_p {Raf(x{p}[?])}
-obs Ras_gtp {Ras(S1S2{gtp}[?])}
+
+/*
+obs Ras_gtp_f {Ras(S1S2{gtp}[free])}
+obs Ras_gdp_f {Ras(S1S2{gdp}[free])}
+obs Ras_gtp_b {Ras(S1S2{gtp}[bound])}
+obs Ras_gdp_b {Ras(S1S2{gdp}[bound])}
+*/
+
+/*
+obs o_intrinsic_Ras_gdp_lhs {Ras(S1S2{gtp}[free])}
+obs o_intrinsic_Ras_gdp_rhs {Ras(S1S2{gdp}[free])}
+obs o_Ras_gdp_rhs {RasGap(s[1]), Ras(S1S2{gtp}[1])}
+obs o_Ras_gdp_lhs {RasGap(s[1]), Ras(S1S2{gdp}[1])}
+ */
+
+/*
+obs long_arm_lhs {EGFR(Y1148{p}[1]), Shc(PTB[1], Y318{p}[2]), Grb2(SH2[2], SH3[3]), SoS(a[3], b[free]), Ras(S1S2{gdp}[free])}
+obs long_arm_rhs {EGFR(Y1148{p}[1]), Shc(PTB[1], Y318{p}[2]), Grb2(SH2[2], SH3[3]), SoS(a[3], b[4]), Ras(S1S2{gdp}[4])}
+obs short_arm_lhs {EGFR(Y1068{p}[1]), Grb2(SH2[1], SH3[2]), SoS(a[2], b[free]), Ras(S1S2{gdp}[free])}
+obs short_arm_rhs {EGFR(Y1068{p}[1]), Grb2(SH2[1], SH3[2]), SoS(a[2], b[3]), Ras(S1S2{gdp}[3])}
+*/
+
+/*
+obs long_arm_EGFR_lhs {EGFR(Y1148{p}[bound])} // spinnt
+obs long_arm_Shc_lhs {Shc(PTB[bound], Y318{p}[bound])} // spinnt
+obs long_arm_Grb2_lhs {Grb2(SH2[bound], SH3[bound])} // spinnt
+obs long_arm_SoS_lhs {SoS(a[bound], b[free])}
+obs long_arm_Ras_lhs {Ras(S1S2{gdp}[free])} 
+*/
+ 
+// obs del_EGFR {EGFR(L{int}[free], CR[free])}
+
+/*
+obs egfr_shc_lhs {EGFR(Y1148{p}[free]), Shc(PTB[free])}
+obs egfr_shc_rhs {EGFR(Y1148{p}[1]), Shc(PTB[1])}
+ */
+/*
+obs egfr_y1148_u_free {EGFR(CR[?], Y1148{u}[free])}
+obs egfr_y1068_u_free {EGFR(CR[?], Y1068{u}[free])}
+obs egfr_y992_u_free {EGFR(CR[?], Y992{u}[free])}
+*/
+/*
+obs egfr_y1148_p_free {EGFR(CR[bound], Y1148{p}[free])}
+obs egfr_y1068_p_free {EGFR(CR[bound], Y1068{p}[free])}
+obs egfr_y992_p_free {EGFR(CR[bound], Y992{p}[free])}
+*/
+
+//obs egfr_lhs {EGFR(L{ext}[bound], CR[free])}
 
 // Terminates
 terminate t_it time=300000

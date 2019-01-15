@@ -3,25 +3,26 @@ package biochemsimulation.simulation;
 import java.util.Collection;
 import java.util.Map;
 
-import biochemsimulation.reactioncontainer.ReactionContainer;
+import biochemsimulation.reactioncontainer.Container;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.utils.PatternUtils;
+import biochemsimulation.simulation.GT.ReactionRuleTransformer;
 import biochemsimulation.simulation.benchmark.Runtimer;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.persistence.PersistenceManager;
 import biochemsimulation.simulation.pmc.PatternMatchingController;
-import biochemsimulation.simulation.pmc.GT.ReactionRuleTransformer;
 
 public abstract class Simulation {
 	
 	protected String modelName;
 	protected PersistenceManager persistence;
 	protected PatternMatchingController pmc;
+	protected PatternMatchingController pmc2;
 	protected SimulationTerminationCondition terminationCondition;
 	protected SimulationState state;
 	protected SimulationStatistics simStats;
 	protected ReactionRuleModel ruleModel;
-	protected ReactionContainer reactionContainer;
+	protected Container reactionContainer;
 	protected ReactionRuleTransformer gt;
 	protected Map<String, Double> staticReactionRates;
 
@@ -41,6 +42,10 @@ public abstract class Simulation {
 		this.pmc = pmc;
 	}
 	
+	void setPmc2(PatternMatchingController pmc) {
+		this.pmc2 = pmc;
+	}
+	
 	void setTerminationCondition(SimulationTerminationCondition terminationCondition) {
 		this.terminationCondition = terminationCondition;
 	}
@@ -56,7 +61,14 @@ public abstract class Simulation {
 		pmc.loadModels(ruleModel, reactionContainer);
 		pmc.initEngine();
 		pmc.initController();
-		gt = new ReactionRuleTransformer(pmc.getPatternContainer(), reactionContainer);
+		//debug
+		/*
+		pmc2.loadModels(ruleModel, reactionContainer);
+		pmc2.initEngine();
+		pmc2.initController();
+		*/
+		
+		gt = new ReactionRuleTransformer(pmc.getPatternContainer(), reactionContainer, pmc.getEPackageWrapper());
 		gt.init();
 		initStaticReactionRates();
 		state = new SimulationState();
@@ -108,7 +120,13 @@ public abstract class Simulation {
 			}
 		});
 		
-		gt = new ReactionRuleTransformer(pmc.getPatternContainer(), reactionContainer);
+		//debug
+		/*
+		pmc2.loadModels(ruleModel, reactionContainer);
+		pmc2.initEngine();
+		pmc2.initController();
+		*/
+		gt = new ReactionRuleTransformer(pmc.getPatternContainer(), reactionContainer, pmc.getEPackageWrapper());
 		gt.init();
 		initStaticReactionRates();
 		state = new SimulationState();

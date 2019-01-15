@@ -6,16 +6,19 @@ public class PatternMatchingEngineFactory {
 		PatternMatchingEngine pme = null;
 		
 		switch(type) {
-		case ViatraEngine : {
-			pme = new ViatraEngineWrapper();
-			break;
+			case ViatraEngine : {
+				pme = new ViatraEngineWrapper();
+				break;
+			}
+			case DemoclesEngine : {
+				pme = new DemoclesEngineWrapper();
+				break;
+			}
+			case ParallelViatraEngine: {
+				pme = new ParallelViatraEngine();
+				break;
+			}
 		}
-		case DemoclesEngine : {
-			pme = new DemoclesEngineWrapper();
-			break;
-		}
-		}
-		
 		return pme;
 	}
 }

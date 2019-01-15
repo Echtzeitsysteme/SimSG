@@ -3,6 +3,7 @@ package biochemsimulation.reactionrules.utils;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -16,20 +17,21 @@ import biochemsimulation.reactionrules.reactionRules.FreeLink;
 import biochemsimulation.reactionrules.reactionRules.LinkState;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.Rule;
+import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern;
 import biochemsimulation.reactionrules.reactionRules.WhatEver;
 
 public class PatternContainer {
-	Set<Pattern> patterns;
+	Map<Pattern, Set<String>> patterns;
 	Set<String> patternNames;
 	Map<String, Pattern> rulePatterns;
 	Map<String, Pattern> observablesPatterns;
 	Map<String, Pattern> termCondPopulationPatterns;
 	
 	PatternContainer() {
-		patterns = new HashSet<Pattern>();
+		patterns = new HashMap<Pattern, Set<String>>();
 		patternNames = new HashSet<String>();
 		rulePatterns = new HashMap<String, Pattern>();
 		observablesPatterns = new HashMap<String, Pattern>();
@@ -37,7 +39,7 @@ public class PatternContainer {
 	}
 	
 	public Collection<Pattern> getAllPatterns() {
-		return patterns;
+		return patterns.keySet();
 	}
 	
 	public Collection<String> getAllPatternNames() {
@@ -45,9 +47,9 @@ public class PatternContainer {
 	}
 	
 	public Collection<String> getAllPatternHashes() {
-		Collection<String> hashes = new HashSet<String>();
-		for(Pattern pattern : patterns) {
-			hashes.add(calcPatternHash(pattern));
+		Collection<String> hashes = new LinkedList<String>();
+		for(Set<String> names : patterns.values()) {
+			hashes.add(names.iterator().next());
 		}
 		return hashes;
 	}
@@ -64,21 +66,38 @@ public class PatternContainer {
 		return termCondPopulationPatterns;
 	}
 	
-	public static String calcPatternHash(Pattern pattern) {
-		return "pattern"+String.valueOf(pattern.hashCode());
+	public static String calcPatternHash(Pattern pattern, String patternName) {
+		return "pattern"+String.valueOf(pattern.hashCode())+"_"+patternName;
+	}
+	
+	public String getPatternHash(Pattern p) {
+		return patterns.get(p).iterator().next();
 	}
 	
 	public String getPatternHash(String patternName) {
 		if(rulePatterns.containsKey(patternName)) {
-			return calcPatternHash(rulePatterns.get(patternName));
+			//return calcPatternHash(rulePatterns.get(patternName));
+			return patterns.get(rulePatterns.get(patternName)).iterator().next();
 		}else if(observablesPatterns.containsKey(patternName)) {
-			return calcPatternHash(observablesPatterns.get(patternName));
+			//return calcPatternHash(observablesPatterns.get(patternName));
+			return patterns.get(observablesPatterns.get(patternName)).iterator().next();
 		}else if(termCondPopulationPatterns.containsKey(patternName)) {
-			return calcPatternHash(termCondPopulationPatterns.get(patternName));
+			//return calcPatternHash(termCondPopulationPatterns.get(patternName));
+			return patterns.get(termCondPopulationPatterns.get(patternName)).iterator().next();
 		}else {
 			return null;
 		}
 	}
+	
+	private void addPattern(Pattern pattern, String patternName) {
+		Set<String> hashes = patterns.get(pattern);
+		if(hashes == null) {
+			hashes = new LinkedHashSet<String>();
+			patterns.put(pattern, hashes);
+		}
+		hashes.add(calcPatternHash(pattern, patternName));
+	}
+	
 	public void addRulePatterns(Map<String, Pattern> rulePatterns) {
 		rulePatterns.forEach((name, pattern) -> {
 			Pattern p = findEqualPattern(pattern);
@@ -86,7 +105,8 @@ public class PatternContainer {
 				this.rulePatterns.put(name, p);
 				patternNames.add(name);
 			}else {
-				patterns.add(pattern);
+				addPattern(pattern, name);
+				//patterns.add(pattern);
 				this.rulePatterns.put(name, pattern);
 				patternNames.add(name);
 			}
@@ -97,7 +117,8 @@ public class PatternContainer {
 		patternsVariables.forEach((name, pattern) -> {
 			Pattern p = findEqualPattern(pattern);
 			if(p == null) {
-				patterns.add(pattern);
+				addPattern(pattern, name);
+				//patterns.add(pattern);
 			}
 		});
 	}
@@ -109,7 +130,8 @@ public class PatternContainer {
 				observablesPatterns.put(name, p);
 				patternNames.add(name);
 			}else {
-				patterns.add(pattern);
+				//patterns.add(pattern);
+				addPattern(pattern, name);
 				observablesPatterns.put(name, pattern);
 				patternNames.add(name);
 			}
@@ -123,7 +145,8 @@ public class PatternContainer {
 				termCondPopulationPatterns.put(name, p);
 				patternNames.add(name);
 			}else {
-				patterns.add(pattern);
+				//patterns.add(pattern);
+				addPattern(pattern, name);
 				termCondPopulationPatterns.put(name, pattern);
 				patternNames.add(name);
 			}
@@ -132,7 +155,7 @@ public class PatternContainer {
 	
 	public void removeUnusedPatterns(List<Rule> rules) {
 		Collection<Pattern> markedForRemoval = new LinkedList<Pattern>();
-		for(Pattern p : patterns) {
+		for(Pattern p : patterns.keySet()) {
 			if(rulePatterns.containsValue(p)) {
 				continue;
 			}
@@ -171,26 +194,32 @@ public class PatternContainer {
 			}
 		}
 		*/
-		patterns.removeAll(markedForRemoval);
+		//patterns.removeAll(markedForRemoval);
+		markedForRemoval.forEach(p -> {
+			patterns.remove(p);
+		});
+		
 		
 		//debug..
+		/*
 		rulePatterns.forEach((name, pattern) -> {
-			System.out.println("Pattern name: "+name+", hash: "+calcPatternHash(pattern));
+			System.out.println("Pattern name: "+name+", hash: "+getPatternHash(pattern));
 		});
 		observablesPatterns.forEach((name, pattern) -> {
-			System.out.println("Pattern name: "+name+", hash: "+calcPatternHash(pattern));
+			System.out.println("Pattern name: "+name+", hash: "+getPatternHash(pattern));
 		});
 		termCondPopulationPatterns.forEach((name, pattern) -> {
-			System.out.println("Pattern name: "+name+", hash: "+calcPatternHash(pattern));
+			System.out.println("Pattern name: "+name+", hash: "+getPatternHash(pattern));
 		});
+		*/
 		
 	}
 	
 	private Pattern findEqualPattern(Pattern other) {
-		if(patterns.contains(other)) {
+		if(patterns.containsKey(other)) {
 			return other;
 		}
-		for(Pattern pattern : patterns) {
+		for(Pattern pattern : patterns.keySet()) {
 			if(equals(pattern, other)) {
 				return pattern;
 			}
@@ -199,7 +228,8 @@ public class PatternContainer {
 	}
 	
 	private boolean equals(Pattern p1, Pattern p2) {
-		
+		return false;
+		/*
 		if(p1.getAgentPatterns().size() != p2.getAgentPatterns().size()) {
 			return false;
 		}
@@ -230,8 +260,12 @@ public class PatternContainer {
 			}
 			
 			for(int j = 0; j<vap1.getSitePatterns().getSitePatterns().size(); j++) {
-				SitePattern sp1 = vap1.getSitePatterns().getSitePatterns().get(j);
-				SitePattern sp2 = vap2.getSitePatterns().getSitePatterns().get(j);
+				SitePattern superSp1 = vap1.getSitePatterns().getSitePatterns().get(j);
+				SitePattern superSp2 = vap2.getSitePatterns().getSitePatterns().get(j);
+				// ignore MultiLinks for now
+				if(!(superSp1 instanceof SingleSitePattern) || !(superSp1 instanceof SingleSitePattern)) continue;
+				SingleSitePattern sp1 = (SingleSitePattern)superSp1;
+				SingleSitePattern sp2 = (SingleSitePattern)superSp2;
 				
 				if(!sp1.getSite().getName().equals(sp2.getSite().getName())) {
 					return false;
@@ -289,5 +323,6 @@ public class PatternContainer {
 		}
 		
 		return true;
+		*/
 	}
 }

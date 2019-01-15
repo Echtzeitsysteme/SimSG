@@ -8,7 +8,9 @@ import biochemsimulation.reactionrules.reactionRules.ArithmeticVariable;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkAgent;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLinkSite;
+import biochemsimulation.reactionrules.reactionRules.MultiLinkSitePattern;
 import biochemsimulation.reactionrules.reactionRules.NumericFromVariable;
+import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.SitePattern;
 import biochemsimulation.reactionrules.reactionRules.SitePatterns;
@@ -95,12 +97,18 @@ public class ReactionRulesScopeProvider extends AbstractReactionRulesScopeProvid
     if ((sitePattern == null)) {
       return super.getScope(context, reference);
     }
-    States _states = sitePattern.getSite().getStates();
-    boolean _tripleEquals = (_states == null);
-    if (_tripleEquals) {
+    States states = ((States) null);
+    if ((sitePattern instanceof MultiLinkSitePattern)) {
+      final MultiLinkSitePattern mlsp = ((MultiLinkSitePattern) sitePattern);
+      states = mlsp.getSite().getStates();
+    } else {
+      final SingleSitePattern slsp = ((SingleSitePattern) sitePattern);
+      states = slsp.getSite().getStates();
+    }
+    if ((states == null)) {
       return super.getScope(context, reference);
     }
-    EList<State> list = sitePattern.getSite().getStates().getState();
+    EList<State> list = states.getState();
     final IScope existingScope = Scopes.scopeFor(list);
     final Predicate<IEObjectDescription> _function = (IEObjectDescription it) -> {
       EObject _eObjectOrProxy = it.getEObjectOrProxy();

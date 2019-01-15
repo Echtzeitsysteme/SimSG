@@ -17,6 +17,7 @@ import biochemsimulation.reactionrules.reactionRules.NumericFromLiteral;
 import biochemsimulation.reactionrules.reactionRules.NumericFromVariable;
 import biochemsimulation.reactionrules.reactionRules.Observation;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
+import biochemsimulation.reactionrules.reactionRules.Initial;
 import biochemsimulation.reactionrules.reactionRules.PatternAssignment;
 import biochemsimulation.reactionrules.reactionRules.PatternVariable;
 import biochemsimulation.reactionrules.reactionRules.Population;
@@ -92,6 +93,11 @@ public class PatternUtils {
 			NumericFromVariable nv = (NumericFromVariable) na;
 			return nv.getValueVar().getValue().getValue();
 		}
+	}
+	
+	public static List<Initial> getInitials(ReactionRuleModel model) {
+		return model.getReactionProperties().stream().filter(item -> (item instanceof Initial)).map(init -> (Initial) init)
+				.collect(Collectors.toList());
 	}
 	
 	public static PatternContainer createPatternContainer(ReactionRuleModel model) {

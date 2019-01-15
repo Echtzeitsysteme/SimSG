@@ -4,6 +4,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -14,11 +15,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.viatra.query.patternlanguage.emf.EMFPatternLanguageStandaloneSetup;
-import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.EMFPatternLanguagePackage;
-import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternModel;
-import org.eclipse.xtext.resource.XtextResourceSet;
+import org.eclipse.viatra.query.patternlanguage.emf.vql.*;
 import biochemsimulation.reactioncontainer.ReactionContainerPackage;
 import biochemsimulation.simulation.matching.patterns.GenericPattern;
 import biochemsimulation.simulation.persistence.PersistenceUtils;
@@ -33,9 +31,12 @@ public class ViatraPatternGenerator {
 	
 	private String os;
 	private boolean isInitialized;
+	EPackage dynamicMetaModel;
 	private Map<String, GenericPattern> genericPatterns;
+	@SuppressWarnings("restriction")
 	private PatternModel patternModel;
 	private String patternModelFolder;
+	private EMFPatternLanguageStandaloneSetup setup;
 	
 	private void setOSspecificSeparators() {
 		os = System.getProperty(SYSTEM_OS_PROPERTY);
@@ -60,23 +61,26 @@ public class ViatraPatternGenerator {
 		patternModelFolder += "/";
 		
 		isInitialized = false;
-		EMFPatternLanguageStandaloneSetup.doSetup();
-		EMFPatternLanguagePackage.eINSTANCE.eClass();
+		setup = new EMFPatternLanguageStandaloneSetup();
+		setup.createInjectorAndDoEMFRegistration();
 	}
 	
-	public ViatraPatternGenerator(Map<String, GenericPattern> genericPatterns) {
+	public ViatraPatternGenerator(EPackage dynamicMetaModel, Map<String, GenericPattern> genericPatterns) {
 		init();
 		isInitialized = genericPatterns != null;
 		this.genericPatterns = genericPatterns;
+		this.dynamicMetaModel = dynamicMetaModel;
 	}
 	
-	public PatternModel doGenerate(String path, boolean saveToFile) throws Exception{
+	@SuppressWarnings("restriction")
+	public PatternModel doGenerate() throws Exception{
 		if(!isInitialized) {
 			throw new RuntimeException("ViatraPatternGenerator is uninitialized because the given resource containing the ReactionRules model could not be loaded.");
 		}
 		
 		LinkedHashMap<EPackage, String> imports = new LinkedHashMap<EPackage, String>();
 		imports.put(ReactionContainerPackage.eINSTANCE, "reactionContainer");
+		imports.put(dynamicMetaModel, dynamicMetaModel.getNsPrefix());
 		
 		ViatraCodeGenerator pt = new ViatraCodeGenerator(imports, genericPatterns);
 			
@@ -93,31 +97,21 @@ public class ViatraPatternGenerator {
 				patternModel = (PatternModel) patternResource.getContents().get(0);
 			}
 		}
-		if(saveToFile) {
-			URI uri = URI.createFileURI(path);
-			saveModelToXmiFile(uri);
-		}
+		// dirty trick to prevent the VIATRA Plugin from detecting a *.vql-file and stop it from screwing with xtend generation 
+		deleteAndRenameVqlFile(patternModelFolder+"temp.vql", patternModelFolder+"temp.pvql");
 		return patternModel;
 	}
 	
 	private void saveModelToVqlFile(String path, String output) throws Exception {
 		Path file = Paths.get(path);
 		List<String> lines = Arrays.asList(output);
-
 		Files.write(file, lines, Charset.forName("UTF-8"));
-
 	}
 	
-	private void saveModelToXmiFile(URI uri) throws Exception {
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap( ).put( "*",
-				new XMIResourceFactoryImpl());
-		XtextResourceSet resourceSet = new XtextResourceSet();
-		Resource resource = resourceSet.createResource(uri);
-		resource.getContents().add(patternModel);
-		
-		resource.save(null);
-		System.out.println("Model saved to: "+uri.path());
-
+	private void deleteAndRenameVqlFile(String oldPath, String newPath) throws Exception {
+		Path oldFile = Paths.get(oldPath);
+		Path newFile = Paths.get(newPath);
+		Files.move(oldFile, newFile, StandardCopyOption.REPLACE_EXISTING);
 	}
 
 }

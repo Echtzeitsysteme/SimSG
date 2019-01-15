@@ -1,6 +1,6 @@
 package biochemsimulation.simulation.matching;
 
-import biochemsimulation.reactioncontainer.ReactionContainer;
+import biochemsimulation.reactioncontainer.Container;
 import biochemsimulation.simulation.matching.patterns.GenericPattern;
 
 import java.util.Collection;
@@ -10,11 +10,14 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EPackage;
+
 public abstract class PatternMatchingEngine {
 	
 	protected PatternMatchingEngineEnum type;
 	
-	protected ReactionContainer model;
+	protected EPackage metaModel;
+	protected Container model;
 	protected Map<String, GenericPattern> genericPatterns;
 	
 	protected Set<String> voidPatterns;
@@ -34,8 +37,9 @@ public abstract class PatternMatchingEngine {
 		this.genericPatterns = genericPatterns;
 	}
 	
-	public void setReactionContainer(ReactionContainer container) {
+	public void setReactionContainer(Container container, EPackage metaModel) {
 		this.model = container;
+		this.metaModel = metaModel;
 	}
 	
 	abstract public void loadModels() throws Exception;

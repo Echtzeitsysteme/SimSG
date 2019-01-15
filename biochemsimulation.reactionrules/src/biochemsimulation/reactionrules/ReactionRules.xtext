@@ -84,9 +84,20 @@ States:
 		('{' state+=State ( "," state+=State)* '}' )?	
 ;
 
-Site returns Site:
+SingleSite returns Site:
+	{SingleSite}
 	name=ID
 	states = States
+;
+
+MultiSite returns Site:
+	{MultiSite}
+	'*'name=ID
+	states = States
+;
+
+Site:
+	SingleSite | MultiSite
 ;
 
 Sites:
@@ -128,6 +139,22 @@ FreeLink returns LinkState :
 	name = FREE_LINK
 ;
 
+IndexedFreeLink returns LinkState :
+	{IndexedFreeLink}
+	name = FREE_LINK
+	'('
+	state = UnsignedInteger
+	')'
+;
+
+TypedFreeLink returns LinkState :
+	{TypedFreeLink}
+	name = FREE_LINK
+	'('
+	state = [Agent]
+	')'
+;
+
 WhatEver returns LinkState :
 	{WhatEver}
 	name = WHATEVER_LINK
@@ -136,6 +163,11 @@ WhatEver returns LinkState :
 BoundLink returns LinkState :
 	{BoundLink}
 	state = UnsignedInteger
+;
+
+MultiLink returns LinkState :
+	{MultiLink}
+	(states += (BoundLink|IndexedFreeLink|TypedFreeLink) (',' states += (BoundLink|IndexedFreeLink|TypedFreeLink))+ )?
 ;
 
 BoundAnyOfTypeLinkAgent returns BoundAnyOfTypeLinkAgent:
@@ -162,14 +194,30 @@ SiteState:
 
 LinkState:
 	{LinkState}
-	 '['linkState = (BoundAnyLink | FreeLink | BoundAnyOfTypeLink | BoundLink | WhatEver)']'
+	 '['linkState = (BoundAnyLink | FreeLink | IndexedFreeLink | TypedFreeLink | BoundAnyOfTypeLink | BoundLink | WhatEver)']'
 ;
 
-SitePattern returns SitePattern:
-	{SitePattern}
-	site = [Site]
+MultiLinkState:
+	{MultiLinkState}
+	'*['linkState = (WhatEver | FreeLink | IndexedFreeLink | TypedFreeLink  |BoundAnyLink | BoundLink | MultiLink)']'
+;
+
+SingleSitePattern returns SitePattern:
+	{SingleSitePattern}
+	site = [SingleSite]
 	(state = SiteState)?
 	linkState = LinkState 
+;
+
+MultiLinkSitePattern returns SitePattern:
+	{MultiLinkSitePattern}
+	site = [MultiSite]
+	(state = SiteState)?
+	linkState = MultiLinkState
+;
+
+SitePattern:
+	SingleSitePattern | MultiLinkSitePattern
 ;
 
 SitePatterns returns SitePatterns:

@@ -13,9 +13,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
-import biochemsimulation.reactioncontainer.ReactionContainer;
+import biochemsimulation.reactioncontainer.Container;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
-import biochemsimulation.reactionrules.utils.PatternUtils;
 import biochemsimulation.simulation.matching.IMatch;
 import biochemsimulation.simulation.matching.PatternMatchingEngine;
 import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;
@@ -35,7 +34,7 @@ abstract class PatternMatchingTest {
 	protected PersistenceManager persistence;
 	
 	protected ReactionRuleModel ruleModel;
-	protected ReactionContainer containerModel;
+	protected Container containerModel;
 	
 	protected PatternMatchingEngine engine;
 	protected PatternMatchingEngineEnum engineType;
@@ -369,5 +368,139 @@ abstract class PatternMatchingTest {
 		final String patternName = "lightInjectivityAndBoundAny_rule_lhs";
 		getAndCheckMatches(patternName, numOfMatches);
 	}
+	
+	@Test
+	void simpleMultiEdgeTest() {
+		final int numOfMatches = 3;
+		final String patternName = "simpleMultiEdge_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	// Pattern is symmetric -> hence 6 instead of 3 matches
+	@Test
+	void simpleMultiEdgeTest2() {
+		final int numOfMatches = 6;
+		final String patternName = "simpleMultiEdge2_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	// Pattern is symmetric -> hence 6 instead of 3 matches
+	@Test
+	void simpleMultiEdgeTest3() {
+		final int numOfMatches = 6;
+		final String patternName = "simpleMultiEdge3_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void simpleMixedMultiEdgeTest() {
+		final int numOfMatches = 4;
+		final String patternName = "simpleMixedMultiEdge_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void simpleDisjunctMultiEdgeTest() {
+		final int numOfMatches = 4;
+		final String patternName = "simpleDisjunctMultiEdge_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void simpleDisjunctMultiEdgeTest2() {
+		final int numOfMatches = 9;
+		final String patternName = "simpleDisjunctMultiEdge2_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void simpleMixedDisjunctMultiEdgeTest() {
+		final int numOfMatches = 9;
+		final String patternName = "simpleMixedDisjunctMultiEdge_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void simpleMixedDisjunctMultiEdgeTest2() {
+		final int numOfMatches = 24;
+		final String patternName = "simpleMixedDisjunctMultiEdge2_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void simpleMixedDisjunctMultiEdgeTest3() {
+		final int numOfMatches = 9;
+		final String patternName = "simpleMixedDisjunctMultiEdge3_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void simpleMixedDisjunctMultiEdgeTest4() {
+		final int numOfMatches = 54;
+		final String patternName = "simpleMixedDisjunctMultiEdge4_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void mediumDisjunctMultiEdgeTest() {
+		final int numOfMatches = 27;
+		final String patternName = "mediumDisjunctMultiEdge_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void mediumDisjunctMultiEdgeTest2() {
+		final int numOfMatches = 13;
+		final String patternName = "mediumDisjunctMultiEdge2_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
 
+	@Test
+	void mediumDisjunctMultiEdgeTest3() {
+		final int numOfMatches = 24;
+		final String patternName = "mediumDisjunctMultiEdge3_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void mediumDisjunctMultiEdgeTest4() {
+		final int numOfMatches = 30;
+		final String patternName = "mediumDisjunctMultiEdge4_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void mediumDisjunctMultiEdgeTest5() {
+		final int numOfMatches = 36;
+		final String patternName = "mediumDisjunctMultiEdge5_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void mediumDisjunctMultiEdgeTest6() {
+		final int numOfMatches = 18;
+		final String patternName = "mediumDisjunctMultiEdge6_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void mediumMultiEdgeTest() {
+		final int numOfMatches = 18;
+		final String patternName = "mediumMultiEdge_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void mediumMultiEdgeTest2() {
+		final int numOfMatches = 6;
+		final String patternName = "mediumMultiEdge2_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+
+	@Test
+	void mediumMultiEdgeTest3() {
+		final int numOfMatches = 12;
+		final String patternName = "mediumMultiEdge3_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
 }
