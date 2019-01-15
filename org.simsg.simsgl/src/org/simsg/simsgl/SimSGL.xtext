@@ -1,0 +1,343 @@
+grammar org.simsg.simsgl.SimSGL with org.eclipse.xtext.common.Terminals
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+generate simSGL "http://www.simsg.org/simsgl/SimSGL"
+
+SimSGLModel:
+	model = Model
+	(properties+=SimSGLProperty)*
+;
+
+Model:
+	'ModelID'
+	name=ID
+;
+
+SimSGLProperty returns SimSGLProperty:
+	Agent | Variable | Observation | Initial | Rule | Terminate
+;
+
+terminal AT:
+	'@'
+;
+terminal BI:
+	'<->'
+;
+terminal UNI:
+	'->'
+;
+
+terminal VOID_PATTERN:
+	'void'
+;
+
+terminal BOUND_LINK:
+	'bound'
+;
+
+terminal FREE_LINK:
+	'free'
+;
+
+terminal WHATEVER_LINK:
+	'?'
+;
+
+terminal EXPONENT:
+	'E'
+;
+
+@Override
+terminal INT returns ecore::EInt:
+	'0'..'9' ('0'..'9')*
+;
+
+Float hidden():
+	('-')?INT '.' INT
+;
+
+ScientificFloat hidden():
+	('-')?INT'.'INT EXPONENT('-' | '+')INT
+;
+
+UnsignedInteger  hidden():
+	INT
+;
+
+SignedInteger  hidden():
+	('-'INT)
+;
+
+ArithmeticType:
+	Float | UnsignedInteger | SignedInteger | ScientificFloat
+;
+
+ArithmeticValue returns ArithmeticValue:
+	value = ArithmeticType
+;
+
+State returns State:
+	name=ID
+;
+
+States:
+	{States}
+		('{' state+=State ( "," state+=State)* '}' )?	
+;
+
+SingleSite returns Site:
+	{SingleSite}
+	name=ID
+	states = States
+;
+
+MultiSite returns Site:
+	{MultiSite}
+	'*'name=ID
+	states = States
+;
+
+Site:
+	SingleSite | MultiSite
+;
+
+Sites:
+	{Sites}
+		('(' sites+=Site ( "," sites+=Site)* ')' )?	
+;
+
+Agent returns Agent:
+	'agent'
+	name = ID
+	sites = Sites
+;
+
+PatternVariable returns PatternVariable:
+	'var'
+	name = ID
+	'='
+	pattern = Pattern
+;
+
+ArithmeticVariable returns ArithmeticVariable:
+	'var'
+	name = ID
+	'='
+	value = ArithmeticValue
+;
+
+Variable:
+	PatternVariable | ArithmeticVariable
+;
+
+BoundAnyLink returns LinkState :
+	{BoundAnyLink}
+	name = BOUND_LINK
+;
+
+FreeLink returns LinkState :
+	{FreeLink}
+	name = FREE_LINK
+;
+
+IndexedFreeLink returns LinkState :
+	{IndexedFreeLink}
+	name = FREE_LINK
+	'('
+	state = UnsignedInteger
+	')'
+;
+
+TypedFreeLink returns LinkState :
+	{TypedFreeLink}
+	name = FREE_LINK
+	'('
+	state = [Agent]
+	')'
+;
+
+WhatEver returns LinkState :
+	{WhatEver}
+	name = WHATEVER_LINK
+;
+
+BoundLink returns LinkState :
+	{BoundLink}
+	state = UnsignedInteger
+;
+
+MultiLink returns LinkState :
+	{MultiLink}
+	(states += (BoundLink|IndexedFreeLink|TypedFreeLink) (',' states += (BoundLink|IndexedFreeLink|TypedFreeLink))+ )?
+;
+
+BoundAnyOfTypeLinkAgent returns BoundAnyOfTypeLinkAgent:
+	{BoundAnyOfTypeLinkAgent}
+	agent = [Agent]
+;
+
+BoundAnyOfTypeLinkSite returns BoundAnyOfTypeLinkSite:
+	{BoundAnyOfTypeLinkSite}
+	site = [Site]
+;
+
+BoundAnyOfTypeLink returns LinkState :
+	{BoundAnyOfTypeLink}
+	linkAgent = BoundAnyOfTypeLinkAgent
+	'.'
+	linkSite = BoundAnyOfTypeLinkSite
+;
+
+SiteState:
+	{SiteState}
+	'{' state = [State] '}'
+;
+
+LinkState:
+	{LinkState}
+	 '['linkState = (BoundAnyLink | FreeLink | IndexedFreeLink | TypedFreeLink | BoundAnyOfTypeLink | BoundLink | WhatEver)']'
+;
+
+MultiLinkState:
+	{MultiLinkState}
+	'*['linkState = (WhatEver | FreeLink | IndexedFreeLink | TypedFreeLink  |BoundAnyLink | BoundLink | MultiLink)']'
+;
+
+SingleSitePattern returns SitePattern:
+	{SingleSitePattern}
+	site = [SingleSite]
+	(state = SiteState)?
+	linkState = LinkState 
+;
+
+MultiLinkSitePattern returns SitePattern:
+	{MultiLinkSitePattern}
+	site = [MultiSite]
+	(state = SiteState)?
+	linkState = MultiLinkState
+;
+
+SitePattern:
+	SingleSitePattern | MultiLinkSitePattern
+;
+
+SitePatterns returns SitePatterns:
+	{SitePatterns}
+	'('(sitePatterns += SitePattern (',' sitePatterns += SitePattern)* )?')'
+;
+
+ValidAgentPattern returns ValidAgentPattern:
+	{ValidAgentPattern}
+	agent = [Agent]
+	sitePatterns = SitePatterns
+;
+
+VoidAgentPattern returns VoidAgentPattern:
+	pattern = VOID_PATTERN
+;
+
+AgentPattern:
+	ValidAgentPattern | VoidAgentPattern 
+;
+
+Pattern returns Pattern:
+	{Pattern}
+	'{' (agentPatterns += AgentPattern (',' agentPatterns += AgentPattern )* )?  '}'
+;
+
+Observation returns Observation:
+	'obs'
+	name = ID
+	observationPattern = PatternAssignment
+;
+
+NumericFromLiteral:
+	value = ArithmeticValue
+;
+
+NumericFromVariable:
+	valueVar = [ArithmeticVariable]
+;
+
+NumericAssignment:
+	NumericFromLiteral | NumericFromVariable
+;
+
+Initial returns Initial:
+	'init'
+	name = ID
+	count = NumericAssignment
+	initialPattern = PatternAssignment
+;
+
+AssignFromPattern:
+	pattern = Pattern
+;
+
+AssignFromVariable:
+	patternVar = [PatternVariable]
+;
+
+PatternAssignment:
+	AssignFromPattern | AssignFromVariable
+;
+
+RuleVariables returns RuleVariables:
+	variables += NumericAssignment (',' variables += NumericAssignment)*
+;
+
+UnidirectionalRule returns RuleBody:
+	lhs = PatternAssignment
+	operator = UNI
+	rhs = PatternAssignment
+	AT
+	'[' variables = RuleVariables ']'
+;
+
+BidirectionalRule returns RuleBody:
+	lhs = PatternAssignment
+	operator = BI
+	rhs = PatternAssignment
+	AT
+	'[' variables = RuleVariables']'
+;
+
+RuleBody:
+	UnidirectionalRule | BidirectionalRule
+;
+
+Rule returns Rule:
+	'rule'
+	name = ID
+	rule = RuleBody
+;
+
+Iterations returns Iterations:
+	'iterations'
+	'='
+	value = UnsignedInteger
+;
+
+Time returns Time:
+	'time'
+	'='
+	value = UnsignedInteger
+;
+
+Population returns Population:
+	'|'
+	pa = PatternAssignment
+	'|'
+	'==>'
+	value = UnsignedInteger
+;
+
+TerminationCondition:
+	Iterations | Time | Population 
+;
+
+Terminate returns Terminate:
+	'terminate'
+	name = ID
+	condition = TerminationCondition
+;
+
