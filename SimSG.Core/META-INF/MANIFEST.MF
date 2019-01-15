@@ -1,22 +1,22 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Simulation
+Bundle-Name: Core
 Bundle-SymbolicName: SimSG.Core;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Export-Package: biochemsimulation.simulation;uses:="biochemsimulation.simulation.pmc",
-  biochemsimulation.simulation.constraints,
-  biochemsimulation.simulation.matching;uses:="biochemsimulation.reactioncontainer,org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage",
-  biochemsimulation.simulation.persistence;
-   uses:="org.eclipse.emf.ecore.resource,
-    biochemsimulation.reactioncontainer,
-    org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage,
-    biochemsimulation.reactionrules.reactionRules",
-  biochemsimulation.simulation.pmc;
-   uses:="org.eclipse.viatra.query.runtime.api,
-    biochemsimulation.simulation.matching,
-    biochemsimulation.reactioncontainer,
-    org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage,
-    biochemsimulation.reactionrules.reactionRules"
+Export-Package: SimSG.Core.Constraints,
+ SimSG.Core.PM.Match;uses:="SimSG.Container,org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage",
+ SimSG.Core.PMC;
+  uses:="org.eclipse.viatra.query.runtime.api,
+   SimSG.Core.PM.Match,
+   SimSG.Container,
+   org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage,
+   biochemsimulation.reactionrules.reactionRules",
+ SimSG.Core.Persistence;
+  uses:="org.eclipse.emf.ecore.resource,
+   SimSG.Container,
+   org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage,
+   biochemsimulation.reactionrules.reactionRules",
+ SimSG.Core.Simulation;uses:="SimSG.Core.PMC"
 Require-Bundle: org.apache.log4j;bundle-version="1.2.15",
  org.eclipse.collections;bundle-version="7.1.1",
  org.eclipse.debug.ui,
@@ -45,28 +45,11 @@ Require-Bundle: org.apache.log4j;bundle-version="1.2.15",
  org.gervarro.notification;bundle-version="1.0.0",
  org.gervarro.util;bundle-version="1.0.0",
  org.gervarro.plan.dynprog;bundle-version="1.0.1",
- fr.inria.atlanmod.neoemf.core,
- fr.inria.atlanmod.neoemf.data.mapdb,
- fr.inria.atlanmod.neoemf.data.hbase,
- fr.inria.atlanmod.neoemf.data.blueprints.core,
- fr.inria.atlanmod.neoemf.data.blueprints.neo4j,
- org.junit,
- org.junit.jupiter.api,
- org.junit.jupiter.engine,
- org.junit.jupiter.migrationsupport,
- org.junit.jupiter.params,
- org.junit.platform.commons,
- org.junit.platform.engine,
- org.junit.platform.launcher,
- org.junit.platform.runner.source;bundle-version="1.0.0",
- org.junit.platform.runner,
- org.junit.platform.suite.api,
- org.junit.vintage.engine,
  org.hamcrest.core,
  org.opentest4j,
  org.apiguardian,
  org.eclipse.viatra.query.runtime.rete;bundle-version="2.0.2",
  SimSG.Container;bundle-version="0.1.0"
 Import-Package: org.apache.commons.io
-Automatic-Module-Name: biochemsimulation.simulation
+Automatic-Module-Name: SimSG.Core
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

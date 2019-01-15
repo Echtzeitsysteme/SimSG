@@ -14,17 +14,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import SimSG.Container.Container;
+import SimSG.Core.PM.Match.IMatch;
+import SimSG.Core.PM.Match.PatternMatchingEngine;
+import SimSG.Core.PM.Match.PatternMatchingEngineEnum;
+import SimSG.Core.PM.Match.PatternMatchingEngineFactory;
+import SimSG.Core.PMC.PatternMatchingController;
+import SimSG.Core.PMC.PatternMatchingControllerEnum;
+import SimSG.Core.PMC.PatternMatchingControllerFactory;
+import SimSG.Core.Persistence.PersistenceManager;
+import SimSG.Core.Persistence.PersistenceManagerEnum;
+import SimSG.Core.Persistence.PersistenceManagerFactory;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
-import biochemsimulation.simulation.matching.IMatch;
-import biochemsimulation.simulation.matching.PatternMatchingEngine;
-import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;
-import biochemsimulation.simulation.matching.PatternMatchingEngineFactory;
-import biochemsimulation.simulation.persistence.PersistenceManager;
-import biochemsimulation.simulation.persistence.PersistenceManagerEnum;
-import biochemsimulation.simulation.persistence.PersistenceManagerFactory;
-import biochemsimulation.simulation.pmc.PatternMatchingController;
-import biochemsimulation.simulation.pmc.PatternMatchingControllerEnum;
-import biochemsimulation.simulation.pmc.PatternMatchingControllerFactory;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 abstract class PatternMatchingTest {
