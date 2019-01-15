@@ -10,11 +10,11 @@ import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EClass;
 
-import biochemsimulation.reactioncontainer.Agent;
-import biochemsimulation.reactioncontainer.Container;
-import biochemsimulation.reactioncontainer.util.AgentClassFactory;
-import biochemsimulation.reactioncontainer.util.EPackageWrapper;
-import biochemsimulation.reactioncontainer.util.StateClassFactory;
+import SimSG.Container.util.AgentClassFactory;
+import SimSG.Container.util.EPackageWrapper;
+import SimSG.Container.util.StateClassFactory;
+import SimSG.Container.Agent;
+import SimSG.Container.Container;
 import biochemsimulation.reactionrules.reactionRules.AgentPattern;
 import biochemsimulation.reactionrules.reactionRules.BoundLink;
 import biochemsimulation.reactionrules.reactionRules.FreeLink;
@@ -278,9 +278,9 @@ public class TransformationTemplate {
 	}
 	
 	// Helper method -> Find the corresponding stateInstance to a state described in a pattern 
-	private biochemsimulation.reactioncontainer.State findStateInstance(State state) {
-		biochemsimulation.reactioncontainer.State stateInstance = null;
-		for(biochemsimulation.reactioncontainer.State currentStateInstance : reactionContainer.getStates()) {
+	private SimSG.Container.State findStateInstance(State state) {
+		SimSG.Container.State stateInstance = null;
+		for(SimSG.Container.State currentStateInstance : reactionContainer.getStates()) {
 			if(currentStateInstance.eClass().getName().equals(state.getName())) {
 				stateInstance = currentStateInstance;
 				break;

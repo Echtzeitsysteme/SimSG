@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
 
-import biochemsimulation.reactioncontainer.util.EPackageWrapper;
+import SimSG.Container.util.EPackageWrapper;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;

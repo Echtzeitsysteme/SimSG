@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.runners.MethodSorters;
 
-import biochemsimulation.reactioncontainer.Container;
+import SimSG.Container.Container;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.simulation.GT.ReactionRuleTransformer;
 import biochemsimulation.simulation.matching.IMatch;

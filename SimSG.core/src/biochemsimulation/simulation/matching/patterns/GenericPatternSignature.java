@@ -8,7 +8,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
 
-import biochemsimulation.reactioncontainer.util.EPackageWrapper;
+import SimSG.Container.util.EPackageWrapper;
 import biochemsimulation.reactionrules.reactionRules.Agent;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 

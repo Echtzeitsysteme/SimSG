@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Simulation
-Bundle-SymbolicName: biochemsimulation.simulation;singleton:=true
+Bundle-SymbolicName: SimSG.core;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Export-Package: biochemsimulation.simulation;uses:="biochemsimulation.simulation.pmc",
   biochemsimulation.simulation.constraints,
@@ -30,7 +30,6 @@ Require-Bundle: org.apache.log4j;bundle-version="1.2.15",
  org.eclipse.viatra.query.runtime,
  org.eclipse.viatra.query.runtime.localsearch;bundle-version="1.7.2",
  org.eclipse.viatra.query.runtime.base.itc;bundle-version="1.7.2",
- biochemsimulation.reactioncontainer,
  biochemsimulation.reactionrules,
  org.gervarro.democles.common;bundle-version="3.0.0",
  org.gervarro.democles.emf;bundle-version="2.1.0",
@@ -67,7 +66,8 @@ Require-Bundle: org.apache.log4j;bundle-version="1.2.15",
  org.hamcrest.core,
  org.opentest4j,
  org.apiguardian,
- org.eclipse.viatra.query.runtime.rete;bundle-version="2.0.2"
+ org.eclipse.viatra.query.runtime.rete;bundle-version="2.0.2",
+ SimSG.Container;bundle-version="0.1.0"
 Import-Package: org.apache.commons.io
 Automatic-Module-Name: biochemsimulation.simulation
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

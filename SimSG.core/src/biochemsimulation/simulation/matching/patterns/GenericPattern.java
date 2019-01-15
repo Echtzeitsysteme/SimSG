@@ -3,7 +3,7 @@ package biochemsimulation.simulation.matching.patterns;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import biochemsimulation.reactioncontainer.util.EPackageWrapper;
+import SimSG.Container.util.EPackageWrapper;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 

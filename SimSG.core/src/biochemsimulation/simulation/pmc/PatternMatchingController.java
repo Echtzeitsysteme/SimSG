@@ -7,11 +7,13 @@ import java.util.Map;
 import java.util.Random;
 
 import org.eclipse.emf.ecore.EPackage;
+
+import SimSG.Container.generator.ContainerGenerator;
+import SimSG.Container.util.EPackageWrapper;
+
 import org.eclipse.emf.common.util.URI;
 
-import biochemsimulation.reactioncontainer.Container;
-import biochemsimulation.reactioncontainer.generator.ReactionContainerGenerator;
-import biochemsimulation.reactioncontainer.util.EPackageWrapper;
+import SimSG.Container.Container;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.utils.PatternContainer;
 import biochemsimulation.reactionrules.utils.PatternUtils;
@@ -112,7 +114,7 @@ public abstract class PatternMatchingController{
 		//this.ruleModel = ruleModel;
 		this.reactionContainer = reactionContainer;
 		this.patternContainer = PatternUtils.createPatternContainer(ruleModel);
-		URI metaModelURI = ReactionContainerGenerator.createMetaModelURI(ruleModel.getModel().getName());
+		URI metaModelURI = ContainerGenerator.createMetaModelURI(ruleModel.getModel().getName());
 		EPackage ePack = EPackage.Registry.INSTANCE.getEPackage(metaModelURI.toString());
 		metaModel = new EPackageWrapper(ePack);
 		feedEngine();

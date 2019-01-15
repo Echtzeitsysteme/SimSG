@@ -1,6 +1,6 @@
 package biochemsimulation.simulation.matching;
 
-import biochemsimulation.reactioncontainer.Container;
+import SimSG.Container.Container;
 import biochemsimulation.simulation.matching.patterns.GenericPattern;
 
 import java.util.Collection;

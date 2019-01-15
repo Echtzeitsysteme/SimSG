@@ -3,8 +3,8 @@ package biochemsimulation.simulation.GT;
 import java.util.HashMap;
 import java.util.Map;
 
-import biochemsimulation.reactioncontainer.Container;
-import biochemsimulation.reactioncontainer.util.EPackageWrapper;
+import SimSG.Container.util.EPackageWrapper;
+import SimSG.Container.Container;
 import biochemsimulation.reactionrules.reactionRules.Pattern;
 import biochemsimulation.reactionrules.utils.PatternContainer;
 import biochemsimulation.reactionrules.utils.PatternUtils;

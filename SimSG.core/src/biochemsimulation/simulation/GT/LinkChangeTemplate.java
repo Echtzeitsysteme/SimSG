@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EReference;
 
-import biochemsimulation.reactioncontainer.Agent;
+import SimSG.Container.Agent;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 import biochemsimulation.simulation.matching.IMatch;
 

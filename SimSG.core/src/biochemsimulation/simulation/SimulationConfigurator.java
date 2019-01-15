@@ -24,18 +24,15 @@ public class SimulationConfigurator {
 	public SimulationConfigurator() {
 		deterministic = false;
 		conditionType = SimulationTerminationConditionEnum.ComplexCondition;
+		persistenceType = PersistenceManagerEnum.SimplePersistence;
 	}
 	
 	public void setModel(String modelName) {
 		this.modelName = modelName;
 	}
 	
-	public void setSimplePersistence() {
+	public void setEMFPersistence() {
 		persistenceType = PersistenceManagerEnum.SimplePersistence;
-	}
-	
-	public void setNeoEMFPersistence() {
-		persistenceType = PersistenceManagerEnum.NeoEMFPersistence;
 	}
 	
 	public void setViatraAsEngine(boolean parallel) {

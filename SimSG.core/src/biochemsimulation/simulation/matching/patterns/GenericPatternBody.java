@@ -11,9 +11,9 @@ import java.util.Set;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import biochemsimulation.reactioncontainer.util.AgentClassFactory;
-import biochemsimulation.reactioncontainer.util.EPackageWrapper;
-import biochemsimulation.reactioncontainer.util.StateClassFactory;
+import SimSG.Container.util.AgentClassFactory;
+import SimSG.Container.util.EPackageWrapper;
+import SimSG.Container.util.StateClassFactory;
 import biochemsimulation.reactionrules.reactionRules.Agent;
 import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
 import biochemsimulation.reactionrules.reactionRules.BoundLink;

@@ -9,7 +9,7 @@ import java.util.Map.Entry;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 
-import biochemsimulation.reactioncontainer.Agent;
+import SimSG.Container.Agent;
 import biochemsimulation.simulation.matching.IMatch;
 
 public class LinkDeletionTemplate {

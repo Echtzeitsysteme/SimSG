@@ -7,8 +7,8 @@ import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EReference;
 
-import biochemsimulation.reactioncontainer.Agent;
-import biochemsimulation.reactioncontainer.State;
+import SimSG.Container.Agent;
+import SimSG.Container.State;
 import biochemsimulation.simulation.matching.IMatch;
 
 public class StateChangeTemplate {

@@ -7,10 +7,10 @@ import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EReference;
 
-import biochemsimulation.reactioncontainer.Agent;
-import biochemsimulation.reactioncontainer.Container;
-import biochemsimulation.reactioncontainer.State;
-import biochemsimulation.reactioncontainer.util.AgentFactory;
+import SimSG.Container.util.AgentFactory;
+import SimSG.Container.Agent;
+import SimSG.Container.Container;
+import SimSG.Container.State;
 import biochemsimulation.reactionrules.reactionRules.Site;
 import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 

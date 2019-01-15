@@ -12,9 +12,9 @@ import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.resource.Resource;
 
-import biochemsimulation.reactioncontainer.Container;
-import biochemsimulation.reactioncontainer.generator.ReactionContainerEMF;
-import biochemsimulation.reactioncontainer.generator.ReactionContainerGenerator;
+import SimSG.Container.generator.ContainerEMF;
+import SimSG.Container.generator.ContainerGenerator;
+import SimSG.Container.Container;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 
 public class SimplePersistenceManager extends PersistenceManager {
@@ -29,7 +29,7 @@ public class SimplePersistenceManager extends PersistenceManager {
 	public Container loadReactionContainerModel(String name) throws Exception {
 		if((!checkExistenceAndIndexContainer(name, true)) || (!checkExistenceAndIndexMetamodel(name, true))) {
 			ReactionRuleModel ruleModel = loadReactionRuleModel(name);
-			ReactionContainerGenerator gen = new ReactionContainerEMF(ruleModel);
+			ContainerGenerator gen = new ContainerEMF(ruleModel);
 			String path = reactionModelFolder+"/"+name+containerModelSuffix;
 			String path2 = reactionMetamodelFolder+"/"+name+".ecore";
 			gen.doGenerate(path, path2);

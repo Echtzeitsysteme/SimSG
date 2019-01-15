@@ -3,7 +3,7 @@ package biochemsimulation.simulation;
 import java.util.Collection;
 import java.util.Map;
 
-import biochemsimulation.reactioncontainer.Container;
+import SimSG.Container.Container;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.utils.PatternUtils;
 import biochemsimulation.simulation.GT.ReactionRuleTransformer;

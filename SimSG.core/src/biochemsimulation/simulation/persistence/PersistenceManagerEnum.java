@@ -1,7 +1,7 @@
 package biochemsimulation.simulation.persistence;
 
 public enum PersistenceManagerEnum {
-	SimplePersistence("SimplePersistence"), NeoEMFPersistence("NeoEMFPersistence");
+	SimplePersistence("SimplePersistence");
 	
 	private String name;
 	private PersistenceManagerEnum(String name) {

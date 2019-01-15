@@ -16,8 +16,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.json.simple.JSONObject;
 
-import biochemsimulation.reactioncontainer.Container;
-import biochemsimulation.reactioncontainer.ReactionContainerPackage;
+import SimSG.Container.Container;
+import SimSG.Container.ContainerPackage;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
 
@@ -93,7 +93,7 @@ public abstract class PersistenceManager {
 	
 	private void classLoader() {
 		ReactionRulesPackage.eINSTANCE.eClass();
-		ReactionContainerPackage.eINSTANCE.eClass();
+		ContainerPackage.eINSTANCE.eClass();
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 	}
 	

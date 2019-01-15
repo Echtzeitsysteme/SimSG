@@ -4,7 +4,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EReference;
 
-import biochemsimulation.reactioncontainer.ReactionContainerPackage;
+import  SimSG.Container.ContainerPackage;
 
 public class LinkStateContext {
 	private SiteNodeContext siteNodeContext;
@@ -12,7 +12,7 @@ public class LinkStateContext {
 	private EClassifier agentReferenceType;
 	private EReference agentReference;
 	
-	private final static EClass targetAgentType = ReactionContainerPackage.Literals.AGENT;
+	private final static EClass targetAgentType = ContainerPackage.Literals.AGENT;
 	
 	private LinkStateType stateType;
 	

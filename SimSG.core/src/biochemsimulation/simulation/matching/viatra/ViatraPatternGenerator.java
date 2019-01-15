@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.viatra.query.patternlanguage.emf.EMFPatternLanguageStandaloneSetup;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.*;
-import biochemsimulation.reactioncontainer.ReactionContainerPackage;
+import SimSG.Container.ContainerPackage;
 import biochemsimulation.simulation.matching.patterns.GenericPattern;
 import biochemsimulation.simulation.persistence.PersistenceUtils;
 
@@ -79,7 +79,7 @@ public class ViatraPatternGenerator {
 		}
 		
 		LinkedHashMap<EPackage, String> imports = new LinkedHashMap<EPackage, String>();
-		imports.put(ReactionContainerPackage.eINSTANCE, "reactionContainer");
+		imports.put(ContainerPackage.eINSTANCE, "reactionContainer");
 		imports.put(dynamicMetaModel, dynamicMetaModel.getNsPrefix());
 		
 		ViatraCodeGenerator pt = new ViatraCodeGenerator(imports, genericPatterns);

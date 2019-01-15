@@ -1,6 +1,6 @@
 package biochemsimulation.simulation.test;
 
-import biochemsimulation.reactioncontainer.Container;
+import SimSG.Container.Container;
 import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 import biochemsimulation.simulation.Simulation;
 import biochemsimulation.simulation.SimulationConfigurator;
@@ -46,7 +46,7 @@ public class Sandbox {
 		
 		SimulationConfigurator simConfigurator = new SimulationConfigurator();
 		simConfigurator.setModel("Goldbeter_Koshland");
-		simConfigurator.setSimplePersistence();
+		simConfigurator.setEMFPersistence();
 		simConfigurator.setViatraAsEngine(false);
 		simConfigurator.setHybridPMC();
 		simConfigurator.setStochasticSimulation();
