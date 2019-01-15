@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<container:Container xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:PatternMatchingTest="platform:/resource/org.simsg.container/generated/PatternMatchingTest" xmlns:container="http://www.simsg.container.org/container" xsi:schemaLocation="platform:/resource/org.simsg.container/generated/PatternMatchingTest http://www.simsg.container.org/container#//PatternMatchingTest http://www.simsg.container.org/container java://org.simsg.container.ContainerPackage" ModelName="PatternMatchingTest">
+  <agents xmi:type="PatternMatchingTest:A8" ID="113174071785877" A8_x="//@agents.3"/>
+  <agents xmi:type="PatternMatchingTest:A8" ID="113174071782792" A8_x="//@agents.2"/>
+  <agents xmi:type="PatternMatchingTest:A8" ID="113174071750921" A8_x="//@agents.1"/>
+  <agents xmi:type="PatternMatchingTest:A8" ID="113174071778166" A8_x="//@agents.0"/>
+  <agents xmi:type="PatternMatchingTest:A8" ID="113174073593812" A8_x="//@agents.7"/>
+  <agents xmi:type="PatternMatchingTest:A8" ID="113174073591242" A8_x="//@agents.6"/>
+  <agents xmi:type="PatternMatchingTest:A8" ID="113174073582503" A8_x="//@agents.5"/>
+  <agents xmi:type="PatternMatchingTest:A8" ID="113174073588157" A8_x="//@agents.4"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174073647274" A5_x="//@agents.9" A5_x_u="//@states.19"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174073716157" B5_w="//@agents.8" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174073767563" A5_x="//@agents.11" A5_x_u="//@states.19"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174073777330" B5_w="//@agents.10" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174073797378" A5_x="//@agents.13" A5_x_u="//@states.19"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174073805089" B5_w="//@agents.12" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174073822567" A5_x="//@agents.15" A5_x_u="//@states.19"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174073830278" B5_w="//@agents.14" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174073845185" A5_x="//@agents.17" A5_x_u="//@states.19"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174073852382" B5_w="//@agents.16" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174073870374" A5_x="//@agents.19" A5_x_u="//@states.19"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174073880655" B5_w="//@agents.18" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174073896077" A5_x="//@agents.21" A5_x_u="//@states.19"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174073902760" B5_w="//@agents.20" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174073918181" A5_x="//@agents.23" A5_x_u="//@states.19"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174073925378" B5_w="//@agents.22" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174073940286" A5_x="//@agents.25" A5_x_u="//@states.19"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174073947483" B5_w="//@agents.24" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174073961876" A5_x="//@agents.27" A5_x_u="//@states.19"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174073969073" B5_w="//@agents.26" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174073983980" A5_x="//@agents.29" A5_x_u="//@states.19"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174073990663" B5_w="//@agents.28" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174074005571" A5_x="//@agents.31" A5_x_u="//@states.19"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174074012768" B5_w="//@agents.30" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174074027675" A5_x="//@agents.33" A5_x_u="//@states.19"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174074036928" B5_w="//@agents.32" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174074065201" A5_x_u="//@states.19" A5_y="//@agents.35"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174074081137" B5_z="//@agents.34" B5_z_q="//@states.15"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174074116607" A5_x_u="//@states.19" A5_y="//@agents.37"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174074124832" B5_z="//@agents.36" B5_z_q="//@states.15"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174074140768" A5_x_u="//@states.19" A5_y="//@agents.39"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174074147964" B5_z="//@agents.38" B5_z_q="//@states.15"/>
+  <agents xmi:type="PatternMatchingTest:B3" ID="113174074171097"/>
+  <agents xmi:type="PatternMatchingTest:B3" ID="113174074178294"/>
+  <agents xmi:type="PatternMatchingTest:B3" ID="113174074183434"/>
+  <agents xmi:type="PatternMatchingTest:B3" ID="113174074187033"/>
+  <agents xmi:type="PatternMatchingTest:B3" ID="113174074191659"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174074293956" B7_y_e="//@states.4" B7_z="//@agents.49" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174074284703" B7_y="//@agents.48" B7_y_e="//@states.4" B7_z="//@agents.47" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174074274422" A7_w="//@agents.49" A7_w_a="//@states.0" A7_x="//@agents.46" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174074239466" A7_w_a="//@states.0" A7_x="//@agents.46" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174074202968" B7_y="//@agents.45" B7_y_e="//@states.4" B7_z="//@agents.47" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174074388543" B7_y_e="//@states.4" B7_z="//@agents.54" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174074380318" B7_y="//@agents.53" B7_y_e="//@states.4" B7_z="//@agents.52" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174074372093" A7_w="//@agents.54" A7_w_a="//@states.0" A7_x="//@agents.51" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174074363354" A7_w_a="//@states.0" A7_x="//@agents.51" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174074353073" B7_y="//@agents.50" B7_y_e="//@states.4" B7_z="//@agents.52" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174074452286" B7_y_e="//@states.4" B7_z="//@agents.59" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174074445089" B7_y="//@agents.58" B7_y_e="//@states.4" B7_z="//@agents.57" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174074437378" A7_w="//@agents.59" A7_w_a="//@states.0" A7_x="//@agents.56" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174074429153" A7_w_a="//@states.0" A7_x="//@agents.56" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174074419900" B7_y="//@agents.55" B7_y_e="//@states.4" B7_z="//@agents.57" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174074541731" B7_y_e="//@states.4" B7_z="//@agents.64" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174074534535" B7_y="//@agents.63" B7_y_e="//@states.4" B7_z="//@agents.62" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174074526824" A7_w="//@agents.64" A7_w_a="//@states.0" A7_x="//@agents.61" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174074517571" A7_w_a="//@states.0" A7_x="//@agents.61" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174074482615" B7_y="//@agents.60" B7_y_e="//@states.4" B7_z="//@agents.62" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174074605474" B7_y_e="//@states.4" B7_z="//@agents.69" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174074597249" B7_y="//@agents.68" B7_y_e="//@states.4" B7_z="//@agents.67" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174074589025" A7_w="//@agents.69" A7_w_a="//@states.0" A7_x="//@agents.66" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174074580800" A7_w_a="//@states.0" A7_x="//@agents.66" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174074572061" B7_y="//@agents.65" B7_y_e="//@states.4" B7_z="//@agents.67" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:mP" ID="113174074646599" mP_c="//@agents.72"/>
+  <agents xmi:type="PatternMatchingTest:mP" ID="113174074643000"/>
+  <agents xmi:type="PatternMatchingTest:mP" ID="113174074648655" mP_c="//@agents.70"/>
+  <agents xmi:type="PatternMatchingTest:mP" ID="113174075958470" mP_c="//@agents.75"/>
+  <agents xmi:type="PatternMatchingTest:mP" ID="113174075953329"/>
+  <agents xmi:type="PatternMatchingTest:mP" ID="113174075961554" mP_c="//@agents.73"/>
+  <agents xmi:type="PatternMatchingTest:mP" ID="113174075982631" mP_c="//@agents.78"/>
+  <agents xmi:type="PatternMatchingTest:mP" ID="113174075980060"/>
+  <agents xmi:type="PatternMatchingTest:mP" ID="113174075984687" mP_c="//@agents.76"/>
+  <agents xmi:type="PatternMatchingTest:mP" ID="113174076016558" mP_c="//@agents.81"/>
+  <agents xmi:type="PatternMatchingTest:mP" ID="113174076018615" mP_c="//@agents.81"/>
+  <agents xmi:type="PatternMatchingTest:mP" ID="113174076013474" mP_c="//@agents.79 //@agents.80"/>
+  <agents xmi:type="PatternMatchingTest:mP" ID="113174076057683" mP_c="//@agents.84"/>
+  <agents xmi:type="PatternMatchingTest:mP" ID="113174076059739" mP_c="//@agents.84"/>
+  <agents xmi:type="PatternMatchingTest:mP" ID="113174076055112" mP_c="//@agents.82 //@agents.83"/>
+  <agents xmi:type="PatternMatchingTest:mB" ID="113174076098807" mB_y="//@agents.86"/>
+  <agents xmi:type="PatternMatchingTest:mA" ID="113174076095209" mA_x="//@agents.85 //@agents.87"/>
+  <agents xmi:type="PatternMatchingTest:mB" ID="113174076101378" mB_y="//@agents.86"/>
+  <agents xmi:type="PatternMatchingTest:mB" ID="113174076195964" mB_y="//@agents.89"/>
+  <agents xmi:type="PatternMatchingTest:mA" ID="113174076192880" mA_x="//@agents.88 //@agents.90"/>
+  <agents xmi:type="PatternMatchingTest:mB" ID="113174076198534" mB_y="//@agents.89"/>
+  <agents xmi:type="PatternMatchingTest:mB" ID="113174076222181" mB_y="//@agents.92"/>
+  <agents xmi:type="PatternMatchingTest:mA" ID="113174076219610" mA_x="//@agents.91 //@agents.93"/>
+  <agents xmi:type="PatternMatchingTest:mB" ID="113174076224237" mB_y="//@agents.92"/>
+  <agents xmi:type="PatternMatchingTest:mQ" ID="113174076260735" mQ_b="//@agents.95"/>
+  <agents xmi:type="PatternMatchingTest:mQ" ID="113174076258679" mQ_b="//@agents.96 //@agents.94"/>
+  <agents xmi:type="PatternMatchingTest:mQ" ID="113174076255594" mQ_b="//@agents.95"/>
+  <agents xmi:type="PatternMatchingTest:mQ" ID="113174076310598" mQ_b="//@agents.98"/>
+  <agents xmi:type="PatternMatchingTest:mQ" ID="113174076308542" mQ_b="//@agents.99 //@agents.97"/>
+  <agents xmi:type="PatternMatchingTest:mQ" ID="113174076305458" mQ_b="//@agents.98"/>
+  <agents xmi:type="PatternMatchingTest:mQ" ID="113174076341442" mQ_b="//@agents.101"/>
+  <agents xmi:type="PatternMatchingTest:mQ" ID="113174076339386" mQ_b="//@agents.102 //@agents.100"/>
+  <agents xmi:type="PatternMatchingTest:mQ" ID="113174076336815" mQ_b="//@agents.101"/>
+  <agents xmi:type="PatternMatchingTest:A9" ID="113174076391819" A9_x="//@agents.107"/>
+  <agents xmi:type="PatternMatchingTest:A9" ID="113174076383080" A9_x="//@agents.106"/>
+  <agents xmi:type="PatternMatchingTest:A9" ID="113174076388221" A9_x="//@agents.108"/>
+  <agents xmi:type="PatternMatchingTest:A9" ID="113174076389763" A9_x="//@agents.104"/>
+  <agents xmi:type="PatternMatchingTest:A9" ID="113174076377426" A9_x="//@agents.103"/>
+  <agents xmi:type="PatternMatchingTest:A9" ID="113174076380510" A9_x="//@agents.105"/>
+  <agents xmi:type="PatternMatchingTest:A9" ID="113174076461731" A9_x="//@agents.113"/>
+  <agents xmi:type="PatternMatchingTest:A9" ID="113174076455048" A9_x="//@agents.112"/>
+  <agents xmi:type="PatternMatchingTest:A9" ID="113174076457618" A9_x="//@agents.114"/>
+  <agents xmi:type="PatternMatchingTest:A9" ID="113174076460189" A9_x="//@agents.110"/>
+  <agents xmi:type="PatternMatchingTest:A9" ID="113174076448365" A9_x="//@agents.109"/>
+  <agents xmi:type="PatternMatchingTest:A9" ID="113174076452478" A9_x="//@agents.111"/>
+  <agents xmi:type="PatternMatchingTest:mQ" ID="113174076497715" mQ_b="//@agents.116 //@agents.117"/>
+  <agents xmi:type="PatternMatchingTest:mQ" ID="113174076494630" mQ_b="//@agents.115 //@agents.117"/>
+  <agents xmi:type="PatternMatchingTest:mQ" ID="113174076500285" mQ_b="//@agents.115 //@agents.116"/>
+  <agents xmi:type="PatternMatchingTest:mQ" ID="113174076534727" mQ_b="//@agents.119 //@agents.120"/>
+  <agents xmi:type="PatternMatchingTest:mQ" ID="113174076531642" mQ_b="//@agents.118 //@agents.120"/>
+  <agents xmi:type="PatternMatchingTest:mQ" ID="113174076537297" mQ_b="//@agents.118 //@agents.119"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174076611321" B7_y="//@agents.125" B7_y_e="//@states.4" B7_z="//@agents.124" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174076588703" B7_y_e="//@states.4" B7_z="//@agents.123" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174076598470" B7_y="//@agents.122" B7_y_e="//@states.4" B7_z="//@agents.124" B7_z_h="//@states.7"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174076573795" A7_w="//@agents.123" A7_w_a="//@states.0" A7_x="//@agents.121" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174076619546" A7_w_a="//@states.0" A7_x="//@agents.121" A7_x_d="//@states.3"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174076688430" B7_y="//@agents.130" B7_y_e="//@states.4" B7_z="//@agents.129" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174076670952" B7_y_e="//@states.4" B7_z="//@agents.128" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174076680719" B7_y="//@agents.127" B7_y_e="//@states.4" B7_z="//@agents.129" B7_z_h="//@states.7"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174076652446" A7_w="//@agents.128" A7_w_a="//@states.0" A7_x="//@agents.126" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174076696140" A7_w_a="//@states.0" A7_x="//@agents.126" A7_x_d="//@states.3"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174076754743" B7_y="//@agents.135" B7_y_e="//@states.4" B7_z="//@agents.134" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174076739835" B7_y_e="//@states.4" B7_z="//@agents.133" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174076747546" B7_y="//@agents.132" B7_y_e="//@states.4" B7_z="//@agents.134" B7_z_h="//@states.7"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174076729554" A7_w="//@agents.133" A7_w_a="//@states.0" A7_x="//@agents.131" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174076765538" A7_w_a="//@states.0" A7_x="//@agents.131" A7_x_d="//@states.3"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174076814373" B7_y="//@agents.140" B7_y_e="//@states.4" B7_z="//@agents.139" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174076800494" B7_y_e="//@states.4" B7_z="//@agents.138" B7_z_g="//@states.6"/>
+  <agents xmi:type="PatternMatchingTest:B7" ID="113174076807691" B7_y="//@agents.137" B7_y_e="//@states.4" B7_z="//@agents.139" B7_z_h="//@states.7"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174076792269" A7_w="//@agents.138" A7_w_a="//@states.0" A7_x="//@agents.136" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174076821056" A7_w_a="//@states.0" A7_x="//@agents.136" A7_x_d="//@states.3"/>
+  <agents xmi:type="PatternMatchingTest:C3" ID="113174076853956" C3_a="//@agents.142" C3_a_i="//@states.8" C3_b="//@agents.143" C3_b_g="//@states.6" C3_c="//@agents.142"/>
+  <agents xmi:type="PatternMatchingTest:B6" ID="113174076917699" B6_u="//@agents.143" B6_v="//@agents.141" B6_v_l="//@states.10" B6_w="//@agents.141" B6_w_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:A6" ID="113174076889426" A6_x="//@agents.142" A6_x_u="//@states.19" A6_y="//@agents.141" A6_z_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:C3" ID="113174076990695" C3_a="//@agents.145" C3_a_i="//@states.8" C3_b="//@agents.146" C3_b_g="//@states.6" C3_c="//@agents.145"/>
+  <agents xmi:type="PatternMatchingTest:B6" ID="113174077010229" B6_u="//@agents.146" B6_v="//@agents.144" B6_v_l="//@states.10" B6_w="//@agents.144" B6_w_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:A6" ID="113174077001490" A6_x="//@agents.145" A6_x_u="//@states.19" A6_y="//@agents.144" A6_z_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:C3" ID="113174077036960" C3_a="//@agents.148" C3_a_i="//@states.8" C3_b="//@agents.149" C3_b_g="//@states.6" C3_c="//@agents.148"/>
+  <agents xmi:type="PatternMatchingTest:B6" ID="113174077052895" B6_u="//@agents.149" B6_v="//@agents.147" B6_v_l="//@states.10" B6_w="//@agents.147" B6_w_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:A6" ID="113174077045699" A6_x="//@agents.148" A6_x_u="//@states.19" A6_y="//@agents.147" A6_z_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:C3" ID="113174077076028" C3_a="//@agents.151" C3_a_i="//@states.8" C3_b="//@agents.152" C3_b_g="//@states.6" C3_c="//@agents.151"/>
+  <agents xmi:type="PatternMatchingTest:B6" ID="113174077091964" B6_u="//@agents.152" B6_v="//@agents.150" B6_v_l="//@states.10" B6_w="//@agents.150" B6_w_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:A6" ID="113174077084767" A6_x="//@agents.151" A6_x_u="//@states.19" A6_y="//@agents.150" A6_z_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:C3" ID="113174077134116" C3_a="//@agents.154" C3_a_i="//@states.8" C3_b="//@agents.155" C3_b_g="//@states.6" C3_c="//@agents.154"/>
+  <agents xmi:type="PatternMatchingTest:B6" ID="113174077151080" B6_u="//@agents.155" B6_v="//@agents.153" B6_v_l="//@states.10" B6_w="//@agents.153" B6_w_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:A6" ID="113174077143883" A6_x="//@agents.154" A6_x_u="//@states.19" A6_y="//@agents.153" A6_z_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:C3" ID="113174077181409" C3_a="//@agents.157" C3_a_i="//@states.8" C3_b="//@agents.158" C3_b_g="//@states.6" C3_c="//@agents.157"/>
+  <agents xmi:type="PatternMatchingTest:B6" ID="113174077197345" B6_u="//@agents.158" B6_v="//@agents.156" B6_v_l="//@states.10" B6_w="//@agents.156" B6_w_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:A6" ID="113174077189634" A6_x="//@agents.157" A6_x_u="//@states.19" A6_y="//@agents.156" A6_z_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:C3" ID="113174077221506" C3_a="//@agents.160" C3_a_i="//@states.8" C3_b="//@agents.161" C3_b_g="//@states.6" C3_c="//@agents.160"/>
+  <agents xmi:type="PatternMatchingTest:B6" ID="113174077239498" B6_u="//@agents.161" B6_v="//@agents.159" B6_v_l="//@states.10" B6_w="//@agents.159" B6_w_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:A6" ID="113174077230245" A6_x="//@agents.160" A6_x_u="//@states.19" A6_y="//@agents.159" A6_z_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:C3" ID="113174077262116" C3_a="//@agents.163" C3_a_i="//@states.8" C3_b="//@agents.164" C3_b_g="//@states.6" C3_c="//@agents.163"/>
+  <agents xmi:type="PatternMatchingTest:B6" ID="113174077278052" B6_u="//@agents.164" B6_v="//@agents.162" B6_v_l="//@states.10" B6_w="//@agents.162" B6_w_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:A6" ID="113174077270341" A6_x="//@agents.163" A6_x_u="//@states.19" A6_y="//@agents.162" A6_z_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174077326373" A7_w_a="//@states.0" A7_x="//@agents.167" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174077308895" A7_w_a="//@states.0" A7_x="//@agents.167" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174077318662" A7_w="//@agents.165" A7_w_a="//@states.0" A7_x="//@agents.166" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174077361329" A7_w_a="//@states.0" A7_x="//@agents.170" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174077346421" A7_w_a="//@states.0" A7_x="//@agents.170" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174077354646" A7_w="//@agents.168" A7_w_a="//@states.0" A7_x="//@agents.169" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174077392686" A7_w_a="//@states.0" A7_x="//@agents.173" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174077378293" A7_w_a="//@states.0" A7_x="//@agents.173" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174077386004" A7_w="//@agents.171" A7_w_a="//@states.0" A7_x="//@agents.172" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:mD" ID="113174077421988" mD_a="//@agents.176 //@agents.177" mD_b="//@agents.175"/>
+  <agents xmi:type="PatternMatchingTest:mC" ID="113174077426614" mC_z="//@agents.174"/>
+  <agents xmi:type="PatternMatchingTest:mA" ID="113174077424044" mA_x="//@agents.174 //@agents.177"/>
+  <agents xmi:type="PatternMatchingTest:mB" ID="113174077417875" mB_y="//@agents.176 //@agents.174"/>
+  <agents xmi:type="PatternMatchingTest:mD" ID="113174077515032" mD_a="//@agents.180 //@agents.181" mD_b="//@agents.179"/>
+  <agents xmi:type="PatternMatchingTest:mC" ID="113174077519658" mC_z="//@agents.178"/>
+  <agents xmi:type="PatternMatchingTest:mA" ID="113174077517602" mA_x="//@agents.178 //@agents.181"/>
+  <agents xmi:type="PatternMatchingTest:mB" ID="113174077511433" mB_y="//@agents.180 //@agents.178"/>
+  <agents xmi:type="PatternMatchingTest:mD" ID="113174077554100" mD_a="//@agents.184 //@agents.185" mD_b="//@agents.183"/>
+  <agents xmi:type="PatternMatchingTest:mC" ID="113174077557698" mC_z="//@agents.182"/>
+  <agents xmi:type="PatternMatchingTest:mA" ID="113174077556156" mA_x="//@agents.182 //@agents.185"/>
+  <agents xmi:type="PatternMatchingTest:mB" ID="113174077551016" mB_y="//@agents.184 //@agents.182"/>
+  <agents xmi:type="PatternMatchingTest:mD" ID="113174077614759" mD_a="//@agents.188 //@agents.189" mD_b="//@agents.187"/>
+  <agents xmi:type="PatternMatchingTest:mC" ID="113174077618871" mC_z="//@agents.186"/>
+  <agents xmi:type="PatternMatchingTest:mA" ID="113174077616815" mA_x="//@agents.186 //@agents.189"/>
+  <agents xmi:type="PatternMatchingTest:mB" ID="113174077611160" mB_y="//@agents.188 //@agents.186"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174077656911" A4_x_p="//@states.14" A4_y="//@agents.192" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:C4" ID="113174077717056" C4_w="//@agents.192"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174077690839" B4_x="//@agents.191" B4_x_a="//@states.0" B4_z="//@agents.190" B4_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174077756638" A4_x_p="//@states.14" A4_y="//@agents.195" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:C4" ID="113174077774630" C4_w="//@agents.195"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174077766919" B4_x="//@agents.194" B4_x_a="//@states.0" B4_z="//@agents.193" B4_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174077790052" A4_x_p="//@states.14" A4_y="//@agents.198" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:C4" ID="113174077804445" C4_w="//@agents.198"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174077797249" B4_x="//@agents.197" B4_x_a="//@states.0" B4_z="//@agents.196" B4_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174077818325" A4_x_p="//@states.14" A4_y="//@agents.201" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:C4" ID="113174077831690" C4_w="//@agents.201"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174077825008" B4_x="//@agents.200" B4_x_a="//@states.0" B4_z="//@agents.199" B4_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174077845056" A4_x_p="//@states.14" A4_y="//@agents.204" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:C4" ID="113174077858421" C4_w="//@agents.204"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174077851739" B4_x="//@agents.203" B4_x_a="//@states.0" B4_z="//@agents.202" B4_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174077871273" A4_x_p="//@states.14" A4_y="//@agents.207" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:C4" ID="113174078211064" C4_w="//@agents.207"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174078200783" B4_x="//@agents.206" B4_x_a="//@states.0" B4_z="//@agents.205" B4_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174078229056" A4_x_p="//@states.14" A4_y="//@agents.210" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:C4" ID="113174078246020" C4_w="//@agents.210"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174078237281" B4_x="//@agents.209" B4_x_a="//@states.0" B4_z="//@agents.208" B4_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174078260413" A4_x_p="//@states.14" A4_y="//@agents.213" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:C4" ID="113174078274807" C4_w="//@agents.213"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174078268124" B4_x="//@agents.212" B4_x_a="//@states.0" B4_z="//@agents.211" B4_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174078288686" A4_x_p="//@states.14" A4_y="//@agents.216" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:C4" ID="113174078306678" C4_w="//@agents.216"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174078295883" B4_x="//@agents.215" B4_x_a="//@states.0" B4_z="//@agents.214" B4_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174078325184" A4_x_p="//@states.14" A4_y="//@agents.219" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:C4" ID="113174078339578" C4_w="//@agents.219"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174078332895" B4_x="//@agents.218" B4_x_a="//@states.0" B4_z="//@agents.217" B4_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174078353457" A4_x_p="//@states.14" A4_y="//@agents.222" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:C4" ID="113174078367851" C4_w="//@agents.222"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174078360654" B4_x="//@agents.221" B4_x_a="//@states.0" B4_z="//@agents.220" B4_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:mA" ID="113174078391497"/>
+  <agents xmi:type="PatternMatchingTest:mB" ID="113174078394582"/>
+  <agents xmi:type="PatternMatchingTest:mA" ID="113174078399722"/>
+  <agents xmi:type="PatternMatchingTest:mB" ID="113174078402293"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174078411546" A4_x="//@agents.228" A4_x_p="//@states.14" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174078422341" B4_x="//@agents.227" B4_x_b="//@states.1" B4_z_o="//@states.13"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174078451642" A4_x="//@agents.230" A4_x_p="//@states.14" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174078460381" B4_x="//@agents.229" B4_x_b="//@states.1" B4_z_o="//@states.13"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174078474775" A4_x="//@agents.232" A4_x_p="//@states.14" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174078481971" B4_x="//@agents.231" B4_x_b="//@states.1" B4_z_o="//@states.13"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174078495337" A4_x="//@agents.234" A4_x_p="//@states.14" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174078503048" B4_x="//@agents.233" B4_x_b="//@states.1" B4_z_o="//@states.13"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174078520011" A4_x="//@agents.236" A4_x_p="//@states.14" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174078533377" B4_x="//@agents.235" B4_x_b="//@states.1" B4_z_o="//@states.13"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174078564220" A4_x="//@agents.238" A4_x_p="//@states.14" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174078658293" B4_x="//@agents.237" B4_x_b="//@states.1" B4_z_o="//@states.13"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174078687594" A4_x="//@agents.240" A4_x_p="//@states.14" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174078697875" B4_x="//@agents.239" B4_x_b="//@states.1" B4_z_o="//@states.13"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174078713811" A4_x="//@agents.242" A4_x_p="//@states.14" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174078740027" B4_x="//@agents.241" B4_x_b="//@states.1" B4_z_o="//@states.13"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174078756477" A4_x="//@agents.244" A4_x_p="//@states.14" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174078764188" B4_x="//@agents.243" B4_x_b="//@states.1" B4_z_o="//@states.13"/>
+  <agents xmi:type="PatternMatchingTest:A6" ID="113174078804799" A6_x="//@agents.246" A6_x_v="//@states.20" A6_y="//@agents.247" A6_z_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:B6" ID="113174078817136" B6_u="//@agents.245" B6_v="//@agents.247" B6_v_n="//@states.12" B6_w="//@agents.247" B6_w_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:C3" ID="113174078787835" C3_a="//@agents.246" C3_a_i="//@states.8" C3_b="//@agents.245" C3_b_f="//@states.5" C3_c="//@agents.246"/>
+  <agents xmi:type="PatternMatchingTest:A6" ID="113174078854148" A6_x="//@agents.249" A6_x_v="//@states.20" A6_y="//@agents.250" A6_z_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:B6" ID="113174078862373" B6_u="//@agents.248" B6_v="//@agents.250" B6_v_n="//@states.12" B6_w="//@agents.250" B6_w_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:C3" ID="113174078845923" C3_a="//@agents.249" C3_a_i="//@states.8" C3_b="//@agents.248" C3_b_f="//@states.5" C3_c="//@agents.249"/>
+  <agents xmi:type="PatternMatchingTest:A6" ID="113174078898871" A6_x="//@agents.252" A6_x_v="//@states.20" A6_y="//@agents.253" A6_z_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:B6" ID="113174078909666" B6_u="//@agents.251" B6_v="//@agents.253" B6_v_n="//@states.12" B6_w="//@agents.253" B6_w_r="//@states.16"/>
+  <agents xmi:type="PatternMatchingTest:C3" ID="113174078890646" C3_a="//@agents.252" C3_a_i="//@states.8" C3_b="//@agents.251" C3_b_f="//@states.5" C3_c="//@agents.252"/>
+  <agents xmi:type="PatternMatchingTest:mA" ID="113174078940509" mA_x="//@agents.255 //@agents.256"/>
+  <agents xmi:type="PatternMatchingTest:mB" ID="113174078948734" mB_y="//@agents.254"/>
+  <agents xmi:type="PatternMatchingTest:mC" ID="113174078945136" mC_z="//@agents.254"/>
+  <agents xmi:type="PatternMatchingTest:mA" ID="113174078978035" mA_x="//@agents.258 //@agents.259"/>
+  <agents xmi:type="PatternMatchingTest:mB" ID="113174078983176" mB_y="//@agents.257"/>
+  <agents xmi:type="PatternMatchingTest:mC" ID="113174078981120" mC_z="//@agents.257"/>
+  <agents xmi:type="PatternMatchingTest:mA" ID="113174079002196" mA_x="//@agents.261 //@agents.262"/>
+  <agents xmi:type="PatternMatchingTest:mB" ID="113174079006823" mB_y="//@agents.260"/>
+  <agents xmi:type="PatternMatchingTest:mC" ID="113174079004766" mC_z="//@agents.260"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174079043321" A7_w_a="//@states.0" A7_x="//@agents.264" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174079032525" A7_w="//@agents.265" A7_w_a="//@states.0" A7_x="//@agents.263" A7_x_d="//@states.3"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174079055144" A7_w_a="//@states.0" A7_x="//@agents.264" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174079082903" A7_w_a="//@states.0" A7_x="//@agents.267" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174079074678" A7_w="//@agents.268" A7_w_a="//@states.0" A7_x="//@agents.266" A7_x_d="//@states.3"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174079089586" A7_w_a="//@states.0" A7_x="//@agents.267" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174079131738" A7_w_a="//@states.0" A7_x="//@agents.270" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174079122999" A7_w="//@agents.271" A7_w_a="//@states.0" A7_x="//@agents.269" A7_x_d="//@states.3"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174079138421" A7_w_a="//@states.0" A7_x="//@agents.270" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174079160525" A7_w_a="//@states.0" A7_x="//@agents.273" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174079153843" A7_w="//@agents.274" A7_w_a="//@states.0" A7_x="//@agents.272" A7_x_d="//@states.3"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174079166180" A7_w_a="//@states.0" A7_x="//@agents.273" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174079189312" A7_w_a="//@states.0" A7_x="//@agents.276" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174079182116" A7_w="//@agents.277" A7_w_a="//@states.0" A7_x="//@agents.275" A7_x_d="//@states.3"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174079194967" A7_w_a="//@states.0" A7_x="//@agents.276" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174079216043" A7_w_a="//@states.0" A7_x="//@agents.279" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174079209875" A7_w="//@agents.280" A7_w_a="//@states.0" A7_x="//@agents.278" A7_x_d="//@states.3"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174079222726" A7_w_a="//@states.0" A7_x="//@agents.279" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174079245345" A7_w_a="//@states.0" A7_x="//@agents.282" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174079238662" A7_w="//@agents.283" A7_w_a="//@states.0" A7_x="//@agents.281" A7_x_d="//@states.3"/>
+  <agents xmi:type="PatternMatchingTest:A7" ID="113174079255112" A7_w_a="//@states.0" A7_x="//@agents.282" A7_x_c="//@states.2"/>
+  <agents xmi:type="PatternMatchingTest:A8" ID="113174079293666" A8_x="//@agents.285" A8_y="//@agents.289"/>
+  <agents xmi:type="PatternMatchingTest:A8" ID="113174079286469" A8_x="//@agents.284"/>
+  <agents xmi:type="PatternMatchingTest:A8" ID="113174079290582" A8_y="//@agents.288"/>
+  <agents xmi:type="PatternMatchingTest:A8" ID="113174079292124" A8_x="//@agents.288"/>
+  <agents xmi:type="PatternMatchingTest:A8" ID="113174079283899" A8_x="//@agents.287" A8_y="//@agents.286"/>
+  <agents xmi:type="PatternMatchingTest:A8" ID="113174079288525" A8_y="//@agents.284"/>
+  <agents xmi:type="PatternMatchingTest:A8" ID="113174079336333" A8_x="//@agents.291" A8_y="//@agents.295"/>
+  <agents xmi:type="PatternMatchingTest:A8" ID="113174079329136" A8_x="//@agents.290"/>
+  <agents xmi:type="PatternMatchingTest:A8" ID="113174079333248" A8_y="//@agents.294"/>
+  <agents xmi:type="PatternMatchingTest:A8" ID="113174079334790" A8_x="//@agents.294"/>
+  <agents xmi:type="PatternMatchingTest:A8" ID="113174079326051" A8_x="//@agents.293" A8_y="//@agents.292"/>
+  <agents xmi:type="PatternMatchingTest:A8" ID="113174079331192" A8_y="//@agents.290"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174079379513" B5_w="//@agents.297" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174079367690" A5_x="//@agents.296" A5_x_v="//@states.20"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174079399047" B5_w="//@agents.299" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174079393393" A5_x="//@agents.298" A5_x_v="//@states.20"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174079416525" B5_w="//@agents.301" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174079410871" A5_x="//@agents.300" A5_x_v="//@states.20"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174079432461" B5_w="//@agents.303" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174079427320" A5_x="//@agents.302" A5_x_v="//@states.20"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174079448911" B5_w="//@agents.305" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174079443770" A5_x="//@agents.304" A5_x_v="//@states.20"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174079464847" B5_w="//@agents.307" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174079459706" A5_x="//@agents.306" A5_x_v="//@states.20"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174079479754" B5_w="//@agents.309" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174079474614" A5_x="//@agents.308" A5_x_v="//@states.20"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174079497232" B5_w="//@agents.311" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174079492606" A5_x="//@agents.310" A5_x_v="//@states.20"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174079513682" B5_w="//@agents.313" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174079508541" A5_x="//@agents.312" A5_x_v="//@states.20"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174079529104" B5_w="//@agents.315" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174079523449" A5_x="//@agents.314" A5_x_v="//@states.20"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174079544011" B5_w="//@agents.317" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174079539385" A5_x="//@agents.316" A5_x_v="//@states.20"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174079559433" B5_w="//@agents.319" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174079554292" A5_x="//@agents.318" A5_x_v="//@states.20"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174079574341" B5_w="//@agents.321" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174079569714" A5_x="//@agents.320" A5_x_v="//@states.20"/>
+  <agents xmi:type="PatternMatchingTest:B2" ID="113174079599015" B2_x="//@agents.323"/>
+  <agents xmi:type="PatternMatchingTest:A2" ID="113174079595931" A2_x="//@agents.322"/>
+  <agents xmi:type="PatternMatchingTest:B2" ID="113174079654019" B2_x="//@agents.325"/>
+  <agents xmi:type="PatternMatchingTest:A2" ID="113174079650935" A2_x="//@agents.324"/>
+  <agents xmi:type="PatternMatchingTest:B2" ID="113174079667899" B2_x="//@agents.327"/>
+  <agents xmi:type="PatternMatchingTest:A2" ID="113174079665842" A2_x="//@agents.326"/>
+  <agents xmi:type="PatternMatchingTest:B2" ID="113174079682806" B2_x="//@agents.329"/>
+  <agents xmi:type="PatternMatchingTest:A2" ID="113174079680750" A2_x="//@agents.328"/>
+  <agents xmi:type="PatternMatchingTest:B2" ID="113174079694630" B2_x="//@agents.331"/>
+  <agents xmi:type="PatternMatchingTest:A2" ID="113174079692573" A2_x="//@agents.330"/>
+  <agents xmi:type="PatternMatchingTest:B2" ID="113174079714164" B2_x="//@agents.333"/>
+  <agents xmi:type="PatternMatchingTest:A2" ID="113174079711593" A2_x="//@agents.332"/>
+  <agents xmi:type="PatternMatchingTest:C1" ID="113174079732670" C1_v="//@agents.335"/>
+  <agents xmi:type="PatternMatchingTest:B3" ID="113174079735240" B3_x="//@agents.336" B3_z="//@agents.334"/>
+  <agents xmi:type="PatternMatchingTest:A3" ID="113174079737810" A3_x="//@agents.335"/>
+  <agents xmi:type="PatternMatchingTest:C1" ID="113174079801039" C1_v="//@agents.338"/>
+  <agents xmi:type="PatternMatchingTest:B3" ID="113174079804124" B3_x="//@agents.339" B3_z="//@agents.337"/>
+  <agents xmi:type="PatternMatchingTest:A3" ID="113174079806694" A3_x="//@agents.338"/>
+  <agents xmi:type="PatternMatchingTest:C1" ID="113174079823144" C1_v="//@agents.341"/>
+  <agents xmi:type="PatternMatchingTest:B3" ID="113174079825714" B3_x="//@agents.342" B3_z="//@agents.340"/>
+  <agents xmi:type="PatternMatchingTest:A3" ID="113174079827770" A3_x="//@agents.341"/>
+  <agents xmi:type="PatternMatchingTest:C1" ID="113174079845762" C1_v="//@agents.344"/>
+  <agents xmi:type="PatternMatchingTest:B3" ID="113174079847818" B3_x="//@agents.345" B3_z="//@agents.343"/>
+  <agents xmi:type="PatternMatchingTest:A3" ID="113174079849875" A3_x="//@agents.344"/>
+  <agents xmi:type="PatternMatchingTest:C1" ID="113174079863240" C1_v="//@agents.347"/>
+  <agents xmi:type="PatternMatchingTest:B3" ID="113174079865296" B3_x="//@agents.348" B3_z="//@agents.346"/>
+  <agents xmi:type="PatternMatchingTest:A3" ID="113174079866838" A3_x="//@agents.347"/>
+  <agents xmi:type="PatternMatchingTest:C1" ID="113174079879690" C1_v="//@agents.350"/>
+  <agents xmi:type="PatternMatchingTest:B3" ID="113174079881746" B3_x="//@agents.351" B3_z="//@agents.349"/>
+  <agents xmi:type="PatternMatchingTest:A3" ID="113174079883802" A3_x="//@agents.350"/>
+  <agents xmi:type="PatternMatchingTest:C1" ID="113174079896140" C1_v="//@agents.353"/>
+  <agents xmi:type="PatternMatchingTest:B3" ID="113174079898196" B3_x="//@agents.354" B3_z="//@agents.352"/>
+  <agents xmi:type="PatternMatchingTest:A3" ID="113174079899738" A3_x="//@agents.353"/>
+  <agents xmi:type="PatternMatchingTest:B1" ID="113174079928525"/>
+  <agents xmi:type="PatternMatchingTest:A1" ID="113174079932124"/>
+  <agents xmi:type="PatternMatchingTest:B1" ID="113174079936750"/>
+  <agents xmi:type="PatternMatchingTest:A1" ID="113174079938292"/>
+  <agents xmi:type="PatternMatchingTest:B1" ID="113174079941891"/>
+  <agents xmi:type="PatternMatchingTest:A1" ID="113174079943433"/>
+  <agents xmi:type="PatternMatchingTest:B1" ID="113174079947545"/>
+  <agents xmi:type="PatternMatchingTest:A1" ID="113174079950116"/>
+  <agents xmi:type="PatternMatchingTest:B1" ID="113174079953200"/>
+  <agents xmi:type="PatternMatchingTest:A1" ID="113174079954742"/>
+  <agents xmi:type="PatternMatchingTest:B1" ID="113174079959883"/>
+  <agents xmi:type="PatternMatchingTest:A1" ID="113174079961939"/>
+  <agents xmi:type="PatternMatchingTest:B1" ID="113174079965023"/>
+  <agents xmi:type="PatternMatchingTest:A1" ID="113174079966565"/>
+  <agents xmi:type="PatternMatchingTest:B1" ID="113174079969650"/>
+  <agents xmi:type="PatternMatchingTest:A1" ID="113174079971192"/>
+  <agents xmi:type="PatternMatchingTest:B1" ID="113174079973762"/>
+  <agents xmi:type="PatternMatchingTest:A1" ID="113174079975304"/>
+  <agents xmi:type="PatternMatchingTest:B1" ID="113174079979417"/>
+  <agents xmi:type="PatternMatchingTest:A1" ID="113174079980959"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174079993296" A5_x_u="//@states.19" A5_y="//@agents.376"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174080000493" B5_z="//@agents.375" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174080016429" A5_x_u="//@states.19" A5_y="//@agents.378"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174080022083" B5_z="//@agents.377" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:A5" ID="113174080033393" A5_x_u="//@states.19" A5_y="//@agents.380"/>
+  <agents xmi:type="PatternMatchingTest:B5" ID="113174080038533" B5_z="//@agents.379" B5_z_p="//@states.14"/>
+  <agents xmi:type="PatternMatchingTest:mC" ID="113174080058067"/>
+  <agents xmi:type="PatternMatchingTest:mD" ID="113174080055497"/>
+  <agents xmi:type="PatternMatchingTest:mC" ID="113174080066292"/>
+  <agents xmi:type="PatternMatchingTest:mD" ID="113174080063722"/>
+  <agents xmi:type="PatternMatchingTest:mC" ID="113174080073489"/>
+  <agents xmi:type="PatternMatchingTest:mD" ID="113174080071947"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174080102276" A4_x_p="//@states.14" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174080082228" A4_x_q="//@states.15" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174080111015" B4_x_b="//@states.1" B4_z_o="//@states.13"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174080128493" A4_x_p="//@states.14" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174080121296" A4_x_q="//@states.15" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174080135690" B4_x_b="//@states.1" B4_z_o="//@states.13"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174080150083" A4_x_p="//@states.14" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174080143915" A4_x_q="//@states.15" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174080155738" B4_x_b="//@states.1" B4_z_o="//@states.13"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174080172702" A4_x_p="//@states.14" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174080166533" A4_x_q="//@states.15" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174080181955" B4_x_b="//@states.1" B4_z_o="//@states.13"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174080199947" A4_x_p="//@states.14" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:A4" ID="113174080193778" A4_x_q="//@states.15" A4_y_m="//@states.11"/>
+  <agents xmi:type="PatternMatchingTest:B4" ID="113174080205087" B4_x_b="//@states.1" B4_z_o="//@states.13"/>
+  <states xmi:type="PatternMatchingTest:a"/>
+  <states xmi:type="PatternMatchingTest:b"/>
+  <states xmi:type="PatternMatchingTest:c"/>
+  <states xmi:type="PatternMatchingTest:d"/>
+  <states xmi:type="PatternMatchingTest:e"/>
+  <states xmi:type="PatternMatchingTest:f"/>
+  <states xmi:type="PatternMatchingTest:g"/>
+  <states xmi:type="PatternMatchingTest:h"/>
+  <states xmi:type="PatternMatchingTest:i"/>
+  <states xmi:type="PatternMatchingTest:j"/>
+  <states xmi:type="PatternMatchingTest:l"/>
+  <states xmi:type="PatternMatchingTest:m"/>
+  <states xmi:type="PatternMatchingTest:n"/>
+  <states xmi:type="PatternMatchingTest:o"/>
+  <states xmi:type="PatternMatchingTest:p"/>
+  <states xmi:type="PatternMatchingTest:q"/>
+  <states xmi:type="PatternMatchingTest:r"/>
+  <states xmi:type="PatternMatchingTest:s"/>
+  <states xmi:type="PatternMatchingTest:t"/>
+  <states xmi:type="PatternMatchingTest:u"/>
+  <states xmi:type="PatternMatchingTest:v"/>
+</container:Container>

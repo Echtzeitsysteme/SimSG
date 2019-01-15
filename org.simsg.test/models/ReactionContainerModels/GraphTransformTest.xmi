@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<container:Container xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:GraphTransformTest="platform:/resource/org.simsg.container/generated/GraphTransformTest" xmlns:container="http://www.simsg.container.org/container" xsi:schemaLocation="platform:/resource/org.simsg.container/generated/GraphTransformTest http://www.simsg.container.org/container#//GraphTransformTest http://www.simsg.container.org/container java://org.simsg.container.ContainerPackage" ModelName="GraphTransformTest">
+  <agents xmi:type="GraphTransformTest:C2" ID="113249015397008" C2_h="//@agents.2" C2_h_o="//@states.7"/>
+  <agents xmi:type="GraphTransformTest:A3" ID="113249013797779" A3_b_r="//@states.2" A3_c="//@agents.2" A3_c_p="//@states.0"/>
+  <agents xmi:type="GraphTransformTest:B3" ID="113249015361538" B3_e="//@agents.0" B3_f="//@agents.1" B3_f_m="//@states.5"/>
+  <agents xmi:type="GraphTransformTest:C2" ID="113249015570759" C2_h="//@agents.5" C2_h_o="//@states.7"/>
+  <agents xmi:type="GraphTransformTest:A3" ID="113249015550196" A3_b_r="//@states.2" A3_c="//@agents.5" A3_c_p="//@states.0"/>
+  <agents xmi:type="GraphTransformTest:B3" ID="113249015563048" B3_e="//@agents.3" B3_f="//@agents.4" B3_f_m="//@states.5"/>
+  <agents xmi:type="GraphTransformTest:A" ID="113249015607771" A_b_r="//@states.2" A_c="//@agents.8" A_c_p="//@states.0"/>
+  <agents xmi:type="GraphTransformTest:A" ID="113249015644783" A_b_s="//@states.3" A_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:B" ID="113249015661232" B_f="//@agents.6" B_f_m="//@states.5"/>
+  <agents xmi:type="GraphTransformTest:A" ID="113249015698244" A_b_r="//@states.2" A_c="//@agents.11" A_c_p="//@states.0"/>
+  <agents xmi:type="GraphTransformTest:A" ID="113249015709554" A_b_s="//@states.3" A_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:B" ID="113249015718293" B_f="//@agents.9" B_f_m="//@states.5"/>
+  <agents xmi:type="GraphTransformTest:A" ID="113249015739883" A_b_r="//@states.2" A_c="//@agents.14" A_c_p="//@states.0"/>
+  <agents xmi:type="GraphTransformTest:A" ID="113249015750164" A_b_s="//@states.3" A_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:B" ID="113249015757875" B_f="//@agents.12" B_f_m="//@states.5"/>
+  <agents xmi:type="GraphTransformTest:mA" ID="113249015794373" mA_x="//@agents.16"/>
+  <agents xmi:type="GraphTransformTest:mC" ID="113249015787690" mC_z="//@agents.15"/>
+  <agents xmi:type="GraphTransformTest:mA" ID="113249016964879" mA_x="//@agents.18"/>
+  <agents xmi:type="GraphTransformTest:mC" ID="113249016960766" mC_z="//@agents.17"/>
+  <agents xmi:type="GraphTransformTest:A9" ID="113249016993152" A9_x="//@agents.21"/>
+  <agents xmi:type="GraphTransformTest:A9" ID="113249016999834" A9_x="//@agents.24"/>
+  <agents xmi:type="GraphTransformTest:A9" ID="113249017002919" A9_x="//@agents.19"/>
+  <agents xmi:type="GraphTransformTest:A9" ID="113249017001377" A9_x="//@agents.23"/>
+  <agents xmi:type="GraphTransformTest:A9" ID="113249016997778" A9_x="//@agents.22"/>
+  <agents xmi:type="GraphTransformTest:A9" ID="113249016995722" A9_x="//@agents.20"/>
+  <agents xmi:type="GraphTransformTest:A9" ID="113249017073859" A9_x="//@agents.27"/>
+  <agents xmi:type="GraphTransformTest:A9" ID="113249017082083" A9_x="//@agents.30"/>
+  <agents xmi:type="GraphTransformTest:A9" ID="113249017085682" A9_x="//@agents.25"/>
+  <agents xmi:type="GraphTransformTest:A9" ID="113249017084140" A9_x="//@agents.29"/>
+  <agents xmi:type="GraphTransformTest:A9" ID="113249017078999" A9_x="//@agents.28"/>
+  <agents xmi:type="GraphTransformTest:A9" ID="113249017076943" A9_x="//@agents.26"/>
+  <agents xmi:type="GraphTransformTest:A8" ID="113249017120124" A8_y="//@agents.36"/>
+  <agents xmi:type="GraphTransformTest:A8" ID="113249017126806" A8_x="//@agents.36"/>
+  <agents xmi:type="GraphTransformTest:A8" ID="113249017128349" A8_x="//@agents.34"/>
+  <agents xmi:type="GraphTransformTest:A8" ID="113249017125264" A8_x="//@agents.33" A8_y="//@agents.35"/>
+  <agents xmi:type="GraphTransformTest:A8" ID="113249017129891" A8_y="//@agents.34"/>
+  <agents xmi:type="GraphTransformTest:A8" ID="113249017122694" A8_x="//@agents.32" A8_y="//@agents.31"/>
+  <agents xmi:type="GraphTransformTest:A8" ID="113249017180268" A8_y="//@agents.42"/>
+  <agents xmi:type="GraphTransformTest:A8" ID="113249017187465" A8_x="//@agents.42"/>
+  <agents xmi:type="GraphTransformTest:A8" ID="113249017189007" A8_x="//@agents.40"/>
+  <agents xmi:type="GraphTransformTest:A8" ID="113249017185923" A8_x="//@agents.39" A8_y="//@agents.41"/>
+  <agents xmi:type="GraphTransformTest:A8" ID="113249017194662" A8_y="//@agents.40"/>
+  <agents xmi:type="GraphTransformTest:A8" ID="113249017183353" A8_x="//@agents.38" A8_y="//@agents.37"/>
+  <agents xmi:type="GraphTransformTest:mQ" ID="113249017275369" mQ_b="//@agents.44"/>
+  <agents xmi:type="GraphTransformTest:mQ" ID="113249017260461" mQ_b="//@agents.43 //@agents.45"/>
+  <agents xmi:type="GraphTransformTest:mQ" ID="113249017272798" mQ_b="//@agents.44"/>
+  <agents xmi:type="GraphTransformTest:mQ" ID="113249017341682" mQ_b="//@agents.47"/>
+  <agents xmi:type="GraphTransformTest:mQ" ID="113249017336541" mQ_b="//@agents.46 //@agents.48"/>
+  <agents xmi:type="GraphTransformTest:mQ" ID="113249017339626" mQ_b="//@agents.47"/>
+  <agents xmi:type="GraphTransformTest:mQ" ID="113249017376638" mQ_b="//@agents.50"/>
+  <agents xmi:type="GraphTransformTest:mQ" ID="113249017370469" mQ_b="//@agents.49 //@agents.51"/>
+  <agents xmi:type="GraphTransformTest:mQ" ID="113249017374581" mQ_b="//@agents.50"/>
+  <agents xmi:type="GraphTransformTest:A1" ID="113249017410051" A1_b_r="//@states.2" A1_c="//@agents.53" A1_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:B1" ID="113249017450662" B1_f="//@agents.52" B1_f_l="//@states.4"/>
+  <agents xmi:type="GraphTransformTest:A1" ID="113249017440895" A1_b_r="//@states.2" A1_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:A1" ID="113249017498469" A1_b_r="//@states.2" A1_c="//@agents.56" A1_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:B1" ID="113249017514919" B1_f="//@agents.55" B1_f_l="//@states.4"/>
+  <agents xmi:type="GraphTransformTest:A1" ID="113249017507208" A1_b_r="//@states.2" A1_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:A1" ID="113249017528284" A1_b_r="//@states.2" A1_c="//@agents.59" A1_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:B1" ID="113249017541650" B1_f="//@agents.58" B1_f_l="//@states.4"/>
+  <agents xmi:type="GraphTransformTest:A1" ID="113249017534967" A1_b_r="//@states.2" A1_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:A1" ID="113249017555015" A1_b_r="//@states.2" A1_c="//@agents.62" A1_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:B1" ID="113249017569923" B1_f="//@agents.61" B1_f_l="//@states.4"/>
+  <agents xmi:type="GraphTransformTest:A1" ID="113249017562212" A1_b_r="//@states.2" A1_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:A" ID="113249017588429" A_b_r="//@states.2" A_c="//@agents.66" A_c_p="//@states.0"/>
+  <agents xmi:type="GraphTransformTest:C" ID="113249017612589" C_h="//@agents.66" C_h_o="//@states.7"/>
+  <agents xmi:type="GraphTransformTest:B" ID="113249017597168" B_e="//@agents.65" B_f="//@agents.64" B_f_m="//@states.5"/>
+  <agents xmi:type="GraphTransformTest:A" ID="113249017652172" A_b_r="//@states.2" A_c="//@agents.69" A_c_p="//@states.0"/>
+  <agents xmi:type="GraphTransformTest:C" ID="113249017665537" C_h="//@agents.69" C_h_o="//@states.7"/>
+  <agents xmi:type="GraphTransformTest:B" ID="113249017660397" B_e="//@agents.68" B_f="//@agents.67" B_f_m="//@states.5"/>
+  <agents xmi:type="GraphTransformTest:B3" ID="113249017701521" B3_f="//@agents.71" B3_f_l="//@states.4"/>
+  <agents xmi:type="GraphTransformTest:A3" ID="113249017688156" A3_b_r="//@states.2" A3_c="//@agents.70" A3_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:A3" ID="113249017723625" A3_b_r="//@states.2" A3_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:B3" ID="113249017771947" B3_f="//@agents.74" B3_f_l="//@states.4"/>
+  <agents xmi:type="GraphTransformTest:A3" ID="113249017763722" A3_b_r="//@states.2" A3_c="//@agents.73" A3_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:A3" ID="113249017777087" A3_b_r="//@states.2" A3_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:A" ID="113249017799192" A_b_r="//@states.2" A_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:A" ID="113249017817184" A_b_r="//@states.2" A_c="//@agents.78" A_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:B" ID="113249017807931" B_f="//@agents.77" B_f_l="//@states.4"/>
+  <agents xmi:type="GraphTransformTest:A" ID="113249017845971" A_b_r="//@states.2" A_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:A" ID="113249017859336" A_b_r="//@states.2" A_c="//@agents.81" A_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:B" ID="113249017853682" B_f="//@agents.80" B_f_l="//@states.4"/>
+  <agents xmi:type="GraphTransformTest:mB" ID="113249017885039" mB_y="//@agents.83"/>
+  <agents xmi:type="GraphTransformTest:mA" ID="113249017880413" mA_x="//@agents.82"/>
+  <agents xmi:type="GraphTransformTest:mB" ID="113249017941585" mB_y="//@agents.85"/>
+  <agents xmi:type="GraphTransformTest:mA" ID="113249017939015" mA_x="//@agents.84"/>
+  <agents xmi:type="GraphTransformTest:mB" ID="113249017958549" mB_y="//@agents.87"/>
+  <agents xmi:type="GraphTransformTest:mA" ID="113249017956493" mA_x="//@agents.86"/>
+  <agents xmi:type="GraphTransformTest:A3" ID="113249017977569" A3_b_r="//@states.2" A3_c="//@agents.89" A3_c_p="//@states.0"/>
+  <agents xmi:type="GraphTransformTest:B3" ID="113249017987336" B3_f="//@agents.88" B3_f_m="//@states.5"/>
+  <agents xmi:type="GraphTransformTest:A3" ID="113249017992991" A3_b_s="//@states.3" A3_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:A3" ID="113249018015095" A3_b_r="//@states.2" A3_c="//@agents.92" A3_c_p="//@states.0"/>
+  <agents xmi:type="GraphTransformTest:B3" ID="113249018023320" B3_f="//@agents.91" B3_f_m="//@states.5"/>
+  <agents xmi:type="GraphTransformTest:A3" ID="113249018028461" A3_b_s="//@states.3" A3_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:A3" ID="113249018056734" A3_b_r="//@states.2" A3_c="//@agents.95" A3_c_p="//@states.0"/>
+  <agents xmi:type="GraphTransformTest:B3" ID="113249018064445" B3_f="//@agents.94" B3_f_m="//@states.5"/>
+  <agents xmi:type="GraphTransformTest:A3" ID="113249018070099" A3_b_s="//@states.3" A3_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:A1" ID="113249018115336" A1_b_r="//@states.2" A1_c="//@agents.98" A1_c_p="//@states.0"/>
+  <agents xmi:type="GraphTransformTest:B1" ID="113249018106083" B1_f="//@agents.97" B1_f_m="//@states.5"/>
+  <agents xmi:type="GraphTransformTest:A1" ID="113249018092204" A1_b_s="//@states.3" A1_c_q="//@states.1"/>
+  <agents xmi:type="GraphTransformTest:A1" ID="113249018148750" A1_b_r="//@states.2" A1_c="//@agents.101" A1_c_p="//@states.0"/>
+  <agents xmi:type="GraphTransformTest:B1" ID="113249018143095" B1_f="//@agents.100" B1_f_m="//@states.5"/>
+  <agents xmi:type="GraphTransformTest:A1" ID="113249018135384" A1_b_s="//@states.3" A1_c_q="//@states.1"/>
+  <states xmi:type="GraphTransformTest:p"/>
+  <states xmi:type="GraphTransformTest:q"/>
+  <states xmi:type="GraphTransformTest:r"/>
+  <states xmi:type="GraphTransformTest:s"/>
+  <states xmi:type="GraphTransformTest:l"/>
+  <states xmi:type="GraphTransformTest:m"/>
+  <states xmi:type="GraphTransformTest:n"/>
+  <states xmi:type="GraphTransformTest:o"/>
+</container:Container>
