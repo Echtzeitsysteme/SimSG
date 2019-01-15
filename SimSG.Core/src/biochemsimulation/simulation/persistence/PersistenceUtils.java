@@ -71,14 +71,14 @@ public class PersistenceUtils {
 	}
 	
 	public static JSONObject loadJSONFile(String path) {
-		JSONObject out = null;
 		JSONParser parser = new JSONParser();
 		try {
-			out = (JSONObject) parser.parse(new FileReader(path));
+			return (JSONObject) parser.parse(new FileReader(path));
 		} catch (IOException | ParseException e) {
-			e.printStackTrace();
+			if(e instanceof java.io.FileNotFoundException) return null;
+			else e.printStackTrace();
 		}
-		return out;
+		return null;
 	}
 	
 	public static void saveJSONFile(String path, JSONObject obj) {

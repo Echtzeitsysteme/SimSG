@@ -19,7 +19,7 @@ import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 
 public class SimplePersistenceManager extends PersistenceManager {
 	
-	final public static String REACTION_CONTAINER_MODELS_HEADER = "<reactioncontainer:Container xmi:version=\"2.0\"";
+	final public static String REACTION_CONTAINER_MODELS_HEADER = "<Container:Container xmi:version=\"2.0\"";
 	
 	SimplePersistenceManager() {
 		super();

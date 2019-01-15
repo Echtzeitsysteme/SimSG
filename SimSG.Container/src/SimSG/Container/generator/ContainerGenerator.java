@@ -233,6 +233,6 @@ public abstract class ContainerGenerator {
 	}
 	
 	public static URI createMetaModelURI(String modelName) {
-		return URI.createPlatformResourceURI("biochemsimulation.reactioncontainer/generated/"+modelName, true);
+		return URI.createPlatformResourceURI("SimSG.Container/generated/"+modelName, true);
 	}
 }

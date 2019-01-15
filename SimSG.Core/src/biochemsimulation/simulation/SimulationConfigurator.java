@@ -3,6 +3,7 @@ package biochemsimulation.simulation;
 import biochemsimulation.simulation.matching.PatternMatchingEngine;
 import biochemsimulation.simulation.matching.PatternMatchingEngineEnum;
 import biochemsimulation.simulation.matching.PatternMatchingEngineFactory;
+import biochemsimulation.simulation.persistence.PersistenceManager;
 import biochemsimulation.simulation.persistence.PersistenceManagerEnum;
 import biochemsimulation.simulation.persistence.PersistenceManagerFactory;
 import biochemsimulation.simulation.pmc.PatternMatchingController;
@@ -12,6 +13,7 @@ import biochemsimulation.simulation.pmc.PatternMatchingControllerFactory;
 public class SimulationConfigurator {
 	
 	private String modelName;
+	private String modelFolder;
 	private PersistenceManagerEnum persistenceType;
 	private PatternMatchingEngineEnum engineType;
 	private PatternMatchingControllerEnum controllerType;
@@ -33,6 +35,10 @@ public class SimulationConfigurator {
 	
 	public void setEMFPersistence() {
 		persistenceType = PersistenceManagerEnum.SimplePersistence;
+	}
+	
+	public void setModelFolder(String path) {
+		this.modelFolder = path;
 	}
 	
 	public void setViatraAsEngine(boolean parallel) {
@@ -82,7 +88,13 @@ public class SimulationConfigurator {
 	public Simulation createSimulation() {
 		Simulation simulation = SimulationFactory.create(simulationType);
 		simulation.setModel(modelName);
-		simulation.setPersistence(PersistenceManagerFactory.create(persistenceType));
+		PersistenceManager persistence = PersistenceManagerFactory.create(persistenceType);
+		if(modelFolder == null) {
+			System.out.println("Warning: No model folder has been set. Using default folder..");
+		}else {
+			persistence.setModelFolderPath(modelFolder);
+		}
+		simulation.setPersistence(persistence);
 		// create and set pattern matching engine and controller
 		PatternMatchingEngine engine = PatternMatchingEngineFactory.create(engineType);
 		PatternMatchingController pmc = PatternMatchingControllerFactory.create(controllerType);

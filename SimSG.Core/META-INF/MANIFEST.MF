@@ -16,8 +16,7 @@ Export-Package: biochemsimulation.simulation;uses:="biochemsimulation.simulation
     biochemsimulation.simulation.matching,
     biochemsimulation.reactioncontainer,
     org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage,
-    biochemsimulation.reactionrules.reactionRules",
-  biochemsimulation.simulation.test
+    biochemsimulation.reactionrules.reactionRules"
 Require-Bundle: org.apache.log4j;bundle-version="1.2.15",
  org.eclipse.collections;bundle-version="7.1.1",
  org.eclipse.debug.ui,

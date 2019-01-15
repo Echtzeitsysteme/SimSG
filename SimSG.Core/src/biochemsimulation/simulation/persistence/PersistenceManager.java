@@ -55,8 +55,10 @@ public abstract class PersistenceManager {
 	public PersistenceManager() {
 		ruleModelCache = new HashMap<String, ReactionRuleModel>();
 		reactionContainerModelCache = new HashMap<String, Container>();
-		setContainerModelSuffix();
-		setOSspecificSeparators();
+	}
+	
+	public void setModelFolderPath(String path) {
+		dataFolder = path;
 	}
 	
 	protected abstract void setContainerModelSuffix();
@@ -83,6 +85,8 @@ public abstract class PersistenceManager {
 	public abstract Container loadReactionContainerModel(String name) throws Exception;
 	
 	public void init() {
+		setContainerModelSuffix();
+		setOSspecificSeparators();
 		classLoader();
 		setFolderPaths();
 		fetchExistingRuleModelPaths();
@@ -114,6 +118,7 @@ public abstract class PersistenceManager {
 			PersistenceUtils.saveJSONFile(indexPath, modelIndex);
 		}else {
 			updateIndex();
+			PersistenceUtils.saveJSONFile(indexPath, modelIndex);
 		}
 	}
 	
@@ -130,13 +135,20 @@ public abstract class PersistenceManager {
 	}
 	
 	private void setFolderPaths() {
-		dataFolder = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
-		dataFolder = dataFolder.replaceFirst("/bin", "");
-		if(os.equalsIgnoreCase(SYSTEM_OS_WIN)) {
-			dataFolder = dataFolder.replaceFirst("^/", "");
+		if(dataFolder == null) {
+			dataFolder = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
+			dataFolder = dataFolder.replaceFirst("/bin", "");
+			if(os.equalsIgnoreCase(SYSTEM_OS_WIN)) {
+				dataFolder = dataFolder.replaceFirst("^/", "");
+			}
+			dataFolder = dataFolder.replaceFirst("%20", " ");
+			dataFolder += DATA_FOLDER+"/";
+			System.out.println("Using default model folder: "+dataFolder);
+		}else {
+			dataFolder = dataFolder.replaceAll("\\\\", "//");
+			dataFolder += "//";
+			System.out.println("Using user model folder: "+dataFolder);
 		}
-		dataFolder = dataFolder.replaceFirst("%20", " ");
-		dataFolder += DATA_FOLDER+"/";
 		PersistenceUtils.createFolderIfNotExist(dataFolder);
 		
 		indexPath = dataFolder+PERSISTENCE_INDEX_FILE;
