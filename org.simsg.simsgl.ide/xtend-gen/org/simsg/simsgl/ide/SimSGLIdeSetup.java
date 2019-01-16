@@ -3,12 +3,8 @@
  */
 package org.simsg.simsgl.ide;
 
-import com.google.inject.Guice;
 import com.google.inject.Injector;
-import org.eclipse.xtext.util.Modules2;
-import org.simsg.simsgl.SimSGLRuntimeModule;
 import org.simsg.simsgl.SimSGLStandaloneSetup;
-import org.simsg.simsgl.ide.SimSGLIdeModule;
 
 /**
  * Initialization support for running Xtext languages as language servers.
@@ -17,8 +13,7 @@ import org.simsg.simsgl.ide.SimSGLIdeModule;
 public class SimSGLIdeSetup extends SimSGLStandaloneSetup {
   @Override
   public Injector createInjector() {
-    SimSGLRuntimeModule _simSGLRuntimeModule = new SimSGLRuntimeModule();
-    SimSGLIdeModule _simSGLIdeModule = new SimSGLIdeModule();
-    return Guice.createInjector(Modules2.mixin(_simSGLRuntimeModule, _simSGLIdeModule));
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from SimSGLRuntimeModule to Module");
   }
 }
