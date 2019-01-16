@@ -16,20 +16,21 @@
 */bin/*
 
 # Xtext
-!*/src-gen/**/*.java
+#!*/src-gen/**/*.java
 */src-gen/**/*.java._trace
 */src-gen/**/*.xtendbin
 */src-gen/**/*.xtextbin
 */xtend-gen/**/*.xtendbin
 */xtend-gen/**/*.xtextbin
-!*/xtend-gen/**/*.java
+#!*/xtend-gen/**/*.java
 */xtend-gen/**/*.java._trace
 
 # Simulation
-*/data/Benchmarks/*
-*/data/ReactionContainerModels/*
-*/data/ReactionRuleModels/*.xmi
-*/data/ViatraPatternModels/*
+*/*/Benchmarks/*
+*/*/ContainerModels/*
+*/*/ContainerMetaModels/*
+*/*/SimSGLModels/*.xmi
+*/*/ViatraPatternModels/*
 !*/libs/*.jar
 
 !.gitignore
