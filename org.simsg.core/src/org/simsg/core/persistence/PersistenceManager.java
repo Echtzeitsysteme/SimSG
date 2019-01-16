@@ -23,9 +23,9 @@ import org.simsg.simsgl.simSGL.SimSGLPackage;
 
 public abstract class PersistenceManager {
 	
-	final public static String REACTION_CONTAINER_MODELS_FOLDER = "ReactionContainerModels";
-	final public static String REACTION_CONTAINER_METAMODELS_FOLDER = "ReactionContainerMetaModels";
-	final public static String REACTION_RULE_MODELS_FOLDER = "ReactionRuleModels";
+	final public static String REACTION_CONTAINER_MODELS_FOLDER = "ContainerModels";
+	final public static String REACTION_CONTAINER_METAMODELS_FOLDER = "ContainerMetaModels";
+	final public static String REACTION_RULE_MODELS_FOLDER = "SimSGLModels";
 	final public static String REACTION_RULE_MODELS_HEADER = "<simSGL:SimSGLModel xmi:version=\"2.0\"";
 	final public static String REACTION_RULE_MODELS_NAME_LOCATION = "<model xmi:type=\"simSGL:Model\" name=";
 	final public static String PERSISTENCE_INDEX_FILE = "simple_persistence_index.json";
