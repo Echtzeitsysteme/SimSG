@@ -11,6 +11,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="State"/>
   <eClassifiers xsi:type="ecore:EClass" name="Agent">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Long"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Long"/>
   </eClassifiers>
 </ecore:EPackage>

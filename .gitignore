@@ -31,6 +31,8 @@
 */*/ContainerMetaModels/*
 */*/SimSGLModels/*.xmi
 */*/ViatraPatternModels/*
+*/*.json
+
 !*/libs/*.jar
 
 !.gitignore
