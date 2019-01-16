@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.simsg.feature"
+      label="SimSG"
+      version="1.0.0.qualifier">
+
+   <description url="http://www.example.com/description">
+      [Enter Feature Description here.]
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <requires>
+      <import plugin="org.apache.log4j" version="1.2.15" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.collections" version="7.1.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.debug.ui"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.eclipse.emf" version="2.6.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.xtext" version="2.12.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.xtext.xbase" version="2.12.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.viatra.query.patternlanguage.emf"/>
+      <import plugin="org.eclipse.viatra.query.runtime"/>
+      <import plugin="org.eclipse.viatra.query.runtime.localsearch" version="1.7.2" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.viatra.query.runtime.base.itc" version="1.7.2" match="greaterOrEqual"/>
+      <import plugin="org.simsg.simsgl"/>
+      <import plugin="org.gervarro.democles.common" version="3.0.0" match="compatible"/>
+      <import plugin="org.gervarro.democles.emf" version="2.1.0" match="greaterOrEqual"/>
+      <import plugin="org.gervarro.democles.interpreter" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.gervarro.democles.interpreter.emf" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.gervarro.democles.interpreter.incremental" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.gervarro.democles.interpreter.incremental.emf" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.gervarro.democles.interpreter.lightning" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.gervarro.democles.notification.emf" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.gervarro.democles.plan" version="3.0.0" match="greaterOrEqual"/>
+      <import plugin="org.gervarro.democles.plan.emf" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.gervarro.democles.plan.incremental.leaf" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.gervarro.democles.specification.emf" version="3.0.0" match="greaterOrEqual"/>
+      <import plugin="org.gervarro.notification" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.gervarro.util" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="org.gervarro.plan.dynprog" version="1.0.1" match="greaterOrEqual"/>
+      <import plugin="org.hamcrest.core"/>
+      <import plugin="org.opentest4j"/>
+      <import plugin="org.apiguardian"/>
+      <import plugin="org.eclipse.viatra.query.runtime.rete" version="2.0.2" match="greaterOrEqual"/>
+      <import plugin="org.simsg.container" version="0.1.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.equinox.p2.ui" version="2.5.100" match="compatible"/>
+      <import plugin="org.apache.commons.io"/>
+      <import plugin="org.eclipse.core.runtime"/>
+   </requires>
+
+   <plugin
+         id="org.simsg.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.simsg.container"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
