@@ -1,4 +1,4 @@
-BioChemSimulation
+SimSG
 
 ## Setup instructions
 
