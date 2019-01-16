@@ -53,7 +53,12 @@ public class ViatraPatternGenerator {
 			patternModelFolder = patternModelFolder.replaceFirst("^/", "");
 		}
 		patternModelFolder = patternModelFolder.replaceFirst("%20", " ");
-		patternModelFolder += MODEL_FOLDER_NAME+"/"+PATTERN_MODEL_FOLDER_NAME;
+		patternModelFolder += MODEL_FOLDER_NAME;
+		
+		// create data folder if absent
+		PersistenceUtils.createFolderIfNotExist(patternModelFolder);
+		
+		patternModelFolder += "/"+ PATTERN_MODEL_FOLDER_NAME;
 		
 		// create model folder if absent
 		PersistenceUtils.createFolderIfNotExist(patternModelFolder);
