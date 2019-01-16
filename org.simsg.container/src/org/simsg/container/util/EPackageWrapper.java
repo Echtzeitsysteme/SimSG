@@ -6,7 +6,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import biochemsimulation.reactionrules.reactionRules.Agent;
+import org.simsg.simsgl.simSGL.Agent;
 
 public class EPackageWrapper {
 	EPackage ePack;

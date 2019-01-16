@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.simsg.core.pmc.PatternMatchingController;
+import org.simsg.simsgl.utils.PatternContainer;
 
-import biochemsimulation.reactionrules.utils.PatternContainer;
 
 public class SimulationStatistics {
 	

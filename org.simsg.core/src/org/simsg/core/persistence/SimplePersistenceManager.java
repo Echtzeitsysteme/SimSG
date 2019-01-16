@@ -15,8 +15,7 @@ import org.simsg.container.Container;
 import org.simsg.container.generator.ContainerEMF;
 import org.simsg.container.generator.ContainerGenerator;
 import org.simsg.core.utils.PersistenceUtils;
-
-import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
+import org.simsg.simsgl.simSGL.SimSGLModel;
 
 public class SimplePersistenceManager extends PersistenceManager {
 	
@@ -29,7 +28,7 @@ public class SimplePersistenceManager extends PersistenceManager {
 	@Override
 	public Container loadReactionContainerModel(String name) throws Exception {
 		if((!checkExistenceAndIndexContainer(name, true)) || (!checkExistenceAndIndexMetamodel(name, true))) {
-			ReactionRuleModel ruleModel = loadReactionRuleModel(name);
+			SimSGLModel ruleModel = loadReactionRuleModel(name);
 			ContainerGenerator gen = new ContainerEMF(ruleModel);
 			String path = reactionModelFolder+"/"+name+containerModelSuffix;
 			String path2 = reactionMetamodelFolder+"/"+name+".ecore";

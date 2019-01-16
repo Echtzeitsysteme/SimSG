@@ -1,7 +1,7 @@
 package org.simsg.core.simulation;
 
-import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
-import biochemsimulation.reactionrules.utils.PatternContainer;
+import org.simsg.simsgl.simSGL.SimSGLModel;
+import org.simsg.simsgl.utils.PatternContainer;
 
 public class SimpleTerminationCondition extends SimulationTerminationCondition {
 
@@ -14,7 +14,7 @@ public class SimpleTerminationCondition extends SimulationTerminationCondition {
 	}
 
 	@Override
-	public void initCondition(PatternContainer patternContainer, ReactionRuleModel ruleModel) {
+	public void initCondition(PatternContainer patternContainer, SimSGLModel ruleModel) {
 		// TODO Auto-generated method stub
 		
 	}

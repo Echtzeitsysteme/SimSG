@@ -4,10 +4,10 @@ import java.util.Map;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EReference;
+
 import org.simsg.container.Agent;
 import org.simsg.core.pm.match.IMatch;
-
-import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
+import org.simsg.simsgl.simSGL.ValidAgentPattern;
 
 public class LinkChangeTemplate {
 	

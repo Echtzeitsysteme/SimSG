@@ -9,9 +9,9 @@ import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.pm.match.IMatch;
 import org.simsg.core.pmc.PatternMatchingController;
 import org.simsg.core.utils.Runtimer;
+import org.simsg.simsgl.simSGL.SimSGLModel;
+import org.simsg.simsgl.utils.PatternUtils;
 
-import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
-import biochemsimulation.reactionrules.utils.PatternUtils;
 
 public abstract class Simulation {
 	
@@ -22,7 +22,7 @@ public abstract class Simulation {
 	protected SimulationTerminationCondition terminationCondition;
 	protected SimulationState state;
 	protected SimulationStatistics simStats;
-	protected ReactionRuleModel ruleModel;
+	protected SimSGLModel ruleModel;
 	protected Container reactionContainer;
 	protected ReactionRuleTransformer gt;
 	protected Map<String, Double> staticReactionRates;

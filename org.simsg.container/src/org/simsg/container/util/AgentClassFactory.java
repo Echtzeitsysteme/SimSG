@@ -6,10 +6,10 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.simsg.container.ContainerPackage;
-import biochemsimulation.reactionrules.reactionRules.Agent;
-import biochemsimulation.reactionrules.reactionRules.SingleSite;
-import biochemsimulation.reactionrules.reactionRules.Site;
-import biochemsimulation.reactionrules.reactionRules.State;
+import org.simsg.simsgl.simSGL.Agent;
+import org.simsg.simsgl.simSGL.SingleSite;
+import org.simsg.simsgl.simSGL.Site;
+import org.simsg.simsgl.simSGL.State;
 
 public class AgentClassFactory extends EClassFactory<Agent, org.simsg.container.Agent> {
 

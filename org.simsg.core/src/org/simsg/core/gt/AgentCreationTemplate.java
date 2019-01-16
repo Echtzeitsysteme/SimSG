@@ -6,13 +6,14 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EReference;
+
 import org.simsg.container.Agent;
 import org.simsg.container.Container;
 import org.simsg.container.State;
 import org.simsg.container.util.AgentFactory;
 
-import biochemsimulation.reactionrules.reactionRules.Site;
-import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
+import org.simsg.simsgl.simSGL.ValidAgentPattern;
+import org.simsg.simsgl.simSGL.Site;
 
 public class AgentCreationTemplate {
 	private ValidAgentPattern vap;

@@ -7,22 +7,22 @@ import java.util.Map;
 import java.util.Random;
 
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.common.util.URI;
+
 import org.simsg.container.Container;
 import org.simsg.container.generator.ContainerGenerator;
 import org.simsg.container.util.EPackageWrapper;
 import org.simsg.core.pm.match.IMatch;
 import org.simsg.core.pm.match.PatternMatchingEngine;
 import org.simsg.core.pm.match.PatternMatchingEngineEnum;
+import org.simsg.simsgl.simSGL.SimSGLModel;
+import org.simsg.simsgl.utils.PatternContainer;
+import org.simsg.simsgl.utils.PatternUtils;
 
-import org.eclipse.emf.common.util.URI;
 
-import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
-import biochemsimulation.reactionrules.utils.PatternContainer;
-import biochemsimulation.reactionrules.utils.PatternUtils;
 
 public abstract class PatternMatchingController{
-	
-	//protected ReactionRuleModel ruleModel;
+
 	protected Container reactionContainer;
 	protected EPackageWrapper metaModel;
 	
@@ -109,8 +109,7 @@ public abstract class PatternMatchingController{
 		this.engine = engine;
 	}
 	
-	public void loadModels(ReactionRuleModel ruleModel, Container reactionContainer) throws Exception {
-		//this.ruleModel = ruleModel;
+	public void loadModels(SimSGLModel ruleModel, Container reactionContainer) throws Exception {
 		this.reactionContainer = reactionContainer;
 		this.patternContainer = PatternUtils.createPatternContainer(ruleModel);
 		URI metaModelURI = ContainerGenerator.createMetaModelURI(ruleModel.getModel().getName());

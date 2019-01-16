@@ -6,10 +6,9 @@ import java.util.Map;
 import org.simsg.container.Container;
 import org.simsg.container.util.EPackageWrapper;
 import org.simsg.core.pm.match.IMatch;
-
-import biochemsimulation.reactionrules.reactionRules.Pattern;
-import biochemsimulation.reactionrules.utils.PatternContainer;
-import biochemsimulation.reactionrules.utils.PatternUtils;
+import org.simsg.simsgl.simSGL.Pattern;
+import org.simsg.simsgl.utils.PatternContainer;
+import org.simsg.simsgl.utils.PatternUtils;
 
 public class ReactionRuleTransformer {
 	

@@ -5,9 +5,9 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.simsg.container.State;
 
-public class StateFactory extends EObjectFactory<State, biochemsimulation.reactionrules.reactionRules.State> {
+public class StateFactory extends EObjectFactory<State, org.simsg.simsgl.simSGL.State> {
 	
-	public StateFactory(EPackage ecorePackage, EClassRegistry<biochemsimulation.reactionrules.reactionRules.State> stateClassRegistry) {
+	public StateFactory(EPackage ecorePackage, EClassRegistry<org.simsg.simsgl.simSGL.State> stateClassRegistry) {
 		super(ecorePackage, stateClassRegistry);
 	}
 	

@@ -1,7 +1,7 @@
 package org.simsg.core.simulation;
 
-import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
-import biochemsimulation.reactionrules.utils.PatternContainer;
+import org.simsg.simsgl.simSGL.SimSGLModel;
+import org.simsg.simsgl.utils.PatternContainer;
 
 public abstract class SimulationTerminationCondition {
 	
@@ -24,7 +24,7 @@ public abstract class SimulationTerminationCondition {
 		this.maxElapsedTime = maxElapsedTime;
 	}
 	
-	public abstract void initCondition(PatternContainer patternContainer, ReactionRuleModel ruleModel);
+	public abstract void initCondition(PatternContainer patternContainer, SimSGLModel ruleModel);
 	
 	public abstract boolean isTerminated(SimulationState state);
 	

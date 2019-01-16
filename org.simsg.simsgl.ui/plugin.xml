@@ -8,6 +8,7 @@
 			contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
 			default="true"
 			extensions="ssgl"
+			icon="platform:/plugin/org.simsg.simsgl.ui/icon/react.png"
 			id="org.simsg.simsgl.SimSGL"
 			name="SimSGL Editor">
 		</editor>
@@ -445,10 +446,11 @@
           name="SimSGL Wizards">
       </category>
    </extension>
-	<extension point="org.eclipse.ui.decorators"> 
+   <!-- 
+   <extension point="org.eclipse.ui.decorators"> 
         <decorator
             id="org.simsg.simsgl.declarative.decorator" 
-            label="Reaction Rule Lightweight Declarative Decorator" 
+            label="SimSGL Lightweight Declarative Decorator" 
             state="true" 
             lightweight="true" 
             icon="platform:/plugin/org.simsg.simsgl.ui/icon/react.png"
@@ -458,6 +460,7 @@
             </enablement>
         </decorator>
     </extension>
+    Rename Refactoring
     <extension point="org.eclipse.ui.ide.projectNatureImages">
   		<image 
     	id="org.simsg.simsgl.ui.icon"
@@ -465,4 +468,5 @@
    		icon="platform:/plugin/org.simsg.simsgl.ui/icon/react.png">
   		</image>
  	</extension>
+ 	 -->
 </plugin>

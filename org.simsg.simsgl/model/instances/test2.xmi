@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simSGL:SimSGLModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:simSGL="http://www.simsg.org/simsgl/SimSGL" xsi:schemaLocation="http://www.simsg.org/simsgl/SimSGL java://org.simsg.simsgl.simSGL.SimSGLPackage">
+  <model xmi:type="simSGL:Model" name="test2"/>
+</simSGL:SimSGLModel>

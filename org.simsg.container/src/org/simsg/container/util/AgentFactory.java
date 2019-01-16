@@ -5,9 +5,9 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.simsg.container.Agent;
 
-public class AgentFactory extends EObjectFactory<Agent, biochemsimulation.reactionrules.reactionRules.Agent>{
+public class AgentFactory extends EObjectFactory<Agent, org.simsg.simsgl.simSGL.Agent>{
 	
-	public AgentFactory(EPackage ecorePackage, EClassRegistry<biochemsimulation.reactionrules.reactionRules.Agent> agentClassRegistry) {
+	public AgentFactory(EPackage ecorePackage, EClassRegistry<org.simsg.simsgl.simSGL.Agent> agentClassRegistry) {
 		super(ecorePackage, agentClassRegistry);
 	}
 	

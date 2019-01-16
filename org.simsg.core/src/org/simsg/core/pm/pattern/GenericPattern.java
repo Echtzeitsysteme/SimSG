@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.simsg.container.util.EPackageWrapper;
+import org.simsg.simsgl.simSGL.Pattern;
+import org.simsg.simsgl.simSGL.ValidAgentPattern;
 
-import biochemsimulation.reactionrules.reactionRules.Pattern;
-import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 
 public class GenericPattern {
 	private EPackageWrapper metaModel;

@@ -8,7 +8,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
+import org.simsg.simsgl.simSGL.SimSGLModel;
+
 
 public class ContainerEMF extends ContainerGenerator {
 	
@@ -20,7 +21,7 @@ public class ContainerEMF extends ContainerGenerator {
 		super(model);
 	}
 
-	public ContainerEMF(ReactionRuleModel model) {
+	public ContainerEMF(SimSGLModel model) {
 		super(model);
 	}
 

@@ -11,16 +11,16 @@ import org.simsg.container.State;
 import org.simsg.container.util.AgentClassFactory;
 import org.simsg.container.util.StateClassFactory;
 
-import biochemsimulation.reactionrules.reactionRules.BoundLink;
-import biochemsimulation.reactionrules.reactionRules.LinkState;
-import biochemsimulation.reactionrules.reactionRules.MultiLink;
-import biochemsimulation.reactionrules.reactionRules.MultiLinkSitePattern;
-import biochemsimulation.reactionrules.reactionRules.Pattern;
-import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
-import biochemsimulation.reactionrules.reactionRules.Site;
-import biochemsimulation.reactionrules.reactionRules.SitePattern;
-import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
-import biochemsimulation.reactionrules.utils.PatternUtils;
+import org.simsg.simsgl.simSGL.BoundLink;
+import org.simsg.simsgl.simSGL.LinkState;
+import org.simsg.simsgl.simSGL.MultiLink;
+import org.simsg.simsgl.simSGL.MultiLinkSitePattern;
+import org.simsg.simsgl.simSGL.Pattern;
+import org.simsg.simsgl.simSGL.SingleSitePattern;
+import org.simsg.simsgl.simSGL.Site;
+import org.simsg.simsgl.simSGL.SitePattern;
+import org.simsg.simsgl.simSGL.ValidAgentPattern;
+import org.simsg.simsgl.utils.PatternUtils;
 
 public class InitializationTemplate {
 
@@ -53,7 +53,7 @@ public class InitializationTemplate {
 	
 	private void findStates() {
 		for(ValidAgentPattern vap : agentPatterns) {
-			Map<Site, biochemsimulation.reactionrules.reactionRules.State> states = new HashMap<>();
+			Map<Site, org.simsg.simsgl.simSGL.State> states = new HashMap<>();
 			for(Site site : vap.getAgent().getSites().getSites()) {
 				if(site.getStates().getState().size() > 0) {
 					states.put(site, site.getStates().getState().get(0));

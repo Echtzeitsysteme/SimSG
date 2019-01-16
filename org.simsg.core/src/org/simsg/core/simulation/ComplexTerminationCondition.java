@@ -4,13 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import biochemsimulation.reactionrules.reactionRules.Iterations;
-import biochemsimulation.reactionrules.reactionRules.Population;
-import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
-import biochemsimulation.reactionrules.reactionRules.Terminate;
-import biochemsimulation.reactionrules.reactionRules.Time;
-import biochemsimulation.reactionrules.utils.PatternContainer;
-import biochemsimulation.reactionrules.utils.PatternUtils;
+import org.simsg.simsgl.simSGL.Iterations;
+import org.simsg.simsgl.simSGL.Population;
+import org.simsg.simsgl.simSGL.SimSGLModel;
+import org.simsg.simsgl.simSGL.Terminate;
+import org.simsg.simsgl.simSGL.Time;
+import org.simsg.simsgl.utils.PatternContainer;
+import org.simsg.simsgl.utils.PatternUtils;
 
 public class ComplexTerminationCondition extends SimulationTerminationCondition {
 	
@@ -46,7 +46,7 @@ public class ComplexTerminationCondition extends SimulationTerminationCondition 
 	}
 
 	@Override
-	public void initCondition(PatternContainer patternContainer, ReactionRuleModel ruleModel) {
+	public void initCondition(PatternContainer patternContainer, SimSGLModel ruleModel) {
 		terminationPatterns = new HashMap<String, Integer>();
 		for(String patternName : patternContainer.getTermCondPatterns().keySet()) {
 			terminationPatterns.put(patternName, 0);

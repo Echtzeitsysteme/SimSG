@@ -13,12 +13,12 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
 
 import org.simsg.container.util.EPackageWrapper;
+import org.simsg.simsgl.simSGL.BoundAnyOfTypeLink;
+import org.simsg.simsgl.simSGL.Pattern;
+import org.simsg.simsgl.simSGL.SingleSitePattern;
+import org.simsg.simsgl.simSGL.SitePattern;
+import org.simsg.simsgl.simSGL.ValidAgentPattern;
 
-import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
-import biochemsimulation.reactionrules.reactionRules.Pattern;
-import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
-import biochemsimulation.reactionrules.reactionRules.SitePattern;
-import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 
 public class HybridPattern {
 	

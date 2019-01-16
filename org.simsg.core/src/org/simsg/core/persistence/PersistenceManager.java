@@ -18,17 +18,16 @@ import org.json.simple.JSONObject;
 import org.simsg.container.Container;
 import org.simsg.container.ContainerPackage;
 import org.simsg.core.utils.PersistenceUtils;
-
-import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
-import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
+import org.simsg.simsgl.simSGL.SimSGLModel;
+import org.simsg.simsgl.simSGL.SimSGLPackage;
 
 public abstract class PersistenceManager {
 	
 	final public static String REACTION_CONTAINER_MODELS_FOLDER = "ReactionContainerModels";
 	final public static String REACTION_CONTAINER_METAMODELS_FOLDER = "ReactionContainerMetaModels";
 	final public static String REACTION_RULE_MODELS_FOLDER = "ReactionRuleModels";
-	final public static String REACTION_RULE_MODELS_HEADER = "<reactionRules:ReactionRuleModel xmi:version=\"2.0\" xmlns:xmi=\"http://www.omg.org/XMI\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:reactionRules=\"http://www.reactionrules.biochemsimulation/ReactionRules\" xsi:schemaLocation=\"http://www.reactionrules.biochemsimulation/ReactionRules java://biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage\">";
-	final public static String REACTION_RULE_MODELS_NAME_LOCATION = "<model xmi:type=\"reactionRules:Model\" name=";
+	final public static String REACTION_RULE_MODELS_HEADER = "<simSGL:SimSGLModel xmi:version=\"2.0\"";
+	final public static String REACTION_RULE_MODELS_NAME_LOCATION = "<model xmi:type=\"simSGL:Model\" name=";
 	final public static String PERSISTENCE_INDEX_FILE = "simple_persistence_index.json";
 	final public static String DATA_FOLDER = "data";
 	final public static String SEPARATOR_WIN = "\\";
@@ -50,11 +49,11 @@ public abstract class PersistenceManager {
 	protected HashMap<String, String> reactionModelPaths;
 	protected HashMap<String, String> reactionMetamodelPaths;
 	protected HashMap<String, String> ruleModelPaths;
-	protected HashMap<String, ReactionRuleModel> ruleModelCache;
+	protected HashMap<String, SimSGLModel> ruleModelCache;
 	protected HashMap<String, Container> reactionContainerModelCache;
 	
 	public PersistenceManager() {
-		ruleModelCache = new HashMap<String, ReactionRuleModel>();
+		ruleModelCache = new HashMap<String, SimSGLModel>();
 		reactionContainerModelCache = new HashMap<String, Container>();
 	}
 	
@@ -97,7 +96,7 @@ public abstract class PersistenceManager {
 	}
 	
 	private void classLoader() {
-		ReactionRulesPackage.eINSTANCE.eClass();
+		SimSGLPackage.eINSTANCE.eClass();
 		ContainerPackage.eINSTANCE.eClass();
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 	}
@@ -239,17 +238,17 @@ public abstract class PersistenceManager {
 		return reactionModelPaths.keySet();
 	}
 	
-	synchronized public ReactionRuleModel loadReactionRuleModel (String name) throws java.lang.Exception {
+	synchronized public SimSGLModel loadReactionRuleModel (String name) throws java.lang.Exception {
 		if(ruleModelCache.containsKey(name)) {
 			return ruleModelCache.get(name);
 		}
 		if(!ruleModelPaths.containsKey(name))
 			throw new IndexOutOfBoundsException("Requested reaction rule model with given name does not exist.");
 		
-		ReactionRuleModel model = null;
+		SimSGLModel model = null;
 		Resource modelResource = PersistenceUtils.loadResource(ruleModelPaths.get(name));
 		
-		model = (ReactionRuleModel) modelResource.getContents().get(0);
+		model = (SimSGLModel) modelResource.getContents().get(0);
 		ruleModelCache.put(name, model);
 		return model;
 	}

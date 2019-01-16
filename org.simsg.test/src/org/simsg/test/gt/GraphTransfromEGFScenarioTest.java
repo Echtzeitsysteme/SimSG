@@ -9,6 +9,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+
 import org.simsg.container.Container;
 import org.simsg.core.gt.ReactionRuleTransformer;
 import org.simsg.core.persistence.PersistenceManager;
@@ -21,8 +22,8 @@ import org.simsg.core.pm.match.PatternMatchingEngineFactory;
 import org.simsg.core.pmc.PatternMatchingController;
 import org.simsg.core.pmc.PatternMatchingControllerEnum;
 import org.simsg.core.pmc.PatternMatchingControllerFactory;
+import org.simsg.simsgl.simSGL.SimSGLModel;
 
-import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class GraphTransfromEGFScenarioTest {
@@ -30,7 +31,7 @@ public class GraphTransfromEGFScenarioTest {
 	protected PersistenceManagerEnum persistenceType;
 	protected PersistenceManager persistence;
 	
-	protected ReactionRuleModel ruleModel;
+	protected SimSGLModel ruleModel;
 	protected Container containerModel;
 	protected PatternMatchingController pmc;
 	

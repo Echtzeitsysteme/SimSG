@@ -1,12 +1,12 @@
 package org.simsg.core.pm.pattern;
 
-import biochemsimulation.reactionrules.reactionRules.BoundAnyLink;
-import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
-import biochemsimulation.reactionrules.reactionRules.BoundLink;
-import biochemsimulation.reactionrules.reactionRules.IndexedFreeLink;
-import biochemsimulation.reactionrules.reactionRules.LinkState;
-import biochemsimulation.reactionrules.reactionRules.TypedFreeLink;
-import biochemsimulation.reactionrules.reactionRules.WhatEver;
+import org.simsg.simsgl.simSGL.BoundAnyLink;
+import org.simsg.simsgl.simSGL.BoundAnyOfTypeLink;
+import org.simsg.simsgl.simSGL.BoundLink;
+import org.simsg.simsgl.simSGL.IndexedFreeLink;
+import org.simsg.simsgl.simSGL.LinkState;
+import org.simsg.simsgl.simSGL.TypedFreeLink;
+import org.simsg.simsgl.simSGL.WhatEver;
 
 public enum LinkStateType {
 	Unbound("Unbound"), BoundAny("BoundAny"), BoundAnyOfType("BoundAnyOfType"), Bound("BoundExact"), WhatEver("WhatEver"), IndexedUnbound("IndexedUnbound"), TypedUnbound("TypedUnbound");

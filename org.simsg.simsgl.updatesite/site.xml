@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.simsg.simsgl.feature_1.0.0.qualifier.jar" id="org.simsg.simsgl.feature" version="1.0.0.qualifier">
-      <category name="simSgl"/>
+   <feature url="features/org.simsg.simsgl.feature_1.0.0.201901161239.jar" id="org.simsg.simsgl.feature" version="1.0.0.201901161239">
+      <category name="SimSGL"/>
    </feature>
-   <category-def name="simSgl" label="SimSGL"/>
+   <category-def name="SimSGL" label="SimSGL"/>
 </site>

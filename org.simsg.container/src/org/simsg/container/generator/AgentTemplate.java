@@ -11,9 +11,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.simsg.container.util.AgentClassFactory;
 import org.simsg.container.util.StateClassFactory;
 
-import biochemsimulation.reactionrules.reactionRules.Agent;
-import biochemsimulation.reactionrules.reactionRules.Site;
-import biochemsimulation.reactionrules.reactionRules.State;
+import org.simsg.simsgl.simSGL.Agent;
+import org.simsg.simsgl.simSGL.Site;
+import org.simsg.simsgl.simSGL.State;
 
 public class AgentTemplate {
 

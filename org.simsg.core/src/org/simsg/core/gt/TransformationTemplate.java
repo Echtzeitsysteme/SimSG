@@ -15,22 +15,21 @@ import org.simsg.container.util.AgentClassFactory;
 import org.simsg.container.util.EPackageWrapper;
 import org.simsg.container.util.StateClassFactory;
 import org.simsg.core.pm.match.IMatch;
-
-import biochemsimulation.reactionrules.reactionRules.AgentPattern;
-import biochemsimulation.reactionrules.reactionRules.BoundLink;
-import biochemsimulation.reactionrules.reactionRules.FreeLink;
-import biochemsimulation.reactionrules.reactionRules.IndexedFreeLink;
-import biochemsimulation.reactionrules.reactionRules.LinkState;
-import biochemsimulation.reactionrules.reactionRules.MultiLink;
-import biochemsimulation.reactionrules.reactionRules.MultiLinkSitePattern;
-import biochemsimulation.reactionrules.reactionRules.Pattern;
-import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
-import biochemsimulation.reactionrules.reactionRules.Site;
-import biochemsimulation.reactionrules.reactionRules.SitePattern;
-import biochemsimulation.reactionrules.reactionRules.State;
-import biochemsimulation.reactionrules.reactionRules.TypedFreeLink;
-import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
-import biochemsimulation.reactionrules.reactionRules.VoidAgentPattern;
+import org.simsg.simsgl.simSGL.ValidAgentPattern;
+import org.simsg.simsgl.simSGL.VoidAgentPattern;
+import org.simsg.simsgl.simSGL.AgentPattern;
+import org.simsg.simsgl.simSGL.BoundLink;
+import org.simsg.simsgl.simSGL.FreeLink;
+import org.simsg.simsgl.simSGL.IndexedFreeLink;
+import org.simsg.simsgl.simSGL.LinkState;
+import org.simsg.simsgl.simSGL.MultiLink;
+import org.simsg.simsgl.simSGL.MultiLinkSitePattern;
+import org.simsg.simsgl.simSGL.Pattern;
+import org.simsg.simsgl.simSGL.SingleSitePattern;
+import org.simsg.simsgl.simSGL.Site;
+import org.simsg.simsgl.simSGL.SitePattern;
+import org.simsg.simsgl.simSGL.State;
+import org.simsg.simsgl.simSGL.TypedFreeLink;
 
 public class TransformationTemplate {
 	
@@ -137,21 +136,21 @@ public class TransformationTemplate {
 		}
 	}
 	
-	private void buildSingleRemoveTemplate(biochemsimulation.reactionrules.reactionRules.Agent agent, int nodeIndex, Site site) {
+	private void buildSingleRemoveTemplate(org.simsg.simsgl.simSGL.Agent agent, int nodeIndex, Site site) {
 		String refName = AgentClassFactory.createReferenceName(agent, site);
 		LinkDeletionTemplate linkRemoveTemplate = new LinkDeletionTemplate(nodeIndex);
 		linkRemoveTemplate.addLinkRemovalCandidate(metaModel.getEReference(refName));
 		linkRemovals.add(linkRemoveTemplate);
 	}
 	
-	private void buildMultiRemoveTemplate(biochemsimulation.reactionrules.reactionRules.Agent agent, int nodeIndex, Site site, int otherIndex) {
+	private void buildMultiRemoveTemplate(org.simsg.simsgl.simSGL.Agent agent, int nodeIndex, Site site, int otherIndex) {
 		String refName = AgentClassFactory.createReferenceName(agent, site);
 		LinkDeletionTemplate linkRemoveTemplate = new LinkDeletionTemplate(nodeIndex);
 		linkRemoveTemplate.addLinkRemovalCandidate(metaModel.getEReference(refName), otherIndex);
 		linkRemovals.add(linkRemoveTemplate);
 	}
 	
-	private void buildTypeRemoveTemplate(biochemsimulation.reactionrules.reactionRules.Agent agent, int nodeIndex, Site site, EClass type) {
+	private void buildTypeRemoveTemplate(org.simsg.simsgl.simSGL.Agent agent, int nodeIndex, Site site, EClass type) {
 		String refName = AgentClassFactory.createReferenceName(agent, site);
 		LinkDeletionTemplate linkRemoveTemplate = new LinkDeletionTemplate(nodeIndex);
 		linkRemoveTemplate.addLinkRemovalType(metaModel.getEReference(refName), type);
@@ -370,7 +369,7 @@ public class TransformationTemplate {
 		Entry<Integer, Site> indexAndSite = findCorrespondingSiteOnRHS(sp, bl);
 		Site otherSite = indexAndSite.getValue();
 		int otherAgentIdx = indexAndSite.getKey();
-		biochemsimulation.reactionrules.reactionRules.Agent otherAgent = ((ValidAgentPattern)postcondition.getAgentPatterns().get(otherAgentIdx)).getAgent();
+		org.simsg.simsgl.simSGL.Agent otherAgent = ((ValidAgentPattern)postcondition.getAgentPatterns().get(otherAgentIdx)).getAgent();
 		String srcRefName = AgentClassFactory.createReferenceName(vap.getAgent(), site);
 		String trgRefName = AgentClassFactory.createReferenceName(otherAgent, otherSite);
 		LinkChangeTemplate lct = new LinkChangeTemplate();

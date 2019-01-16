@@ -14,19 +14,19 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import org.simsg.container.util.AgentClassFactory;
 import org.simsg.container.util.EPackageWrapper;
 import org.simsg.container.util.StateClassFactory;
+import org.simsg.simsgl.simSGL.Agent;
+import org.simsg.simsgl.simSGL.BoundAnyOfTypeLink;
+import org.simsg.simsgl.simSGL.BoundLink;
+import org.simsg.simsgl.simSGL.IndexedFreeLink;
+import org.simsg.simsgl.simSGL.LinkState;
+import org.simsg.simsgl.simSGL.MultiLink;
+import org.simsg.simsgl.simSGL.MultiLinkSitePattern;
+import org.simsg.simsgl.simSGL.SingleSitePattern;
+import org.simsg.simsgl.simSGL.Site;
+import org.simsg.simsgl.simSGL.SitePattern;
+import org.simsg.simsgl.simSGL.TypedFreeLink;
+import org.simsg.simsgl.simSGL.ValidAgentPattern;
 
-import biochemsimulation.reactionrules.reactionRules.Agent;
-import biochemsimulation.reactionrules.reactionRules.BoundAnyOfTypeLink;
-import biochemsimulation.reactionrules.reactionRules.BoundLink;
-import biochemsimulation.reactionrules.reactionRules.IndexedFreeLink;
-import biochemsimulation.reactionrules.reactionRules.LinkState;
-import biochemsimulation.reactionrules.reactionRules.MultiLink;
-import biochemsimulation.reactionrules.reactionRules.MultiLinkSitePattern;
-import biochemsimulation.reactionrules.reactionRules.SingleSitePattern;
-import biochemsimulation.reactionrules.reactionRules.Site;
-import biochemsimulation.reactionrules.reactionRules.SitePattern;
-import biochemsimulation.reactionrules.reactionRules.TypedFreeLink;
-import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 
 public class GenericPatternBody {
 	

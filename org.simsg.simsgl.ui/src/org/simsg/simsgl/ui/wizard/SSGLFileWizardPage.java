@@ -5,7 +5,6 @@ import java.io.InputStream;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.xtext.util.StringInputStream;
-//import org.eclipse.xtext.ui.shared.internal.Activator;
 
 public class SSGLFileWizardPage extends WizardNewFileCreationPage {
 
@@ -13,7 +12,7 @@ public class SSGLFileWizardPage extends WizardNewFileCreationPage {
         super("NewSSGLFileWizardPage", selection);
         setTitle("SimSGL File");
         setDescription("Creates a new SimSGL File");
-        setFileExtension("react");
+        setFileExtension("ssgl");
     }
 	
 	@Override

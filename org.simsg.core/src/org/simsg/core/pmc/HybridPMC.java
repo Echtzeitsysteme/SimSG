@@ -12,8 +12,8 @@ import org.simsg.core.pm.match.IMatch;
 import org.simsg.core.pm.match.IMatchImpl;
 import org.simsg.core.pm.pattern.GenericPattern;
 import org.simsg.core.pm.pattern.HybridPattern;
+import org.simsg.simsgl.simSGL.Pattern;
 
-import biochemsimulation.reactionrules.reactionRules.Pattern;
 
 public class HybridPMC extends PatternMatchingController {
 	

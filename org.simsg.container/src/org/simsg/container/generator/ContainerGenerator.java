@@ -24,17 +24,17 @@ import org.simsg.container.impl.ContainerFactoryImpl;
 import org.simsg.container.util.AgentClassFactory;
 import org.simsg.container.util.StateClassFactory;
 
-import biochemsimulation.reactionrules.reactionRules.Initial;
-import biochemsimulation.reactionrules.reactionRules.ReactionRuleModel;
-import biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage;
-import biochemsimulation.reactionrules.reactionRules.impl.ReactionRuleModelImpl;
-import biochemsimulation.reactionrules.utils.PatternUtils;
+import org.simsg.simsgl.simSGL.Initial;
+import org.simsg.simsgl.simSGL.SimSGLModel;
+import org.simsg.simsgl.simSGL.SimSGLPackage;
+import org.simsg.simsgl.simSGL.impl.SimSGLModelImpl;
+import org.simsg.simsgl.utils.PatternUtils;
 
 public abstract class ContainerGenerator {
 	private String projectPath;
 	private URI modelLocation;
 	private Resource modelResource;
-	protected ReactionRuleModelImpl model;
+	protected SimSGLModelImpl model;
 	private boolean isInitialized;
 	
 	private ContainerFactory factory;
@@ -53,7 +53,7 @@ public abstract class ContainerGenerator {
 	protected Resource containerRes;
 	
 	private void init() {
-		ReactionRulesPackage.eINSTANCE.eClass();
+		SimSGLPackage.eINSTANCE.eClass();
 		ContainerPackage.eINSTANCE.eClass();
 		factory = ContainerFactoryImpl.init();
 		
@@ -82,12 +82,12 @@ public abstract class ContainerGenerator {
 		}
 	}
 	
-	public ContainerGenerator(ReactionRuleModel model) {
+	public ContainerGenerator(SimSGLModel model) {
 		init();
 		
 		modelResource = null;
 		isInitialized = model != null;
-		this.model = (ReactionRuleModelImpl) model;
+		this.model = (SimSGLModelImpl) model;
 	}
 	
 	private boolean loadResource() {
@@ -109,7 +109,7 @@ public abstract class ContainerGenerator {
 	}
 	
 	private boolean loadModel() {
-		model = (ReactionRuleModelImpl) modelResource.getContents().get(0);
+		model = (SimSGLModelImpl) modelResource.getContents().get(0);
 		if(model != null) 
 			return true;
 		
@@ -213,9 +213,9 @@ public abstract class ContainerGenerator {
 		agentClassFactory = new AgentClassFactory(dynamicMetaModel, stateClassFactory);
 		
 		
-		model.getReactionProperties().forEach(x -> {
-			if(x instanceof biochemsimulation.reactionrules.reactionRules.Agent) {
-				biochemsimulation.reactionrules.reactionRules.Agent agnt = (biochemsimulation.reactionrules.reactionRules.Agent)x;
+		model.getProperties().forEach(x -> {
+			if(x instanceof org.simsg.simsgl.simSGL.Agent) {
+				org.simsg.simsgl.simSGL.Agent agnt = (org.simsg.simsgl.simSGL.Agent)x;
 				agentClassFactory.createClass(agnt);
 			}
 		});

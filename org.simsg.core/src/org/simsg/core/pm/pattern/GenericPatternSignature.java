@@ -8,9 +8,9 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.simsg.container.util.EPackageWrapper;
+import org.simsg.simsgl.simSGL.Agent;
+import org.simsg.simsgl.simSGL.ValidAgentPattern;
 
-import biochemsimulation.reactionrules.reactionRules.Agent;
-import biochemsimulation.reactionrules.reactionRules.ValidAgentPattern;
 
 public class GenericPatternSignature {
 	//public final static EClassifier SIM_AGENT_CLASSIFIER = ReactionContainerPackage.Literals.SIM_AGENT;

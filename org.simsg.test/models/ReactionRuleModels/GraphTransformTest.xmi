@@ -1,1537 +1,1449 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<reactionRules:ReactionRuleModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:reactionRules="http://www.reactionrules.biochemsimulation/ReactionRules" xsi:schemaLocation="http://www.reactionrules.biochemsimulation/ReactionRules java://biochemsimulation.reactionrules.reactionRules.ReactionRulesPackage">
-  <model xmi:type="reactionRules:Model" name="GraphTransformTest"/>
-  <reactionProperties xmi:type="reactionRules:Agent" name="A">
-    <sites xmi:type="reactionRules:Sites">
-      <sites xmi:type="reactionRules:SingleSite" name="a">
-        <states xmi:type="reactionRules:States"/>
+<simSGL:SimSGLModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:simSGL="http://www.simsg.org/simsgl/SimSGL" xsi:schemaLocation="http://www.simsg.org/simsgl/SimSGL java://org.simsg.simsgl.simSGL.SimSGLPackage">
+  <model xmi:type="simSGL:Model" name="GraphTransformTest"/>
+  <properties xmi:type="simSGL:Agent" name="A">
+    <sites xmi:type="simSGL:Sites">
+      <sites xmi:type="simSGL:SingleSite" name="a">
+        <states xmi:type="simSGL:States"/>
       </sites>
-      <sites xmi:type="reactionRules:SingleSite" name="b">
-        <states xmi:type="reactionRules:States">
-          <state xmi:type="reactionRules:State" name="r"/>
-          <state xmi:type="reactionRules:State" name="s"/>
+      <sites xmi:type="simSGL:SingleSite" name="b">
+        <states xmi:type="simSGL:States">
+          <state xmi:type="simSGL:State" name="r"/>
+          <state xmi:type="simSGL:State" name="s"/>
         </states>
       </sites>
-      <sites xmi:type="reactionRules:SingleSite" name="c">
-        <states xmi:type="reactionRules:States">
-          <state xmi:type="reactionRules:State" name="q"/>
-          <state xmi:type="reactionRules:State" name="p"/>
-        </states>
-      </sites>
-    </sites>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Agent" name="B">
-    <sites xmi:type="reactionRules:Sites">
-      <sites xmi:type="reactionRules:SingleSite" name="d">
-        <states xmi:type="reactionRules:States"/>
-      </sites>
-      <sites xmi:type="reactionRules:SingleSite" name="e">
-        <states xmi:type="reactionRules:States"/>
-      </sites>
-      <sites xmi:type="reactionRules:SingleSite" name="f">
-        <states xmi:type="reactionRules:States">
-          <state xmi:type="reactionRules:State" name="l"/>
-          <state xmi:type="reactionRules:State" name="m"/>
+      <sites xmi:type="simSGL:SingleSite" name="c">
+        <states xmi:type="simSGL:States">
+          <state xmi:type="simSGL:State" name="q"/>
+          <state xmi:type="simSGL:State" name="p"/>
         </states>
       </sites>
     </sites>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Agent" name="C">
-    <sites xmi:type="reactionRules:Sites">
-      <sites xmi:type="reactionRules:SingleSite" name="g">
-        <states xmi:type="reactionRules:States"/>
+  </properties>
+  <properties xmi:type="simSGL:Agent" name="B">
+    <sites xmi:type="simSGL:Sites">
+      <sites xmi:type="simSGL:SingleSite" name="d">
+        <states xmi:type="simSGL:States"/>
       </sites>
-      <sites xmi:type="reactionRules:SingleSite" name="h">
-        <states xmi:type="reactionRules:States">
-          <state xmi:type="reactionRules:State" name="n"/>
-          <state xmi:type="reactionRules:State" name="o"/>
+      <sites xmi:type="simSGL:SingleSite" name="e">
+        <states xmi:type="simSGL:States"/>
+      </sites>
+      <sites xmi:type="simSGL:SingleSite" name="f">
+        <states xmi:type="simSGL:States">
+          <state xmi:type="simSGL:State" name="l"/>
+          <state xmi:type="simSGL:State" name="m"/>
         </states>
       </sites>
     </sites>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Agent" name="A1">
-    <sites xmi:type="reactionRules:Sites">
-      <sites xmi:type="reactionRules:SingleSite" name="a">
-        <states xmi:type="reactionRules:States"/>
+  </properties>
+  <properties xmi:type="simSGL:Agent" name="C">
+    <sites xmi:type="simSGL:Sites">
+      <sites xmi:type="simSGL:SingleSite" name="g">
+        <states xmi:type="simSGL:States"/>
       </sites>
-      <sites xmi:type="reactionRules:SingleSite" name="b">
-        <states xmi:type="reactionRules:States">
-          <state xmi:type="reactionRules:State" name="r"/>
-          <state xmi:type="reactionRules:State" name="s"/>
-        </states>
-      </sites>
-      <sites xmi:type="reactionRules:SingleSite" name="c">
-        <states xmi:type="reactionRules:States">
-          <state xmi:type="reactionRules:State" name="q"/>
-          <state xmi:type="reactionRules:State" name="p"/>
+      <sites xmi:type="simSGL:SingleSite" name="h">
+        <states xmi:type="simSGL:States">
+          <state xmi:type="simSGL:State" name="n"/>
+          <state xmi:type="simSGL:State" name="o"/>
         </states>
       </sites>
     </sites>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Agent" name="B1">
-    <sites xmi:type="reactionRules:Sites">
-      <sites xmi:type="reactionRules:SingleSite" name="d">
-        <states xmi:type="reactionRules:States"/>
+  </properties>
+  <properties xmi:type="simSGL:Agent" name="A1">
+    <sites xmi:type="simSGL:Sites">
+      <sites xmi:type="simSGL:SingleSite" name="a">
+        <states xmi:type="simSGL:States"/>
       </sites>
-      <sites xmi:type="reactionRules:SingleSite" name="e">
-        <states xmi:type="reactionRules:States"/>
+      <sites xmi:type="simSGL:SingleSite" name="b">
+        <states xmi:type="simSGL:States">
+          <state xmi:type="simSGL:State" name="r"/>
+          <state xmi:type="simSGL:State" name="s"/>
+        </states>
       </sites>
-      <sites xmi:type="reactionRules:SingleSite" name="f">
-        <states xmi:type="reactionRules:States">
-          <state xmi:type="reactionRules:State" name="l"/>
-          <state xmi:type="reactionRules:State" name="m"/>
+      <sites xmi:type="simSGL:SingleSite" name="c">
+        <states xmi:type="simSGL:States">
+          <state xmi:type="simSGL:State" name="q"/>
+          <state xmi:type="simSGL:State" name="p"/>
         </states>
       </sites>
     </sites>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Agent" name="C1">
-    <sites xmi:type="reactionRules:Sites">
-      <sites xmi:type="reactionRules:SingleSite" name="g">
-        <states xmi:type="reactionRules:States"/>
+  </properties>
+  <properties xmi:type="simSGL:Agent" name="B1">
+    <sites xmi:type="simSGL:Sites">
+      <sites xmi:type="simSGL:SingleSite" name="d">
+        <states xmi:type="simSGL:States"/>
       </sites>
-      <sites xmi:type="reactionRules:SingleSite" name="h">
-        <states xmi:type="reactionRules:States">
-          <state xmi:type="reactionRules:State" name="n"/>
-          <state xmi:type="reactionRules:State" name="o"/>
+      <sites xmi:type="simSGL:SingleSite" name="e">
+        <states xmi:type="simSGL:States"/>
+      </sites>
+      <sites xmi:type="simSGL:SingleSite" name="f">
+        <states xmi:type="simSGL:States">
+          <state xmi:type="simSGL:State" name="l"/>
+          <state xmi:type="simSGL:State" name="m"/>
         </states>
       </sites>
     </sites>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Agent" name="A3">
-    <sites xmi:type="reactionRules:Sites">
-      <sites xmi:type="reactionRules:SingleSite" name="a">
-        <states xmi:type="reactionRules:States"/>
+  </properties>
+  <properties xmi:type="simSGL:Agent" name="C1">
+    <sites xmi:type="simSGL:Sites">
+      <sites xmi:type="simSGL:SingleSite" name="g">
+        <states xmi:type="simSGL:States"/>
       </sites>
-      <sites xmi:type="reactionRules:SingleSite" name="b">
-        <states xmi:type="reactionRules:States">
-          <state xmi:type="reactionRules:State" name="r"/>
-          <state xmi:type="reactionRules:State" name="s"/>
-        </states>
-      </sites>
-      <sites xmi:type="reactionRules:SingleSite" name="c">
-        <states xmi:type="reactionRules:States">
-          <state xmi:type="reactionRules:State" name="q"/>
-          <state xmi:type="reactionRules:State" name="p"/>
+      <sites xmi:type="simSGL:SingleSite" name="h">
+        <states xmi:type="simSGL:States">
+          <state xmi:type="simSGL:State" name="n"/>
+          <state xmi:type="simSGL:State" name="o"/>
         </states>
       </sites>
     </sites>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Agent" name="B3">
-    <sites xmi:type="reactionRules:Sites">
-      <sites xmi:type="reactionRules:SingleSite" name="d">
-        <states xmi:type="reactionRules:States"/>
+  </properties>
+  <properties xmi:type="simSGL:Agent" name="A3">
+    <sites xmi:type="simSGL:Sites">
+      <sites xmi:type="simSGL:SingleSite" name="a">
+        <states xmi:type="simSGL:States"/>
       </sites>
-      <sites xmi:type="reactionRules:SingleSite" name="e">
-        <states xmi:type="reactionRules:States"/>
+      <sites xmi:type="simSGL:SingleSite" name="b">
+        <states xmi:type="simSGL:States">
+          <state xmi:type="simSGL:State" name="r"/>
+          <state xmi:type="simSGL:State" name="s"/>
+        </states>
       </sites>
-      <sites xmi:type="reactionRules:SingleSite" name="f">
-        <states xmi:type="reactionRules:States">
-          <state xmi:type="reactionRules:State" name="l"/>
-          <state xmi:type="reactionRules:State" name="m"/>
+      <sites xmi:type="simSGL:SingleSite" name="c">
+        <states xmi:type="simSGL:States">
+          <state xmi:type="simSGL:State" name="q"/>
+          <state xmi:type="simSGL:State" name="p"/>
         </states>
       </sites>
     </sites>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Agent" name="C2">
-    <sites xmi:type="reactionRules:Sites">
-      <sites xmi:type="reactionRules:SingleSite" name="g">
-        <states xmi:type="reactionRules:States"/>
+  </properties>
+  <properties xmi:type="simSGL:Agent" name="B3">
+    <sites xmi:type="simSGL:Sites">
+      <sites xmi:type="simSGL:SingleSite" name="d">
+        <states xmi:type="simSGL:States"/>
       </sites>
-      <sites xmi:type="reactionRules:SingleSite" name="h">
-        <states xmi:type="reactionRules:States">
-          <state xmi:type="reactionRules:State" name="n"/>
-          <state xmi:type="reactionRules:State" name="o"/>
+      <sites xmi:type="simSGL:SingleSite" name="e">
+        <states xmi:type="simSGL:States"/>
+      </sites>
+      <sites xmi:type="simSGL:SingleSite" name="f">
+        <states xmi:type="simSGL:States">
+          <state xmi:type="simSGL:State" name="l"/>
+          <state xmi:type="simSGL:State" name="m"/>
         </states>
       </sites>
     </sites>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Agent" name="A8">
-    <sites xmi:type="reactionRules:Sites">
-      <sites xmi:type="reactionRules:SingleSite" name="x">
-        <states xmi:type="reactionRules:States"/>
+  </properties>
+  <properties xmi:type="simSGL:Agent" name="C2">
+    <sites xmi:type="simSGL:Sites">
+      <sites xmi:type="simSGL:SingleSite" name="g">
+        <states xmi:type="simSGL:States"/>
       </sites>
-      <sites xmi:type="reactionRules:SingleSite" name="y">
-        <states xmi:type="reactionRules:States"/>
-      </sites>
-    </sites>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Agent" name="A9">
-    <sites xmi:type="reactionRules:Sites">
-      <sites xmi:type="reactionRules:SingleSite" name="x">
-        <states xmi:type="reactionRules:States"/>
-      </sites>
-      <sites xmi:type="reactionRules:SingleSite" name="y">
-        <states xmi:type="reactionRules:States"/>
+      <sites xmi:type="simSGL:SingleSite" name="h">
+        <states xmi:type="simSGL:States">
+          <state xmi:type="simSGL:State" name="n"/>
+          <state xmi:type="simSGL:State" name="o"/>
+        </states>
       </sites>
     </sites>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Agent" name="mA">
-    <sites xmi:type="reactionRules:Sites">
-      <sites xmi:type="reactionRules:MultiSite" name="x">
-        <states xmi:type="reactionRules:States"/>
+  </properties>
+  <properties xmi:type="simSGL:Agent" name="A8">
+    <sites xmi:type="simSGL:Sites">
+      <sites xmi:type="simSGL:SingleSite" name="x">
+        <states xmi:type="simSGL:States"/>
+      </sites>
+      <sites xmi:type="simSGL:SingleSite" name="y">
+        <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Agent" name="mB">
-    <sites xmi:type="reactionRules:Sites">
-      <sites xmi:type="reactionRules:MultiSite" name="y">
-        <states xmi:type="reactionRules:States"/>
+  </properties>
+  <properties xmi:type="simSGL:Agent" name="A9">
+    <sites xmi:type="simSGL:Sites">
+      <sites xmi:type="simSGL:SingleSite" name="x">
+        <states xmi:type="simSGL:States"/>
+      </sites>
+      <sites xmi:type="simSGL:SingleSite" name="y">
+        <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Agent" name="mC">
-    <sites xmi:type="reactionRules:Sites">
-      <sites xmi:type="reactionRules:MultiSite" name="z">
-        <states xmi:type="reactionRules:States"/>
+  </properties>
+  <properties xmi:type="simSGL:Agent" name="mA">
+    <sites xmi:type="simSGL:Sites">
+      <sites xmi:type="simSGL:MultiSite" name="x">
+        <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Agent" name="mQ">
-    <sites xmi:type="reactionRules:Sites">
-      <sites xmi:type="reactionRules:MultiSite" name="b">
-        <states xmi:type="reactionRules:States"/>
+  </properties>
+  <properties xmi:type="simSGL:Agent" name="mB">
+    <sites xmi:type="simSGL:Sites">
+      <sites xmi:type="simSGL:MultiSite" name="y">
+        <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:ArithmeticVariable" name="mockup_rate">
-    <value xmi:type="reactionRules:ArithmeticValue" value="0.4"/>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:PatternVariable" name="p1">
-    <pattern xmi:type="reactionRules:Pattern">
-      <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.9">
-        <sitePatterns xmi:type="reactionRules:SitePatterns">
-          <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.9/@sites/@sites.0">
-            <linkState xmi:type="reactionRules:LinkState">
-              <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+  </properties>
+  <properties xmi:type="simSGL:Agent" name="mC">
+    <sites xmi:type="simSGL:Sites">
+      <sites xmi:type="simSGL:MultiSite" name="z">
+        <states xmi:type="simSGL:States"/>
+      </sites>
+    </sites>
+  </properties>
+  <properties xmi:type="simSGL:Agent" name="mQ">
+    <sites xmi:type="simSGL:Sites">
+      <sites xmi:type="simSGL:MultiSite" name="b">
+        <states xmi:type="simSGL:States"/>
+      </sites>
+    </sites>
+  </properties>
+  <properties xmi:type="simSGL:ArithmeticVariable" name="mockup_rate">
+    <value xmi:type="simSGL:ArithmeticValue" value="0.4"/>
+  </properties>
+  <properties xmi:type="simSGL:PatternVariable" name="p1">
+    <pattern xmi:type="simSGL:Pattern">
+      <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.9">
+        <sitePatterns xmi:type="simSGL:SitePatterns">
+          <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.9/@sites/@sites.0">
+            <linkState xmi:type="simSGL:LinkState">
+              <linkState xmi:type="simSGL:BoundLink" state="1"/>
             </linkState>
           </sitePatterns>
         </sitePatterns>
       </agentPatterns>
-      <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.9">
-        <sitePatterns xmi:type="reactionRules:SitePatterns">
-          <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.9/@sites/@sites.0">
-            <linkState xmi:type="reactionRules:LinkState">
-              <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+      <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.9">
+        <sitePatterns xmi:type="simSGL:SitePatterns">
+          <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.9/@sites/@sites.0">
+            <linkState xmi:type="simSGL:LinkState">
+              <linkState xmi:type="simSGL:BoundLink" state="1"/>
             </linkState>
           </sitePatterns>
-          <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.9/@sites/@sites.1">
-            <linkState xmi:type="reactionRules:LinkState">
-              <linkState xmi:type="reactionRules:BoundLink" state="2"/>
-            </linkState>
-          </sitePatterns>
-        </sitePatterns>
-      </agentPatterns>
-      <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.9">
-        <sitePatterns xmi:type="reactionRules:SitePatterns">
-          <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.9/@sites/@sites.1">
-            <linkState xmi:type="reactionRules:LinkState">
-              <linkState xmi:type="reactionRules:BoundLink" state="2"/>
+          <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.9/@sites/@sites.1">
+            <linkState xmi:type="simSGL:LinkState">
+              <linkState xmi:type="simSGL:BoundLink" state="2"/>
             </linkState>
           </sitePatterns>
         </sitePatterns>
       </agentPatterns>
-      <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.9">
-        <sitePatterns xmi:type="reactionRules:SitePatterns">
-          <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.9/@sites/@sites.0">
-            <linkState xmi:type="reactionRules:LinkState">
-              <linkState xmi:type="reactionRules:BoundLink" state="3"/>
+      <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.9">
+        <sitePatterns xmi:type="simSGL:SitePatterns">
+          <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.9/@sites/@sites.1">
+            <linkState xmi:type="simSGL:LinkState">
+              <linkState xmi:type="simSGL:BoundLink" state="2"/>
             </linkState>
           </sitePatterns>
         </sitePatterns>
       </agentPatterns>
-      <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.9">
-        <sitePatterns xmi:type="reactionRules:SitePatterns">
-          <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.9/@sites/@sites.0">
-            <linkState xmi:type="reactionRules:LinkState">
-              <linkState xmi:type="reactionRules:BoundLink" state="3"/>
-            </linkState>
-          </sitePatterns>
-          <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.9/@sites/@sites.1">
-            <linkState xmi:type="reactionRules:LinkState">
-              <linkState xmi:type="reactionRules:BoundLink" state="4"/>
+      <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.9">
+        <sitePatterns xmi:type="simSGL:SitePatterns">
+          <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.9/@sites/@sites.0">
+            <linkState xmi:type="simSGL:LinkState">
+              <linkState xmi:type="simSGL:BoundLink" state="3"/>
             </linkState>
           </sitePatterns>
         </sitePatterns>
       </agentPatterns>
-      <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.9">
-        <sitePatterns xmi:type="reactionRules:SitePatterns">
-          <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.9/@sites/@sites.1">
-            <linkState xmi:type="reactionRules:LinkState">
-              <linkState xmi:type="reactionRules:BoundLink" state="4"/>
+      <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.9">
+        <sitePatterns xmi:type="simSGL:SitePatterns">
+          <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.9/@sites/@sites.0">
+            <linkState xmi:type="simSGL:LinkState">
+              <linkState xmi:type="simSGL:BoundLink" state="3"/>
+            </linkState>
+          </sitePatterns>
+          <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.9/@sites/@sites.1">
+            <linkState xmi:type="simSGL:LinkState">
+              <linkState xmi:type="simSGL:BoundLink" state="4"/>
+            </linkState>
+          </sitePatterns>
+        </sitePatterns>
+      </agentPatterns>
+      <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.9">
+        <sitePatterns xmi:type="simSGL:SitePatterns">
+          <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.9/@sites/@sites.1">
+            <linkState xmi:type="simSGL:LinkState">
+              <linkState xmi:type="simSGL:BoundLink" state="4"/>
             </linkState>
           </sitePatterns>
         </sitePatterns>
       </agentPatterns>
     </pattern>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:PatternVariable" name="p2">
-    <pattern xmi:type="reactionRules:Pattern">
-      <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.10">
-        <sitePatterns xmi:type="reactionRules:SitePatterns">
-          <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.10/@sites/@sites.0">
-            <linkState xmi:type="reactionRules:LinkState">
-              <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+  </properties>
+  <properties xmi:type="simSGL:PatternVariable" name="p2">
+    <pattern xmi:type="simSGL:Pattern">
+      <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.10">
+        <sitePatterns xmi:type="simSGL:SitePatterns">
+          <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.10/@sites/@sites.0">
+            <linkState xmi:type="simSGL:LinkState">
+              <linkState xmi:type="simSGL:BoundLink" state="1"/>
             </linkState>
           </sitePatterns>
         </sitePatterns>
       </agentPatterns>
-      <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.10">
-        <sitePatterns xmi:type="reactionRules:SitePatterns">
-          <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.10/@sites/@sites.0">
-            <linkState xmi:type="reactionRules:LinkState">
-              <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+      <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.10">
+        <sitePatterns xmi:type="simSGL:SitePatterns">
+          <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.10/@sites/@sites.0">
+            <linkState xmi:type="simSGL:LinkState">
+              <linkState xmi:type="simSGL:BoundLink" state="1"/>
             </linkState>
           </sitePatterns>
         </sitePatterns>
       </agentPatterns>
-      <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.10">
-        <sitePatterns xmi:type="reactionRules:SitePatterns">
-          <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.10/@sites/@sites.0">
-            <linkState xmi:type="reactionRules:LinkState">
-              <linkState xmi:type="reactionRules:BoundLink" state="2"/>
+      <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.10">
+        <sitePatterns xmi:type="simSGL:SitePatterns">
+          <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.10/@sites/@sites.0">
+            <linkState xmi:type="simSGL:LinkState">
+              <linkState xmi:type="simSGL:BoundLink" state="2"/>
             </linkState>
           </sitePatterns>
         </sitePatterns>
       </agentPatterns>
-      <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.10">
-        <sitePatterns xmi:type="reactionRules:SitePatterns">
-          <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.10/@sites/@sites.0">
-            <linkState xmi:type="reactionRules:LinkState">
-              <linkState xmi:type="reactionRules:BoundLink" state="2"/>
+      <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.10">
+        <sitePatterns xmi:type="simSGL:SitePatterns">
+          <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.10/@sites/@sites.0">
+            <linkState xmi:type="simSGL:LinkState">
+              <linkState xmi:type="simSGL:BoundLink" state="2"/>
             </linkState>
           </sitePatterns>
         </sitePatterns>
       </agentPatterns>
-      <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.10">
-        <sitePatterns xmi:type="reactionRules:SitePatterns">
-          <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.10/@sites/@sites.0">
-            <linkState xmi:type="reactionRules:LinkState">
-              <linkState xmi:type="reactionRules:BoundLink" state="3"/>
+      <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.10">
+        <sitePatterns xmi:type="simSGL:SitePatterns">
+          <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.10/@sites/@sites.0">
+            <linkState xmi:type="simSGL:LinkState">
+              <linkState xmi:type="simSGL:BoundLink" state="3"/>
             </linkState>
           </sitePatterns>
         </sitePatterns>
       </agentPatterns>
-      <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.10">
-        <sitePatterns xmi:type="reactionRules:SitePatterns">
-          <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.10/@sites/@sites.0">
-            <linkState xmi:type="reactionRules:LinkState">
-              <linkState xmi:type="reactionRules:BoundLink" state="3"/>
-            </linkState>
-          </sitePatterns>
-        </sitePatterns>
-      </agentPatterns>
-    </pattern>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:PatternVariable" name="p3">
-    <pattern xmi:type="reactionRules:Pattern">
-      <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.11">
-        <sitePatterns xmi:type="reactionRules:SitePatterns">
-          <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.11/@sites/@sites.0">
-            <linkState xmi:type="reactionRules:MultiLinkState">
-              <linkState xmi:type="reactionRules:BoundLink" state="1"/>
-            </linkState>
-          </sitePatterns>
-        </sitePatterns>
-      </agentPatterns>
-      <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.12">
-        <sitePatterns xmi:type="reactionRules:SitePatterns">
-          <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.12/@sites/@sites.0">
-            <linkState xmi:type="reactionRules:MultiLinkState">
-              <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+      <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.10">
+        <sitePatterns xmi:type="simSGL:SitePatterns">
+          <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.10/@sites/@sites.0">
+            <linkState xmi:type="simSGL:LinkState">
+              <linkState xmi:type="simSGL:BoundLink" state="3"/>
             </linkState>
           </sitePatterns>
         </sitePatterns>
       </agentPatterns>
     </pattern>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:PatternVariable" name="p4">
-    <pattern xmi:type="reactionRules:Pattern">
-      <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.11">
-        <sitePatterns xmi:type="reactionRules:SitePatterns">
-          <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.11/@sites/@sites.0">
-            <linkState xmi:type="reactionRules:MultiLinkState">
-              <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+  </properties>
+  <properties xmi:type="simSGL:PatternVariable" name="p3">
+    <pattern xmi:type="simSGL:Pattern">
+      <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.11">
+        <sitePatterns xmi:type="simSGL:SitePatterns">
+          <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.11/@sites/@sites.0">
+            <linkState xmi:type="simSGL:MultiLinkState">
+              <linkState xmi:type="simSGL:BoundLink" state="1"/>
             </linkState>
           </sitePatterns>
         </sitePatterns>
       </agentPatterns>
-      <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.12">
-        <sitePatterns xmi:type="reactionRules:SitePatterns">
-          <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.12/@sites/@sites.0">
-            <linkState xmi:type="reactionRules:MultiLinkState">
-              <linkState xmi:type="reactionRules:MultiLink">
-                <states xmi:type="reactionRules:BoundLink" state="1"/>
-                <states xmi:type="reactionRules:TypedFreeLink" name="free" state="//@reactionProperties.13"/>
+      <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.12">
+        <sitePatterns xmi:type="simSGL:SitePatterns">
+          <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.12/@sites/@sites.0">
+            <linkState xmi:type="simSGL:MultiLinkState">
+              <linkState xmi:type="simSGL:BoundLink" state="1"/>
+            </linkState>
+          </sitePatterns>
+        </sitePatterns>
+      </agentPatterns>
+    </pattern>
+  </properties>
+  <properties xmi:type="simSGL:PatternVariable" name="p4">
+    <pattern xmi:type="simSGL:Pattern">
+      <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.11">
+        <sitePatterns xmi:type="simSGL:SitePatterns">
+          <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.11/@sites/@sites.0">
+            <linkState xmi:type="simSGL:MultiLinkState">
+              <linkState xmi:type="simSGL:BoundLink" state="1"/>
+            </linkState>
+          </sitePatterns>
+        </sitePatterns>
+      </agentPatterns>
+      <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.12">
+        <sitePatterns xmi:type="simSGL:SitePatterns">
+          <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.12/@sites/@sites.0">
+            <linkState xmi:type="simSGL:MultiLinkState">
+              <linkState xmi:type="simSGL:MultiLink">
+                <states xmi:type="simSGL:BoundLink" state="1"/>
+                <states xmi:type="simSGL:TypedFreeLink" name="free" state="//@properties.13"/>
               </linkState>
             </linkState>
           </sitePatterns>
         </sitePatterns>
       </agentPatterns>
-      <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.11">
-        <sitePatterns xmi:type="reactionRules:SitePatterns">
-          <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.11/@sites/@sites.0">
-            <linkState xmi:type="reactionRules:MultiLinkState">
-              <linkState xmi:type="reactionRules:BoundLink" state="2"/>
+      <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.11">
+        <sitePatterns xmi:type="simSGL:SitePatterns">
+          <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.11/@sites/@sites.0">
+            <linkState xmi:type="simSGL:MultiLinkState">
+              <linkState xmi:type="simSGL:BoundLink" state="2"/>
             </linkState>
           </sitePatterns>
         </sitePatterns>
       </agentPatterns>
-      <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.13">
-        <sitePatterns xmi:type="reactionRules:SitePatterns">
-          <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.13/@sites/@sites.0">
-            <linkState xmi:type="reactionRules:MultiLinkState">
-              <linkState xmi:type="reactionRules:MultiLink">
-                <states xmi:type="reactionRules:BoundLink" state="2"/>
-                <states xmi:type="reactionRules:TypedFreeLink" name="free" state="//@reactionProperties.12"/>
+      <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.13">
+        <sitePatterns xmi:type="simSGL:SitePatterns">
+          <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.13/@sites/@sites.0">
+            <linkState xmi:type="simSGL:MultiLinkState">
+              <linkState xmi:type="simSGL:MultiLink">
+                <states xmi:type="simSGL:BoundLink" state="2"/>
+                <states xmi:type="simSGL:TypedFreeLink" name="free" state="//@properties.12"/>
               </linkState>
             </linkState>
           </sitePatterns>
         </sitePatterns>
       </agentPatterns>
     </pattern>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:PatternVariable" name="p5">
-    <pattern xmi:type="reactionRules:Pattern">
-      <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.14">
-        <sitePatterns xmi:type="reactionRules:SitePatterns">
-          <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.14/@sites/@sites.0">
-            <linkState xmi:type="reactionRules:MultiLinkState">
-              <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+  </properties>
+  <properties xmi:type="simSGL:PatternVariable" name="p5">
+    <pattern xmi:type="simSGL:Pattern">
+      <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.14">
+        <sitePatterns xmi:type="simSGL:SitePatterns">
+          <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.14/@sites/@sites.0">
+            <linkState xmi:type="simSGL:MultiLinkState">
+              <linkState xmi:type="simSGL:BoundLink" state="1"/>
             </linkState>
           </sitePatterns>
         </sitePatterns>
       </agentPatterns>
-      <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.14">
-        <sitePatterns xmi:type="reactionRules:SitePatterns">
-          <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.14/@sites/@sites.0">
-            <linkState xmi:type="reactionRules:MultiLinkState">
-              <linkState xmi:type="reactionRules:MultiLink">
-                <states xmi:type="reactionRules:BoundLink" state="1"/>
-                <states xmi:type="reactionRules:BoundLink" state="2"/>
+      <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.14">
+        <sitePatterns xmi:type="simSGL:SitePatterns">
+          <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.14/@sites/@sites.0">
+            <linkState xmi:type="simSGL:MultiLinkState">
+              <linkState xmi:type="simSGL:MultiLink">
+                <states xmi:type="simSGL:BoundLink" state="1"/>
+                <states xmi:type="simSGL:BoundLink" state="2"/>
               </linkState>
             </linkState>
           </sitePatterns>
         </sitePatterns>
       </agentPatterns>
-      <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.14">
-        <sitePatterns xmi:type="reactionRules:SitePatterns">
-          <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.14/@sites/@sites.0">
-            <linkState xmi:type="reactionRules:MultiLinkState">
-              <linkState xmi:type="reactionRules:BoundLink" state="2"/>
+      <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.14">
+        <sitePatterns xmi:type="simSGL:SitePatterns">
+          <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.14/@sites/@sites.0">
+            <linkState xmi:type="simSGL:MultiLinkState">
+              <linkState xmi:type="simSGL:BoundLink" state="2"/>
             </linkState>
           </sitePatterns>
         </sitePatterns>
       </agentPatterns>
     </pattern>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Initial" name="i1">
-    <count xmi:type="reactionRules:NumericFromLiteral">
-      <value xmi:type="reactionRules:ArithmeticValue" value="2"/>
+  </properties>
+  <properties xmi:type="simSGL:Initial" name="i1">
+    <count xmi:type="simSGL:NumericFromLiteral">
+      <value xmi:type="simSGL:ArithmeticValue" value="2"/>
     </count>
-    <initialPattern xmi:type="reactionRules:AssignFromPattern">
-      <pattern xmi:type="reactionRules:Pattern">
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.0">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+    <initialPattern xmi:type="simSGL:AssignFromPattern">
+      <pattern xmi:type="simSGL:Pattern">
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.0">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
               </linkState>
             </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.2">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="1"/>
-              </linkState>
-            </sitePatterns>
-          </sitePatterns>
-        </agentPatterns>
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.1">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.0">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
-              </linkState>
-            </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.1">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
-              </linkState>
-            </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.2">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.2">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="1"/>
               </linkState>
             </sitePatterns>
           </sitePatterns>
         </agentPatterns>
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.1">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.1">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.0">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
+              </linkState>
+            </sitePatterns>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.1">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
+              </linkState>
+            </sitePatterns>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.2">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="1"/>
+              </linkState>
+            </sitePatterns>
+          </sitePatterns>
+        </agentPatterns>
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.1">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
               </linkState>
             </sitePatterns>
           </sitePatterns>
         </agentPatterns>
       </pattern>
     </initialPattern>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Initial" name="i2">
-    <count xmi:type="reactionRules:NumericFromLiteral">
-      <value xmi:type="reactionRules:ArithmeticValue" value="3"/>
+  </properties>
+  <properties xmi:type="simSGL:Initial" name="i2">
+    <count xmi:type="simSGL:NumericFromLiteral">
+      <value xmi:type="simSGL:ArithmeticValue" value="3"/>
     </count>
-    <initialPattern xmi:type="reactionRules:AssignFromPattern">
-      <pattern xmi:type="reactionRules:Pattern">
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.0">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+    <initialPattern xmi:type="simSGL:AssignFromPattern">
+      <pattern xmi:type="simSGL:Pattern">
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.0">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
               </linkState>
             </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.2">
-              <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.0/@sites/@sites.2/@states/@state.1"/>
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="1"/>
-              </linkState>
-            </sitePatterns>
-          </sitePatterns>
-        </agentPatterns>
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.1">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.0">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
-              </linkState>
-            </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.1">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
-              </linkState>
-            </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.2">
-              <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.1/@sites/@sites.2/@states/@state.1"/>
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.2">
+              <state xmi:type="simSGL:SiteState" state="//@properties.0/@sites/@sites.2/@states/@state.1"/>
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="1"/>
               </linkState>
             </sitePatterns>
           </sitePatterns>
         </agentPatterns>
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.1">
-              <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.0/@sites/@sites.1/@states/@state.1"/>
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.1">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.0">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
+              </linkState>
+            </sitePatterns>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.1">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
+              </linkState>
+            </sitePatterns>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.2">
+              <state xmi:type="simSGL:SiteState" state="//@properties.1/@sites/@sites.2/@states/@state.1"/>
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="1"/>
+              </linkState>
+            </sitePatterns>
+          </sitePatterns>
+        </agentPatterns>
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.1">
+              <state xmi:type="simSGL:SiteState" state="//@properties.0/@sites/@sites.1/@states/@state.1"/>
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
               </linkState>
             </sitePatterns>
           </sitePatterns>
         </agentPatterns>
       </pattern>
     </initialPattern>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Initial" name="i3">
-    <count xmi:type="reactionRules:NumericFromLiteral">
-      <value xmi:type="reactionRules:ArithmeticValue" value="2"/>
+  </properties>
+  <properties xmi:type="simSGL:Initial" name="i3">
+    <count xmi:type="simSGL:NumericFromLiteral">
+      <value xmi:type="simSGL:ArithmeticValue" value="2"/>
     </count>
-    <initialPattern xmi:type="reactionRules:AssignFromPattern">
-      <pattern xmi:type="reactionRules:Pattern">
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.0">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+    <initialPattern xmi:type="simSGL:AssignFromPattern">
+      <pattern xmi:type="simSGL:Pattern">
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.0">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
               </linkState>
             </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.2">
-              <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.0/@sites/@sites.2/@states/@state.1"/>
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="1"/>
-              </linkState>
-            </sitePatterns>
-          </sitePatterns>
-        </agentPatterns>
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.1">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.0">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
-              </linkState>
-            </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.1">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="2"/>
-              </linkState>
-            </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.2">
-              <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.1/@sites/@sites.2/@states/@state.1"/>
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.2">
+              <state xmi:type="simSGL:SiteState" state="//@properties.0/@sites/@sites.2/@states/@state.1"/>
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="1"/>
               </linkState>
             </sitePatterns>
           </sitePatterns>
         </agentPatterns>
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.2">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.2/@sites/@sites.1">
-              <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.2/@sites/@sites.1/@states/@state.1"/>
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="2"/>
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.1">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.0">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
+              </linkState>
+            </sitePatterns>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.1">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="2"/>
+              </linkState>
+            </sitePatterns>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.2">
+              <state xmi:type="simSGL:SiteState" state="//@properties.1/@sites/@sites.2/@states/@state.1"/>
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="1"/>
+              </linkState>
+            </sitePatterns>
+          </sitePatterns>
+        </agentPatterns>
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.1">
+              <state xmi:type="simSGL:SiteState" state="//@properties.2/@sites/@sites.1/@states/@state.1"/>
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="2"/>
               </linkState>
             </sitePatterns>
           </sitePatterns>
         </agentPatterns>
       </pattern>
     </initialPattern>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Initial" name="i4">
-    <count xmi:type="reactionRules:NumericFromLiteral">
-      <value xmi:type="reactionRules:ArithmeticValue" value="4"/>
+  </properties>
+  <properties xmi:type="simSGL:Initial" name="i4">
+    <count xmi:type="simSGL:NumericFromLiteral">
+      <value xmi:type="simSGL:ArithmeticValue" value="4"/>
     </count>
-    <initialPattern xmi:type="reactionRules:AssignFromPattern">
-      <pattern xmi:type="reactionRules:Pattern">
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.3">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.3/@sites/@sites.0">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+    <initialPattern xmi:type="simSGL:AssignFromPattern">
+      <pattern xmi:type="simSGL:Pattern">
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.3">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.3/@sites/@sites.0">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
               </linkState>
             </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.3/@sites/@sites.2">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="1"/>
-              </linkState>
-            </sitePatterns>
-          </sitePatterns>
-        </agentPatterns>
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.4">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.4/@sites/@sites.0">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
-              </linkState>
-            </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.4/@sites/@sites.1">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
-              </linkState>
-            </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.4/@sites/@sites.2">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.3/@sites/@sites.2">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="1"/>
               </linkState>
             </sitePatterns>
           </sitePatterns>
         </agentPatterns>
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.3">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.3/@sites/@sites.1">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.4">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.4/@sites/@sites.0">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
+              </linkState>
+            </sitePatterns>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.4/@sites/@sites.1">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
+              </linkState>
+            </sitePatterns>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.4/@sites/@sites.2">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="1"/>
+              </linkState>
+            </sitePatterns>
+          </sitePatterns>
+        </agentPatterns>
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.3">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.3/@sites/@sites.1">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
               </linkState>
             </sitePatterns>
           </sitePatterns>
         </agentPatterns>
       </pattern>
     </initialPattern>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Initial" name="i5">
-    <count xmi:type="reactionRules:NumericFromLiteral">
-      <value xmi:type="reactionRules:ArithmeticValue" value="2"/>
+  </properties>
+  <properties xmi:type="simSGL:Initial" name="i5">
+    <count xmi:type="simSGL:NumericFromLiteral">
+      <value xmi:type="simSGL:ArithmeticValue" value="2"/>
     </count>
-    <initialPattern xmi:type="reactionRules:AssignFromPattern">
-      <pattern xmi:type="reactionRules:Pattern">
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.3">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.3/@sites/@sites.0">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+    <initialPattern xmi:type="simSGL:AssignFromPattern">
+      <pattern xmi:type="simSGL:Pattern">
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.3">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.3/@sites/@sites.0">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
               </linkState>
             </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.3/@sites/@sites.2">
-              <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.3/@sites/@sites.2/@states/@state.1"/>
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="1"/>
-              </linkState>
-            </sitePatterns>
-          </sitePatterns>
-        </agentPatterns>
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.4">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.4/@sites/@sites.0">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
-              </linkState>
-            </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.4/@sites/@sites.1">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
-              </linkState>
-            </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.4/@sites/@sites.2">
-              <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.4/@sites/@sites.2/@states/@state.1"/>
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.3/@sites/@sites.2">
+              <state xmi:type="simSGL:SiteState" state="//@properties.3/@sites/@sites.2/@states/@state.1"/>
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="1"/>
               </linkState>
             </sitePatterns>
           </sitePatterns>
         </agentPatterns>
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.3">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.3/@sites/@sites.1">
-              <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.3/@sites/@sites.1/@states/@state.1"/>
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.4">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.4/@sites/@sites.0">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
+              </linkState>
+            </sitePatterns>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.4/@sites/@sites.1">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
+              </linkState>
+            </sitePatterns>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.4/@sites/@sites.2">
+              <state xmi:type="simSGL:SiteState" state="//@properties.4/@sites/@sites.2/@states/@state.1"/>
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="1"/>
+              </linkState>
+            </sitePatterns>
+          </sitePatterns>
+        </agentPatterns>
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.3">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.3/@sites/@sites.1">
+              <state xmi:type="simSGL:SiteState" state="//@properties.3/@sites/@sites.1/@states/@state.1"/>
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
               </linkState>
             </sitePatterns>
           </sitePatterns>
         </agentPatterns>
       </pattern>
     </initialPattern>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Initial" name="i6">
-    <count xmi:type="reactionRules:NumericFromLiteral">
-      <value xmi:type="reactionRules:ArithmeticValue" value="2"/>
+  </properties>
+  <properties xmi:type="simSGL:Initial" name="i6">
+    <count xmi:type="simSGL:NumericFromLiteral">
+      <value xmi:type="simSGL:ArithmeticValue" value="2"/>
     </count>
-    <initialPattern xmi:type="reactionRules:AssignFromPattern">
-      <pattern xmi:type="reactionRules:Pattern">
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.6">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.6/@sites/@sites.0">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+    <initialPattern xmi:type="simSGL:AssignFromPattern">
+      <pattern xmi:type="simSGL:Pattern">
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.6">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.6/@sites/@sites.0">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
               </linkState>
             </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.6/@sites/@sites.2">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="1"/>
-              </linkState>
-            </sitePatterns>
-          </sitePatterns>
-        </agentPatterns>
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.7">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.7/@sites/@sites.0">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
-              </linkState>
-            </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.7/@sites/@sites.1">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
-              </linkState>
-            </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.7/@sites/@sites.2">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.6/@sites/@sites.2">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="1"/>
               </linkState>
             </sitePatterns>
           </sitePatterns>
         </agentPatterns>
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.6">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.6/@sites/@sites.1">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.7">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.7/@sites/@sites.0">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
+              </linkState>
+            </sitePatterns>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.7/@sites/@sites.1">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
+              </linkState>
+            </sitePatterns>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.7/@sites/@sites.2">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="1"/>
+              </linkState>
+            </sitePatterns>
+          </sitePatterns>
+        </agentPatterns>
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.6">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.6/@sites/@sites.1">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
               </linkState>
             </sitePatterns>
           </sitePatterns>
         </agentPatterns>
       </pattern>
     </initialPattern>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Initial" name="i7">
-    <count xmi:type="reactionRules:NumericFromLiteral">
-      <value xmi:type="reactionRules:ArithmeticValue" value="3"/>
+  </properties>
+  <properties xmi:type="simSGL:Initial" name="i7">
+    <count xmi:type="simSGL:NumericFromLiteral">
+      <value xmi:type="simSGL:ArithmeticValue" value="3"/>
     </count>
-    <initialPattern xmi:type="reactionRules:AssignFromPattern">
-      <pattern xmi:type="reactionRules:Pattern">
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.6">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.6/@sites/@sites.0">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+    <initialPattern xmi:type="simSGL:AssignFromPattern">
+      <pattern xmi:type="simSGL:Pattern">
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.6">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.6/@sites/@sites.0">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
               </linkState>
             </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.6/@sites/@sites.2">
-              <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.6/@sites/@sites.2/@states/@state.1"/>
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="1"/>
-              </linkState>
-            </sitePatterns>
-          </sitePatterns>
-        </agentPatterns>
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.7">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.7/@sites/@sites.0">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
-              </linkState>
-            </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.7/@sites/@sites.1">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
-              </linkState>
-            </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.7/@sites/@sites.2">
-              <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.7/@sites/@sites.2/@states/@state.1"/>
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.6/@sites/@sites.2">
+              <state xmi:type="simSGL:SiteState" state="//@properties.6/@sites/@sites.2/@states/@state.1"/>
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="1"/>
               </linkState>
             </sitePatterns>
           </sitePatterns>
         </agentPatterns>
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.6">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.6/@sites/@sites.1">
-              <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.6/@sites/@sites.1/@states/@state.1"/>
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.7">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.7/@sites/@sites.0">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
+              </linkState>
+            </sitePatterns>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.7/@sites/@sites.1">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
+              </linkState>
+            </sitePatterns>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.7/@sites/@sites.2">
+              <state xmi:type="simSGL:SiteState" state="//@properties.7/@sites/@sites.2/@states/@state.1"/>
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="1"/>
+              </linkState>
+            </sitePatterns>
+          </sitePatterns>
+        </agentPatterns>
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.6">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.6/@sites/@sites.1">
+              <state xmi:type="simSGL:SiteState" state="//@properties.6/@sites/@sites.1/@states/@state.1"/>
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
               </linkState>
             </sitePatterns>
           </sitePatterns>
         </agentPatterns>
       </pattern>
     </initialPattern>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Initial" name="i8">
-    <count xmi:type="reactionRules:NumericFromLiteral">
-      <value xmi:type="reactionRules:ArithmeticValue" value="2"/>
+  </properties>
+  <properties xmi:type="simSGL:Initial" name="i8">
+    <count xmi:type="simSGL:NumericFromLiteral">
+      <value xmi:type="simSGL:ArithmeticValue" value="2"/>
     </count>
-    <initialPattern xmi:type="reactionRules:AssignFromPattern">
-      <pattern xmi:type="reactionRules:Pattern">
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.6">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.6/@sites/@sites.0">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+    <initialPattern xmi:type="simSGL:AssignFromPattern">
+      <pattern xmi:type="simSGL:Pattern">
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.6">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.6/@sites/@sites.0">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
               </linkState>
             </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.6/@sites/@sites.2">
-              <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.6/@sites/@sites.2/@states/@state.1"/>
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.6/@sites/@sites.2">
+              <state xmi:type="simSGL:SiteState" state="//@properties.6/@sites/@sites.2/@states/@state.1"/>
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="1"/>
               </linkState>
             </sitePatterns>
           </sitePatterns>
         </agentPatterns>
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.7">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.7/@sites/@sites.0">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.7">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.7/@sites/@sites.0">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
               </linkState>
             </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.7/@sites/@sites.1">
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="2"/>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.7/@sites/@sites.1">
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="2"/>
               </linkState>
             </sitePatterns>
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.7/@sites/@sites.2">
-              <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.7/@sites/@sites.2/@states/@state.1"/>
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="1"/>
-              </linkState>
-            </sitePatterns>
-          </sitePatterns>
-        </agentPatterns>
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.8">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.8/@sites/@sites.1">
-              <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.8/@sites/@sites.1/@states/@state.1"/>
-              <linkState xmi:type="reactionRules:LinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="2"/>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.7/@sites/@sites.2">
+              <state xmi:type="simSGL:SiteState" state="//@properties.7/@sites/@sites.2/@states/@state.1"/>
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="1"/>
               </linkState>
             </sitePatterns>
           </sitePatterns>
         </agentPatterns>
-      </pattern>
-    </initialPattern>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Initial" name="i9">
-    <count xmi:type="reactionRules:NumericFromLiteral">
-      <value xmi:type="reactionRules:ArithmeticValue" value="2"/>
-    </count>
-    <initialPattern xmi:type="reactionRules:AssignFromVariable" patternVar="//@reactionProperties.16"/>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Initial" name="i10">
-    <count xmi:type="reactionRules:NumericFromLiteral">
-      <value xmi:type="reactionRules:ArithmeticValue" value="2"/>
-    </count>
-    <initialPattern xmi:type="reactionRules:AssignFromVariable" patternVar="//@reactionProperties.17"/>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Initial" name="i11">
-    <count xmi:type="reactionRules:NumericFromLiteral">
-      <value xmi:type="reactionRules:ArithmeticValue" value="3"/>
-    </count>
-    <initialPattern xmi:type="reactionRules:AssignFromVariable" patternVar="//@reactionProperties.18"/>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Initial" name="i12">
-    <count xmi:type="reactionRules:NumericFromLiteral">
-      <value xmi:type="reactionRules:ArithmeticValue" value="2"/>
-    </count>
-    <initialPattern xmi:type="reactionRules:AssignFromPattern">
-      <pattern xmi:type="reactionRules:Pattern">
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.11">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.11/@sites/@sites.0">
-              <linkState xmi:type="reactionRules:MultiLinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="2"/>
-              </linkState>
-            </sitePatterns>
-          </sitePatterns>
-        </agentPatterns>
-        <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.13">
-          <sitePatterns xmi:type="reactionRules:SitePatterns">
-            <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.13/@sites/@sites.0">
-              <linkState xmi:type="reactionRules:MultiLinkState">
-                <linkState xmi:type="reactionRules:BoundLink" state="2"/>
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.8">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.8/@sites/@sites.1">
+              <state xmi:type="simSGL:SiteState" state="//@properties.8/@sites/@sites.1/@states/@state.1"/>
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="2"/>
               </linkState>
             </sitePatterns>
           </sitePatterns>
         </agentPatterns>
       </pattern>
     </initialPattern>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Initial" name="i13">
-    <count xmi:type="reactionRules:NumericFromLiteral">
-      <value xmi:type="reactionRules:ArithmeticValue" value="3"/>
+  </properties>
+  <properties xmi:type="simSGL:Initial" name="i9">
+    <count xmi:type="simSGL:NumericFromLiteral">
+      <value xmi:type="simSGL:ArithmeticValue" value="2"/>
     </count>
-    <initialPattern xmi:type="reactionRules:AssignFromVariable" patternVar="//@reactionProperties.20"/>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Rule" name="disjuncToBound_rule">
-    <rule xmi:type="reactionRules:RuleBody" operator="&lt;->">
-      <lhs xmi:type="reactionRules:AssignFromPattern">
-        <pattern xmi:type="reactionRules:Pattern">
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.6">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.6/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+    <initialPattern xmi:type="simSGL:AssignFromVariable" patternVar="//@properties.16"/>
+  </properties>
+  <properties xmi:type="simSGL:Initial" name="i10">
+    <count xmi:type="simSGL:NumericFromLiteral">
+      <value xmi:type="simSGL:ArithmeticValue" value="2"/>
+    </count>
+    <initialPattern xmi:type="simSGL:AssignFromVariable" patternVar="//@properties.17"/>
+  </properties>
+  <properties xmi:type="simSGL:Initial" name="i11">
+    <count xmi:type="simSGL:NumericFromLiteral">
+      <value xmi:type="simSGL:ArithmeticValue" value="3"/>
+    </count>
+    <initialPattern xmi:type="simSGL:AssignFromVariable" patternVar="//@properties.18"/>
+  </properties>
+  <properties xmi:type="simSGL:Initial" name="i12">
+    <count xmi:type="simSGL:NumericFromLiteral">
+      <value xmi:type="simSGL:ArithmeticValue" value="2"/>
+    </count>
+    <initialPattern xmi:type="simSGL:AssignFromPattern">
+      <pattern xmi:type="simSGL:Pattern">
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.11">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.11/@sites/@sites.0">
+              <linkState xmi:type="simSGL:MultiLinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="2"/>
+              </linkState>
+            </sitePatterns>
+          </sitePatterns>
+        </agentPatterns>
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.13">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.13/@sites/@sites.0">
+              <linkState xmi:type="simSGL:MultiLinkState">
+                <linkState xmi:type="simSGL:BoundLink" state="2"/>
+              </linkState>
+            </sitePatterns>
+          </sitePatterns>
+        </agentPatterns>
+      </pattern>
+    </initialPattern>
+  </properties>
+  <properties xmi:type="simSGL:Initial" name="i13">
+    <count xmi:type="simSGL:NumericFromLiteral">
+      <value xmi:type="simSGL:ArithmeticValue" value="3"/>
+    </count>
+    <initialPattern xmi:type="simSGL:AssignFromVariable" patternVar="//@properties.20"/>
+  </properties>
+  <properties xmi:type="simSGL:Rule" name="disjuncToBound_rule">
+    <rule xmi:type="simSGL:RuleBody" operator="&lt;->">
+      <lhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.6">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.6/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.7">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.7/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.7">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.7/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
                 </linkState>
               </sitePatterns>
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.7/@sites/@sites.1">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.7/@sites/@sites.1">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.6">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.6/@sites/@sites.1">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.6">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.6/@sites/@sites.1">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
         </pattern>
       </lhs>
-      <rhs xmi:type="reactionRules:AssignFromPattern">
-        <pattern xmi:type="reactionRules:Pattern">
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.6">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.6/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+      <rhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.6">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.6/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.7">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.7/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.7">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.7/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
                 </linkState>
               </sitePatterns>
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.7/@sites/@sites.1">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="2"/>
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.7/@sites/@sites.1">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="2"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.6">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.6/@sites/@sites.1">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="2"/>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.6">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.6/@sites/@sites.1">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="2"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="reactionRules:RuleVariables">
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
+      <variables xmi:type="simSGL:RuleVariables">
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
       </variables>
     </rule>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Rule" name="changeStates_rule">
-    <rule xmi:type="reactionRules:RuleBody" operator="&lt;->">
-      <lhs xmi:type="reactionRules:AssignFromPattern">
-        <pattern xmi:type="reactionRules:Pattern">
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.2">
-                <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.0/@sites/@sites.2/@states/@state.1"/>
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+  </properties>
+  <properties xmi:type="simSGL:Rule" name="changeStates_rule">
+    <rule xmi:type="simSGL:RuleBody" operator="&lt;->">
+      <lhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.2">
+                <state xmi:type="simSGL:SiteState" state="//@properties.0/@sites/@sites.2/@states/@state.1"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.1">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.2">
-                <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.1/@sites/@sites.2/@states/@state.1"/>
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.1">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.2">
+                <state xmi:type="simSGL:SiteState" state="//@properties.1/@sites/@sites.2/@states/@state.1"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
         </pattern>
       </lhs>
-      <rhs xmi:type="reactionRules:AssignFromPattern">
-        <pattern xmi:type="reactionRules:Pattern">
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.2">
-                <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.0/@sites/@sites.2/@states/@state.0"/>
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+      <rhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.2">
+                <state xmi:type="simSGL:SiteState" state="//@properties.0/@sites/@sites.2/@states/@state.0"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.1">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.2">
-                <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.1/@sites/@sites.2/@states/@state.0"/>
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.1">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.2">
+                <state xmi:type="simSGL:SiteState" state="//@properties.1/@sites/@sites.2/@states/@state.0"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="reactionRules:RuleVariables">
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
+      <variables xmi:type="simSGL:RuleVariables">
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
       </variables>
     </rule>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Rule" name="breakUpWithStates_rule">
-    <rule xmi:type="reactionRules:RuleBody" operator="&lt;->">
-      <lhs xmi:type="reactionRules:AssignFromPattern">
-        <pattern xmi:type="reactionRules:Pattern">
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.2">
-                <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.0/@sites/@sites.2/@states/@state.1"/>
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+  </properties>
+  <properties xmi:type="simSGL:Rule" name="breakUpWithStates_rule">
+    <rule xmi:type="simSGL:RuleBody" operator="&lt;->">
+      <lhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.2">
+                <state xmi:type="simSGL:SiteState" state="//@properties.0/@sites/@sites.2/@states/@state.1"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.1">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.2">
-                <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.1/@sites/@sites.2/@states/@state.1"/>
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.1">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.2">
+                <state xmi:type="simSGL:SiteState" state="//@properties.1/@sites/@sites.2/@states/@state.1"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
                 </linkState>
               </sitePatterns>
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.1">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="2"/>
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.1">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="2"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.2">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.2/@sites/@sites.1">
-                <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.2/@sites/@sites.1/@states/@state.1"/>
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="2"/>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.1">
+                <state xmi:type="simSGL:SiteState" state="//@properties.2/@sites/@sites.1/@states/@state.1"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="2"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
         </pattern>
       </lhs>
-      <rhs xmi:type="reactionRules:AssignFromPattern">
-        <pattern xmi:type="reactionRules:Pattern">
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.2">
-                <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.0/@sites/@sites.2/@states/@state.1"/>
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+      <rhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.2">
+                <state xmi:type="simSGL:SiteState" state="//@properties.0/@sites/@sites.2/@states/@state.1"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.1">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.2">
-                <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.1/@sites/@sites.2/@states/@state.1"/>
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.1">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.2">
+                <state xmi:type="simSGL:SiteState" state="//@properties.1/@sites/@sites.2/@states/@state.1"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
                 </linkState>
               </sitePatterns>
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.1">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.1">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.2">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.2/@sites/@sites.1">
-                <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.2/@sites/@sites.1/@states/@state.1"/>
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.1">
+                <state xmi:type="simSGL:SiteState" state="//@properties.2/@sites/@sites.1/@states/@state.1"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="reactionRules:RuleVariables">
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
+      <variables xmi:type="simSGL:RuleVariables">
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
       </variables>
     </rule>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Rule" name="bindAndChangeStates_rule">
-    <rule xmi:type="reactionRules:RuleBody" operator="&lt;->">
-      <lhs xmi:type="reactionRules:AssignFromPattern">
-        <pattern xmi:type="reactionRules:Pattern">
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+  </properties>
+  <properties xmi:type="simSGL:Rule" name="bindAndChangeStates_rule">
+    <rule xmi:type="simSGL:RuleBody" operator="&lt;->">
+      <lhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
                 </linkState>
               </sitePatterns>
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.2">
-                <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.0/@sites/@sites.2/@states/@state.1"/>
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:WhatEver" name="?"/>
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.2">
+                <state xmi:type="simSGL:SiteState" state="//@properties.0/@sites/@sites.2/@states/@state.1"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:WhatEver" name="?"/>
                 </linkState>
               </sitePatterns>
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.1">
-                <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.0/@sites/@sites.1/@states/@state.0"/>
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:WhatEver" name="?"/>
-                </linkState>
-              </sitePatterns>
-            </sitePatterns>
-          </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.1">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:FreeLink" name="free"/>
-                </linkState>
-              </sitePatterns>
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.1">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:FreeLink" name="free"/>
-                </linkState>
-              </sitePatterns>
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.2">
-                <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.1/@sites/@sites.2/@states/@state.1"/>
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:WhatEver" name="?"/>
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.1">
+                <state xmi:type="simSGL:SiteState" state="//@properties.0/@sites/@sites.1/@states/@state.0"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:WhatEver" name="?"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.1">
-                <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.0/@sites/@sites.1/@states/@state.1"/>
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.1">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
+                </linkState>
+              </sitePatterns>
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.1">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
+                </linkState>
+              </sitePatterns>
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.2">
+                <state xmi:type="simSGL:SiteState" state="//@properties.1/@sites/@sites.2/@states/@state.1"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:WhatEver" name="?"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.1">
+                <state xmi:type="simSGL:SiteState" state="//@properties.0/@sites/@sites.1/@states/@state.1"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
         </pattern>
       </lhs>
-      <rhs xmi:type="reactionRules:AssignFromPattern">
-        <pattern xmi:type="reactionRules:Pattern">
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+      <rhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
                 </linkState>
               </sitePatterns>
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.2">
-                <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.0/@sites/@sites.2/@states/@state.0"/>
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:WhatEver" name="?"/>
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.2">
+                <state xmi:type="simSGL:SiteState" state="//@properties.0/@sites/@sites.2/@states/@state.0"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:WhatEver" name="?"/>
                 </linkState>
               </sitePatterns>
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.1">
-                <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.0/@sites/@sites.1/@states/@state.0"/>
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:WhatEver" name="?"/>
-                </linkState>
-              </sitePatterns>
-            </sitePatterns>
-          </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.1">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="1"/>
-                </linkState>
-              </sitePatterns>
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.1">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="2"/>
-                </linkState>
-              </sitePatterns>
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.1/@sites/@sites.2">
-                <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.1/@sites/@sites.2/@states/@state.0"/>
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:WhatEver" name="?"/>
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.1">
+                <state xmi:type="simSGL:SiteState" state="//@properties.0/@sites/@sites.1/@states/@state.0"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:WhatEver" name="?"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.0">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.0/@sites/@sites.1">
-                <state xmi:type="reactionRules:SiteState" state="//@reactionProperties.0/@sites/@sites.1/@states/@state.1"/>
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="2"/>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.1">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.1">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="2"/>
+                </linkState>
+              </sitePatterns>
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.2">
+                <state xmi:type="simSGL:SiteState" state="//@properties.1/@sites/@sites.2/@states/@state.0"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:WhatEver" name="?"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.1">
+                <state xmi:type="simSGL:SiteState" state="//@properties.0/@sites/@sites.1/@states/@state.1"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="2"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="reactionRules:RuleVariables">
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
+      <variables xmi:type="simSGL:RuleVariables">
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
       </variables>
     </rule>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Rule" name="createAndDestroy_rule">
-    <rule xmi:type="reactionRules:RuleBody" operator="&lt;->">
-      <lhs xmi:type="reactionRules:AssignFromPattern">
-        <pattern xmi:type="reactionRules:Pattern">
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.3">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.3/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+  </properties>
+  <properties xmi:type="simSGL:Rule" name="createAndDestroy_rule">
+    <rule xmi:type="simSGL:RuleBody" operator="&lt;->">
+      <lhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.3">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.3/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:VoidAgentPattern" pattern="void"/>
-          <agentPatterns xmi:type="reactionRules:VoidAgentPattern" pattern="void"/>
+          <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
+          <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </lhs>
-      <rhs xmi:type="reactionRules:AssignFromPattern">
-        <pattern xmi:type="reactionRules:Pattern">
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.3">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.3/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+      <rhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.3">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.3/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.4">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.4/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.4">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.4/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
                 </linkState>
               </sitePatterns>
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.4/@sites/@sites.1">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="2"/>
-                </linkState>
-              </sitePatterns>
-            </sitePatterns>
-          </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.4">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.4/@sites/@sites.2">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="2"/>
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.4/@sites/@sites.1">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="2"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
-        </pattern>
-      </rhs>
-      <variables xmi:type="reactionRules:RuleVariables">
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
-      </variables>
-    </rule>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Rule" name="createAndDestroyFullVoid_rule">
-    <rule xmi:type="reactionRules:RuleBody" operator="&lt;->">
-      <lhs xmi:type="reactionRules:AssignFromPattern">
-        <pattern xmi:type="reactionRules:Pattern">
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.3">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.3/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:FreeLink" name="free"/>
-                </linkState>
-              </sitePatterns>
-            </sitePatterns>
-          </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.4">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:SingleSitePattern" site="//@reactionProperties.4/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:LinkState">
-                  <linkState xmi:type="reactionRules:FreeLink" name="free"/>
-                </linkState>
-              </sitePatterns>
-            </sitePatterns>
-          </agentPatterns>
-        </pattern>
-      </lhs>
-      <rhs xmi:type="reactionRules:AssignFromPattern">
-        <pattern xmi:type="reactionRules:Pattern">
-          <agentPatterns xmi:type="reactionRules:VoidAgentPattern" pattern="void"/>
-          <agentPatterns xmi:type="reactionRules:VoidAgentPattern" pattern="void"/>
-        </pattern>
-      </rhs>
-      <variables xmi:type="reactionRules:RuleVariables">
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
-      </variables>
-    </rule>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Rule" name="createAndDestroyFullVoidInjectivity_rule">
-    <rule xmi:type="reactionRules:RuleBody" operator="&lt;->">
-      <lhs xmi:type="reactionRules:AssignFromVariable" patternVar="//@reactionProperties.16"/>
-      <rhs xmi:type="reactionRules:AssignFromPattern">
-        <pattern xmi:type="reactionRules:Pattern">
-          <agentPatterns xmi:type="reactionRules:VoidAgentPattern" pattern="void"/>
-          <agentPatterns xmi:type="reactionRules:VoidAgentPattern" pattern="void"/>
-          <agentPatterns xmi:type="reactionRules:VoidAgentPattern" pattern="void"/>
-          <agentPatterns xmi:type="reactionRules:VoidAgentPattern" pattern="void"/>
-          <agentPatterns xmi:type="reactionRules:VoidAgentPattern" pattern="void"/>
-          <agentPatterns xmi:type="reactionRules:VoidAgentPattern" pattern="void"/>
-        </pattern>
-      </rhs>
-      <variables xmi:type="reactionRules:RuleVariables">
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
-      </variables>
-    </rule>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Rule" name="createAndDestroyFullVoidInjectivity2_rule">
-    <rule xmi:type="reactionRules:RuleBody" operator="&lt;->">
-      <lhs xmi:type="reactionRules:AssignFromVariable" patternVar="//@reactionProperties.17"/>
-      <rhs xmi:type="reactionRules:AssignFromPattern">
-        <pattern xmi:type="reactionRules:Pattern">
-          <agentPatterns xmi:type="reactionRules:VoidAgentPattern" pattern="void"/>
-          <agentPatterns xmi:type="reactionRules:VoidAgentPattern" pattern="void"/>
-          <agentPatterns xmi:type="reactionRules:VoidAgentPattern" pattern="void"/>
-          <agentPatterns xmi:type="reactionRules:VoidAgentPattern" pattern="void"/>
-          <agentPatterns xmi:type="reactionRules:VoidAgentPattern" pattern="void"/>
-          <agentPatterns xmi:type="reactionRules:VoidAgentPattern" pattern="void"/>
-        </pattern>
-      </rhs>
-      <variables xmi:type="reactionRules:RuleVariables">
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
-      </variables>
-    </rule>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Rule" name="manyEdgeBoundToDisjunct_rule">
-    <rule xmi:type="reactionRules:RuleBody" operator="&lt;->">
-      <lhs xmi:type="reactionRules:AssignFromVariable" patternVar="//@reactionProperties.18"/>
-      <rhs xmi:type="reactionRules:AssignFromPattern">
-        <pattern xmi:type="reactionRules:Pattern">
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.11">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.11/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:MultiLinkState">
-                  <linkState xmi:type="reactionRules:FreeLink" name="free"/>
-                </linkState>
-              </sitePatterns>
-            </sitePatterns>
-          </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.12">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.12/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:MultiLinkState">
-                  <linkState xmi:type="reactionRules:FreeLink" name="free"/>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.4">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.4/@sites/@sites.2">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="2"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="reactionRules:RuleVariables">
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
+      <variables xmi:type="simSGL:RuleVariables">
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
       </variables>
     </rule>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Rule" name="manyEdgeDisjunctToBound_rule">
-    <rule xmi:type="reactionRules:RuleBody" operator="&lt;->">
-      <lhs xmi:type="reactionRules:AssignFromVariable" patternVar="//@reactionProperties.19"/>
-      <rhs xmi:type="reactionRules:AssignFromPattern">
-        <pattern xmi:type="reactionRules:Pattern">
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.11">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.11/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:MultiLinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="1"/>
+  </properties>
+  <properties xmi:type="simSGL:Rule" name="createAndDestroyFullVoid_rule">
+    <rule xmi:type="simSGL:RuleBody" operator="&lt;->">
+      <lhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.3">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.3/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.12">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.12/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:MultiLinkState">
-                  <linkState xmi:type="reactionRules:MultiLink">
-                    <states xmi:type="reactionRules:BoundLink" state="1"/>
-                    <states xmi:type="reactionRules:BoundLink" state="3"/>
-                  </linkState>
-                </linkState>
-              </sitePatterns>
-            </sitePatterns>
-          </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.11">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.11/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:MultiLinkState">
-                  <linkState xmi:type="reactionRules:BoundLink" state="2"/>
-                </linkState>
-              </sitePatterns>
-            </sitePatterns>
-          </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.13">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.13/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:MultiLinkState">
-                  <linkState xmi:type="reactionRules:MultiLink">
-                    <states xmi:type="reactionRules:BoundLink" state="2"/>
-                    <states xmi:type="reactionRules:BoundLink" state="3"/>
-                  </linkState>
-                </linkState>
-              </sitePatterns>
-            </sitePatterns>
-          </agentPatterns>
-        </pattern>
-      </rhs>
-      <variables xmi:type="reactionRules:RuleVariables">
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
-      </variables>
-    </rule>
-  </reactionProperties>
-  <reactionProperties xmi:type="reactionRules:Rule" name="manyEdgeTriangle_rule">
-    <rule xmi:type="reactionRules:RuleBody" operator="&lt;->">
-      <lhs xmi:type="reactionRules:AssignFromPattern">
-        <pattern xmi:type="reactionRules:Pattern">
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.14">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.14/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:MultiLinkState">
-                  <linkState xmi:type="reactionRules:MultiLink">
-                    <states xmi:type="reactionRules:BoundLink" state="1"/>
-                    <states xmi:type="reactionRules:IndexedFreeLink" name="free" state="3"/>
-                  </linkState>
-                </linkState>
-              </sitePatterns>
-            </sitePatterns>
-          </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.14">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.14/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:MultiLinkState">
-                  <linkState xmi:type="reactionRules:MultiLink">
-                    <states xmi:type="reactionRules:BoundLink" state="1"/>
-                    <states xmi:type="reactionRules:BoundLink" state="2"/>
-                  </linkState>
-                </linkState>
-              </sitePatterns>
-            </sitePatterns>
-          </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.14">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.14/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:MultiLinkState">
-                  <linkState xmi:type="reactionRules:MultiLink">
-                    <states xmi:type="reactionRules:BoundLink" state="2"/>
-                    <states xmi:type="reactionRules:IndexedFreeLink" name="free" state="3"/>
-                  </linkState>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.4">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.4/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
         </pattern>
       </lhs>
-      <rhs xmi:type="reactionRules:AssignFromPattern">
-        <pattern xmi:type="reactionRules:Pattern">
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.14">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.14/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:MultiLinkState">
-                  <linkState xmi:type="reactionRules:MultiLink">
-                    <states xmi:type="reactionRules:BoundLink" state="1"/>
-                    <states xmi:type="reactionRules:BoundLink" state="3"/>
+      <rhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
+          <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
+        </pattern>
+      </rhs>
+      <variables xmi:type="simSGL:RuleVariables">
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+      </variables>
+    </rule>
+  </properties>
+  <properties xmi:type="simSGL:Rule" name="createAndDestroyFullVoidInjectivity_rule">
+    <rule xmi:type="simSGL:RuleBody" operator="&lt;->">
+      <lhs xmi:type="simSGL:AssignFromVariable" patternVar="//@properties.16"/>
+      <rhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
+          <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
+          <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
+          <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
+          <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
+          <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
+        </pattern>
+      </rhs>
+      <variables xmi:type="simSGL:RuleVariables">
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+      </variables>
+    </rule>
+  </properties>
+  <properties xmi:type="simSGL:Rule" name="createAndDestroyFullVoidInjectivity2_rule">
+    <rule xmi:type="simSGL:RuleBody" operator="&lt;->">
+      <lhs xmi:type="simSGL:AssignFromVariable" patternVar="//@properties.17"/>
+      <rhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
+          <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
+          <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
+          <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
+          <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
+          <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
+        </pattern>
+      </rhs>
+      <variables xmi:type="simSGL:RuleVariables">
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+      </variables>
+    </rule>
+  </properties>
+  <properties xmi:type="simSGL:Rule" name="manyEdgeBoundToDisjunct_rule">
+    <rule xmi:type="simSGL:RuleBody" operator="&lt;->">
+      <lhs xmi:type="simSGL:AssignFromVariable" patternVar="//@properties.18"/>
+      <rhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.11">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.11/@sites/@sites.0">
+                <linkState xmi:type="simSGL:MultiLinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.12">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.12/@sites/@sites.0">
+                <linkState xmi:type="simSGL:MultiLinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+        </pattern>
+      </rhs>
+      <variables xmi:type="simSGL:RuleVariables">
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+      </variables>
+    </rule>
+  </properties>
+  <properties xmi:type="simSGL:Rule" name="manyEdgeDisjunctToBound_rule">
+    <rule xmi:type="simSGL:RuleBody" operator="&lt;->">
+      <lhs xmi:type="simSGL:AssignFromVariable" patternVar="//@properties.19"/>
+      <rhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.11">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.11/@sites/@sites.0">
+                <linkState xmi:type="simSGL:MultiLinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.12">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.12/@sites/@sites.0">
+                <linkState xmi:type="simSGL:MultiLinkState">
+                  <linkState xmi:type="simSGL:MultiLink">
+                    <states xmi:type="simSGL:BoundLink" state="1"/>
+                    <states xmi:type="simSGL:BoundLink" state="3"/>
                   </linkState>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.14">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.14/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:MultiLinkState">
-                  <linkState xmi:type="reactionRules:MultiLink">
-                    <states xmi:type="reactionRules:BoundLink" state="1"/>
-                    <states xmi:type="reactionRules:BoundLink" state="2"/>
-                  </linkState>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.11">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.11/@sites/@sites.0">
+                <linkState xmi:type="simSGL:MultiLinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="2"/>
                 </linkState>
               </sitePatterns>
             </sitePatterns>
           </agentPatterns>
-          <agentPatterns xmi:type="reactionRules:ValidAgentPattern" agent="//@reactionProperties.14">
-            <sitePatterns xmi:type="reactionRules:SitePatterns">
-              <sitePatterns xmi:type="reactionRules:MultiLinkSitePattern" site="//@reactionProperties.14/@sites/@sites.0">
-                <linkState xmi:type="reactionRules:MultiLinkState">
-                  <linkState xmi:type="reactionRules:MultiLink">
-                    <states xmi:type="reactionRules:BoundLink" state="2"/>
-                    <states xmi:type="reactionRules:BoundLink" state="3"/>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.13">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.13/@sites/@sites.0">
+                <linkState xmi:type="simSGL:MultiLinkState">
+                  <linkState xmi:type="simSGL:MultiLink">
+                    <states xmi:type="simSGL:BoundLink" state="2"/>
+                    <states xmi:type="simSGL:BoundLink" state="3"/>
                   </linkState>
                 </linkState>
               </sitePatterns>
@@ -1539,10 +1451,98 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="reactionRules:RuleVariables">
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
-        <variables xmi:type="reactionRules:NumericFromVariable" valueVar="//@reactionProperties.15"/>
+      <variables xmi:type="simSGL:RuleVariables">
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
       </variables>
     </rule>
-  </reactionProperties>
-</reactionRules:ReactionRuleModel>
+  </properties>
+  <properties xmi:type="simSGL:Rule" name="manyEdgeTriangle_rule">
+    <rule xmi:type="simSGL:RuleBody" operator="&lt;->">
+      <lhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.14">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.14/@sites/@sites.0">
+                <linkState xmi:type="simSGL:MultiLinkState">
+                  <linkState xmi:type="simSGL:MultiLink">
+                    <states xmi:type="simSGL:BoundLink" state="1"/>
+                    <states xmi:type="simSGL:IndexedFreeLink" name="free" state="3"/>
+                  </linkState>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.14">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.14/@sites/@sites.0">
+                <linkState xmi:type="simSGL:MultiLinkState">
+                  <linkState xmi:type="simSGL:MultiLink">
+                    <states xmi:type="simSGL:BoundLink" state="1"/>
+                    <states xmi:type="simSGL:BoundLink" state="2"/>
+                  </linkState>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.14">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.14/@sites/@sites.0">
+                <linkState xmi:type="simSGL:MultiLinkState">
+                  <linkState xmi:type="simSGL:MultiLink">
+                    <states xmi:type="simSGL:BoundLink" state="2"/>
+                    <states xmi:type="simSGL:IndexedFreeLink" name="free" state="3"/>
+                  </linkState>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+        </pattern>
+      </lhs>
+      <rhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.14">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.14/@sites/@sites.0">
+                <linkState xmi:type="simSGL:MultiLinkState">
+                  <linkState xmi:type="simSGL:MultiLink">
+                    <states xmi:type="simSGL:BoundLink" state="1"/>
+                    <states xmi:type="simSGL:BoundLink" state="3"/>
+                  </linkState>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.14">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.14/@sites/@sites.0">
+                <linkState xmi:type="simSGL:MultiLinkState">
+                  <linkState xmi:type="simSGL:MultiLink">
+                    <states xmi:type="simSGL:BoundLink" state="1"/>
+                    <states xmi:type="simSGL:BoundLink" state="2"/>
+                  </linkState>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.14">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:MultiLinkSitePattern" site="//@properties.14/@sites/@sites.0">
+                <linkState xmi:type="simSGL:MultiLinkState">
+                  <linkState xmi:type="simSGL:MultiLink">
+                    <states xmi:type="simSGL:BoundLink" state="2"/>
+                    <states xmi:type="simSGL:BoundLink" state="3"/>
+                  </linkState>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+        </pattern>
+      </rhs>
+      <variables xmi:type="simSGL:RuleVariables">
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+      </variables>
+    </rule>
+  </properties>
+</simSGL:SimSGLModel>
