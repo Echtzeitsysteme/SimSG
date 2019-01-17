@@ -9,6 +9,6 @@
   <children size='3'>
     <child location='updatesite'/>
     <child location='https://emoflon.org/emoflon-ibex-democles-updatesite/stable/updatesite/'/>
-    <child location="https://www.eclipse.org/viatra/downloads.html"/>
+    <child location='http://download.eclipse.org/viatra/updates/release/latest'/>
   </children>
 </repository>
