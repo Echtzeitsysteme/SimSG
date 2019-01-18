@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <simSGL:SimSGLModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:simSGL="http://www.simsg.org/simsgl/SimSGL" xsi:schemaLocation="http://www.simsg.org/simsgl/SimSGL java://org.simsg.simsgl.simSGL.SimSGLPackage">
-  <model xmi:type="simSGL:Model" name="test2"/>
+  <model xmi:type="simSGL:Model" name="Test2"/>
+  <properties xmi:type="simSGL:Agent" name="b">
+    <sites xmi:type="simSGL:Sites"/>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
+  </properties>
 </simSGL:SimSGLModel>

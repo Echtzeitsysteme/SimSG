@@ -33,6 +33,10 @@ import org.simsg.simsgl.simSGL.MultiLinkSitePattern
 import org.simsg.simsgl.simSGL.BoundLink
 import org.simsg.simsgl.simSGL.IndexedFreeLink
 import org.simsg.simsgl.simSGL.SitePattern
+import org.simsg.simsgl.simSGL.Constraint
+import org.simsg.simsgl.simSGL.AttributeOperand
+import org.simsg.simsgl.simSGL.EqualComparator
+import org.simsg.simsgl.simSGL.OperationLeft
 
 /**
  * This class contains custom validation rules. 
@@ -41,7 +45,7 @@ import org.simsg.simsgl.simSGL.SitePattern
  */
 class SimSGLValidator extends AbstractSimSGLValidator {
 	
-@Check
+	@Check
 	def checkAgentIdUnique(Agent agent) {
 		val rootElement = EcoreUtil2.getRootContainer(agent)
 		var candidates = EcoreUtil2.getAllContentsOfType(rootElement, Agent);
@@ -125,6 +129,39 @@ class SimSGLValidator extends AbstractSimSGLValidator {
 				warning('Initial count variables equal to 0 will lead to zero instantiated agents.', null)
 			}
 		}
+				
+	}
+	
+	@Check
+	def checkInitialAttributes(Initial initial) {
+		val pattern = patternFromPatternAssignment(initial.initialPattern)
+		val constraints = pattern.constraints
+		if(constraints === null) return;
+		
+		for(Constraint c : constraints) {
+			val opL  = c.operandL
+			val operator = c.comparator
+			val opR = c.operandR
+			if(!(opL instanceof AttributeOperand)) {
+				error('Initial attribute must be assigned on the left.', null)
+			}
+			if(!(operator instanceof EqualComparator)) {
+				error('Initial attribute must be assigned via equals operator.', null)
+			}
+			if(opR instanceof OperationLeft) {
+				val oplLeft = (opR as OperationLeft).left
+				val oplRight = (opR as OperationLeft).right
+				if(oplRight !== null) {
+					error('Initial attribute must be assigned with a terminal.', null)
+				}
+				if(!(oplLeft instanceof NumericFromLiteral || oplLeft instanceof NumericFromVariable)) {
+					error('Initial attribute must be assigned with a terminal.', null)
+				}
+				
+			}else {
+				error('Initial attribute must be assigned with a terminal.', null)
+			}
+		}		
 				
 	}
 	

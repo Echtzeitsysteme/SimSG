@@ -3,6 +3,7 @@ package org.simsg.container.util;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -13,6 +14,7 @@ public class EPackageWrapper {
 	
 	private Map<String, EClass> classMap;
 	private Map<String, EReference> referenceMap;
+	private Map<String, EAttribute> attributeMap;
 	private AgentFactory agentFactory;
 	private EClassRegistry<Agent> classRegistry;
 	
@@ -26,6 +28,7 @@ public class EPackageWrapper {
 	private void mapElements() {
 		classMap = new HashMap<String, EClass>();
 		referenceMap = new HashMap<String, EReference>();
+		attributeMap = new HashMap<String, EAttribute>();
 		
 		ePack.getEClassifiers().forEach(classifier-> {
 			if(classifier instanceof EClass) {
@@ -36,6 +39,10 @@ public class EPackageWrapper {
 						EReference eRef = (EReference)reference;
 						referenceMap.putIfAbsent(reference.getName(), eRef);
 					}
+				});
+				eClass.getEAttributes().forEach(attr -> {
+					EAttribute attribute = (EAttribute) attr;
+					attributeMap.putIfAbsent(attribute.getName(), attribute);
 				});
 			}
 			
@@ -61,5 +68,9 @@ public class EPackageWrapper {
 	
 	public EReference getEReference(String refName) {
 		return referenceMap.get(refName);
+	}
+	
+	public EAttribute getEAttribute(String attributeName) {
+		return attributeMap.get(attributeName);
 	}
 }

@@ -52,11 +52,11 @@ terminal INT returns ecore::EInt:
 ;
 
 Float hidden():
-	('-')?INT '.' INT
+	(MINUS)?INT '.' INT
 ;
 
 ScientificFloat hidden():
-	('-')?INT'.'INT EXPONENT('-' | '+')INT
+	(MINUS)?INT'.'INT EXPONENT(MINUS | PLUS)INT
 ;
 
 UnsignedInteger  hidden():
@@ -64,7 +64,7 @@ UnsignedInteger  hidden():
 ;
 
 SignedInteger  hidden():
-	('-'INT)
+	(MINUS INT)
 ;
 
 ArithmeticType:
@@ -92,7 +92,7 @@ SingleSite returns Site:
 
 MultiSite returns Site:
 	{MultiSite}
-	'*'name=ID
+	MULT name=ID
 	states = States
 ;
 
@@ -105,10 +105,47 @@ Sites:
 		('(' sites+=Site ( "," sites+=Site)* ')' )?	
 ;
 
+terminal FLOAT_ATTRIBUTE:
+	'FLOAT'
+;
+
+terminal INT_ATTRIBUTE:
+	'INT'
+;
+
+FloatAttribute returns AttributeType:
+	{FloatAttribute} FLOAT_ATTRIBUTE
+;
+
+IntegerAttribute returns AttributeType:
+	{IntegerAttribute} INT_ATTRIBUTE
+;
+
+NumberAttribute returns AttributeType:
+	FloatAttribute | IntegerAttribute
+;
+
+AttributeType:
+	NumberAttribute
+;
+
+Attribute returns Attribute:
+	name=ID
+	':'
+	type = AttributeType
+;
+
+Attributes:
+	{Attributes}
+		('[' attributes+=Attribute ( "," attributes+=Attribute)* ']' )?
+;
+
 Agent returns Agent:
 	'agent'
 	name = ID
 	sites = Sites
+	states = States
+	attributes = Attributes
 ;
 
 PatternVariable returns PatternVariable:
@@ -192,6 +229,11 @@ SiteState:
 	'{' state = [State] '}'
 ;
 
+AgentState:
+	{AgentState}
+	'{' state = [State] '}'
+;
+
 LinkState:
 	{LinkState}
 	 '['linkState = (BoundAnyLink | FreeLink | IndexedFreeLink | TypedFreeLink | BoundAnyOfTypeLink | BoundLink | WhatEver)']'
@@ -229,6 +271,7 @@ ValidAgentPattern returns ValidAgentPattern:
 	{ValidAgentPattern}
 	agent = [Agent]
 	sitePatterns = SitePatterns
+	(state = AgentState)?
 ;
 
 VoidAgentPattern returns VoidAgentPattern:
@@ -242,7 +285,101 @@ AgentPattern:
 Pattern returns Pattern:
 	{Pattern}
 	'{' (agentPatterns += AgentPattern (',' agentPatterns += AgentPattern )* )?  '}'
+	('[' (constraints += Constraint (',' constraints += Constraint )* )?  ']')?
 ;
+
+Constraint returns Constraint:
+	{Constraint}
+	operandL = (Operation | AttributeOperand | NumericAssignment)
+	comparator = Comparator
+	operandR = (Operation | AttributeOperand | NumericAssignment)
+;
+
+AttributeOperand:
+	AttributeOperandGeneric | AttributeOperandId 
+;
+
+AttributeOperandGeneric returns AttributeOperand:
+	{AttributeOperandGeneric}
+	agent = [Agent] '.' attribute = [Attribute]
+;
+
+AttributeOperandId returns AttributeOperand:
+	{AttributeOperandId}
+	agent = [Agent] '.' 'id'
+;
+
+Operation returns Operation:
+	OperationLeft | UnaryOperation
+;
+
+OperationLeft:
+	left = ( UnaryOperation | AttributeOperand | NumericAssignment)
+	(right = OperationRight)?
+;
+
+OperationRight:
+	operator = Operator
+	right = ( OperationLeft | AttributeOperand | NumericAssignment )
+;
+
+UnaryOperation:
+	AbsoluteOperation | SquareRootOperation 
+;
+
+AbsoluteOperation returns UnaryOperation:
+	'|' OperationLeft  '|'
+;
+
+SquareRootOperation returns UnaryOperation:
+	SQRT '(' OperationLeft ')'
+;
+
+Comparator:
+	EqualComparator | GreaterComparator | GreaterEqualComparator | LessComparator | LessEqualComparator
+;
+
+Operator:
+	PlusOperator | MinusOperator | PowOperator | MultOperator
+;
+
+EqualComparator returns Comparator: {EqualComparator} EQUALS;
+
+GreaterComparator returns Comparator: {GreaterComparator} GREATER;
+
+GreaterEqualComparator returns Comparator: {GreaterEqualComparator} GREATER_EQUAL;
+
+LessComparator returns Comparator: {LessComparator} LESS;
+
+LessEqualComparator returns Comparator: {LessEqualComparator} LESS_EQUAL;
+
+terminal EQUALS: '==';
+
+terminal GREATER: '>';
+
+terminal GREATER_EQUAL: '>=';
+
+terminal LESS: '<'; 
+
+terminal LESS_EQUAL: '<=';
+
+PlusOperator returns Operator: {PlusOperator} PLUS;
+
+MinusOperator returns Operator: {MinusOperator} MINUS;
+
+PowOperator returns Operator: {PowOperator} POW;
+
+MultOperator returns Operator: {MultOperator} MULT;
+
+terminal PLUS: '+';
+
+terminal MINUS: '-';
+
+terminal POW: '^';
+
+terminal MULT: '*';
+
+terminal SQRT: 'sqrt';
 
 Observation returns Observation:
 	'obs'

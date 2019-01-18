@@ -6,15 +6,22 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EcorePackage;
 import org.simsg.container.Agent;
 import org.simsg.container.State;
 import org.simsg.container.util.AgentClassFactory;
 import org.simsg.container.util.StateClassFactory;
-
+import org.simsg.simsgl.simSGL.Attribute;
+import org.simsg.simsgl.simSGL.AttributeOperandGeneric;
 import org.simsg.simsgl.simSGL.BoundLink;
+import org.simsg.simsgl.simSGL.Constraint;
+import org.simsg.simsgl.simSGL.FloatAttribute;
+import org.simsg.simsgl.simSGL.IntegerAttribute;
 import org.simsg.simsgl.simSGL.LinkState;
 import org.simsg.simsgl.simSGL.MultiLink;
 import org.simsg.simsgl.simSGL.MultiLinkSitePattern;
+import org.simsg.simsgl.simSGL.NumericAssignment;
+import org.simsg.simsgl.simSGL.OperationLeft;
 import org.simsg.simsgl.simSGL.Pattern;
 import org.simsg.simsgl.simSGL.SingleSitePattern;
 import org.simsg.simsgl.simSGL.Site;
@@ -24,7 +31,8 @@ import org.simsg.simsgl.utils.PatternUtils;
 
 public class InitializationTemplate {
 
-	private List<ValidAgentPattern> agentPatterns;
+	private Pattern pattern;
+	private Map<org.simsg.simsgl.simSGL.Agent, ValidAgentPattern> agentPatterns;
 	private AgentClassFactory agentFactory;
 	private StateClassFactory stateFactory;
 	private Map<String, State> stateInstances;
@@ -33,30 +41,62 @@ public class InitializationTemplate {
 	public InitializationTemplate(Pattern pattern, AgentClassFactory agentFactory, 
 			StateClassFactory stateFactory, Map<String, State> stateInstances) {
 		
+		this.pattern = pattern;
 		this.agentFactory = agentFactory;
 		this.stateFactory = stateFactory;
 		this.stateInstances = stateInstances;
 		
-		agentPatterns = PatternUtils.getValidAgentPatterns(pattern.getAgentPatterns());
-		
+		mapAgentsToValidPatterns();
 		createAgentTemplates();
+		findAttributeValues();
 		findStates();
 		findReferences();
 	}
 	
+	private void mapAgentsToValidPatterns() {
+		agentPatterns = new HashMap<org.simsg.simsgl.simSGL.Agent, ValidAgentPattern>();
+		PatternUtils.getValidAgentPatterns(pattern.getAgentPatterns()).forEach(vap -> {
+			agentPatterns.put(vap.getAgent(), vap);
+		});
+	}
+	
 	private void createAgentTemplates() {
 		agentTemplates = new HashMap<ValidAgentPattern, AgentTemplate>();
-		for(ValidAgentPattern vap : agentPatterns) {
+		for(ValidAgentPattern vap : agentPatterns.values()) {
 			agentTemplates.put(vap, new AgentTemplate(vap.getAgent(), agentFactory, stateFactory, stateInstances));
 		}
 	}
 	
+	private void findAttributeValues() {
+		if(pattern.getConstraints() == null) return;
+		for(Constraint c : pattern.getConstraints()) {
+			if(c.getOperandL() instanceof AttributeOperandGeneric) {
+				AttributeOperandGeneric operandL = (AttributeOperandGeneric)c.getOperandL();
+				ValidAgentPattern vap = agentPatterns.get(operandL.getAgent());
+				Attribute atr = operandL.getAttribute();
+				OperationLeft operandR = (OperationLeft)c.getOperandR();
+				String content = PatternUtils.contentOfNumericAssignment((NumericAssignment) operandR);
+				agentTemplates.get(vap).defineAttribute(atr, stringToValue(atr, content));
+			}
+		}
+	}
+	
+	private Object stringToValue(Attribute atr, String content) {
+		Object value = null;
+		if(atr.getType() instanceof FloatAttribute) {
+			value = Double.parseDouble(content);
+		}else if(atr.getType() instanceof IntegerAttribute) {
+			value = Integer.parseInt(content);
+		}
+		return value;
+	}
+	
 	private void findStates() {
-		for(ValidAgentPattern vap : agentPatterns) {
-			Map<Site, org.simsg.simsgl.simSGL.State> states = new HashMap<>();
+		for(ValidAgentPattern vap : agentPatterns.values()) {
+			Map<Site, org.simsg.simsgl.simSGL.State> siteStates = new HashMap<>();
 			for(Site site : vap.getAgent().getSites().getSites()) {
 				if(site.getStates().getState().size() > 0) {
-					states.put(site, site.getStates().getState().get(0));
+					siteStates.put(site, site.getStates().getState().get(0));
 				}
 			}
 			for(SitePattern sp : vap.getSitePatterns().getSitePatterns()) {
@@ -65,16 +105,23 @@ public class InitializationTemplate {
 				Site site = null;
 				if(sp instanceof SingleSitePattern) site = ((SingleSitePattern) sp).getSite();
 				if(sp instanceof MultiLinkSitePattern) site = ((MultiLinkSitePattern) sp).getSite();
-				states.replace(site, sp.getState().getState());
+				siteStates.replace(site, sp.getState().getState());
 			}
-			states.forEach((site, state) -> {
-				agentTemplates.get(vap).defineState(site, state);
+			siteStates.forEach((site, state) -> {
+				agentTemplates.get(vap).defineSiteState(site, state);
 			});
+			
+			Map<org.simsg.simsgl.simSGL.Agent, org.simsg.simsgl.simSGL.State> agentStates = new HashMap<>();
+			org.simsg.simsgl.simSGL.Agent agent = vap.getAgent();
+			if(agent.getStates().getState().size() > 0) {
+				 agentStates.put(agent, agent.getStates().getState().get(0));
+			}
+			// TODO...
 		}
 	}
 	
 	private void findReferences() {
-		for(ValidAgentPattern vap : agentPatterns) {
+		for(ValidAgentPattern vap : agentPatterns.values()) {
 			
 			for(SitePattern sp : vap.getSitePatterns().getSitePatterns()) {
 				if(sp == null) continue;
@@ -96,7 +143,7 @@ public class InitializationTemplate {
 		if(ls1 == null) return;
 		if(!(ls1 instanceof BoundLink)) return;
 		
-		for(ValidAgentPattern vap2 : agentPatterns) {
+		for(ValidAgentPattern vap2 : agentPatterns.values()) {
 			if(vap == vap2) continue;
 			
 			for(SitePattern sp2 : vap2.getSitePatterns().getSitePatterns()) {
@@ -147,7 +194,7 @@ public class InitializationTemplate {
 		}
 		
 		for(LinkState ls1 : states) {
-			for(ValidAgentPattern vap2 : agentPatterns) {
+			for(ValidAgentPattern vap2 : agentPatterns.values()) {
 				if(vap == vap2) continue;
 				
 				for(SitePattern sp2 : vap2.getSitePatterns().getSitePatterns()) {
@@ -207,6 +254,7 @@ public class InitializationTemplate {
 			
 			for(AgentTemplate template : agentTemplates.values()) {
 				Agent agent = agentFactory.getEObjectFactory().createObject(template.getAgentClassName());
+				template.setAttributes(agent);
 				template.setStates(agent);
 				tempInstances.replace(template, agent);
 			}

@@ -32,8 +32,22 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="sites" upperBound="-1"
         eType="#//Site" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Attribute">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//AttributeType"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Attributes">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
+        eType="#//Attribute" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Agent" eSuperTypes="#//SimSGLProperty">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sites" eType="#//Sites"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="states" eType="#//States"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" eType="#//Attributes"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternVariable" eSuperTypes="#//Variable">
@@ -58,6 +72,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="SiteState">
     <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//State"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AgentState">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//State"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MultiLinkState">
     <eStructuralFeatures xsi:type="ecore:EReference" name="linkState" eType="#//LinkState"
         containment="true"/>
@@ -74,6 +91,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="agent" eType="#//Agent"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sitePatterns" eType="#//SitePatterns"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//AgentState"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VoidAgentPattern" eSuperTypes="#//AgentPattern">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="pattern" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -82,7 +101,36 @@
   <eClassifiers xsi:type="ecore:EClass" name="Pattern">
     <eStructuralFeatures xsi:type="ecore:EReference" name="agentPatterns" upperBound="-1"
         eType="#//AgentPattern" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
+        eType="#//Constraint" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Constraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operandL" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="comparator" eType="#//Comparator"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operandR" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeOperand">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="agent" eType="#//Agent"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Operation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationLeft" eSuperTypes="#//Operation #//UnaryOperation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//OperationRight"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationRight">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operator" eType="#//Operator"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryOperation" eSuperTypes="#//Operation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Comparator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Operator"/>
   <eClassifiers xsi:type="ecore:EClass" name="Observation" eSuperTypes="#//SimSGLProperty">
     <eStructuralFeatures xsi:type="ecore:EReference" name="observationPattern" eType="#//PatternAssignment"
         containment="true"/>
@@ -141,6 +189,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SingleSite" eSuperTypes="#//Site"/>
   <eClassifiers xsi:type="ecore:EClass" name="MultiSite" eSuperTypes="#//Site"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FloatAttribute" eSuperTypes="#//AttributeType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerAttribute" eSuperTypes="#//AttributeType"/>
   <eClassifiers xsi:type="ecore:EClass" name="BoundAnyLink" eSuperTypes="#//LinkState">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -181,4 +231,17 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="linkState" eType="#//MultiLinkState"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeOperandGeneric" eSuperTypes="#//AttributeOperand">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//Attribute"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeOperandId" eSuperTypes="#//AttributeOperand"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EqualComparator" eSuperTypes="#//Comparator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GreaterComparator" eSuperTypes="#//Comparator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GreaterEqualComparator" eSuperTypes="#//Comparator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LessComparator" eSuperTypes="#//Comparator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LessEqualComparator" eSuperTypes="#//Comparator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PlusOperator" eSuperTypes="#//Operator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MinusOperator" eSuperTypes="#//Operator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PowOperator" eSuperTypes="#//Operator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MultOperator" eSuperTypes="#//Operator"/>
 </ecore:EPackage>

@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -12,6 +13,7 @@ import org.simsg.container.util.AgentClassFactory;
 import org.simsg.container.util.StateClassFactory;
 
 import org.simsg.simsgl.simSGL.Agent;
+import org.simsg.simsgl.simSGL.Attribute;
 import org.simsg.simsgl.simSGL.Site;
 import org.simsg.simsgl.simSGL.State;
 
@@ -22,7 +24,9 @@ public class AgentTemplate {
 	StateClassFactory stateFactory;
 	
 	private String agentClassName;
+	private Map<String, Object> attributeValues;
 	private Map<String, String> stateReferences;
+	private Map<String, String> siteStateReferences;
 	private Map<String, List<AgentTemplate>> agentReferences; 
 	
 	public AgentTemplate(Agent agent, AgentClassFactory agentFactory, 
@@ -33,12 +37,26 @@ public class AgentTemplate {
 		this.stateFactory = stateFactory;
 		
 		agentClassName = agent.getName();
+		attributeValues = new HashMap<String, Object>();
 		agentReferences = new HashMap<String, List<AgentTemplate>>();
 		stateReferences = new HashMap<String, String>();
+		siteStateReferences = new HashMap<String, String>();
 	}
 	
-	public void defineState(Site site, State state) {
+	public void defineAttribute(Attribute attribute, Object value) {
+		attributeValues.put(AgentClassFactory
+				.createCombinedClassName(agentClassName, attribute.getName())
+				, value);
+	}
+	
+	public void defineState(State state) {
 		stateReferences.put(StateClassFactory
+				.createCombinedClassName(agentClassName, state.getName())
+				, state.getName());
+	}
+	
+	public void defineSiteState(Site site, State state) {
+		siteStateReferences.put(StateClassFactory
 				.createCombinedClassName(agentClassName, site.getName(), state.getName())
 				, state.getName());
 	}
@@ -54,7 +72,20 @@ public class AgentTemplate {
 		templates.add(other);
 	}
 	
+	public void setAttributes(org.simsg.container.Agent thisAgent) {
+		for(String attributeName : attributeValues.keySet()) {
+			EAttribute attribute = agentFactory.getEClassRegistry().getRegisteredAttribute(attributeName);
+			thisAgent.eSet(attribute, attributeValues.get(attributeName));
+		}
+	}
+	
 	public void setStates(org.simsg.container.Agent thisAgent) {
+		for(String refName : siteStateReferences.keySet()) {
+			EReference ref = stateFactory.getEClassRegistry().getRegisteredReference(refName);
+			EObject state = stateInstances.get(siteStateReferences.get(refName));
+			thisAgent.eSet(ref, state);
+		}
+		
 		for(String refName : stateReferences.keySet()) {
 			EReference ref = stateFactory.getEClassRegistry().getRegisteredReference(refName);
 			EObject state = stateInstances.get(stateReferences.get(refName));
