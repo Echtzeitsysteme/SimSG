@@ -16,6 +16,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:PatternVariable" name="p29">
     <pattern xmi:type="simSGL:Pattern">

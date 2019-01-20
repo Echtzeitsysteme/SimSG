@@ -6,11 +6,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EcorePackage;
 import org.simsg.container.Agent;
 import org.simsg.container.State;
 import org.simsg.container.util.AgentClassFactory;
 import org.simsg.container.util.StateClassFactory;
+import org.simsg.simsgl.simSGL.AgentState;
 import org.simsg.simsgl.simSGL.Attribute;
 import org.simsg.simsgl.simSGL.AttributeOperandGeneric;
 import org.simsg.simsgl.simSGL.BoundLink;
@@ -48,7 +48,7 @@ public class InitializationTemplate {
 		
 		mapAgentsToValidPatterns();
 		createAgentTemplates();
-		findAttributeValues();
+		//findAttributeValues();
 		findStates();
 		findReferences();
 	}
@@ -111,12 +111,18 @@ public class InitializationTemplate {
 				agentTemplates.get(vap).defineSiteState(site, state);
 			});
 			
-			Map<org.simsg.simsgl.simSGL.Agent, org.simsg.simsgl.simSGL.State> agentStates = new HashMap<>();
+			org.simsg.simsgl.simSGL.State agentState = null;
 			org.simsg.simsgl.simSGL.Agent agent = vap.getAgent();
 			if(agent.getStates().getState().size() > 0) {
-				 agentStates.put(agent, agent.getStates().getState().get(0));
+				 agentState = agent.getStates().getState().get(0);
 			}
-			// TODO...
+			AgentState as = vap.getState();
+			if(as != null) {
+				agentState = as.getState();
+			}
+			if(agentState == null) continue;
+			
+			//agentTemplates.get(vap).defineState(agentState);
 		}
 	}
 	

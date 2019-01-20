@@ -10,6 +10,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="B1">
     <sites xmi:type="simSGL:Sites">
@@ -20,6 +22,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="A2">
     <sites xmi:type="simSGL:Sites">
@@ -30,6 +34,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="B2">
     <sites xmi:type="simSGL:Sites">
@@ -40,6 +46,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="C1">
     <sites xmi:type="simSGL:Sites">
@@ -50,6 +58,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="A3">
     <sites xmi:type="simSGL:Sites">
@@ -60,6 +70,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="B3">
     <sites xmi:type="simSGL:Sites">
@@ -70,6 +82,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="A4">
     <sites xmi:type="simSGL:Sites">
@@ -86,6 +100,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="B4">
     <sites xmi:type="simSGL:Sites">
@@ -102,6 +118,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="C4">
     <sites xmi:type="simSGL:Sites">
@@ -112,6 +130,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="A5">
     <sites xmi:type="simSGL:Sites">
@@ -125,6 +145,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="B5">
     <sites xmi:type="simSGL:Sites">
@@ -138,6 +160,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="A6">
     <sites xmi:type="simSGL:Sites">
@@ -157,6 +181,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="B6">
     <sites xmi:type="simSGL:Sites">
@@ -178,6 +204,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="C3">
     <sites xmi:type="simSGL:Sites">
@@ -198,6 +226,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="A7">
     <sites xmi:type="simSGL:Sites">
@@ -214,6 +244,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="B7">
     <sites xmi:type="simSGL:Sites">
@@ -230,6 +262,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="A8">
     <sites xmi:type="simSGL:Sites">
@@ -240,6 +274,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="A9">
     <sites xmi:type="simSGL:Sites">
@@ -250,6 +286,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="mA">
     <sites xmi:type="simSGL:Sites">
@@ -257,6 +295,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="mB">
     <sites xmi:type="simSGL:Sites">
@@ -264,6 +304,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="mC">
     <sites xmi:type="simSGL:Sites">
@@ -271,6 +313,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="mD">
     <sites xmi:type="simSGL:Sites">
@@ -284,6 +328,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="mQ">
     <sites xmi:type="simSGL:Sites">
@@ -291,6 +337,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="mP">
     <sites xmi:type="simSGL:Sites">
@@ -298,6 +346,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:ArithmeticVariable" name="dummy_rate">
     <value xmi:type="simSGL:ArithmeticValue" value="0.1"/>
