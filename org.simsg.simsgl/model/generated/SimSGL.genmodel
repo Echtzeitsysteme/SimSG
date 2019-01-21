@@ -76,7 +76,11 @@
     <genClasses ecoreClass="SimSGL.ecore#//SitePatterns">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//SitePatterns/sitePatterns"/>
     </genClasses>
+    <genClasses ecoreClass="SimSGL.ecore#//AgentPatternName">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimSGL.ecore#//AgentPatternName/name"/>
+    </genClasses>
     <genClasses ecoreClass="SimSGL.ecore#//ValidAgentPattern">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//ValidAgentPattern/variable"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimSGL.ecore#//ValidAgentPattern/agent"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//ValidAgentPattern/sitePatterns"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//ValidAgentPattern/state"/>

@@ -22,7 +22,7 @@ agent A8(x, y)
 agent A9(x, y)
 
 // multi agent types
-agent mA(*x) 
+agent mA(*x)
 agent mB(*y)
 agent mC(*z)
 agent mD(*a, b, c)

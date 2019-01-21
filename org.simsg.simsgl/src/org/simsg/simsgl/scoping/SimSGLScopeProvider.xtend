@@ -31,6 +31,7 @@ import org.simsg.simsgl.simSGL.Pattern
 import org.simsg.simsgl.simSGL.AgentPattern
 import org.simsg.simsgl.simSGL.AttributeOperand
 import org.simsg.simsgl.simSGL.Attributes
+import org.simsg.simsgl.simSGL.AgentPatternName
 
 /**
  * This class contains custom scoping description.
@@ -70,6 +71,7 @@ class SimSGLScopeProvider extends AbstractSimSGLScopeProvider {
 	    if (context instanceof AttributeOperand) {
 	    	return attributeOperandScope(context, reference)
 	    }
+	    println(context)
 	    return super.getScope(context, reference);
 	}
 	
@@ -115,8 +117,15 @@ class SimSGLScopeProvider extends AbstractSimSGLScopeProvider {
 	
 	def attributeOperandScope(EObject context, EReference reference) {
 		val attributeOperand = context as AttributeOperand
-		val operandAgent = attributeOperand.agent
-		
+		val operandAgentName = attributeOperand.agent as AgentPatternName
+		val operandAgentPattern = operandAgentName.eContainer as ValidAgentPattern
+		if(operandAgentPattern === null) {
+			return super.getScope(context, reference);
+		}
+		val operandAgent = operandAgentPattern.agent
+		if(operandAgent === null) {
+			return super.getScope(context, reference);
+		}
 		val attributes = operandAgent.attributes as Attributes
 	   	if(attributes === null) {
 	   		return super.getScope(context, reference);
@@ -127,7 +136,13 @@ class SimSGLScopeProvider extends AbstractSimSGLScopeProvider {
 	   	
 	   	val list = new LinkedList<EObject>
 	   	list.addAll(attributes.attributes)
-	   	list.addAll(EcoreUtil2.getAllContentsOfType(getRoot(context), Agent))
+	   	
+	   	val pattern = operandAgentPattern.eContainer as Pattern
+	   	if(pattern === null) {
+	   		return super.getScope(context, reference);
+	   	}
+	   	
+	   	list.addAll(EcoreUtil2.getAllContentsOfType(pattern, AgentPatternName))
 	   	
 	   	val existingScope = Scopes.scopeFor(list)
 	    return new FilteringScope(existingScope, [getEObjectOrProxy != context])
@@ -136,9 +151,10 @@ class SimSGLScopeProvider extends AbstractSimSGLScopeProvider {
 	def constraintScope(EObject context, EReference reference) {
 		val constraint = context as Constraint
 		var pattern = null as Pattern
-		if(constraint.eContainer !== null) {
-	    	pattern = constraint.eContainer as Pattern
+		if(constraint.eContainer === null) {
+	    	return super.getScope(context, reference);
 	    }
+	    pattern = constraint.eContainer as Pattern
 	    
 	   	var list = new LinkedList<Agent>
 	   	for(AgentPattern ap : pattern.agentPatterns) {
@@ -147,6 +163,8 @@ class SimSGLScopeProvider extends AbstractSimSGLScopeProvider {
 	   			list.add(vap.agent)
 	   		}	
 	   	}
+	   	
+	   	if(list.size == 0) return super.getScope(context, reference);
 	   	
 	   	val existingScope = Scopes.scopeFor(list)
 	    return new FilteringScope(existingScope, [getEObjectOrProxy != context])

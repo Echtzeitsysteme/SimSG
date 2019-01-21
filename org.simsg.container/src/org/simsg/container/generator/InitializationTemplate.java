@@ -32,7 +32,7 @@ import org.simsg.simsgl.utils.PatternUtils;
 public class InitializationTemplate {
 
 	private Pattern pattern;
-	private Map<org.simsg.simsgl.simSGL.Agent, ValidAgentPattern> agentPatterns;
+	private List<ValidAgentPattern> agentPatterns;
 	private AgentClassFactory agentFactory;
 	private StateClassFactory stateFactory;
 	private Map<String, State> stateInstances;
@@ -45,24 +45,18 @@ public class InitializationTemplate {
 		this.agentFactory = agentFactory;
 		this.stateFactory = stateFactory;
 		this.stateInstances = stateInstances;
+
+		agentPatterns = PatternUtils.getValidAgentPatterns(pattern.getAgentPatterns());
 		
-		mapAgentsToValidPatterns();
 		createAgentTemplates();
-		//findAttributeValues();
+		findAttributeValues();
 		findStates();
 		findReferences();
 	}
 	
-	private void mapAgentsToValidPatterns() {
-		agentPatterns = new HashMap<org.simsg.simsgl.simSGL.Agent, ValidAgentPattern>();
-		PatternUtils.getValidAgentPatterns(pattern.getAgentPatterns()).forEach(vap -> {
-			agentPatterns.put(vap.getAgent(), vap);
-		});
-	}
-	
 	private void createAgentTemplates() {
 		agentTemplates = new HashMap<ValidAgentPattern, AgentTemplate>();
-		for(ValidAgentPattern vap : agentPatterns.values()) {
+		for(ValidAgentPattern vap : agentPatterns) {
 			agentTemplates.put(vap, new AgentTemplate(vap.getAgent(), agentFactory, stateFactory, stateInstances));
 		}
 	}
@@ -70,12 +64,14 @@ public class InitializationTemplate {
 	private void findAttributeValues() {
 		if(pattern.getConstraints() == null) return;
 		for(Constraint c : pattern.getConstraints()) {
-			if(c.getOperandL() instanceof AttributeOperandGeneric) {
-				AttributeOperandGeneric operandL = (AttributeOperandGeneric)c.getOperandL();
-				ValidAgentPattern vap = agentPatterns.get(operandL.getAgent());
+			OperationLeft lOp = (OperationLeft) c.getOperandL();
+			OperationLeft rOp = (OperationLeft) c.getOperandR();
+			
+			if(lOp.getLeft() instanceof AttributeOperandGeneric) {
+				AttributeOperandGeneric operandL = (AttributeOperandGeneric)lOp.getLeft();
+				ValidAgentPattern vap = (ValidAgentPattern) operandL.getAgent().eContainer();
 				Attribute atr = operandL.getAttribute();
-				OperationLeft operandR = (OperationLeft)c.getOperandR();
-				String content = PatternUtils.contentOfNumericAssignment((NumericAssignment) operandR);
+				String content = PatternUtils.contentOfNumericAssignment((NumericAssignment) rOp);
 				agentTemplates.get(vap).defineAttribute(atr, stringToValue(atr, content));
 			}
 		}
@@ -92,7 +88,7 @@ public class InitializationTemplate {
 	}
 	
 	private void findStates() {
-		for(ValidAgentPattern vap : agentPatterns.values()) {
+		for(ValidAgentPattern vap : agentPatterns) {
 			Map<Site, org.simsg.simsgl.simSGL.State> siteStates = new HashMap<>();
 			for(Site site : vap.getAgent().getSites().getSites()) {
 				if(site.getStates().getState().size() > 0) {
@@ -122,12 +118,12 @@ public class InitializationTemplate {
 			}
 			if(agentState == null) continue;
 			
-			//agentTemplates.get(vap).defineState(agentState);
+			agentTemplates.get(vap).defineState(agentState);
 		}
 	}
 	
 	private void findReferences() {
-		for(ValidAgentPattern vap : agentPatterns.values()) {
+		for(ValidAgentPattern vap : agentPatterns) {
 			
 			for(SitePattern sp : vap.getSitePatterns().getSitePatterns()) {
 				if(sp == null) continue;
@@ -149,7 +145,7 @@ public class InitializationTemplate {
 		if(ls1 == null) return;
 		if(!(ls1 instanceof BoundLink)) return;
 		
-		for(ValidAgentPattern vap2 : agentPatterns.values()) {
+		for(ValidAgentPattern vap2 : agentPatterns) {
 			if(vap == vap2) continue;
 			
 			for(SitePattern sp2 : vap2.getSitePatterns().getSitePatterns()) {
@@ -200,7 +196,7 @@ public class InitializationTemplate {
 		}
 		
 		for(LinkState ls1 : states) {
-			for(ValidAgentPattern vap2 : agentPatterns.values()) {
+			for(ValidAgentPattern vap2 : agentPatterns) {
 				if(vap == vap2) continue;
 				
 				for(SitePattern sp2 : vap2.getSitePatterns().getSitePatterns()) {

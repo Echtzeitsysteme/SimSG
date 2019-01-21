@@ -267,9 +267,13 @@ SitePatterns returns SitePatterns:
 	'('(sitePatterns += SitePattern (',' sitePatterns += SitePattern)* )?')'
 ;
 
+AgentPatternName returns AgentPatternName:
+	name = ID ':'
+;
+
 ValidAgentPattern returns ValidAgentPattern:
 	{ValidAgentPattern}
-	agent = [Agent]
+	(variable = AgentPatternName)? agent = [Agent]
 	sitePatterns = SitePatterns
 	(state = AgentState)?
 ;
@@ -290,9 +294,9 @@ Pattern returns Pattern:
 
 Constraint returns Constraint:
 	{Constraint}
-	operandL = (Operation | AttributeOperand | NumericAssignment)
+	operandL = Operation
 	comparator = Comparator
-	operandR = (Operation | AttributeOperand | NumericAssignment)
+	operandR = Operation
 ;
 
 AttributeOperand:
@@ -301,12 +305,12 @@ AttributeOperand:
 
 AttributeOperandGeneric returns AttributeOperand:
 	{AttributeOperandGeneric}
-	agent = [Agent] '.' attribute = [Attribute]
+	agent = [AgentPatternName] '.' attribute = [Attribute]
 ;
 
 AttributeOperandId returns AttributeOperand:
 	{AttributeOperandId}
-	agent = [Agent] '.' 'id'
+	agent = [AgentPatternName] '.' 'id'
 ;
 
 Operation returns Operation:

@@ -87,7 +87,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="sitePatterns" upperBound="-1"
         eType="#//SitePattern" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AgentPatternName">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ValidAgentPattern" eSuperTypes="#//AgentPattern">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//AgentPatternName"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="agent" eType="#//Agent"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sitePatterns" eType="#//SitePatterns"
         containment="true"/>
@@ -105,15 +110,15 @@
         eType="#//Constraint" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Constraint">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operandL" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operandL" eType="#//Operation"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="comparator" eType="#//Comparator"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operandR" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operandR" eType="#//Operation"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttributeOperand">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="agent" eType="#//Agent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="agent" eType="#//AgentPatternName"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Operation"/>
   <eClassifiers xsi:type="ecore:EClass" name="OperationLeft" eSuperTypes="#//Operation #//UnaryOperation">

@@ -2839,6 +2839,47 @@ ruleSitePatterns returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleAgentPatternName
+entryRuleAgentPatternName returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAgentPatternNameRule()); }
+	iv_ruleAgentPatternName=ruleAgentPatternName
+	{ $current=$iv_ruleAgentPatternName.current; }
+	EOF;
+
+// Rule AgentPatternName
+ruleAgentPatternName returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				lv_name_0_0=RULE_ID
+				{
+					newLeafNode(lv_name_0_0, grammarAccess.getAgentPatternNameAccess().getNameIDTerminalRuleCall_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAgentPatternNameRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"name",
+						lv_name_0_0,
+						"org.eclipse.xtext.common.Terminals.ID");
+				}
+			)
+		)
+		otherlv_1=':'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getAgentPatternNameAccess().getColonKeyword_1());
+		}
+	)
+;
+
 // Entry rule entryRuleValidAgentPattern
 entryRuleValidAgentPattern returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getValidAgentPatternRule()); }
@@ -2868,6 +2909,25 @@ ruleValidAgentPattern returns [EObject current=null]
 		(
 			(
 				{
+					newCompositeNode(grammarAccess.getValidAgentPatternAccess().getVariableAgentPatternNameParserRuleCall_1_0());
+				}
+				lv_variable_1_0=ruleAgentPatternName
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getValidAgentPatternRule());
+					}
+					set(
+						$current,
+						"variable",
+						lv_variable_1_0,
+						"org.simsg.simsgl.SimSGL.AgentPatternName");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		(
+			(
+				{
 					/* */
 				}
 				{
@@ -2875,18 +2935,18 @@ ruleValidAgentPattern returns [EObject current=null]
 						$current = createModelElement(grammarAccess.getValidAgentPatternRule());
 					}
 				}
-				otherlv_1=RULE_ID
+				otherlv_2=RULE_ID
 				{
-					newLeafNode(otherlv_1, grammarAccess.getValidAgentPatternAccess().getAgentAgentCrossReference_1_0());
+					newLeafNode(otherlv_2, grammarAccess.getValidAgentPatternAccess().getAgentAgentCrossReference_2_0());
 				}
 			)
 		)
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getValidAgentPatternAccess().getSitePatternsSitePatternsParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getValidAgentPatternAccess().getSitePatternsSitePatternsParserRuleCall_3_0());
 				}
-				lv_sitePatterns_2_0=ruleSitePatterns
+				lv_sitePatterns_3_0=ruleSitePatterns
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getValidAgentPatternRule());
@@ -2894,7 +2954,7 @@ ruleValidAgentPattern returns [EObject current=null]
 					set(
 						$current,
 						"sitePatterns",
-						lv_sitePatterns_2_0,
+						lv_sitePatterns_3_0,
 						"org.simsg.simsgl.SimSGL.SitePatterns");
 					afterParserOrEnumRuleCall();
 				}
@@ -2903,9 +2963,9 @@ ruleValidAgentPattern returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getValidAgentPatternAccess().getStateAgentStateParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getValidAgentPatternAccess().getStateAgentStateParserRuleCall_4_0());
 				}
-				lv_state_3_0=ruleAgentState
+				lv_state_4_0=ruleAgentState
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getValidAgentPatternRule());
@@ -2913,7 +2973,7 @@ ruleValidAgentPattern returns [EObject current=null]
 					set(
 						$current,
 						"state",
-						lv_state_3_0,
+						lv_state_4_0,
 						"org.simsg.simsgl.SimSGL.AgentState");
 					afterParserOrEnumRuleCall();
 				}
@@ -3166,55 +3226,21 @@ ruleConstraint returns [EObject current=null]
 		)
 		(
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getConstraintAccess().getOperandLOperationParserRuleCall_1_0_0());
+				{
+					newCompositeNode(grammarAccess.getConstraintAccess().getOperandLOperationParserRuleCall_1_0());
+				}
+				lv_operandL_1_0=ruleOperation
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getConstraintRule());
 					}
-					lv_operandL_1_1=ruleOperation
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getConstraintRule());
-						}
-						set(
-							$current,
-							"operandL",
-							lv_operandL_1_1,
-							"org.simsg.simsgl.SimSGL.Operation");
-						afterParserOrEnumRuleCall();
-					}
-					    |
-					{
-						newCompositeNode(grammarAccess.getConstraintAccess().getOperandLAttributeOperandParserRuleCall_1_0_1());
-					}
-					lv_operandL_1_2=ruleAttributeOperand
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getConstraintRule());
-						}
-						set(
-							$current,
-							"operandL",
-							lv_operandL_1_2,
-							"org.simsg.simsgl.SimSGL.AttributeOperand");
-						afterParserOrEnumRuleCall();
-					}
-					    |
-					{
-						newCompositeNode(grammarAccess.getConstraintAccess().getOperandLNumericAssignmentParserRuleCall_1_0_2());
-					}
-					lv_operandL_1_3=ruleNumericAssignment
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getConstraintRule());
-						}
-						set(
-							$current,
-							"operandL",
-							lv_operandL_1_3,
-							"org.simsg.simsgl.SimSGL.NumericAssignment");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					set(
+						$current,
+						"operandL",
+						lv_operandL_1_0,
+						"org.simsg.simsgl.SimSGL.Operation");
+					afterParserOrEnumRuleCall();
+				}
 			)
 		)
 		(
@@ -3238,55 +3264,21 @@ ruleConstraint returns [EObject current=null]
 		)
 		(
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getConstraintAccess().getOperandROperationParserRuleCall_3_0_0());
+				{
+					newCompositeNode(grammarAccess.getConstraintAccess().getOperandROperationParserRuleCall_3_0());
+				}
+				lv_operandR_3_0=ruleOperation
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getConstraintRule());
 					}
-					lv_operandR_3_1=ruleOperation
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getConstraintRule());
-						}
-						set(
-							$current,
-							"operandR",
-							lv_operandR_3_1,
-							"org.simsg.simsgl.SimSGL.Operation");
-						afterParserOrEnumRuleCall();
-					}
-					    |
-					{
-						newCompositeNode(grammarAccess.getConstraintAccess().getOperandRAttributeOperandParserRuleCall_3_0_1());
-					}
-					lv_operandR_3_2=ruleAttributeOperand
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getConstraintRule());
-						}
-						set(
-							$current,
-							"operandR",
-							lv_operandR_3_2,
-							"org.simsg.simsgl.SimSGL.AttributeOperand");
-						afterParserOrEnumRuleCall();
-					}
-					    |
-					{
-						newCompositeNode(grammarAccess.getConstraintAccess().getOperandRNumericAssignmentParserRuleCall_3_0_2());
-					}
-					lv_operandR_3_3=ruleNumericAssignment
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getConstraintRule());
-						}
-						set(
-							$current,
-							"operandR",
-							lv_operandR_3_3,
-							"org.simsg.simsgl.SimSGL.NumericAssignment");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					set(
+						$current,
+						"operandR",
+						lv_operandR_3_0,
+						"org.simsg.simsgl.SimSGL.Operation");
+					afterParserOrEnumRuleCall();
+				}
 			)
 		)
 	)
@@ -3372,7 +3364,7 @@ ruleAttributeOperandGeneric returns [EObject current=null]
 				}
 				otherlv_1=RULE_ID
 				{
-					newLeafNode(otherlv_1, grammarAccess.getAttributeOperandGenericAccess().getAgentAgentCrossReference_1_0());
+					newLeafNode(otherlv_1, grammarAccess.getAttributeOperandGenericAccess().getAgentAgentPatternNameCrossReference_1_0());
 				}
 			)
 		)
@@ -3437,7 +3429,7 @@ ruleAttributeOperandId returns [EObject current=null]
 				}
 				otherlv_1=RULE_ID
 				{
-					newLeafNode(otherlv_1, grammarAccess.getAttributeOperandIdAccess().getAgentAgentCrossReference_1_0());
+					newLeafNode(otherlv_1, grammarAccess.getAttributeOperandIdAccess().getAgentAgentPatternNameCrossReference_1_0());
 				}
 			)
 		)
