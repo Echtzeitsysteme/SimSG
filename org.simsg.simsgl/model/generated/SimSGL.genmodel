@@ -102,15 +102,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimSGL.ecore#//AttributeOperand/agent"/>
     </genClasses>
     <genClasses ecoreClass="SimSGL.ecore#//Operation"/>
-    <genClasses ecoreClass="SimSGL.ecore#//OperationLeft">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//OperationLeft/left"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//OperationLeft/right"/>
-    </genClasses>
-    <genClasses ecoreClass="SimSGL.ecore#//OperationRight">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//OperationRight/operator"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//OperationRight/right"/>
-    </genClasses>
-    <genClasses ecoreClass="SimSGL.ecore#//UnaryOperation"/>
     <genClasses ecoreClass="SimSGL.ecore#//Comparator"/>
     <genClasses ecoreClass="SimSGL.ecore#//Operator"/>
     <genClasses ecoreClass="SimSGL.ecore#//Observation">
@@ -200,6 +191,23 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimSGL.ecore#//AttributeOperandGeneric/attribute"/>
     </genClasses>
     <genClasses ecoreClass="SimSGL.ecore#//AttributeOperandId"/>
+    <genClasses ecoreClass="SimSGL.ecore#//OperationLeft">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//OperationLeft/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//OperationLeft/right"/>
+    </genClasses>
+    <genClasses ecoreClass="SimSGL.ecore#//OperationRight">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//OperationRight/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//OperationRight/right"/>
+    </genClasses>
+    <genClasses ecoreClass="SimSGL.ecore#//UnaryOperation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//UnaryOperation/operation"/>
+    </genClasses>
+    <genClasses ecoreClass="SimSGL.ecore#//AbsoluteOperation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//AbsoluteOperation/operation"/>
+    </genClasses>
+    <genClasses ecoreClass="SimSGL.ecore#//SquareRootOperation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//SquareRootOperation/operation"/>
+    </genClasses>
     <genClasses ecoreClass="SimSGL.ecore#//EqualComparator"/>
     <genClasses ecoreClass="SimSGL.ecore#//GreaterComparator"/>
     <genClasses ecoreClass="SimSGL.ecore#//GreaterEqualComparator"/>

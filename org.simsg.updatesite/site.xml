@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.simsg.feature_1.0.0.201901211353.jar" id="org.simsg.feature" version="1.0.0.201901211353">
+   <feature url="features/org.simsg.feature_1.0.0.201901211843.jar" id="org.simsg.feature" version="1.0.0.201901211843">
       <category name="SimSG"/>
    </feature>
-   <feature url="features/org.simsg.simsgl.feature_1.0.0.201901211353.jar" id="org.simsg.simsgl.feature" version="1.0.0.201901211353">
+   <feature url="features/org.simsg.simsgl.feature_1.0.0.201901211843.jar" id="org.simsg.simsgl.feature" version="1.0.0.201901211843">
       <category name="SimSGL"/>
    </feature>
    <category-def name="SimSG" label="SimSG"/>

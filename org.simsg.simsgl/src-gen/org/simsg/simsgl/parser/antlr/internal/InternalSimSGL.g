@@ -3503,12 +3503,22 @@ ruleOperationLeft returns [EObject current=null]
 }:
 	(
 		(
+			{
+				/* */
+			}
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getOperationLeftAccess().getOperationLeftAction_0(),
+					$current);
+			}
+		)
+		(
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getOperationLeftAccess().getLeftUnaryOperationParserRuleCall_0_0_0());
+						newCompositeNode(grammarAccess.getOperationLeftAccess().getLeftUnaryOperationParserRuleCall_1_0_0());
 					}
-					lv_left_0_1=ruleUnaryOperation
+					lv_left_1_1=ruleUnaryOperation
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getOperationLeftRule());
@@ -3516,15 +3526,15 @@ ruleOperationLeft returns [EObject current=null]
 						set(
 							$current,
 							"left",
-							lv_left_0_1,
+							lv_left_1_1,
 							"org.simsg.simsgl.SimSGL.UnaryOperation");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getOperationLeftAccess().getLeftAttributeOperandParserRuleCall_0_0_1());
+						newCompositeNode(grammarAccess.getOperationLeftAccess().getLeftAttributeOperandParserRuleCall_1_0_1());
 					}
-					lv_left_0_2=ruleAttributeOperand
+					lv_left_1_2=ruleAttributeOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getOperationLeftRule());
@@ -3532,15 +3542,15 @@ ruleOperationLeft returns [EObject current=null]
 						set(
 							$current,
 							"left",
-							lv_left_0_2,
+							lv_left_1_2,
 							"org.simsg.simsgl.SimSGL.AttributeOperand");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getOperationLeftAccess().getLeftNumericAssignmentParserRuleCall_0_0_2());
+						newCompositeNode(grammarAccess.getOperationLeftAccess().getLeftNumericAssignmentParserRuleCall_1_0_2());
 					}
-					lv_left_0_3=ruleNumericAssignment
+					lv_left_1_3=ruleNumericAssignment
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getOperationLeftRule());
@@ -3548,7 +3558,7 @@ ruleOperationLeft returns [EObject current=null]
 						set(
 							$current,
 							"left",
-							lv_left_0_3,
+							lv_left_1_3,
 							"org.simsg.simsgl.SimSGL.NumericAssignment");
 						afterParserOrEnumRuleCall();
 					}
@@ -3558,9 +3568,9 @@ ruleOperationLeft returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getOperationLeftAccess().getRightOperationRightParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getOperationLeftAccess().getRightOperationRightParserRuleCall_2_0());
 				}
-				lv_right_1_0=ruleOperationRight
+				lv_right_2_0=ruleOperationRight
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getOperationLeftRule());
@@ -3568,7 +3578,7 @@ ruleOperationLeft returns [EObject current=null]
 					set(
 						$current,
 						"right",
-						lv_right_1_0,
+						lv_right_2_0,
 						"org.simsg.simsgl.SimSGL.OperationRight");
 					afterParserOrEnumRuleCall();
 				}
@@ -3594,11 +3604,21 @@ ruleOperationRight returns [EObject current=null]
 }:
 	(
 		(
+			{
+				/* */
+			}
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getOperationRightAccess().getOperationRightAction_0(),
+					$current);
+			}
+		)
+		(
 			(
 				{
-					newCompositeNode(grammarAccess.getOperationRightAccess().getOperatorOperatorParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getOperationRightAccess().getOperatorOperatorParserRuleCall_1_0());
 				}
-				lv_operator_0_0=ruleOperator
+				lv_operator_1_0=ruleOperator
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getOperationRightRule());
@@ -3606,7 +3626,7 @@ ruleOperationRight returns [EObject current=null]
 					set(
 						$current,
 						"operator",
-						lv_operator_0_0,
+						lv_operator_1_0,
 						"org.simsg.simsgl.SimSGL.Operator");
 					afterParserOrEnumRuleCall();
 				}
@@ -3616,9 +3636,9 @@ ruleOperationRight returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getOperationRightAccess().getRightOperationLeftParserRuleCall_1_0_0());
+						newCompositeNode(grammarAccess.getOperationRightAccess().getRightOperationLeftParserRuleCall_2_0_0());
 					}
-					lv_right_1_1=ruleOperationLeft
+					lv_right_2_1=ruleOperationLeft
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getOperationRightRule());
@@ -3626,15 +3646,15 @@ ruleOperationRight returns [EObject current=null]
 						set(
 							$current,
 							"right",
-							lv_right_1_1,
+							lv_right_2_1,
 							"org.simsg.simsgl.SimSGL.OperationLeft");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getOperationRightAccess().getRightAttributeOperandParserRuleCall_1_0_1());
+						newCompositeNode(grammarAccess.getOperationRightAccess().getRightAttributeOperandParserRuleCall_2_0_1());
 					}
-					lv_right_1_2=ruleAttributeOperand
+					lv_right_2_2=ruleAttributeOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getOperationRightRule());
@@ -3642,15 +3662,15 @@ ruleOperationRight returns [EObject current=null]
 						set(
 							$current,
 							"right",
-							lv_right_1_2,
+							lv_right_2_2,
 							"org.simsg.simsgl.SimSGL.AttributeOperand");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getOperationRightAccess().getRightNumericAssignmentParserRuleCall_1_0_2());
+						newCompositeNode(grammarAccess.getOperationRightAccess().getRightNumericAssignmentParserRuleCall_2_0_2());
 					}
-					lv_right_1_3=ruleNumericAssignment
+					lv_right_2_3=ruleNumericAssignment
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getOperationRightRule());
@@ -3658,7 +3678,7 @@ ruleOperationRight returns [EObject current=null]
 						set(
 							$current,
 							"right",
-							lv_right_1_3,
+							lv_right_2_3,
 							"org.simsg.simsgl.SimSGL.NumericAssignment");
 						afterParserOrEnumRuleCall();
 					}
@@ -3684,29 +3704,53 @@ ruleUnaryOperation returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		{
-			/* */
-		}
-		{
-			newCompositeNode(grammarAccess.getUnaryOperationAccess().getAbsoluteOperationParserRuleCall_0());
-		}
-		this_AbsoluteOperation_0=ruleAbsoluteOperation
-		{
-			$current = $this_AbsoluteOperation_0.current;
-			afterParserOrEnumRuleCall();
-		}
-		    |
-		{
-			/* */
-		}
-		{
-			newCompositeNode(grammarAccess.getUnaryOperationAccess().getSquareRootOperationParserRuleCall_1());
-		}
-		this_SquareRootOperation_1=ruleSquareRootOperation
-		{
-			$current = $this_SquareRootOperation_1.current;
-			afterParserOrEnumRuleCall();
-		}
+		(
+			{
+				/* */
+			}
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getUnaryOperationAccess().getUnaryOperationAction_0(),
+					$current);
+			}
+		)
+		(
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getUnaryOperationAccess().getOperationAbsoluteOperationParserRuleCall_1_0_0());
+					}
+					lv_operation_1_1=ruleAbsoluteOperation
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getUnaryOperationRule());
+						}
+						set(
+							$current,
+							"operation",
+							lv_operation_1_1,
+							"org.simsg.simsgl.SimSGL.AbsoluteOperation");
+						afterParserOrEnumRuleCall();
+					}
+					    |
+					{
+						newCompositeNode(grammarAccess.getUnaryOperationAccess().getOperationSquareRootOperationParserRuleCall_1_0_1());
+					}
+					lv_operation_1_2=ruleSquareRootOperation
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getUnaryOperationRule());
+						}
+						set(
+							$current,
+							"operation",
+							lv_operation_1_2,
+							"org.simsg.simsgl.SimSGL.SquareRootOperation");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)
 	)
 ;
 
@@ -3726,24 +3770,42 @@ ruleAbsoluteOperation returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='|'
+		(
+			{
+				/* */
+			}
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getAbsoluteOperationAccess().getAbsoluteOperationAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='|'
 		{
-			newLeafNode(otherlv_0, grammarAccess.getAbsoluteOperationAccess().getVerticalLineKeyword_0());
+			newLeafNode(otherlv_1, grammarAccess.getAbsoluteOperationAccess().getVerticalLineKeyword_1());
 		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getAbsoluteOperationAccess().getOperationOperationLeftParserRuleCall_2_0());
+				}
+				lv_operation_2_0=ruleOperationLeft
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getAbsoluteOperationRule());
+					}
+					set(
+						$current,
+						"operation",
+						lv_operation_2_0,
+						"org.simsg.simsgl.SimSGL.OperationLeft");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_3='|'
 		{
-			/* */
-		}
-		{
-			newCompositeNode(grammarAccess.getAbsoluteOperationAccess().getOperationLeftParserRuleCall_1());
-		}
-		this_OperationLeft_1=ruleOperationLeft
-		{
-			$current = $this_OperationLeft_1.current;
-			afterParserOrEnumRuleCall();
-		}
-		otherlv_2='|'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getAbsoluteOperationAccess().getVerticalLineKeyword_2());
+			newLeafNode(otherlv_3, grammarAccess.getAbsoluteOperationAccess().getVerticalLineKeyword_3());
 		}
 	)
 ;
@@ -3764,28 +3826,46 @@ ruleSquareRootOperation returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		this_SQRT_0=RULE_SQRT
+		(
+			{
+				/* */
+			}
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getSquareRootOperationAccess().getSquareRootOperationAction_0(),
+					$current);
+			}
+		)
+		this_SQRT_1=RULE_SQRT
 		{
-			newLeafNode(this_SQRT_0, grammarAccess.getSquareRootOperationAccess().getSQRTTerminalRuleCall_0());
+			newLeafNode(this_SQRT_1, grammarAccess.getSquareRootOperationAccess().getSQRTTerminalRuleCall_1());
 		}
-		otherlv_1='('
+		otherlv_2='('
 		{
-			newLeafNode(otherlv_1, grammarAccess.getSquareRootOperationAccess().getLeftParenthesisKeyword_1());
+			newLeafNode(otherlv_2, grammarAccess.getSquareRootOperationAccess().getLeftParenthesisKeyword_2());
 		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getSquareRootOperationAccess().getOperationOperationLeftParserRuleCall_3_0());
+				}
+				lv_operation_3_0=ruleOperationLeft
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getSquareRootOperationRule());
+					}
+					set(
+						$current,
+						"operation",
+						lv_operation_3_0,
+						"org.simsg.simsgl.SimSGL.OperationLeft");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_4=')'
 		{
-			/* */
-		}
-		{
-			newCompositeNode(grammarAccess.getSquareRootOperationAccess().getOperationLeftParserRuleCall_2());
-		}
-		this_OperationLeft_2=ruleOperationLeft
-		{
-			$current = $this_OperationLeft_2.current;
-			afterParserOrEnumRuleCall();
-		}
-		otherlv_3=')'
-		{
-			newLeafNode(otherlv_3, grammarAccess.getSquareRootOperationAccess().getRightParenthesisKeyword_3());
+			newLeafNode(otherlv_4, grammarAccess.getSquareRootOperationAccess().getRightParenthesisKeyword_4());
 		}
 	)
 ;

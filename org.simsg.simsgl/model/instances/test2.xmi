@@ -291,6 +291,50 @@
                   <left xmi:type="simSGL:NumericFromLiteral">
                     <value xmi:type="simSGL:ArithmeticValue" value="1"/>
                   </left>
+                  <right xmi:type="simSGL:OperationRight">
+                    <operator xmi:type="simSGL:MultOperator"/>
+                    <right xmi:type="simSGL:OperationLeft">
+                      <left xmi:type="simSGL:UnaryOperation">
+                        <operation xmi:type="simSGL:AbsoluteOperation">
+                          <operation xmi:type="simSGL:OperationLeft">
+                            <left xmi:type="simSGL:NumericFromLiteral">
+                              <value xmi:type="simSGL:ArithmeticValue" value="3"/>
+                            </left>
+                            <right xmi:type="simSGL:OperationRight">
+                              <operator xmi:type="simSGL:PlusOperator"/>
+                              <right xmi:type="simSGL:OperationLeft">
+                                <left xmi:type="simSGL:NumericFromLiteral">
+                                  <value xmi:type="simSGL:ArithmeticValue" value="2"/>
+                                </left>
+                                <right xmi:type="simSGL:OperationRight">
+                                  <operator xmi:type="simSGL:MultOperator"/>
+                                  <right xmi:type="simSGL:OperationLeft">
+                                    <left xmi:type="simSGL:UnaryOperation">
+                                      <operation xmi:type="simSGL:SquareRootOperation">
+                                        <operation xmi:type="simSGL:OperationLeft">
+                                          <left xmi:type="simSGL:NumericFromLiteral">
+                                            <value xmi:type="simSGL:ArithmeticValue" value="6"/>
+                                          </left>
+                                          <right xmi:type="simSGL:OperationRight">
+                                            <operator xmi:type="simSGL:MinusOperator"/>
+                                            <right xmi:type="simSGL:OperationLeft">
+                                              <left xmi:type="simSGL:NumericFromLiteral">
+                                                <value xmi:type="simSGL:ArithmeticValue" value="3"/>
+                                              </left>
+                                            </right>
+                                          </right>
+                                        </operation>
+                                      </operation>
+                                    </left>
+                                  </right>
+                                </right>
+                              </right>
+                            </right>
+                          </operation>
+                        </operation>
+                      </left>
+                    </right>
+                  </right>
                 </right>
               </right>
             </operandR>

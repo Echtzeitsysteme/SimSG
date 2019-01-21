@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import org.eclipse.emf.ecore.EClass;
 import org.simsg.container.util.AgentClassFactory;
 import org.simsg.container.util.EPackageWrapper;
 import org.simsg.container.util.StateClassFactory;
@@ -41,6 +42,7 @@ public class GenericPatternBody {
 	private Map<SiteNodeContext, List<LinkStateContext>> linkStateContexts;
 	private Map<Integer, Entry<LinkStateContext, LinkStateContext>> boundLinkStateContexts;
 	private Map<Integer, Entry<LinkStateContext, LinkStateContext>> indexedFreeLinkStateContexts;
+	private Collection<AttributeConstraint> attributeConstraints;
 	
 	private Map<AgentNodeContext, List<Entry<LinkStateContext, LinkStateContext>>> agentNodeToLinkMap;
 	private List<Set<AgentNodeContext>> subPatterns;
@@ -67,6 +69,7 @@ public class GenericPatternBody {
 		injectivityConstraintsSignature = new LinkedList<AgentNodeConstraint>();
 		
 		buildAgentNodeContexts();
+		buildAttributeConstraints();
 		buildSiteNodeContexts();
 		buildLocalLinksAndLocalNodes();
 		buildInjectivityConstraints();
@@ -167,6 +170,11 @@ public class GenericPatternBody {
 		for(ValidAgentPattern pattern : agentPatterns) {
 			agentNodeContexts.put(pattern, new AgentNodeContext(patternName, signature.getSignatureNode(pattern), metaModel.getClass(pattern.getAgent().getName())));
 		}
+	}
+	
+	private void buildAttributeConstraints() {
+		attributeConstraints = new LinkedList<AttributeConstraint>();
+		//TODO:...
 	}
 	
 	private void buildSiteNodeContexts() {
@@ -385,7 +393,7 @@ public class GenericPatternBody {
 	}
 	
 	private void buildInjectivityConstraints() {
-		Map<String, List<String>> injectivityConflicts = signature.getInjectivityConflicts();
+		Map<EClass, List<String>> injectivityConflicts = signature.getInjectivityConflicts();
 		Map<Integer, AgentNodeConstraint> constraints = new HashMap<Integer, AgentNodeConstraint>();
 		
 		for(List<String> nodes : injectivityConflicts.values()) {

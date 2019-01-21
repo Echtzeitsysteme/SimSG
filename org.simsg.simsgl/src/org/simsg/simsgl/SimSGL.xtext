@@ -317,26 +317,31 @@ Operation returns Operation:
 	OperationLeft | UnaryOperation
 ;
 
-OperationLeft:
+OperationLeft returns Operation:
+	{OperationLeft}
 	left = ( UnaryOperation | AttributeOperand | NumericAssignment)
 	(right = OperationRight)?
 ;
 
-OperationRight:
+OperationRight returns Operation:
+	{OperationRight}
 	operator = Operator
 	right = ( OperationLeft | AttributeOperand | NumericAssignment )
 ;
 
-UnaryOperation:
-	AbsoluteOperation | SquareRootOperation 
+UnaryOperation returns Operation:
+	{UnaryOperation}
+	operation = (AbsoluteOperation | SquareRootOperation)
 ;
 
-AbsoluteOperation returns UnaryOperation:
-	'|' OperationLeft  '|'
+AbsoluteOperation returns Operation:
+	{AbsoluteOperation}
+	'|' operation = OperationLeft  '|'
 ;
 
-SquareRootOperation returns UnaryOperation:
-	SQRT '(' OperationLeft ')'
+SquareRootOperation returns Operation:
+	{SquareRootOperation}
+	SQRT '(' operation = OperationLeft ')'
 ;
 
 Comparator:
