@@ -69,7 +69,7 @@ public class AgentClassFactory extends EClassFactory<Agent, org.simsg.container.
 			if(object.getAttributes().getAttributes().size() > 0) {
 				for(Attribute attr : object.getAttributes().getAttributes()) {
 					EAttribute attribute = createAttribute(object, attr);
-					agentClass.getEAttributes().add(attribute);
+					agentClass.getEStructuralFeatures().add(attribute);
 				}
 			}
 		}

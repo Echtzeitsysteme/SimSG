@@ -1,0 +1,9 @@
+ModelID AttributeConstraintTest
+
+agent a(x){s,t}[f:FLOAT, q:INT]
+
+init i 2 {A:a(){t}}[A.f==3.2, A.q==4]
+
+rule r {a(x[?]){t}} -> {void} @ [1]
+rule r2 {a(x[?]){s}} -> {void} @ [1]
+rule r3 {A:a(x[?])}[A.f * |A.f + 7^3| == sqrt(3 + 7 - |A.f|)] -> {void} @ [1] 

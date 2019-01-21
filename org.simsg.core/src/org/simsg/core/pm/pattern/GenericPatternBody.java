@@ -18,10 +18,12 @@ import org.simsg.container.util.StateClassFactory;
 import org.simsg.simsgl.simSGL.Agent;
 import org.simsg.simsgl.simSGL.BoundAnyOfTypeLink;
 import org.simsg.simsgl.simSGL.BoundLink;
+import org.simsg.simsgl.simSGL.Constraint;
 import org.simsg.simsgl.simSGL.IndexedFreeLink;
 import org.simsg.simsgl.simSGL.LinkState;
 import org.simsg.simsgl.simSGL.MultiLink;
 import org.simsg.simsgl.simSGL.MultiLinkSitePattern;
+import org.simsg.simsgl.simSGL.Pattern;
 import org.simsg.simsgl.simSGL.SingleSitePattern;
 import org.simsg.simsgl.simSGL.Site;
 import org.simsg.simsgl.simSGL.SitePattern;
@@ -33,6 +35,7 @@ public class GenericPatternBody {
 	
 	private String patternName;
 	private EPackageWrapper metaModel;
+	private Pattern pattern;
 	private GenericPatternSignature signature;
 	private List<ValidAgentPattern> agentPatterns;
 	
@@ -58,10 +61,11 @@ public class GenericPatternBody {
 	
 	private boolean permutable;
 	
-	public GenericPatternBody(String patternName, EPackageWrapper metaModel, 
+	public GenericPatternBody(String patternName, EPackageWrapper metaModel, Pattern pattern,
 			GenericPatternSignature signature, List<ValidAgentPattern> agentPatterns) {
 		this.patternName = patternName;
 		this.metaModel = metaModel;
+		this.pattern = pattern;
 		this.signature = signature;
 		this.agentPatterns = agentPatterns;
 		injectivityConstraints = new LinkedList<AgentNodeConstraint>();
@@ -174,7 +178,11 @@ public class GenericPatternBody {
 	
 	private void buildAttributeConstraints() {
 		attributeConstraints = new LinkedList<AttributeConstraint>();
-		//TODO:...
+		if(pattern.getConstraints() == null) return;
+		
+		for(Constraint constraint : pattern.getConstraints()) {
+			attributeConstraints.add(new AttributeConstraint(constraint, agentNodeContexts));
+		}
 	}
 	
 	private void buildSiteNodeContexts() {

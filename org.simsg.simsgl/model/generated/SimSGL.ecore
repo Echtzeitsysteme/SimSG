@@ -120,6 +120,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="AttributeOperand">
     <eStructuralFeatures xsi:type="ecore:EReference" name="agent" eType="#//AgentPatternName"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeOperandAttribute">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//Attribute"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Operation"/>
   <eClassifiers xsi:type="ecore:EClass" name="Comparator"/>
   <eClassifiers xsi:type="ecore:EClass" name="Operator"/>
@@ -224,7 +227,8 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttributeOperandGeneric" eSuperTypes="#//AttributeOperand">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//Attribute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="#//AttributeOperandAttribute"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttributeOperandId" eSuperTypes="#//AttributeOperand"/>
   <eClassifiers xsi:type="ecore:EClass" name="OperationLeft" eSuperTypes="#//Operation">

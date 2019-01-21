@@ -101,6 +101,9 @@
     <genClasses ecoreClass="SimSGL.ecore#//AttributeOperand">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimSGL.ecore#//AttributeOperand/agent"/>
     </genClasses>
+    <genClasses ecoreClass="SimSGL.ecore#//AttributeOperandAttribute">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimSGL.ecore#//AttributeOperandAttribute/attribute"/>
+    </genClasses>
     <genClasses ecoreClass="SimSGL.ecore#//Operation"/>
     <genClasses ecoreClass="SimSGL.ecore#//Comparator"/>
     <genClasses ecoreClass="SimSGL.ecore#//Operator"/>
@@ -188,7 +191,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//MultiLinkSitePattern/linkState"/>
     </genClasses>
     <genClasses ecoreClass="SimSGL.ecore#//AttributeOperandGeneric">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimSGL.ecore#//AttributeOperandGeneric/attribute"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//AttributeOperandGeneric/attribute"/>
     </genClasses>
     <genClasses ecoreClass="SimSGL.ecore#//AttributeOperandId"/>
     <genClasses ecoreClass="SimSGL.ecore#//OperationLeft">

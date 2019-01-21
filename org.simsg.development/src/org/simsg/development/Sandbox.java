@@ -1,20 +1,32 @@
 package org.simsg.development;
 
+import org.simsg.container.Container;
+import org.simsg.core.persistence.PersistenceManager;
+import org.simsg.core.persistence.PersistenceManagerEnum;
+import org.simsg.core.persistence.PersistenceManagerFactory;
+import org.simsg.core.pm.match.PatternMatchingEngine;
+import org.simsg.core.pm.match.PatternMatchingEngineEnum;
+import org.simsg.core.pm.match.PatternMatchingEngineFactory;
+import org.simsg.core.pmc.PatternMatchingController;
+import org.simsg.core.pmc.PatternMatchingControllerEnum;
+import org.simsg.core.pmc.PatternMatchingControllerFactory;
 import org.simsg.core.simulation.Simulation;
 import org.simsg.core.simulation.SimulationConfigurator;
 import org.simsg.core.utils.Runtimer;
+import org.simsg.simsgl.simSGL.SimSGLModel;
 
 
 public class Sandbox {
 
 	public static void main(String[] args) {
 		
-		/*
+		
 		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
+		pm.setModelFolderPath(System.getProperty("user.dir")+"//models");
 		pm.init();
 		try {
-			ReactionRuleModel ruleModel = pm.loadReactionRuleModel("MultiEdgeTest1");
-			Container reactionContainer = pm.loadReactionContainerModel("MultiEdgeTest1");
+			SimSGLModel ruleModel = pm.loadReactionRuleModel("AttributeConstraintTest");
+			Container reactionContainer = pm.loadReactionContainerModel("AttributeConstraintTest");
 			
 			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.ViatraEngine);
 			PatternMatchingController pmc = PatternMatchingControllerFactory.create(PatternMatchingControllerEnum.SimplePMC);
@@ -31,9 +43,9 @@ public class Sandbox {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
 		
 		
+		/*
 		SimulationConfigurator simConfigurator = new SimulationConfigurator();
 		simConfigurator.setModelFolder(System.getProperty("user.dir")+"//models");
 		simConfigurator.setModel("Goldbeter_Koshland");
@@ -50,7 +62,7 @@ public class Sandbox {
 		viatraSim.finish();
 		
 		System.out.println(Runtimer.getInstance());
-		
+		*/
 		
 	}
 	

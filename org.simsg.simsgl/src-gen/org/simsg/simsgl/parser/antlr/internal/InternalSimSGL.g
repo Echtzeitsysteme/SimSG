@@ -3375,18 +3375,54 @@ ruleAttributeOperandGeneric returns [EObject current=null]
 		(
 			(
 				{
-					/* */
+					newCompositeNode(grammarAccess.getAttributeOperandGenericAccess().getAttributeAttributeOperandAttributeParserRuleCall_3_0());
 				}
+				lv_attribute_3_0=ruleAttributeOperandAttribute
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getAttributeOperandGenericRule());
+						$current = createModelElementForParent(grammarAccess.getAttributeOperandGenericRule());
 					}
-				}
-				otherlv_3=RULE_ID
-				{
-					newLeafNode(otherlv_3, grammarAccess.getAttributeOperandGenericAccess().getAttributeAttributeCrossReference_3_0());
+					set(
+						$current,
+						"attribute",
+						lv_attribute_3_0,
+						"org.simsg.simsgl.SimSGL.AttributeOperandAttribute");
+					afterParserOrEnumRuleCall();
 				}
 			)
+		)
+	)
+;
+
+// Entry rule entryRuleAttributeOperandAttribute
+entryRuleAttributeOperandAttribute returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAttributeOperandAttributeRule()); }
+	iv_ruleAttributeOperandAttribute=ruleAttributeOperandAttribute
+	{ $current=$iv_ruleAttributeOperandAttribute.current; }
+	EOF;
+
+// Rule AttributeOperandAttribute
+ruleAttributeOperandAttribute returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				/* */
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getAttributeOperandAttributeRule());
+				}
+			}
+			otherlv_0=RULE_ID
+			{
+				newLeafNode(otherlv_0, grammarAccess.getAttributeOperandAttributeAccess().getAttributeAttributeCrossReference_0());
+			}
 		)
 	)
 ;

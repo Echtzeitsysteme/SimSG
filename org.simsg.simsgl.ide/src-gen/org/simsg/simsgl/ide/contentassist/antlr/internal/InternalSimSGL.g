@@ -1357,6 +1357,31 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+// Entry rule entryRuleAttributeOperandAttribute
+entryRuleAttributeOperandAttribute
+:
+{ before(grammarAccess.getAttributeOperandAttributeRule()); }
+	 ruleAttributeOperandAttribute
+{ after(grammarAccess.getAttributeOperandAttributeRule()); } 
+	 EOF 
+;
+
+// Rule AttributeOperandAttribute
+ruleAttributeOperandAttribute 
+	@init {
+		int stackSize = keepStackSize();
+	}
+	:
+	(
+		{ before(grammarAccess.getAttributeOperandAttributeAccess().getAttributeAssignment()); }
+		(rule__AttributeOperandAttribute__AttributeAssignment)
+		{ after(grammarAccess.getAttributeOperandAttributeAccess().getAttributeAssignment()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 // Entry rule entryRuleAttributeOperandId
 entryRuleAttributeOperandId
 :
@@ -10508,13 +10533,28 @@ rule__AttributeOperandGeneric__AttributeAssignment_3
 	}
 :
 	(
-		{ before(grammarAccess.getAttributeOperandGenericAccess().getAttributeAttributeCrossReference_3_0()); }
+		{ before(grammarAccess.getAttributeOperandGenericAccess().getAttributeAttributeOperandAttributeParserRuleCall_3_0()); }
+		ruleAttributeOperandAttribute
+		{ after(grammarAccess.getAttributeOperandGenericAccess().getAttributeAttributeOperandAttributeParserRuleCall_3_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__AttributeOperandAttribute__AttributeAssignment
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getAttributeOperandAttributeAccess().getAttributeAttributeCrossReference_0()); }
 		(
-			{ before(grammarAccess.getAttributeOperandGenericAccess().getAttributeAttributeIDTerminalRuleCall_3_0_1()); }
+			{ before(grammarAccess.getAttributeOperandAttributeAccess().getAttributeAttributeIDTerminalRuleCall_0_1()); }
 			RULE_ID
-			{ after(grammarAccess.getAttributeOperandGenericAccess().getAttributeAttributeIDTerminalRuleCall_3_0_1()); }
+			{ after(grammarAccess.getAttributeOperandAttributeAccess().getAttributeAttributeIDTerminalRuleCall_0_1()); }
 		)
-		{ after(grammarAccess.getAttributeOperandGenericAccess().getAttributeAttributeCrossReference_3_0()); }
+		{ after(grammarAccess.getAttributeOperandAttributeAccess().getAttributeAttributeCrossReference_0()); }
 	)
 ;
 finally {

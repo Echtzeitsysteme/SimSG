@@ -32,6 +32,7 @@ public class AttributeConstraint {
 		operation.addAll(left);
 		operation.add(new OperatorCompare(constraint.getComparator()));
 		operation.addAll(right);
+		System.out.println(toString());
 	}
 	
 	public List<OperationComponent> flattenLRTree(Operation operation) {
@@ -44,7 +45,7 @@ public class AttributeConstraint {
 			}else {
 				child = ((SquareRootOperation)uOp.getOperation()).getOperation();
 			}
-			lrTreeList.add(new OperatorUnary((UnaryOperation) operation, flattenLRTree(child)));
+			lrTreeList.add(new OperatorUnary( uOp, flattenLRTree(child)));
 		}
 		traverseLRTree(lrTreeList, operation);
 		
@@ -70,14 +71,14 @@ public class AttributeConstraint {
 					traverseLRTree(lrTreeList, opL.getRight());
 				}
 			}else {
-				UnaryOperation uOp = (UnaryOperation) operation;
+				UnaryOperation uOp = (UnaryOperation) opL.getLeft();
 				Operation child = null;
 				if(uOp.getOperation() instanceof AbsoluteOperation) {
 					child = ((AbsoluteOperation)uOp.getOperation()).getOperation();
 				}else {
 					child = ((SquareRootOperation)uOp.getOperation()).getOperation();
 				}
-				lrTreeList.add(new OperatorUnary((UnaryOperation) operation, flattenLRTree(child)));
+				lrTreeList.add(new OperatorUnary(uOp, flattenLRTree(child)));
 				if(opL.getRight() == null) {
 					return;
 				}else {

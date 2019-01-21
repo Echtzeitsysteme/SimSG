@@ -12,7 +12,7 @@ public class OperandVariable extends Operand {
 		super(null);
 		variableName = operand.getAgent().getName();
 		if(operand instanceof AttributeOperandGeneric) {
-			attributeName = ((AttributeOperandGeneric)operand).getAttribute().getName();
+			attributeName = ((AttributeOperandGeneric)operand).getAttribute().getAttribute().getName();
 		}else {
 			attributeName = "ID";
 		}

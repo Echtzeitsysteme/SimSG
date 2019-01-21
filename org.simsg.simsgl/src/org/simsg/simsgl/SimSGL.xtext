@@ -305,7 +305,11 @@ AttributeOperand:
 
 AttributeOperandGeneric returns AttributeOperand:
 	{AttributeOperandGeneric}
-	agent = [AgentPatternName] '.' attribute = [Attribute]
+	agent = [AgentPatternName] '.' attribute = AttributeOperandAttribute
+;
+
+AttributeOperandAttribute:
+	attribute = [Attribute]
 ;
 
 AttributeOperandId returns AttributeOperand:

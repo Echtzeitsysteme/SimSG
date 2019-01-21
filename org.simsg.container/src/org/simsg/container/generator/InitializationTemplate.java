@@ -70,8 +70,8 @@ public class InitializationTemplate {
 			if(lOp.getLeft() instanceof AttributeOperandGeneric) {
 				AttributeOperandGeneric operandL = (AttributeOperandGeneric)lOp.getLeft();
 				ValidAgentPattern vap = (ValidAgentPattern) operandL.getAgent().eContainer();
-				Attribute atr = operandL.getAttribute();
-				String content = PatternUtils.contentOfNumericAssignment((NumericAssignment) rOp);
+				Attribute atr = operandL.getAttribute().getAttribute();
+				String content = PatternUtils.contentOfNumericAssignment((NumericAssignment) rOp.getLeft());
 				agentTemplates.get(vap).defineAttribute(atr, stringToValue(atr, content));
 			}
 		}
