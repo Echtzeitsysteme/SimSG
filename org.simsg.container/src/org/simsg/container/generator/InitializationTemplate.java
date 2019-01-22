@@ -10,11 +10,18 @@ import org.simsg.container.Agent;
 import org.simsg.container.State;
 import org.simsg.container.util.AgentClassFactory;
 import org.simsg.container.util.StateClassFactory;
-
+import org.simsg.simsgl.simSGL.AgentState;
+import org.simsg.simsgl.simSGL.Attribute;
+import org.simsg.simsgl.simSGL.AttributeOperandGeneric;
 import org.simsg.simsgl.simSGL.BoundLink;
+import org.simsg.simsgl.simSGL.Constraint;
+import org.simsg.simsgl.simSGL.FloatAttribute;
+import org.simsg.simsgl.simSGL.IntegerAttribute;
 import org.simsg.simsgl.simSGL.LinkState;
 import org.simsg.simsgl.simSGL.MultiLink;
 import org.simsg.simsgl.simSGL.MultiLinkSitePattern;
+import org.simsg.simsgl.simSGL.NumericAssignment;
+import org.simsg.simsgl.simSGL.OperationLeft;
 import org.simsg.simsgl.simSGL.Pattern;
 import org.simsg.simsgl.simSGL.SingleSitePattern;
 import org.simsg.simsgl.simSGL.Site;
@@ -24,6 +31,7 @@ import org.simsg.simsgl.utils.PatternUtils;
 
 public class InitializationTemplate {
 
+	private Pattern pattern;
 	private List<ValidAgentPattern> agentPatterns;
 	private AgentClassFactory agentFactory;
 	private StateClassFactory stateFactory;
@@ -33,13 +41,15 @@ public class InitializationTemplate {
 	public InitializationTemplate(Pattern pattern, AgentClassFactory agentFactory, 
 			StateClassFactory stateFactory, Map<String, State> stateInstances) {
 		
+		this.pattern = pattern;
 		this.agentFactory = agentFactory;
 		this.stateFactory = stateFactory;
 		this.stateInstances = stateInstances;
-		
+
 		agentPatterns = PatternUtils.getValidAgentPatterns(pattern.getAgentPatterns());
 		
 		createAgentTemplates();
+		findAttributeValues();
 		findStates();
 		findReferences();
 	}
@@ -51,12 +61,38 @@ public class InitializationTemplate {
 		}
 	}
 	
+	private void findAttributeValues() {
+		if(pattern.getConstraints() == null) return;
+		for(Constraint c : pattern.getConstraints()) {
+			OperationLeft lOp = (OperationLeft) c.getOperandL();
+			OperationLeft rOp = (OperationLeft) c.getOperandR();
+			
+			if(lOp.getLeft() instanceof AttributeOperandGeneric) {
+				AttributeOperandGeneric operandL = (AttributeOperandGeneric)lOp.getLeft();
+				ValidAgentPattern vap = (ValidAgentPattern) operandL.getAgent().eContainer();
+				Attribute atr = operandL.getAttribute().getAttribute();
+				String content = PatternUtils.contentOfNumericAssignment((NumericAssignment) rOp.getLeft());
+				agentTemplates.get(vap).defineAttribute(atr, stringToValue(atr, content));
+			}
+		}
+	}
+	
+	private Object stringToValue(Attribute atr, String content) {
+		Object value = null;
+		if(atr.getType() instanceof FloatAttribute) {
+			value = Double.parseDouble(content);
+		}else if(atr.getType() instanceof IntegerAttribute) {
+			value = Integer.parseInt(content);
+		}
+		return value;
+	}
+	
 	private void findStates() {
 		for(ValidAgentPattern vap : agentPatterns) {
-			Map<Site, org.simsg.simsgl.simSGL.State> states = new HashMap<>();
+			Map<Site, org.simsg.simsgl.simSGL.State> siteStates = new HashMap<>();
 			for(Site site : vap.getAgent().getSites().getSites()) {
 				if(site.getStates().getState().size() > 0) {
-					states.put(site, site.getStates().getState().get(0));
+					siteStates.put(site, site.getStates().getState().get(0));
 				}
 			}
 			for(SitePattern sp : vap.getSitePatterns().getSitePatterns()) {
@@ -65,11 +101,24 @@ public class InitializationTemplate {
 				Site site = null;
 				if(sp instanceof SingleSitePattern) site = ((SingleSitePattern) sp).getSite();
 				if(sp instanceof MultiLinkSitePattern) site = ((MultiLinkSitePattern) sp).getSite();
-				states.replace(site, sp.getState().getState());
+				siteStates.replace(site, sp.getState().getState());
 			}
-			states.forEach((site, state) -> {
-				agentTemplates.get(vap).defineState(site, state);
+			siteStates.forEach((site, state) -> {
+				agentTemplates.get(vap).defineSiteState(site, state);
 			});
+			
+			org.simsg.simsgl.simSGL.State agentState = null;
+			org.simsg.simsgl.simSGL.Agent agent = vap.getAgent();
+			if(agent.getStates().getState().size() > 0) {
+				 agentState = agent.getStates().getState().get(0);
+			}
+			AgentState as = vap.getState();
+			if(as != null) {
+				agentState = as.getState();
+			}
+			if(agentState == null) continue;
+			
+			agentTemplates.get(vap).defineState(agentState);
 		}
 	}
 	
@@ -207,6 +256,7 @@ public class InitializationTemplate {
 			
 			for(AgentTemplate template : agentTemplates.values()) {
 				Agent agent = agentFactory.getEObjectFactory().createObject(template.getAgentClassName());
+				template.setAttributes(agent);
 				template.setStates(agent);
 				tempInstances.replace(template, agent);
 			}

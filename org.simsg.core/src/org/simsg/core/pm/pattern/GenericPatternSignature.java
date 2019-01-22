@@ -6,21 +6,20 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EClass;
 import org.simsg.container.util.EPackageWrapper;
 import org.simsg.simsgl.simSGL.Agent;
 import org.simsg.simsgl.simSGL.ValidAgentPattern;
 
 
 public class GenericPatternSignature {
-	//public final static EClassifier SIM_AGENT_CLASSIFIER = ReactionContainerPackage.Literals.SIM_AGENT;
 	
 	private List<ValidAgentPattern> patterns;
 	private EPackageWrapper metaModel;
-	private Map<String, EClassifier> signatureNodes;
+	private Map<String, EClass> signatureNodes;
 	private Map<ValidAgentPattern, String> patternSignatureMapping;
 	private Map<String, ValidAgentPattern> signaturePatternMapping;
-	private Map<String, List<String>> injectivityConflicts;
+	private Map<EClass, List<String>> injectivityConflicts;
 	
 	public GenericPatternSignature(List<ValidAgentPattern> patterns, EPackageWrapper metaModel) {
 		this.patterns = patterns;
@@ -30,34 +29,42 @@ public class GenericPatternSignature {
 	}
 	
 	private void buildSignature() {
-		signatureNodes = new LinkedHashMap<String, EClassifier>();
+		signatureNodes = new LinkedHashMap<String, EClass>();
 		patternSignatureMapping = new HashMap<ValidAgentPattern, String>();
 		signaturePatternMapping = new HashMap<String, ValidAgentPattern>();
-		injectivityConflicts = new HashMap<String, List<String>>();
+		injectivityConflicts = new HashMap<EClass, List<String>>();
 		
 		for(ValidAgentPattern vap : patterns) {
 			Agent agent = vap.getAgent();
-			String name = agent.getName();
-			if(!injectivityConflicts.containsKey(name)) {
-				injectivityConflicts.put(name, new LinkedList<String>());
+			EClass agentClass = metaModel.getClass(agent.getName());
+			if(!injectivityConflicts.containsKey(agentClass)) {
+				injectivityConflicts.put(agentClass, new LinkedList<String>());
 			}
 			
+			String name = null;
+			if(vap.getVariable() != null) {
+				name = vap.getVariable().getName();
+			}else {
+				name = agent.getName();
+			}
+			
+			String uniqueName = name;
 			int occurence = 0;
-			while(signatureNodes.putIfAbsent(name, metaModel.getClass(agent.getName())) != null) {
+			while(signatureNodes.putIfAbsent(uniqueName, agentClass) != null) {
 				occurence++;
-				name = agent.getName() + occurence;
+				uniqueName = name + occurence;
 			}
 			
-			patternSignatureMapping.put(vap, name);
-			signaturePatternMapping.put(name, vap);
+			patternSignatureMapping.put(vap, uniqueName);
+			signaturePatternMapping.put(uniqueName, vap);
 			
-			injectivityConflicts.get(agent.getName()).add(name);
+			injectivityConflicts.get(agentClass).add(uniqueName);
 		}
 		
 	}
 	
 	private void cleanUpInjectivityConflicts() {
-		Map<String, List<String>> injectivityConflicts2 = new HashMap<String, List<String>>();
+		Map<EClass, List<String>> injectivityConflicts2 = new HashMap<EClass, List<String>>();
 		injectivityConflicts.forEach((name, list) -> {
 			if(list.size()>1) {
 				injectivityConflicts2.put(name, list);
@@ -74,7 +81,7 @@ public class GenericPatternSignature {
 		return signaturePatternMapping.get(signatureNode);
 	}
 	
-	public Map<String, EClassifier> getSignature() {
+	public Map<String, EClass> getSignature() {
 		return signatureNodes;
 	}
 	
@@ -86,7 +93,7 @@ public class GenericPatternSignature {
 		return patternSignatureMapping.containsKey(pattern);
 	}
 	
-	public Map<String, List<String>> getInjectivityConflicts() {
+	public Map<EClass, List<String>> getInjectivityConflicts() {
 		return injectivityConflicts;
 	}
 	

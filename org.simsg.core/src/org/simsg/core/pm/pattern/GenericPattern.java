@@ -37,7 +37,7 @@ public class GenericPattern {
 		}
 		
 		signature = new GenericPatternSignature(agentPatterns, this.metaModel);
-		body = new GenericPatternBody(this.getName(), this.metaModel, signature, agentPatterns);
+		body = new GenericPatternBody(this.getName(), this.metaModel, lhs,  signature, agentPatterns);
 		
 	}
 	
@@ -52,7 +52,7 @@ public class GenericPattern {
 		this.lhs = null;
 		
 		signature = new GenericPatternSignature(agentPatterns, this.metaModel);
-		body = new GenericPatternBody(this.getName(), this.metaModel, signature, agentPatterns);
+		body = new GenericPatternBody(this.getName(), this.metaModel, lhs, signature, agentPatterns);
 		
 	}
 	

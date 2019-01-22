@@ -33,6 +33,11 @@ import org.simsg.simsgl.simSGL.MultiLinkSitePattern
 import org.simsg.simsgl.simSGL.BoundLink
 import org.simsg.simsgl.simSGL.IndexedFreeLink
 import org.simsg.simsgl.simSGL.SitePattern
+import org.simsg.simsgl.simSGL.Constraint
+import org.simsg.simsgl.simSGL.AttributeOperand
+import org.simsg.simsgl.simSGL.EqualComparator
+import org.simsg.simsgl.simSGL.OperationLeft
+import org.simsg.simsgl.simSGL.AgentPatternName
 
 /**
  * This class contains custom validation rules. 
@@ -41,7 +46,7 @@ import org.simsg.simsgl.simSGL.SitePattern
  */
 class SimSGLValidator extends AbstractSimSGLValidator {
 	
-@Check
+	@Check
 	def checkAgentIdUnique(Agent agent) {
 		val rootElement = EcoreUtil2.getRootContainer(agent)
 		var candidates = EcoreUtil2.getAllContentsOfType(rootElement, Agent);
@@ -125,6 +130,50 @@ class SimSGLValidator extends AbstractSimSGLValidator {
 				warning('Initial count variables equal to 0 will lead to zero instantiated agents.', null)
 			}
 		}
+				
+	}
+	
+	@Check
+	def checkInitialAttributes(Initial initial) {
+		val pattern = patternFromPatternAssignment(initial.initialPattern)
+		val constraints = pattern.constraints
+		if(constraints === null) return;
+		
+		for(Constraint c : constraints) {
+			val opL  = c.operandL
+			val operator = c.comparator
+			val opR = c.operandR
+			// check for attribute reference on the left hand side
+			if(!(opL instanceof OperationLeft)) {
+				error('Initial attribute must be assigned on the left.', null)
+			}
+			val opLL = opL as OperationLeft
+			val attribute = opLL.left
+			val notAttribute = opLL.right
+			// check for "pure" attribute reference on the left hand side
+			if(notAttribute !== null) {
+				error('Initial attribute must be assigned on the left.', null)
+			}
+			if(!(attribute instanceof AttributeOperand)) {
+				error('Initial attribute must be assigned on the left.', null)
+			}
+			if(!(operator instanceof EqualComparator)) {
+				error('Initial attribute must be assigned via equals operator.', null)
+			}
+			if(opR instanceof OperationLeft) {
+				val oplLeft = (opR as OperationLeft).left
+				val oplRight = (opR as OperationLeft).right
+				if(oplRight !== null) {
+					error('Initial attribute must be assigned with a terminal.', null)
+				}
+				if(!(oplLeft instanceof NumericFromLiteral || oplLeft instanceof NumericFromVariable)) {
+					error('Initial attribute must be assigned with a terminal.', null)
+				}
+				
+			}else {
+				error('Initial attribute must be assigned with a terminal.', null)
+			}
+		}		
 				
 	}
 	
@@ -371,6 +420,41 @@ class SimSGLValidator extends AbstractSimSGLValidator {
 							}
 							
 						}
+						
+					}
+					// check existence and consistency of agent pattern variable names
+					if(!(ap2 instanceof VoidAgentPattern)) {
+						val ap1Var = ap_1.variable
+						val ap_2 = ap2 as ValidAgentPattern
+						val ap2Var = ap_2.variable
+						if(ap1Var === null && ap2Var !== null) {
+							error('If an argument on the lhs defines a variable, the corresponding argument on the rhs must define a variable as well.', 
+									SimSGLPackage.Literals.RULE_BODY__LHS)
+						}else if(ap1Var !== null && ap2Var === null) {
+							error('If an argument on the rhs defines a variable, the corresponding argument on the lhs must define a variable as well.', 
+									SimSGLPackage.Literals.RULE_BODY__RHS)
+						}else if(ap1Var !== null && ap2Var !== null) {
+							if(ap1Var.name != ap2Var.name) {
+								error('If arguments on both the lhs and the rhs define variables, the corresponding arguments on both sides must define the same variable names.', 
+									SimSGLPackage.Literals.RULE_BODY__LHS)
+									
+								error('If arguments on both the lhs and the rhs define variables, the corresponding arguments on both sides must define the same variable names.', 
+									SimSGLPackage.Literals.RULE_BODY__RHS)
+							}
+						}
+					}
+					// check existence and consistency of agent states
+					if(!(ap2 instanceof VoidAgentPattern)) {
+						val ap1State = ap_1.state
+						val ap_2 = ap2 as ValidAgentPattern
+						val ap2State = ap_2.state
+						if(ap1State === null && ap2State !== null) {
+							error('If an argument on the rhs defines a state, the corresponding argument on the lhs must define a state as well.', 
+									SimSGLPackage.Literals.RULE_BODY__LHS)
+						}else if(ap1State !== null && ap2State === null) {
+							error('If an argument on the lhs defines a state, the corresponding argument on the rhs must define a state as well.', 
+									SimSGLPackage.Literals.RULE_BODY__RHS)
+						}
 					}
 				}
 				idx++;	
@@ -417,6 +501,19 @@ class SimSGLValidator extends AbstractSimSGLValidator {
 				sitePatternSet.add(site)
 			}
 			
+		}
+	}
+	
+	@Check
+	def checkAgentPatternVariablesUnique(Pattern pattern) {
+		var candidates = EcoreUtil2.getAllContentsOfType(pattern, AgentPatternName);
+		var nameSet = new HashSet<String>()
+		for(candidate : candidates) {	
+			if(nameSet.contains(candidate.name)) {
+				error('Variable names must be unique within a pattern.', SimSGLPackage.Literals.PATTERN__AGENT_PATTERNS)
+			}else {
+				nameSet.add(candidate.name)
+			}
 		}
 	}
 	

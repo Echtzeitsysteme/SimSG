@@ -10,6 +10,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="EGFR">
     <sites xmi:type="simSGL:Sites">
@@ -41,6 +43,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="RasGap">
     <sites xmi:type="simSGL:Sites">
@@ -51,6 +55,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="Grb2">
     <sites xmi:type="simSGL:Sites">
@@ -61,6 +67,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="SoS">
     <sites xmi:type="simSGL:Sites">
@@ -77,6 +85,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="Shc">
     <sites xmi:type="simSGL:Sites">
@@ -90,6 +100,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="Ras">
     <sites xmi:type="simSGL:Sites">
@@ -100,6 +112,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="Raf">
     <sites xmi:type="simSGL:Sites">
@@ -110,6 +124,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="PP2A1">
     <sites xmi:type="simSGL:Sites">
@@ -117,6 +133,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="MEK">
     <sites xmi:type="simSGL:Sites">
@@ -136,6 +154,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="PP2A2">
     <sites xmi:type="simSGL:Sites">
@@ -143,6 +163,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="ERK">
     <sites xmi:type="simSGL:Sites">
@@ -162,6 +184,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="MKP3">
     <sites xmi:type="simSGL:Sites">
@@ -169,6 +193,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Rule" name="EGF_EGFR">
     <rule xmi:type="simSGL:RuleBody" operator="&lt;->">

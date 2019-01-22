@@ -50,6 +50,20 @@ public class StateClassFactory extends EClassFactory<State, org.simsg.container.
 		classRegistry.registerReference(reference);
 		return reference;
 	}
+	
+	public EReference createReference(Agent agent, State state, EClass stateClass) {
+		String refName = createReferenceName(agent, state);
+		if(classRegistry.containsReference(refName)) {
+			return classRegistry.getRegisteredReference(refName);
+		}
+		EReference reference = ecoreFactory.createEReference();
+		reference.setUpperBound(1);
+		reference.setLowerBound(0);
+		reference.setName(refName);
+		reference.setEType(stateClass);
+		classRegistry.registerReference(reference);
+		return reference;
+	}
 
 	@Override
 	public EObjectFactory<org.simsg.container.State, State> getEObjectFactory() {
@@ -63,6 +77,10 @@ public class StateClassFactory extends EClassFactory<State, org.simsg.container.
 	
 	public static String createReferenceName(Agent agent, Site site, State state) {
 		return createCombinedClassName(agent.getName(), site.getName(), state.getName());
+	}
+	
+	public static String createReferenceName(Agent agent, State state) {
+		return createCombinedClassName(agent.getName(), state.getName());
 	}
 
 	

@@ -19,6 +19,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="B">
     <sites xmi:type="simSGL:Sites">
@@ -35,6 +37,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="C">
     <sites xmi:type="simSGL:Sites">
@@ -48,6 +52,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="A1">
     <sites xmi:type="simSGL:Sites">
@@ -67,6 +73,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="B1">
     <sites xmi:type="simSGL:Sites">
@@ -83,6 +91,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="C1">
     <sites xmi:type="simSGL:Sites">
@@ -96,6 +106,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="A3">
     <sites xmi:type="simSGL:Sites">
@@ -115,6 +127,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="B3">
     <sites xmi:type="simSGL:Sites">
@@ -131,6 +145,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="C2">
     <sites xmi:type="simSGL:Sites">
@@ -144,6 +160,8 @@
         </states>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="A8">
     <sites xmi:type="simSGL:Sites">
@@ -154,6 +172,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="A9">
     <sites xmi:type="simSGL:Sites">
@@ -164,6 +184,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="mA">
     <sites xmi:type="simSGL:Sites">
@@ -171,6 +193,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="mB">
     <sites xmi:type="simSGL:Sites">
@@ -178,6 +202,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="mC">
     <sites xmi:type="simSGL:Sites">
@@ -185,6 +211,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:Agent" name="mQ">
     <sites xmi:type="simSGL:Sites">
@@ -192,6 +220,8 @@
         <states xmi:type="simSGL:States"/>
       </sites>
     </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
   </properties>
   <properties xmi:type="simSGL:ArithmeticVariable" name="mockup_rate">
     <value xmi:type="simSGL:ArithmeticValue" value="0.4"/>

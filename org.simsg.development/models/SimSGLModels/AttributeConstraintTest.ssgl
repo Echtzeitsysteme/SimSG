@@ -1,0 +1,12 @@
+ModelID AttributeConstraintTest
+
+agent a(x){s,t}[f:FLOAT, q:INT]
+agent b(y){q,l}[po:FLOAT, pa:INT]
+
+init i 2 {A:a(){t}}[A.f==3.2, A.q==4]
+init i2 2 {A:a(){t}}[A.f==4.2, A.q==6]
+
+rule r {a(x[?]){t}} -> {void} @ [1]
+rule r2 {a(x[?]){s}} -> {void} @ [1]
+rule r3 {A:a(x[?]){t}}[A.f>=3.2, A.q==4] -> {void} @ [1]
+rule r4 {A:a(x[?]){t}}[A.f>3.2] -> {void} @ [1]
