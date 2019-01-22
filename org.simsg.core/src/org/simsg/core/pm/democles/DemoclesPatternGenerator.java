@@ -205,7 +205,7 @@ public class DemoclesPatternGenerator {
 		trgPatternBody.getConstraints().add(invConstraint);
 	}
 	
-	// Helper Methods:
+	// Helper Functions:
 	private static EMFVariable createEMFVariable(Pattern pattern, String name, EClass nodeType) {
 		EMFVariable variable = emfTypeFactory.createEMFVariable();
 		variable.setName(name);
@@ -213,8 +213,7 @@ public class DemoclesPatternGenerator {
 		pattern.getSymbolicParameters().add(variable);
 		return variable;
 	}
-	
-	// Helper Functions:
+
 	private static EMFVariable createLocalEMFVariable(PatternBody patternBody, String name, EClass nodeType) {
 		EMFVariable variable = emfTypeFactory.createEMFVariable();
 		variable.setName(name);
