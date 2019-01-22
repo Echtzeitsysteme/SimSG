@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EReference;
 import org.gervarro.democles.specification.emf.Constant;
@@ -20,8 +21,10 @@ import org.gervarro.democles.specification.emf.constraint.emf.emf.Reference;
 import org.gervarro.democles.specification.emf.constraint.emf.emf.StructuralFeature;
 import org.gervarro.democles.specification.emf.constraint.relational.RelationalConstraint;
 import org.gervarro.democles.specification.emf.constraint.relational.RelationalConstraintFactory;
+import org.simsg.container.ContainerPackage;
 import org.simsg.core.pm.pattern.AgentNodeConstraint;
 import org.simsg.core.pm.pattern.AgentNodeContext;
+import org.simsg.core.pm.pattern.AgentStateContext;
 import org.simsg.core.pm.pattern.ConstraintType;
 import org.simsg.core.pm.pattern.GenericPattern;
 import org.simsg.core.pm.pattern.GenericPatternBody;
@@ -31,39 +34,33 @@ import org.simsg.core.pm.pattern.SiteNodeContext;
 import org.simsg.core.pm.pattern.SiteStateContext;
 
 public class DemoclesPatternGenerator {
-	/*
-	final public static String RULE_OPERATOR_UNI = "->";
-	final public static String RULE_OPERATOR_BI = "<->";
-	final public static String PATTERN_NAME_SUFFIX_RHS = "_rhs";
-	final public static String PATTERN_NAME_SUFFIX_LHS = "_lhs";
+	
 
 	public static final SpecificationFactory specificationFactory = SpecificationFactory.eINSTANCE;
 	public static final EMFTypeFactory emfTypeFactory = EMFTypeFactory.eINSTANCE;
 	public static final RelationalConstraintFactory relationalConstraintFactory = RelationalConstraintFactory.eINSTANCE;
-
-	public static final String BOUND_ANY_LINK_PATTERN_KEY = "BoundAnyLink_SupportPattern";
 
 	private Map<String, GenericPattern> genericPatterns;
 
 	Map<String, Pattern> generated;
 
 	private Map<AgentNodeContext, EMFVariable> signatureVariables;
-	private Map<AgentNodeContext, EMFVariable> localAgentVariables;
-	private Map<SiteNodeContext, EMFVariable> sitesVariables;
-	private Map<SiteNodeContext, EMFVariable> linkVariables;
+	//private Map<AgentNodeContext, EMFVariable> localAgentVariables;
+	//private Map<SiteNodeContext, EMFVariable> sitesVariables;
+	//private Map<SiteNodeContext, EMFVariable> linkVariables;
 
 	public DemoclesPatternGenerator(Map<String, GenericPattern> genericPatterns) {
 		this.genericPatterns = genericPatterns;
 	}
-
+	
 	public Map<String, Pattern> doGenerate() {
 		generated = new HashMap<String, Pattern>();
 		signatureVariables = new HashMap<AgentNodeContext, EMFVariable>();
-		localAgentVariables = new HashMap<AgentNodeContext, EMFVariable>();
-		sitesVariables = new HashMap<SiteNodeContext, EMFVariable>();
-		linkVariables = new HashMap<SiteNodeContext, EMFVariable>();
+		//localAgentVariables = new HashMap<AgentNodeContext, EMFVariable>();
+		//sitesVariables = new HashMap<SiteNodeContext, EMFVariable>();
+		//linkVariables = new HashMap<SiteNodeContext, EMFVariable>();
 
-		generated.put(BOUND_ANY_LINK_PATTERN_KEY, createBoundAnyLinkPattern());
+		//generated.put(BOUND_ANY_LINK_PATTERN_KEY, createBoundAnyLinkPattern());
 
 		for (GenericPattern srcPattern : genericPatterns.values()) {
 			if (srcPattern.isVoidPattern()) {
@@ -72,21 +69,72 @@ public class DemoclesPatternGenerator {
 			Pattern trgPattern = specificationFactory.createPattern();
 			trgPattern.setName(srcPattern.getName());
 			generated.put(srcPattern.getName(), trgPattern);
-
-			transformSignature(trgPattern, srcPattern.getSignature());
-			transformBody(trgPattern, srcPattern.getBody());
+			PatternBody trgPatternBody = specificationFactory.createPatternBody();
+			trgPattern.getBodies().add(trgPatternBody);
+			
+			buildSignature(trgPattern, srcPattern.getSignature());
+			buildAgentStateContext(trgPattern, trgPatternBody, srcPattern.getBody());
 
 		}
 		return generated;
 	}
-
-	private void transformSignature(Pattern trgPattern,
+	
+	private void buildSignature(Pattern trgPattern,
 			GenericPatternSignature signature) {
 		signature.getSignature().forEach((variableName, type) -> {
-			createSignatureAgent(variableName, trgPattern);
+			EMFVariable variable = createEMFVariable(trgPattern, variableName, type);
+			
+			GenericPatternBody body = genericPatterns.get(trgPattern.getName()).getBody();
+			signatureVariables.put(body.getAgentNodeContexts().get(signature.getSignaturePattern(variableName)), 
+					variable);
+			
 		});
 	}
-
+	
+	private static EMFVariable createEMFVariable(Pattern pattern, String name, EClass nodeType) {
+		EMFVariable variable = emfTypeFactory.createEMFVariable();
+		variable.setName(name);
+		variable.setEClassifier(nodeType);
+		pattern.getSymbolicParameters().add(variable);
+		return variable;
+	}
+	
+	private static EMFVariable createLocalEMFVariable(PatternBody patternBody, String name, EClass nodeType) {
+		EMFVariable variable = emfTypeFactory.createEMFVariable();
+		variable.setName(name);
+		variable.setEClassifier(nodeType);
+		patternBody.getLocalVariables().add(variable);
+		return variable;
+	}
+	
+	private void buildAgentStateContext(Pattern trgPattern, PatternBody trgPatternBody, GenericPatternBody body) {
+		for(AgentStateContext context : body.getAgentStateContexts().values()) {
+			EMFVariable source = signatureVariables.get(context.getAgentNodeContext());
+			EMFVariable target = createLocalEMFVariable(trgPatternBody, context.getStateTypeName(), context.getStateType());
+			createEdge(trgPatternBody, source, context.getStateReference(), target);
+		}
+	}
+	
+	private static Reference createEdge(PatternBody body, ConstraintVariable source, EReference sourceContainer, ConstraintVariable target) {
+		Reference edge = createReference(body, sourceContainer);
+		ConstraintParameter parameter = specificationFactory.createConstraintParameter();
+		parameter.setReference(source);
+		ConstraintParameter parameter2 = specificationFactory.createConstraintParameter();
+		parameter2.setReference(target);
+		edge.getParameters().add(parameter);
+		edge.getParameters().add(parameter2);
+		
+		return edge;
+	}
+	
+	private static Reference createReference(PatternBody patternBody, EReference referenceContainer) {
+		Reference reference = emfTypeFactory.createReference();
+		reference.setEModelElement(referenceContainer);
+		patternBody.getConstraints().add(reference);
+		return reference;
+	}
+	
+	/*
 	private void transformBody(Pattern trgPattern, GenericPatternBody body) {
 		PatternBody trgPatternBody = specificationFactory.createPatternBody();
 		trgPattern.getBodies().add(trgPatternBody);
@@ -288,15 +336,7 @@ public class DemoclesPatternGenerator {
 		return pattern;
 	}
 
-	private EMFVariable createSignatureAgent(String name, Pattern p) {
-		EMFVariable signatureNodeVariable = createEMFVariable(p, name, ReactionContainerPackage.Literals.SIM_AGENT);
-		p.getSymbolicParameters().add(signatureNodeVariable);
-		GenericPatternBody body = genericPatterns.get(p.getName()).getBody();
-		GenericPatternSignature signature = genericPatterns.get(p.getName()).getSignature();
-		signatureVariables.put(body.getAgentNodeContexts().get(signature.getSignaturePattern(name)),
-				signatureNodeVariable);
-		return signatureNodeVariable;
-	}
+	
 
 	private static EMFVariable createLocalAgent(PatternBody body, AgentNodeContext agentNode) {
 		EMFVariable agent = createEMFVariable(body, agentNode.getAgentType(), AgentNodeContext.SIM_AGENT_TYPE);
@@ -353,14 +393,7 @@ public class DemoclesPatternGenerator {
 		createConstraintParameter(typeConstraint, siteConstant);
 	}
 
-	private static EMFVariable createEMFVariable(Pattern pattern, String name,
-			EClassifier nodeType) {
-		EMFVariable variable = emfTypeFactory.createEMFVariable();
-		variable.setName(name);
-		variable.setEClassifier(nodeType);
-		pattern.getSymbolicParameters().add(variable);
-		return variable;
-	}
+	
 
 	private static EMFVariable createEMFVariable(PatternBody patternBody, String name, EClassifier nodeType) {
 		EMFVariable variable = emfTypeFactory.createEMFVariable();

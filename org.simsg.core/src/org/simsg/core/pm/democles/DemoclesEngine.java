@@ -137,7 +137,7 @@ public class DemoclesEngine implements MatchEventListener {
 		Resource.Factory.Registry reg = Resource.Factory.Registry.INSTANCE;
 		reg.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		ResourceSet rSet = new ResourceSetImpl();
-		URI uri = URI.createFileURI("data/democles_pattern.xmi");
+		URI uri = URI.createFileURI("models/democles_pattern.xmi");
 		XMIResource res = (XMIResource) rSet.createResource(uri);
 		res.getContents().addAll(patterns.values());
 		

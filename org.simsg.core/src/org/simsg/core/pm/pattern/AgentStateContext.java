@@ -44,6 +44,10 @@ public class AgentStateContext {
 		return agentNodeContext;
 	}
 	
+	public EClass getSourceAgentType() {
+		return agentNodeContext.getAgentType();
+	}
+	
 	public String getSourceAgentTypeName() {
 		return agentNodeContext.getAgentTypeName();
 	}
