@@ -41,11 +41,13 @@ public class GenericPatternBody {
 	
 	private Map<ValidAgentPattern, AgentNodeContext> agentNodeContexts;
 	private Map<AgentNodeContext, List<SiteNodeContext>> siteNodeContexts;
+	private Map<AgentNodeContext, AgentStateContext> agentStateContexts;
 	private Map<SiteNodeContext, SiteStateContext> siteStateContexts;
 	private Map<SiteNodeContext, List<LinkStateContext>> linkStateContexts;
 	private Map<Integer, Entry<LinkStateContext, LinkStateContext>> boundLinkStateContexts;
 	private Map<Integer, Entry<LinkStateContext, LinkStateContext>> indexedFreeLinkStateContexts;
 	private Collection<AttributeConstraint> attributeConstraints;
+	private Set<AttributeContext> attributeContexts;
 	
 	private Map<AgentNodeContext, List<Entry<LinkStateContext, LinkStateContext>>> agentNodeToLinkMap;
 	private List<Set<AgentNodeContext>> subPatterns;
@@ -73,7 +75,13 @@ public class GenericPatternBody {
 		injectivityConstraintsSignature = new LinkedList<AgentNodeConstraint>();
 		
 		buildAgentNodeContexts();
-		buildAttributeConstraints();
+		buildAgentStateContexts();
+		if(pattern == null) {
+			attributeConstraints = new LinkedList<AttributeConstraint>();
+			attributeContexts = new HashSet<AttributeContext>();
+		}else {
+			buildAttributeConstraints();
+		}
 		buildSiteNodeContexts();
 		buildLocalLinksAndLocalNodes();
 		buildInjectivityConstraints();
@@ -81,39 +89,31 @@ public class GenericPatternBody {
 		findSubPatterns();
 		permutable = false;
 		checkPermutability();
-	}
-	
-	
+	}	
 	
 	public GenericPatternSignature getSignature() {
 		return signature;
 	}
 
-
-
 	public List<ValidAgentPattern> getAgentPatterns() {
 		return agentPatterns;
 	}
 
-
-
 	public Map<ValidAgentPattern, AgentNodeContext> getAgentNodeContexts() {
 		return agentNodeContexts;
 	}
-
-
+	
+	public Map<AgentNodeContext, AgentStateContext> getAgentStateContexts() {
+		return agentStateContexts;
+	}
 
 	public Map<AgentNodeContext, List<SiteNodeContext>> getSiteNodeContexts() {
 		return siteNodeContexts;
 	}
 
-
-
 	public Map<SiteNodeContext, SiteStateContext> getSiteStateContexts() {
 		return siteStateContexts;
 	}
-
-
 
 	public Map<SiteNodeContext, List<LinkStateContext>> getLinkStateContexts() {
 		return linkStateContexts;
@@ -125,6 +125,14 @@ public class GenericPatternBody {
 	
 	public Map<Integer, Entry<LinkStateContext, LinkStateContext>> getIndexedFreeLinkStateContexts() {
 		return indexedFreeLinkStateContexts;
+	}
+	
+	public Collection<AttributeConstraint> getAttributeConstraints() {
+		return attributeConstraints;
+	}
+	
+	public Collection<AttributeContext> getAttributeContexts() {
+		return attributeContexts;
 	}
 	
 	public Collection<AgentNodeConstraint> getInjectivityConstraintsBody() {
@@ -139,13 +147,9 @@ public class GenericPatternBody {
 		return injectivityConstraints;
 	}
 
-
-
 	public Map<ValidAgentPattern, List<AgentNodeContext>> getLocalAgentNodes() {
 		return localAgentNodes;
 	}
-
-
 
 	public Map<AgentNodeContext, SiteNodeContext> getLocalSiteNodes() {
 		return localSiteNodes;
@@ -178,10 +182,22 @@ public class GenericPatternBody {
 	
 	private void buildAttributeConstraints() {
 		attributeConstraints = new LinkedList<AttributeConstraint>();
+		attributeContexts = new HashSet<AttributeContext>();
+		
 		if(pattern.getConstraints() == null) return;
 		
 		for(Constraint constraint : pattern.getConstraints()) {
-			attributeConstraints.add(new AttributeConstraint(constraint, agentNodeContexts));
+			AttributeConstraint atrConstraint = new AttributeConstraint(constraint, agentNodeContexts, metaModel);
+			attributeConstraints.add(atrConstraint);
+			attributeContexts.addAll(atrConstraint.getAttributeContexts());
+		}
+	}
+	
+	private void buildAgentStateContexts() {
+		agentStateContexts = new HashMap<AgentNodeContext, AgentStateContext>();	
+		for(ValidAgentPattern pattern : agentPatterns) {
+			AgentNodeContext currentAgentNodeContext = agentNodeContexts.get(pattern);
+			buildAgentStateContext(pattern, currentAgentNodeContext);		
 		}
 	}
 	
@@ -198,7 +214,7 @@ public class GenericPatternBody {
 			for(SitePattern sitePattern : pattern.getSitePatterns().getSitePatterns()) {
 				
 				SiteNodeContext currentSiteNodeContext = createSiteNodeContext(currentAgentNodeContext, sitePattern);
-				buildStateContext(pattern, sitePattern, currentSiteNodeContext);
+				buildSiteStateContext(pattern, sitePattern, currentSiteNodeContext);
 				buildLinkStateContext(pattern, sitePattern, currentSiteNodeContext);
 				
 				currentSiteNodeContexts.add(currentSiteNodeContext);
@@ -209,6 +225,13 @@ public class GenericPatternBody {
 		}
 	}
 	
+	private void buildAgentStateContext(ValidAgentPattern vap, AgentNodeContext anc) {
+		if(vap.getState() == null) return;
+		String refName = StateClassFactory.createReferenceName(vap.getAgent(), vap.getState().getState());
+		String stateName = vap.getState().getState().getName();
+		agentStateContexts.put(anc, new AgentStateContext(anc, metaModel.getEReference(refName), metaModel.getClass(stateName)));
+	}
+	
 	private SiteNodeContext createSiteNodeContext(AgentNodeContext ap, SitePattern sp) {
 		Site site = null;
 		if(sp instanceof SingleSitePattern) site = ((SingleSitePattern)sp).getSite();
@@ -216,7 +239,7 @@ public class GenericPatternBody {
 		return new SiteNodeContext(ap, site.getName());
 	}
 	
-	private void buildStateContext(ValidAgentPattern vap, SitePattern sp, SiteNodeContext snc) {
+	private void buildSiteStateContext(ValidAgentPattern vap, SitePattern sp, SiteNodeContext snc) {
 		if(sp.getState() == null) return;
 			
 		Site site = null;

@@ -13,6 +13,10 @@ public class OperatorUnary extends Operator {
 		this.childOperations = childOperations;
 	}
 	
+	public List<OperationComponent> getChildOperations() {
+		return childOperations;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

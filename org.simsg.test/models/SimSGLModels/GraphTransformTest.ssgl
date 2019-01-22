@@ -3,7 +3,7 @@ ModelID GraphTransformTest
 agent A(a, b{r,s}, c{q, p})
 agent B(d, e, f{l, m})
 agent C(g, h{n, o})
-agent A1(a, b{r,s}, c{q, p})
+agent A1(a, b{r,s}, c{q, p}) 
 agent B1(d, e, f{l, m})
 agent C1(g, h{n, o})
 agent A3(a, b{r,s}, c{q, p})

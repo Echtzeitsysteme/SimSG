@@ -11,4 +11,8 @@ public class Operator extends OperationComponent {
 	public String toString() {
 		return opType.toString();
 	}
+	
+	public OperatorType getType() {
+		return opType;
+	}
 }

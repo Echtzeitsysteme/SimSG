@@ -20,7 +20,7 @@ public class Sandbox {
 
 	public static void main(String[] args) {
 		
-		
+		/*
 		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
 		pm.setModelFolderPath(System.getProperty("user.dir")+"//models");
 		pm.init();
@@ -43,9 +43,9 @@ public class Sandbox {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
 		
 		
-		/*
 		SimulationConfigurator simConfigurator = new SimulationConfigurator();
 		simConfigurator.setModelFolder(System.getProperty("user.dir")+"//models");
 		simConfigurator.setModel("Goldbeter_Koshland");
@@ -62,7 +62,7 @@ public class Sandbox {
 		viatraSim.finish();
 		
 		System.out.println(Runtimer.getInstance());
-		*/
+		
 		
 	}
 	

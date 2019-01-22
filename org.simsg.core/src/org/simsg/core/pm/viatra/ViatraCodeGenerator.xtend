@@ -13,6 +13,13 @@ import org.simsg.core.pm.pattern.LinkStateContext
 import org.simsg.core.pm.pattern.AgentNodeContext
 import org.simsg.core.pm.pattern.AgentNodeConstraint
 import org.simsg.core.pm.pattern.SiteStateContext
+import org.simsg.core.pm.pattern.AttributeContext
+import org.simsg.core.pm.pattern.AttributeConstraint
+import org.simsg.core.pm.pattern.arithmetic.OperationComponent
+import org.simsg.core.pm.pattern.arithmetic.Operand
+import org.simsg.core.pm.pattern.arithmetic.OperatorUnary
+import org.simsg.core.pm.pattern.arithmetic.Operator
+import org.simsg.core.pm.pattern.AgentStateContext
 
 class ViatraCodeGenerator {
 	
@@ -34,7 +41,7 @@ class ViatraCodeGenerator {
 	
 	def String generatePatternCode() {
 		return '''
-			package SimSG.Core.PM.Viatra
+			package org.simsg.core.pm.viatra 
 					
 			«FOR p : importAliases.keySet»
 				import "«p.nsURI»" as «importAliases.get(p)»
@@ -46,6 +53,7 @@ class ViatraCodeGenerator {
 					«generateLink(genericPattern, genericPattern.body.linkStateContexts.get(site))»
 					«generateState(genericPattern.body.siteStateContexts.get(site))»
 					«ENDFOR»
+					«generateState(genericPattern.body.agentStateContexts.get(agent))»
 					«ENDFOR»
 					«FOR freePair : genericPattern.body.indexedFreeLinkStateContexts.values»
 					«generateIndexedUnboundLink(genericPattern.name, freePair)»
@@ -55,6 +63,12 @@ class ViatraCodeGenerator {
 					«ENDFOR»«ENDFOR»
 					«FOR constraint : genericPattern.body.injectivityConstraints»
 					«generateConstraint(constraint)»
+					«ENDFOR»
+					«FOR context : genericPattern.body.attributeContexts»
+					«generateAttributeContext(context)»
+					«ENDFOR»
+					«FOR constraint : genericPattern.body.attributeConstraints»
+					«generateAttributeConstraint(constraint)»
 					«ENDFOR»
 				}	
 			«ENDFOR»
@@ -110,22 +124,6 @@ class ViatraCodeGenerator {
 '''
 	}	
 	
-/*
-	def String generateTypedUnboundLink(GenericPattern gp, LinkStateContext link){
-		val patternName = link.siteNodeContext.agentNodeContext.patternName
-		val supPatternName1 = '''supportPattern_«patternName»_«link.agentReferenceName»'''
-		val supPattern1 = '''pattern «supPatternName1»(«link.sourceAgentVariableName» : «link.sourceAgentTypeName»){
-	«link.sourceAgentTypeName».«link.agentReferenceName»(«link.sourceAgentVariableName», _);
-	«link.sourceAgentTypeName».«link.agentReferenceName»(«link.sourceAgentVariableName», agent);
-	«link.targetAgentTypeName»(agent);
-}'''
-		supportPatterns.put(link, supPattern1);
-		
-		
-		return '''neg find «supPatternName1»(«link.sourceAgentVariableName»);
-'''
-	}
-*/
 	def String generateIndexedUnboundLink(String patternName, Entry<LinkStateContext, LinkStateContext> link){
 		return '''neg «link.key.sourceAgentTypeName».«link.key.agentReferenceName»(«link.key.sourceAgentVariableName», «link.key.targetAgentVariableName»);
 neg «link.value.sourceAgentTypeName».«link.value.agentReferenceName»(«link.value.sourceAgentVariableName», «link.value.targetAgentVariableName»);
@@ -153,6 +151,11 @@ neg «link.value.sourceAgentTypeName».«link.value.agentReferenceName»(«link.value
 		return '''neg «link.sourceAgentTypeName».«link.agentReferenceName»(«link.sourceAgentVariableName», _);'''
 	}
 	
+	def String generateState(AgentStateContext state){
+		if(state === null) return "";
+		return '''«state.sourceAgentTypeName».«state.stateReferenceName»(«state.sourceAgentVariableName», _);'''
+	}
+	 
 	def String generateState(SiteStateContext state){
 		if(state === null) return "";
 		return '''«state.sourceAgentTypeName».«state.stateReferenceName»(«state.sourceAgentVariableName», _);'''
@@ -171,6 +174,70 @@ Agent.ID(«constraint.operand2.agentVariableName»,«constraint.operand2.agentVaria
 check(«constraint.operand1.agentVariableName»_id > «constraint.operand2.agentVariableName»_id);'''
 			}
 		}
+	}
+	
+	def String generateAttributeContext(AttributeContext context) {
+		return '''«context.owningAgentNode.agentTypeName».«context.attributeName»(«context.owningAgentNode.agentVariableName», «context.attributeVariableName»);'''
+	}
+	
+	def String generateAttributeConstraint(AttributeConstraint constraint) {
+		return '''check((«generateOperation(constraint.leftOperations)») «constraint.comparator.toString» («generateOperation(constraint.rightOperations)»));'''
+	}
+	
+	def String generateOperation(List<OperationComponent> ops) {
+		val sb = new StringBuilder()
+		val iterator = ops.listIterator
+		while(iterator.hasNext) {
+			val current = iterator.next
+			if(current instanceof Operand) {
+				sb.append(current.toString)
+			}else {
+				val op = current as Operator
+				switch(op.type) {
+					case abs: {
+						sb.append("Math.abs(")
+						val opUnary = op as OperatorUnary
+						sb.append(generateOperation(opUnary.childOperations))
+						sb.append(")")
+					}
+					case equals: {
+						println("Oops.. Equals is not a valid arithmetic operator")
+					}
+					case ge: {
+						println("Oops.. Greater is not a valid arithmetic operator")
+					}
+					case geq: {
+						println("Oops.. GreaterEquals is not a valid arithmetic operator")
+					}
+					case le: {
+						println("Oops.. Less is not a valid arithmetic operator")
+					}
+					case leq: {
+						println("Oops.. LessEquals is not a valid arithmetic operator")
+					}
+					case minus: {
+						sb.append(op.toString)
+					}
+					case mult: {
+						sb.append(op.toString)
+					}
+					case plus: {
+						sb.append(op.toString)
+					}
+					case pow: {
+						println("Oops.. POW shouldn't appear here..")
+					}
+					case sqrt: {
+						sb.append("Math.sqrt(")
+						val opUnary = op as OperatorUnary
+						sb.append(generateOperation(opUnary.childOperations))
+						sb.append(")")
+					}
+					
+				}
+			}
+		}
+		return sb.toString;
 	}
 	
 }
