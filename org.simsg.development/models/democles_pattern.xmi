@@ -1,62 +1,255 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:emf="http://gervarro.org/democles/constraint/emf.ecore" xmlns:specification="http://gervarro.org/democles/specification.ecore" xsi:schemaLocation="http://www.eclipse.org/emf/2002/Ecore java://org.eclipse.emf.ecore.EcorePackage http://gervarro.org/democles/constraint/emf.ecore java://org.gervarro.democles.specification.emf.constraint.emf.emf.EMFTypePackage http://gervarro.org/democles/specification.ecore java://org.gervarro.democles.specification.emf.SpecificationPackage">
-  <specification:Pattern name="pattern19986569_r3_lhs">
-    <symbolicParameters xmi:type="emf:EMFVariable" name="A">
-      <eClassifier xmi:type="ecore:EClass" href="file:/C:/Users/sehmes/Workspaces/SimSG/org.simsg.development/models/ContainerMetaModels/AttributeConstraintTest.ecore#//a"/>
+  <specification:Pattern name="supportPattern_pattern1279309678_r2_lhs_a_a_x_unbound">
+    <symbolicParameters xmi:type="emf:EMFVariable" name="a">
+      <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a"/>
     </symbolicParameters>
     <bodies xmi:type="specification:PatternBody">
-      <localVariables xmi:type="emf:EMFVariable" name="t">
-        <eClassifier xmi:type="ecore:EClass" href="file:/C:/Users/sehmes/Workspaces/SimSG/org.simsg.development/models/ContainerMetaModels/AttributeConstraintTest.ecore#//t"/>
+      <localVariables xmi:type="emf:EMFVariable" name="generic_agent">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.simsg.container.org/container#//Agent"/>
       </localVariables>
       <constraints xmi:type="emf:Reference">
         <parameters xmi:type="specification:ConstraintParameter" reference="/0/@symbolicParameters.0"/>
         <parameters xmi:type="specification:ConstraintParameter" reference="/0/@bodies.0/@localVariables.0"/>
-        <eModelElement xmi:type="ecore:EReference" href="file:/C:/Users/sehmes/Workspaces/SimSG/org.simsg.development/models/ContainerMetaModels/AttributeConstraintTest.ecore#//a/a_t"/>
+        <eModelElement xmi:type="ecore:EReference" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a/a_x"/>
       </constraints>
     </bodies>
   </specification:Pattern>
-  <specification:Pattern name="pattern1948863195_r2_lhs">
+  <specification:Pattern name="pattern1690859824_r7_lhs">
     <symbolicParameters xmi:type="emf:EMFVariable" name="a">
-      <eClassifier xmi:type="ecore:EClass" href="file:/C:/Users/sehmes/Workspaces/SimSG/org.simsg.development/models/ContainerMetaModels/AttributeConstraintTest.ecore#//a"/>
+      <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a"/>
+    </symbolicParameters>
+    <symbolicParameters xmi:type="emf:EMFVariable" name="b">
+      <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//b"/>
     </symbolicParameters>
     <bodies xmi:type="specification:PatternBody">
-      <localVariables xmi:type="emf:EMFVariable" name="s">
-        <eClassifier xmi:type="ecore:EClass" href="file:/C:/Users/sehmes/Workspaces/SimSG/org.simsg.development/models/ContainerMetaModels/AttributeConstraintTest.ecore#//s"/>
-      </localVariables>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/1/@symbolicParameters.1"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/1/@symbolicParameters.0"/>
+        <eModelElement xmi:type="ecore:EReference" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//b/b_y"/>
+      </constraints>
       <constraints xmi:type="emf:Reference">
         <parameters xmi:type="specification:ConstraintParameter" reference="/1/@symbolicParameters.0"/>
-        <parameters xmi:type="specification:ConstraintParameter" reference="/1/@bodies.0/@localVariables.0"/>
-        <eModelElement xmi:type="ecore:EReference" href="file:/C:/Users/sehmes/Workspaces/SimSG/org.simsg.development/models/ContainerMetaModels/AttributeConstraintTest.ecore#//a/a_s"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/1/@symbolicParameters.1"/>
+        <eModelElement xmi:type="ecore:EReference" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a/a_x"/>
       </constraints>
     </bodies>
   </specification:Pattern>
-  <specification:Pattern name="pattern1004095028_r_lhs">
+  <specification:Pattern name="supportPattern_pattern1860250540_r6_lhs_a_a_x_unbound">
     <symbolicParameters xmi:type="emf:EMFVariable" name="a">
-      <eClassifier xmi:type="ecore:EClass" href="file:/C:/Users/sehmes/Workspaces/SimSG/org.simsg.development/models/ContainerMetaModels/AttributeConstraintTest.ecore#//a"/>
+      <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a"/>
     </symbolicParameters>
     <bodies xmi:type="specification:PatternBody">
-      <localVariables xmi:type="emf:EMFVariable" name="t">
-        <eClassifier xmi:type="ecore:EClass" href="file:/C:/Users/sehmes/Workspaces/SimSG/org.simsg.development/models/ContainerMetaModels/AttributeConstraintTest.ecore#//t"/>
+      <localVariables xmi:type="emf:EMFVariable" name="generic_agent">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.simsg.container.org/container#//Agent"/>
       </localVariables>
       <constraints xmi:type="emf:Reference">
         <parameters xmi:type="specification:ConstraintParameter" reference="/2/@symbolicParameters.0"/>
         <parameters xmi:type="specification:ConstraintParameter" reference="/2/@bodies.0/@localVariables.0"/>
-        <eModelElement xmi:type="ecore:EReference" href="file:/C:/Users/sehmes/Workspaces/SimSG/org.simsg.development/models/ContainerMetaModels/AttributeConstraintTest.ecore#//a/a_t"/>
+        <eModelElement xmi:type="ecore:EReference" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a/a_x"/>
       </constraints>
     </bodies>
   </specification:Pattern>
-  <specification:Pattern name="pattern793315160_r4_lhs">
-    <symbolicParameters xmi:type="emf:EMFVariable" name="A">
-      <eClassifier xmi:type="ecore:EClass" href="file:/C:/Users/sehmes/Workspaces/SimSG/org.simsg.development/models/ContainerMetaModels/AttributeConstraintTest.ecore#//a"/>
+  <specification:Pattern name="pattern1860250540_r6_lhs">
+    <symbolicParameters xmi:type="emf:EMFVariable" name="a">
+      <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a"/>
     </symbolicParameters>
     <bodies xmi:type="specification:PatternBody">
-      <localVariables xmi:type="emf:EMFVariable" name="t">
-        <eClassifier xmi:type="ecore:EClass" href="file:/C:/Users/sehmes/Workspaces/SimSG/org.simsg.development/models/ContainerMetaModels/AttributeConstraintTest.ecore#//t"/>
+      <localVariables xmi:type="emf:EMFVariable" name="mi">
+        <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//mi"/>
       </localVariables>
       <constraints xmi:type="emf:Reference">
         <parameters xmi:type="specification:ConstraintParameter" reference="/3/@symbolicParameters.0"/>
         <parameters xmi:type="specification:ConstraintParameter" reference="/3/@bodies.0/@localVariables.0"/>
-        <eModelElement xmi:type="ecore:EReference" href="file:/C:/Users/sehmes/Workspaces/SimSG/org.simsg.development/models/ContainerMetaModels/AttributeConstraintTest.ecore#//a/a_t"/>
+        <eModelElement xmi:type="ecore:EReference" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a/a_x_mi"/>
+      </constraints>
+      <constraints xmi:type="specification:PatternInvocationConstraint" invokedPattern="supportPattern_pattern1860250540_r6_lhs_a_a_x_unbound">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/3/@symbolicParameters.0"/>
+      </constraints>
+    </bodies>
+  </specification:Pattern>
+  <specification:Pattern name="pattern146370526_r_lhs">
+    <symbolicParameters xmi:type="emf:EMFVariable" name="a">
+      <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a"/>
+    </symbolicParameters>
+    <bodies xmi:type="specification:PatternBody">
+      <localVariables xmi:type="emf:EMFVariable" name="t">
+        <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//t"/>
+      </localVariables>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/4/@symbolicParameters.0"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/4/@bodies.0/@localVariables.0"/>
+        <eModelElement xmi:type="ecore:EReference" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a/a_t"/>
+      </constraints>
+      <constraints xmi:type="specification:PatternInvocationConstraint" invokedPattern="supportPattern_pattern146370526_r_lhs_a_a_x_unbound">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/4/@symbolicParameters.0"/>
+      </constraints>
+    </bodies>
+  </specification:Pattern>
+  <specification:Pattern name="supportPattern_pattern921760190_r5_lhs_a_a_x_unbound">
+    <symbolicParameters xmi:type="emf:EMFVariable" name="a">
+      <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a"/>
+    </symbolicParameters>
+    <bodies xmi:type="specification:PatternBody">
+      <localVariables xmi:type="emf:EMFVariable" name="generic_agent">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.simsg.container.org/container#//Agent"/>
+      </localVariables>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/5/@symbolicParameters.0"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/5/@bodies.0/@localVariables.0"/>
+        <eModelElement xmi:type="ecore:EReference" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a/a_x"/>
+      </constraints>
+    </bodies>
+  </specification:Pattern>
+  <specification:Pattern name="pattern1979313356_r9_lhs">
+    <symbolicParameters xmi:type="emf:EMFVariable" name="a">
+      <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a"/>
+    </symbolicParameters>
+    <bodies xmi:type="specification:PatternBody">
+      <localVariables xmi:type="emf:EMFVariable" name="generic_agent">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.simsg.container.org/container#//Agent"/>
+      </localVariables>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/6/@symbolicParameters.0"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/6/@bodies.0/@localVariables.0"/>
+        <eModelElement xmi:type="ecore:EReference" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a/a_x"/>
+      </constraints>
+    </bodies>
+  </specification:Pattern>
+  <specification:Pattern name="supportPattern_pattern1106131243_r3_lhs_A_a_x_unbound">
+    <symbolicParameters xmi:type="emf:EMFVariable" name="A">
+      <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a"/>
+    </symbolicParameters>
+    <bodies xmi:type="specification:PatternBody">
+      <localVariables xmi:type="emf:EMFVariable" name="generic_agent">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.simsg.container.org/container#//Agent"/>
+      </localVariables>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/7/@symbolicParameters.0"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/7/@bodies.0/@localVariables.0"/>
+        <eModelElement xmi:type="ecore:EReference" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a/a_x"/>
+      </constraints>
+    </bodies>
+  </specification:Pattern>
+  <specification:Pattern name="pattern1106131243_r3_lhs">
+    <symbolicParameters xmi:type="emf:EMFVariable" name="A">
+      <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a"/>
+    </symbolicParameters>
+    <bodies xmi:type="specification:PatternBody">
+      <localVariables xmi:type="emf:EMFVariable" name="t">
+        <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//t"/>
+      </localVariables>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/8/@symbolicParameters.0"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/8/@bodies.0/@localVariables.0"/>
+        <eModelElement xmi:type="ecore:EReference" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a/a_t"/>
+      </constraints>
+      <constraints xmi:type="specification:PatternInvocationConstraint" invokedPattern="supportPattern_pattern1106131243_r3_lhs_A_a_x_unbound">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/8/@symbolicParameters.0"/>
+      </constraints>
+    </bodies>
+  </specification:Pattern>
+  <specification:Pattern name="pattern660017404_r8_lhs">
+    <symbolicParameters xmi:type="emf:EMFVariable" name="a">
+      <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a"/>
+    </symbolicParameters>
+    <symbolicParameters xmi:type="emf:EMFVariable" name="c">
+      <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//c"/>
+    </symbolicParameters>
+    <bodies xmi:type="specification:PatternBody">
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/9/@symbolicParameters.0"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/9/@symbolicParameters.1"/>
+        <eModelElement xmi:type="ecore:EReference" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a/a_x"/>
+      </constraints>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/9/@symbolicParameters.1"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/9/@symbolicParameters.0"/>
+        <eModelElement xmi:type="ecore:EReference" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//c/c_z"/>
+      </constraints>
+    </bodies>
+  </specification:Pattern>
+  <specification:Pattern name="pattern1473611564_r4_lhs">
+    <symbolicParameters xmi:type="emf:EMFVariable" name="A">
+      <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a"/>
+    </symbolicParameters>
+    <bodies xmi:type="specification:PatternBody">
+      <localVariables xmi:type="emf:EMFVariable" name="t">
+        <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//t"/>
+      </localVariables>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/10/@symbolicParameters.0"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/10/@bodies.0/@localVariables.0"/>
+        <eModelElement xmi:type="ecore:EReference" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a/a_t"/>
+      </constraints>
+      <constraints xmi:type="specification:PatternInvocationConstraint" invokedPattern="supportPattern_pattern1473611564_r4_lhs_A_a_x_unbound">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/10/@symbolicParameters.0"/>
+      </constraints>
+    </bodies>
+  </specification:Pattern>
+  <specification:Pattern name="supportPattern_pattern146370526_r_lhs_a_a_x_unbound">
+    <symbolicParameters xmi:type="emf:EMFVariable" name="a">
+      <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a"/>
+    </symbolicParameters>
+    <bodies xmi:type="specification:PatternBody">
+      <localVariables xmi:type="emf:EMFVariable" name="generic_agent">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.simsg.container.org/container#//Agent"/>
+      </localVariables>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/11/@symbolicParameters.0"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/11/@bodies.0/@localVariables.0"/>
+        <eModelElement xmi:type="ecore:EReference" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a/a_x"/>
+      </constraints>
+    </bodies>
+  </specification:Pattern>
+  <specification:Pattern name="pattern921760190_r5_lhs">
+    <symbolicParameters xmi:type="emf:EMFVariable" name="a">
+      <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a"/>
+    </symbolicParameters>
+    <bodies xmi:type="specification:PatternBody">
+      <localVariables xmi:type="emf:EMFVariable" name="mo">
+        <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//mo"/>
+      </localVariables>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/12/@symbolicParameters.0"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/12/@bodies.0/@localVariables.0"/>
+        <eModelElement xmi:type="ecore:EReference" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a/a_x_mo"/>
+      </constraints>
+      <constraints xmi:type="specification:PatternInvocationConstraint" invokedPattern="supportPattern_pattern921760190_r5_lhs_a_a_x_unbound">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/12/@symbolicParameters.0"/>
+      </constraints>
+    </bodies>
+  </specification:Pattern>
+  <specification:Pattern name="supportPattern_pattern1473611564_r4_lhs_A_a_x_unbound">
+    <symbolicParameters xmi:type="emf:EMFVariable" name="A">
+      <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a"/>
+    </symbolicParameters>
+    <bodies xmi:type="specification:PatternBody">
+      <localVariables xmi:type="emf:EMFVariable" name="generic_agent">
+        <eClassifier xmi:type="ecore:EClass" href="http://www.simsg.container.org/container#//Agent"/>
+      </localVariables>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/13/@symbolicParameters.0"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/13/@bodies.0/@localVariables.0"/>
+        <eModelElement xmi:type="ecore:EReference" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a/a_x"/>
+      </constraints>
+    </bodies>
+  </specification:Pattern>
+  <specification:Pattern name="pattern1279309678_r2_lhs">
+    <symbolicParameters xmi:type="emf:EMFVariable" name="a">
+      <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a"/>
+    </symbolicParameters>
+    <bodies xmi:type="specification:PatternBody">
+      <localVariables xmi:type="emf:EMFVariable" name="s">
+        <eClassifier xmi:type="ecore:EClass" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//s"/>
+      </localVariables>
+      <constraints xmi:type="emf:Reference">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/14/@symbolicParameters.0"/>
+        <parameters xmi:type="specification:ConstraintParameter" reference="/14/@bodies.0/@localVariables.0"/>
+        <eModelElement xmi:type="ecore:EReference" href="file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/AttributeConstraintTest.ecore#//a/a_s"/>
+      </constraints>
+      <constraints xmi:type="specification:PatternInvocationConstraint" invokedPattern="supportPattern_pattern1279309678_r2_lhs_a_a_x_unbound">
+        <parameters xmi:type="specification:ConstraintParameter" reference="/14/@symbolicParameters.0"/>
       </constraints>
     </bodies>
   </specification:Pattern>

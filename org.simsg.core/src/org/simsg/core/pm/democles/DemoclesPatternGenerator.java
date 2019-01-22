@@ -1,6 +1,7 @@
 package org.simsg.core.pm.democles;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -73,24 +74,138 @@ public class DemoclesPatternGenerator {
 			trgPattern.getBodies().add(trgPatternBody);
 			
 			buildSignature(trgPattern, srcPattern.getSignature());
-			buildAgentStateContext(trgPattern, trgPatternBody, srcPattern.getBody());
-
+			buildAgentStateContext(trgPatternBody, srcPattern.getBody());
+			buildSiteStateContexts(trgPatternBody, srcPattern.getBody());
+			buildLinkStateContexts(trgPatternBody, srcPattern.getBody());
+			//TODO: buildLocalLinkStateContexts
+			//TODO: buildIndexedUnboundConstexts
+			//TODO: buildInjectivityConstraints
+			//TODO: buildAttributeConstraints
 		}
 		return generated;
 	}
 	
-	private void buildSignature(Pattern trgPattern,
-			GenericPatternSignature signature) {
-		signature.getSignature().forEach((variableName, type) -> {
-			EMFVariable variable = createEMFVariable(trgPattern, variableName, type);
-			
-			GenericPatternBody body = genericPatterns.get(trgPattern.getName()).getBody();
-			signatureVariables.put(body.getAgentNodeContexts().get(signature.getSignaturePattern(variableName)), 
-					variable);
-			
-		});
+	private void buildSignature(Pattern trgPattern, GenericPatternSignature signature) { 
+				signature.getSignature().forEach((variableName, type) -> {
+				EMFVariable variable = createEMFVariable(trgPattern, variableName, type);
+				GenericPatternBody body = genericPatterns.get(trgPattern.getName()).getBody();
+				signatureVariables.put(body.getAgentNodeContexts().get(signature.getSignaturePattern(variableName)), variable);
+				});
 	}
 	
+	private void buildAgentStateContext(PatternBody trgPatternBody, GenericPatternBody body) {
+		for(AgentStateContext context : body.getAgentStateContexts().values()) {
+			EMFVariable source = signatureVariables.get(context.getAgentNodeContext());
+			EMFVariable target = createLocalEMFVariable(trgPatternBody, context.getStateTypeName(), context.getStateType());
+			createEdge(trgPatternBody, source, context.getStateReference(), target);
+		}
+	}
+	
+	private void buildSiteStateContexts(PatternBody trgPatternBody, GenericPatternBody body) {
+		for(AgentNodeContext anc : body.getAgentNodeContexts().values()) {
+			for(SiteNodeContext snc : body.getSiteNodeContexts().get(anc)) {
+				SiteStateContext ssc = body.getSiteStateContexts().get(snc);
+				if(ssc == null) continue;
+				
+				EMFVariable source = signatureVariables.get(anc);
+				EMFVariable target = createLocalEMFVariable(trgPatternBody, ssc.getStateTypeName(), ssc.getStateType());
+				createEdge(trgPatternBody, source, ssc.getStateReference(), target);
+			}
+		}
+	}
+	
+	// Link state methods:
+	private void buildLinkStateContexts(PatternBody trgPatternBody, GenericPatternBody body) {
+		for(AgentNodeContext anc : body.getAgentNodeContexts().values()) {
+			for(SiteNodeContext snc : body.getSiteNodeContexts().get(anc)) {
+				List<LinkStateContext> lscList = body.getLinkStateContexts().get(snc);
+				if(lscList == null) continue;
+				
+				for(LinkStateContext lsc : lscList) {
+					buildLinkStateContext(trgPatternBody, lsc);
+				}
+			}
+		}
+	}
+	
+	private void buildLinkStateContext(PatternBody trgPatternBody, LinkStateContext lsc) {
+		switch(lsc.getStateType()) {
+			case Bound: {
+				buildBoundLink(trgPatternBody, lsc);
+				break;
+			}
+				
+			case BoundAny: {
+				buildBoundAnyLink(trgPatternBody, lsc);
+				break;
+			}
+				
+			case BoundAnyOfType: {
+				
+				break;
+			}
+				
+			case IndexedUnbound: {
+				
+				break;
+			}
+				
+			case TypedUnbound: {
+				
+				break;
+			}
+				
+			case Unbound: {
+				buildUnboundLink(trgPatternBody, lsc);
+				break;
+			}
+				
+			case WhatEver: {
+				// do nothing, since we don't care for any links
+				break;
+			}	
+		
+		}
+	}
+	
+	private void buildBoundLink(PatternBody trgPatternBody, LinkStateContext lsc) {
+		EMFVariable source = signatureVariables.get(lsc.getSiteNodeContext().getAgentNodeContext());
+		EMFVariable target = signatureVariables.get(lsc.getTargetLinkState().getSiteNodeContext().getAgentNodeContext());
+		createEdge(trgPatternBody, source, lsc.getAgentReference(), target);
+	}
+	
+	private void buildBoundAnyLink(PatternBody trgPatternBody, LinkStateContext lsc) {
+		EMFVariable source = signatureVariables.get(lsc.getSiteNodeContext().getAgentNodeContext());
+		EMFVariable target = createLocalEMFVariable(trgPatternBody, "generic_agent", lsc.getGenericTargetAgentType());
+		createEdge(trgPatternBody, source, lsc.getAgentReference(), target);
+	}
+	
+	private void buildUnboundLink(PatternBody trgPatternBody, LinkStateContext lsc) {
+		// Build the anti-pattern
+		Pattern antiPattern = specificationFactory.createPattern();
+		antiPattern.setName("supportPattern_"+trgPatternBody.getHeader().getName()+"_"+lsc.getSourceAgentVariableName()+"_"+lsc.getAgentReferenceName()+"_unbound");
+		PatternBody antiPatternBody = specificationFactory.createPatternBody();
+		antiPattern.getBodies().add(antiPatternBody);
+		// Add to global pattern collection
+		generated.put(antiPattern.getName(), antiPattern);
+		
+		EMFVariable signatureNodeVariable = createEMFVariable(antiPattern, lsc.getSourceAgentVariableName(), lsc.getSourceAgentType());
+		EMFVariable target = createLocalEMFVariable(antiPatternBody, "generic_agent", lsc.getGenericTargetAgentType());
+		createEdge(antiPatternBody, signatureNodeVariable, lsc.getAgentReference(), target);
+		
+		// Construct anti-pattern invocation
+		PatternInvocationConstraint invConstraint = specificationFactory.createPatternInvocationConstraint();
+		invConstraint.setPositive(false);
+		invConstraint.setInvokedPattern(antiPattern);
+		ConstraintParameter parameter = specificationFactory.createConstraintParameter();
+		parameter.setReference(signatureVariables.get(lsc.getSiteNodeContext().getAgentNodeContext()));
+		invConstraint.getParameters().add(parameter);
+		
+		// Add anti-pattern invocation to original pattern
+		trgPatternBody.getConstraints().add(invConstraint);
+	}
+	
+	// Helper Methods:
 	private static EMFVariable createEMFVariable(Pattern pattern, String name, EClass nodeType) {
 		EMFVariable variable = emfTypeFactory.createEMFVariable();
 		variable.setName(name);
@@ -99,6 +214,7 @@ public class DemoclesPatternGenerator {
 		return variable;
 	}
 	
+	// Helper Functions:
 	private static EMFVariable createLocalEMFVariable(PatternBody patternBody, String name, EClass nodeType) {
 		EMFVariable variable = emfTypeFactory.createEMFVariable();
 		variable.setName(name);
@@ -107,12 +223,11 @@ public class DemoclesPatternGenerator {
 		return variable;
 	}
 	
-	private void buildAgentStateContext(Pattern trgPattern, PatternBody trgPatternBody, GenericPatternBody body) {
-		for(AgentStateContext context : body.getAgentStateContexts().values()) {
-			EMFVariable source = signatureVariables.get(context.getAgentNodeContext());
-			EMFVariable target = createLocalEMFVariable(trgPatternBody, context.getStateTypeName(), context.getStateType());
-			createEdge(trgPatternBody, source, context.getStateReference(), target);
-		}
+	private static Reference createReference(PatternBody patternBody, EReference referenceContainer) {
+		Reference reference = emfTypeFactory.createReference();
+		reference.setEModelElement(referenceContainer);
+		patternBody.getConstraints().add(reference);
+		return reference;
 	}
 	
 	private static Reference createEdge(PatternBody body, ConstraintVariable source, EReference sourceContainer, ConstraintVariable target) {
@@ -125,13 +240,6 @@ public class DemoclesPatternGenerator {
 		edge.getParameters().add(parameter2);
 		
 		return edge;
-	}
-	
-	private static Reference createReference(PatternBody patternBody, EReference referenceContainer) {
-		Reference reference = emfTypeFactory.createReference();
-		reference.setEModelElement(referenceContainer);
-		patternBody.getConstraints().add(reference);
-		return reference;
 	}
 	
 	/*
