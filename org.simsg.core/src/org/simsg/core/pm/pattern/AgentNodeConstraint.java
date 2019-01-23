@@ -1,5 +1,7 @@
 package org.simsg.core.pm.pattern;
 
+import java.util.Objects;
+
 public class AgentNodeConstraint {
 	private AgentNodeContext operand1;
 	private AgentNodeContext operand2;
@@ -31,6 +33,21 @@ public class AgentNodeConstraint {
 	
 	public boolean isLocal() {
 		return local;
+	}
+	
+	@Override
+	public int hashCode() {
+		int fwd = Objects.hash(operand1, operand2);
+		int bwd = Objects.hash(operand2, operand1);
+		return (fwd>bwd)?fwd:bwd;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null) return false;
+		if(!(obj instanceof AgentNodeConstraint)) return false;
+		AgentNodeConstraint other = (AgentNodeConstraint)obj;
+		return (operand1 == other.operand1 && operand2 == other.operand2) || (operand2 == other.operand1 && operand1 == other.operand2);
 	}
 	
 }

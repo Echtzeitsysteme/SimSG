@@ -53,6 +53,10 @@ public class LinkStateContext {
 		return stateType;
 	}
 	
+	public AgentNodeContext getAgentNodeContext() {
+		return siteNodeContext.getAgentNodeContext();
+	}
+	
 	public EClass getSourceAgentType() {
 		return siteNodeContext.getAgentNodeContext().getAgentType();
 	}
@@ -80,6 +84,10 @@ public class LinkStateContext {
 	
 	public int getLinkIndex() {
 		return linkIndex;
+	}
+	
+	public AgentNodeContext getTargetAgentNodeContext() {
+		return target.getAgentNodeContext();
 	}
 	
 	public EClass getTargetAgentType() {

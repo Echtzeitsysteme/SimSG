@@ -108,7 +108,7 @@ public class DemoclesEngine implements MatchEventListener {
 		createAndRegisterPatterns();
 		updateMatches();
 	}
-
+	
 	public void updateMatches() {
 		retePatternMatcherModule.performIncrementalUpdates();
 	}

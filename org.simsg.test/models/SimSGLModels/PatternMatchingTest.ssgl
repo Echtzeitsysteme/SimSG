@@ -11,7 +11,7 @@ agent B3(x, z)
 agent A4(x{p,q}, y{m,n})
 agent B4(x{a,b}, z{o, p}) 
 agent C4(v, w)
-agent A5(x{u, v}, y)
+agent A5(x{u, v}, y) 
 agent B5(w, z{p, q})
 agent A6(x{u, v}, y, z{r, t}) 
 agent B6(u, v{l, m, n}, w{r, s, t}) 
@@ -142,6 +142,7 @@ init i27 2 p50
 init i28 3 p51
 init i29 2 {mP(c*[1]), mP(c*[1, 2]), mP(c*[2])}
 
+
 // mockup rules to register patterns as relevant for pattern generators
 rule simpleDisjunct_rule p1 -> {void, void} @ [dummy_rate] // 10*10 = 100 Matches
 rule mediumDisjunct_rule p2 -> {void, void, void, void} @ [dummy_rate] // 10 * 10 * 6 * 6 = 3600 Matches
@@ -178,6 +179,7 @@ rule mediumInjectivity_rule p26 -> {void, void, void, void, void} @ [dummy_rate]
 rule simpleInjectivityWithStates_rule p27 -> {void, void, void} @ [dummy_rate] // 7 Matches
 rule mediumInjectivityWithStates_rule p28 -> {void, void, void, void, void} @ [dummy_rate] // 4 Matches
 // Hard injectivity constraint
+
 rule hardInjectivity_rule p32 -> {void, void, void, void} @ [dummy_rate] // 16 * 14 = 224  Matches
 rule hardInjectivity2_rule p33 -> {void, void, void, void, void, void} @ [dummy_rate] // 4 * 3 = 12  Matches
 rule hardInjectivity3_rule p34 -> {void, void, void, void, void, void} @ [dummy_rate] // 12 * 10 * 8 = 960  Matches
@@ -207,6 +209,7 @@ rule simpleMixedDisjunctMultiEdge4_rule p44 -> {void, void, void, void, void} @ 
 rule mediumDisjunctMultiEdge_rule p45 -> {void, void, void} @ [dummy_rate]
 rule mediumDisjunctMultiEdge2_rule p46 -> {void, void} @ [dummy_rate]
 rule mediumDisjunctMultiEdge3_rule p47 -> {void, void} @ [dummy_rate]
+
 rule mediumDisjunctMultiEdge4_rule p51 -> {void, void, void} @ [dummy_rate]
 rule mediumDisjunctMultiEdge5_rule p52 -> {void, void, void, void} @ [dummy_rate]
 rule mediumDisjunctMultiEdge6_rule p53 -> {void, void, void} @ [dummy_rate]

@@ -1,8 +1,11 @@
 package org.simsg.core.pm.democles;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -46,9 +49,7 @@ public class DemoclesPatternGenerator {
 	Map<String, Pattern> generated;
 
 	private Map<AgentNodeContext, EMFVariable> signatureVariables;
-	//private Map<AgentNodeContext, EMFVariable> localAgentVariables;
-	//private Map<SiteNodeContext, EMFVariable> sitesVariables;
-	//private Map<SiteNodeContext, EMFVariable> linkVariables;
+	private Map<AgentNodeContext, EMFVariable> localAgentVariables;
 
 	public DemoclesPatternGenerator(Map<String, GenericPattern> genericPatterns) {
 		this.genericPatterns = genericPatterns;
@@ -57,11 +58,7 @@ public class DemoclesPatternGenerator {
 	public Map<String, Pattern> doGenerate() {
 		generated = new HashMap<String, Pattern>();
 		signatureVariables = new HashMap<AgentNodeContext, EMFVariable>();
-		//localAgentVariables = new HashMap<AgentNodeContext, EMFVariable>();
-		//sitesVariables = new HashMap<SiteNodeContext, EMFVariable>();
-		//linkVariables = new HashMap<SiteNodeContext, EMFVariable>();
-
-		//generated.put(BOUND_ANY_LINK_PATTERN_KEY, createBoundAnyLinkPattern());
+		localAgentVariables = new HashMap<AgentNodeContext, EMFVariable>();
 
 		for (GenericPattern srcPattern : genericPatterns.values()) {
 			if (srcPattern.isVoidPattern()) {
@@ -77,9 +74,8 @@ public class DemoclesPatternGenerator {
 			buildAgentStateContext(trgPatternBody, srcPattern.getBody());
 			buildSiteStateContexts(trgPatternBody, srcPattern.getBody());
 			buildLinkStateContexts(trgPatternBody, srcPattern.getBody());
-			//TODO: buildLocalLinkStateContexts
-			//TODO: buildIndexedUnboundConstexts
-			//TODO: buildInjectivityConstraints
+			buildIndexedUnboundContexts(trgPatternBody, srcPattern.getBody());
+			buildInjectivityConstraints(trgPatternBody, srcPattern.getBody());
 			//TODO: buildAttributeConstraints
 		}
 		return generated;
@@ -93,6 +89,27 @@ public class DemoclesPatternGenerator {
 				});
 	}
 	
+	private void buildInjectivityConstraints(PatternBody trgPatternBody, GenericPatternBody body) {
+		for (AgentNodeConstraint constraint : body.getInjectivityConstraints()) {
+			EMFVariable signatureNode1 = signatureVariables.get(constraint.getOperand1());
+			EMFVariable signatureNode2 = signatureVariables.get(constraint.getOperand2());
+			if(signatureNode2 == null) {
+				signatureNode2 = localAgentVariables.get(constraint.getOperand2());
+			}
+			// create unequal constraint
+			RelationalConstraint injectivityConstraint = relationalConstraintFactory.createUnequal();
+			trgPatternBody.getConstraints().add(injectivityConstraint);
+			
+			// create and add constraint parameter -> aka nodes
+			ConstraintParameter parameter = specificationFactory.createConstraintParameter();
+			parameter.setReference(signatureNode1);
+			injectivityConstraint.getParameters().add(parameter);
+			ConstraintParameter parameter2 = specificationFactory.createConstraintParameter();
+			parameter2.setReference(signatureNode2);
+			injectivityConstraint.getParameters().add(parameter2);
+		}
+	}
+	
 	private void buildAgentStateContext(PatternBody trgPatternBody, GenericPatternBody body) {
 		for(AgentStateContext context : body.getAgentStateContexts().values()) {
 			EMFVariable source = signatureVariables.get(context.getAgentNodeContext());
@@ -103,6 +120,7 @@ public class DemoclesPatternGenerator {
 	
 	private void buildSiteStateContexts(PatternBody trgPatternBody, GenericPatternBody body) {
 		for(AgentNodeContext anc : body.getAgentNodeContexts().values()) {
+			if(body.getSiteNodeContexts().get(anc) == null) continue;
 			for(SiteNodeContext snc : body.getSiteNodeContexts().get(anc)) {
 				SiteStateContext ssc = body.getSiteStateContexts().get(snc);
 				if(ssc == null) continue;
@@ -117,6 +135,7 @@ public class DemoclesPatternGenerator {
 	// Link state methods:
 	private void buildLinkStateContexts(PatternBody trgPatternBody, GenericPatternBody body) {
 		for(AgentNodeContext anc : body.getAgentNodeContexts().values()) {
+			if(body.getSiteNodeContexts().get(anc) == null) continue;
 			for(SiteNodeContext snc : body.getSiteNodeContexts().get(anc)) {
 				List<LinkStateContext> lscList = body.getLinkStateContexts().get(snc);
 				if(lscList == null) continue;
@@ -125,6 +144,12 @@ public class DemoclesPatternGenerator {
 					buildLinkStateContext(trgPatternBody, lsc);
 				}
 			}
+		}
+	}
+	
+	private void buildIndexedUnboundContexts(PatternBody trgPatternBody, GenericPatternBody body) {
+		for(Entry<LinkStateContext, LinkStateContext> unboundPair : body.getIndexedFreeLinkStateContexts().values()) {
+			buildIndexedUnboundContext(trgPatternBody, unboundPair);
 		}
 	}
 	
@@ -141,17 +166,12 @@ public class DemoclesPatternGenerator {
 			}
 				
 			case BoundAnyOfType: {
-				
+				buildBoundAnyOfTypeLink(trgPatternBody, lsc);
 				break;
 			}
-				
-			case IndexedUnbound: {
-				
-				break;
-			}
-				
+			
 			case TypedUnbound: {
-				
+				buildTypedUnboundLink(trgPatternBody, lsc);
 				break;
 			}
 				
@@ -160,10 +180,9 @@ public class DemoclesPatternGenerator {
 				break;
 			}
 				
-			case WhatEver: {
-				// do nothing, since we don't care for any links
-				break;
-			}	
+			default: {
+				return;
+			}
 		
 		}
 	}
@@ -180,10 +199,25 @@ public class DemoclesPatternGenerator {
 		createEdge(trgPatternBody, source, lsc.getAgentReference(), target);
 	}
 	
+	private void buildBoundAnyOfTypeLink(PatternBody trgPatternBody, LinkStateContext lsc) {
+		// required variables for edge from signature node to local node
+		EMFVariable signatureSource = signatureVariables.get(lsc.getSiteNodeContext().getAgentNodeContext());
+		EMFVariable localTarget = createLocalEMFVariable(trgPatternBody, lsc.getTargetAgentVariableName(), lsc.getTargetAgentType());
+		localAgentVariables.put(lsc.getTargetLinkState().getSiteNodeContext().getAgentNodeContext(), localTarget);
+		// create edge from signature node to local node
+		createEdge(trgPatternBody, signatureSource, lsc.getAgentReference(), localTarget);
+		
+		// required variables for edge from local node to signature node
+		EMFVariable localSource = localTarget;
+		EMFVariable signatureTarget = signatureSource;
+		// edge from local node to signature node
+		createEdge(trgPatternBody, localSource, lsc.getTargetLinkState().getAgentReference(), signatureTarget);
+	}
+	
 	private void buildUnboundLink(PatternBody trgPatternBody, LinkStateContext lsc) {
 		// Build the anti-pattern
 		Pattern antiPattern = specificationFactory.createPattern();
-		antiPattern.setName("supportPattern_"+trgPatternBody.getHeader().getName()+"_"+lsc.getSourceAgentVariableName()+"_"+lsc.getAgentReferenceName()+"_unbound");
+		antiPattern.setName("supportPattern_"+trgPatternBody.getHeader().getName()+"_"+lsc.getAgentReferenceName()+"_unbound_"+lsc.hashCode());
 		PatternBody antiPatternBody = specificationFactory.createPatternBody();
 		antiPattern.getBodies().add(antiPatternBody);
 		// Add to global pattern collection
@@ -201,6 +235,100 @@ public class DemoclesPatternGenerator {
 		parameter.setReference(signatureVariables.get(lsc.getSiteNodeContext().getAgentNodeContext()));
 		invConstraint.getParameters().add(parameter);
 		
+		// Add anti-pattern invocation to original pattern
+		trgPatternBody.getConstraints().add(invConstraint);
+	}
+	
+	private void buildIndexedUnboundContext(PatternBody trgPatternBody, Entry<LinkStateContext, LinkStateContext> unboundPair) {
+		// Build the anti-pattern
+		Pattern antiPattern = specificationFactory.createPattern();
+		antiPattern.setName("supportPattern_"+trgPatternBody.getHeader().getName()+"_unboundIndexed_"+unboundPair.hashCode());
+		PatternBody antiPatternBody = specificationFactory.createPatternBody();
+		antiPattern.getBodies().add(antiPatternBody);
+		// Add to global pattern collection
+		generated.put(antiPattern.getName(), antiPattern);
+		
+		LinkStateContext fwdLsc = unboundPair.getKey();
+		LinkStateContext bwdLsc = unboundPair.getValue();
+		EMFVariable sourceFwd = createEMFVariable(antiPattern, fwdLsc.getSourceAgentVariableName(), fwdLsc.getSourceAgentType());
+		EMFVariable targetFwd = createEMFVariable(antiPattern, fwdLsc.getTargetAgentVariableName(), fwdLsc.getTargetAgentType());
+		createEdge(antiPatternBody, sourceFwd, fwdLsc.getAgentReference(), targetFwd);
+		createEdge(antiPatternBody, targetFwd, bwdLsc.getAgentReference(), sourceFwd);
+		
+		// Construct anti-pattern invocation
+		PatternInvocationConstraint invConstraint = specificationFactory.createPatternInvocationConstraint();
+		invConstraint.setPositive(false);
+		invConstraint.setInvokedPattern(antiPattern);
+		ConstraintParameter parameterFwd = specificationFactory.createConstraintParameter();
+		parameterFwd.setReference(signatureVariables.get(fwdLsc.getSiteNodeContext().getAgentNodeContext()));
+		invConstraint.getParameters().add(parameterFwd);
+		ConstraintParameter parameterBwd = specificationFactory.createConstraintParameter();
+		parameterBwd.setReference(signatureVariables.get(bwdLsc.getSiteNodeContext().getAgentNodeContext()));
+		invConstraint.getParameters().add(parameterBwd);
+				
+		// Add anti-pattern invocation to original pattern
+		trgPatternBody.getConstraints().add(invConstraint);
+	}
+	
+	private void buildTypedUnboundLink(PatternBody trgPatternBody, LinkStateContext lsc) {
+		// Build the anti-pattern
+		Pattern antiPattern = specificationFactory.createPattern();
+		antiPattern.setName("supportPattern_"+trgPatternBody.getHeader().getName()+"_"+lsc.getAgentReferenceName()+"_typedUnbound_"+lsc.hashCode());
+		PatternBody antiPatternBody = specificationFactory.createPatternBody();
+		antiPattern.getBodies().add(antiPatternBody);
+		// Add to global pattern collection
+		generated.put(antiPattern.getName(), antiPattern);
+		
+		// Find other nodes of this type in the same sub-pattern
+		List<AgentNodeContext> otherContextNodes = new LinkedList<AgentNodeContext>();
+		AgentNodeContext currentAnc = lsc.getSiteNodeContext().getAgentNodeContext();
+		for(AgentNodeContext anc : genericPatterns.get(currentAnc.getPatternName()).getBody().getSubPattern(currentAnc)) {
+			if(anc.getAgentType().equals(currentAnc.getAgentType()) && anc!=currentAnc) {
+				otherContextNodes.add(anc);
+			}
+		}
+		
+		// Create required signature variable
+		EMFVariable signatureNodeVariable = createEMFVariable(antiPattern, lsc.getSourceAgentVariableName(), lsc.getSourceAgentType());
+		// Create additional context nodes
+		LinkedList<EMFVariable> otherVariables = new LinkedList<EMFVariable>();
+		for(AgentNodeContext otherAnc : otherContextNodes) {
+			otherVariables.add(createEMFVariable(antiPattern, otherAnc.getAgentVariableName(), otherAnc.getAgentType()));
+		}
+		
+		// Create Edge
+		EMFVariable target = createLocalEMFVariable(antiPatternBody, "generic_agent_type", lsc.getTargetAgentType());
+		createEdge(antiPatternBody, signatureNodeVariable, lsc.getAgentReference(), target);
+		
+		// Create injectivity constraints
+		for(EMFVariable otherNode: otherVariables) {
+			// create unequal constraint
+			RelationalConstraint injectivityConstraint = relationalConstraintFactory.createUnequal();
+			antiPatternBody.getConstraints().add(injectivityConstraint);
+						
+			// create and add constraint parameter -> aka nodes
+			ConstraintParameter parameter = specificationFactory.createConstraintParameter();
+			parameter.setReference(otherNode);
+			injectivityConstraint.getParameters().add(parameter);
+			ConstraintParameter parameter2 = specificationFactory.createConstraintParameter();
+			parameter2.setReference(target);
+			injectivityConstraint.getParameters().add(parameter2);
+		}
+		
+		// Construct anti-pattern invocation
+		PatternInvocationConstraint invConstraint = specificationFactory.createPatternInvocationConstraint();
+		invConstraint.setPositive(false);
+		invConstraint.setInvokedPattern(antiPattern);
+		ConstraintParameter parameter = specificationFactory.createConstraintParameter();
+		parameter.setReference(signatureVariables.get(lsc.getSiteNodeContext().getAgentNodeContext()));
+		invConstraint.getParameters().add(parameter);
+		// Add constraints for additional signature variables
+		for(AgentNodeContext otherAnc : otherContextNodes) {
+			ConstraintParameter parameterN = specificationFactory.createConstraintParameter();
+			parameterN.setReference(signatureVariables.get(otherAnc));
+			invConstraint.getParameters().add(parameterN);
+		}
+				
 		// Add anti-pattern invocation to original pattern
 		trgPatternBody.getConstraints().add(invConstraint);
 	}
