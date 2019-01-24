@@ -29,6 +29,8 @@ import org.simsg.container.ContainerPackage;
 import org.simsg.core.pm.pattern.AgentNodeConstraint;
 import org.simsg.core.pm.pattern.AgentNodeContext;
 import org.simsg.core.pm.pattern.AgentStateContext;
+import org.simsg.core.pm.pattern.AttributeConstraint;
+import org.simsg.core.pm.pattern.AttributeContext;
 import org.simsg.core.pm.pattern.ConstraintType;
 import org.simsg.core.pm.pattern.GenericPattern;
 import org.simsg.core.pm.pattern.GenericPatternBody;
@@ -36,6 +38,11 @@ import org.simsg.core.pm.pattern.GenericPatternSignature;
 import org.simsg.core.pm.pattern.LinkStateContext;
 import org.simsg.core.pm.pattern.SiteNodeContext;
 import org.simsg.core.pm.pattern.SiteStateContext;
+import org.simsg.core.pm.pattern.arithmetic.OperandValue;
+import org.simsg.core.pm.pattern.arithmetic.OperandVariable;
+import org.simsg.core.pm.pattern.arithmetic.OperationComponent;
+import org.simsg.core.pm.pattern.arithmetic.OperatorCompare;
+import org.simsg.core.pm.pattern.arithmetic.OperatorType;
 
 public class DemoclesPatternGenerator {
 	
@@ -59,7 +66,8 @@ public class DemoclesPatternGenerator {
 		generated = new HashMap<String, Pattern>();
 		signatureVariables = new HashMap<AgentNodeContext, EMFVariable>();
 		localAgentVariables = new HashMap<AgentNodeContext, EMFVariable>();
-
+		Map<AttributeContext, EMFVariable> localAttributeVariables = new HashMap<AttributeContext, EMFVariable>();
+		
 		for (GenericPattern srcPattern : genericPatterns.values()) {
 			if (srcPattern.isVoidPattern()) {
 				continue;
@@ -76,7 +84,8 @@ public class DemoclesPatternGenerator {
 			buildLinkStateContexts(trgPatternBody, srcPattern.getBody());
 			buildIndexedUnboundContexts(trgPatternBody, srcPattern.getBody());
 			buildInjectivityConstraints(trgPatternBody, srcPattern.getBody());
-			//TODO: buildAttributeConstraints
+			buildAttributeNodes(trgPatternBody, localAttributeVariables, srcPattern.getBody());
+			buildAttributeConstraints(trgPatternBody, localAttributeVariables, srcPattern.getBody());
 		}
 		return generated;
 	}
@@ -130,6 +139,88 @@ public class DemoclesPatternGenerator {
 				createEdge(trgPatternBody, source, ssc.getStateReference(), target);
 			}
 		}
+	}
+	
+	private void buildAttributeNodes(PatternBody trgPatternBody, Map<AttributeContext, EMFVariable> localAttributeVariables, GenericPatternBody body) {
+		for(AttributeContext ac : body.getAttributeContexts()) {
+			EMFVariable signatureNode = signatureVariables.get(ac.getOwningAgentNode());
+			// Create Attribute
+			Attribute attribute = emfTypeFactory.createAttribute();
+			attribute.setEModelElement(ac.getAttribute());
+			trgPatternBody.getConstraints().add(attribute);
+			// Create Attribute variable
+			EMFVariable attributeVariable = createLocalEMFVariable(trgPatternBody, ac.getAttributeVariableName(), ac.getAttribute().getEAttributeType());
+			// Set Constraint Parameter -> Checks attribute existence and provides the attribute as local variable
+			ConstraintParameter parameter = specificationFactory.createConstraintParameter();
+			parameter.setReference(signatureNode);
+			attribute.getParameters().add(parameter);
+			ConstraintParameter parameter2 = specificationFactory.createConstraintParameter();
+			parameter2.setReference(attributeVariable);
+			attribute.getParameters().add(parameter2);
+			localAttributeVariables.put(ac, attributeVariable);
+		}
+	}
+	
+	private void buildAttributeConstraints(PatternBody trgPatternBody, Map<AttributeContext, EMFVariable> localAttributeVariables, GenericPatternBody body) {
+		for(AttributeConstraint anc : body.getAttributeConstraints()) {
+			if(anc.getLeftOperations().size()>1) {
+				System.out.println("Waring: Complex attribute constraints not supportet while using democles. (Switch to VIATRA)");
+				continue;
+			}
+			if(anc.getRightOperations().size()>1) {
+				System.out.println("Waring: Complex attribute constraints not supportet while using democles. (Switch to VIATRA)");
+				continue;
+			}
+			OperationComponent opL = anc.getLeftOperations().get(0);
+			OperationComponent opR = anc.getRightOperations().get(0);
+			
+			if(opL instanceof OperandVariable && opR instanceof OperandValue) {
+				buildConstantAttributeConstraint(trgPatternBody,  localAttributeVariables, anc, (OperandVariable)opL, (OperandValue)opR);
+			}else if(opR instanceof OperandVariable && opL instanceof OperandValue) {
+				buildConstantAttributeConstraint(trgPatternBody,  localAttributeVariables, anc, (OperandVariable)opR, (OperandValue)opL);
+			}else if(opL instanceof OperandVariable && opR instanceof OperandVariable) {
+				buildAttributeAttributeConstraint(trgPatternBody,  localAttributeVariables, anc, (OperandVariable)opL, (OperandVariable)opR);
+			}else {
+				System.out.println("Waring: Complex attribute constraints not supportet while using democles. (Switch to VIATRA)");
+				continue;
+			}
+		}
+	}
+	
+	private void buildConstantAttributeConstraint(PatternBody trgPatternBody,  Map<AttributeContext, EMFVariable> localAttributeVariables, 
+			AttributeConstraint anc, OperandVariable operand, OperandValue value) {
+		// Retrieve / Build variables
+		EMFVariable attributeVariable = localAttributeVariables.get(operand.getAttributeContext());
+		Constant constant = specificationFactory.createConstant();
+		constant.setValue(value.getParsedValue());
+		trgPatternBody.getConstants().add(constant);
+		// Build relational constraint
+		OperatorCompare comparator = (OperatorCompare)anc.getComparator();
+		RelationalConstraint constraint = createRelationalConstraint(trgPatternBody, comparator.getType());
+		// Set parameter values
+		ConstraintParameter parameter = specificationFactory.createConstraintParameter();
+		parameter.setReference(attributeVariable);
+		constraint.getParameters().add(parameter);
+		ConstraintParameter parameter2 = specificationFactory.createConstraintParameter();
+		parameter2.setReference(constant);
+		constraint.getParameters().add(parameter2);
+	}
+	
+	private void buildAttributeAttributeConstraint(PatternBody trgPatternBody,  Map<AttributeContext, EMFVariable> localAttributeVariables, 
+			AttributeConstraint anc, OperandVariable operand1, OperandVariable operand2) {
+		// Retrieve / Build variables
+		EMFVariable attributeVariable1 = localAttributeVariables.get(operand1.getAttributeContext());
+		EMFVariable attributeVariable2 = localAttributeVariables.get(operand2.getAttributeContext());
+		// Build relational constraint
+		OperatorCompare comparator = (OperatorCompare)anc.getComparator();
+		RelationalConstraint constraint = createRelationalConstraint(trgPatternBody, comparator.getType());
+		// Set parameter values
+		ConstraintParameter parameter = specificationFactory.createConstraintParameter();
+		parameter.setReference(attributeVariable1);
+		constraint.getParameters().add(parameter);
+		ConstraintParameter parameter2 = specificationFactory.createConstraintParameter();
+		parameter2.setReference(attributeVariable2);
+		constraint.getParameters().add(parameter2);
 	}
 	
 	// Link state methods:
@@ -334,7 +425,7 @@ public class DemoclesPatternGenerator {
 	}
 	
 	// Helper Functions:
-	private static EMFVariable createEMFVariable(Pattern pattern, String name, EClass nodeType) {
+	private static EMFVariable createEMFVariable(Pattern pattern, String name, EClassifier nodeType) {
 		EMFVariable variable = emfTypeFactory.createEMFVariable();
 		variable.setName(name);
 		variable.setEClassifier(nodeType);
@@ -342,7 +433,7 @@ public class DemoclesPatternGenerator {
 		return variable;
 	}
 
-	private static EMFVariable createLocalEMFVariable(PatternBody patternBody, String name, EClass nodeType) {
+	private static EMFVariable createLocalEMFVariable(PatternBody patternBody, String name, EClassifier nodeType) {
 		EMFVariable variable = emfTypeFactory.createEMFVariable();
 		variable.setName(name);
 		variable.setEClassifier(nodeType);
@@ -367,6 +458,38 @@ public class DemoclesPatternGenerator {
 		edge.getParameters().add(parameter2);
 		
 		return edge;
+	}
+	
+	private static RelationalConstraint createRelationalConstraint(PatternBody body, OperatorType type) {
+		RelationalConstraint constraint = null;
+		switch (type) {
+			case equals: {
+				constraint = relationalConstraintFactory.createEqual();
+				break;
+			}
+			case ge: {
+				constraint = relationalConstraintFactory.createLarger();
+				break;
+			}
+			case geq: {
+				constraint = relationalConstraintFactory.createLargerOrEqual();
+				break;
+			}	
+			case le: {
+				constraint = relationalConstraintFactory.createSmaller();
+				break;
+			}	
+			case leq: {
+				constraint = relationalConstraintFactory.createSmallerOrEqual();
+				break;
+			}	
+			default: {
+				System.out.println("Unknown comparator given: \""+type+"\" -> Ignoring given constraint.");
+				return null;
+			}
+		}
+		body.getConstraints().add(constraint);
+		return constraint;
 	}
 	
 	/*
