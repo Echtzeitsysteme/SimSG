@@ -29,7 +29,7 @@ public class ComplexTerminationCondition extends SimulationTerminationCondition 
 		}
 		*/
 		if(state.getTime()>= currentTStep) {
-			System.out.println(Math.ceil(100.0*state.getTime()/maxElapsedTime) + "% of simulation time completed!");
+			System.out.println((int)((int)(1000.0*state.getTime())/(10.0*maxElapsedTime)) + "% of simulation time completed!");
 			currentTStep += tStatusStep;
 		}
 		if((state.getIterations()>=maxIterations) || (state.getTime() >= maxElapsedTime)) {
