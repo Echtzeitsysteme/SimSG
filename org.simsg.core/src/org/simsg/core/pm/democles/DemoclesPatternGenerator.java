@@ -157,16 +157,8 @@ public class DemoclesPatternGenerator {
 	
 	private void buildAttributeConstraints(PatternBody trgPatternBody, Map<AttributeContext, EMFVariable> localAttributeVariables, GenericPatternBody body) {
 		for(AttributeConstraint anc : body.getAttributeConstraints()) {
-			if(anc.getLeftOperations().size()>1) {
-				System.out.println("Waring: Complex attribute constraints not supportet while using democles. (Switch to VIATRA)");
-				continue;
-			}
-			if(anc.getRightOperations().size()>1) {
-				System.out.println("Waring: Complex attribute constraints not supportet while using democles. (Switch to VIATRA)");
-				continue;
-			}
-			OperationComponent opL = anc.getLeftOperations().get(0);
-			OperationComponent opR = anc.getRightOperations().get(0);
+			OperationComponent opL = anc.getLeftOperation();
+			OperationComponent opR = anc.getRightOperation();
 			
 			if(opL instanceof OperandVariable && opR instanceof OperandValue) {
 				buildConstantAttributeConstraint(trgPatternBody,  localAttributeVariables, anc, (OperandVariable)opL, (OperandValue)opR);
@@ -175,7 +167,7 @@ public class DemoclesPatternGenerator {
 			}else if(opL instanceof OperandVariable && opR instanceof OperandVariable) {
 				buildAttributeAttributeConstraint(trgPatternBody,  localAttributeVariables, anc, (OperandVariable)opL, (OperandVariable)opR);
 			}else {
-				System.out.println("Waring: Complex attribute constraints not supportet while using democles. (Switch to VIATRA)");
+				System.out.println("Waring("+trgPatternBody.getHeader().getName()+"): Complex attribute constraints not supportet while using democles. (Switch to VIATRA)");
 				continue;
 			}
 		}

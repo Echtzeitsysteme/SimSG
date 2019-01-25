@@ -893,9 +893,9 @@ ruleSites returns [EObject current=null]
 			}
 		)
 		(
-			otherlv_1='('
+			this_LBRACE_1=RULE_LBRACE
 			{
-				newLeafNode(otherlv_1, grammarAccess.getSitesAccess().getLeftParenthesisKeyword_1_0());
+				newLeafNode(this_LBRACE_1, grammarAccess.getSitesAccess().getLBRACETerminalRuleCall_1_0());
 			}
 			(
 				(
@@ -941,9 +941,9 @@ ruleSites returns [EObject current=null]
 					)
 				)
 			)*
-			otherlv_5=')'
+			this_RBRACE_5=RULE_RBRACE
 			{
-				newLeafNode(otherlv_5, grammarAccess.getSitesAccess().getRightParenthesisKeyword_1_3());
+				newLeafNode(this_RBRACE_5, grammarAccess.getSitesAccess().getRBRACETerminalRuleCall_1_3());
 			}
 		)?
 	)
@@ -1364,9 +1364,9 @@ rulePatternVariable returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_2='='
+		this_EQUALS_2=RULE_EQUALS
 		{
-			newLeafNode(otherlv_2, grammarAccess.getPatternVariableAccess().getEqualsSignKeyword_2());
+			newLeafNode(this_EQUALS_2, grammarAccess.getPatternVariableAccess().getEQUALSTerminalRuleCall_2());
 		}
 		(
 			(
@@ -1428,9 +1428,9 @@ ruleArithmeticVariable returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_2='='
+		this_EQUALS_2=RULE_EQUALS
 		{
-			newLeafNode(otherlv_2, grammarAccess.getArithmeticVariableAccess().getEqualsSignKeyword_2());
+			newLeafNode(this_EQUALS_2, grammarAccess.getArithmeticVariableAccess().getEQUALSTerminalRuleCall_2());
 		}
 		(
 			(
@@ -1634,9 +1634,9 @@ ruleIndexedFreeLink returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_2='('
+		this_LBRACE_2=RULE_LBRACE
 		{
-			newLeafNode(otherlv_2, grammarAccess.getIndexedFreeLinkAccess().getLeftParenthesisKeyword_2());
+			newLeafNode(this_LBRACE_2, grammarAccess.getIndexedFreeLinkAccess().getLBRACETerminalRuleCall_2());
 		}
 		(
 			(
@@ -1657,9 +1657,9 @@ ruleIndexedFreeLink returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_4=')'
+		this_RBRACE_4=RULE_RBRACE
 		{
-			newLeafNode(otherlv_4, grammarAccess.getIndexedFreeLinkAccess().getRightParenthesisKeyword_4());
+			newLeafNode(this_RBRACE_4, grammarAccess.getIndexedFreeLinkAccess().getRBRACETerminalRuleCall_4());
 		}
 	)
 ;
@@ -1708,9 +1708,9 @@ ruleTypedFreeLink returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_2='('
+		this_LBRACE_2=RULE_LBRACE
 		{
-			newLeafNode(otherlv_2, grammarAccess.getTypedFreeLinkAccess().getLeftParenthesisKeyword_2());
+			newLeafNode(this_LBRACE_2, grammarAccess.getTypedFreeLinkAccess().getLBRACETerminalRuleCall_2());
 		}
 		(
 			(
@@ -1728,9 +1728,9 @@ ruleTypedFreeLink returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_4=')'
+		this_RBRACE_4=RULE_RBRACE
 		{
-			newLeafNode(otherlv_4, grammarAccess.getTypedFreeLinkAccess().getRightParenthesisKeyword_4());
+			newLeafNode(this_RBRACE_4, grammarAccess.getTypedFreeLinkAccess().getRBRACETerminalRuleCall_4());
 		}
 	)
 ;
@@ -2782,9 +2782,9 @@ ruleSitePatterns returns [EObject current=null]
 					$current);
 			}
 		)
-		otherlv_1='('
+		this_LBRACE_1=RULE_LBRACE
 		{
-			newLeafNode(otherlv_1, grammarAccess.getSitePatternsAccess().getLeftParenthesisKeyword_1());
+			newLeafNode(this_LBRACE_1, grammarAccess.getSitePatternsAccess().getLBRACETerminalRuleCall_1());
 		}
 		(
 			(
@@ -2832,9 +2832,9 @@ ruleSitePatterns returns [EObject current=null]
 				)
 			)*
 		)?
-		otherlv_5=')'
+		this_RBRACE_5=RULE_RBRACE
 		{
-			newLeafNode(otherlv_5, grammarAccess.getSitePatternsAccess().getRightParenthesisKeyword_3());
+			newLeafNode(this_RBRACE_5, grammarAccess.getSitePatternsAccess().getRBRACETerminalRuleCall_3());
 		}
 	)
 ;
@@ -3784,6 +3784,22 @@ ruleUnaryOperation returns [EObject current=null]
 							"org.simsg.simsgl.SimSGL.SquareRootOperation");
 						afterParserOrEnumRuleCall();
 					}
+					    |
+					{
+						newCompositeNode(grammarAccess.getUnaryOperationAccess().getOperationBraceOperationParserRuleCall_1_0_2());
+					}
+					lv_operation_1_3=ruleBraceOperation
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getUnaryOperationRule());
+						}
+						set(
+							$current,
+							"operation",
+							lv_operation_1_3,
+							"org.simsg.simsgl.SimSGL.BraceOperation");
+						afterParserOrEnumRuleCall();
+					}
 				)
 			)
 		)
@@ -3816,9 +3832,9 @@ ruleAbsoluteOperation returns [EObject current=null]
 					$current);
 			}
 		)
-		otherlv_1='|'
+		this_ABS_1=RULE_ABS
 		{
-			newLeafNode(otherlv_1, grammarAccess.getAbsoluteOperationAccess().getVerticalLineKeyword_1());
+			newLeafNode(this_ABS_1, grammarAccess.getAbsoluteOperationAccess().getABSTerminalRuleCall_1());
 		}
 		(
 			(
@@ -3839,9 +3855,9 @@ ruleAbsoluteOperation returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_3='|'
+		this_ABS_3=RULE_ABS
 		{
-			newLeafNode(otherlv_3, grammarAccess.getAbsoluteOperationAccess().getVerticalLineKeyword_3());
+			newLeafNode(this_ABS_3, grammarAccess.getAbsoluteOperationAccess().getABSTerminalRuleCall_3());
 		}
 	)
 ;
@@ -3876,9 +3892,9 @@ ruleSquareRootOperation returns [EObject current=null]
 		{
 			newLeafNode(this_SQRT_1, grammarAccess.getSquareRootOperationAccess().getSQRTTerminalRuleCall_1());
 		}
-		otherlv_2='('
+		this_LBRACE_2=RULE_LBRACE
 		{
-			newLeafNode(otherlv_2, grammarAccess.getSquareRootOperationAccess().getLeftParenthesisKeyword_2());
+			newLeafNode(this_LBRACE_2, grammarAccess.getSquareRootOperationAccess().getLBRACETerminalRuleCall_2());
 		}
 		(
 			(
@@ -3899,9 +3915,65 @@ ruleSquareRootOperation returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_4=')'
+		this_RBRACE_4=RULE_RBRACE
 		{
-			newLeafNode(otherlv_4, grammarAccess.getSquareRootOperationAccess().getRightParenthesisKeyword_4());
+			newLeafNode(this_RBRACE_4, grammarAccess.getSquareRootOperationAccess().getRBRACETerminalRuleCall_4());
+		}
+	)
+;
+
+// Entry rule entryRuleBraceOperation
+entryRuleBraceOperation returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getBraceOperationRule()); }
+	iv_ruleBraceOperation=ruleBraceOperation
+	{ $current=$iv_ruleBraceOperation.current; }
+	EOF;
+
+// Rule BraceOperation
+ruleBraceOperation returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				/* */
+			}
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getBraceOperationAccess().getBraceOperationAction_0(),
+					$current);
+			}
+		)
+		this_LBRACE_1=RULE_LBRACE
+		{
+			newLeafNode(this_LBRACE_1, grammarAccess.getBraceOperationAccess().getLBRACETerminalRuleCall_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getBraceOperationAccess().getOperationOperationLeftParserRuleCall_2_0());
+				}
+				lv_operation_2_0=ruleOperationLeft
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getBraceOperationRule());
+					}
+					set(
+						$current,
+						"operation",
+						lv_operation_2_0,
+						"org.simsg.simsgl.SimSGL.OperationLeft");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		this_RBRACE_3=RULE_RBRACE
+		{
+			newLeafNode(this_RBRACE_3, grammarAccess.getBraceOperationAccess().getRBRACETerminalRuleCall_3());
 		}
 	)
 ;
@@ -5105,9 +5177,9 @@ ruleIterations returns [EObject current=null]
 		{
 			newLeafNode(otherlv_0, grammarAccess.getIterationsAccess().getIterationsKeyword_0());
 		}
-		otherlv_1='='
+		this_EQUALS_1=RULE_EQUALS
 		{
-			newLeafNode(otherlv_1, grammarAccess.getIterationsAccess().getEqualsSignKeyword_1());
+			newLeafNode(this_EQUALS_1, grammarAccess.getIterationsAccess().getEQUALSTerminalRuleCall_1());
 		}
 		(
 			(
@@ -5151,9 +5223,9 @@ ruleTime returns [EObject current=null]
 		{
 			newLeafNode(otherlv_0, grammarAccess.getTimeAccess().getTimeKeyword_0());
 		}
-		otherlv_1='='
+		this_EQUALS_1=RULE_EQUALS
 		{
-			newLeafNode(otherlv_1, grammarAccess.getTimeAccess().getEqualsSignKeyword_1());
+			newLeafNode(this_EQUALS_1, grammarAccess.getTimeAccess().getEQUALSTerminalRuleCall_1());
 		}
 		(
 			(
@@ -5193,9 +5265,9 @@ rulePopulation returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='|'
+		this_ABS_0=RULE_ABS
 		{
-			newLeafNode(otherlv_0, grammarAccess.getPopulationAccess().getVerticalLineKeyword_0());
+			newLeafNode(this_ABS_0, grammarAccess.getPopulationAccess().getABSTerminalRuleCall_0());
 		}
 		(
 			(
@@ -5216,9 +5288,9 @@ rulePopulation returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_2='|'
+		this_ABS_2=RULE_ABS
 		{
-			newLeafNode(otherlv_2, grammarAccess.getPopulationAccess().getVerticalLineKeyword_2());
+			newLeafNode(this_ABS_2, grammarAccess.getPopulationAccess().getABSTerminalRuleCall_2());
 		}
 		otherlv_3='==>'
 		{
@@ -5382,7 +5454,7 @@ RULE_FLOAT_ATTRIBUTE : 'FLOAT';
 
 RULE_INT_ATTRIBUTE : 'INT';
 
-RULE_EQUALS : '==';
+RULE_EQUALS : '=';
 
 RULE_GREATER : '>';
 
@@ -5401,6 +5473,12 @@ RULE_POW : '^';
 RULE_MULT : '*';
 
 RULE_SQRT : 'sqrt';
+
+RULE_LBRACE : '(';
+
+RULE_RBRACE : ')';
+
+RULE_ABS : '|';
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

@@ -20,6 +20,7 @@ import org.simsg.simsgl.simSGL.Operation;
 import org.simsg.simsgl.simSGL.OperationLeft;
 import org.simsg.simsgl.simSGL.OperationRight;
 import org.simsg.simsgl.simSGL.SquareRootOperation;
+import org.simsg.simsgl.simSGL.BraceOperation;
 import org.simsg.simsgl.simSGL.UnaryOperation;
 import org.simsg.simsgl.simSGL.ValidAgentPattern;
 import org.simsg.simsgl.utils.PatternUtils;
@@ -71,9 +72,12 @@ public class AttributeChangeTemplate {
 		if(uOp.getOperation() instanceof AbsoluteOperation) {
 			Operation child = ((AbsoluteOperation)uOp.getOperation()).getOperation();
 			return () -> Math.abs(createOperator((OperationLeft)child).getAsDouble());
-		}else {
+		}else if (uOp.getOperation() instanceof SquareRootOperation) {
 			Operation child = ((SquareRootOperation)uOp.getOperation()).getOperation();
 			return () -> Math.sqrt(createOperator((OperationLeft)child).getAsDouble());
+		}else {
+			Operation child = ((BraceOperation)uOp.getOperation()).getOperation();
+			return createOperator((OperationLeft)child);
 		}
 	}
 		

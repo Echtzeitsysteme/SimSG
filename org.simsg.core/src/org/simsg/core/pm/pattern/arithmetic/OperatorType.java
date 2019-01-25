@@ -12,12 +12,13 @@ import org.simsg.simsgl.simSGL.PowOperator;
 import org.simsg.simsgl.simSGL.SquareRootOperation;
 import org.simsg.simsgl.simSGL.UnaryOperation;
 import org.simsg.simsgl.simSGL.AbsoluteOperation;
+import org.simsg.simsgl.simSGL.BraceOperation;
 import org.simsg.simsgl.simSGL.Comparator;
 import org.simsg.simsgl.simSGL.Operator;
 
 public enum OperatorType {
 	
-	plus("+"), minus("-"), mult("*"), pow("^"), sqrt("sqrt"), abs("abs"), equals("=="), geq(">="), leq("<="), ge(">"), le("<");
+	plus("+"), minus("-"), mult("*"), pow("^"), sqrt("sqrt"), abs("abs"), equals("=="), geq(">="), leq("<="), ge(">"), le("<"), brace("brace");
 
 	private String operator;
 	
@@ -65,6 +66,8 @@ public enum OperatorType {
 			return abs;
 		}else if(op.getOperation() instanceof SquareRootOperation) {
 			return sqrt;
+		}else if(op.getOperation() instanceof BraceOperation) {
+			return brace;
 		}
 		return null;
 	}

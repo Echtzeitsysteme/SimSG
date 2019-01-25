@@ -211,6 +211,9 @@
     <genClasses ecoreClass="SimSGL.ecore#//SquareRootOperation">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//SquareRootOperation/operation"/>
     </genClasses>
+    <genClasses ecoreClass="SimSGL.ecore#//BraceOperation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//BraceOperation/operation"/>
+    </genClasses>
     <genClasses ecoreClass="SimSGL.ecore#//EqualComparator"/>
     <genClasses ecoreClass="SimSGL.ecore#//GreaterComparator"/>
     <genClasses ecoreClass="SimSGL.ecore#//GreaterEqualComparator"/>

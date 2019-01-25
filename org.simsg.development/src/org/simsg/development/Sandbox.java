@@ -33,7 +33,7 @@ public class Sandbox {
 			SimSGLModel ruleModel = pm.loadReactionRuleModel("AttributeConstraintTest");
 			Container reactionContainer = pm.loadReactionContainerModel("AttributeConstraintTest");
 			
-			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.DemoclesEngine);
+			PatternMatchingEngine engine = PatternMatchingEngineFactory.create(PatternMatchingEngineEnum.ViatraEngine);
 			PatternMatchingController pmc = PatternMatchingControllerFactory.create(PatternMatchingControllerEnum.SimplePMC);
 			pmc.setEngine(engine);
 			pmc.loadModels(ruleModel, reactionContainer);

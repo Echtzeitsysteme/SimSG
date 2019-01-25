@@ -221,9 +221,7 @@ public class GenericPatternBody {
 				
 				currentSiteNodeContexts.add(currentSiteNodeContext);
 			}
-			if(currentSiteNodeContexts.size() > 0) {
-				siteNodeContexts.put(currentAgentNodeContext, currentSiteNodeContexts);
-			}
+			siteNodeContexts.put(currentAgentNodeContext, currentSiteNodeContexts);
 		}
 	}
 	
