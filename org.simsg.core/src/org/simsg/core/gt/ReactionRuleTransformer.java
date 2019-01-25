@@ -29,7 +29,7 @@ public class ReactionRuleTransformer {
 	private void initPatternMaps() {
 		patternMap = new HashMap<String, Pattern>();
 		targetPatternMap = new HashMap<String, Pattern>();
-		Map<String, Pattern> rulePatterns = patternContainer.getRulePatterns();
+		Map<String, Pattern> rulePatterns = patternContainer.getAllRulePatterns();
 		rulePatterns.forEach((name, pattern) -> {
 			patternMap.put(name, pattern);
 			if(name.contains(PatternUtils.PATTERN_NAME_SUFFIX_LHS)) {

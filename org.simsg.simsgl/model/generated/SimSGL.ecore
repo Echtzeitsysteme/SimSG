@@ -255,6 +255,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="operation" eType="#//Operation"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BraceOperation" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operation" eType="#//Operation"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EqualComparator" eSuperTypes="#//Comparator"/>
   <eClassifiers xsi:type="ecore:EClass" name="GreaterComparator" eSuperTypes="#//Comparator"/>
   <eClassifiers xsi:type="ecore:EClass" name="GreaterEqualComparator" eSuperTypes="#//Comparator"/>

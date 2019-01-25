@@ -11,7 +11,7 @@ agent B3(x, z)
 agent A4(x{p,q}, y{m,n})
 agent B4(x{a,b}, z{o, p}) 
 agent C4(v, w)
-agent A5(x{u, v}, y)
+agent A5(x{u, v}, y) 
 agent B5(w, z{p, q})
 agent A6(x{u, v}, y, z{r, t}) 
 agent B6(u, v{l, m, n}, w{r, s, t}) 
@@ -20,9 +20,11 @@ agent A7(w{a, b}, x{c, d})
 agent B7(y{e, f}, z{g, h}) 
 agent A8(x, y)
 agent A9(x, y)
+agent A10(x, y){s, t, q}
+agent B8(x, y){l, m, n}
 
 // multi agent types
-agent mA(*x)
+agent mA(*x) 
 agent mB(*y)
 agent mC(*z)
 agent mD(*a, b, c)
@@ -105,6 +107,11 @@ var p51 = {mP(c*[1]), mP(c*[1, free(mP)]), mP(c*[free(mP)])}
 var p52 = {mP(c*[1, free(mP)]), mP(c*[1, free(mP)]), mP(c*[free(mP)]), mP(c*[free(mP)])}
 var p53 = {mP(c*[1, free(mP)]), mP(c*[1,free(mP)]), mP(c*[free(mP)])}
 
+// agent state tests
+var p54 = {A10(x[1]){t}, B8(x[1]){n}}
+var p55 = {A10(x[1]), B8(x[1])}
+var p56 = {A10(x[1]){s}, B8(x[1]){l}}
+
 // Initial variables for disjunct tests
 init i1 10 {A1(), B1()}
 // Initial variables for bound tests
@@ -141,6 +148,9 @@ init i26 3 p48
 init i27 2 p50
 init i28 3 p51
 init i29 2 {mP(c*[1]), mP(c*[1, 2]), mP(c*[2])}
+init i30 3 p54
+init i31 6 p55
+
 
 // mockup rules to register patterns as relevant for pattern generators
 rule simpleDisjunct_rule p1 -> {void, void} @ [dummy_rate] // 10*10 = 100 Matches
@@ -178,6 +188,7 @@ rule mediumInjectivity_rule p26 -> {void, void, void, void, void} @ [dummy_rate]
 rule simpleInjectivityWithStates_rule p27 -> {void, void, void} @ [dummy_rate] // 7 Matches
 rule mediumInjectivityWithStates_rule p28 -> {void, void, void, void, void} @ [dummy_rate] // 4 Matches
 // Hard injectivity constraint
+
 rule hardInjectivity_rule p32 -> {void, void, void, void} @ [dummy_rate] // 16 * 14 = 224  Matches
 rule hardInjectivity2_rule p33 -> {void, void, void, void, void, void} @ [dummy_rate] // 4 * 3 = 12  Matches
 rule hardInjectivity3_rule p34 -> {void, void, void, void, void, void} @ [dummy_rate] // 12 * 10 * 8 = 960  Matches
@@ -207,6 +218,7 @@ rule simpleMixedDisjunctMultiEdge4_rule p44 -> {void, void, void, void, void} @ 
 rule mediumDisjunctMultiEdge_rule p45 -> {void, void, void} @ [dummy_rate]
 rule mediumDisjunctMultiEdge2_rule p46 -> {void, void} @ [dummy_rate]
 rule mediumDisjunctMultiEdge3_rule p47 -> {void, void} @ [dummy_rate]
+
 rule mediumDisjunctMultiEdge4_rule p51 -> {void, void, void} @ [dummy_rate]
 rule mediumDisjunctMultiEdge5_rule p52 -> {void, void, void, void} @ [dummy_rate]
 rule mediumDisjunctMultiEdge6_rule p53 -> {void, void, void} @ [dummy_rate]
@@ -214,3 +226,8 @@ rule mediumDisjunctMultiEdge6_rule p53 -> {void, void, void} @ [dummy_rate]
 rule mediumMultiEdge_rule p48 -> {void, void, void} @ [dummy_rate]
 rule mediumMultiEdge2_rule p49 -> {void, void, void} @ [dummy_rate]
 rule mediumMultiEdge3_rule p50 -> {void, void, void} @ [dummy_rate]
+
+// Agent state tests
+rule simpleAgentState_rule p54 -> {void, void} @ [dummy_rate]
+rule simpleAgentState2_rule p55 -> {void, void} @ [dummy_rate]
+rule simpleAgentState3_rule p56 -> {void, void} @ [dummy_rate]

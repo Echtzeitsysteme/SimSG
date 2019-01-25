@@ -44,6 +44,7 @@ public class GenericPatternBody {
 	private Map<AgentNodeContext, AgentStateContext> agentStateContexts;
 	private Map<SiteNodeContext, SiteStateContext> siteStateContexts;
 	private Map<SiteNodeContext, List<LinkStateContext>> linkStateContexts;
+	private Map<AgentNodeContext, Set<AgentNodeContext>> connectedAgents;
 	private Map<Integer, Entry<LinkStateContext, LinkStateContext>> boundLinkStateContexts;
 	private Map<Integer, Entry<LinkStateContext, LinkStateContext>> indexedFreeLinkStateContexts;
 	private Collection<AttributeConstraint> attributeConstraints;
@@ -83,10 +84,10 @@ public class GenericPatternBody {
 			buildAttributeConstraints();
 		}
 		buildSiteNodeContexts();
-		buildLocalLinksAndLocalNodes();
-		buildInjectivityConstraints();
+		buildLocalLinksAndLocalNodes();	
 		mapAgentNodesToLinks();
 		findSubPatterns();
+		buildInjectivityConstraints();
 		permutable = false;
 		checkPermutability();
 	}	
@@ -205,6 +206,7 @@ public class GenericPatternBody {
 		siteNodeContexts = new HashMap<AgentNodeContext, List<SiteNodeContext>>();
 		siteStateContexts = new HashMap<SiteNodeContext, SiteStateContext>();
 		linkStateContexts = new HashMap<SiteNodeContext, List<LinkStateContext>>();
+		connectedAgents = new HashMap<AgentNodeContext, Set<AgentNodeContext>>();
 		boundLinkStateContexts = new HashMap<Integer, Map.Entry<LinkStateContext,LinkStateContext>>();
 		indexedFreeLinkStateContexts = new HashMap<Integer, Map.Entry<LinkStateContext,LinkStateContext>>();
 		
@@ -219,9 +221,7 @@ public class GenericPatternBody {
 				
 				currentSiteNodeContexts.add(currentSiteNodeContext);
 			}
-			if(currentSiteNodeContexts.size() > 0) {
-				siteNodeContexts.put(currentAgentNodeContext, currentSiteNodeContexts);
-			}
+			siteNodeContexts.put(currentAgentNodeContext, currentSiteNodeContexts);
 		}
 	}
 	
@@ -309,6 +309,22 @@ public class GenericPatternBody {
 		
 	}
 	
+	private void addConnectedAgent(AgentNodeContext anc1, AgentNodeContext anc2) {
+		Set<AgentNodeContext> other1 = connectedAgents.get(anc1);
+		if(other1 == null) {
+			other1 = new HashSet<AgentNodeContext>();
+			connectedAgents.put(anc1, other1);
+		}
+		Set<AgentNodeContext> other2 = connectedAgents.get(anc2);
+		if(other2 == null) {
+			other2 = new HashSet<AgentNodeContext>();
+			connectedAgents.put(anc2, other2);
+		}
+		
+		other1.add(anc2);
+		other2.add(anc1);
+	}
+	
 	private void addTypedUnboundLinkStateContexts(TypedFreeLink tfl, LinkStateContext link) {
 		Agent agent = tfl.getState();
 		AgentNodeContext anc = new AgentNodeContext(patternName, null, metaModel.getClass(agent.getName()));
@@ -368,7 +384,7 @@ public class GenericPatternBody {
 				SitePattern sitePattern = pattern.getSitePatterns().getSitePatterns().get(idx);
 				
 				for(LinkStateContext lsc : linkStateContexts.get(currentSiteNodeContext)) {
-					
+					// ignore multi sites -> which shouldn't occur in this case either way
 					if(sitePattern instanceof SingleSitePattern) {
 						connectSingleLinks(pattern, currentAgentNodeContext, idx, (SingleSitePattern)sitePattern, lsc);
 					}
@@ -406,6 +422,7 @@ public class GenericPatternBody {
 				AgentNodeConstraint localInjConstraint = new AgentNodeConstraint(anc, localAgentNodeContext, ConstraintType.injectivity);
 				localInjConstraint.setLocal();
 				injectivityConstraints.add(localInjConstraint);
+				injectivityConstraintsBody.add(localInjConstraint);
 				
 				//AgentNodeConstraint localOrderConstraint = new AgentNodeConstraint(currentAgentNodeContext, localAgentNodeContext, ConstraintType.order);
 				//localOrderConstraint.setLocal();
@@ -424,8 +441,17 @@ public class GenericPatternBody {
 	}
 	
 	private void buildInjectivityConstraints() {
+		// find directly connected agents
+		for(List<LinkStateContext> ancs : linkStateContexts.values()) {
+			for(LinkStateContext lsc : ancs) {
+				if(lsc.getStateType() == LinkStateType.Bound) {
+					addConnectedAgent(lsc.getAgentNodeContext(), lsc.getTargetAgentNodeContext());
+				}
+			}
+		}
+		
 		Map<EClass, List<String>> injectivityConflicts = signature.getInjectivityConflicts();
-		Map<Integer, AgentNodeConstraint> constraints = new HashMap<Integer, AgentNodeConstraint>();
+		Set<AgentNodeConstraint> constraints = new HashSet<AgentNodeConstraint>();
 		
 		for(List<String> nodes : injectivityConflicts.values()) {
 			for(String node : nodes) {
@@ -433,29 +459,31 @@ public class GenericPatternBody {
 					if(node.equals(node2)) {
 						continue;
 					}
-					int key1 = (node+node2).hashCode();
-					int key2 = (node2+node).hashCode();
-					int key = (key1 > key2)?key1:key2;
+					
 					AgentNodeContext agentNode = agentNodeContexts.get(signature.getSignaturePattern(node));
 					AgentNodeContext agentNode2 = agentNodeContexts.get(signature.getSignaturePattern(node2));
-					if(null == constraints.putIfAbsent(key, new AgentNodeConstraint(agentNode, agentNode2, ConstraintType.injectivity))) {
-						/*
-						AgentNodeConstraint orderConstraint = new AgentNodeConstraint(agentNode, agentNode2, ConstraintType.order);
-						injectivityConstraints.add(orderConstraint);
-						*/
-					}
 					
+					Set<AgentNodeContext> subPattern = getSubPattern(agentNode);
+					if(!subPattern.contains(agentNode2)) {
+						constraints.add(new AgentNodeConstraint(agentNode, agentNode2, ConstraintType.injectivity));
+					}else {
+						Set<AgentNodeContext> connected = connectedAgents.get(agentNode);
+						if(!connected.contains(agentNode2)) {
+							constraints.add(new AgentNodeConstraint(agentNode, agentNode2, ConstraintType.injectivity));
+						}
+					}
 				}
 			}
 		}
-		for(AgentNodeConstraint injConstraint : constraints.values()) {
+		
+		for(AgentNodeConstraint injConstraint : constraints) {
 			if(injConstraint.isLocal()) {
-				injectivityConstraintsBody.add(injConstraint);
+				//injectivityConstraintsBody.add(injConstraint);
 			}else {
 				injectivityConstraintsSignature.add(injConstraint);
 			}
 		}
-		injectivityConstraints.addAll(constraints.values());
+		injectivityConstraints.addAll(constraints);
 	}
 	
 	private void mapAgentNodesToLinks() {

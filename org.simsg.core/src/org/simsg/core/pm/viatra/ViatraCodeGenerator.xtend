@@ -16,10 +16,11 @@ import org.simsg.core.pm.pattern.SiteStateContext
 import org.simsg.core.pm.pattern.AttributeContext
 import org.simsg.core.pm.pattern.AttributeConstraint
 import org.simsg.core.pm.pattern.arithmetic.OperationComponent
-import org.simsg.core.pm.pattern.arithmetic.Operand
 import org.simsg.core.pm.pattern.arithmetic.OperatorUnary
-import org.simsg.core.pm.pattern.arithmetic.Operator
 import org.simsg.core.pm.pattern.AgentStateContext
+import org.simsg.core.pm.pattern.arithmetic.OperandVariable
+import org.simsg.core.pm.pattern.arithmetic.OperandValue
+import org.simsg.core.pm.pattern.arithmetic.OperatorBinary
 
 class ViatraCodeGenerator {
 	
@@ -181,63 +182,55 @@ check(«constraint.operand1.agentVariableName»_id > «constraint.operand2.agentVar
 	}
 	
 	def String generateAttributeConstraint(AttributeConstraint constraint) {
-		return '''check((«generateOperation(constraint.leftOperations)») «constraint.comparator.toString» («generateOperation(constraint.rightOperations)»));'''
+		return '''check((«generateOperation(constraint.leftOperation)») «constraint.comparator.toString» («generateOperation(constraint.rightOperation)»));'''
 	}
 	
-	def String generateOperation(List<OperationComponent> ops) {
-		val sb = new StringBuilder()
-		val iterator = ops.listIterator
-		while(iterator.hasNext) {
-			val current = iterator.next
-			if(current instanceof Operand) {
-				sb.append(current.toString)
-			}else {
-				val op = current as Operator
-				switch(op.type) {
-					case abs: {
-						sb.append("Math.abs(")
-						val opUnary = op as OperatorUnary
-						sb.append(generateOperation(opUnary.childOperations))
-						sb.append(")")
-					}
-					case equals: {
-						println("Oops.. Equals is not a valid arithmetic operator")
-					}
-					case ge: {
-						println("Oops.. Greater is not a valid arithmetic operator")
-					}
-					case geq: {
-						println("Oops.. GreaterEquals is not a valid arithmetic operator")
-					}
-					case le: {
-						println("Oops.. Less is not a valid arithmetic operator")
-					}
-					case leq: {
-						println("Oops.. LessEquals is not a valid arithmetic operator")
-					}
-					case minus: {
-						sb.append(op.toString)
-					}
-					case mult: {
-						sb.append(op.toString)
-					}
-					case plus: {
-						sb.append(op.toString)
-					}
-					case pow: {
-						println("Oops.. POW shouldn't appear here..")
-					}
-					case sqrt: {
-						sb.append("Math.sqrt(")
-						val opUnary = op as OperatorUnary
-						sb.append(generateOperation(opUnary.childOperations))
-						sb.append(")")
-					}
-					
+	def String generateOperation(OperationComponent op) {
+		if(op instanceof OperatorUnary) {
+			return createUnaryOperator(op as OperatorUnary)
+		}
+		return createOperator(op)
+	}
+	
+	def String createUnaryOperator(OperatorUnary uOp) {
+		switch(uOp.type) {
+			case abs: {
+				return '''Math.abs(«generateOperation(uOp.childOperation)»)'''
+			}
+			case brace: {
+				return '''(«generateOperation(uOp.childOperation)»)'''
+			}
+			case sqrt: {
+				return '''Math.sqrt(«generateOperation(uOp.childOperation)»)'''
+			}
+			default : return ""
+			
+		}
+	}
+	
+	def String createOperator(OperationComponent op) {
+		if( op instanceof OperandVariable ) {
+			return (op as OperandVariable).attributeContext.attributeVariableName
+		}else if( op instanceof OperandValue) {
+			return (op as OperandValue).toString
+		}else {
+			val biOp = op as OperatorBinary
+			switch(biOp.type) {
+				case minus: {
+					return '''«generateOperation(biOp.leftOperand)» - «generateOperation(biOp.rightOperand)»'''
 				}
+				case mult: {
+					return '''«generateOperation(biOp.leftOperand)» * «generateOperation(biOp.rightOperand)»'''
+				}
+				case plus: {
+					return '''«generateOperation(biOp.leftOperand)» + «generateOperation(biOp.rightOperand)»'''
+				}
+				case pow: {
+					return '''Math.pow(«generateOperation(biOp.leftOperand)», «generateOperation(biOp.rightOperand)»)'''
+				}
+				default: return ""
 			}
 		}
-		return sb.toString;
 	}
 	
 }

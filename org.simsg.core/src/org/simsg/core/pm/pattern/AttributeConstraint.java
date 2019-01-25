@@ -1,8 +1,6 @@
 package org.simsg.core.pm.pattern;
 
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,6 +14,8 @@ import org.simsg.core.pm.pattern.arithmetic.OperatorUnary;
 import org.simsg.simsgl.simSGL.AbsoluteOperation;
 import org.simsg.simsgl.simSGL.SquareRootOperation;
 import org.simsg.simsgl.simSGL.AttributeOperand;
+import org.simsg.simsgl.simSGL.AttributeOperandGeneric;
+import org.simsg.simsgl.simSGL.BraceOperation;
 import org.simsg.simsgl.simSGL.Constraint;
 import org.simsg.simsgl.simSGL.NumericAssignment;
 import org.simsg.simsgl.simSGL.Operation;
@@ -29,32 +29,26 @@ public class AttributeConstraint {
 	private Map<ValidAgentPattern, AgentNodeContext> agentNodeContexts;
 	private EPackageWrapper metaModel;
 	private Set<AttributeContext> attributeContexts;
-	private List<OperationComponent> leftOperations;
-	private List<OperationComponent> rightOperations;
+	private OperationComponent leftOperation;
+	private OperationComponent rightOperation;
 	private OperationComponent comparator;
-	private List<OperationComponent> operation;
 
 	public AttributeConstraint(Constraint constraint, Map<ValidAgentPattern, AgentNodeContext> agentNodeContexts, EPackageWrapper metaModel) {
 		this.agentNodeContexts = agentNodeContexts;
 		this.metaModel = metaModel;
 		attributeContexts = new HashSet<AttributeContext>();
 		
-		leftOperations = flattenLRTree(constraint.getOperandL());
-		rightOperations = flattenLRTree(constraint.getOperandR());
+		leftOperation = transformOperation(constraint.getOperandL());
+		rightOperation = transformOperation(constraint.getOperandR());
 		comparator = new OperatorCompare(constraint.getComparator());
-		
-		operation = new LinkedList<OperationComponent>();
-		operation.addAll(leftOperations);
-		operation.add(comparator);
-		operation.addAll(rightOperations);
 	}
 	
-	public List<OperationComponent> getLeftOperations() {
-		return leftOperations;
+	public OperationComponent getLeftOperation() {
+		return leftOperation;
 	}
 	
-	public List<OperationComponent> getRightOperations() {
-		return rightOperations;
+	public OperationComponent getRightOperation() {
+		return rightOperation;
 	}
 	
 	public OperationComponent getComparator() {
@@ -72,6 +66,79 @@ public class AttributeConstraint {
 		return context;
 	}
 	
+	public OperationComponent transformOperation(Operation operation) {
+		if(operation instanceof UnaryOperation) {
+			return createUnaryOperator((UnaryOperation) operation);
+		}
+		return createOperator((OperationLeft) operation);
+	}
+	
+	private OperationComponent createUnaryOperator(UnaryOperation uOp) {
+		if(uOp.getOperation() instanceof AbsoluteOperation) {
+			Operation child = ((AbsoluteOperation)uOp.getOperation()).getOperation();
+			return new OperatorUnary(uOp, createOperator((OperationLeft)child));
+		}else if (uOp.getOperation() instanceof SquareRootOperation) {
+			Operation child = ((SquareRootOperation)uOp.getOperation()).getOperation();
+			return new OperatorUnary(uOp, createOperator((OperationLeft)child));
+		}else {
+			Operation child = ((BraceOperation)uOp.getOperation()).getOperation();
+			return new OperatorUnary(uOp, createOperator((OperationLeft)child));
+		}
+	}
+	
+	private OperationComponent createBinaryOperator(UnaryOperation uOp, OperationRight operation2) {
+		return new OperatorBinary(operation2.getOperator(), createUnaryOperator(uOp), createOperator(operation2));
+	}
+	
+	private OperationComponent createBinaryOperator(AttributeOperandGeneric attribute, OperationRight operation2) {	
+		AttributeContext attributeContext = buildAttributeContext(attribute);
+		return new OperatorBinary(operation2.getOperator(), new OperandVariable(attributeContext), createOperator(operation2));
+	}
+	
+	private OperationComponent createBinaryOperator(NumericAssignment numeric, OperationRight operation2) {
+		return new OperatorBinary(operation2.getOperator(), new OperandValue(numeric), createOperator(operation2));
+	}
+	
+	private OperationComponent createOperator(OperationRight opR) {
+		if(opR.getRight() instanceof AttributeOperandGeneric) {
+			AttributeContext attributeContext = buildAttributeContext((AttributeOperandGeneric)opR.getRight());
+			return new OperandVariable(attributeContext);
+		}else if(opR.getRight() instanceof NumericAssignment) {
+			return new OperandValue((NumericAssignment) opR.getRight());
+		} else {
+			return createOperator((OperationLeft)opR.getRight());
+		}
+	}
+	
+	private OperationComponent createOperator(OperationLeft opL) {
+		if( opL.getLeft() instanceof AttributeOperand ) {
+			if(opL.getRight() == null) {
+				// return attribute value
+				AttributeContext attributeContext = buildAttributeContext((AttributeOperand) opL.getLeft());
+				return new OperandVariable(attributeContext);
+			}else {
+				// traverse deeper -> opL.getRight()
+				return createBinaryOperator((AttributeOperandGeneric)opL.getLeft(), (OperationRight)opL.getRight());
+			}
+		}else if( opL.getLeft() instanceof NumericAssignment) {
+			if(opL.getRight() == null) {
+				return new OperandValue((NumericAssignment) opL.getLeft());
+			}else {
+				// traverse deeper -> opL.getRight()
+				return createBinaryOperator((NumericAssignment) opL.getLeft(), (OperationRight)opL.getRight());
+			}
+		}else {
+			UnaryOperation uOp = (UnaryOperation) opL.getLeft();
+			if(opL.getRight() == null) {
+				return createUnaryOperator(uOp);
+			}else {
+				// traverse deeper -> opL.getRight()
+				return createBinaryOperator(uOp, (OperationRight)opL.getRight());
+			}
+		}
+	}
+	
+	/*
 	private List<OperationComponent> flattenLRTree(Operation operation) {
 		List<OperationComponent> lrTreeList = new LinkedList<OperationComponent>();
 		if(operation instanceof UnaryOperation) {
@@ -79,8 +146,10 @@ public class AttributeConstraint {
 			Operation child = null;
 			if(uOp.getOperation() instanceof AbsoluteOperation) {
 				child = ((AbsoluteOperation)uOp.getOperation()).getOperation();
-			}else {
+			}else if(uOp.getOperation() instanceof SquareRootOperation){
 				child = ((SquareRootOperation)uOp.getOperation()).getOperation();
+			}else {
+				child = ((BraceOperation)uOp.getOperation()).getOperation();
 			}
 			lrTreeList.add(new OperatorUnary( uOp, flattenLRTree(child)));
 		}
@@ -113,8 +182,10 @@ public class AttributeConstraint {
 				Operation child = null;
 				if(uOp.getOperation() instanceof AbsoluteOperation) {
 					child = ((AbsoluteOperation)uOp.getOperation()).getOperation();
-				}else {
+				}else if(uOp.getOperation() instanceof SquareRootOperation) {
 					child = ((SquareRootOperation)uOp.getOperation()).getOperation();
+				}else {
+					child = ((BraceOperation)uOp.getOperation()).getOperation();
 				}
 				lrTreeList.add(new OperatorUnary(uOp, flattenLRTree(child)));
 				if(opL.getRight() == null) {
@@ -140,13 +211,12 @@ public class AttributeConstraint {
 			}
 		}
 	}
+	*/
+	
 	
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		for(OperationComponent component : operation) {
-			sb.append(component.toString());
-		}
-		return sb.toString();
+		return leftOperation.toString() + comparator.toString() + rightOperation.toString();
 	}
+	
 }

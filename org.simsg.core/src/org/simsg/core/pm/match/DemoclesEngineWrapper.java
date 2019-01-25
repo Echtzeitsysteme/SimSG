@@ -19,8 +19,8 @@ public class DemoclesEngineWrapper extends PatternMatchingEngine {
 	
 	@Override
 	public void loadModels() throws Exception {
-		//DemoclesPatternGenerator generator = new DemoclesPatternGenerator(genericPatterns);
-		//patterns = new LinkedList<Pattern>(generator.doGenerate().values());
+		DemoclesPatternGenerator generator = new DemoclesPatternGenerator(genericPatterns);
+		patterns = new LinkedList<Pattern>(generator.doGenerate().values());
 		
 	}
 
@@ -28,6 +28,7 @@ public class DemoclesEngineWrapper extends PatternMatchingEngine {
 	public void initEngineInternal() throws Exception {
 		engine = new DemoclesEngine(model);
 		engine.initPatterns(patterns);
+		//engine.savePatternsToFile();
 	}
 	
 	@Override

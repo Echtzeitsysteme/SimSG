@@ -1,9 +1,14 @@
 package org.simsg.development;
 
+import java.util.Collection;
+
+import org.simsg.container.Agent;
 import org.simsg.container.Container;
+import org.simsg.core.gt.ReactionRuleTransformer;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.persistence.PersistenceManagerEnum;
 import org.simsg.core.persistence.PersistenceManagerFactory;
+import org.simsg.core.pm.match.IMatch;
 import org.simsg.core.pm.match.PatternMatchingEngine;
 import org.simsg.core.pm.match.PatternMatchingEngineEnum;
 import org.simsg.core.pm.match.PatternMatchingEngineFactory;
@@ -20,7 +25,7 @@ public class Sandbox {
 
 	public static void main(String[] args) {
 		
-		/*
+		
 		PersistenceManager pm = PersistenceManagerFactory.create(PersistenceManagerEnum.SimplePersistence);
 		pm.setModelFolderPath(System.getProperty("user.dir")+"//models");
 		pm.init();
@@ -38,14 +43,21 @@ public class Sandbox {
 			pmc.getAllMatches().forEach((pattern, matches) -> {
 				System.out.println("Pattern: "+pattern+", "+matches.size()+" matches.");
 			});
-			
+			ReactionRuleTransformer gt = new ReactionRuleTransformer(pmc.getPatternContainer(), reactionContainer, pmc.getEPackageWrapper());
+			gt.init();
+			Collection<IMatch> lhsMatches = pmc.getMatches("r16_lhs");
+			IMatch match = lhsMatches.iterator().next();
+			Agent agent = (Agent)match.get("b");
+			gt.applyRuleToMatch(match, "r16_lhs");
+			agent = (Agent)match.get("b");
+			System.out.println(agent);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
 		
 		
+		/*
 		SimulationConfigurator simConfigurator = new SimulationConfigurator();
 		simConfigurator.setModelFolder(System.getProperty("user.dir")+"//models");
 		simConfigurator.setModel("Goldbeter_Koshland");
@@ -62,7 +74,7 @@ public class Sandbox {
 		viatraSim.finish();
 		
 		System.out.println(Runtimer.getInstance());
-		
+		*/
 		
 	}
 	

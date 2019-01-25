@@ -9,11 +9,11 @@ agent C1(g, h{n, o})
 agent A3(a, b{r,s}, c{q, p})
 agent B3(d, e, f{l, m})
 agent C2(g, h{n, o}) 
-agent A8(x, y)
+agent A8(x, y) 
 agent A9(x, y)
 
 // multi-edges
-agent mA(*x) 
+agent mA(*x)
 agent mB(*y)
 agent mC(*z)
 agent mQ(*b)
@@ -39,6 +39,9 @@ init i10 2 p2
 init i11 3 p3
 init i12 2 {mA(x*[2]), mC(z*[2])}
 init i13 3 p5
+
+//rule createAndDestroy_rule {A1(a[free]), void, void} <-> {A1(a[1]), B1(d[1], e[2]), B1(f[2])} @ [mockup_rate, mockup_rate] // lhs: 5*3*3 = 45 -> 4*2*2 = 16, rhs: 0 -> 1
+//rule createAndDestroyFullVoidInjectivity_rule p1 <-> {void, void, void, void, void, void} @ [mockup_rate, mockup_rate] // lhs: 4*3 = 12 -> 2*1 = 2, rhs: 1 -> 1
 
 // bind and breakup tests
 rule disjuncToBound_rule {A3(a[free]), B3(d[free], e[free]), A3(b[free])} <-> {A3(a[1]), B3(d[1], e[2]), A3(b[2])} @ [mockup_rate, mockup_rate] // lhs: 12*5*11 = 660 -> 11*4*10 = 444, rhs: 0 -> 1 

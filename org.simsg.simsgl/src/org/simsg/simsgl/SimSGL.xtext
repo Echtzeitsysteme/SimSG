@@ -3,358 +3,259 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 generate simSGL "http://www.simsg.org/simsgl/SimSGL"
 
 SimSGLModel:
-	model = Model
-	(properties+=SimSGLProperty)*
-;
+	model = Model (properties+=SimSGLProperty)*;
 
 Model:
-	'ModelID'
-	name=ID
-;
+	'ModelID' name=ID;
 
 SimSGLProperty returns SimSGLProperty:
-	Agent | Variable | Observation | Initial | Rule | Terminate
-;
+	Agent | Variable | Observation | Initial | Rule | Terminate;
 
 terminal AT:
-	'@'
-;
+	'@';
+	
 terminal BI:
-	'<->'
-;
+	'<->';
+	
 terminal UNI:
-	'->'
-;
+	'->';
 
 terminal VOID_PATTERN:
-	'void'
-;
+	'void';
 
 terminal BOUND_LINK:
-	'bound'
-;
+	'bound';
 
 terminal FREE_LINK:
-	'free'
-;
+	'free';
 
 terminal WHATEVER_LINK:
-	'?'
-;
+	'?';
 
 terminal EXPONENT:
-	'E'
-;
+	'E';
 
 @Override
 terminal INT returns ecore::EInt:
-	'0'..'9' ('0'..'9')*
-;
+	'0'..'9' ('0'..'9')*;
 
 Float hidden():
-	(MINUS)?INT '.' INT
-;
+	(MINUS)?INT '.' INT;
 
 ScientificFloat hidden():
-	(MINUS)?INT'.'INT EXPONENT(MINUS | PLUS)INT
-;
+	(MINUS)?INT'.'INT EXPONENT(MINUS | PLUS)INT;
 
 UnsignedInteger  hidden():
-	INT
-;
+	INT;
 
 SignedInteger  hidden():
-	(MINUS INT)
-;
+	(MINUS INT);
 
 ArithmeticType:
-	Float | UnsignedInteger | SignedInteger | ScientificFloat
-;
+	Float | UnsignedInteger | SignedInteger | ScientificFloat;
 
 ArithmeticValue returns ArithmeticValue:
-	value = ArithmeticType
-;
+	value = ArithmeticType;
 
 State returns State:
-	name=ID
-;
+	name=ID;
 
 States:
 	{States}
-		('{' state+=State ( "," state+=State)* '}' )?	
-;
+	('{' state+=State ( "," state+=State)* '}' )?	;
 
 SingleSite returns Site:
 	{SingleSite}
-	name=ID
-	states = States
-;
+	name=ID states = States;
 
 MultiSite returns Site:
 	{MultiSite}
-	MULT name=ID
-	states = States
-;
+	MULT name=ID states = States;
 
 Site:
-	SingleSite | MultiSite
-;
+	SingleSite | MultiSite;
 
 Sites:
 	{Sites}
-		('(' sites+=Site ( "," sites+=Site)* ')' )?	
-;
+	(LBRACE sites+=Site ( "," sites+=Site)* RBRACE )?	;
 
 terminal FLOAT_ATTRIBUTE:
-	'FLOAT'
-;
+	'FLOAT';
 
 terminal INT_ATTRIBUTE:
-	'INT'
-;
+	'INT';
 
 FloatAttribute returns AttributeType:
-	{FloatAttribute} FLOAT_ATTRIBUTE
-;
+	{FloatAttribute} FLOAT_ATTRIBUTE;
 
 IntegerAttribute returns AttributeType:
-	{IntegerAttribute} INT_ATTRIBUTE
-;
+	{IntegerAttribute} INT_ATTRIBUTE;
 
 NumberAttribute returns AttributeType:
-	FloatAttribute | IntegerAttribute
-;
+	FloatAttribute | IntegerAttribute;
 
 AttributeType:
-	NumberAttribute
-;
+	NumberAttribute;
 
 Attribute returns Attribute:
-	name=ID
-	':'
-	type = AttributeType
-;
+	name=ID ':' type = AttributeType;
 
 Attributes:
 	{Attributes}
-		('[' attributes+=Attribute ( "," attributes+=Attribute)* ']' )?
-;
+	('[' attributes+=Attribute ( "," attributes+=Attribute)* ']' )?;
 
 Agent returns Agent:
 	'agent'
-	name = ID
-	sites = Sites
-	states = States
-	attributes = Attributes
-;
+	name = ID sites = Sites states = States attributes = Attributes;
 
 PatternVariable returns PatternVariable:
-	'var'
-	name = ID
-	'='
-	pattern = Pattern
-;
+	'var' name = ID EQUALS pattern = Pattern;
 
 ArithmeticVariable returns ArithmeticVariable:
-	'var'
-	name = ID
-	'='
-	value = ArithmeticValue
-;
+	'var' name = ID EQUALS value = ArithmeticValue;
 
 Variable:
-	PatternVariable | ArithmeticVariable
-;
+	PatternVariable | ArithmeticVariable;
 
 BoundAnyLink returns LinkState :
 	{BoundAnyLink}
-	name = BOUND_LINK
-;
+	name = BOUND_LINK;
 
 FreeLink returns LinkState :
 	{FreeLink}
-	name = FREE_LINK
-;
+	name = FREE_LINK;
 
 IndexedFreeLink returns LinkState :
 	{IndexedFreeLink}
-	name = FREE_LINK
-	'('
-	state = UnsignedInteger
-	')'
-;
+	name = FREE_LINK LBRACE state = UnsignedInteger RBRACE;
 
 TypedFreeLink returns LinkState :
 	{TypedFreeLink}
-	name = FREE_LINK
-	'('
-	state = [Agent]
-	')'
-;
+	name = FREE_LINK LBRACE state = [Agent] RBRACE;
 
 WhatEver returns LinkState :
 	{WhatEver}
-	name = WHATEVER_LINK
-;
+	name = WHATEVER_LINK;
 
 BoundLink returns LinkState :
 	{BoundLink}
-	state = UnsignedInteger
-;
+	state = UnsignedInteger;
 
 MultiLink returns LinkState :
 	{MultiLink}
-	(states += (BoundLink|IndexedFreeLink|TypedFreeLink) (',' states += (BoundLink|IndexedFreeLink|TypedFreeLink))+ )?
-;
+	(states += (BoundLink|IndexedFreeLink|TypedFreeLink) (',' states += (BoundLink|IndexedFreeLink|TypedFreeLink))+ )?;
 
 BoundAnyOfTypeLinkAgent returns BoundAnyOfTypeLinkAgent:
 	{BoundAnyOfTypeLinkAgent}
-	agent = [Agent]
-;
+	agent = [Agent];
 
 BoundAnyOfTypeLinkSite returns BoundAnyOfTypeLinkSite:
 	{BoundAnyOfTypeLinkSite}
-	site = [Site]
-;
+	site = [Site];
 
 BoundAnyOfTypeLink returns LinkState :
 	{BoundAnyOfTypeLink}
-	linkAgent = BoundAnyOfTypeLinkAgent
-	'.'
-	linkSite = BoundAnyOfTypeLinkSite
-;
+	linkAgent = BoundAnyOfTypeLinkAgent '.' linkSite = BoundAnyOfTypeLinkSite;
 
 SiteState:
 	{SiteState}
-	'{' state = [State] '}'
-;
+	'{' state = [State] '}';
 
 AgentState:
 	{AgentState}
-	'{' state = [State] '}'
-;
+	'{' state = [State] '}';
 
 LinkState:
 	{LinkState}
-	 '['linkState = (BoundAnyLink | FreeLink | IndexedFreeLink | TypedFreeLink | BoundAnyOfTypeLink | BoundLink | WhatEver)']'
-;
+	 '['linkState = (BoundAnyLink | FreeLink | IndexedFreeLink | TypedFreeLink | BoundAnyOfTypeLink | BoundLink | WhatEver)']';
 
 MultiLinkState:
 	{MultiLinkState}
-	'*['linkState = (WhatEver | FreeLink | IndexedFreeLink | TypedFreeLink  |BoundAnyLink | BoundLink | MultiLink)']'
-;
+	'*['linkState = (WhatEver | FreeLink | IndexedFreeLink | TypedFreeLink  |BoundAnyLink | BoundLink | MultiLink)']';
 
 SingleSitePattern returns SitePattern:
 	{SingleSitePattern}
-	site = [SingleSite]
-	(state = SiteState)?
-	linkState = LinkState 
-;
+	site = [SingleSite] (state = SiteState)? linkState = LinkState ;
 
 MultiLinkSitePattern returns SitePattern:
 	{MultiLinkSitePattern}
-	site = [MultiSite]
-	(state = SiteState)?
-	linkState = MultiLinkState
-;
+	site = [MultiSite] (state = SiteState)? linkState = MultiLinkState;
 
 SitePattern:
-	SingleSitePattern | MultiLinkSitePattern
-;
+	SingleSitePattern | MultiLinkSitePattern;
 
 SitePatterns returns SitePatterns:
 	{SitePatterns}
-	'('(sitePatterns += SitePattern (',' sitePatterns += SitePattern)* )?')'
-;
+	LBRACE (sitePatterns += SitePattern (',' sitePatterns += SitePattern)* )? RBRACE;
 
 AgentPatternName returns AgentPatternName:
-	name = ID ':'
-;
+	name = ID ':';
 
 ValidAgentPattern returns ValidAgentPattern:
 	{ValidAgentPattern}
-	(variable = AgentPatternName)? agent = [Agent]
-	sitePatterns = SitePatterns
-	(state = AgentState)?
-;
+	(variable = AgentPatternName)? agent = [Agent] sitePatterns = SitePatterns (state = AgentState)?;
 
 VoidAgentPattern returns VoidAgentPattern:
-	pattern = VOID_PATTERN
-;
+	pattern = VOID_PATTERN;
 
 AgentPattern:
-	ValidAgentPattern | VoidAgentPattern 
-;
+	ValidAgentPattern | VoidAgentPattern;
 
 Pattern returns Pattern:
 	{Pattern}
-	'{' (agentPatterns += AgentPattern (',' agentPatterns += AgentPattern )* )?  '}'
-	('[' (constraints += Constraint (',' constraints += Constraint )* )?  ']')?
-;
+	'{' (agentPatterns += AgentPattern (',' agentPatterns += AgentPattern )* )?  '}' ('[' (constraints += Constraint (',' constraints += Constraint )* )?  ']')?;
 
 Constraint returns Constraint:
 	{Constraint}
-	operandL = Operation
-	comparator = Comparator
-	operandR = Operation
-;
+	operandL = Operation comparator = Comparator operandR = Operation;
 
 AttributeOperand:
-	AttributeOperandGeneric | AttributeOperandId 
-;
+	AttributeOperandGeneric | AttributeOperandId ;
 
 AttributeOperandGeneric returns AttributeOperand:
 	{AttributeOperandGeneric}
-	agent = [AgentPatternName] '.' attribute = AttributeOperandAttribute
-;
+	agent = [AgentPatternName] '.' attribute = AttributeOperandAttribute;
 
 AttributeOperandAttribute:
-	attribute = [Attribute]
-;
+	attribute = [Attribute];
 
 AttributeOperandId returns AttributeOperand:
 	{AttributeOperandId}
-	agent = [AgentPatternName] '.' 'id'
-;
+	agent = [AgentPatternName] '.' 'id';
 
 Operation returns Operation:
-	OperationLeft | UnaryOperation
-;
+	OperationLeft | UnaryOperation;
 
 OperationLeft returns Operation:
 	{OperationLeft}
-	left = ( UnaryOperation | AttributeOperand | NumericAssignment)
-	(right = OperationRight)?
-;
+	left = ( UnaryOperation | AttributeOperand | NumericAssignment) (right = OperationRight)?;
 
 OperationRight returns Operation:
 	{OperationRight}
 	operator = Operator
-	right = ( OperationLeft | AttributeOperand | NumericAssignment )
-;
+	right = ( OperationLeft | AttributeOperand | NumericAssignment );
 
 UnaryOperation returns Operation:
 	{UnaryOperation}
-	operation = (AbsoluteOperation | SquareRootOperation)
-;
+	operation = (AbsoluteOperation | SquareRootOperation | BraceOperation);
 
 AbsoluteOperation returns Operation:
 	{AbsoluteOperation}
-	'|' operation = OperationLeft  '|'
-;
+	ABS operation = OperationLeft  ABS;
 
 SquareRootOperation returns Operation:
 	{SquareRootOperation}
-	SQRT '(' operation = OperationLeft ')'
-;
+	SQRT LBRACE operation = OperationLeft RBRACE;
+
+BraceOperation returns Operation:
+	{BraceOperation}
+	LBRACE operation = OperationLeft RBRACE;
 
 Comparator:
-	EqualComparator | GreaterComparator | GreaterEqualComparator | LessComparator | LessEqualComparator
-;
+	EqualComparator | GreaterComparator | GreaterEqualComparator | LessComparator | LessEqualComparator;
 
 Operator:
-	PlusOperator | MinusOperator | PowOperator | MultOperator
-;
+	PlusOperator | MinusOperator | PowOperator | MultOperator;
 
 EqualComparator returns Comparator: {EqualComparator} EQUALS;
 
@@ -366,7 +267,7 @@ LessComparator returns Comparator: {LessComparator} LESS;
 
 LessEqualComparator returns Comparator: {LessEqualComparator} LESS_EQUAL;
 
-terminal EQUALS: '==';
+terminal EQUALS: '=';
 
 terminal GREATER: '>';
 
@@ -394,100 +295,63 @@ terminal MULT: '*';
 
 terminal SQRT: 'sqrt';
 
+terminal LBRACE: '(';
+
+terminal RBRACE: ')';
+
+terminal ABS: '|';
+
 Observation returns Observation:
-	'obs'
-	name = ID
-	observationPattern = PatternAssignment
-;
+	'obs' name = ID observationPattern = PatternAssignment;
 
 NumericFromLiteral:
-	value = ArithmeticValue
-;
+	value = ArithmeticValue;
 
 NumericFromVariable:
-	valueVar = [ArithmeticVariable]
-;
+	valueVar = [ArithmeticVariable];
 
 NumericAssignment:
-	NumericFromLiteral | NumericFromVariable
-;
+	NumericFromLiteral | NumericFromVariable;
 
 Initial returns Initial:
-	'init'
-	name = ID
-	count = NumericAssignment
-	initialPattern = PatternAssignment
-;
+	'init' name = ID count = NumericAssignment initialPattern = PatternAssignment;
 
 AssignFromPattern:
-	pattern = Pattern
-;
+	pattern = Pattern;
 
 AssignFromVariable:
-	patternVar = [PatternVariable]
-;
+	patternVar = [PatternVariable];
 
 PatternAssignment:
-	AssignFromPattern | AssignFromVariable
-;
+	AssignFromPattern | AssignFromVariable;
 
 RuleVariables returns RuleVariables:
-	variables += NumericAssignment (',' variables += NumericAssignment)*
-;
+	variables += NumericAssignment (',' variables += NumericAssignment)*;
 
 UnidirectionalRule returns RuleBody:
-	lhs = PatternAssignment
-	operator = UNI
-	rhs = PatternAssignment
-	AT
-	'[' variables = RuleVariables ']'
-;
+	lhs = PatternAssignment operator = UNI rhs = PatternAssignment AT '[' variables = RuleVariables ']';
 
 BidirectionalRule returns RuleBody:
-	lhs = PatternAssignment
-	operator = BI
-	rhs = PatternAssignment
-	AT
-	'[' variables = RuleVariables']'
-;
+	lhs = PatternAssignment operator = BI rhs = PatternAssignment AT '[' variables = RuleVariables']';
 
 RuleBody:
-	UnidirectionalRule | BidirectionalRule
-;
+	UnidirectionalRule | BidirectionalRule;
 
 Rule returns Rule:
-	'rule'
-	name = ID
-	rule = RuleBody
-;
+	'rule' name = ID rule = RuleBody;
 
 Iterations returns Iterations:
-	'iterations'
-	'='
-	value = UnsignedInteger
-;
+	'iterations' EQUALS value = UnsignedInteger;
 
 Time returns Time:
-	'time'
-	'='
-	value = UnsignedInteger
-;
+	'time' EQUALS value = UnsignedInteger;
 
 Population returns Population:
-	'|'
-	pa = PatternAssignment
-	'|'
-	'==>'
-	value = UnsignedInteger
-;
+	ABS pa = PatternAssignment ABS '==>' value = UnsignedInteger;
 
 TerminationCondition:
-	Iterations | Time | Population 
-;
+	Iterations | Time | Population;
 
 Terminate returns Terminate:
-	'terminate'
-	name = ID
-	condition = TerminationCondition
-;
+	'terminate' name = ID condition = TerminationCondition;
 

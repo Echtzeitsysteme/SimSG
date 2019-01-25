@@ -10,11 +10,11 @@ import org.simsg.container.Agent;
 import org.simsg.container.State;
 import org.simsg.core.pm.match.IMatch;
 
-public class StateChangeTemplate {
+public class SiteStateChangeTemplate {
 	private int agentIndex;
 	private Map<Entry<EReference, EReference>, State> stateRefMap;
 	
-	public StateChangeTemplate (int agentIndex){
+	public SiteStateChangeTemplate (int agentIndex){
 		this.agentIndex = agentIndex;
 		stateRefMap = new LinkedHashMap<Entry<EReference, EReference>, State>();
 	}

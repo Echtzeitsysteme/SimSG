@@ -14,4 +14,8 @@ public class OperandVariable extends Operand {
 		this.context = context;
 	}
 	
+	public AttributeContext getAttributeContext() {
+		return context;
+	}
+	
 }
