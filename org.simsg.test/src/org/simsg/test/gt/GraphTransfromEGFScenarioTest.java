@@ -43,6 +43,7 @@ public class GraphTransfromEGFScenarioTest {
 	public GraphTransfromEGFScenarioTest() {
 		persistenceType = PersistenceManagerEnum.SimplePersistence;
 		persistence = PersistenceManagerFactory.create(persistenceType);
+		persistence.setModelFolderPath(System.getProperty("user.dir")+"//models");
 		persistence.init();
 		engineType = PatternMatchingEngineEnum.ViatraEngine;
 		pmcType = PatternMatchingControllerEnum.SimplePMC;
