@@ -45,10 +45,11 @@ public class Sandbox {
 			});
 			ReactionRuleTransformer gt = new ReactionRuleTransformer(pmc.getPatternContainer(), reactionContainer, pmc.getEPackageWrapper());
 			gt.init();
-			Collection<IMatch> lhsMatches = pmc.getMatches("r15_lhs");
+			Collection<IMatch> lhsMatches = pmc.getMatches("r16_lhs");
 			IMatch match = lhsMatches.iterator().next();
-			gt.applyRuleToMatch(match, "r15_lhs");
-			Agent agent = (Agent)match.get("G");
+			Agent agent = (Agent)match.get("b");
+			gt.applyRuleToMatch(match, "r16_lhs");
+			agent = (Agent)match.get("b");
 			System.out.println(agent);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

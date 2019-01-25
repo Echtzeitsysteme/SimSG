@@ -505,4 +505,25 @@ abstract class PatternMatchingTest {
 		final String patternName = "mediumMultiEdge3_rule_lhs";
 		getAndCheckMatches(patternName, numOfMatches);
 	}
+	
+	@Test
+	void simpleAgentStateTest() {
+		final int numOfMatches = 3;
+		final String patternName = "simpleAgentState_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void simpleAgentStateTest2() {
+		final int numOfMatches = 9;
+		final String patternName = "simpleAgentState2_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
+	
+	@Test
+	void simpleAgentStateTest3() {
+		final int numOfMatches = 6;
+		final String patternName = "simpleAgentState3_rule_lhs";
+		getAndCheckMatches(patternName, numOfMatches);
+	}
 }

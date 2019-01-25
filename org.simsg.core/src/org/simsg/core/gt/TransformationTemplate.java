@@ -48,7 +48,8 @@ public class TransformationTemplate {
 	
 	private List<Integer> agentRemovals;
 	private List<LinkDeletionTemplate> linkRemovals;
-	private List<StateChangeTemplate> stateChanges;
+	private List<AgentStateChangeTemplate> agentStateChanges;
+	private List<SiteStateChangeTemplate> siteStateChanges;
 	private Map<ValidAgentPattern, AgentCreationTemplate> agentCreations;
 	private Map<Integer, LinkChangeTemplate> linkChanges;
 	private List<AttributeChangeTemplate> attributeChanges;
@@ -71,7 +72,8 @@ public class TransformationTemplate {
 	public void applyTransformation(IMatch match) {
 		applyAgentRemovalCandidates(match);
 		applyLinkRemovalTemplates(match);
-		applyStateChangeTemplates(match);
+		applyAgentStateChangeTemplates(match);
+		applySiteStateChangeTemplates(match);
 		applyAgentCreationCandidates();
 		applyLinkChangeCandidates(match);
 		applyAttributeChangeTemplate(match);
@@ -80,6 +82,7 @@ public class TransformationTemplate {
 	private void initTemplate() {
 		findAgentRemovalCandidates();
 		findLinkRemovalCandidates();
+		findAgentStateChangeCandidates();
 		findSiteStateChangeCandidates();
 		findAgentCreationCandidates();
 		findLinkChangeCandidates();
@@ -119,15 +122,48 @@ public class TransformationTemplate {
 		}
 	}
 	
-	
-	
-	private void findSiteStateChangeCandidates() {
-		stateChanges = new LinkedList<StateChangeTemplate>();
+	private void findAgentStateChangeCandidates() {
+		agentStateChanges = new LinkedList<AgentStateChangeTemplate>();
 		for(int i = 0; i<postcondition.getAgentPatterns().size(); i++) {
 			if(postcondition.getAgentPatterns().get(i) instanceof ValidAgentPattern && 
 					precondition.getAgentPatterns().get(i) instanceof ValidAgentPattern) {
 				ValidAgentPattern ap_trg = (ValidAgentPattern)postcondition.getAgentPatterns().get(i);
-				StateChangeTemplate stTemplate = new StateChangeTemplate(i);
+				
+				
+				State state_trg = null;
+				State state_src = null;
+				
+				if(ap_trg.getState() != null) {
+					state_trg = ap_trg.getState().getState();
+					ValidAgentPattern vap_src = (ValidAgentPattern)precondition.getAgentPatterns().get(i);
+					state_src = vap_src.getState().getState();
+					// if both states are equal -> do nothing
+					if(state_trg == state_src) continue;
+				}else {
+					// if there is no state -> do nothing
+					continue;
+				}
+				
+				String oldRefName = StateClassFactory.createReferenceName(ap_trg.getAgent(), state_src);
+				String newRefName = StateClassFactory.createReferenceName(ap_trg.getAgent(), state_trg);
+				AgentStateChangeTemplate stTemplate = new AgentStateChangeTemplate(i, metaModel.getEReference(oldRefName), 
+						metaModel.getEReference(newRefName), findStateInstance(state_trg));
+				
+				agentStateChanges.add(stTemplate);
+			}
+			
+		}
+	}
+	
+	
+	
+	private void findSiteStateChangeCandidates() {
+		siteStateChanges = new LinkedList<SiteStateChangeTemplate>();
+		for(int i = 0; i<postcondition.getAgentPatterns().size(); i++) {
+			if(postcondition.getAgentPatterns().get(i) instanceof ValidAgentPattern && 
+					precondition.getAgentPatterns().get(i) instanceof ValidAgentPattern) {
+				ValidAgentPattern ap_trg = (ValidAgentPattern)postcondition.getAgentPatterns().get(i);
+				SiteStateChangeTemplate stTemplate = new SiteStateChangeTemplate(i);
 				
 				for(int j = 0; j<ap_trg.getSitePatterns().getSitePatterns().size(); j++) {
 					SitePattern superSp_trg = ap_trg.getSitePatterns().getSitePatterns().get(j);
@@ -156,7 +192,7 @@ public class TransformationTemplate {
 				}
 				
 				if(!stTemplate.isEmpty()) {
-					stateChanges.add(stTemplate);
+					siteStateChanges.add(stTemplate);
 				}
 			}
 			
@@ -344,8 +380,15 @@ public class TransformationTemplate {
 		}
 	}
 	
-	private void applyStateChangeTemplates(IMatch match) {
-		for(StateChangeTemplate template : stateChanges) {
+	private void applyAgentStateChangeTemplates(IMatch match) {
+		for(AgentStateChangeTemplate template : agentStateChanges) {
+			// changes the state reference's target accordingly
+			template.applyStateChangeCandidate(match);
+		}
+	}
+	
+	private void applySiteStateChangeTemplates(IMatch match) {
+		for(SiteStateChangeTemplate template : siteStateChanges) {
 			// changes the state reference's target accordingly
 			template.applyStateChangeCandidates(match);
 		}

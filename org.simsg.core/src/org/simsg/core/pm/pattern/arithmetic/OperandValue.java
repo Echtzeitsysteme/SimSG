@@ -17,10 +17,6 @@ public class OperandValue extends Operand {
 	}
 	
 	private void convertValue() {
-		try {
-			parsedValue = Integer.parseInt(value);
-		}catch(Exception e) {
-			parsedValue = Double.parseDouble(value);
-		}
+		parsedValue = Double.parseDouble(value);
 	}
 }
