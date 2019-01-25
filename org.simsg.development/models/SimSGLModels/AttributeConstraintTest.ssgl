@@ -6,7 +6,9 @@ agent c(z)
 agent d(*q)
 agent e(r)
 agent f(l)
+agent g[lo:FLOAT]
 
+/*
 init i 2 {A:a(){t}}[A.f==3.2, A.q==4]
 init i2 3 {A:a(){t}}[A.f==4.2, A.q==6]
 init i3 4 {A:a(x{mo}[free])}[A.f==-5.4, A.q==-1]
@@ -15,6 +17,8 @@ init i5 3 {a(x[1]), c(z[1])}
 init i6 2 {d(q*[1,2]), e(r[1]), f(l[2])}
 init i7 3 {d(), e(), f()}
 init i8 7 {a(x[1]), b(u[1])}
+*/
+init i9 2 {G:g()}[G.lo == 3.0]
 
 rule r {a(x[free]){t}} -> {void} @ [1]
 rule r2 {a(x[free]){s}} -> {void} @ [1]
@@ -30,3 +34,4 @@ rule r11 {d(q*[1,2]), e(r[1]), f(l[2])} -> {void, void, void} @ [1]
 rule r12 {d(q*[free(f)]), e(r[?]), f(l[free(d)])} -> {void, void, void} @ [1]
 rule r13 {d(q*[free(1), free(f)]), e(r[free(1)]), f(l[free(d)])} -> {void, void, void} @ [1]
 rule r14 {A:a(), A1:a()}[A.f==3.2, A1.f==4.2] -> {void, void} @ [1]
+rule r15 {G:g()}[G.lo == 3.0] -> {G:g()}[G.lo == G.lo + 2 ^ 5] @ [1]

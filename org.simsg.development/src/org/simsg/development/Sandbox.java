@@ -1,9 +1,14 @@
 package org.simsg.development;
 
+import java.util.Collection;
+
+import org.simsg.container.Agent;
 import org.simsg.container.Container;
+import org.simsg.core.gt.ReactionRuleTransformer;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.persistence.PersistenceManagerEnum;
 import org.simsg.core.persistence.PersistenceManagerFactory;
+import org.simsg.core.pm.match.IMatch;
 import org.simsg.core.pm.match.PatternMatchingEngine;
 import org.simsg.core.pm.match.PatternMatchingEngineEnum;
 import org.simsg.core.pm.match.PatternMatchingEngineFactory;
@@ -38,7 +43,13 @@ public class Sandbox {
 			pmc.getAllMatches().forEach((pattern, matches) -> {
 				System.out.println("Pattern: "+pattern+", "+matches.size()+" matches.");
 			});
-			
+			ReactionRuleTransformer gt = new ReactionRuleTransformer(pmc.getPatternContainer(), reactionContainer, pmc.getEPackageWrapper());
+			gt.init();
+			Collection<IMatch> lhsMatches = pmc.getMatches("r15_lhs");
+			IMatch match = lhsMatches.iterator().next();
+			gt.applyRuleToMatch(match, "r15_lhs");
+			Agent agent = (Agent)match.get("G");
+			System.out.println(agent);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

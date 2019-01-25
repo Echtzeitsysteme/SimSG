@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.simsg.container.Agent;
 import org.simsg.container.Container;
@@ -17,7 +18,6 @@ import org.simsg.container.util.StateClassFactory;
 import org.simsg.core.pm.match.IMatch;
 import org.simsg.simsgl.simSGL.ValidAgentPattern;
 import org.simsg.simsgl.simSGL.VoidAgentPattern;
-import org.simsg.simsgl.utils.PatternUtils;
 import org.simsg.simsgl.simSGL.AgentPattern;
 import org.simsg.simsgl.simSGL.Attribute;
 import org.simsg.simsgl.simSGL.AttributeOperandGeneric;
@@ -30,7 +30,6 @@ import org.simsg.simsgl.simSGL.IndexedFreeLink;
 import org.simsg.simsgl.simSGL.LinkState;
 import org.simsg.simsgl.simSGL.MultiLink;
 import org.simsg.simsgl.simSGL.MultiLinkSitePattern;
-import org.simsg.simsgl.simSGL.NumericAssignment;
 import org.simsg.simsgl.simSGL.OperationLeft;
 import org.simsg.simsgl.simSGL.Pattern;
 import org.simsg.simsgl.simSGL.SingleSitePattern;
@@ -52,6 +51,7 @@ public class TransformationTemplate {
 	private List<StateChangeTemplate> stateChanges;
 	private Map<ValidAgentPattern, AgentCreationTemplate> agentCreations;
 	private Map<Integer, LinkChangeTemplate> linkChanges;
+	private List<AttributeChangeTemplate> attributeChanges;
 	
 	private Map<ValidAgentPattern, Agent> createdAgents;
 	
@@ -74,6 +74,7 @@ public class TransformationTemplate {
 		applyStateChangeTemplates(match);
 		applyAgentCreationCandidates();
 		applyLinkChangeCandidates(match);
+		applyAttributeChangeTemplate(match);
 	}
 	
 	private void initTemplate() {
@@ -294,11 +295,18 @@ public class TransformationTemplate {
 	}
 	
 	private void findAttributeChangeCandidates() {
+		attributeChanges = new LinkedList<AttributeChangeTemplate>();
 		if(postcondition.getConstraints() == null) return;
+		Map<ValidAgentPattern, Integer> vapToIndex = new HashMap<ValidAgentPattern, Integer>();
+		for(int i = 0; i < postcondition.getAgentPatterns().size(); i++) {
+			AgentPattern ap = postcondition.getAgentPatterns().get(i);
+			if(ap instanceof ValidAgentPattern) {
+				vapToIndex.put((ValidAgentPattern)ap, i);
+			}
+		}
 		
 		for(Constraint constraint : postcondition.getConstraints()) {
 			OperationLeft lOp = (OperationLeft) constraint.getOperandL();
-			OperationLeft rOp = (OperationLeft) constraint.getOperandR();
 			Comparator compare = constraint.getComparator();
 			
 			if(!(lOp.getLeft() instanceof AttributeOperandGeneric)) continue;
@@ -307,6 +315,11 @@ public class TransformationTemplate {
 			AttributeOperandGeneric operandL = (AttributeOperandGeneric)lOp.getLeft();
 			ValidAgentPattern vap = (ValidAgentPattern) operandL.getAgent().eContainer();
 			Attribute atr = operandL.getAttribute().getAttribute();
+			String attributeName = AgentClassFactory.createAttributeName(vap.getAgent(),  atr);
+			EAttribute attribute = metaModel.getEAttribute(attributeName);
+			AttributeChangeTemplate template = new AttributeChangeTemplate(vapToIndex.get(vap), attribute, vapToIndex, metaModel);
+			template.setOperation(constraint.getOperandR());
+			attributeChanges.add(template);
 			
 		}
 	}
@@ -355,6 +368,12 @@ public class TransformationTemplate {
 		
 		for(LinkChangeTemplate template : linkChanges.values()) {
 			template.applyLinkChange(match, createdAgents);
+		}
+	}
+	
+	private void applyAttributeChangeTemplate(IMatch match) {
+		for(AttributeChangeTemplate template : attributeChanges) {
+			template.applyAttributeChange(match);
 		}
 	}
 	
