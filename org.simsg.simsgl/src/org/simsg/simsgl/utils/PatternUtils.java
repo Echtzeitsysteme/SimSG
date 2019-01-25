@@ -102,15 +102,11 @@ public class PatternUtils {
 	public static PatternContainer createPatternContainer(SimSGLModel model) {
 		PatternContainer container = new PatternContainer();
 		container.addPatternVariables(getVariablePatterns(model));
-		container.addRulePatterns(getRulePatterns(model));
+		container.addRulePatterns(getRules(model));
 		container.addObservablePatterns(getObservablesPatterns(model));
 		container.addtermCondPopulationPatterns(getTerminationConditionPatterns(model));
 		container.removeUnusedPatterns(getRules(model));
 		return container;
-	}
-	
-	public static Map<String, Pattern> getRulePatterns(SimSGLModel model) {
-		return extractPatternsFromRules(getRules(model));
 	}
 	
 	public static Map<String, Pattern> getObservablesPatterns(SimSGLModel model) {
@@ -162,23 +158,6 @@ public class PatternUtils {
 				.filter(terminate -> (((Terminate)terminate).getCondition() instanceof Iterations))
 				.map(terminate -> (Iterations)(((Terminate)terminate).getCondition()))
 				.collect(Collectors.toList());
-	}
-	
-	public static Map<String, Pattern> extractPatternsFromRules(List<Rule> rules) {
-		Map<String, Pattern> rulePatterns = new LinkedHashMap<String, Pattern>();
-		for (Rule rule : rules) {
-			rulePatterns.put(rule.getName() + PATTERN_NAME_SUFFIX_LHS,
-					PatternUtils.patternFromPatternAssignment(rule.getRule().getLhs()));
-			rulePatterns.put(rule.getName() + PATTERN_NAME_SUFFIX_RHS,
-					PatternUtils.patternFromPatternAssignment(rule.getRule().getRhs()));
-			/*
-			if (rule.getRule().getOperator().equals(RULE_OPERATOR_BI)) {
-				rulePatterns.put(rule.getName() + PATTERN_NAME_SUFFIX_RHS,
-						PatternUtils.patternFromPatternAssignment(rule.getRule().getRhs()));
-			}
-			*/
-		}
-		return rulePatterns;
 	}
 	
 	public static Map<String, Pattern> extractPatternsFromObservables(List<Observation> obs) {

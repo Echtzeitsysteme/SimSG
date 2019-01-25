@@ -13,7 +13,7 @@ agent A8(x, y)
 agent A9(x, y)
 
 // multi-edges
-agent mA(*x) 
+agent mA(*x)
 agent mB(*y)
 agent mC(*z)
 agent mQ(*b)
