@@ -5,7 +5,7 @@ SimSG
 * Get Eclipse 2018-12 with Modeling Components
 * Install Democles http://gervarro.org/democles/advanced/integration-0.5.0/
 * Install XText Complete SDK 2.16.0: https://download.eclipse.org/modeling/tmf/xtext/updates/releases/
-* Install Viatra via 'Install' button from here: https://www.eclipse.org/viatra/downloads.html
+* Install Viatra: http://download.eclipse.org/viatra/updates/release/latest
 
 * In a fresh Eclipse workspace, check out: https://github.com/arg0n1s/BioChemSimulation (Branch: origin) and import all projects.
 * Get rid of all errors:
