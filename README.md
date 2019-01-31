@@ -1,4 +1,4 @@
-SimSG
+#SimSG - Rule-based Simulation with Stochastic Graph Transformation
 
 ## Setup instructions
 
