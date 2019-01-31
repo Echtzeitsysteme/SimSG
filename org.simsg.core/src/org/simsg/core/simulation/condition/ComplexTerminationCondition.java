@@ -1,9 +1,10 @@
-package org.simsg.core.simulation;
+package org.simsg.core.simulation.condition;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.simsg.core.simulation.SimulationState;
 import org.simsg.simsgl.simSGL.Iterations;
 import org.simsg.simsgl.simSGL.Population;
 import org.simsg.simsgl.simSGL.SimSGLModel;

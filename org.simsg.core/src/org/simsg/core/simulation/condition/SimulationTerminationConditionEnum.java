@@ -1,4 +1,4 @@
-package org.simsg.core.simulation;
+package org.simsg.core.simulation.condition;
 
 public enum SimulationTerminationConditionEnum {
 	

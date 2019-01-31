@@ -1,4 +1,4 @@
-package org.simsg.core.constraints;
+package org.simsg.core.simulation.constraint;
 
 class GeometricConstraints implements ExternalConstraints {
 	GeometricConstraints(){

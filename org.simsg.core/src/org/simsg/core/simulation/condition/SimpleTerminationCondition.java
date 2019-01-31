@@ -1,5 +1,6 @@
-package org.simsg.core.simulation;
+package org.simsg.core.simulation.condition;
 
+import org.simsg.core.simulation.SimulationState;
 import org.simsg.simsgl.simSGL.SimSGLModel;
 import org.simsg.simsgl.utils.PatternContainer;
 

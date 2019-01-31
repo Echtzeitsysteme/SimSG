@@ -1,10 +1,11 @@
-package org.simsg.core.simulation;
+package org.simsg.core.simulation.module;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
 import org.simsg.core.pm.match.IMatch;
+import org.simsg.core.simulation.Simulation;
 
 public class StochasticSimulation extends Simulation {
 	

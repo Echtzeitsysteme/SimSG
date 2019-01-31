@@ -9,6 +9,10 @@ import org.simsg.core.pm.match.PatternMatchingEngineFactory;
 import org.simsg.core.pmc.PatternMatchingController;
 import org.simsg.core.pmc.PatternMatchingControllerEnum;
 import org.simsg.core.pmc.PatternMatchingControllerFactory;
+import org.simsg.core.simulation.condition.SimulationTerminationCondition;
+import org.simsg.core.simulation.condition.SimulationTerminationConditionEnum;
+import org.simsg.core.simulation.condition.SimulationTerminationConditionFactory;
+import org.simsg.core.simulation.module.SimpleSimulation;
 
 public class SimulationConfigurator {
 	

@@ -8,6 +8,8 @@ import org.simsg.core.gt.ReactionRuleTransformer;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.pm.match.IMatch;
 import org.simsg.core.pmc.PatternMatchingController;
+import org.simsg.core.simulation.condition.SimulationTerminationCondition;
+import org.simsg.core.simulation.statistic.SimulationStatistics;
 import org.simsg.core.utils.Runtimer;
 import org.simsg.simsgl.simSGL.SimSGLModel;
 import org.simsg.simsgl.utils.PatternUtils;
@@ -27,7 +29,7 @@ public abstract class Simulation {
 	protected ReactionRuleTransformer gt;
 	protected Map<String, Double> staticReactionRates;
 
-	Simulation() {
+	public Simulation() {
 		
 	}
 	

@@ -1,9 +1,11 @@
-package org.simsg.core.simulation;
+package org.simsg.core.simulation.statistic;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.simsg.core.pmc.PatternMatchingController;
+import org.simsg.core.simulation.Observable;
+import org.simsg.core.simulation.SimulationState;
 import org.simsg.simsgl.utils.PatternContainer;
 
 

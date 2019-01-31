@@ -1,10 +1,12 @@
-package org.simsg.core.simulation;
+package org.simsg.core.simulation.module;
 
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
+
+import org.simsg.core.simulation.Simulation;
 
 public class SimpleSimulation extends Simulation {
 	
@@ -13,7 +15,7 @@ public class SimpleSimulation extends Simulation {
 	
 	Random random;
 	
-	SimpleSimulation() {
+	public SimpleSimulation() {
 		randomRuleOrder = true;
 		useReactionRates = true;
 		random = new Random();

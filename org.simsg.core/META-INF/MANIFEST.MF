@@ -61,7 +61,6 @@ Export-Package: org.jfree.chart;
    javax.swing",
  org.json.simple,
  org.json.simple.parser,
- org.simsg.core.constraints,
  org.simsg.core.gt;
   uses:="org.eclipse.emf.ecore,
    org.simsg.core.pm.match,
@@ -96,6 +95,7 @@ Export-Package: org.jfree.chart;
    org.simsg.container,
    org.simsg.core.persistence,
    org.simsg.simsgl.simSGL",
+ org.simsg.core.simulation.constraint,
  org.simsg.core.utils;uses:="org.json.simple,org.eclipse.emf.ecore.resource"
 Require-Bundle: org.apache.log4j;bundle-version="1.2.15",
  org.eclipse.collections;bundle-version="7.1.1",

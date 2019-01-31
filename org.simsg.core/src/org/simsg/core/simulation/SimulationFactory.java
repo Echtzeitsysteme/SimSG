@@ -1,5 +1,8 @@
 package org.simsg.core.simulation;
 
+import org.simsg.core.simulation.module.SimpleSimulation;
+import org.simsg.core.simulation.module.StochasticSimulation;
+
 public class SimulationFactory {
 	public static Simulation create(SimulationType type) {
 		Simulation sim = null;
