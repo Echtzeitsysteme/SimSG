@@ -7,6 +7,8 @@
 * Install Democles http://gervarro.org/democles/advanced/integration-0.5.0/
 * Install XText Complete SDK 2.16.0: https://download.eclipse.org/modeling/tmf/xtext/updates/releases/
 * Install Viatra: http://download.eclipse.org/viatra/updates/release/latest
+* Install Epsilon: http://download.eclipse.org/epsilon/updates/ (Required for manual Ecore Epackage registration)
+  * Check: Epsilon Core / Epsilon Core Development Tools / Epsilon EMF Integration / Model Monitoring
 
 * In a fresh Eclipse workspace, check out: https://github.com/arg0n1s/BioChemSimulation (Branch: origin) and import all projects.
 * Get rid of all errors:
