@@ -1,4 +1,5 @@
-# SimSG - Rule-based Simulation with Stochastic Graph Transformation
+# SimSG - Simulation Framework
+### *Rule-based Simulation with Stochastic Graph Transformation*
 
 ## Setup instructions
 
