@@ -2921,9 +2921,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumDisjunct_rule">
@@ -2937,9 +2937,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleDisjunctWithStates_rule">
@@ -2951,9 +2951,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumDisjunctWithStates_rule">
@@ -2966,9 +2966,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleBound_rule">
@@ -2980,9 +2980,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumBound_rule">
@@ -2995,9 +2995,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleBoundWithStates_rule">
@@ -3009,9 +3009,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumBoundWithStates_rule">
@@ -3024,9 +3024,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleWildcard_rule">
@@ -3038,9 +3038,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumWildcard_rule">
@@ -3052,9 +3052,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleWildcardWithStates_rule">
@@ -3065,9 +3065,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumWildcardWithStates_rule">
@@ -3079,9 +3079,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleBoundAny_rule">
@@ -3092,9 +3092,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumBoundAny_rule">
@@ -3106,9 +3106,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleBoundAnyWithStates_rule">
@@ -3119,9 +3119,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumBoundAnyWithStates_rule">
@@ -3133,9 +3133,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleBoundAnyType_rule">
@@ -3146,9 +3146,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumBoundAnyType_rule">
@@ -3160,9 +3160,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleBoundAnyTypeWithStates_rule">
@@ -3173,9 +3173,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumBoundAnyTypeWithStates_rule">
@@ -3187,9 +3187,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleMixedBound_rule">
@@ -3201,9 +3201,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumMixedBound_rule">
@@ -3216,9 +3216,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleMixedBoundWithStates_rule">
@@ -3230,9 +3230,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumMixedBoundWithStates_rule">
@@ -3245,9 +3245,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleInjectivity_rule">
@@ -3260,9 +3260,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumInjectivity_rule">
@@ -3277,9 +3277,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleInjectivityWithStates_rule">
@@ -3292,9 +3292,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumInjectivityWithStates_rule">
@@ -3309,9 +3309,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="hardInjectivity_rule">
@@ -3325,9 +3325,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="hardInjectivity2_rule">
@@ -3343,9 +3343,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="hardInjectivity3_rule">
@@ -3361,9 +3361,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="lightInjectivityAndBoundAny_rule">
@@ -3375,9 +3375,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleMultiEdge_rule">
@@ -3390,9 +3390,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleMultiEdge2_rule">
@@ -3405,9 +3405,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleMultiEdge3_rule">
@@ -3420,9 +3420,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleMixedMultiEdge_rule">
@@ -3436,9 +3436,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleDisjunctMultiEdge_rule">
@@ -3450,9 +3450,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleDisjunctMultiEdge2_rule">
@@ -3464,9 +3464,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleMixedDisjunctMultiEdge_rule">
@@ -3480,9 +3480,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleMixedDisjunctMultiEdge2_rule">
@@ -3497,9 +3497,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleMixedDisjunctMultiEdge3_rule">
@@ -3513,9 +3513,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="simpleMixedDisjunctMultiEdge4_rule">
@@ -3530,9 +3530,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumDisjunctMultiEdge_rule">
@@ -3545,9 +3545,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumDisjunctMultiEdge2_rule">
@@ -3559,9 +3559,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumDisjunctMultiEdge3_rule">
@@ -3573,9 +3573,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumDisjunctMultiEdge4_rule">
@@ -3588,9 +3588,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumDisjunctMultiEdge5_rule">
@@ -3604,9 +3604,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumDisjunctMultiEdge6_rule">
@@ -3619,9 +3619,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumMultiEdge_rule">
@@ -3634,9 +3634,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumMultiEdge2_rule">
@@ -3649,9 +3649,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="mediumMultiEdge3_rule">
@@ -3664,9 +3664,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.25"/>
+      </ruleRates>
     </rule>
   </properties>
 </simSGL:SimSGLModel>

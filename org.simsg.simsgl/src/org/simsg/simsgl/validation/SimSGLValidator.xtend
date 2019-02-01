@@ -300,35 +300,37 @@ class SimSGLValidator extends AbstractSimSGLValidator {
 	
 	@Check
 	def checkRuleVariables(RuleBody ruleBody) {
-		var op = ruleBody.operator
-		var variables = ruleBody.variables.variables
+		val op = ruleBody.operator
+		val ruleRates = ruleBody.ruleRates
+		if(ruleRates === null) return;
+		var rates = ruleRates.rates
 		if(op.equals("<->")) {
-			if(variables.size() != 2) {
-				error('Bi-Directional rules must have two reaction rate variables.', SimSGLPackage.Literals.RULE_BODY__VARIABLES)
+			if(rates.size() != 2) {
+				error('Bi-Directional rules must have two reaction rate variables.', SimSGLPackage.Literals.RULE_BODY__RULE_RATES)
 			}
 		}else {
-			if(variables.size() != 1) {
-				error('Uni-Directional rules must have one reaction rate variable.', SimSGLPackage.Literals.RULE_BODY__VARIABLES)
+			if(rates.size() != 1) {
+				error('Uni-Directional rules must have one reaction rate variable.', SimSGLPackage.Literals.RULE_BODY__RULE_RATES)
 			}
 		}
-		for(variable : variables) {
-			var value = valueOfNumericAssignment(variable)
+		for(rate : rates) {
+			var value = valueOfNumericAssignment(rate)
 			var faulty = false;
 			if(value.contains(" ")) {
-				error('Arithmetic variables may not contain any white spaces!', SimSGLPackage.Literals.RULE_BODY__VARIABLES)
+				error('Arithmetic variables may not contain any white spaces!', SimSGLPackage.Literals.RULE_BODY__RULE_RATES)
 				faulty = true;
 			}
 			if(!value.matches("^(-)?(\\d)+(\\.)(\\d)+E(-|\\+)(\\d)+$") && !value.matches("^(-)?(\\d)*$") && !value.matches("^(-)?(\\d)+(\\.)(\\d)+$")) {
-				error('Given expression uses an unknown number format.', SimSGLPackage.Literals.RULE_BODY__VARIABLES)
+				error('Given expression uses an unknown number format.', SimSGLPackage.Literals.RULE_BODY__RULE_RATES)
 				faulty = true;
 			}
 			if(!faulty) {
 				var numValue = Double.valueOf(value)
 				if(numValue < 0) {
-					error('Uni-Directional rules must have positive reaction rates.', SimSGLPackage.Literals.RULE_BODY__VARIABLES)
+					error('Uni-Directional rules must have positive reaction rates.', SimSGLPackage.Literals.RULE_BODY__RULE_RATES)
 				}
 				if(numValue == 0) {
-					warning('Uni-Directional rules with rates equal to 0 will be inactive.', SimSGLPackage.Literals.RULE_BODY__VARIABLES)
+					warning('Uni-Directional rules with rates equal to 0 will be inactive.', SimSGLPackage.Literals.RULE_BODY__RULE_RATES)
 				}
 			}
 			

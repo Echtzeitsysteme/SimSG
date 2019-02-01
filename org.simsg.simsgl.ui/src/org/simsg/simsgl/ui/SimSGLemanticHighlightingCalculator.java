@@ -49,14 +49,14 @@ public class SimSGLemanticHighlightingCalculator implements ISemanticHighlightin
 				}
 				
 			}
-			
-			if(semanticElement instanceof RuleVariables ) {
+			/*
+			if(semanticElement instanceof RuleRates ) {
 				
 				if(grammarElement instanceof org.eclipse.xtext.impl.RuleCallImpl ) {
 					acceptor.addPosition(node.getOffset(), node.getLength(), SimSGLHighlightingConfiguration.RULE_VARIABLES_ID);
 				}
 			}
-			
+			*/
 			if(semanticElement instanceof VoidAgentPattern ) {
 				
 				if(grammarElement instanceof org.eclipse.xtext.impl.RuleCallImpl ) {

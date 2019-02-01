@@ -325,14 +325,14 @@ AssignFromVariable:
 PatternAssignment:
 	AssignFromPattern | AssignFromVariable;
 
-RuleVariables returns RuleVariables:
-	variables += NumericAssignment (',' variables += NumericAssignment)*;
+RuleRates returns RuleRates:
+	AT '['rates += NumericAssignment (',' rates += NumericAssignment)*']';
 
 UnidirectionalRule returns RuleBody:
-	lhs = PatternAssignment operator = UNI rhs = PatternAssignment AT '[' variables = RuleVariables ']';
+	lhs = PatternAssignment operator = UNI rhs = PatternAssignment (ruleRates = RuleRates)?;
 
 BidirectionalRule returns RuleBody:
-	lhs = PatternAssignment operator = BI rhs = PatternAssignment AT '[' variables = RuleVariables']';
+	lhs = PatternAssignment operator = BI rhs = PatternAssignment (ruleRates = RuleRates)?;
 
 RuleBody:
 	UnidirectionalRule | BidirectionalRule;

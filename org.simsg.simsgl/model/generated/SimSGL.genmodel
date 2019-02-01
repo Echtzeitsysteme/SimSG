@@ -128,14 +128,14 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimSGL.ecore#//AssignFromVariable/patternVar"/>
     </genClasses>
     <genClasses ecoreClass="SimSGL.ecore#//PatternAssignment"/>
-    <genClasses ecoreClass="SimSGL.ecore#//RuleVariables">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//RuleVariables/variables"/>
+    <genClasses ecoreClass="SimSGL.ecore#//RuleRates">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//RuleRates/rates"/>
     </genClasses>
     <genClasses ecoreClass="SimSGL.ecore#//RuleBody">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//RuleBody/lhs"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimSGL.ecore#//RuleBody/operator"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//RuleBody/rhs"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//RuleBody/variables"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//RuleBody/ruleRates"/>
     </genClasses>
     <genClasses ecoreClass="SimSGL.ecore#//Rule">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimSGL.ecore#//Rule/rule"/>

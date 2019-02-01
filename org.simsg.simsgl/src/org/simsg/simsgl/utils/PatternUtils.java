@@ -21,6 +21,7 @@ import org.simsg.simsgl.simSGL.PatternAssignment;
 import org.simsg.simsgl.simSGL.PatternVariable;
 import org.simsg.simsgl.simSGL.Population;
 import org.simsg.simsgl.simSGL.Rule;
+import org.simsg.simsgl.simSGL.RuleRates;
 import org.simsg.simsgl.simSGL.SimSGLModel;
 import org.simsg.simsgl.simSGL.Terminate;
 import org.simsg.simsgl.simSGL.Time;
@@ -193,7 +194,9 @@ public class PatternUtils {
 		Map<String, Double> staticReactionRates = new LinkedHashMap<String, Double>();
 		for (Rule rule : rules) {
 			List<Double> reactionRates = new LinkedList<Double>();
-			rule.getRule().getVariables().getVariables().forEach(var -> {
+			RuleRates rates = rule.getRule().getRuleRates();
+			if(rates == null) continue;
+			rates.getRates().forEach(var -> {
 				reactionRates.add(valueOfNumericAssignment(var));
 			});
 			staticReactionRates.put(rule.getName() + PATTERN_NAME_SUFFIX_LHS, reactionRates.get(0));

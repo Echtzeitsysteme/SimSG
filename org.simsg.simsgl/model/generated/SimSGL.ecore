@@ -152,8 +152,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="patternVar" eType="#//PatternVariable"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternAssignment"/>
-  <eClassifiers xsi:type="ecore:EClass" name="RuleVariables">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
+  <eClassifiers xsi:type="ecore:EClass" name="RuleRates">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rates" upperBound="-1"
         eType="#//NumericAssignment" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RuleBody">
@@ -162,7 +162,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" eType="#//PatternAssignment"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" eType="#//RuleVariables"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ruleRates" eType="#//RuleRates"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Rule" eSuperTypes="#//SimSGLProperty">

@@ -4780,15 +4780,15 @@ rulePatternAssignment returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleRuleVariables
-entryRuleRuleVariables returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getRuleVariablesRule()); }
-	iv_ruleRuleVariables=ruleRuleVariables
-	{ $current=$iv_ruleRuleVariables.current; }
+// Entry rule entryRuleRuleRates
+entryRuleRuleRates returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRuleRatesRule()); }
+	iv_ruleRuleRates=ruleRuleRates
+	{ $current=$iv_ruleRuleRates.current; }
 	EOF;
 
-// Rule RuleVariables
-ruleRuleVariables returns [EObject current=null]
+// Rule RuleRates
+ruleRuleRates returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -4796,50 +4796,62 @@ ruleRuleVariables returns [EObject current=null]
 	leaveRule();
 }:
 	(
+		this_AT_0=RULE_AT
+		{
+			newLeafNode(this_AT_0, grammarAccess.getRuleRatesAccess().getATTerminalRuleCall_0());
+		}
+		otherlv_1='['
+		{
+			newLeafNode(otherlv_1, grammarAccess.getRuleRatesAccess().getLeftSquareBracketKeyword_1());
+		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getRuleVariablesAccess().getVariablesNumericAssignmentParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getRuleRatesAccess().getRatesNumericAssignmentParserRuleCall_2_0());
 				}
-				lv_variables_0_0=ruleNumericAssignment
+				lv_rates_2_0=ruleNumericAssignment
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getRuleVariablesRule());
+						$current = createModelElementForParent(grammarAccess.getRuleRatesRule());
 					}
 					add(
 						$current,
-						"variables",
-						lv_variables_0_0,
+						"rates",
+						lv_rates_2_0,
 						"org.simsg.simsgl.SimSGL.NumericAssignment");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
 		(
-			otherlv_1=','
+			otherlv_3=','
 			{
-				newLeafNode(otherlv_1, grammarAccess.getRuleVariablesAccess().getCommaKeyword_1_0());
+				newLeafNode(otherlv_3, grammarAccess.getRuleRatesAccess().getCommaKeyword_3_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getRuleVariablesAccess().getVariablesNumericAssignmentParserRuleCall_1_1_0());
+						newCompositeNode(grammarAccess.getRuleRatesAccess().getRatesNumericAssignmentParserRuleCall_3_1_0());
 					}
-					lv_variables_2_0=ruleNumericAssignment
+					lv_rates_4_0=ruleNumericAssignment
 					{
 						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getRuleVariablesRule());
+							$current = createModelElementForParent(grammarAccess.getRuleRatesRule());
 						}
 						add(
 							$current,
-							"variables",
-							lv_variables_2_0,
+							"rates",
+							lv_rates_4_0,
 							"org.simsg.simsgl.SimSGL.NumericAssignment");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)*
+		otherlv_5=']'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getRuleRatesAccess().getRightSquareBracketKeyword_4());
+		}
 	)
 ;
 
@@ -4915,37 +4927,25 @@ ruleUnidirectionalRule returns [EObject current=null]
 				}
 			)
 		)
-		this_AT_3=RULE_AT
-		{
-			newLeafNode(this_AT_3, grammarAccess.getUnidirectionalRuleAccess().getATTerminalRuleCall_3());
-		}
-		otherlv_4='['
-		{
-			newLeafNode(otherlv_4, grammarAccess.getUnidirectionalRuleAccess().getLeftSquareBracketKeyword_4());
-		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getUnidirectionalRuleAccess().getVariablesRuleVariablesParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getUnidirectionalRuleAccess().getRuleRatesRuleRatesParserRuleCall_3_0());
 				}
-				lv_variables_5_0=ruleRuleVariables
+				lv_ruleRates_3_0=ruleRuleRates
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getUnidirectionalRuleRule());
 					}
 					set(
 						$current,
-						"variables",
-						lv_variables_5_0,
-						"org.simsg.simsgl.SimSGL.RuleVariables");
+						"ruleRates",
+						lv_ruleRates_3_0,
+						"org.simsg.simsgl.SimSGL.RuleRates");
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)
-		otherlv_6=']'
-		{
-			newLeafNode(otherlv_6, grammarAccess.getUnidirectionalRuleAccess().getRightSquareBracketKeyword_6());
-		}
+		)?
 	)
 ;
 
@@ -5021,37 +5021,25 @@ ruleBidirectionalRule returns [EObject current=null]
 				}
 			)
 		)
-		this_AT_3=RULE_AT
-		{
-			newLeafNode(this_AT_3, grammarAccess.getBidirectionalRuleAccess().getATTerminalRuleCall_3());
-		}
-		otherlv_4='['
-		{
-			newLeafNode(otherlv_4, grammarAccess.getBidirectionalRuleAccess().getLeftSquareBracketKeyword_4());
-		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getBidirectionalRuleAccess().getVariablesRuleVariablesParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getBidirectionalRuleAccess().getRuleRatesRuleRatesParserRuleCall_3_0());
 				}
-				lv_variables_5_0=ruleRuleVariables
+				lv_ruleRates_3_0=ruleRuleRates
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getBidirectionalRuleRule());
 					}
 					set(
 						$current,
-						"variables",
-						lv_variables_5_0,
-						"org.simsg.simsgl.SimSGL.RuleVariables");
+						"ruleRates",
+						lv_ruleRates_3_0,
+						"org.simsg.simsgl.SimSGL.RuleRates");
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)
-		otherlv_6=']'
-		{
-			newLeafNode(otherlv_6, grammarAccess.getBidirectionalRuleAccess().getRightSquareBracketKeyword_6());
-		}
+		)?
 	)
 ;
 
