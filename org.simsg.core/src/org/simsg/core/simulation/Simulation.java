@@ -20,7 +20,6 @@ public abstract class Simulation {
 	protected String modelName;
 	protected PersistenceManager persistence;
 	protected PatternMatchingController pmc;
-	protected PatternMatchingController pmc2;
 	protected SimulationTerminationCondition terminationCondition;
 	protected SimulationState state;
 	protected SimulationStatistics simStats;
@@ -45,10 +44,6 @@ public abstract class Simulation {
 		this.pmc = pmc;
 	}
 	
-	void setPmc2(PatternMatchingController pmc) {
-		this.pmc2 = pmc;
-	}
-	
 	void setTerminationCondition(SimulationTerminationCondition terminationCondition) {
 		this.terminationCondition = terminationCondition;
 	}
@@ -63,14 +58,7 @@ public abstract class Simulation {
 		reactionContainer = persistence.loadReactionContainerModel(modelName);
 		pmc.loadModels(ruleModel, reactionContainer);
 		pmc.initEngine();
-		pmc.initController();
-		//debug
-		/*
-		pmc2.loadModels(ruleModel, reactionContainer);
-		pmc2.initEngine();
-		pmc2.initController();
-		*/
-		
+		pmc.initController();	
 		gt = new ReactionRuleTransformer(pmc.getPatternContainer(), reactionContainer, pmc.getEPackageWrapper());
 		gt.init();
 		initStaticReactionRates();
@@ -123,12 +111,6 @@ public abstract class Simulation {
 			}
 		});
 		
-		//debug
-		/*
-		pmc2.loadModels(ruleModel, reactionContainer);
-		pmc2.initEngine();
-		pmc2.initController();
-		*/
 		gt = new ReactionRuleTransformer(pmc.getPatternContainer(), reactionContainer, pmc.getEPackageWrapper());
 		gt.init();
 		initStaticReactionRates();

@@ -104,18 +104,11 @@ public class SimulationConfigurator {
 		PatternMatchingController pmc = PatternMatchingControllerFactory.create(controllerType);
 		pmc.setEngine(engine);
 		
-		// debug
-		PatternMatchingEngine engine2 = PatternMatchingEngineFactory.create(engineType);
-		PatternMatchingController pmc2 = PatternMatchingControllerFactory.create(PatternMatchingControllerEnum.SimplePMC);
-		pmc2.setEngine(engine2);
-		
 		if(deterministic && (simulationType == SimulationType.SimpleSimulation)) {
 			((SimpleSimulation)simulation).useReactionRate(false);
 			((SimpleSimulation)simulation).randomizeRuleOrder(false);
 		}
 		simulation.setPmc(pmc);
-		// debug
-		simulation.setPmc2(pmc2);
 		
 		// create and set termination condition
 		SimulationTerminationCondition condition = SimulationTerminationConditionFactory.create(conditionType);
