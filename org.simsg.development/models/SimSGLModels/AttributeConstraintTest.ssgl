@@ -4,7 +4,7 @@ agent a(x{mi, mo}){s,t}[f:FLOAT, q:INT]
 agent b(y, u){q,l}[po:FLOAT, pa:INT]
 agent c(z)
 agent d(*q)
-agent e(r)
+agent e(r) 
 agent f(l)
 agent g[lo:FLOAT]
 

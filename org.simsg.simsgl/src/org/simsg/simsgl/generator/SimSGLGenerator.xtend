@@ -29,13 +29,9 @@ class SimSGLGenerator extends AbstractGenerator {
 	def saveResource(Resource resource) {
 		val model = resource.getContents().get(0) as SimSGLModelImpl
 		val name = model.model.name
-		val projectPath = this.getClass().getProtectionDomain().getCodeSource().getLocation().path
-		val uriName = "file:"+projectPath+"model/instances/"+name+".xmi"
-		val uri1 = URI.createURI(uriName);
 		var uri2 = resource.URI
 		uri2 = uri2.trimFileExtension
 		uri2 = uri2.appendFileExtension("xmi")
-		saveModelToURI(model, name, uri1)
 		saveModelToURI(model, name, uri2)
 	}
 	
