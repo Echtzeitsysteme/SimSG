@@ -23,6 +23,7 @@ import org.simsg.simsgl.utils.PatternUtils;
 
 public abstract class PatternMatchingController{
 
+	protected SimSGLModel ruleModel;
 	protected Container reactionContainer;
 	protected EPackageWrapper metaModel;
 	
@@ -110,6 +111,7 @@ public abstract class PatternMatchingController{
 	}
 	
 	public void loadModels(SimSGLModel ruleModel, Container reactionContainer) throws Exception {
+		this.ruleModel = ruleModel;
 		this.reactionContainer = reactionContainer;
 		this.patternContainer = PatternUtils.createPatternContainer(ruleModel);
 		URI metaModelURI = ContainerGenerator.createMetaModelURI(ruleModel.getModel().getName());
@@ -154,6 +156,10 @@ public abstract class PatternMatchingController{
 	
 	public PatternContainer getPatternContainer() {
 		return patternContainer;
+	}
+	
+	public SimSGLModel getRuleModel() {
+		return ruleModel;
 	}
 	
 	public EPackageWrapper getEPackageWrapper() {

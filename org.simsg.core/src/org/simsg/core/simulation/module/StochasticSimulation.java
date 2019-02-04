@@ -4,28 +4,28 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
+import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.pm.match.IMatch;
+import org.simsg.core.pmc.PatternMatchingController;
+import org.simsg.core.simulation.Event;
 import org.simsg.core.simulation.Simulation;
 
 public class StochasticSimulation extends Simulation {
 	
-	Random random;
-	private Map<String, Double> ruleProbabilities;
-	private double systemActivity;
-	private double timeStep;
-	private String currentRule;
+	private Random random = new Random();
+	private Map<String, Double> staticReactionRates;
+	private Map<String, Double> ruleProbabilities = new LinkedHashMap<String, Double>();
+	private double systemActivity = 0;
+	private double timeStep = 0;
 	
-	public StochasticSimulation() {
-		systemActivity = 0;
-		timeStep = 0;
-		currentRule = null;
-		random = new Random();
+	public StochasticSimulation(String modelName, PersistenceManager persistence, PatternMatchingController pmc) {
+		super(modelName, persistence, pmc);
 	}
 	
 	@Override
 	public void initialize() throws Exception {
 		super.initialize();
-		ruleProbabilities = new LinkedHashMap<String, Double>();
+		staticReactionRates = pmc.getPatternContainer().getStochasticRules();
 		for(String rule : staticReactionRates.keySet()) {
 			ruleProbabilities.put(rule, 0.0);
 		}
@@ -34,42 +34,10 @@ public class StochasticSimulation extends Simulation {
 	@Override
 	public void initializeClocked() {
 		super.initializeClocked();
-		ruleProbabilities = new LinkedHashMap<String, Double>();
+		staticReactionRates = pmc.getPatternContainer().getStochasticRules();
 		for(String rule : staticReactionRates.keySet()) {
 			ruleProbabilities.put(rule, 0.0);
 		}
-	}
-
-	@Override
-	public void run() throws Exception {
-		while(!terminationCondition.isTerminated(state)) {
-			pmc.collectAllMatches();
-			// debug
-			//pmc2.collectAllMatches();
-			updateProbabilities();
-			updateTimeStep();
-			pickRule();
-			if(currentRule != null) {
-				/*
-				if(currentRule.contains("EGFR_EGFR")) {
-					System.out.println(currentRule);
-				}
-				*/
-				IMatch rndMatch = pmc.getRandomMatch(currentRule);
-				gt.applyRuleToMatch(rndMatch, currentRule);
-				/*
-				if(currentRule.contains("EGFR_EGFR")) {
-					System.out.println(currentRule);
-				}
-				*/
-			}
-			simStats.logCurrentState(state);
-			
-			state.elapseTime(timeStep);
-			state.incrementIterations();
-		}
-		pmc.collectAllMatches();
-
 	}
 	
 	private void updateProbabilities() {
@@ -78,12 +46,6 @@ public class StochasticSimulation extends Simulation {
 			double p = pmc.getMatchCount(rule)*staticReactionRates.get(rule);
 			ruleProbabilities.replace(rule, p);
 			systemActivity+=p;
-			// debug
-			/*
-			if(pmc.getMatchCount(rule) != pmc2.getMatchCount(rule)) {
-				System.out.println("Count mismatch for rule: "+rule);
-			}
-			*/
 		}
 		
 	}
@@ -92,8 +54,7 @@ public class StochasticSimulation extends Simulation {
 		timeStep = (1.0/systemActivity)*Math.log(1.0/random.nextDouble());
 	}
 	
-	private void pickRule() {
-		currentRule = null;
+	private String pickRule() {
 		double interval = random.nextDouble()*systemActivity;
 		double p = 0;
 		for(String rule : ruleProbabilities.keySet()) {
@@ -102,11 +63,41 @@ public class StochasticSimulation extends Simulation {
 			p += ruleProbabilities.get(rule);
 			
 			if(p >=interval && greaterThanPrevious) {
-				currentRule = rule;
-				return;
+				return rule;
 			}
 			
 		}
+		
+		return null;
+	}
+
+	@Override
+	protected void updateEvents() {
+		try {
+			pmc.collectAllMatches();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		updateProbabilities();
+		updateTimeStep();
+		String currentRule = pickRule();
+		
+		if(currentRule != null) {
+			events.add(new Event(state.getTime()+timeStep, currentRule));
+		}
+	}
+
+	@Override
+	protected void processEvent(Event event) {
+		IMatch rndMatch = pmc.getRandomMatch(event.rule);
+		gt.applyRuleToMatch(rndMatch, event.rule);
+	}
+	
+	@Override
+	public void setAdditionalParameters(Object... params) {
+		// do nothing..
 	}
 
 }

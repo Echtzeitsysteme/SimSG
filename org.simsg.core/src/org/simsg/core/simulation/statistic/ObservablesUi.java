@@ -14,12 +14,12 @@ import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 
-public class SimulationStatisticsUi extends ApplicationFrame {
+public class ObservablesUi extends ApplicationFrame {
 
 	private static final long serialVersionUID = 1L;
 	XYDataset dataset;
 
-	public SimulationStatisticsUi(String title) {
+	public ObservablesUi(String title) {
 		super(title);
 		// TODO Auto-generated constructor stub
 	}

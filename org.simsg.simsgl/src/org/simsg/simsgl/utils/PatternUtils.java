@@ -21,7 +21,6 @@ import org.simsg.simsgl.simSGL.PatternAssignment;
 import org.simsg.simsgl.simSGL.PatternVariable;
 import org.simsg.simsgl.simSGL.Population;
 import org.simsg.simsgl.simSGL.Rule;
-import org.simsg.simsgl.simSGL.RuleRates;
 import org.simsg.simsgl.simSGL.SimSGLModel;
 import org.simsg.simsgl.simSGL.Terminate;
 import org.simsg.simsgl.simSGL.Time;
@@ -127,6 +126,34 @@ public class PatternUtils {
 				.collect(Collectors.toList());
 	}
 	
+	public static List<Rule> getStochasticRules(SimSGLModel model) {
+		return model.getProperties().stream()
+				.filter(item -> {
+					if(item instanceof Rule) {
+						Rule rule = (Rule) item;
+						return rule.getRule().getRuleRates() != null;
+					}else {
+						return false;
+					}
+				})
+				.map(rule -> (Rule) rule)
+				.collect(Collectors.toList());
+	}
+	
+	public static List<Rule> getNonStochasticRules(SimSGLModel model) {
+		return model.getProperties().stream()
+				.filter(item -> {
+					if(item instanceof Rule) {
+						Rule rule = (Rule) item;
+						return rule.getRule().getRuleRates() == null;
+					}else {
+						return false;
+					}
+				})
+				.map(rule -> (Rule) rule)
+				.collect(Collectors.toList());
+	}
+	
 	public static List<Observation> getObservables(SimSGLModel model){
 		return model.getProperties().stream().filter(item -> (item instanceof Observation)).map(obs -> (Observation) obs)
 				.collect(Collectors.toList());
@@ -184,27 +211,6 @@ public class PatternUtils {
 			popPatterns.put(((Terminate)pop.eContainer()).getName(), PatternUtils.patternFromPatternAssignment(pop.getPa()));
 		}
 		return popPatterns;
-	}
-	
-	public static Map<String, Double> getRates(SimSGLModel model) {
-		return extractRatesFromRules(getRules(model));
-	}
-	
-	public static Map<String, Double> extractRatesFromRules(List<Rule> rules) {
-		Map<String, Double> staticReactionRates = new LinkedHashMap<String, Double>();
-		for (Rule rule : rules) {
-			List<Double> reactionRates = new LinkedList<Double>();
-			RuleRates rates = rule.getRule().getRuleRates();
-			if(rates == null) continue;
-			rates.getRates().forEach(var -> {
-				reactionRates.add(valueOfNumericAssignment(var));
-			});
-			staticReactionRates.put(rule.getName() + PATTERN_NAME_SUFFIX_LHS, reactionRates.get(0));
-			if (rule.getRule().getOperator().equals(RULE_OPERATOR_BI)) {
-				staticReactionRates.put(rule.getName() + PATTERN_NAME_SUFFIX_RHS, reactionRates.get(1));
-			}
-		}
-		return staticReactionRates;
 	}
 	
 }

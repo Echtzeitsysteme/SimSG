@@ -32,6 +32,10 @@ public class SimulationState {
 		iterations++;
 	}
 	
+	public void setTime(double time) {
+		this.time = time;
+	}
+	
 	public void elapseTime(double step) {
 		time += step;
 	}

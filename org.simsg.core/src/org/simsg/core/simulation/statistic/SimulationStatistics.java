@@ -1,40 +1,29 @@
 package org.simsg.core.simulation.statistic;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.simsg.core.pmc.PatternMatchingController;
-import org.simsg.core.simulation.Observable;
 import org.simsg.core.simulation.SimulationState;
-import org.simsg.simsgl.utils.PatternContainer;
 
 
-public class SimulationStatistics {
+public abstract class SimulationStatistics {
 	
-	private Map<String, Observable> observables;
+	protected final SimulationState state;
 	
-	public SimulationStatistics() {
-		observables = new HashMap<String, Observable>();
+	public SimulationStatistics(SimulationState state) {
+		this.state = state;
 	}
 	
-	public void initObservables(PatternContainer patternContainer) {
-		for(String patternName : patternContainer.getObservablesPatterns().keySet()) {
-			observables.put(patternName, new Observable(patternName));
-		}
-	}
+	public abstract void logCurrentState();
 	
-	public void logCurrentState(SimulationState state) {
-		PatternMatchingController pmc = state.getPmc();
-		double currentTime = state.getTime();
+	public void display() {
+		Thread t = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				displayStatistics();
+			}
+		});
 		
-		for(String patternName : observables.keySet()) {
-			observables.get(patternName).addMeasurement(currentTime, pmc.getMatchCount(patternName));
-		}
+		t.run();
 	}
 	
-	public void displayStatistics() {
-		SimulationStatisticsUi ui = new SimulationStatisticsUi("Simulation Results");
-		ui.initDataSet(observables);
-		ui.displayDataSet();
-	}
+	protected abstract void displayStatistics();
 }

@@ -1,23 +1,30 @@
 package org.simsg.core.simulation.condition;
 
 import org.simsg.core.simulation.SimulationState;
-import org.simsg.simsgl.simSGL.SimSGLModel;
-import org.simsg.simsgl.utils.PatternContainer;
 
-public class SimpleTerminationCondition extends SimulationTerminationCondition {
+public class SimpleTerminationCondition extends TerminationCondition {
+	
+	final public static double MAX_ELAPSED_TIME = Double.MAX_VALUE;
+	final public static int MAX_ITERATIONS = Integer.MAX_VALUE;
+	
+	protected int maxIterations = MAX_ITERATIONS;
+	protected double maxElapsedTime = MAX_ELAPSED_TIME;
 
-	public SimpleTerminationCondition() {
+	public SimpleTerminationCondition(SimulationState state) {
+		super(state);
+	}
+	
+	public void setMaxIterations(int maxIterations) {
+		this.maxIterations = maxIterations;
+	}
+	
+	public void setMaxElapsedTime(double maxElapsedTime) {
+		this.maxElapsedTime = maxElapsedTime;
 	}
 
 	@Override
-	public boolean isTerminated(SimulationState state) {
+	public boolean isTerminated() {
 		return (state.getIterations()>=maxIterations) || (state.getTime() >= maxElapsedTime);
-	}
-
-	@Override
-	public void initCondition(PatternContainer patternContainer, SimSGLModel ruleModel) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

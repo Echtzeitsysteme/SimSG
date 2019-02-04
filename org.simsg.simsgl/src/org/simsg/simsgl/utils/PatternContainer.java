@@ -14,30 +14,31 @@ import org.simsg.simsgl.simSGL.Rule;
 import org.simsg.simsgl.simSGL.RuleBody;
 
 public class PatternContainer {
-	Map<Pattern, Set<String>> patterns;
-	Set<String> patternNames;
-	Map<String, Pattern> rhsRulePatterns;
-	Map<String, Pattern> lhsRulePatterns;
-	Map<String, Pattern> observablesPatterns;
-	Map<String, Pattern> termCondPopulationPatterns;
-	Set<Pattern> patternVariables;
+	Map<Pattern, Set<String>> patterns = new HashMap<>();
+	Set<String> patternNames = new HashSet<>();
+	Map<String, Pattern> rhsRulePatterns = new HashMap<>();
+	Map<String, Pattern> lhsRulePatterns = new HashMap<>();
+	Map<String, Pattern> observablesPatterns = new HashMap<>();
+	Map<String, Pattern> termCondPopulationPatterns = new HashMap<>();
+	Set<Pattern> patternVariables = new HashSet<>();
 	
-	PatternContainer() {
-		patterns = new HashMap<Pattern, Set<String>>();
-		patternNames = new HashSet<String>();
-		lhsRulePatterns = new HashMap<String, Pattern>();
-		rhsRulePatterns = new HashMap<String, Pattern>();
-		observablesPatterns = new HashMap<String, Pattern>();
-		termCondPopulationPatterns = new HashMap<String, Pattern>();
-		patternVariables = new HashSet<Pattern>();
-	}
-	
+	Map<String, Double> stochasticRules = new HashMap<>();
+	Set<String> nonStochasticRules = new HashSet<>();
+
 	public Collection<Pattern> getAllPatterns() {
 		return patterns.keySet();
 	}
 	
 	public Collection<String> getAllPatternNames() {
 		return patternNames;
+	}
+	
+	public Map<String, Double> getStochasticRules() {
+		return stochasticRules;
+	}
+	
+	public Collection<String> getNonStochasticRules() {
+		return nonStochasticRules;
 	}
 	
 	public Collection<String> getAllPatternHashes() {
@@ -114,11 +115,23 @@ public class PatternContainer {
 			if(ruleBody.getOperator().equals(PatternUtils.RULE_OPERATOR_UNI)) {
 				lhsRulePatterns.put(lhsPatternName, lhsPattern);
 				rhsRulePatterns.put(rhsPatternName, rhsPattern);
+				if(ruleBody.getRuleRates() != null) {
+					stochasticRules.put(lhsPatternName, PatternUtils.valueOfNumericAssignment(ruleBody.getRuleRates().getRates().get(0)));
+				}else {
+					nonStochasticRules.add(lhsPatternName);
+				}
 			}else {
 				lhsRulePatterns.put(lhsPatternName, lhsPattern);
 				rhsRulePatterns.put(rhsPatternName, rhsPattern);
 				lhsRulePatterns.put(rhsPatternName, rhsPattern);
 				rhsRulePatterns.put(lhsPatternName, lhsPattern);
+				if(ruleBody.getRuleRates() != null) {
+					stochasticRules.put(lhsPatternName, PatternUtils.valueOfNumericAssignment(ruleBody.getRuleRates().getRates().get(0)));
+					stochasticRules.put(rhsPatternName, PatternUtils.valueOfNumericAssignment(ruleBody.getRuleRates().getRates().get(1)));
+				}else {
+					nonStochasticRules.add(lhsPatternName);
+					nonStochasticRules.add(rhsPatternName);
+				}
 			}
 		}
 		

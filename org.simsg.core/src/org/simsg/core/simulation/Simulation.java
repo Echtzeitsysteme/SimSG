@@ -1,18 +1,23 @@
 package org.simsg.core.simulation;
 
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.function.Function;
 
 import org.simsg.container.Container;
 import org.simsg.core.gt.ReactionRuleTransformer;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.pm.match.IMatch;
 import org.simsg.core.pmc.PatternMatchingController;
-import org.simsg.core.simulation.condition.SimulationTerminationCondition;
+import org.simsg.core.simulation.condition.TerminationCondition;
+import org.simsg.core.simulation.constraint.ExternalConstraint;
+import org.simsg.core.simulation.service.ServiceRoutine;
 import org.simsg.core.simulation.statistic.SimulationStatistics;
 import org.simsg.core.utils.Runtimer;
 import org.simsg.simsgl.simSGL.SimSGLModel;
-import org.simsg.simsgl.utils.PatternUtils;
 
 
 public abstract class Simulation {
@@ -20,107 +25,150 @@ public abstract class Simulation {
 	protected String modelName;
 	protected PersistenceManager persistence;
 	protected PatternMatchingController pmc;
-	protected SimulationTerminationCondition terminationCondition;
 	protected SimulationState state;
-	protected SimulationStatistics simStats;
 	protected SimSGLModel ruleModel;
 	protected Container reactionContainer;
 	protected ReactionRuleTransformer gt;
-	protected Map<String, Double> staticReactionRates;
-
 	
-	void setModel(String modelName) {
+	protected List<Function<SimulationState, ServiceRoutine>> serviceConstructors = new LinkedList<>();
+	protected List<Function<SimulationState, TerminationCondition>> conditionConstructors = new LinkedList<>();
+	protected List<Function<SimulationState, ExternalConstraint>> constraintConstructors = new LinkedList<>();
+	protected List<Function<SimulationState, SimulationStatistics>> statisticConstructors = new LinkedList<>();
+	
+	protected List<ServiceRoutine> services = new LinkedList<>();
+	protected List<TerminationCondition> conditions = new LinkedList<>();
+	protected PriorityQueue<Event> events = new PriorityQueue<>();
+	protected List<ExternalConstraint> constraints = new LinkedList<>();
+	protected List<SimulationStatistics> statistics = new LinkedList<>();
+	
+	public Simulation(String modelName, PersistenceManager persistence, PatternMatchingController pmc) {
 		this.modelName = modelName;
-	}
-	
-	void setPersistence(PersistenceManager persistence) {
 		this.persistence = persistence;
-	}
-
-	void setPmc(PatternMatchingController pmc) {
 		this.pmc = pmc;
 	}
 	
-	void setTerminationCondition(SimulationTerminationCondition terminationCondition) {
-		this.terminationCondition = terminationCondition;
+	public abstract void setAdditionalParameters(Object ... params);
+	
+	void addServiceRoutine(Function<SimulationState, ServiceRoutine> constructor) {
+		serviceConstructors.add(constructor);
 	}
 	
-	protected void initStaticReactionRates() {
-		staticReactionRates = PatternUtils.getRates(ruleModel);
+	void addTerminationCondition(Function<SimulationState, TerminationCondition> constructor) {
+		conditionConstructors.add(constructor);
+	}
+	
+	void addExternalConstraint(Function<SimulationState, ExternalConstraint> constructor) {
+		constraintConstructors.add(constructor);
+	}
+	
+	void addSimulationStatistic(Function<SimulationState, SimulationStatistics> constructor) {
+		statisticConstructors.add(constructor);
+	}
+	
+	void addServiceRoutine(List<Function<SimulationState, ServiceRoutine>> constructors) {
+		serviceConstructors.addAll(constructors);
+	}
+	
+	void addTerminationConditions(List<Function<SimulationState, TerminationCondition>> constructors) {
+		conditionConstructors.addAll(constructors);
+	}
+	
+	void addExternalConstraints(List<Function<SimulationState, ExternalConstraint>> constructors) {
+		constraintConstructors.addAll(constructors);
+	}
+	
+	void addSimulationStatistics(List<Function<SimulationState, SimulationStatistics>> constructors) {
+		statisticConstructors.addAll(constructors);
 	}
 	
 	public void initialize() throws Exception {
+		initModel();
+		initPMC();	
+		initGT();
+		initState();
+		initializeServices();
+		initializeConditions();
+		initializeConstraints();
+		initializeStatistics();
+	}
+	
+	private void initModel() throws Exception {
 		persistence.init();
 		ruleModel = persistence.loadReactionRuleModel(modelName);
 		reactionContainer = persistence.loadReactionContainerModel(modelName);
+	}
+	
+	private void initPMC() throws Exception {
 		pmc.loadModels(ruleModel, reactionContainer);
 		pmc.initEngine();
-		pmc.initController();	
+		pmc.initController();
+	}
+	
+	private void initGT() {
 		gt = new ReactionRuleTransformer(pmc.getPatternContainer(), reactionContainer, pmc.getEPackageWrapper());
 		gt.init();
-		initStaticReactionRates();
+	}
+	
+	private void initState() {
 		state = new SimulationState();
 		state.setPmc(pmc);
-		terminationCondition.initCondition(pmc.getPatternContainer(), ruleModel);
-		simStats = new SimulationStatistics();
-		simStats.initObservables(pmc.getPatternContainer());
+	}
+	
+	private void initializeServices() {
+		for(Function<SimulationState, ServiceRoutine> constructor : serviceConstructors) {
+			services.add(constructor.apply(state));
+		}
+	}
+	
+	private void initializeConditions() {
+		for(Function<SimulationState, TerminationCondition> constructor : conditionConstructors) {
+			conditions.add(constructor.apply(state));
+		}
+	}
+	
+	private void initializeConstraints() {
+		for(Function<SimulationState, ExternalConstraint> constructor : constraintConstructors) {
+			constraints.add(constructor.apply(state));
+		}
+	}
+	
+	private void initializeStatistics() {
+		for(Function<SimulationState, SimulationStatistics> constructor : statisticConstructors) {
+			statistics.add(constructor.apply(state));
+		}
 	}
 	
 	public void initializeClocked() {
 		Runtimer timer = Runtimer.getInstance();
-		timer.measure(this, "initialize", () -> {
-			try {
-				initializeClockedInternal();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		timer.measure(this, "Initialize(1): Simulation", () -> {
+				timer.measure(this, "Initialize(1.1): Models", () -> {
+					try {
+						initModel();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				});
+				timer.measure(this, "Initialize(1.2): PMC", () -> {
+					try {
+						initPMC();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				});
+				timer.measure(this, "Initialize(1.3): GT", this::initGT);
+				timer.measure(this, "Initialize(1.4): State", this::initState);
+				timer.measure(this, "Initialize(1.5): Service Routines", this::initializeServices);
+				timer.measure(this, "Initialize(1.6): Termination Conditions", this::initializeConditions);
+				timer.measure(this, "Initialize(1.7): External Constraints", this::initializeConstraints);
+				timer.measure(this, "Initialize(1.8): Simulation Statistics", this::initializeStatistics);
 		});
-	}
-	
-	private void initializeClockedInternal() throws Exception {
-		Runtimer timer = Runtimer.getInstance();
-		persistence.init();
-		ruleModel = persistence.loadReactionRuleModel(modelName);
-		reactionContainer = persistence.loadReactionContainerModel(modelName);
-		timer.measure(this, "loadModels", () -> {
-			try {
-				pmc.loadModels(ruleModel, reactionContainer);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		});
-		timer.measure(this, "initEngine", () -> {
-			try {
-				pmc.initEngine();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		});
-		timer.measure(this, "initController", () -> {
-			try {
-				pmc.initController();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		});
-		
-		gt = new ReactionRuleTransformer(pmc.getPatternContainer(), reactionContainer, pmc.getEPackageWrapper());
-		gt.init();
-		initStaticReactionRates();
-		state = new SimulationState();
-		state.setPmc(pmc);
-		terminationCondition.initCondition(pmc.getPatternContainer(), ruleModel);
-		simStats = new SimulationStatistics();
-		simStats.initObservables(pmc.getPatternContainer());
 	}
 	
 	public void runClocked() {
 		Runtimer timer = Runtimer.getInstance();
-		timer.measure(this, "run", () -> {
+		timer.measure(this, "Run(2): Simulation", () -> {
 			try {
 				run();
 			} catch (Exception e) {
@@ -130,7 +178,49 @@ public abstract class Simulation {
 		});
 	}
 	
-	public abstract void run() throws Exception;
+	public void run() throws Exception {
+		while(!checkTerminationConditions()) {
+			updateEvents();
+			performServiceInterval();
+			processNextEvent();
+			updateStatistics();
+		}
+	}
+	
+	protected boolean checkTerminationConditions() {
+		for(TerminationCondition condition : conditions) {
+			if(condition.isTerminated()) return true;
+		}
+		return false;
+	}
+	
+	protected abstract void updateEvents();
+	
+	protected void performServiceInterval() {
+		for(ServiceRoutine service : services) {
+			service.performService();
+		}
+	}
+	
+	protected void processNextEvent() {
+		Event event = events.poll();
+		state.setTime(event.time);
+		
+		for(ExternalConstraint constraint: constraints) {
+			if(!constraint.checkConstraint(event)) return;
+		}
+		
+		processEvent(event);
+	}
+	
+	protected abstract void processEvent(Event event);
+	
+	protected void updateStatistics() {
+		for(SimulationStatistics statistic : statistics) {
+			statistic.logCurrentState();
+		}
+	}
+	
 	
 	public Map<String, Collection<IMatch>> getResults() {
 		return pmc.getAllMatches();
@@ -154,7 +244,9 @@ public abstract class Simulation {
 	}
 	
 	public void displayResults() {
-		simStats.displayStatistics();
+		for(SimulationStatistics statistic : statistics) {
+			statistic.display();
+		}
 	}
 	
 	@Override

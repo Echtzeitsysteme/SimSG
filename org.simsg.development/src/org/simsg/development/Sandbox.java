@@ -65,7 +65,8 @@ public class Sandbox {
 		simConfigurator.setDemoclesAsEngine();
 		simConfigurator.setHybridPMC();
 		simConfigurator.setStochasticSimulation();
-		simConfigurator.setComplexTerminationCondition();
+		simConfigurator.addComplexTerminationCondition();
+		simConfigurator.addObservableStatistic();
 		Simulation viatraSim = simConfigurator.createSimulation();
 		viatraSim.initializeClocked();
 		viatraSim.runClocked();

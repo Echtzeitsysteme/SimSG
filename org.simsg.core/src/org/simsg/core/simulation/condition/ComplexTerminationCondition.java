@@ -13,17 +13,29 @@ import org.simsg.simsgl.simSGL.Time;
 import org.simsg.simsgl.utils.PatternContainer;
 import org.simsg.simsgl.utils.PatternUtils;
 
-public class ComplexTerminationCondition extends SimulationTerminationCondition {
-	
+public class ComplexTerminationCondition extends TerminationCondition {
+
 	final public static double MILLISEC = 0.001;
+	
+	final public static double MAX_ELAPSED_TIME = Double.MAX_VALUE;
+	final public static int MAX_ITERATIONS = Integer.MAX_VALUE;
+	
+	protected int maxIterations = MAX_ITERATIONS;
+	protected double maxElapsedTime = MAX_ELAPSED_TIME;
+	
 	private Map<String, Integer> terminationPatterns;
 	@SuppressWarnings("unused")
 	private int itStatusStep;
 	private double tStatusStep;
 	private double currentTStep;
+	
+	public ComplexTerminationCondition(SimulationState state) {
+		super(state);
+		initCondition();
+	}
 
 	@Override
-	public boolean isTerminated(SimulationState state) {
+	public boolean isTerminated() {
 		/*
 		if(state.getIterations()%itStatusStep==0) {
 			System.out.println(100.0*(double)state.getIterations() / (double)maxIterations + "% of iterations("+state.getIterations()+") completed!");
@@ -45,9 +57,19 @@ public class ComplexTerminationCondition extends SimulationTerminationCondition 
 		
 		return false;
 	}
+	
+	public void setMaxIterations(int maxIterations) {
+		this.maxIterations = maxIterations;
+	}
+	
+	public void setMaxElapsedTime(double maxElapsedTime) {
+		this.maxElapsedTime = maxElapsedTime;
+	}
 
-	@Override
-	public void initCondition(PatternContainer patternContainer, SimSGLModel ruleModel) {
+	private void initCondition() {
+		SimSGLModel ruleModel = state.getPmc().getRuleModel();
+		PatternContainer patternContainer = state.getPmc().getPatternContainer();
+		
 		terminationPatterns = new HashMap<String, Integer>();
 		for(String patternName : patternContainer.getTermCondPatterns().keySet()) {
 			terminationPatterns.put(patternName, 0);
