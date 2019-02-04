@@ -1002,10 +1002,10 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="changeStates_rule">
@@ -1058,10 +1058,10 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="breakUpWithStates_rule">
@@ -1144,10 +1144,10 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="bindAndChangeStates_rule">
@@ -1262,10 +1262,10 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="createAndDestroy_rule">
@@ -1321,10 +1321,10 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="createAndDestroyFullVoid_rule">
@@ -1357,10 +1357,10 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="createAndDestroyFullVoidInjectivity_rule">
@@ -1376,10 +1376,10 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="createAndDestroyFullVoidInjectivity2_rule">
@@ -1395,10 +1395,10 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="manyEdgeBoundToDisjunct_rule">
@@ -1426,10 +1426,10 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="manyEdgeDisjunctToBound_rule">
@@ -1481,10 +1481,10 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="manyEdgeTriangle_rule">
@@ -1569,10 +1569,10 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.15"/>
+      </ruleRates>
     </rule>
   </properties>
 </simSGL:SimSGLModel>

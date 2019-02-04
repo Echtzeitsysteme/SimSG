@@ -256,14 +256,14 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-        <variables xmi:type="simSGL:NumericFromLiteral">
+        </rates>
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="EGFR_EGFR">
@@ -336,14 +336,14 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-        <variables xmi:type="simSGL:NumericFromLiteral">
+        </rates>
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="EGFR_at_992">
@@ -386,11 +386,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="EGFR_at_1068">
@@ -433,11 +433,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="EGFR_at_1148">
@@ -480,11 +480,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="_992_op">
@@ -517,11 +517,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="_1068_op">
@@ -554,11 +554,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="_1148_op">
@@ -591,11 +591,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="int_monomer">
@@ -658,11 +658,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="0.02"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="int_dimer">
@@ -775,11 +775,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="0.02"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="EGFR_EGFR_op">
@@ -852,11 +852,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="EGF_EGFR_op">
@@ -919,11 +919,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="deg_EGF">
@@ -947,11 +947,11 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="deg_EGFR">
@@ -980,11 +980,11 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="rec_EGFR">
@@ -1053,11 +1053,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="EGFR_RasGAP">
@@ -1108,14 +1108,14 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-        <variables xmi:type="simSGL:NumericFromLiteral">
+        </rates>
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="EGFR_Grb2">
@@ -1166,14 +1166,14 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-        <variables xmi:type="simSGL:NumericFromLiteral">
+        </rates>
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="Grb2_SoS">
@@ -1234,11 +1234,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="Grb2_SoS_op">
@@ -1287,11 +1287,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="EGFR_Shc">
@@ -1342,14 +1342,14 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-        <variables xmi:type="simSGL:NumericFromLiteral">
+        </rates>
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="Shc_Grb2">
@@ -1400,14 +1400,14 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-        <variables xmi:type="simSGL:NumericFromLiteral">
+        </rates>
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="Shc_at_318">
@@ -1480,11 +1480,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="Shc_at_318_op">
@@ -1517,11 +1517,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="long_arm_SoS_Ras">
@@ -1660,11 +1660,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="short_arm_SoS_Ras">
@@ -1773,11 +1773,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="Ras_GTP">
@@ -1828,11 +1828,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="SoS_Ras_op">
@@ -1881,11 +1881,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="direct_RasGap_Ras">
@@ -1966,11 +1966,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="Ras_GDP">
@@ -2021,11 +2021,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="RasGAP_Ras_op">
@@ -2074,11 +2074,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="intrinsic_Ras_GDP">
@@ -2111,11 +2111,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:PatternVariable" name="p_Raf">
@@ -2169,11 +2169,11 @@
         </pattern>
       </lhs>
       <rhs xmi:type="simSGL:AssignFromVariable" patternVar="//@properties.44"/>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="Raf">
@@ -2203,11 +2203,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="Ras_Raf_op">
@@ -2258,11 +2258,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:PatternVariable" name="p_Raf2">
@@ -2314,11 +2314,11 @@
         </pattern>
       </lhs>
       <rhs xmi:type="simSGL:AssignFromVariable" patternVar="//@properties.48"/>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="Raf_op">
@@ -2347,11 +2347,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="PP2A1_Raf_op">
@@ -2400,11 +2400,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:PatternVariable" name="p_MEK">
@@ -2458,11 +2458,11 @@
         </pattern>
       </lhs>
       <rhs xmi:type="simSGL:AssignFromVariable" patternVar="//@properties.52"/>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="MEK_at_222">
@@ -2492,11 +2492,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="Raf_MEK_at_222_op">
@@ -2547,11 +2547,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:PatternVariable" name="p_MEK2">
@@ -2605,11 +2605,11 @@
         </pattern>
       </lhs>
       <rhs xmi:type="simSGL:AssignFromVariable" patternVar="//@properties.56"/>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="MEK_at_218">
@@ -2639,11 +2639,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="Raf_MEK_at_218_op">
@@ -2694,11 +2694,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:PatternVariable" name="p_MEK3">
@@ -2750,11 +2750,11 @@
         </pattern>
       </lhs>
       <rhs xmi:type="simSGL:AssignFromVariable" patternVar="//@properties.60"/>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="MEK_at_222_op">
@@ -2783,11 +2783,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="PP2A2_MEK_at_222_op">
@@ -2836,11 +2836,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:PatternVariable" name="p_MEK4">
@@ -2892,11 +2892,11 @@
         </pattern>
       </lhs>
       <rhs xmi:type="simSGL:AssignFromVariable" patternVar="//@properties.64"/>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="MEK_at_218_op">
@@ -2925,11 +2925,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="PP2A2_MEK_at_218_op">
@@ -2978,11 +2978,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:PatternVariable" name="p_ERK">
@@ -3058,11 +3058,11 @@
         </pattern>
       </lhs>
       <rhs xmi:type="simSGL:AssignFromVariable" patternVar="//@properties.68"/>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="ERK_at_185">
@@ -3103,11 +3103,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="MEK_ERK_at_185_op">
@@ -3156,11 +3156,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:PatternVariable" name="p_ERK2">
@@ -3236,11 +3236,11 @@
         </pattern>
       </lhs>
       <rhs xmi:type="simSGL:AssignFromVariable" patternVar="//@properties.72"/>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="ERK_at_187">
@@ -3281,11 +3281,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="MEK_ERK_at_187_op">
@@ -3334,11 +3334,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:PatternVariable" name="p_ERK3">
@@ -3390,11 +3390,11 @@
         </pattern>
       </lhs>
       <rhs xmi:type="simSGL:AssignFromVariable" patternVar="//@properties.76"/>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="ERK_at_185_op">
@@ -3423,11 +3423,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="MKP_ERK_at_185_op">
@@ -3476,11 +3476,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:PatternVariable" name="p_ERK4">
@@ -3532,11 +3532,11 @@
         </pattern>
       </lhs>
       <rhs xmi:type="simSGL:AssignFromVariable" patternVar="//@properties.80"/>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="ERK_at_187_op">
@@ -3565,11 +3565,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="MKP_ERK_at_187_op">
@@ -3618,11 +3618,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="SoS_ERK">
@@ -3697,11 +3697,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="SoS_ERK_op">
@@ -3750,11 +3750,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="SoS_at_SS">
@@ -3829,11 +3829,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="SoS_at_SS_op">
@@ -3866,11 +3866,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Initial" name="i_EGF">

@@ -1,1 +1,7 @@
 /bin/
+models/Benchmarks/*
+models/ContainerModels/*
+models/ContainerMetaModels/*
+models/SimSGLModels/*.xmi
+models/ViatraPatternModels/*
+models/*.json

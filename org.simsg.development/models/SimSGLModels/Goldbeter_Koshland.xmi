@@ -114,14 +114,14 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-        <variables xmi:type="simSGL:NumericFromLiteral">
+        </rates>
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="10"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="Tp_x">
@@ -172,11 +172,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="KT_y">
@@ -225,14 +225,14 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-        <variables xmi:type="simSGL:NumericFromLiteral">
+        </rates>
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="10"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="Tp_y">
@@ -283,11 +283,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="PT_x">
@@ -336,14 +336,14 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-        <variables xmi:type="simSGL:NumericFromLiteral">
+        </rates>
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="10"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="Tu_x">
@@ -394,11 +394,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="PT_y">
@@ -447,14 +447,14 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-        <variables xmi:type="simSGL:NumericFromLiteral">
+        </rates>
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="10"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Rule" name="Tu_y">
@@ -505,11 +505,11 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Observation" name="o1">

@@ -225,14 +225,14 @@
           </agentPatterns>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromLiteral">
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="1"/>
-        </variables>
-        <variables xmi:type="simSGL:NumericFromLiteral">
+        </rates>
+        <rates xmi:type="simSGL:NumericFromLiteral">
           <value xmi:type="simSGL:ArithmeticValue" value="60000"/>
-        </variables>
-      </variables>
+        </rates>
+      </ruleRates>
     </rule>
   </properties>
   <properties xmi:type="simSGL:Observation" name="o1">

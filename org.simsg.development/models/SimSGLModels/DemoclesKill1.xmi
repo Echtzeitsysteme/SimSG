@@ -212,9 +212,9 @@
           <agentPatterns xmi:type="simSGL:VoidAgentPattern" pattern="void"/>
         </pattern>
       </rhs>
-      <variables xmi:type="simSGL:RuleVariables">
-        <variables xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.5"/>
-      </variables>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromVariable" valueVar="//@properties.5"/>
+      </ruleRates>
     </rule>
   </properties>
 </simSGL:SimSGLModel>

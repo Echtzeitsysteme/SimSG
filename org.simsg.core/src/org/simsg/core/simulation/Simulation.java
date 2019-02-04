@@ -28,9 +28,6 @@ public abstract class Simulation {
 	protected ReactionRuleTransformer gt;
 	protected Map<String, Double> staticReactionRates;
 
-	public Simulation() {
-		
-	}
 	
 	void setModel(String modelName) {
 		this.modelName = modelName;
