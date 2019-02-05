@@ -360,7 +360,7 @@ public class DemoclesPatternGenerator {
 		List<AgentNodeContext> otherContextNodes = new LinkedList<AgentNodeContext>();
 		AgentNodeContext currentAnc = lsc.getSiteNodeContext().getAgentNodeContext();
 		for(AgentNodeContext anc : genericPatterns.get(currentAnc.getPatternName()).getBody().getSubPattern(currentAnc)) {
-			if(anc.getAgentType().equals(currentAnc.getAgentType()) && anc!=currentAnc) {
+			if(anc!=currentAnc) {
 				otherContextNodes.add(anc);
 			}
 		}

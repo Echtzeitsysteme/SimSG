@@ -40,7 +40,10 @@ public class PeriodicService extends ServiceRoutine {
 				if(count <= 0) continue;
 				
 				gt.applyRuleToMatch(state.getRandomMatch(rule), rule);
-				somethingChanged = true;
+				state.refreshState();
+				if(count != state.getMatchCount(rule)) {
+					somethingChanged = true;
+				}
 			}
 		}
 		

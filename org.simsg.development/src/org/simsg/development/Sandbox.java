@@ -60,14 +60,15 @@ public class Sandbox {
 		
 		SimulationConfigurator simConfigurator = new SimulationConfigurator();
 		simConfigurator.setModelFolder(System.getProperty("user.dir")+"//models");
-		simConfigurator.setModel("Goldbeter_Koshland");
+		simConfigurator.setModel("NetworkExample");
 		simConfigurator.setEMFPersistence();
 		simConfigurator.setDemoclesAsEngine();
-		simConfigurator.setHybridPMC();
-		simConfigurator.setStochasticSimulation();
+		simConfigurator.setSimplePMC();
+		simConfigurator.setSimpleSimulation(false);
 		simConfigurator.addComplexTerminationCondition();
 		simConfigurator.addObservableStatistic();
-		//simConfigurator.addModelGraphPropertiesStatistic();
+		simConfigurator.addModelGraphPropertiesStatistic();
+		simConfigurator.addPeriodicServiceRoutine(2);
 		Simulation viatraSim = simConfigurator.createSimulation();
 		viatraSim.initializeClocked();
 		viatraSim.runClocked();

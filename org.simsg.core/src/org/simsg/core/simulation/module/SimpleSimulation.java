@@ -1,6 +1,7 @@
 package org.simsg.core.simulation.module;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -14,18 +15,15 @@ import org.simsg.core.simulation.Simulation;
 
 public class SimpleSimulation extends Simulation {
 	
-	protected boolean randomRuleOrder;
-	protected boolean useReactionRates;
+	protected boolean randomRuleOrder = true;
+	protected boolean useReactionRates = true;
 	
-	private Map<String, Double> staticReactionRates;
+	private Map<String, Double> staticReactionRates = new HashMap<>();
 	
 	private Random random = new Random();
 	
 	public SimpleSimulation(String modelName, PersistenceManager persistence, PatternMatchingController pmc) {
 		super(modelName, persistence, pmc);
-		randomRuleOrder = true;
-		useReactionRates = true;
-		random = new Random();
 	}
 	
 	public void randomizeRuleOrder(boolean activate) {
@@ -75,8 +73,12 @@ public class SimpleSimulation extends Simulation {
 			patternQueue = generatePatternQueue();
 		}
 		String current = patternQueue.poll();
+		if(current == null) return;
 		
 		if(useReactionRates) {
+			if(!staticReactionRates.containsKey(current)) {
+				return;
+			}
 			double reactionRate = staticReactionRates.get(current);
 			double pRule = 1.0 - Math.pow((1.0-reactionRate), state.getMatchCount(current));
 			double rnd = random.nextDouble();

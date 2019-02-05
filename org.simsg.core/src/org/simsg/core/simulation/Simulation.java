@@ -190,6 +190,7 @@ public abstract class Simulation {
 			}
 			processNextEvent();
 			updateStatistics();
+			state.incrementIterations();
 		}
 	}
 	

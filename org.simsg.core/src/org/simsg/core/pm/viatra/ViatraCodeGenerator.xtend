@@ -105,7 +105,7 @@ class ViatraCodeGenerator {
 		val supPatternName1 = '''supportPattern_«patternName»_«link.agentReferenceName»_«link.hashCode»'''
 		val otherContextNodes = new LinkedList<AgentNodeContext>
 		for(AgentNodeContext anc : gp.body.getSubPattern(link.siteNodeContext.agentNodeContext)) {
-			if(anc.agentType.equals(link.siteNodeContext.agentNodeContext.agentType) && anc!=link.siteNodeContext.agentNodeContext) {
+			if(anc!=link.siteNodeContext.agentNodeContext) {
 			otherContextNodes.add(anc)
 			}
 		}

@@ -86,7 +86,7 @@ public class ModelGraphProperties extends SimulationStatistics {
 		for(EStructuralFeature feat : agentClass.getEStructuralFeatures()) {
 			if(!(feat instanceof EReference)) continue;
 			EReference ref  = (EReference)feat;
-			if(ref.getEType().getClassifierID() != ContainerPackage.AGENT) continue;
+			if(!ref.getEType().getName().equals("Agent")) continue;
 			outgoingEdgeTypes.add(ref);
 		}
 		
