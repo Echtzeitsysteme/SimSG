@@ -2,7 +2,7 @@ package org.simsg.core.simulation.service;
 
 import java.util.Collection;
 
-import org.simsg.core.gt.ReactionRuleTransformer;
+import org.simsg.core.gt.ModelGraphTransformer;
 import org.simsg.core.simulation.SimulationState;
 
 public class PeriodicService extends ServiceRoutine {
@@ -22,7 +22,7 @@ public class PeriodicService extends ServiceRoutine {
 	}
 
 	@Override
-	public boolean performService(ReactionRuleTransformer gt) {
+	public boolean performService(ModelGraphTransformer gt) {
 		double nextEventTime = state.peekNextEvent().time;
 		if((nextEventTime-lastService) < servicePeriod) {
 			return false;

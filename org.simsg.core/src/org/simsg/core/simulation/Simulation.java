@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.simsg.container.Container;
-import org.simsg.core.gt.ReactionRuleTransformer;
+import org.simsg.core.gt.ModelGraphTransformer;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.pm.match.IMatch;
 import org.simsg.core.pmc.PatternMatchingController;
@@ -27,7 +27,7 @@ public abstract class Simulation {
 	protected SimulationState state;
 	protected SimSGLModel ruleModel;
 	protected Container reactionContainer;
-	private ReactionRuleTransformer gt;
+	private ModelGraphTransformer gt;
 	
 	protected List<Function<SimulationState, ServiceRoutine>> serviceConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, TerminationCondition>> conditionConstructors = new LinkedList<>();
@@ -103,7 +103,7 @@ public abstract class Simulation {
 	}
 	
 	private void initGT() {
-		gt = new ReactionRuleTransformer(pmc.getPatternContainer(), reactionContainer, pmc.getEPackageWrapper());
+		gt = new ModelGraphTransformer(pmc.getPatternContainer(), reactionContainer, pmc.getEPackageWrapper());
 		gt.init();
 	}
 	

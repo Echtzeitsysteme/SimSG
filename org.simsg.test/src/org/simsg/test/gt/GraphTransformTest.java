@@ -12,7 +12,7 @@ import org.junit.jupiter.api.TestInstance;
 import org.junit.runners.MethodSorters;
 
 import org.simsg.container.Container;
-import org.simsg.core.gt.ReactionRuleTransformer;
+import org.simsg.core.gt.ModelGraphTransformer;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.persistence.PersistenceManagerEnum;
 import org.simsg.core.persistence.PersistenceManagerFactory;
@@ -40,7 +40,7 @@ abstract class GraphTransformTest {
 	protected PatternMatchingEngineEnum engineType;
 	protected PatternMatchingControllerEnum pmcType;
 	
-	protected ReactionRuleTransformer gt;
+	protected ModelGraphTransformer gt;
 	
 	protected GraphTransformTest() {
 		setPersistenceType();
@@ -67,7 +67,7 @@ abstract class GraphTransformTest {
 		pmc.loadModels(ruleModel, containerModel);
 		pmc.initEngine();
 		pmc.initController();
-		gt = new ReactionRuleTransformer(pmc.getPatternContainer(), containerModel, pmc.getEPackageWrapper());
+		gt = new ModelGraphTransformer(pmc.getPatternContainer(), containerModel, pmc.getEPackageWrapper());
 		gt.init();
 	}
 	

@@ -13,25 +13,23 @@ import org.simsg.core.pm.match.IMatch;
 
 public class LinkDeletionTemplate {
 	
-	public static final int REMOVE_ALL = Integer.MIN_VALUE;
-	public static final int REMOVE_ALL_TYPES = -1;
+	public static final String REMOVE_ALL = "REMOVE_ALL";
+	public static final String REMOVE_ALL_TYPES = "REMOVE_ALL_TYPES";
 	
-	private int agentIndex;
-	private Map<EReference, Integer> references;
-	private Map<EReference, EClass> removeTypes;
+	private String nodeLabel;
+	private Map<EReference, String> references = new HashMap<>();
+	private Map<EReference, EClass> removeTypes = new HashMap<>();
 	
-	public LinkDeletionTemplate(int agentIndex){
-		this.agentIndex = agentIndex;
-		references = new HashMap<EReference, Integer>();
-		removeTypes = new HashMap<EReference, EClass>();
+	public LinkDeletionTemplate(String nodeLabel){
+		this.nodeLabel = nodeLabel;
 	}
 	
 	public void addLinkRemovalCandidate(EReference ref) {
 		references.put(ref, null);
 	}
 	
-	public void addLinkRemovalCandidate(EReference ref, int otherAgentIdx) {
-		references.put(ref, otherAgentIdx);
+	public void addLinkRemovalCandidate(EReference ref, String otherNodeLabel) {
+		references.put(ref, otherNodeLabel);
 	}
 	
 	public void addLinkRemovalType(EReference ref, EClass removeType) {
@@ -41,14 +39,14 @@ public class LinkDeletionTemplate {
 	
 	@SuppressWarnings("unchecked")
 	public void applyRemovalCandidates(IMatch match) {
-		Agent agent = (Agent) match.get(match.parameterNames().get(agentIndex));
+		Agent agent = (Agent) match.get(nodeLabel);
 		
-		for(Entry<EReference, Integer> ref : references.entrySet()) {
+		for(Entry<EReference, String> ref : references.entrySet()) {
 			if(ref.getValue() != null) {
-				if(ref.getValue() >= 0) {
-					Agent otherAgent = (Agent) match.get(match.parameterNames().get(ref.getValue().intValue()));
+				if(!(ref.getValue().equals(REMOVE_ALL_TYPES) || ref.getValue().equals(REMOVE_ALL))) {
+					Agent otherAgent = (Agent) match.get(ref.getValue());
 					((List<Agent>) agent.eGet(ref.getKey())).remove(otherAgent);
-				}else if (ref.getValue() == REMOVE_ALL_TYPES) {
+				}else if (ref.getValue().equals(REMOVE_ALL_TYPES)) {
 					EClass removeType = removeTypes.get(ref.getKey());
 					
 					List<Agent> candidates = new LinkedList<Agent>();

@@ -3,6 +3,7 @@ package org.simsg.core.gt;
 import java.util.AbstractMap;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +17,8 @@ import org.simsg.container.util.AgentClassFactory;
 import org.simsg.container.util.EPackageWrapper;
 import org.simsg.container.util.StateClassFactory;
 import org.simsg.core.pm.match.IMatch;
+import org.simsg.core.pm.pattern.AgentNodeContext;
+import org.simsg.core.pm.pattern.GenericPattern;
 import org.simsg.simsgl.simSGL.ValidAgentPattern;
 import org.simsg.simsgl.simSGL.VoidAgentPattern;
 import org.simsg.simsgl.simSGL.AgentPattern;
@@ -40,33 +43,36 @@ import org.simsg.simsgl.simSGL.TypedFreeLink;
 
 public class TransformationTemplate {
 	
-	private String lhsName;
-	private Pattern precondition;
-	private Pattern postcondition;
-	private Container reactionContainer;
+	private String ruleName;
+	private GenericPattern lhs;
+	private GenericPattern rhs;
+	private Container container;
 	private EPackageWrapper metaModel;
 	
-	private List<Integer> agentRemovals;
-	private List<LinkDeletionTemplate> linkRemovals;
-	private List<AgentStateChangeTemplate> agentStateChanges;
-	private List<SiteStateChangeTemplate> siteStateChanges;
-	private Map<ValidAgentPattern, AgentCreationTemplate> agentCreations;
-	private Map<Integer, LinkChangeTemplate> linkChanges;
-	private List<AttributeChangeTemplate> attributeChanges;
+	private Map<ValidAgentPattern, ValidAgentPattern> lhsToRhsMap = new LinkedHashMap<>();
 	
-	private Map<ValidAgentPattern, Agent> createdAgents;
+	private List<String> agentRemovals = new LinkedList<>();
+	private List<LinkDeletionTemplate> linkRemovals = new LinkedList<>();
+	private List<AgentStateChangeTemplate> agentStateChanges = new LinkedList<>();
+	private List<SiteStateChangeTemplate> siteStateChanges = new LinkedList<>();
+	private Map<ValidAgentPattern, AgentCreationTemplate> agentCreations = new LinkedHashMap<>();
+	private Map<Integer, LinkChangeTemplate> linkChanges = new LinkedHashMap<>();
+	private List<AttributeChangeTemplate> attributeChanges = new LinkedList<>();
 	
-	public TransformationTemplate(String lhsName, Pattern precondition, Pattern postcondition, Container reactionContainer, EPackageWrapper metaModel) {
-		this.lhsName = lhsName;
-		this.precondition = precondition;
-		this.postcondition = postcondition;
+	private Map<ValidAgentPattern, Agent> createdAgents = new LinkedHashMap<>();
+	
+	public TransformationTemplate(String ruleName, GenericPattern lhs, GenericPattern rhs, Container reactionContainer, EPackageWrapper metaModel) {
+		this.ruleName = ruleName;
+		this.lhs = lhs;
+		this.rhs = rhs;
 		this.metaModel = metaModel;
-		this.reactionContainer = reactionContainer;
+		this.container = reactionContainer;
+		mapLhsToRhs();
 		initTemplate();
 	}
 	
 	public String getLhsPatternName() {
-		return lhsName;
+		return ruleName;
 	}
 	
 	public void applyTransformation(IMatch match) {
@@ -89,45 +95,65 @@ public class TransformationTemplate {
 		findAttributeChangeCandidates();
 	}
 	
-	// Build template methods
+	// Map Lhs to Rhs
 	
-	private void findAgentRemovalCandidates() {
-		agentRemovals = new LinkedList<Integer>();
-		for(int i = 0; i<postcondition.getAgentPatterns().size(); i++) {
-			// if the target pattern defines a void instead of an agent pattern -> delete agent
-			if(postcondition.getAgentPatterns().get(i) instanceof VoidAgentPattern) {
-				agentRemovals.add(i);
+	private void mapLhsToRhs() {
+		List<AgentPattern> lhsAps = lhs.getBody().getRawPattern().getAgentPatterns();
+		List<AgentPattern> rhsAps = rhs.getBody().getRawPattern().getAgentPatterns();
+		for(int i = 0; i<lhsAps.size(); i++) {
+			AgentPattern lhsAp = lhsAps.get(i);
+			AgentPattern rhsAp = rhsAps.get(i);
+			if(lhsAp instanceof VoidAgentPattern && !(rhs instanceof VoidAgentPattern)) {
+				lhsToRhsMap.put((ValidAgentPattern)rhsAp, null);
+			} else if(!(lhsAp instanceof VoidAgentPattern) && rhs instanceof VoidAgentPattern) {
+				lhsToRhsMap.put((ValidAgentPattern)lhsAp, null);
+			} else {
+				lhsToRhsMap.put((ValidAgentPattern)lhsAp, (ValidAgentPattern)rhsAp);
+				lhsToRhsMap.put((ValidAgentPattern)rhsAp, (ValidAgentPattern)lhsAp);
 			}
 		}
 	}
 	
-	private void findLinkRemovalCandidates() {
-		linkRemovals = new LinkedList<LinkDeletionTemplate>();
-		
-		for(int i = 0; i<postcondition.getAgentPatterns().size(); i++) {
-			if(postcondition.getAgentPatterns().get(i) instanceof ValidAgentPattern && 
-					precondition.getAgentPatterns().get(i) instanceof ValidAgentPattern) {
-				ValidAgentPattern ap = (ValidAgentPattern)postcondition.getAgentPatterns().get(i);
-				for(int j = 0; j<ap.getSitePatterns().getSitePatterns().size(); j++) {
-					SitePattern superSp = ap.getSitePatterns().getSitePatterns().get(j);
-
-					if(superSp instanceof SingleSitePattern) {
-						singleLinkRemoval(ap, i, (SingleSitePattern) superSp);
-					}else {
-						multiLinkRemoval(ap, i, (MultiLinkSitePattern) superSp);
-					}
-					
+	// Build template methods
+	
+	private void findAgentRemovalCandidates() {
+		if(rhs.isVoidPattern()) {
+			agentRemovals.addAll(lhs.getSignature().getSignature().keySet());
+		}else {
+			for(String lhsLabel : lhs.getSignature().getSignature().keySet()) {
+				ValidAgentPattern lhsVap = lhs.getSignature().getSignaturePattern(lhsLabel);
+				if(lhsToRhsMap.get(lhsVap) == null) {
+					agentRemovals.add(lhsLabel);
 				}
 			}
 		}
 	}
 	
+	private void findLinkRemovalCandidates() {
+		
+		for(String rhsLabel : rhs.getSignature().getSignature().keySet()) {
+			ValidAgentPattern rhsVap = rhs.getSignature().getSignaturePattern(rhsLabel);
+			if(lhsToRhsMap.get(rhsVap) == null) continue;
+			for(int j = 0; j<rhsVap.getSitePatterns().getSitePatterns().size(); j++) {
+				SitePattern sp = rhsVap.getSitePatterns().getSitePatterns().get(j);
+				if(sp instanceof SingleSitePattern) {
+					singleLinkRemoval(rhsVap, rhsLabel, (SingleSitePattern) sp);
+				}else {
+					multiLinkRemoval(rhsVap, rhsLabel, (MultiLinkSitePattern) sp);
+				}
+				
+			}
+			
+		}
+		
+	}
+	
 	private void findAgentStateChangeCandidates() {
-		agentStateChanges = new LinkedList<AgentStateChangeTemplate>();
-		for(int i = 0; i<postcondition.getAgentPatterns().size(); i++) {
-			if(postcondition.getAgentPatterns().get(i) instanceof ValidAgentPattern && 
-					precondition.getAgentPatterns().get(i) instanceof ValidAgentPattern) {
-				ValidAgentPattern ap_trg = (ValidAgentPattern)postcondition.getAgentPatterns().get(i);
+		
+		for(int i = 0; i<rhs.getAgentPatterns().size(); i++) {
+			if(rhs.getAgentPatterns().get(i) instanceof ValidAgentPattern && 
+					lhs.getAgentPatterns().get(i) instanceof ValidAgentPattern) {
+				ValidAgentPattern ap_trg = (ValidAgentPattern)rhs.getAgentPatterns().get(i);
 				
 				
 				State state_trg = null;
@@ -135,7 +161,7 @@ public class TransformationTemplate {
 				
 				if(ap_trg.getState() != null) {
 					state_trg = ap_trg.getState().getState();
-					ValidAgentPattern vap_src = (ValidAgentPattern)precondition.getAgentPatterns().get(i);
+					ValidAgentPattern vap_src = (ValidAgentPattern)lhs.getAgentPatterns().get(i);
 					state_src = vap_src.getState().getState();
 					// if both states are equal -> do nothing
 					if(state_trg == state_src) continue;
@@ -158,11 +184,11 @@ public class TransformationTemplate {
 	
 	
 	private void findSiteStateChangeCandidates() {
-		siteStateChanges = new LinkedList<SiteStateChangeTemplate>();
-		for(int i = 0; i<postcondition.getAgentPatterns().size(); i++) {
-			if(postcondition.getAgentPatterns().get(i) instanceof ValidAgentPattern && 
-					precondition.getAgentPatterns().get(i) instanceof ValidAgentPattern) {
-				ValidAgentPattern ap_trg = (ValidAgentPattern)postcondition.getAgentPatterns().get(i);
+		
+		for(int i = 0; i<rhs.getAgentPatterns().size(); i++) {
+			if(rhs.getAgentPatterns().get(i) instanceof ValidAgentPattern && 
+					lhs.getAgentPatterns().get(i) instanceof ValidAgentPattern) {
+				ValidAgentPattern ap_trg = (ValidAgentPattern)rhs.getAgentPatterns().get(i);
 				SiteStateChangeTemplate stTemplate = new SiteStateChangeTemplate(i);
 				
 				for(int j = 0; j<ap_trg.getSitePatterns().getSitePatterns().size(); j++) {
@@ -200,15 +226,12 @@ public class TransformationTemplate {
 	}
 	
 	private void findAgentCreationCandidates() {
-		linkChanges = new HashMap<Integer, LinkChangeTemplate>();
-		agentCreations = new HashMap<ValidAgentPattern, AgentCreationTemplate>();
-		createdAgents = new HashMap<ValidAgentPattern, Agent>();
 		
-		for(int i = 0; i<precondition.getAgentPatterns().size(); i++) {
+		for(int i = 0; i<lhs.getAgentPatterns().size(); i++) {
 			// if the source pattern defines a void instead of an agent pattern -> create new agent according to target pattern
-			if(precondition.getAgentPatterns().get(i) instanceof VoidAgentPattern) {
+			if(lhs.getAgentPatterns().get(i) instanceof VoidAgentPattern) {
 				// generate agent template
-				ValidAgentPattern ap = (ValidAgentPattern)postcondition.getAgentPatterns().get(i);
+				ValidAgentPattern ap = (ValidAgentPattern)rhs.getAgentPatterns().get(i);
 				AgentCreationTemplate agntTemplate = new AgentCreationTemplate(ap);
 				// set all default site states
 				for(Site site : ap.getAgent().getSites().getSites()) {
@@ -264,11 +287,11 @@ public class TransformationTemplate {
 	}
 	
 	private void findLinkChangeCandidates() {
-		for(int i = 0; i<postcondition.getAgentPatterns().size(); i++) {
-			if(!(postcondition.getAgentPatterns().get(i) instanceof ValidAgentPattern)) {
+		for(int i = 0; i<rhs.getAgentPatterns().size(); i++) {
+			if(!(rhs.getAgentPatterns().get(i) instanceof ValidAgentPattern)) {
 				continue;
 			}
-			ValidAgentPattern ap = (ValidAgentPattern)postcondition.getAgentPatterns().get(i);
+			ValidAgentPattern ap = (ValidAgentPattern)rhs.getAgentPatterns().get(i);
 			for(int j = 0; j<ap.getSitePatterns().getSitePatterns().size(); j++) {
 				SitePattern sp = ap.getSitePatterns().getSitePatterns().get(j);
 
@@ -307,17 +330,17 @@ public class TransformationTemplate {
 					int otherAgentIdx = indexAndSite.getKey();
 					
 					// continue if this node is void -> this was handled in the agent creation method
-					if(!(precondition.getAgentPatterns().get(i) instanceof ValidAgentPattern)) {
+					if(!(lhs.getAgentPatterns().get(i) instanceof ValidAgentPattern)) {
 						continue;
 					}
-					ValidAgentPattern apLhs = (ValidAgentPattern)precondition.getAgentPatterns().get(i);
+					ValidAgentPattern apLhs = (ValidAgentPattern)lhs.getAgentPatterns().get(i);
 					// continue if other node is void -> this was handled in the agent creation method
-					if(!(precondition.getAgentPatterns().get(otherAgentIdx) instanceof ValidAgentPattern)) {
+					if(!(lhs.getAgentPatterns().get(otherAgentIdx) instanceof ValidAgentPattern)) {
 						continue;
 					}
 					
 					// find corresponding nodes on lhs and check if something changed
-					ValidAgentPattern otherApLhs = (ValidAgentPattern)precondition.getAgentPatterns().get(otherAgentIdx);
+					ValidAgentPattern otherApLhs = (ValidAgentPattern)lhs.getAgentPatterns().get(otherAgentIdx);
 					SitePattern spLhs = findSitePatternInAgentPattern(apLhs, site);
 					SitePattern otherSpLhs = findSitePatternInAgentPattern(otherApLhs, otherSite);
 					// if nothing changed -> continue
@@ -331,17 +354,17 @@ public class TransformationTemplate {
 	}
 	
 	private void findAttributeChangeCandidates() {
-		attributeChanges = new LinkedList<AttributeChangeTemplate>();
-		if(postcondition.getConstraints() == null) return;
+		
+		if(rhs.getConstraints() == null) return;
 		Map<ValidAgentPattern, Integer> vapToIndex = new HashMap<ValidAgentPattern, Integer>();
-		for(int i = 0; i < postcondition.getAgentPatterns().size(); i++) {
-			AgentPattern ap = postcondition.getAgentPatterns().get(i);
+		for(int i = 0; i < rhs.getAgentPatterns().size(); i++) {
+			AgentPattern ap = rhs.getAgentPatterns().get(i);
 			if(ap instanceof ValidAgentPattern) {
 				vapToIndex.put((ValidAgentPattern)ap, i);
 			}
 		}
 		
-		for(Constraint constraint : postcondition.getConstraints()) {
+		for(Constraint constraint : rhs.getConstraints()) {
 			OperationLeft lOp = (OperationLeft) constraint.getOperandL();
 			Comparator compare = constraint.getComparator();
 			
@@ -365,9 +388,9 @@ public class TransformationTemplate {
 	private void applyAgentRemovalCandidates(IMatch match) {
 		Collection<Agent> agents = new LinkedList<Agent>();
 		
-		for(Integer agentIdx : agentRemovals) {
+		for(String label : agentRemovals) {
 			// add agent to deletion list
-			agents.add((Agent)match.get(match.parameterNames().get(agentIdx)));
+			agents.add((Agent)match.get(label));
 		}
 		// delete all agents in list
 		org.eclipse.emf.ecore.util.EcoreUtil.deleteAll(agents, false);
@@ -400,7 +423,7 @@ public class TransformationTemplate {
 		
 		for(Entry<ValidAgentPattern, AgentCreationTemplate> template : agentCreations.entrySet()) {
 			// create new agent and store for linkage
-			Agent agent = template.getValue().createAgentFromTemplate(metaModel.getAgentFactory(), reactionContainer);
+			Agent agent = template.getValue().createAgentFromTemplate(metaModel.getAgentFactory(), container);
 			createdAgents.replace(template.getKey(), agent);
 		}
 	}
@@ -422,73 +445,69 @@ public class TransformationTemplate {
 	
 	// Helper methods begin here:
 	
-	private void singleLinkRemoval(ValidAgentPattern vap, int nodeIndex, SingleSitePattern ssp) {
+	private void singleLinkRemoval(ValidAgentPattern rhsVap, String rhsLabel, SingleSitePattern ssp) {
 		LinkState ls = ssp.getLinkState().getLinkState();
 		if(ls instanceof FreeLink) {
-			buildSingleRemoveTemplate(vap.getAgent(), nodeIndex, ssp.getSite());
+			buildSingleRemoveTemplate(rhsVap.getAgent(), rhsLabel, ssp.getSite());
 		}else if(ls instanceof IndexedFreeLink) {
 			int linkIndex = Integer.valueOf(((IndexedFreeLink)ls).getState());
-			buildMultiRemoveTemplate(vap.getAgent(), nodeIndex, ssp.getSite(), findOtherRemoveIndex(vap, nodeIndex, linkIndex));
+			buildMultiRemoveTemplate(rhsVap.getAgent(), rhsLabel, ssp.getSite(), findOtherRemoveLabel(rhsVap, linkIndex));
 		}else if (ls instanceof TypedFreeLink) {
 			TypedFreeLink tfl = (TypedFreeLink)ls;
-			buildTypeRemoveTemplate(vap.getAgent(), nodeIndex, ssp.getSite(), metaModel.getClass(tfl.getState().getName()));
+			buildTypeRemoveTemplate(rhsVap.getAgent(), rhsLabel, ssp.getSite(), metaModel.getClass(tfl.getState().getName()));
 		}
 	}
 	
-	private void multiLinkRemoval(ValidAgentPattern vap, int nodeIndex, MultiLinkSitePattern msp) {
+	private void multiLinkRemoval(ValidAgentPattern vap, String nodeLabel, MultiLinkSitePattern msp) {
 		LinkState ls = msp.getLinkState().getLinkState();
 		if(ls instanceof FreeLink) {
-			buildMultiRemoveTemplate(vap.getAgent(), nodeIndex, msp.getSite(), LinkDeletionTemplate.REMOVE_ALL);
+			buildMultiRemoveTemplate(vap.getAgent(), nodeLabel, msp.getSite(), LinkDeletionTemplate.REMOVE_ALL);
 		}else if(ls instanceof IndexedFreeLink) {
 			int linkIndex = Integer.valueOf(((IndexedFreeLink)ls).getState());
-			buildMultiRemoveTemplate(vap.getAgent(), nodeIndex, msp.getSite(), findOtherRemoveIndex(vap, nodeIndex, linkIndex));
+			buildMultiRemoveTemplate(vap.getAgent(), nodeLabel, msp.getSite(), findOtherRemoveLabel(vap, linkIndex));
 		}else if(ls instanceof TypedFreeLink) {
 			TypedFreeLink tfl = (TypedFreeLink)ls;
-			buildTypeRemoveTemplate(vap.getAgent(), nodeIndex, msp.getSite(), metaModel.getClass(tfl.getState().getName()));
+			buildTypeRemoveTemplate(vap.getAgent(), nodeLabel, msp.getSite(), metaModel.getClass(tfl.getState().getName()));
 		}else if(ls instanceof MultiLink) {
 			MultiLink ml = (MultiLink)ls;
 			for(LinkState mls : ml.getStates()) {
 				if(mls instanceof IndexedFreeLink) {
 					int linkIndex = Integer.valueOf(((IndexedFreeLink)mls).getState());
-					buildMultiRemoveTemplate(vap.getAgent(), nodeIndex, msp.getSite(), findOtherRemoveIndex(vap, nodeIndex, linkIndex));
+					buildMultiRemoveTemplate(vap.getAgent(), nodeLabel, msp.getSite(), findOtherRemoveLabel(vap, linkIndex));
 				}else if(mls instanceof TypedFreeLink) {
 					TypedFreeLink tfl = (TypedFreeLink)mls;
-					buildTypeRemoveTemplate(vap.getAgent(), nodeIndex, msp.getSite(), metaModel.getClass(tfl.getState().getName()));
+					buildTypeRemoveTemplate(vap.getAgent(), nodeLabel, msp.getSite(), metaModel.getClass(tfl.getState().getName()));
 				}
 			}
 		}
 	}
 	
-	private void buildSingleRemoveTemplate(org.simsg.simsgl.simSGL.Agent agent, int nodeIndex, Site site) {
+	private void buildSingleRemoveTemplate(org.simsg.simsgl.simSGL.Agent agent, String nodeLabel, Site site) {
 		String refName = AgentClassFactory.createReferenceName(agent, site);
-		LinkDeletionTemplate linkRemoveTemplate = new LinkDeletionTemplate(nodeIndex);
+		LinkDeletionTemplate linkRemoveTemplate = new LinkDeletionTemplate(nodeLabel);
 		linkRemoveTemplate.addLinkRemovalCandidate(metaModel.getEReference(refName));
 		linkRemovals.add(linkRemoveTemplate);
 	}
 	
-	private void buildMultiRemoveTemplate(org.simsg.simsgl.simSGL.Agent agent, int nodeIndex, Site site, int otherIndex) {
+	private void buildMultiRemoveTemplate(org.simsg.simsgl.simSGL.Agent agent, String nodeLabel, Site site, String otherNodeLabel) {
 		String refName = AgentClassFactory.createReferenceName(agent, site);
-		LinkDeletionTemplate linkRemoveTemplate = new LinkDeletionTemplate(nodeIndex);
-		linkRemoveTemplate.addLinkRemovalCandidate(metaModel.getEReference(refName), otherIndex);
+		LinkDeletionTemplate linkRemoveTemplate = new LinkDeletionTemplate(nodeLabel);
+		linkRemoveTemplate.addLinkRemovalCandidate(metaModel.getEReference(refName), otherNodeLabel);
 		linkRemovals.add(linkRemoveTemplate);
 	}
 	
-	private void buildTypeRemoveTemplate(org.simsg.simsgl.simSGL.Agent agent, int nodeIndex, Site site, EClass type) {
+	private void buildTypeRemoveTemplate(org.simsg.simsgl.simSGL.Agent agent, String nodeLabel, Site site, EClass type) {
 		String refName = AgentClassFactory.createReferenceName(agent, site);
-		LinkDeletionTemplate linkRemoveTemplate = new LinkDeletionTemplate(nodeIndex);
+		LinkDeletionTemplate linkRemoveTemplate = new LinkDeletionTemplate(nodeLabel);
 		linkRemoveTemplate.addLinkRemovalType(metaModel.getEReference(refName), type);
 		linkRemovals.add(linkRemoveTemplate);
 	}
 	
-	private int findOtherRemoveIndex(ValidAgentPattern vap, int nodeIndex, int linkIndex) {
-		for(int i = 0; i<postcondition.getAgentPatterns().size(); i++) {
-			if(i == nodeIndex) continue;
+	private String findOtherRemoveLabel(ValidAgentPattern rhsVap, int linkIndex) {
+		for(ValidAgentPattern otherVap : rhs.getBody().getAgentPatterns()) {
+			if(otherVap == rhsVap) continue;
 			
-			AgentPattern ap2 = postcondition.getAgentPatterns().get(i);
-			if(!(ap2 instanceof ValidAgentPattern)) continue;
-			
-			ValidAgentPattern vap2 = (ValidAgentPattern) ap2;
-			for(SitePattern sp : vap2.getSitePatterns().getSitePatterns()) {
+			for(SitePattern sp : otherVap.getSitePatterns().getSitePatterns()) {
 				if(sp == null) continue;
 				
 				if(sp instanceof SingleSitePattern) {
@@ -500,7 +519,7 @@ public class TransformationTemplate {
 					IndexedFreeLink ifl = (IndexedFreeLink) ls;
 					int idx2 = Integer.valueOf(ifl.getState());
 					if(linkIndex == idx2) {
-						return i;
+						return rhs.getSignature().getSignatureNode(otherVap);
 					}
 				}else {
 					MultiLinkSitePattern ssp = (MultiLinkSitePattern) sp;
@@ -510,7 +529,7 @@ public class TransformationTemplate {
 						IndexedFreeLink ifl = (IndexedFreeLink) ls;
 						int idx2 = Integer.valueOf(ifl.getState());
 						if(linkIndex == idx2) {
-							return i;
+							return rhs.getSignature().getSignatureNode(otherVap);
 						}
 					}else if(ls instanceof MultiLink) {
 						MultiLink ml = (MultiLink)ls;
@@ -519,7 +538,7 @@ public class TransformationTemplate {
 							IndexedFreeLink ifl = (IndexedFreeLink) mls;
 							int idx2 = Integer.valueOf(ifl.getState());
 							if(linkIndex == idx2) {
-								return i;
+								return rhs.getSignature().getSignatureNode(otherVap);
 							}
 						}
 					}
@@ -534,7 +553,7 @@ public class TransformationTemplate {
 	// Helper method -> Find the corresponding state of an rhs-pattern on the lhs 
 	private State findLhsState(int lhsAgentPatternIndex, SitePattern rhsSitePattern) {
 		State lhsState = null;
-		ValidAgentPattern lhsAP = (ValidAgentPattern)precondition.getAgentPatterns().get(lhsAgentPatternIndex);
+		ValidAgentPattern lhsAP = (ValidAgentPattern)lhs.getAgentPatterns().get(lhsAgentPatternIndex);
 		Site rhsSite = null;
 		if(rhsSitePattern instanceof SingleSitePattern) {
 			rhsSite = ((SingleSitePattern)rhsSitePattern).getSite();
@@ -560,7 +579,7 @@ public class TransformationTemplate {
 	// Helper method -> Find the corresponding stateInstance to a state described in a pattern 
 	private org.simsg.container.State findStateInstance(State state) {
 		org.simsg.container.State stateInstance = null;
-		for(org.simsg.container.State currentStateInstance : reactionContainer.getStates()) {
+		for(org.simsg.container.State currentStateInstance : container.getStates()) {
 			if(currentStateInstance.eClass().getName().equals(state.getName())) {
 				stateInstance = currentStateInstance;
 				break;
@@ -586,12 +605,12 @@ public class TransformationTemplate {
 		Entry<Integer, Site> indexAndSite = findCorrespondingSiteOnRHS(sp, bl);
 		Site otherSite = indexAndSite.getValue();
 		int otherAgentIdx = indexAndSite.getKey();
-		org.simsg.simsgl.simSGL.Agent otherAgent = ((ValidAgentPattern)postcondition.getAgentPatterns().get(otherAgentIdx)).getAgent();
+		org.simsg.simsgl.simSGL.Agent otherAgent = ((ValidAgentPattern)rhs.getAgentPatterns().get(otherAgentIdx)).getAgent();
 		String srcRefName = AgentClassFactory.createReferenceName(vap.getAgent(), site);
 		String trgRefName = AgentClassFactory.createReferenceName(otherAgent, otherSite);
 		LinkChangeTemplate lct = new LinkChangeTemplate();
 		lct.setSrc(vap, nodeIndex, metaModel.getEReference(srcRefName));
-		lct.setTrg((ValidAgentPattern)postcondition.getAgentPatterns().get(otherAgentIdx), otherAgentIdx, metaModel.getEReference(trgRefName));
+		lct.setTrg((ValidAgentPattern)rhs.getAgentPatterns().get(otherAgentIdx), otherAgentIdx, metaModel.getEReference(trgRefName));
 		if(agentNotInMatch) {
 			lct.setAgentNotInMatch(vap);
 		}
@@ -602,8 +621,8 @@ public class TransformationTemplate {
 	private Entry<Integer, Site> findCorrespondingSiteOnRHS(SitePattern sitePattern, BoundLink link) {
 		int idx = Integer.valueOf(link.getState());
 		
-		for(int i = 0; i<postcondition.getAgentPatterns().size(); i++) {
-			AgentPattern ap = postcondition.getAgentPatterns().get(i);
+		for(int i = 0; i<rhs.getAgentPatterns().size(); i++) {
+			AgentPattern ap = rhs.getAgentPatterns().get(i);
 			if(!(ap instanceof ValidAgentPattern)) continue;
 			ValidAgentPattern vap = (ValidAgentPattern) ap;
 			for(SitePattern sp : vap.getSitePatterns().getSitePatterns()) {

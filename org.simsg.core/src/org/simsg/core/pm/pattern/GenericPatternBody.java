@@ -99,6 +99,9 @@ public class GenericPatternBody {
 	public List<ValidAgentPattern> getAgentPatterns() {
 		return agentPatterns;
 	}
+	public Pattern getRawPattern() {
+		return pattern;
+	}
 
 	public Map<ValidAgentPattern, AgentNodeContext> getAgentNodeContexts() {
 		return agentNodeContexts;
