@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.PriorityQueue;
 import java.util.function.Function;
 
 import org.simsg.container.Container;
@@ -24,11 +23,11 @@ public abstract class Simulation {
 	
 	protected String modelName;
 	protected PersistenceManager persistence;
-	protected PatternMatchingController pmc;
+	private PatternMatchingController pmc;
 	protected SimulationState state;
 	protected SimSGLModel ruleModel;
 	protected Container reactionContainer;
-	protected ReactionRuleTransformer gt;
+	private ReactionRuleTransformer gt;
 	
 	protected List<Function<SimulationState, ServiceRoutine>> serviceConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, TerminationCondition>> conditionConstructors = new LinkedList<>();
@@ -37,7 +36,6 @@ public abstract class Simulation {
 	
 	protected List<ServiceRoutine> services = new LinkedList<>();
 	protected List<TerminationCondition> conditions = new LinkedList<>();
-	protected PriorityQueue<Event> events = new PriorityQueue<>();
 	protected List<ExternalConstraint> constraints = new LinkedList<>();
 	protected List<SimulationStatistics> statistics = new LinkedList<>();
 	
@@ -180,8 +178,16 @@ public abstract class Simulation {
 	
 	public void run() throws Exception {
 		while(!checkTerminationConditions()) {
+			if(state.isDirty()) {
+				if(state.refreshState()) {
+					System.out.println("Something went wrong.. Exit.");
+					break;
+				}
+			}
 			updateEvents();
-			performServiceInterval();
+			if(performServiceInterval()) {
+				updateEvents();
+			}
 			processNextEvent();
 			updateStatistics();
 		}
@@ -196,14 +202,29 @@ public abstract class Simulation {
 	
 	protected abstract void updateEvents();
 	
-	protected void performServiceInterval() {
+	protected boolean performServiceInterval() {
+		boolean performedService = false;
 		for(ServiceRoutine service : services) {
-			service.performService();
+			if(state.isDirty()) {
+				state.refreshState();
+			}
+			
+			if(service.performService(gt)) {
+				state.setDirty();
+				performedService = true;
+			}
 		}
+		if(state.isDirty()) {
+			state.refreshState();
+		}
+		return performedService;
 	}
 	
 	protected void processNextEvent() {
-		Event event = events.poll();
+		if(state.noEvents()) {
+			return;
+		}
+		Event event = state.popNextEvent();
 		state.setTime(event.time);
 		
 		for(ExternalConstraint constraint: constraints) {
@@ -216,9 +237,17 @@ public abstract class Simulation {
 	protected abstract void processEvent(Event event);
 	
 	protected void updateStatistics() {
+		if(state.isDirty()) {
+			state.refreshState();
+		}
 		for(SimulationStatistics statistic : statistics) {
 			statistic.logCurrentState();
 		}
+	}
+	
+	protected void performGT(String ruleName, IMatch match) {
+		gt.applyRuleToMatch(match, ruleName);
+		state.setDirty();
 	}
 	
 	

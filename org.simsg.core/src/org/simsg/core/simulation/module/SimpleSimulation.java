@@ -39,13 +39,13 @@ public class SimpleSimulation extends Simulation {
 	@Override
 	public void initialize() throws Exception {
 		super.initialize();
-		staticReactionRates = pmc.getPatternContainer().getStochasticRules();
+		staticReactionRates = state.getPatternContainer().getStochasticRules();
 	}
 	
 	@Override
 	public void initializeClocked() {
 		super.initializeClocked();
-		staticReactionRates = pmc.getPatternContainer().getStochasticRules();
+		staticReactionRates = state.getPatternContainer().getStochasticRules();
 	}
 	
 	private ConcurrentLinkedQueue<String> generatePatternQueue() {
@@ -60,6 +60,14 @@ public class SimpleSimulation extends Simulation {
 
 	@Override
 	protected void updateEvents() {
+		if(state.isDirty()) {
+			state.refreshState();
+		}
+		
+		if(!state.noEvents()) {
+			state.clearEvents();
+		}
+		
 		ConcurrentLinkedQueue<String> patternQueue = null;
 		if(randomRuleOrder) {
 			patternQueue = generateRndPatternQueue();
@@ -68,30 +76,23 @@ public class SimpleSimulation extends Simulation {
 		}
 		String current = patternQueue.poll();
 		
-		try {
-			pmc.collectMatches(current);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return;
-		}
-		
 		if(useReactionRates) {
 			double reactionRate = staticReactionRates.get(current);
-			double pRule = 1.0 - Math.pow((1.0-reactionRate), pmc.getMatchCount(current));
+			double pRule = 1.0 - Math.pow((1.0-reactionRate), state.getMatchCount(current));
 			double rnd = random.nextDouble();
 			if(rnd <= pRule) {
-				events.add(new Event(state.getTime()+1, current));
+				state.enqueueEvent(new Event(state.getTime()+1, current));
 			}
 		}else {
-			if(pmc.getMatchCount(current) != 0) {
-				events.add(new Event(state.getTime()+1, current));
+			if(state.getMatchCount(current) != 0) {
+				state.enqueueEvent(new Event(state.getTime()+1, current));
 			}
 		}
 	}
 
 	@Override
 	protected void processEvent(Event event) {
-		gt.applyRuleToMatch(pmc.getRandomMatch(event.rule), event.rule);
+		performGT(event.rule, state.getRandomMatch(event.rule));
 	}
 	
 	@Override

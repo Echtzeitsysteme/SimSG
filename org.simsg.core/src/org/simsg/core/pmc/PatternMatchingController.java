@@ -166,4 +166,8 @@ public abstract class PatternMatchingController{
 		return metaModel;
 	}
 	
+	public Container getContainerModel() {
+		return reactionContainer;
+	}
+	
 }

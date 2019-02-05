@@ -1,10 +1,20 @@
 package org.simsg.core.simulation;
 
+import java.util.PriorityQueue;
+
+import org.simsg.container.Container;
+import org.simsg.core.pm.match.IMatch;
 import org.simsg.core.pmc.PatternMatchingController;
+import org.simsg.simsgl.simSGL.SimSGLModel;
+import org.simsg.simsgl.utils.PatternContainer;
 
 public class SimulationState {
 	private int iterations;
 	private double time;
+	private PriorityQueue<Event> events = new PriorityQueue<>();
+	
+	private boolean dirty = true;
+	
 	private PatternMatchingController pmc;
 	
 	public SimulationState() {
@@ -12,24 +22,64 @@ public class SimulationState {
 		time = 0;
 	}
 	
-	public int getIterations() {
-		return iterations;
-	}
-	
-	public double getTime() {
-		return time;
-	}
-	
-	public PatternMatchingController getPmc() {
-		return pmc;
-	}
-	
 	public void setPmc(PatternMatchingController pmc) {
 		this.pmc = pmc;
 	}
 	
+	public boolean isDirty() {
+		return dirty;
+	}
+	
+	public void setDirty() {
+		dirty = true;
+	}
+	
+	public Event popNextEvent() {
+		return events.poll();
+	}
+	
+	public Event peekNextEvent() {
+		return events.peek();
+	}
+	
+	public void clearEvents() {
+		events.clear();
+	}
+	
+	public boolean noEvents() {
+		return events.isEmpty();
+	}
+	
+	public void enqueueEvent(Event event) {
+		events.add(event);
+	}
+	
+	public boolean refreshState() {
+		try {
+			pmc.collectAllMatches();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			dirty = true;
+		}
+		dirty = false;
+		return dirty;
+	}
+	
+	public int getMatchCount(String ruleName) {
+		return pmc.getMatchCount(ruleName);
+	}
+	
+	public IMatch getRandomMatch(String ruleName) {
+		return pmc.getRandomMatch(ruleName);
+	}
+	
 	public void incrementIterations() {
 		iterations++;
+	}
+	
+	public int getIterations() {
+		return iterations;
 	}
 	
 	public void setTime(double time) {
@@ -38,5 +88,21 @@ public class SimulationState {
 	
 	public void elapseTime(double step) {
 		time += step;
+	}
+	
+	public double getTime() {
+		return time;
+	}
+	
+	public PatternContainer getPatternContainer() {
+		return pmc.getPatternContainer();
+	}
+	
+	public SimSGLModel getSimSGLModel() {
+		return pmc.getRuleModel();
+	}
+	
+	public Container getContainerModel() {
+		return pmc.getContainerModel();
 	}
 }

@@ -1,13 +1,20 @@
 package org.simsg.core.simulation.service;
 
+import java.util.Collection;
+
+import org.simsg.core.gt.ReactionRuleTransformer;
 import org.simsg.core.simulation.SimulationState;
 
 public class PeriodicService extends ServiceRoutine {
 	
 	private double servicePeriod = 0;
+	private double lastService = 0;
+	
+	private Collection<String> nonStochasticRules;
 
 	public PeriodicService(SimulationState state) {
 		super(state);
+		nonStochasticRules = state.getPatternContainer().getNonStochasticRules();
 	}
 	
 	public void setServicePeriod(double servicePeriod) {
@@ -15,9 +22,29 @@ public class PeriodicService extends ServiceRoutine {
 	}
 
 	@Override
-	public void performService() {
-		// TODO Auto-generated method stub
-
+	public boolean performService(ReactionRuleTransformer gt) {
+		double nextEventTime = state.peekNextEvent().time;
+		if((nextEventTime-lastService) < servicePeriod) {
+			return false;
+		}
+		
+		lastService = state.getTime() + servicePeriod;
+		state.elapseTime(servicePeriod);
+		
+		boolean somethingChanged = true;
+		while(somethingChanged) {
+			somethingChanged = false;
+			
+			for(String rule : nonStochasticRules) {
+				int count = state.getMatchCount(rule);
+				if(count <= 0) continue;
+				
+				gt.applyRuleToMatch(state.getRandomMatch(rule), rule);
+				somethingChanged = true;
+			}
+		}
+		
+		return true;
 	}
 
 }

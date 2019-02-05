@@ -50,7 +50,7 @@ public class ComplexTerminationCondition extends TerminationCondition {
 		}
 		
 		for(String patternName : terminationPatterns.keySet()) {
-			if(state.getPmc().getMatchCount(patternName) >= terminationPatterns.get(patternName)) {
+			if(state.getMatchCount(patternName) >= terminationPatterns.get(patternName)) {
 				return true;
 			}
 		}
@@ -67,8 +67,8 @@ public class ComplexTerminationCondition extends TerminationCondition {
 	}
 
 	private void initCondition() {
-		SimSGLModel ruleModel = state.getPmc().getRuleModel();
-		PatternContainer patternContainer = state.getPmc().getPatternContainer();
+		SimSGLModel ruleModel = state.getSimSGLModel();
+		PatternContainer patternContainer = state.getPatternContainer();
 		
 		terminationPatterns = new HashMap<String, Integer>();
 		for(String patternName : patternContainer.getTermCondPatterns().keySet()) {

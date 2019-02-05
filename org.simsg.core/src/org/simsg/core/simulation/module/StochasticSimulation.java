@@ -25,7 +25,7 @@ public class StochasticSimulation extends Simulation {
 	@Override
 	public void initialize() throws Exception {
 		super.initialize();
-		staticReactionRates = pmc.getPatternContainer().getStochasticRules();
+		staticReactionRates = state.getPatternContainer().getStochasticRules();
 		for(String rule : staticReactionRates.keySet()) {
 			ruleProbabilities.put(rule, 0.0);
 		}
@@ -34,7 +34,7 @@ public class StochasticSimulation extends Simulation {
 	@Override
 	public void initializeClocked() {
 		super.initializeClocked();
-		staticReactionRates = pmc.getPatternContainer().getStochasticRules();
+		staticReactionRates = state.getPatternContainer().getStochasticRules();
 		for(String rule : staticReactionRates.keySet()) {
 			ruleProbabilities.put(rule, 0.0);
 		}
@@ -43,7 +43,7 @@ public class StochasticSimulation extends Simulation {
 	private void updateProbabilities() {
 		systemActivity = 0;
 		for(String rule : staticReactionRates.keySet()) {
-			double p = pmc.getMatchCount(rule)*staticReactionRates.get(rule);
+			double p = state.getMatchCount(rule)*staticReactionRates.get(rule);
 			ruleProbabilities.replace(rule, p);
 			systemActivity+=p;
 		}
@@ -73,11 +73,12 @@ public class StochasticSimulation extends Simulation {
 
 	@Override
 	protected void updateEvents() {
-		try {
-			pmc.collectAllMatches();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(state.isDirty()) {
+			state.refreshState();
+		}
+		
+		if(!state.noEvents()) {
+			state.clearEvents();
 		}
 		
 		updateProbabilities();
@@ -85,14 +86,14 @@ public class StochasticSimulation extends Simulation {
 		String currentRule = pickRule();
 		
 		if(currentRule != null) {
-			events.add(new Event(state.getTime()+timeStep, currentRule));
+			state.enqueueEvent(new Event(state.getTime()+timeStep, currentRule));
 		}
 	}
 
 	@Override
 	protected void processEvent(Event event) {
-		IMatch rndMatch = pmc.getRandomMatch(event.rule);
-		gt.applyRuleToMatch(rndMatch, event.rule);
+		IMatch rndMatch = state.getRandomMatch(event.rule);
+		performGT(event.rule, rndMatch);
 	}
 	
 	@Override

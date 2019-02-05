@@ -3,7 +3,6 @@ package org.simsg.core.simulation.statistic;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.simsg.core.pmc.PatternMatchingController;
 import org.simsg.core.simulation.Observable;
 import org.simsg.core.simulation.SimulationState;
 import org.simsg.simsgl.utils.PatternContainer;
@@ -20,7 +19,7 @@ public class Observables extends SimulationStatistics {
 	}
 	
 	public void initObservables() {
-		PatternContainer patternContainer = state.getPmc().getPatternContainer();
+		PatternContainer patternContainer = state.getPatternContainer();
 		for(String patternName : patternContainer.getObservablesPatterns().keySet()) {
 			observables.put(patternName, new Observable(patternName));
 		}
@@ -35,11 +34,10 @@ public class Observables extends SimulationStatistics {
 
 	@Override
 	public void logCurrentState() {
-		PatternMatchingController pmc = state.getPmc();
 		double currentTime = state.getTime();
 		
 		for(String patternName : observables.keySet()) {
-			observables.get(patternName).addMeasurement(currentTime, pmc.getMatchCount(patternName));
+			observables.get(patternName).addMeasurement(currentTime, state.getMatchCount(patternName));
 		}
 	}
 }

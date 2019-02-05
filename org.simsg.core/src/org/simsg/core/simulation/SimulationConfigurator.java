@@ -24,6 +24,7 @@ import org.simsg.core.simulation.module.SimpleSimulation;
 import org.simsg.core.simulation.module.StochasticSimulation;
 import org.simsg.core.simulation.service.PeriodicService;
 import org.simsg.core.simulation.service.ServiceRoutine;
+import org.simsg.core.simulation.statistic.ModelGraphProperties;
 import org.simsg.core.simulation.statistic.Observables;
 import org.simsg.core.simulation.statistic.SimulationStatistics;
 
@@ -98,6 +99,10 @@ public class SimulationConfigurator {
 	
 	public void addObservableStatistic() {
 		statisticConstructors.add((state)->new Observables(state));
+	}
+	
+	public void addModelGraphPropertiesStatistic() {
+		statisticConstructors.add((state)->new ModelGraphProperties(state));
 	}
 	
 	public void setSimpleSimulation(boolean deterministic) {
