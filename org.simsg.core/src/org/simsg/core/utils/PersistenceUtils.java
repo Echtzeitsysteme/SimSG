@@ -6,15 +6,19 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.io.FileUtils;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.simsg.container.Container;
 
 public class PersistenceUtils {
 	
@@ -96,6 +100,22 @@ public class PersistenceUtils {
 			throw new IOException("File did not contain a vaild model.");
 		
 		return modelResource;
+	}
+	
+	public static void saveModelContainer(Container model, String path) throws Exception {
+		ResourceSet rs = new ResourceSetImpl();
+		URI uri = URI.createFileURI(path);
+		Resource modelResource = rs.createResource(uri);
+		modelResource.getContents().add(model);
+		
+		Map<Object, Object> saveOptions = ((XMIResource)modelResource).getDefaultSaveOptions();
+		saveOptions.put(XMIResource.OPTION_ENCODING,"UTF-8");
+		saveOptions.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
+		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION,Boolean.TRUE);
+		saveOptions.put(XMIResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION, Boolean.TRUE);
+		
+		((XMIResource)modelResource).save(saveOptions);
+		System.out.println("Model saved to: "+uri.path());
 	}
 
 	

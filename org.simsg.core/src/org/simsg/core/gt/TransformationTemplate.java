@@ -238,6 +238,14 @@ public class TransformationTemplate {
 			
 			// generate agent template
 			AgentCreationTemplate agntTemplate = new AgentCreationTemplate(rhsVap);
+			
+			// set agent state
+			if(rhsVap.getState() != null) {
+				State state_trg = rhsVap.getState().getState();
+				String newRefName = StateClassFactory.createReferenceName(rhsVap.getAgent(), state_trg);
+				agntTemplate.setAgentState(metaModel.getEReference(newRefName), findStateInstance(state_trg));
+			}
+			
 			// set all default site states
 			for(Site site : rhsVap.getAgent().getSites().getSites()) {
 				// if a site has no state continue

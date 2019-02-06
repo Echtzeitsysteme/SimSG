@@ -18,12 +18,20 @@ import org.simsg.simsgl.simSGL.Site;
 public class AgentCreationTemplate {
 	private ValidAgentPattern vap;
 	private String type;
-	private Map<Site, Entry<EReference, State>> states;
+	private EReference stateRef;
+	private State state;
+	boolean hasState = false;
+	private Map<Site, Entry<EReference, State>> states = new HashMap<>();
 	
 	public AgentCreationTemplate(ValidAgentPattern vap){
 		this.vap = vap;
 		this.type = vap.getAgent().getName();
-		states = new HashMap<Site, Map.Entry<EReference,State>>();
+	}
+	
+	public void setAgentState(EReference stateRef, State state) {
+		hasState = true;
+		this.stateRef = stateRef;
+		this.state = state;
 	}
 	
 	public void addSiteState(Site site, EReference stateRef, State state) {
@@ -33,6 +41,7 @@ public class AgentCreationTemplate {
 	public Agent createAgentFromTemplate(AgentFactory factory, Container reactionContainer) {
 		Agent agent = factory.createObject(type);
 		reactionContainer.getAgents().add(agent);
+		agent.eSet(stateRef, state);
 		for(Entry<EReference, State> entry : states.values()) {
 			agent.eSet(entry.getKey(), entry.getValue());
 		}
