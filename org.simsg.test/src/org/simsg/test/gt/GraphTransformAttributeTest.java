@@ -23,7 +23,6 @@ import org.simsg.core.pm.match.PatternMatchingEngineFactory;
 import org.simsg.core.pmc.PatternMatchingController;
 import org.simsg.core.pmc.PatternMatchingControllerEnum;
 import org.simsg.core.pmc.PatternMatchingControllerFactory;
-import org.simsg.core.utils.PersistenceUtils;
 import org.simsg.simsgl.simSGL.SimSGLModel;
 
 

@@ -41,7 +41,9 @@ public class AgentCreationTemplate {
 	public Agent createAgentFromTemplate(AgentFactory factory, Container reactionContainer) {
 		Agent agent = factory.createObject(type);
 		reactionContainer.getAgents().add(agent);
-		agent.eSet(stateRef, state);
+		if(hasState) {
+			agent.eSet(stateRef, state);
+		}
 		for(Entry<EReference, State> entry : states.values()) {
 			agent.eSet(entry.getKey(), entry.getValue());
 		}

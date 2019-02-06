@@ -4,7 +4,7 @@ import org.simsg.core.persistence.PersistenceManagerEnum;
 import org.simsg.core.pm.match.PatternMatchingEngineEnum;
 import org.simsg.core.pmc.PatternMatchingControllerEnum;
 
-public class GraphTransformDemoclesEMFTest extends GraphTransformTest {
+public class GraphTransformDemoclesTest extends GraphTransformTest {
 
 	@Override
 	protected void setEngineType() {
