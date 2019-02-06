@@ -11,11 +11,11 @@ import org.simsg.container.State;
 import org.simsg.core.pm.match.IMatch;
 
 public class SiteStateChangeTemplate {
-	private int agentIndex;
+	private String nodeLabel;
 	private Map<Entry<EReference, EReference>, State> stateRefMap;
 	
-	public SiteStateChangeTemplate (int agentIndex){
-		this.agentIndex = agentIndex;
+	public SiteStateChangeTemplate (String nodeLabel){
+		this.nodeLabel = nodeLabel;
 		stateRefMap = new LinkedHashMap<Entry<EReference, EReference>, State>();
 	}
 	
@@ -24,7 +24,7 @@ public class SiteStateChangeTemplate {
 	}
 	
 	public void applyStateChangeCandidates(IMatch match) {
-		Agent agent = (Agent) match.get(match.parameterNames().get(agentIndex));
+		Agent agent = (Agent) match.get(nodeLabel);
 		for(Entry<Entry<EReference, EReference>, State> entry : stateRefMap.entrySet()) {
 			agent.eSet(entry.getKey().getKey(), null);
 			agent.eSet(entry.getKey().getValue(), entry.getValue());

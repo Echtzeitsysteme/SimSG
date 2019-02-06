@@ -64,6 +64,10 @@ public class GenericPattern {
 		return patternName;
 	}
 	
+	public Pattern getRawPattern() {
+		return lhs;
+	}
+	
 	public GenericPatternSignature getSignature() {
 		return signature;
 	}

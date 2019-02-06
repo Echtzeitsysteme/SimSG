@@ -6,20 +6,20 @@ import org.simsg.container.State;
 import org.simsg.core.pm.match.IMatch;
 
 public class AgentStateChangeTemplate {
-	private int agentIndex;
-	EReference oldRef;
-	EReference newRef;
-	State targetState;
+	private String nodeLabel;
+	private EReference oldRef;
+	private EReference newRef;
+	private State targetState;
 	
-	public AgentStateChangeTemplate(int agentIndex, EReference oldRef, EReference newRef, State targetState) {
-		this.agentIndex = agentIndex;
+	public AgentStateChangeTemplate(String nodeLabel, EReference oldRef, EReference newRef, State targetState) {
+		this.nodeLabel = nodeLabel;
 		this.oldRef = oldRef;
 		this.newRef = newRef;
 		this.targetState = targetState;
 	}
 	
 	public void applyStateChangeCandidate(IMatch match) {
-		Agent agent = (Agent) match.get(match.parameterNames().get(agentIndex));
+		Agent agent = (Agent) match.get(nodeLabel);
 		agent.eSet(oldRef, null);
 		agent.eSet(newRef, targetState);
 	}

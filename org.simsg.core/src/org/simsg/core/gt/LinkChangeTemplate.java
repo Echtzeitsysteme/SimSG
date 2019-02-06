@@ -13,8 +13,8 @@ public class LinkChangeTemplate {
 	
 	private ValidAgentPattern src;
 	private ValidAgentPattern trg;
-	private int srcAgentIdx;
-	private int trgAgentIdx;
+	private String srcLabel;
+	private String trgLabel;
 	private EReference srcReference;
 	private EReference trgReference;
 	private boolean srcInMatch;
@@ -25,15 +25,15 @@ public class LinkChangeTemplate {
 		trgInMatch = true;
 	}
 	
-	public void setSrc(ValidAgentPattern src, int srcAgentIdx, EReference srcReference) {
+	public void setSrc(ValidAgentPattern src, String srcLabel, EReference srcReference) {
 		this.src = src;
-		this.srcAgentIdx = srcAgentIdx;
+		this.srcLabel = srcLabel;
 		this.srcReference = srcReference;
 	}
 	
-	public void setTrg(ValidAgentPattern trg, int trgAgentIdx, EReference trgReference) {
+	public void setTrg(ValidAgentPattern trg, String trgLabel, EReference trgReference) {
 		this.trg = trg;
-		this.trgAgentIdx = trgAgentIdx;
+		this.trgLabel = trgLabel;
 		this.trgReference = trgReference;
 	}
 	
@@ -50,12 +50,12 @@ public class LinkChangeTemplate {
 		Agent srcAgent = null;
 		Agent trgAgent = null;
 		if(srcInMatch) {
-			srcAgent = (Agent) match.get(match.parameterNames().get(srcAgentIdx));
+			srcAgent = (Agent) match.get(srcLabel);
 		}else {
 			srcAgent = createdAgents.get(src);
 		}
 		if(trgInMatch) {
-			trgAgent = (Agent) match.get(match.parameterNames().get(trgAgentIdx));
+			trgAgent = (Agent) match.get(trgLabel);
 		}else {
 			trgAgent = createdAgents.get(trg);
 		}

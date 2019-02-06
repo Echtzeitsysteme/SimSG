@@ -6,30 +6,29 @@ import java.util.Map;
 import org.simsg.container.Container;
 import org.simsg.container.util.EPackageWrapper;
 import org.simsg.core.pm.match.IMatch;
-import org.simsg.simsgl.simSGL.Pattern;
+import org.simsg.core.pm.pattern.GenericPattern;
 import org.simsg.simsgl.utils.PatternContainer;
 import org.simsg.simsgl.utils.PatternUtils;
 
-public class ReactionRuleTransformer {
+public class ModelGraphTransformer {
 	
 	private PatternContainer patternContainer;
 	private Container reactionContainer;
 	private EPackageWrapper metaModel;
 	
-	private Map<String, Pattern> patternMap;
-	private Map<String, Pattern> targetPatternMap;
-	private Map<String, TransformationTemplate> templateMap;
+	private Map<String, GenericPattern> patternMap = new HashMap<>();
+	private Map<String, GenericPattern> targetPatternMap = new HashMap<>();
+	private Map<String, TransformationTemplate> templateMap = new HashMap<>();
 	
-	public ReactionRuleTransformer(PatternContainer patternContainer, Container reactionContainer, EPackageWrapper metaModel) {
+	public ModelGraphTransformer(PatternContainer patternContainer, Container reactionContainer, EPackageWrapper metaModel) {
 		this.patternContainer = patternContainer;
 		this.reactionContainer = reactionContainer;
 		this.metaModel = metaModel;
 	}
 	
 	private void initPatternMaps() {
-		patternMap = new HashMap<String, Pattern>();
-		targetPatternMap = new HashMap<String, Pattern>();
-		Map<String, Pattern> rulePatterns = patternContainer.getAllRulePatterns();
+		Map<String, GenericPattern> rulePatterns = new HashMap<>(); 
+		patternContainer.getAllRulePatterns().forEach((name, pattern) -> rulePatterns.put(name,  new GenericPattern(name, metaModel, pattern)));
 		rulePatterns.forEach((name, pattern) -> {
 			patternMap.put(name, pattern);
 			if(name.contains(PatternUtils.PATTERN_NAME_SUFFIX_LHS)) {
@@ -48,9 +47,8 @@ public class ReactionRuleTransformer {
 	}
 	
 	private void initTransformationTemplates( ) {
-		templateMap = new HashMap<String, TransformationTemplate>();
 		patternMap.forEach((patternName, lhsPattern) -> {
-			Pattern rhsPattern = targetPatternMap.get(patternName);
+			GenericPattern rhsPattern = targetPatternMap.get(patternName);
 			templateMap.put(patternName, new TransformationTemplate(patternName, lhsPattern, rhsPattern, reactionContainer, metaModel));
 		});
 	}
@@ -64,7 +62,7 @@ public class ReactionRuleTransformer {
 		templateMap.get(patternName).applyTransformation(match);
 	}
 	
-	public Map<String, Pattern> getPatternMap() {
+	public Map<String, GenericPattern> getPatternMap() {
 		return patternMap;
 	}
 }	

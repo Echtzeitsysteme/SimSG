@@ -16,10 +16,10 @@ public class GenericPatternSignature {
 	
 	private List<ValidAgentPattern> patterns;
 	private EPackageWrapper metaModel;
-	private Map<String, EClass> signatureNodes;
-	private Map<ValidAgentPattern, String> patternSignatureMapping;
-	private Map<String, ValidAgentPattern> signaturePatternMapping;
-	private Map<EClass, List<String>> injectivityConflicts;
+	private Map<String, EClass> signatureNodes = new LinkedHashMap<>();
+	private Map<ValidAgentPattern, String> patternSignatureMapping = new LinkedHashMap<>();
+	private Map<String, ValidAgentPattern> signaturePatternMapping = new LinkedHashMap<>();
+	private Map<EClass, List<String>> injectivityConflicts = new HashMap<>();
 	
 	public GenericPatternSignature(List<ValidAgentPattern> patterns, EPackageWrapper metaModel) {
 		this.patterns = patterns;
@@ -29,10 +29,6 @@ public class GenericPatternSignature {
 	}
 	
 	private void buildSignature() {
-		signatureNodes = new LinkedHashMap<String, EClass>();
-		patternSignatureMapping = new HashMap<ValidAgentPattern, String>();
-		signaturePatternMapping = new HashMap<String, ValidAgentPattern>();
-		injectivityConflicts = new HashMap<EClass, List<String>>();
 		
 		for(ValidAgentPattern vap : patterns) {
 			Agent agent = vap.getAgent();
@@ -95,6 +91,10 @@ public class GenericPatternSignature {
 	
 	public Map<EClass, List<String>> getInjectivityConflicts() {
 		return injectivityConflicts;
+	}
+	
+	public Map<ValidAgentPattern, String> getPatternSignatureMapping() {
+		return patternSignatureMapping;
 	}
 	
 	@Override

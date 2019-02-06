@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import org.simsg.container.Agent;
 import org.simsg.container.Container;
-import org.simsg.core.gt.ReactionRuleTransformer;
+import org.simsg.core.gt.ModelGraphTransformer;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.persistence.PersistenceManagerEnum;
 import org.simsg.core.persistence.PersistenceManagerFactory;

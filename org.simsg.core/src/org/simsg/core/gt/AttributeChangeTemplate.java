@@ -27,33 +27,30 @@ import org.simsg.simsgl.utils.PatternUtils;
 
 public class AttributeChangeTemplate {
 	
-	private int targetIndex;
+	private String nodeLabel;
 	private EAttribute targetAttribute;
 	EPackageWrapper metaModel;
-	private Map<ValidAgentPattern, Integer> vapToIndex;
-	private Map<Integer, Map<String, Object>> indexToAttributeValues;
-	private Map<Integer, Map<String, EAttribute>> indexToAttributes;
+	private Map<ValidAgentPattern, String> vapToLabel;
+	private Map<String, Map<String, Object>> labelToAttributeValues = new HashMap<>();
+	private Map<String, Map<String, EAttribute>> labelToAttributes = new HashMap<>();
 	
 	private DoubleSupplier calculate;
 	
 	
-	public AttributeChangeTemplate(int agentIndex, EAttribute targetAttribute, Map<ValidAgentPattern, Integer> vapToIndex, EPackageWrapper metaModel) {
-		this.targetIndex = agentIndex;
+	public AttributeChangeTemplate(String nodeLabel, EAttribute targetAttribute, Map<ValidAgentPattern, String> vapToLabel, EPackageWrapper metaModel) {
+		this.nodeLabel = nodeLabel;
 		this.targetAttribute = targetAttribute;
-		this.vapToIndex = vapToIndex;
+		this.vapToLabel = vapToLabel;
 		this.metaModel = metaModel;
-		vapToIndex = new HashMap<ValidAgentPattern, Integer>();
-		indexToAttributes = new HashMap<Integer, Map<String,EAttribute>>();
-		indexToAttributeValues = new HashMap<Integer, Map<String,Object>>();
 	}
 	
 	
 	public void applyAttributeChange(IMatch match) {
-		Agent agent = (Agent) match.get(match.parameterNames().get(targetIndex));
-		for(Integer idx : indexToAttributes.keySet()) {
-			for(Entry<String, EAttribute> pair : indexToAttributes.get(idx).entrySet()) {
-				Agent currentAgent = (Agent) match.get(match.parameterNames().get(idx));
-				indexToAttributeValues.get(idx).replace(pair.getKey(), currentAgent.eGet(pair.getValue()));
+		Agent agent = (Agent) match.get(nodeLabel);
+		for(String label : labelToAttributes.keySet()) {
+			for(Entry<String, EAttribute> pair : labelToAttributes.get(label).entrySet()) {
+				Agent currentAgent = (Agent) match.get(label);
+				labelToAttributeValues.get(label).replace(pair.getKey(), currentAgent.eGet(pair.getValue()));
 			}
 		}
 		
@@ -179,37 +176,37 @@ public class AttributeChangeTemplate {
 	
 	private DoubleSupplier createAttributeOperand(AttributeOperandGeneric attribute) {
 		ValidAgentPattern vap = (ValidAgentPattern)attribute.getAgent().eContainer();
-		int index = vapToIndex.get(vap);
+		String otherLabel = vapToLabel.get(vap);
 		String attributeName = AgentClassFactory.createAttributeName(vap.getAgent(), attribute.getAttribute().getAttribute());
 		EAttribute eAttribute = metaModel.getEAttribute(attributeName);
-		addToIndexToAttributes(index, attributeName, eAttribute);
+		addToLabelToAttributes(otherLabel, attributeName, eAttribute);
 		return () -> {
-			Map<String, Object> attributeValues = indexToAttributeValues.get(index);
+			Map<String, Object> attributeValues = labelToAttributeValues.get(otherLabel);
 			return (double)attributeValues.get(attributeName);
 		};	
 	}
 	
 	private DoubleSupplier createAttributeOperand(AttributeOperandId attribute) {
 		ValidAgentPattern vap = (ValidAgentPattern)attribute.getAgent().eContainer();
-		int index = vapToIndex.get(vap);
+		String label = vapToLabel.get(vap);
 		String attributeName = ContainerPackage.Literals.AGENT__ID.getName();
 		EAttribute eAttribute = ContainerPackage.Literals.AGENT__ID;
-		addToIndexToAttributes(index, attributeName, eAttribute);
+		addToLabelToAttributes(label, attributeName, eAttribute);
 		return () -> {
-			Map<String, Object> attributeValues = indexToAttributeValues.get(index);
+			Map<String, Object> attributeValues = labelToAttributeValues.get(label);
 			return (double)attributeValues.get(attributeName);
 		};
 	}
 	
-	private void addToIndexToAttributes(int index, String attributeName, EAttribute attribute) {
-		Map<String, EAttribute> agentAttributes = indexToAttributes.get(index);
-		Map<String, Object> attributeValues = indexToAttributeValues.get(index);
+	private void addToLabelToAttributes(String label, String attributeName, EAttribute attribute) {
+		Map<String, EAttribute> agentAttributes = labelToAttributes.get(label);
+		Map<String, Object> attributeValues = labelToAttributeValues.get(label);
 		if(agentAttributes == null) {
 			agentAttributes = new HashMap<String, EAttribute>();
-			indexToAttributes.put(index, agentAttributes);
+			labelToAttributes.put(label, agentAttributes);
 			
 			attributeValues = new HashMap<String, Object>();
-			indexToAttributeValues.put(index, attributeValues);
+			labelToAttributeValues.put(label, attributeValues);
 		}
 		agentAttributes.put(attributeName, attribute);
 		attributeValues.put(attributeName, 0.0);

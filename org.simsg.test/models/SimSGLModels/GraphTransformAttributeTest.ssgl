@@ -1,0 +1,12 @@
+ModelID GraphTransformAttributeTest
+
+agent Node(*port)
+agent Edge(*port){active, inactive}[weight:FLOAT]
+
+init n1 1 {Node(port*[1]), e1:Edge(port*[1,2]){active}, Node(port*[2])}[e1.weight=4]
+init n2 1 {Node(port*[1]), e1:Edge(port*[1,2]){active}, Node(port*[2])}[e1.weight=3]
+
+rule connectFwd {Node(port*[1]), Edge(port*[1,2]){active}, Node(port*[2,free(Edge)]), void, Node(port*[3, free(Edge)]), Edge(port*[3]){active}} -> 
+{Node(port*[1]), Edge(port*[1,2]){active}, Node(port*[2,4]), Edge(port*[4,5]){active}, Node(port*[3, 5]), Edge(port*[3]){active}}
+rule connectBwd {Node(port*[1]), Edge(port*[1,2]){active}, Node(port*[2,4]), Edge(port*[4,5]){active}, Node(port*[3, 5]), Edge(port*[3]){active}} -> 
+{Node(port*[1]), Edge(port*[1,2]){active}, Node(port*[2]), void, Node(port*[3]), Edge(port*[3]){active}}
