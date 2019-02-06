@@ -3,12 +3,21 @@ ModelID NetworkExample
 agent Node(*port)
 agent Edge(*port){active, inactive}[weight:FLOAT]
 
-init n1 1 {Node(port*[1]), e1:Edge(port*[1,2]){active}, Node(port*[2])}[e1.weight=4]
-init n2 1 {Node(port*[1]), e1:Edge(port*[1,2]){active}, Node(port*[2])}[e1.weight=3]
+init n1 1 {
+			N1:Node(port*[1,3,25]),  N2:Node(port*[2,5,8,19]), N3:Node(port*[4,6,10,12]), 
+			N4:Node(port*[7,9,14,16]), N5:Node(port*[11,13,18,22]), N6:Node(port*[15,17,20,24]),
+			N7:Node(port*[21,23,26]),
+	 		E1:Edge(port*[1,2]){active}, E2:Edge(port*[3,4]){active}, E3:Edge(port*[5,6]){active}, 
+	 		E4:Edge(port*[7,8]){active}, E5:Edge(port*[9,10]){active}, E6:Edge(port*[11,12]){active}, 
+	 		E7:Edge(port*[15,16]){active}, E8:Edge(port*[17,18]){active}, E9:Edge(port*[21,22]){active},
+	 		E10:Edge(port*[23,24]){active}, E11:Edge(port*[25,26]){active}, E12:Edge(port*[19,20]){active}, 
+	 		E13:Edge(port*[13,14]){active}
+}
+[
+	E1.weight=1, E2.weight=1, E3.weight=3, E4.weight=2, E5.weight=4, E6.weight=5, E7.weight=1,
+	E8.weight=3, E9.weight=4, E10.weight=2, E11.weight=12, E12.weight=8, E13.weight=2
+]
 
 rule advanceTime {Node(port*[?])} -> {Node(port*[?])} @ [1]
-
-rule connect {Node(port*[1]), Edge(port*[1,2]){active}, Node(port*[2,free(Edge)]), void, Node(port*[3, free(Edge)]), Edge(port*[3]){active}} -> 
-{Node(port*[1]), Edge(port*[1,2]){active}, Node(port*[2,4]), Edge(port*[4,5]){active}, Node(port*[3, 5]), Edge(port*[3]){active}}
 
 terminate end time=2000

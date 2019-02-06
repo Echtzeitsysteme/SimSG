@@ -23,6 +23,8 @@ public class PeriodicService extends ServiceRoutine {
 
 	@Override
 	public boolean performService(ModelGraphTransformer gt) {
+		if(state.peekNextEvent() == null) return false;
+		
 		double nextEventTime = state.peekNextEvent().time;
 		if((nextEventTime-lastService) < servicePeriod) {
 			return false;
