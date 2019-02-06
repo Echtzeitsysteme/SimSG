@@ -68,7 +68,7 @@ public class Sandbox {
 		simConfigurator.addComplexTerminationCondition();
 		simConfigurator.addObservableStatistic();
 		simConfigurator.addModelGraphPropertiesStatistic();
-		simConfigurator.addPeriodicServiceRoutine(2);
+		simConfigurator.addPeriodicServiceRoutine(4);
 		Simulation viatraSim = simConfigurator.createSimulation();
 		viatraSim.initializeClocked();
 		viatraSim.runClocked();

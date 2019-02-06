@@ -20,4 +20,22 @@ init n1 1 {
 
 rule advanceTime {Node(port*[?])} -> {Node(port*[?])} @ [1]
 
-terminate end time=2000
+rule kTC_powerSave {
+	N1:Node(port*[1,6]), N2:Node(port*[2,3]), N3:Node(port*[4,5]),
+	E1:Edge(port*[1,2]){active}, E2:Edge(port*[3,4]){active}, E3:Edge(port*[5,6]){active}
+} [E1.weight + E2.weight <= E3.weight]
+	-> 
+{
+	N1:Node(port*[1,6]), N2:Node(port*[2,3]), N3:Node(port*[4,5]),
+	E1:Edge(port*[1,2]){active}, E2:Edge(port*[3,4]){active}, E3:Edge(port*[5,6]){inactive}
+}
+
+obs activeEdges {Edge(){active}}
+obs inActiveEdges {Edge(){inactive}}
+obs edges {Edge()}
+obs triangles {
+	N1:Node(port*[1,6]), N2:Node(port*[2,3]), N3:Node(port*[4,5]),
+	E1:Edge(port*[1,2]), E2:Edge(port*[3,4]), E3:Edge(port*[5,6])
+}
+
+terminate end time=12000
