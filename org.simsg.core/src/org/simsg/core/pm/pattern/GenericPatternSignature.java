@@ -93,6 +93,10 @@ public class GenericPatternSignature {
 		return injectivityConflicts;
 	}
 	
+	public Map<ValidAgentPattern, String> getPatternSignatureMapping() {
+		return patternSignatureMapping;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
