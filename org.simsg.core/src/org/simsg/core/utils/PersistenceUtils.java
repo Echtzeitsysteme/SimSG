@@ -103,7 +103,10 @@ public class PersistenceUtils {
 	}
 	
 	public static void saveModelContainer(Container model, String path) throws Exception {
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("Container", new XMIResourceFactoryImpl());
 		ResourceSet rs = new ResourceSetImpl();
+		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+		
 		URI uri = URI.createFileURI(path);
 		Resource modelResource = rs.createResource(uri);
 		modelResource.getContents().add(model);

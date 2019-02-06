@@ -74,6 +74,7 @@ public class Sandbox {
 		viatraSim.runClocked();
 		System.out.println(viatraSim.results());
 		viatraSim.displayResults();
+		viatraSim.saveModelGraph(System.getProperty("user.dir")+"//models//result.xmi");
 		viatraSim.finish();
 		
 		System.out.println(Runtimer.getInstance());

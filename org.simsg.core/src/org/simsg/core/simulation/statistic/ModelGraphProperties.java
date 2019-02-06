@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.simsg.container.Agent;
 import org.simsg.container.Container;
-import org.simsg.container.ContainerPackage;
+import org.simsg.container.State;
 import org.simsg.core.simulation.SimulationState;
 
 public class ModelGraphProperties extends SimulationStatistics {
@@ -39,7 +39,12 @@ public class ModelGraphProperties extends SimulationStatistics {
 	
 	private int numOfDisjunctSubgraphs() {
 		Set<Agent> allAgents = new HashSet<>();
-		allAgents.addAll(modelGraph.getAgents());
+		//allAgents.addAll(modelGraph.getAgents());
+		for(Agent agent : modelGraph.getAgents()) {
+			if(!agent.eClass().getName().equals("Edge")) {
+				allAgents.add(agent);
+			}
+		}
 		
 		List<Set<Agent>> subGraphs = new LinkedList<>();
 		
@@ -93,18 +98,58 @@ public class ModelGraphProperties extends SimulationStatistics {
 		for(EReference ref : outgoingEdgeTypes) {
 			if(ref.getUpperBound()==EReference.UNBOUNDED_MULTIPLICITY) {
 				@SuppressWarnings("unchecked")
-				List<Agent> other = (List<Agent>)current.eGet(ref);
-				if(other.size() > 0) {
-					outgoing.addAll(other);
+				List<Agent> others = (List<Agent>)current.eGet(ref);
+				if(others.size() > 0) {
+					for(Agent other : others) {
+						outgoing.addAll(checkActiveEdgeNode(other));
+					}
 				}
 			}else {
 				Agent other = (Agent)current.eGet(ref);
 				if(other != null) {
-					outgoing.add(other);
+					outgoing.addAll(checkActiveEdgeNode(other));
 				}
 			}
 		}
 		return outgoing;
+	}
+	
+	private List<Agent> checkActiveEdgeNode(Agent other) {
+		if(!other.eClass().getName().equals("Edge")) {
+			List<Agent> list = new LinkedList<>();
+			list.add(other);
+		}
+		
+		EClass edgeClass = other.eClass();
+		List<EReference>stateRefTypes = new LinkedList<>();
+		List<EReference>agentRefTypes = new LinkedList<>();
+		
+		for(EStructuralFeature feat : edgeClass.getEStructuralFeatures()) {
+			if(!(feat instanceof EReference)) continue;
+			EReference ref  = (EReference)feat;
+			if(ref.getEType().getName().equals("active")) {
+				stateRefTypes.add(ref);
+			}else if(ref.getEType().getName().equals("Agent")) {
+				agentRefTypes.add(ref);
+			}
+			
+		}
+		
+		for(EReference ref : stateRefTypes) {
+			State otherState = (State)other.eGet(ref);
+			if(otherState == null) continue;
+			if(otherState.eClass().getName().equals("active")) {
+				List<Agent> list = new LinkedList<>();
+				for(EReference refAgent : agentRefTypes) {
+					@SuppressWarnings("unchecked")
+					List<Agent> otherAgent = (List<Agent>)other.eGet(refAgent);
+					list.addAll(otherAgent);
+				}
+				return list;
+			}
+		}
+		
+		return new LinkedList<>();
 	}
 
 }

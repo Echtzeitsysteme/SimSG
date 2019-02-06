@@ -15,6 +15,7 @@ import org.simsg.core.simulation.condition.TerminationCondition;
 import org.simsg.core.simulation.constraint.ExternalConstraint;
 import org.simsg.core.simulation.service.ServiceRoutine;
 import org.simsg.core.simulation.statistic.SimulationStatistics;
+import org.simsg.core.utils.PersistenceUtils;
 import org.simsg.core.utils.Runtimer;
 import org.simsg.simsgl.simSGL.SimSGLModel;
 
@@ -192,6 +193,17 @@ public abstract class Simulation {
 			updateStatistics();
 			state.incrementIterations();
 		}
+	}
+	
+	public boolean saveModelGraph(String path) {
+		try {
+			PersistenceUtils.saveModelContainer(reactionContainer, path);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 	
 	protected boolean checkTerminationConditions() {
