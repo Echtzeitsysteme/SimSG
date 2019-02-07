@@ -20,21 +20,21 @@ init n1 1 {
 
 // Stochastic rules simulating a dynamic environment
 
-rule increaseWeight {E1:Edge()} -> {E1:Edge()} [E1.weight = E1.weight+1] @ [0.25]
+rule increaseWeight {E1:Edge()} -> {E1:Edge()} [E1.weight = E1.weight+1] @ [0.025]
 
-rule decreaseWeight {E1:Edge()}[E1.weight > 1] -> {E1:Edge()} [E1.weight = E1.weight-1] @ [0.25]
+rule decreaseWeight {E1:Edge()}[E1.weight > 1] -> {E1:Edge()} [E1.weight = E1.weight-1] @ [0.025]
 
-rule deleteEdgeActive {Edge(){active}} -> {Edge(){deleted}} @ [0.04]
+rule deleteEdgeActive {Edge(){active}} -> {Edge(){deleted}} @ [0.004]
 
-rule deleteEdgeInactive {Edge(){inactive}} -> {Edge(){deleted}} @ [0.04]
+rule deleteEdgeInactive {Edge(){inactive}} -> {Edge(){deleted}} @ [0.004]
 
 var addPattern = {Node(port*[?]), Node(port*[?]), void}
 
-rule addEdge1 addPattern -> {Node(port*[1]), Node(port*[2]), E1:Edge(port*[1,2]){added}} [E1.weight = 1] @ [0.004]
-rule addEdge2 addPattern -> {Node(port*[1]), Node(port*[2]), E1:Edge(port*[1,2]){added}} [E1.weight = 2] @ [0.004]
-rule addEdge3 addPattern -> {Node(port*[1]), Node(port*[2]), E1:Edge(port*[1,2]){added}} [E1.weight = 3] @ [0.004]
-rule addEdge4 addPattern -> {Node(port*[1]), Node(port*[2]), E1:Edge(port*[1,2]){added}} [E1.weight = 5] @ [0.004]
-rule addEdge5 addPattern -> {Node(port*[1]), Node(port*[2]), E1:Edge(port*[1,2]){added}} [E1.weight = 8] @ [0.004]
+rule addEdge1 addPattern -> {Node(port*[1]), Node(port*[2]), E1:Edge(port*[1,2]){added}} [E1.weight = 1] @ [0.0004]
+rule addEdge2 addPattern -> {Node(port*[1]), Node(port*[2]), E1:Edge(port*[1,2]){added}} [E1.weight = 2] @ [0.0004]
+rule addEdge3 addPattern -> {Node(port*[1]), Node(port*[2]), E1:Edge(port*[1,2]){added}} [E1.weight = 3] @ [0.0004]
+rule addEdge4 addPattern -> {Node(port*[1]), Node(port*[2]), E1:Edge(port*[1,2]){added}} [E1.weight = 5] @ [0.0004]
+rule addEdge5 addPattern -> {Node(port*[1]), Node(port*[2]), E1:Edge(port*[1,2]){added}} [E1.weight = 8] @ [0.0004]
 
 // Rules of the kTC Algorithm
 
@@ -95,4 +95,4 @@ obs triangles {
 	E1:Edge(port*[1,2]){active}, E2:Edge(port*[3,4]){active}, E3:Edge(port*[5,6]){active}
 }[N1.id < N2.id, N2.id < N3.id]
 
-terminate end time=200000
+terminate end time=3600000

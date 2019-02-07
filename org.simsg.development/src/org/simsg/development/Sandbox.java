@@ -64,12 +64,11 @@ public class Sandbox {
 		simConfigurator.setEMFPersistence();
 		simConfigurator.setViatraAsEngine();
 		simConfigurator.setSimplePMC();
-		//simConfigurator.setSimpleSimulation(false);
 		simConfigurator.setStochasticSimulation();
 		simConfigurator.addComplexTerminationCondition();
 		simConfigurator.addObservableStatistic();
 		simConfigurator.addModelGraphPropertiesStatistic();
-		simConfigurator.addPeriodicServiceRoutine(4);
+		simConfigurator.addPeriodicServiceRoutine(60);
 		Simulation viatraSim = simConfigurator.createSimulation();
 		viatraSim.initializeClocked();
 		viatraSim.runClocked();
