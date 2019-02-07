@@ -140,7 +140,6 @@ abstract class GraphTransformAttributeTest {
 		try {
 			pmc.collectMatches(p);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -285,7 +284,7 @@ abstract class GraphTransformAttributeTest {
 	}
 	
 	@Test
-	public void removeEdgeTest() {
+	public void markRemoveEdgeTest() {
 		final String markRemoveActive = "deleteEdgeActive_lhs";
 		final String markRemoveInactive = "deleteEdgeInactive_lhs";
 		final String cleanDeleted = "cleanDeleted_lhs";
@@ -335,6 +334,96 @@ abstract class GraphTransformAttributeTest {
 		
 		checkConsistency();
 		
+	}
+	
+	@Test
+	public void markAddEdgeTest() {
+		final String markRemoveInactive = "deleteEdgeInactive_lhs";
+		final String cleanDeleted = "cleanDeleted_lhs";
+		final String addEdge1 = "addEdge1_lhs";
+		final String addEdge2 = "addEdge2_lhs";
+		final String addEdge3 = "addEdge3_lhs";
+		final String addEdge4 = "addEdge4_lhs";
+		final String addEdge5 = "addEdge5_lhs";
+		final String cleanEdge = "cleadAdded_lhs";
+		
+		checkConsistency();
+		
+		assertEquals(42, getMatchCount(addEdge1), "Number of matches weren't equal!");
+		
+		Collection<IMatch> matches = getMatches(addEdge1);
+		gt.applyRuleToMatch(matches.iterator().next(), addEdge1);
+		gt.applyRuleToMatch(matches.iterator().next(), addEdge2);
+		gt.applyRuleToMatch(matches.iterator().next(), addEdge3);
+		gt.applyRuleToMatch(matches.iterator().next(), addEdge4);
+		gt.applyRuleToMatch(matches.iterator().next(), addEdge5);
+		
+		assertEquals(5, getMatchCount(cleanEdge), "Number of matches weren't equal!");
+		
+		matches = getMatches(cleanEdge);
+		for(IMatch match : matches) {
+			gt.applyRuleToMatch(match, cleanEdge);
+		}
+		
+		assertEquals(5, getMatchCount(markRemoveInactive), "Number of matches weren't equal!");
+		
+		matches = getMatches(markRemoveInactive);
+		for(IMatch match : matches) {
+			gt.applyRuleToMatch(match, markRemoveInactive);
+		}
+		
+		assertEquals(5, getMatchCount(cleanDeleted), "Number of matches weren't equal!");
+		matches = getMatches(cleanDeleted);
+		for(IMatch match : matches) {
+			gt.applyRuleToMatch(match, cleanDeleted);
+		}
+		
+		checkConsistency();
+		
+	}
+	
+	@Test
+	public void removeRedundantTest() {
+		final String markRemoveInactive = "deleteEdgeInactive_lhs";
+		final String cleanDeleted = "cleanDeleted_lhs";
+		final String addEdge1 = "addEdge1_lhs";
+		final String cleanEdge = "cleadAdded_lhs";
+		final String deleteRedundant = "removeRedundantAdded_lhs";
+		
+		checkConsistency();
+		
+		assertEquals(42, getMatchCount(addEdge1), "Number of matches weren't equal!");
+		
+		Collection<IMatch> matches = getMatches(addEdge1);
+		gt.applyRuleToMatch(matches.iterator().next(), addEdge1);
+		gt.applyRuleToMatch(matches.iterator().next(), addEdge1);
+		gt.applyRuleToMatch(matches.iterator().next(), addEdge1);
+		gt.applyRuleToMatch(matches.iterator().next(), addEdge1);
+		gt.applyRuleToMatch(matches.iterator().next(), addEdge1);
+		
+		assertEquals(5, getMatchCount(cleanEdge), "Number of matches weren't equal!");
+
+		while(getMatchCount(deleteRedundant)>0) {
+			IMatch match = getMatches(deleteRedundant).iterator().next();
+			gt.applyRuleToMatch(match, deleteRedundant);
+		}
+		
+		matches = getMatches(cleanEdge);
+		for(IMatch match : matches) {
+			gt.applyRuleToMatch(match, cleanEdge);
+		}
+		
+		matches = getMatches(markRemoveInactive);
+		for(IMatch match : matches) {
+			gt.applyRuleToMatch(match, markRemoveInactive);
+		}
+		
+		matches = getMatches(cleanDeleted);
+		for(IMatch match : matches) {
+			gt.applyRuleToMatch(match, cleanDeleted);
+		}
+		
+		checkConsistency();
 	}
 	
 }

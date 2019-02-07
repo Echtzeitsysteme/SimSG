@@ -68,7 +68,7 @@ rule addEdge5 addPattern -> {Node(port*[1]), Node(port*[2]), E1:Edge(port*[1,2])
 
 // Rules of the kTC Algorithm
 
-rule removeRedundandAdded {Node(port*[1,3]), Node(port*[2,4]), Edge(port*[1,2]){added}, Edge(port*[3,4])} -> 
+rule removeRedundantAdded {Node(port*[1,3]), Node(port*[2,4]), Edge(port*[1,2]){added}, Edge(port*[3,4])} -> 
 	{Node(port*[1]), Node(port*[2]), void, Edge(port*[1,2])}
 	
 rule cleadAdded {Edge(){added}} -> {Edge(){inactive}}
