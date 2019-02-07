@@ -260,6 +260,8 @@ abstract class GraphTransformAttributeTest {
 		final String increase = "increaseWeight_lhs";
 		final String decrease = "decreaseWeight_lhs";
 		
+		checkConsistency();
+		
 		assertEquals(10, getMatchCount(decrease), "Number of matches weren't equal!");
 		
 		Collection<IMatch> matches = getMatches(decrease);
@@ -279,6 +281,59 @@ abstract class GraphTransformAttributeTest {
 		
 		checkConsistency();
 		
+		
+	}
+	
+	@Test
+	public void removeEdgeTest() {
+		final String markRemoveActive = "deleteEdgeActive_lhs";
+		final String markRemoveInactive = "deleteEdgeInactive_lhs";
+		final String cleanDeleted = "cleanDeleted_lhs";
+		final String revertDelete = "revertDelete_lhs";
+		final String reactivate = "reactivate_lhs";
+		
+		checkConsistency();
+		
+		assertEquals(13, getMatchCount(markRemoveActive), "Number of matches weren't equal!");
+		assertEquals(0, getMatchCount(markRemoveInactive), "Number of matches weren't equal!");
+		
+		Collection<IMatch> matches = getMatches(markRemoveActive);
+		for(IMatch match : matches) {
+			gt.applyRuleToMatch(match, markRemoveActive);
+		}
+		
+		assertEquals(13, getMatchCount(cleanDeleted), "Number of matches weren't equal!");
+		assertEquals(13, getMatchCount(revertDelete), "Number of matches weren't equal!");
+		
+		matches = getMatches(revertDelete);
+		for(IMatch match : matches) {
+			gt.applyRuleToMatch(match, revertDelete);
+		}
+		
+		assertEquals(13, getMatchCount(reactivate), "Number of matches weren't equal!");
+		assertEquals(13, getMatchCount(markRemoveInactive), "Number of matches weren't equal!");
+		
+		matches = getMatches(markRemoveInactive);
+		for(IMatch match : matches) {
+			gt.applyRuleToMatch(match, markRemoveInactive);
+		}
+		
+		assertEquals(13, getMatchCount(cleanDeleted), "Number of matches weren't equal!");
+		assertEquals(13, getMatchCount(revertDelete), "Number of matches weren't equal!");
+		
+		matches = getMatches(revertDelete);
+		for(IMatch match : matches) {
+			gt.applyRuleToMatch(match, revertDelete);
+		}
+		
+		assertEquals(13, getMatchCount(reactivate), "Number of matches weren't equal!");
+		
+		matches = getMatches(reactivate);
+		for(IMatch match : matches) {
+			gt.applyRuleToMatch(match, reactivate);
+		}
+		
+		checkConsistency();
 		
 	}
 	

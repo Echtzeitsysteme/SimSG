@@ -28,6 +28,8 @@ import org.simsg.simsgl.utils.PatternUtils;
 public class AttributeChangeTemplate {
 	
 	private String nodeLabel;
+	private boolean nodeInMatch = true;
+	private ValidAgentPattern nodePattern;
 	private EAttribute targetAttribute;
 	EPackageWrapper metaModel;
 	private Map<ValidAgentPattern, String> vapToLabel;
@@ -36,7 +38,6 @@ public class AttributeChangeTemplate {
 	
 	private DoubleSupplier calculate;
 	
-	
 	public AttributeChangeTemplate(String nodeLabel, EAttribute targetAttribute, Map<ValidAgentPattern, String> vapToLabel, EPackageWrapper metaModel) {
 		this.nodeLabel = nodeLabel;
 		this.targetAttribute = targetAttribute;
@@ -44,9 +45,18 @@ public class AttributeChangeTemplate {
 		this.metaModel = metaModel;
 	}
 	
+	public void setAgentNotInMatch(ValidAgentPattern agent) {
+		nodePattern = agent;
+		nodeInMatch = false;
+	}
 	
-	public void applyAttributeChange(IMatch match) {
-		Agent agent = (Agent) match.get(nodeLabel);
+	public void applyAttributeChange(IMatch match, Map<ValidAgentPattern, Agent> createdAgents) {
+		Agent agent = null;
+		if(nodeInMatch) {
+			agent = (Agent) match.get(nodeLabel);
+		} else {
+			agent = createdAgents.get(nodePattern);
+		}
 		for(String label : labelToAttributes.keySet()) {
 			for(Entry<String, EAttribute> pair : labelToAttributes.get(label).entrySet()) {
 				Agent currentAgent = (Agent) match.get(label);

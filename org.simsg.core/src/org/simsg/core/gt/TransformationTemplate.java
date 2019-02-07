@@ -293,6 +293,7 @@ public class TransformationTemplate {
 				}
 				
 			}
+			
 			agentCreations.put(rhsVap, agntTemplate);
 			createdAgents.put(rhsVap, null);
 		}
@@ -385,6 +386,7 @@ public class TransformationTemplate {
 			Attribute atr = operandL.getAttribute().getAttribute();
 			String attributeName = AgentClassFactory.createAttributeName(rhsVap.getAgent(),  atr);
 			EAttribute attribute = metaModel.getEAttribute(attributeName);
+			
 			ValidAgentPattern lhsVap = lhsToRhsMap.get(rhsVap);
 			String lhsLabel = lhs.getSignature().getSignatureNode(lhsVap);
 			AttributeChangeTemplate template = 
@@ -392,6 +394,11 @@ public class TransformationTemplate {
 							rhs.getSignature().getPatternSignatureMapping(), metaModel);
 			template.setOperation(constraint.getOperandR());
 			attributeChanges.add(template);
+			
+			if(agentCreations.containsKey(rhsVap)) {
+				template.setAgentNotInMatch(rhsVap);
+			}
+			
 			
 		}
 	}
@@ -452,7 +459,7 @@ public class TransformationTemplate {
 	
 	private void applyAttributeChangeTemplate(IMatch match) {
 		for(AttributeChangeTemplate template : attributeChanges) {
-			template.applyAttributeChange(match);
+			template.applyAttributeChange(match, createdAgents);
 		}
 	}
 	

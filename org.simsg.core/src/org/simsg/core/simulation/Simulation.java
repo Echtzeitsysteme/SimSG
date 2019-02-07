@@ -139,7 +139,7 @@ public abstract class Simulation {
 	
 	public void initializeClocked() {
 		Runtimer timer = Runtimer.getInstance();
-		timer.measure(this, "Initialize(1): Simulation", () -> {
+		timer.measure(this, "Initialize(1): Simulation setup", () -> {
 				timer.measure(this, "Initialize(1.1): Models", () -> {
 					try {
 						initModel();

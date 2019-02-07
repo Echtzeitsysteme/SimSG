@@ -14,7 +14,7 @@ rule connectBwd {Node2(port*[1]), Edge2(port*[1,2]){active}, Node2(port*[2,4]), 
 // Network Example tests
 
 agent Node(*port)
-agent Edge(*port){active, inactive}[weight:FLOAT]
+agent Edge(*port){active, inactive, deleted, added}[weight:FLOAT]
 
 init n3 1 {
 			N1:Node(port*[1,3,25]),  N2:Node(port*[2,5,8,19]), N3:Node(port*[4,6,10,12]), 
@@ -46,15 +46,54 @@ obs checkConsistency {
 	E8.weight=3, E9.weight=4, E10.weight=2, E11.weight=12, E12.weight=8, E13.weight=2
 ]
 
-rule reactivate {Edge(){inactive}} -> {Edge(){active}}
 
-rule deactivate {Edge(){active}} -> {Edge(){inactive}}
+
+// Stochastic rules simulating a dynamic environment
 
 rule increaseWeight {E1:Edge()} -> {E1:Edge()} [E1.weight = E1.weight+1] @ [0.25]
 
 rule decreaseWeight {E1:Edge()}[E1.weight > 1] -> {E1:Edge()} [E1.weight = E1.weight-1] @ [0.25]
 
-rule deleteEdge {Edge()} -> {void} @ [0.1]
+rule deleteEdgeActive {Edge(){active}} -> {Edge(){deleted}} @ [0.04]
+
+rule deleteEdgeInactive {Edge(){inactive}} -> {Edge(){deleted}} @ [0.04]
+
+var addPattern = {Node(port*[?]), Node(port*[?]), void}
+
+rule addEdge1 addPattern -> {Node(port*[1]), Node(port*[2]), E1:Edge(port*[1,2]){added}} [E1.weight = 1] @ [0.004]
+rule addEdge2 addPattern -> {Node(port*[1]), Node(port*[2]), E1:Edge(port*[1,2]){added}} [E1.weight = 2] @ [0.004]
+rule addEdge3 addPattern -> {Node(port*[1]), Node(port*[2]), E1:Edge(port*[1,2]){added}} [E1.weight = 3] @ [0.004]
+rule addEdge4 addPattern -> {Node(port*[1]), Node(port*[2]), E1:Edge(port*[1,2]){added}} [E1.weight = 5] @ [0.004]
+rule addEdge5 addPattern -> {Node(port*[1]), Node(port*[2]), E1:Edge(port*[1,2]){added}} [E1.weight = 8] @ [0.004]
+
+// Rules of the kTC Algorithm
+
+rule removeRedundandAdded {Node(port*[1,3]), Node(port*[2,4]), Edge(port*[1,2]){added}, Edge(port*[3,4])} -> 
+	{Node(port*[1]), Node(port*[2]), void, Edge(port*[1,2])}
+	
+rule cleadAdded {Edge(){added}} -> {Edge(){inactive}}
+
+rule repairTwo {
+	Node(port*[1,6]), Node(port*[2,3]), Node(port*[4,5]),
+	Edge(port*[1,2]){inactive}, E2:Edge(port*[3,4]){inactive}, E3:Edge(port*[5,6]){deleted}
+}
+->
+{
+	Node(port*[1,6]), Node(port*[2,3]), Node(port*[4,5]),
+	Edge(port*[1,2]){active}, E2:Edge(port*[3,4]){active}, E3:Edge(port*[5,6]){deleted}
+}
+
+rule repairOne {
+	Node(port*[1,6]), Node(port*[2,3]), Node(port*[4,5]),
+	Edge(port*[1,2]){inactive}, E2:Edge(port*[3,4]){active}, E3:Edge(port*[5,6]){deleted}
+}
+->
+{
+	Node(port*[1,6]), Node(port*[2,3]), Node(port*[4,5]),
+	Edge(port*[1,2]){active}, E2:Edge(port*[3,4]){active}, E3:Edge(port*[5,6]){deleted}
+}
+
+rule cleanDeleted {Edge(){deleted}} -> {void}
 
 rule kTC_powerDown {
 	N1:Node(port*[1,6]), N2:Node(port*[2,3]), N3:Node(port*[4,5]),
@@ -75,3 +114,13 @@ rule kTC_powerUp {
 	N1:Node(port*[1,6]), N2:Node(port*[2,3]), N3:Node(port*[4,5]),
 	E1:Edge(port*[1,2]), E2:Edge(port*[3,4]), E3:Edge(port*[5,6]){active}
 }
+
+// utility rules
+
+rule reactivate {Edge(){inactive}} -> {Edge(){active}}
+
+rule deactivate {Edge(){active}} -> {Edge(){inactive}}
+
+rule revertDelete {Edge(){deleted}} -> {Edge(){inactive}}
+
+rule revertAdd {Edge(){added}} -> {Edge(){inactive}}

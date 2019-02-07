@@ -38,6 +38,6 @@ public class Measurement {
 	
 	@Override
 	public String toString() {
-		return "Execution took: "+durationSeconds()+"s ("+durationNanoSeconds()+"ns) and required "+usedMemory+"MB of memory.";
+		return "took: "+durationSeconds()+"s ("+durationNanoSeconds()+"ns) and required "+usedMemory+"MB of memory.";
 	}
 }

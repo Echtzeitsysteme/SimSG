@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +24,7 @@ public class Runtimer {
     }
 	
 	private Runtimer() {
-		measurements = new HashMap<Object, Map<String,Measurement>>();
+		measurements = new LinkedHashMap<Object, Map<String,Measurement>>();
 	}
 	
 	public void measure(Object o, String functionName, Runnable method) {
@@ -89,7 +89,7 @@ public class Runtimer {
 	private void addToMeasurements(Object o, String functionName, Measurement measurement) {
 		Map<String, Measurement> objectMeasures = measurements.get(o);
 		if(objectMeasures == null) {
-			objectMeasures = new HashMap<String, Measurement>();
+			objectMeasures = new LinkedHashMap<String, Measurement>();
 			measurements.put(o, objectMeasures);
 		}
 		objectMeasures.put(functionName, measurement);
