@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <container:Container xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:NetworkExample="platform:/resource/org.simsg.container/generated/NetworkExample" xmlns:container="http://www.simsg.container.org/container" xsi:schemaLocation="platform:/resource/org.simsg.container/generated/NetworkExample file:/C:/Users//sehmes//Workspaces//SimSG-devel//SimSG//org.simsg.development//models//ContainerMetaModels/NetworkExample.ecore http://www.simsg.container.org/container java://org.simsg.container.ContainerPackage" ModelName="NetworkExample">
-  <agents xmi:type="NetworkExample:Edge" ID="631902562775469" Edge_port="//@agents.6 //@agents.14" Edge_active="//@states.1" Edge_weight="2.0"/>
-  <agents xmi:type="NetworkExample:Node" ID="631902562711726" Node_port="//@agents.10 //@agents.19 //@agents.7 //@agents.17"/>
-  <agents xmi:type="NetworkExample:Edge" ID="631902562718923" Edge_port="//@agents.6 //@agents.8" Edge_inactive="//@states.0" Edge_weight="4.0"/>
-  <agents xmi:type="NetworkExample:Node" ID="631902562769815" Node_port="//@agents.9 //@agents.4 //@agents.19 //@agents.18"/>
-  <agents xmi:type="NetworkExample:Edge" ID="631902562671630" Edge_port="//@agents.3 //@agents.6" Edge_inactive="//@states.0" Edge_weight="2.0"/>
-  <agents xmi:type="NetworkExample:Edge" ID="631902562796032" Edge_port="//@agents.15 //@agents.13" Edge_active="//@states.1" Edge_weight="12.0"/>
-  <agents xmi:type="NetworkExample:Node" ID="631902562845895" Node_port="//@agents.0 //@agents.2 //@agents.4 //@agents.10"/>
-  <agents xmi:type="NetworkExample:Edge" ID="631902562741027" Edge_port="//@agents.14 //@agents.1" Edge_active="//@states.1" Edge_weight="8.0"/>
-  <agents xmi:type="NetworkExample:Node" ID="631902562707100" Node_port="//@agents.11 //@agents.12 //@agents.2 //@agents.9"/>
-  <agents xmi:type="NetworkExample:Edge" ID="631902562639758" Edge_port="//@agents.3 //@agents.8" Edge_active="//@states.1" Edge_weight="5.0"/>
-  <agents xmi:type="NetworkExample:Edge" ID="631902562805799" Edge_port="//@agents.1 //@agents.6" Edge_inactive="//@states.0" Edge_weight="1.0"/>
-  <agents xmi:type="NetworkExample:Edge" ID="631902562818650" Edge_port="//@agents.15 //@agents.8" Edge_active="//@states.1" Edge_weight="1.0"/>
-  <agents xmi:type="NetworkExample:Edge" ID="631902562786264" Edge_port="//@agents.14 //@agents.8" Edge_active="//@states.1" Edge_weight="3.0"/>
-  <agents xmi:type="NetworkExample:Node" ID="631902562665975" Node_port="//@agents.18 //@agents.17 //@agents.5"/>
-  <agents xmi:type="NetworkExample:Node" ID="631902562715325" Node_port="//@agents.16 //@agents.12 //@agents.0 //@agents.7"/>
-  <agents xmi:type="NetworkExample:Node" ID="631902562815052" Node_port="//@agents.16 //@agents.11 //@agents.5"/>
-  <agents xmi:type="NetworkExample:Edge" ID="631902557471955" Edge_port="//@agents.15 //@agents.14" Edge_inactive="//@states.0" Edge_weight="1.0"/>
-  <agents xmi:type="NetworkExample:Edge" ID="631902562836642" Edge_port="//@agents.13 //@agents.1" Edge_inactive="//@states.0" Edge_weight="2.0"/>
-  <agents xmi:type="NetworkExample:Edge" ID="631902562686538" Edge_port="//@agents.13 //@agents.3" Edge_active="//@states.1" Edge_weight="4.0"/>
-  <agents xmi:type="NetworkExample:Edge" ID="631902562827389" Edge_port="//@agents.1 //@agents.3" Edge_active="//@states.1" Edge_weight="3.0"/>
+  <agents xmi:type="NetworkExample:Edge" ID="706439588766646" Edge_port="//@agents.9 //@agents.4" Edge_active="//@states.3" Edge_weight="13.0"/>
+  <agents xmi:type="NetworkExample:Edge" ID="706439588677200" Edge_port="//@agents.3 //@agents.5" Edge_active="//@states.3" Edge_weight="14.0"/>
+  <agents xmi:type="NetworkExample:Edge" ID="706439588712156" Edge_port="//@agents.7 //@agents.3" Edge_inactive="//@states.0" Edge_weight="12.0"/>
+  <agents xmi:type="NetworkExample:Node" ID="706439588723979" Node_port="//@agents.1 //@agents.2"/>
+  <agents xmi:type="NetworkExample:Node" ID="706439588726550" Node_port="//@agents.0"/>
+  <agents xmi:type="NetworkExample:Node" ID="706439588764076" Node_port="//@agents.1"/>
+  <agents xmi:type="NetworkExample:Node" ID="706439588761505" Node_port="//@agents.8 //@agents.10"/>
+  <agents xmi:type="NetworkExample:Node" ID="706439588720895" Node_port="//@agents.2"/>
+  <agents xmi:type="NetworkExample:Edge" ID="706439588728606" Edge_port="//@agents.9 //@agents.6" Edge_active="//@states.3" Edge_weight="7.0"/>
+  <agents xmi:type="NetworkExample:Node" ID="706439588663321" Node_port="//@agents.0 //@agents.8"/>
+  <agents xmi:type="NetworkExample:Edge" ID="706439588702389" Edge_port="//@agents.11 //@agents.6" Edge_active="//@states.3" Edge_weight="15.0"/>
+  <agents xmi:type="NetworkExample:Node" ID="706439588784638" Node_port="//@agents.10"/>
   <states xmi:type="NetworkExample:inactive"/>
+  <states xmi:type="NetworkExample:deleted"/>
+  <states xmi:type="NetworkExample:added"/>
   <states xmi:type="NetworkExample:active"/>
 </container:Container>

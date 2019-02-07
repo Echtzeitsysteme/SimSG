@@ -23,5 +23,10 @@ public class GTAttributeDemoclesTest extends GraphTransformAttributeTest {
 		persistenceType = PersistenceManagerEnum.SimplePersistence;
 		
 	}
+	
+	@Override
+	protected void checkConsistency() {
+		// do nothing.. this takes for ever with democles
+	}
 
 }

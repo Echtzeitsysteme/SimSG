@@ -1,6 +1,7 @@
 package org.simsg.core.simulation.service;
 
-import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.simsg.core.gt.ModelGraphTransformer;
 import org.simsg.core.simulation.SimulationState;
@@ -10,11 +11,12 @@ public class PeriodicService extends ServiceRoutine {
 	private double servicePeriod = 0;
 	private double lastService = 0;
 	
-	private Collection<String> nonStochasticRules;
+	private List<String> nonStochasticRules = new LinkedList<>();
 
 	public PeriodicService(SimulationState state) {
 		super(state);
-		nonStochasticRules = state.getPatternContainer().getNonStochasticRules();
+		nonStochasticRules.addAll(state.getPatternContainer().getNonStochasticRules());
+		java.util.Collections.sort(nonStochasticRules);
 	}
 	
 	public void setServicePeriod(double servicePeriod) {
@@ -30,24 +32,31 @@ public class PeriodicService extends ServiceRoutine {
 			return false;
 		}
 		
-		lastService = state.getTime() + servicePeriod;
-		state.elapseTime(servicePeriod);
+		lastService = lastService+servicePeriod;
+		state.setTime(lastService);
 		
 		boolean somethingChanged = true;
-		while(somethingChanged) {
-			somethingChanged = false;
-			
-			for(String rule : nonStochasticRules) {
+		state.refreshState();
+		
+		for(String rule : nonStochasticRules) {
+			state.refreshState();
+			while(somethingChanged) {
+				somethingChanged = false;
 				int count = state.getMatchCount(rule);
 				if(count <= 0) continue;
 				
 				gt.applyRuleToMatch(state.getRandomMatch(rule), rule);
+				
 				state.refreshState();
 				if(count != state.getMatchCount(rule)) {
 					somethingChanged = true;
 				}
 			}
+			somethingChanged = true;
+			
 		}
+		
+		
 		
 		return true;
 	}

@@ -381,11 +381,15 @@ public class TransformationTemplate {
 			if(!(compare instanceof EqualComparator)) continue;
 			
 			AttributeOperandGeneric operandL = (AttributeOperandGeneric)lOp.getLeft();
-			ValidAgentPattern vap = (ValidAgentPattern) operandL.getAgent().eContainer();
+			ValidAgentPattern rhsVap = (ValidAgentPattern) operandL.getAgent().eContainer();
 			Attribute atr = operandL.getAttribute().getAttribute();
-			String attributeName = AgentClassFactory.createAttributeName(vap.getAgent(),  atr);
+			String attributeName = AgentClassFactory.createAttributeName(rhsVap.getAgent(),  atr);
 			EAttribute attribute = metaModel.getEAttribute(attributeName);
-			AttributeChangeTemplate template = new AttributeChangeTemplate(lhs.getSignature().getSignatureNode(vap), attribute, lhs.getSignature().getPatternSignatureMapping(), metaModel);
+			ValidAgentPattern lhsVap = lhsToRhsMap.get(rhsVap);
+			String lhsLabel = lhs.getSignature().getSignatureNode(lhsVap);
+			AttributeChangeTemplate template = 
+					new AttributeChangeTemplate(lhsLabel, attribute, 
+							rhs.getSignature().getPatternSignatureMapping(), metaModel);
 			template.setOperation(constraint.getOperandR());
 			attributeChanges.add(template);
 			

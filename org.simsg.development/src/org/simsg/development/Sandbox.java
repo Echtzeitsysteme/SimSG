@@ -62,9 +62,10 @@ public class Sandbox {
 		simConfigurator.setModelFolder(System.getProperty("user.dir")+"//models");
 		simConfigurator.setModel("NetworkExample");
 		simConfigurator.setEMFPersistence();
-		simConfigurator.setDemoclesAsEngine();
+		simConfigurator.setViatraAsEngine();
 		simConfigurator.setSimplePMC();
-		simConfigurator.setSimpleSimulation(false);
+		//simConfigurator.setSimpleSimulation(false);
+		simConfigurator.setStochasticSimulation();
 		simConfigurator.addComplexTerminationCondition();
 		simConfigurator.addObservableStatistic();
 		simConfigurator.addModelGraphPropertiesStatistic();

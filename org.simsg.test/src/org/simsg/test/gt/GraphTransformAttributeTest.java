@@ -3,6 +3,7 @@ package org.simsg.test.gt;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Collection;
+import java.util.LinkedList;
 
 import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.AfterAll;
@@ -77,6 +78,33 @@ abstract class GraphTransformAttributeTest {
 		persistence.unloadReactionContainerModel("GraphTransformAttributeTest");
 	}
 	
+	private boolean collectMatches(String pattern) {
+		try {
+			pmc.collectMatches(pattern);
+		} catch (Exception e) {
+			fail(e.getMessage());
+			return false;
+		}
+		return true;
+	}
+	
+	private int getMatchCount(String pattern) {
+		if(collectMatches(pattern)) {
+			return pmc.getMatchCount(pattern);
+		}else {
+			return -1;
+		}
+		
+	}
+	
+	private Collection<IMatch> getMatches(String pattern) {
+		if(collectMatches(pattern)) {
+			return pmc.getMatches(pattern);
+		}else {
+			return new LinkedList<>();
+		}
+	}
+	
 	private void collectMatches(String lhs, String rhs) {
 		try {
 			pmc.collectMatches(lhs);
@@ -106,6 +134,18 @@ abstract class GraphTransformAttributeTest {
 		assertEquals(rhsCount, pmc.getMatchCount(rhs), "Number of matches weren't equal!");
 		return rhsMatches.iterator().next();
 	}
+	
+	protected void checkConsistency() {
+		String p = "checkConsistency";
+		try {
+			pmc.collectMatches(p);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertEquals(1, pmc.getMatchCount(p), "Number of matches weren't equal!");
+	}
 
 	@Test
 	void connectTest() {
@@ -129,6 +169,117 @@ abstract class GraphTransformAttributeTest {
 
 	}
 	
+	@Test
+	void powerDownTest() {
+		final String powerDown = "kTC_powerDown_lhs";
+		final String reactivate = "reactivate_lhs";
+		
+		checkConsistency();
+		
+		assertEquals(8, getMatchCount(powerDown), "Number of matches weren't equal!");
+		
+		while(getMatchCount(powerDown)>0) {
+			IMatch match = getMatches(powerDown).iterator().next();
+			gt.applyRuleToMatch(match, powerDown);
+		}
+		
+		assertEquals(0, getMatchCount(powerDown), "Number of matches weren't equal!");
+		
+		assertEquals(4, getMatchCount(reactivate), "Number of matches weren't equal!");
+		
+		while(getMatchCount(reactivate)>0) {
+			IMatch match = getMatches(reactivate).iterator().next();
+			gt.applyRuleToMatch(match, reactivate);
+		}
+		
+		assertEquals(0, getMatchCount(reactivate), "Number of matches weren't equal!");
+		
+		checkConsistency();
+	}
 	
+	@Test
+	void powerUpTest() {
+		final String powerUp = "kTC_powerUp_lhs";
+		final String deactivate = "deactivate_lhs";
+		final String reactivate = "reactivate_lhs";
+		
+		checkConsistency();
+		
+		assertEquals(13, getMatchCount(deactivate), "Number of matches weren't equal!");
+		
+		while(getMatchCount(deactivate)>0) {
+			IMatch match = getMatches(deactivate).iterator().next();
+			gt.applyRuleToMatch(match, deactivate);
+		}
+		
+		assertEquals(0, getMatchCount(deactivate), "Number of matches weren't equal!");
+		
+		assertEquals(34, getMatchCount(powerUp), "Number of matches weren't equal!");
+		
+		while(getMatchCount(powerUp)>0) {
+			IMatch match = getMatches(powerUp).iterator().next();
+			gt.applyRuleToMatch(match, powerUp);
+		}
+		
+		assertEquals(2, getMatchCount(reactivate), "Number of matches weren't equal!");
+		
+		while(getMatchCount(reactivate)>0) {
+			IMatch match = getMatches(reactivate).iterator().next();
+			gt.applyRuleToMatch(match, reactivate);
+		}
+		
+		assertEquals(0, getMatchCount(reactivate), "Number of matches weren't equal!");
+		
+		checkConsistency();
+	}
+	
+	@Test
+	public void increaseWeightTest() {
+		final String increase = "increaseWeight_lhs";
+		final String decrease = "decreaseWeight_lhs";
+		
+		assertEquals(13, getMatchCount(increase), "Number of matches weren't equal!");
+		
+		for(IMatch match : getMatches(increase)) {
+			gt.applyRuleToMatch(match, increase);
+		}
+		
+		assertEquals(13, getMatchCount(decrease), "Number of matches weren't equal!");
+		
+		for(IMatch match : getMatches(decrease)) {
+			gt.applyRuleToMatch(match, decrease);
+		}
+		
+		checkConsistency();
+		
+		
+	}
+	
+	@Test
+	public void decreaseWeightTest() {
+		final String increase = "increaseWeight_lhs";
+		final String decrease = "decreaseWeight_lhs";
+		
+		assertEquals(10, getMatchCount(decrease), "Number of matches weren't equal!");
+		
+		Collection<IMatch> matches = getMatches(decrease);
+		for(IMatch match : matches) {
+			gt.applyRuleToMatch(match, decrease);
+		}
+		
+		assertEquals(7, getMatchCount(decrease), "Number of matches weren't equal!");
+		
+		assertEquals(13, getMatchCount(increase), "Number of matches weren't equal!");
+		
+		for(IMatch match : matches) {
+			gt.applyRuleToMatch(match, increase);
+		}
+		
+		assertEquals(10, getMatchCount(decrease), "Number of matches weren't equal!");
+		
+		checkConsistency();
+		
+		
+	}
 	
 }
