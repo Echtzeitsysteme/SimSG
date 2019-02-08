@@ -15,6 +15,7 @@ import org.simsg.core.simulation.condition.TerminationCondition;
 import org.simsg.core.simulation.constraint.ExternalConstraint;
 import org.simsg.core.simulation.service.ServiceRoutine;
 import org.simsg.core.simulation.statistic.SimulationStatistics;
+import org.simsg.core.simulation.visualization.ModelGraphUi;
 import org.simsg.core.utils.PersistenceUtils;
 import org.simsg.core.utils.Runtimer;
 import org.simsg.simsgl.simSGL.SimSGLModel;
@@ -289,6 +290,8 @@ public abstract class Simulation {
 		for(SimulationStatistics statistic : statistics) {
 			statistic.display();
 		}
+		ModelGraphUi ui = new ModelGraphUi(state);
+		ui.displayGraph();
 	}
 	
 	@Override

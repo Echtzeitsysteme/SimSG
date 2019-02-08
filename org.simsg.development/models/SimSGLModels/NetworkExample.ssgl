@@ -96,3 +96,4 @@ obs triangles {
 }[N1.id < N2.id, N2.id < N3.id]
 
 terminate end time=3600000
+terminate end1 iterations=1
