@@ -80,6 +80,32 @@ public class Sandbox {
 		System.out.println(Runtimer.getInstance());
 		
 		
+		/*
+		NetworkGenerator ng = new NetworkGenerator("TestNetwork", NetworkType.FullMesh, 10);
+		ng.buildNetwork();
+		ng.generateSimSGLModel();
+		
+		SimulationConfigurator simConfigurator = new SimulationConfigurator();
+		simConfigurator.setModelFolder(System.getProperty("user.dir")+"//models");
+		simConfigurator.setModel("TestNetwork");
+		simConfigurator.setEMFPersistence();
+		simConfigurator.setViatraAsEngine();
+		simConfigurator.setSimplePMC();
+		simConfigurator.setStochasticSimulation();
+		simConfigurator.addComplexTerminationCondition();
+		simConfigurator.addObservableStatistic();
+		simConfigurator.addModelGraphPropertiesStatistic();
+		simConfigurator.addPeriodicServiceRoutine(60);
+		Simulation viatraSim = simConfigurator.createSimulation();
+		viatraSim.initializeClocked();
+		viatraSim.runClocked();
+		System.out.println(viatraSim.results());
+		viatraSim.displayResults();
+		viatraSim.saveModelGraph(System.getProperty("user.dir")+"//models//result.xmi");
+		viatraSim.finish();
+		
+		System.out.println(Runtimer.getInstance());
+		*/
 	}
 	
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<container:Container xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TestNetwork="platform:/resource/org.simsg.container/generated/TestNetwork" xmlns:container="http://www.simsg.container.org/container" xsi:schemaLocation="platform:/resource/org.simsg.container/generated/TestNetwork file:/F:/Eclipse%20Workspaces//SimSG//org.simsg.development//models//ContainerMetaModels/TestNetwork.ecore http://www.simsg.container.org/container java://org.simsg.container.ContainerPackage" ModelName="TestNetwork">
+  <agents xmi:type="TestNetwork:Node" ID="34192749159919" Node_port="//@agents.10"/>
+  <agents xmi:type="TestNetwork:Edge" ID="34192749147404" Edge_port="//@agents.4 //@agents.8" Edge_active="//@states.3" Edge_weight="83.65677457362186"/>
+  <agents xmi:type="TestNetwork:Edge" ID="34192749067762" Edge_port="//@agents.4 //@agents.12" Edge_active="//@states.3" Edge_weight="7.539832808651514"/>
+  <agents xmi:type="TestNetwork:Node" ID="34192749141431" Node_port="//@agents.6"/>
+  <agents xmi:type="TestNetwork:Node" ID="34192749115262" Node_port="//@agents.2 //@agents.17 //@agents.16 //@agents.15 //@agents.18 //@agents.1 //@agents.11 //@agents.10 //@agents.6"/>
+  <agents xmi:type="TestNetwork:Node" ID="34192749063780" Node_port="//@agents.15"/>
+  <agents xmi:type="TestNetwork:Edge" ID="34192749102178" Edge_port="//@agents.4 //@agents.3" Edge_active="//@states.3" Edge_weight="69.96660042773243"/>
+  <agents xmi:type="TestNetwork:Node" ID="34192749118960" Node_port="//@agents.18"/>
+  <agents xmi:type="TestNetwork:Node" ID="34192749122089" Node_port="//@agents.1"/>
+  <agents xmi:type="TestNetwork:Node" ID="34192749175563" Node_port="//@agents.17"/>
+  <agents xmi:type="TestNetwork:Edge" ID="34192749178976" Edge_port="//@agents.4 //@agents.0" Edge_active="//@states.3" Edge_weight="24.12520984511878"/>
+  <agents xmi:type="TestNetwork:Edge" ID="34192749030216" Edge_port="//@agents.4 //@agents.13" Edge_active="//@states.3" Edge_weight="2.2194287919936273"/>
+  <agents xmi:type="TestNetwork:Node" ID="34192749057522" Node_port="//@agents.2 //@agents.19"/>
+  <agents xmi:type="TestNetwork:Node" ID="34192749144275" Node_port="//@agents.11"/>
+  <agents xmi:type="TestNetwork:Node" ID="34192749138017" Node_port="//@agents.16 //@agents.19"/>
+  <agents xmi:type="TestNetwork:Edge" ID="34192744611793" Edge_port="//@agents.4 //@agents.5" Edge_active="//@states.3" Edge_weight="71.04464919831199"/>
+  <agents xmi:type="TestNetwork:Edge" ID="34192749163048" Edge_port="//@agents.4 //@agents.14" Edge_active="//@states.3" Edge_weight="65.422274326112"/>
+  <agents xmi:type="TestNetwork:Edge" ID="34192749125218" Edge_port="//@agents.4 //@agents.9" Edge_active="//@states.3" Edge_weight="66.15690186389503"/>
+  <agents xmi:type="TestNetwork:Edge" ID="34192749088241" Edge_port="//@agents.4 //@agents.7" Edge_active="//@states.3" Edge_weight="63.20971739773048"/>
+  <agents xmi:type="TestNetwork:Edge" ID="34195542561809" Edge_port="//@agents.12 //@agents.14" Edge_added="//@states.2" Edge_weight="2.0"/>
+  <states xmi:type="TestNetwork:inactive"/>
+  <states xmi:type="TestNetwork:deleted"/>
+  <states xmi:type="TestNetwork:added"/>
+  <states xmi:type="TestNetwork:active"/>
+</container:Container>

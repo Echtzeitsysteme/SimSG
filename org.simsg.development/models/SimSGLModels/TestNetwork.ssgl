@@ -1,0 +1,117 @@
+ModelID TestNetwork
+		
+agent Node(*port)
+agent Edge(*port){active, inactive, deleted, added}[weight:FLOAT]
+		
+init n1 1 { 
+			Node0:Node(port*[0,16,2,4,6,8,10,12,14]),
+			Node1:Node(port*[15]),
+			Node2:Node(port*[11]),
+			Node3:Node(port*[7]),
+			Node4:Node(port*[17]),
+			Node5:Node(port*[1]),
+			Node6:Node(port*[13]),
+			Node7:Node(port*[9]),
+			Node8:Node(port*[5]),
+			Node9:Node(port*[3]),
+			Edge4:Edge(port*[0,1]){active},
+			Edge8:Edge(port*[2,3]){active},
+			Edge7:Edge(port*[4,5]){active},
+			Edge2:Edge(port*[6,7]){active},
+			Edge6:Edge(port*[8,9]){active},
+			Edge1:Edge(port*[10,11]){active},
+			Edge5:Edge(port*[12,13]){active},
+			Edge0:Edge(port*[14,15]){active},
+			Edge3:Edge(port*[16,17]){active}
+		}
+		[
+			Edge4.weight=51.39146702272684,
+			Edge8.weight=15.291271761297642,
+			Edge7.weight=50.80622443862034,
+			Edge2.weight=38.136314661287386,
+			Edge6.weight=62.9155098575073,
+			Edge1.weight=2.477165360529443,
+			Edge5.weight=62.60512114465633,
+			Edge0.weight=83.14934367761289,
+			Edge3.weight=84.16156690514006
+		]
+		
+		// Stochastic rules simulating a dynamic environment
+		
+		rule increaseWeight {E1:Edge()} -> {E1:Edge()} [E1.weight = E1.weight+1] @ [0.025]
+		
+		rule decreaseWeight {E1:Edge()}[E1.weight > 1] -> {E1:Edge()} [E1.weight = E1.weight-1] @ [0.025]
+		
+		rule deleteEdgeActive {Edge(){active}} -> {Edge(){deleted}} @ [0.004]
+		
+		rule deleteEdgeInactive {Edge(){inactive}} -> {Edge(){deleted}} @ [0.004]
+		
+		var addPattern = {Node(port*[?]), Node(port*[?]), void}
+		
+		rule addEdge1 addPattern -> {Node(port*[1]), Node(port*[2]), E1:Edge(port*[1,2]){added}} [E1.weight = 1] @ [0.0004]
+		rule addEdge2 addPattern -> {Node(port*[1]), Node(port*[2]), E1:Edge(port*[1,2]){added}} [E1.weight = 2] @ [0.0004]
+		rule addEdge3 addPattern -> {Node(port*[1]), Node(port*[2]), E1:Edge(port*[1,2]){added}} [E1.weight = 3] @ [0.0004]
+		rule addEdge4 addPattern -> {Node(port*[1]), Node(port*[2]), E1:Edge(port*[1,2]){added}} [E1.weight = 5] @ [0.0004]
+		rule addEdge5 addPattern -> {Node(port*[1]), Node(port*[2]), E1:Edge(port*[1,2]){added}} [E1.weight = 8] @ [0.0004]
+		
+		// Rules of the kTC Algorithm
+		
+		rule a_removeRedundantAdded {Node(port*[1,3]), Node(port*[2,4]), Edge(port*[1,2]){added}, Edge(port*[3,4])} -> 
+			{Node(port*[1]), Node(port*[2]), void, Edge(port*[1,2])}
+			
+		rule b_cleadAdded {Edge(){added}} -> {Edge(){inactive}}
+		
+		rule c_kTC_repairTwo {
+			Node(port*[1,6]), Node(port*[2,3]), Node(port*[4,5]),
+			Edge(port*[1,2]){inactive}, E2:Edge(port*[3,4]){inactive}, E3:Edge(port*[5,6]){deleted}
+		}
+		->
+		{
+			Node(port*[1,6]), Node(port*[2,3]), Node(port*[4,5]),
+			Edge(port*[1,2]){active}, E2:Edge(port*[3,4]){active}, E3:Edge(port*[5,6]){deleted}
+		}
+		
+		rule d_kTC_repairOne {
+			Node(port*[1,6]), Node(port*[2,3]), Node(port*[4,5]),
+			Edge(port*[1,2]){inactive}, E2:Edge(port*[3,4]){active}, E3:Edge(port*[5,6]){deleted}
+		}
+		->
+		{
+			Node(port*[1,6]), Node(port*[2,3]), Node(port*[4,5]),
+			Edge(port*[1,2]){active}, E2:Edge(port*[3,4]){active}, E3:Edge(port*[5,6]){deleted}
+		}
+		
+		rule e_cleanDeleted {Edge(){deleted}} -> {void}
+		
+		rule f_kTC_powerUp {
+			N1:Node(port*[1,6]), N2:Node(port*[2,3]), N3:Node(port*[4,5]),
+			E1:Edge(port*[1,2]), E2:Edge(port*[3,4]), E3:Edge(port*[5,6]){inactive}
+		} [E1.weight + E2.weight > E3.weight]
+			-> 
+		{
+			N1:Node(port*[1,6]), N2:Node(port*[2,3]), N3:Node(port*[4,5]),
+			E1:Edge(port*[1,2]), E2:Edge(port*[3,4]), E3:Edge(port*[5,6]){active}
+		}
+		
+		rule g_kTC_powerDown {
+			N1:Node(port*[1,6]), N2:Node(port*[2,3]), N3:Node(port*[4,5]),
+			E1:Edge(port*[1,2]){active}, E2:Edge(port*[3,4]){active}, E3:Edge(port*[5,6]){active}
+		} [E1.weight + E2.weight <= E3.weight]
+			->
+		{
+			N1:Node(port*[1,6]), N2:Node(port*[2,3]), N3:Node(port*[4,5]),
+			E1:Edge(port*[1,2]){active}, E2:Edge(port*[3,4]){active}, E3:Edge(port*[5,6]){inactive}
+		}
+		
+		obs activeEdges {Edge(){active}}
+		obs inactiveEdges {Edge(){inactive}}
+		obs deletedEdges {Edge(){deleted}}
+		obs addedEdges {Edge(){added}}
+		obs edges {Edge()}
+		obs triangles {
+			N1:Node(port*[1,6]), N2:Node(port*[2,3]), N3:Node(port*[4,5]),
+			E1:Edge(port*[1,2]){active}, E2:Edge(port*[3,4]){active}, E3:Edge(port*[5,6]){active}
+		}[N1.id < N2.id, N2.id < N3.id]
+		
+		terminate end time=3600000
+		terminate end1 iterations=1
