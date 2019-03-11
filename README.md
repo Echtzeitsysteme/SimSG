@@ -10,7 +10,7 @@
 * Install Epsilon: http://download.eclipse.org/epsilon/updates/ (Required for manual Ecore Epackage registration)
   * Check: Epsilon Core / Epsilon Core Development Tools / Epsilon EMF Integration / Model Monitoring
 
-* In a fresh Eclipse workspace, check out: https://github.com/arg0n1s/BioChemSimulation (Branch: origin) and import all projects.
+* In a fresh Eclipse workspace, check out: https://github.com/eMoflon/SimSG (Branch: origin) and import all projects.
 * Get rid of all errors:
    * Make sure you have JDK 9 or above.
 * In the project *org.simsg.simsgl.updatesite*, open *site.xml* and select *Build all*
