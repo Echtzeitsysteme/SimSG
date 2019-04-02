@@ -10,5 +10,7 @@ public abstract class ServiceRoutine {
 		this.state = state;
 	}
 	
+	public abstract void setAdditionalParameters(Object ... params);
+	
 	public abstract boolean performService(ModelGraphTransformer gt);
 }

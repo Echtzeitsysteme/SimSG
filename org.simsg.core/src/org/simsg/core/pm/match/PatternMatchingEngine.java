@@ -13,8 +13,6 @@ import org.simsg.core.pm.pattern.GenericPattern;
 
 public abstract class PatternMatchingEngine {
 	
-	protected PatternMatchingEngineEnum type;
-	
 	protected EPackage metaModel;
 	protected Container model;
 	protected Map<String, GenericPattern> genericPatterns;
@@ -26,6 +24,8 @@ public abstract class PatternMatchingEngine {
 	protected PatternMatchingEngine() {
 		this.voidPatterns = new HashSet<String>();
 	}
+	
+	public abstract void setAdditionalParameters(Object ... params);
 	
 	public void setReactionRules(Map<String, GenericPattern> genericPatterns) {
 		genericPatterns.forEach((name, pattern) -> {
@@ -99,10 +99,10 @@ public abstract class PatternMatchingEngine {
 		return matches;
 	}
 	
-	abstract public void disposeEngine();
-	
-	public PatternMatchingEngineEnum getEngineType() {
-		return type;
+	public String getEngineType() {
+		return this.getClass().getSimpleName();
 	}
+	
+	abstract public void disposeEngine();
 	
 }

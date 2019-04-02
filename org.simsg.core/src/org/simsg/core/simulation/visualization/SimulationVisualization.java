@@ -1,33 +1,28 @@
-package org.simsg.core.simulation.statistic;
+package org.simsg.core.simulation.visualization;
 
 import org.simsg.core.simulation.SimulationState;
 
-
-public abstract class SimulationStatistics {
+public abstract class SimulationVisualization {
 	
 	protected final SimulationState state;
 	
-	public SimulationStatistics(SimulationState state) {
+	public SimulationVisualization(SimulationState state) {
 		this.state = state;
 	}
 	
 	public abstract void setAdditionalParameters(Object ... params);
-	
-	public abstract void logCurrentState();
 	
 	public void display() {
 		Thread t = new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
-				displayStatistics();
+				displayVisualization();
 			}
 		});
 		
 		t.run();
 	}
 	
-	protected abstract void displayStatistics();
-	
-	protected abstract void saveStatistics();
+	protected abstract void displayVisualization();
 }

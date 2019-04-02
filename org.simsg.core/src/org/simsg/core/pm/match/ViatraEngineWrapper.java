@@ -23,8 +23,7 @@ public class ViatraEngineWrapper extends PatternMatchingEngine {
 	private SpecificationBuilder builder;
 	private HashMap<String, ViatraQueryMatcher<? extends IPatternMatch>> matcher;
 	
-	ViatraEngineWrapper() {
-		type = PatternMatchingEngineEnum.ViatraEngine;
+	public ViatraEngineWrapper() {
 		builder = new SpecificationBuilder();
 		matcher = new HashMap<String, ViatraQueryMatcher<? extends IPatternMatch>>();
 	}
@@ -68,6 +67,12 @@ public class ViatraEngineWrapper extends PatternMatchingEngine {
 		for(String pattern : matcher.keySet()) {
 			nonVoidPatterns.add(pattern);
 		}
+	}
+
+	@Override
+	public void setAdditionalParameters(Object... params) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

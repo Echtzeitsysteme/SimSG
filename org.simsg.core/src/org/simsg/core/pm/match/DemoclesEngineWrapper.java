@@ -13,9 +13,7 @@ public class DemoclesEngineWrapper extends PatternMatchingEngine {
 	private DemoclesEngine engine;
 	List<Pattern> patterns;
 	
-	DemoclesEngineWrapper() {
-		type = PatternMatchingEngineEnum.DemoclesEngine;
-	}
+	public DemoclesEngineWrapper() {}
 	
 	@Override
 	public void loadModels() throws Exception {
@@ -48,6 +46,12 @@ public class DemoclesEngineWrapper extends PatternMatchingEngine {
 		for(Pattern pattern : patterns) {
 			nonVoidPatterns.add(pattern.getName());
 		}
+	}
+
+	@Override
+	public void setAdditionalParameters(Object... params) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

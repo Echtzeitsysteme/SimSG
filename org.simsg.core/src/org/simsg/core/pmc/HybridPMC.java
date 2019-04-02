@@ -23,12 +23,10 @@ public class HybridPMC extends PatternMatchingController {
 	
 	private Map<String, IMatch> hybridMatches;
 	private Map<String, Integer> hybridMatchCount;
-
-	@Override
-	protected void setPMCType() {
-		pmcType = PatternMatchingControllerEnum.HybridPMC;
-
-	}
+	
+	public HybridPMC() {
+		super();
+	};
 
 	@Override
 	protected void feedEngine() throws Exception {
@@ -213,6 +211,12 @@ public class HybridPMC extends PatternMatchingController {
 			out.put(hybridPatternName, getMatchesWithHash(hybridPatternName));
 		}
 		return out;
+	}
+
+	@Override
+	public void setAdditionalParameters(Object... params) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

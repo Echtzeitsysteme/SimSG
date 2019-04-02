@@ -1,4 +1,4 @@
-package org.simsg.development
+package org.simsg.examples.network.generator
 
 import java.nio.file.Files
 import java.nio.file.Paths

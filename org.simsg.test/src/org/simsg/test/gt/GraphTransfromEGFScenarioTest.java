@@ -13,46 +13,35 @@ import org.junit.jupiter.api.TestInstance;
 import org.simsg.container.Container;
 import org.simsg.core.gt.ModelGraphTransformer;
 import org.simsg.core.persistence.PersistenceManager;
-import org.simsg.core.persistence.PersistenceManagerEnum;
-import org.simsg.core.persistence.PersistenceManagerFactory;
+import org.simsg.core.persistence.SimplePersistenceManager;
 import org.simsg.core.pm.match.IMatch;
 import org.simsg.core.pm.match.PatternMatchingEngine;
-import org.simsg.core.pm.match.PatternMatchingEngineEnum;
-import org.simsg.core.pm.match.PatternMatchingEngineFactory;
+import org.simsg.core.pm.match.ViatraEngineWrapper;
 import org.simsg.core.pmc.PatternMatchingController;
-import org.simsg.core.pmc.PatternMatchingControllerEnum;
-import org.simsg.core.pmc.PatternMatchingControllerFactory;
+import org.simsg.core.pmc.SimplePMC;
 import org.simsg.simsgl.simSGL.SimSGLModel;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class GraphTransfromEGFScenarioTest {
 
-	protected PersistenceManagerEnum persistenceType;
 	protected PersistenceManager persistence;
-	
 	protected SimSGLModel ruleModel;
 	protected Container containerModel;
 	protected PatternMatchingController pmc;
 	
-	protected PatternMatchingEngineEnum engineType;
-	protected PatternMatchingControllerEnum pmcType;
-	
 	protected ModelGraphTransformer gt;
 	
 	public GraphTransfromEGFScenarioTest() {
-		persistenceType = PersistenceManagerEnum.SimplePersistence;
-		persistence = PersistenceManagerFactory.create(persistenceType);
+		persistence = new SimplePersistenceManager();
 		persistence.setModelFolderPath(System.getProperty("user.dir")+"//models");
 		persistence.init();
-		engineType = PatternMatchingEngineEnum.ViatraEngine;
-		pmcType = PatternMatchingControllerEnum.SimplePMC;
 	}
 	
 	@BeforeAll
 	void beforeAllTest() throws Exception {
-		PatternMatchingEngine engine = PatternMatchingEngineFactory.create(engineType);
-		pmc = PatternMatchingControllerFactory.create(pmcType);
+		PatternMatchingEngine engine = new ViatraEngineWrapper();
+		pmc = new SimplePMC();
 		pmc.setEngine(engine);
 		ruleModel = persistence.loadReactionRuleModel("EGF_Pathway_test1");
 		containerModel = persistence.loadReactionContainerModel("EGF_Pathway_test1");

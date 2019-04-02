@@ -167,7 +167,7 @@ public class DemoclesPatternGenerator {
 			}else if(opL instanceof OperandVariable && opR instanceof OperandVariable) {
 				buildAttributeAttributeConstraint(trgPatternBody,  localAttributeVariables, anc, (OperandVariable)opL, (OperandVariable)opR);
 			}else {
-				System.out.println("Waring("+trgPatternBody.getHeader().getName()+"): Complex attribute constraints not supportet while using democles. (Switch to VIATRA)");
+				System.out.println("Warning("+trgPatternBody.getHeader().getName()+"): Complex attribute constraints not supported in democles. (Switch to VIATRA)");
 				continue;
 			}
 		}

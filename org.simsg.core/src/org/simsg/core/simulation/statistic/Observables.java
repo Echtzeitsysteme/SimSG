@@ -40,4 +40,16 @@ public class Observables extends SimulationStatistics {
 			observables.get(patternName).addMeasurement(currentTime, state.getMatchCount(patternName));
 		}
 	}
+
+	@Override
+	protected void saveStatistics() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setAdditionalParameters(Object... params) {
+		// TODO Auto-generated method stub
+		
+	}
 }

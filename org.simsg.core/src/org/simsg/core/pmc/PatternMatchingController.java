@@ -14,11 +14,9 @@ import org.simsg.container.generator.ContainerGenerator;
 import org.simsg.container.util.EPackageWrapper;
 import org.simsg.core.pm.match.IMatch;
 import org.simsg.core.pm.match.PatternMatchingEngine;
-import org.simsg.core.pm.match.PatternMatchingEngineEnum;
 import org.simsg.simsgl.simSGL.SimSGLModel;
 import org.simsg.simsgl.utils.PatternContainer;
 import org.simsg.simsgl.utils.PatternUtils;
-
 
 
 public abstract class PatternMatchingController{
@@ -29,8 +27,6 @@ public abstract class PatternMatchingController{
 	
 	protected PatternContainer patternContainer;
 	
-	protected PatternMatchingControllerEnum pmcType;
-	
 	protected PatternMatchingEngine engine;
 	protected Map<String, Collection<IMatch>> matches;
 	protected Map<String, Integer> matchCount;
@@ -38,11 +34,10 @@ public abstract class PatternMatchingController{
 	Random random;
 	
 	protected PatternMatchingController() {
-		setPMCType();
 		random = new Random();
 	}
 	
-	protected abstract void setPMCType();
+	public abstract void setAdditionalParameters(Object ... params);
 	
 	protected abstract void feedEngine() throws Exception;
 
@@ -146,11 +141,11 @@ public abstract class PatternMatchingController{
 		engine.disposeEngine();
 	}
 
-	public PatternMatchingControllerEnum getPMCType() {
-		return pmcType;
+	public String getPMCType() {
+		return this.getClass().getSimpleName();
 	}
-
-	public PatternMatchingEngineEnum getEngineType() {
+	
+	public String getEngineType() {
 		return engine.getEngineType();
 	}
 	

@@ -1,4 +1,4 @@
-package org.simsg.core.simulation.statistic;
+package org.simsg.examples.network.statistics;
 
 import java.util.AbstractMap;
 import java.util.HashSet;
@@ -14,6 +14,7 @@ import org.simsg.container.Agent;
 import org.simsg.container.Container;
 import org.simsg.container.State;
 import org.simsg.core.simulation.SimulationState;
+import org.simsg.core.simulation.statistic.SimulationStatistics;
 
 public class ModelGraphProperties extends SimulationStatistics {
 	
@@ -216,6 +217,18 @@ public class ModelGraphProperties extends SimulationStatistics {
 		}
 		
 		return new LinkedList<>();
+	}
+
+	@Override
+	protected void saveStatistics() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setAdditionalParameters(Object... params) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

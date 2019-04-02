@@ -57,6 +57,8 @@ public abstract class PersistenceManager {
 		reactionContainerModelCache = new HashMap<String, Container>();
 	}
 	
+	public abstract void setAdditionalParameters(Object ... params);
+	
 	public void setModelFolderPath(String path) {
 		dataFolder = path;
 	}

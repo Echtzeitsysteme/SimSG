@@ -1,4 +1,4 @@
-package org.simsg.development;
+package org.simsg.examples.network.generator;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -11,6 +11,7 @@ import org.jgrapht.alg.interfaces.SpanningTreeAlgorithm;
 import org.jgrapht.alg.interfaces.SpanningTreeAlgorithm.SpanningTree;
 import org.jgrapht.alg.spanning.PrimMinimumSpanningTree;
 import org.jgrapht.graph.SimpleWeightedGraph;
+import org.simsg.examples.network.generator.SimSGLGenerator;
 
 public class NetworkGenerator {
 	
@@ -93,20 +94,7 @@ public class NetworkGenerator {
 	}
 }
 
-enum NetworkType {
-	FullMesh("FullMesh"), MinimalSpanningTree("MinimalSpanningTree");
-	
-	private String name;
-	
-	NetworkType(String name) {
-		this.name = name;
-	}
-	
-	@Override
-	public String toString() {
-		return name;
-	}
-}
+
 
 class Vertex {
 	public final String name;

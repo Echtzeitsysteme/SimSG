@@ -108,4 +108,10 @@ public class ComplexTerminationCondition extends TerminationCondition {
 		
 	}
 
+	@Override
+	public void setAdditionalParameters(Object... params) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

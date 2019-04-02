@@ -1,4 +1,4 @@
-package org.simsg.core.simulation.visualization;
+package org.simsg.examples.network.statistics;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,28 +12,30 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.MultiGraph;
-import org.graphstream.ui.view.Viewer;
 import org.simsg.container.Agent;
 import org.simsg.container.Container;
 import org.simsg.core.simulation.SimulationState;
+import org.simsg.core.simulation.visualization.SimulationVisualization;
 
 // Note: CSS style reference at: http://graphstream-project.org/doc/Advanced-Concepts/GraphStream-CSS-Reference/
 // Note: API Doku at: https://data.graphstream-project.org/api/
 // Note: ABC-Examples at: http://graphstream-project.org/doc/Tutorials/
 
-public class ModelGraphUi {
+public class ModelGraphUi extends SimulationVisualization{
 	
 	private final Container modelGraph;
 	private Map<Agent, Node> agents  = new HashMap<>();
 	private Graph graph = new MultiGraph("New Graph");
 	
 	public ModelGraphUi(SimulationState state) {
+		super(state);
 		modelGraph = state.getContainerModel();
 	}
 	
-	public void displayGraph() {
+	@Override
+	protected void displayVisualization() {
 		buildGraph();
-		Viewer view = graph.display(true);
+		graph.display(true);
 	}
 	
 	private void buildGraph() {
@@ -110,17 +112,23 @@ public class ModelGraphUi {
 				List<Agent> others = (List<Agent>)current.eGet(ref);
 				if(others.size() > 0) {
 					for(Agent other : others) {
-						Edge edge = graph.addEdge(current.getID()+"to"+other.getID(), agents.get(current), agents.get(other), true);
+						graph.addEdge(current.getID()+"to"+other.getID(), agents.get(current), agents.get(other), true);
 					}
 				}
 			}else {
 				Agent other = (Agent)current.eGet(ref);
 				if(other != null) {
-					Edge edge = graph.addEdge(current.getID()+"to"+other.getID(), agents.get(current), agents.get(other), true);
+					graph.addEdge(current.getID()+"to"+other.getID(), agents.get(current), agents.get(other), true);
 				}
 			}
 		}
 		return outgoing;
+	}
+
+	@Override
+	public void setAdditionalParameters(Object... params) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

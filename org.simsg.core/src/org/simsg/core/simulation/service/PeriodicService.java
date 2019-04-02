@@ -61,4 +61,10 @@ public class PeriodicService extends ServiceRoutine {
 		return true;
 	}
 
+	@Override
+	public void setAdditionalParameters(Object... params) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

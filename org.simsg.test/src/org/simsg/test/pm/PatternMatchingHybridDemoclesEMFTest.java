@@ -1,24 +1,18 @@
 package org.simsg.test.pm;
 
-import org.simsg.core.persistence.PersistenceManagerEnum;
-import org.simsg.core.pm.match.PatternMatchingEngineEnum;
-import org.simsg.core.pmc.PatternMatchingControllerEnum;
+import org.simsg.core.pm.match.DemoclesEngineWrapper;
+import org.simsg.core.pmc.HybridPMC;
 
 public class PatternMatchingHybridDemoclesEMFTest extends PatternMatchingTest {
 
 	@Override
-	protected void setPersistenceType() {
-		persistenceType = PersistenceManagerEnum.SimplePersistence;
+	protected void initEngine() {
+		engine = new DemoclesEngineWrapper();
 	}
 
 	@Override
-	protected void setEngineType() {
-		engineType = PatternMatchingEngineEnum.DemoclesEngine;
-	}
-
-	@Override
-	protected void setPMCType() {
-		pmcType = PatternMatchingControllerEnum.HybridPMC;
+	protected void initPMC() {
+		pmc = new HybridPMC();
 	}
 
 }
