@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/org.simsg.genericpattern/src-gen" creationIcons="false"
+    editDirectory="/org.simsg.genericpattern.edit/src-gen" editorDirectory="/org.simsg.genericpattern.editor/src-gen"
+    modelPluginID="genericpattern" modelName="Genericpattern" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0"
+    copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>genericpattern.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Genericpattern" disposableProviderFactory="true" ecorePackage="genericpattern.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="genericpattern.ecore#//RelationalConstraintType">
+      <genEnumLiterals ecoreEnumLiteral="genericpattern.ecore#//RelationalConstraintType/EQUAL"/>
+      <genEnumLiterals ecoreEnumLiteral="genericpattern.ecore#//RelationalConstraintType/UNEQUAL"/>
+    </genEnums>
+    <genClasses ecoreClass="genericpattern.ecore#//Signature">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericpattern.ecore#//Signature/signatureNodes"/>
+    </genClasses>
+    <genClasses ecoreClass="genericpattern.ecore#//Body">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericpattern.ecore#//Body/localNodes"/>
+    </genClasses>
+    <genClasses ecoreClass="genericpattern.ecore#//GenericPattern">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericpattern.ecore#//GenericPattern/signature"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericpattern.ecore#//GenericPattern/body"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference genericpattern.ecore#//GenericPattern/RelationalConstraints"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericpattern.ecore#//GenericPattern/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericpattern.ecore#//GenericPattern/empty"/>
+    </genClasses>
+    <genClasses ecoreClass="genericpattern.ecore#//RelationalConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genericpattern.ecore#//RelationalConstraint/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference genericpattern.ecore#//RelationalConstraint/target"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericpattern.ecore#//RelationalConstraint/type"/>
+    </genClasses>
+    <genClasses ecoreClass="genericpattern.ecore#//Node">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute genericpattern.ecore#//Node/names"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference genericpattern.ecore#//Node/type"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
