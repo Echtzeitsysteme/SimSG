@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-import org.simsg.container.Container;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.simsg.core.gt.ModelGraphTransformer;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.pm.match.IMatch;
@@ -18,7 +18,6 @@ import org.simsg.core.simulation.statistic.SimulationStatistics;
 import org.simsg.core.simulation.visualization.SimulationVisualization;
 import org.simsg.core.utils.PersistenceUtils;
 import org.simsg.core.utils.Runtimer;
-import org.simsg.simsgl.simSGL.SimSGLModel;
 
 
 public abstract class Simulation {
@@ -27,8 +26,8 @@ public abstract class Simulation {
 	protected PersistenceManager persistence;
 	private PatternMatchingController pmc;
 	protected SimulationState state;
-	protected SimSGLModel ruleModel;
-	protected Container reactionContainer;
+	protected Resource simulationDefinition;
+	protected Resource simulationModel;
 	private ModelGraphTransformer gt;
 	
 	protected List<Function<SimulationState, ServiceRoutine>> serviceConstructors = new LinkedList<>();
@@ -105,19 +104,22 @@ public abstract class Simulation {
 	
 	private void initModel() throws Exception {
 		persistence.init();
-		ruleModel = persistence.loadReactionRuleModel(modelName);
-		reactionContainer = persistence.loadReactionContainerModel(modelName);
+		simulationDefinition = persistence.loadSimulationDefinition(modelName);
+		simulationModel = persistence.loadSimulationModel(modelName);
 	}
 	
 	private void initPMC() throws Exception {
-		pmc.loadModels(ruleModel, reactionContainer);
+		pmc.loadModels(simulationDefinition, simulationModel);
 		pmc.initEngine();
 		pmc.initController();
 	}
 	
 	private void initGT() {
+		//TODO: what to do here ?
+		/*
 		gt = new ModelGraphTransformer(pmc.getPatternContainer(), reactionContainer, pmc.getEPackageWrapper());
 		gt.init();
+		*/
 	}
 	
 	private void initState() {
@@ -215,7 +217,8 @@ public abstract class Simulation {
 	
 	public boolean saveModelGraph(String path) {
 		try {
-			PersistenceUtils.saveModelContainer(reactionContainer, path);
+			// this should be part of the persistence module's job
+			//PersistenceUtils.saveSimulationModel(simulationModel, path);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

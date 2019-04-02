@@ -25,7 +25,7 @@ public class SimplePMC extends PatternMatchingController {
 			genericPatterns.put(patternContainer.getPatternHash(pattern), new GenericPattern(patternContainer.getPatternHash(pattern), metaModel, pattern));
 		}
 		engine.setReactionRules(genericPatterns);
-		engine.setReactionContainer(reactionContainer, metaModel.getPackage());
+		engine.setReactionContainer(simulationModel, metaModel.getPackage());
 		engine.loadModels();
 	}
 

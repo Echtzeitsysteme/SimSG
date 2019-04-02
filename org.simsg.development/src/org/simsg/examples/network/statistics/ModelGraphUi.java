@@ -10,10 +10,10 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.MultiGraph;
 import org.simsg.container.Agent;
-import org.simsg.container.Container;
 import org.simsg.core.simulation.SimulationState;
 import org.simsg.core.simulation.visualization.SimulationVisualization;
 
@@ -23,13 +23,13 @@ import org.simsg.core.simulation.visualization.SimulationVisualization;
 
 public class ModelGraphUi extends SimulationVisualization{
 	
-	private final Container modelGraph;
+	private final Resource modelGraph;
 	private Map<Agent, Node> agents  = new HashMap<>();
 	private Graph graph = new MultiGraph("New Graph");
 	
 	public ModelGraphUi(SimulationState state) {
 		super(state);
-		modelGraph = state.getContainerModel();
+		modelGraph = state.getSimulationModel();
 	}
 	
 	@Override
@@ -39,7 +39,8 @@ public class ModelGraphUi extends SimulationVisualization{
 	}
 	
 	private void buildGraph() {
-		
+		// TODO: this is extremely domain specific
+		/*
 		for(Agent agent : modelGraph.getAgents()) {
 			Node node = graph.addNode(""+agent.getID());
 			agents.put(agent, node);
@@ -92,6 +93,7 @@ public class ModelGraphUi extends SimulationVisualization{
 			}
 			
 		}
+		*/
 	}
 	
 	private List<Agent> outgoingEdges(Agent current) {

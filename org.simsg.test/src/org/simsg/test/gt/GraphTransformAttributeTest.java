@@ -1,25 +1,25 @@
 package org.simsg.test.gt;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Collection;
 import java.util.LinkedList;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.runners.MethodSorters;
-
-import org.simsg.container.Container;
 import org.simsg.core.gt.ModelGraphTransformer;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.persistence.SimplePersistenceManager;
 import org.simsg.core.pm.match.IMatch;
 import org.simsg.core.pm.match.PatternMatchingEngine;
 import org.simsg.core.pmc.PatternMatchingController;
-import org.simsg.simsgl.simSGL.SimSGLModel;
+
 
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -27,8 +27,8 @@ import org.simsg.simsgl.simSGL.SimSGLModel;
 abstract class GraphTransformAttributeTest {
 	
 	protected PersistenceManager persistence;
-	protected SimSGLModel ruleModel;
-	protected Container containerModel;
+	protected Resource simulationDefinition;
+	protected Resource simulationModel;
 	protected PatternMatchingEngine engine;
 	protected PatternMatchingController pmc;
 	
@@ -54,19 +54,20 @@ abstract class GraphTransformAttributeTest {
 		initEngine();
 		initPMC();
 		pmc.setEngine(engine);
-		ruleModel = persistence.loadReactionRuleModel("GraphTransformAttributeTest");
-		containerModel = persistence.loadReactionContainerModel("GraphTransformAttributeTest");
-		pmc.loadModels(ruleModel, containerModel);
+		simulationDefinition = persistence.loadSimulationDefinition("GraphTransformAttributeTest");
+		simulationModel = persistence.loadSimulationModel("GraphTransformAttributeTest");
+		pmc.loadModels(simulationDefinition, simulationModel);
 		pmc.initEngine();
 		pmc.initController();
-		gt = new ModelGraphTransformer(pmc.getPatternContainer(), containerModel, pmc.getEPackageWrapper());
+		// TODO: what to do here?
+		//gt = new ModelGraphTransformer(pmc.getPatternContainer(), simulationModel, pmc.getEPackageWrapper());
 		gt.init();
 	}
 	
 	@AfterAll
 	void afterAllTest() throws Exception {
 		pmc.discardEngine();
-		persistence.unloadReactionContainerModel("GraphTransformAttributeTest");
+		persistence.unloadSimulationModel("GraphTransformAttributeTest");
 	}
 	
 	private boolean collectMatches(String pattern) {

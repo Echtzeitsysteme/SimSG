@@ -24,7 +24,7 @@ public class DemoclesEngineWrapper extends PatternMatchingEngine {
 
 	@Override
 	public void initEngineInternal() throws Exception {
-		engine = new DemoclesEngine(model);
+		engine = new DemoclesEngine(simulationModel);
 		engine.initPatterns(patterns);
 		//engine.savePatternsToFile();
 	}

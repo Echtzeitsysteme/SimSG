@@ -11,64 +11,50 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.simsg.container.Container;
 import org.simsg.container.generator.ContainerEMF;
 import org.simsg.container.generator.ContainerGenerator;
 import org.simsg.core.utils.PersistenceUtils;
-import org.simsg.simsgl.simSGL.SimSGLModel;
 
 public class SimplePersistenceManager extends PersistenceManager {
 	
-	final public static String REACTION_CONTAINER_MODELS_HEADER = "<container:Container xmi:version=\"2.0\"";
+	//TODO: mh how to detect valid generic models?
+	final public static String SIMULATION_MODEL_HEADER = "<container:Container xmi:version=\"2.0\"";
 	
 	public SimplePersistenceManager() {
 		super();
 	}
 	
 	@Override
-	public Container loadReactionContainerModel(String name) throws Exception {
-		if((!checkExistenceAndIndexContainer(name, true)) || (!checkExistenceAndIndexMetamodel(name, true))) {
-			SimSGLModel ruleModel = loadReactionRuleModel(name);
-			ContainerGenerator gen = new ContainerEMF(ruleModel);
-			String path = reactionModelFolder+"/"+name+containerModelSuffix;
-			String path2 = reactionMetamodelFolder+"/"+name+".ecore";
-			gen.doGenerate(path, path2);
-			reactionModelPaths.put(name, path);
-			reactionMetamodelPaths.put(name, path2);
-		}
-		loadAndRegisterMetamodel(name);
+	public void setAdditionalParameters(Object... params) {
+		// TODO Auto-generated method stub
 		
-		Resource modelResource = PersistenceUtils.loadResource(reactionModelPaths.get(name));
-		Container containerModel = (Container) modelResource.getContents().get(0);
-		
-		if(reactionContainerModelCache.containsKey(name)) {
-			unloadReactionContainerModel(name);
-		}
-		
-		reactionContainerModelCache.put(name, containerModel);
-		return containerModel;
 	}
-	
+
 	@Override
-	protected void fetchExistingReactionModelPaths() {
-		reactionModelPaths = new HashMap<String, String>();
+	protected void setSimulationModelSuffix() {
+		simulationModelSuffix = ".xmi";
+	}
+
+	@Override
+	protected void fetchExistingSimulationModelPaths() {
+		simulationModelPaths = new HashMap<String, String>();
 		
-		List<String> allFiles = PersistenceUtils.getAllFilesInFolder(reactionModelFolder);
+		List<String> allFiles = PersistenceUtils.getAllFilesInFolder(simulationModelFolder);
 		Pattern pattern = Pattern.compile("Name=\"(.*?)\"");
 		
 		for(String filePath : allFiles) {
-			if(!filePath.matches(".+(\\"+containerModelSuffix+")$")) {
+			if(!filePath.matches(".+(\\"+simulationModelSuffix+")$")) {
 			}else {
 				File candidate = new File(filePath);
 				Path p = candidate.toPath();
 				try {
-					Optional<String> line = Files.lines(p).filter(x->x.contains(REACTION_CONTAINER_MODELS_HEADER)).findFirst();
+					Optional<String> line = Files.lines(p).filter(x->x.contains(SIMULATION_MODEL_HEADER)).findFirst();
 					if(line.isPresent()) {
 						String key = line.orElse("");
 						Matcher matcher = pattern.matcher(key);
 						if(matcher.find()) {
 							key = matcher.group(1);
-							reactionModelPaths.put(key, filePath);
+							simulationModelPaths.put(key, filePath);
 						}
 					}
 					
@@ -80,14 +66,26 @@ public class SimplePersistenceManager extends PersistenceManager {
 	}
 
 	@Override
-	protected void setContainerModelSuffix() {
-		containerModelSuffix = ".xmi";
-	}
-
-	@Override
-	public void setAdditionalParameters(Object... params) {
-		// TODO Auto-generated method stub
+	public Resource loadSimulationModel(String name) throws Exception {
+		if((!checkExistenceAndIndexSimulationModel(name, true)) || (!checkExistenceAndIndexMetamodel(name, true))) {
+			Resource model = loadSimulationDefinition(name);
+			ContainerGenerator gen = new ContainerEMF(model);
+			String path = simulationModelFolder+"/"+name+simulationModelSuffix;
+			String path2 = simulationMetamodelFolder+"/"+name+".ecore";
+			gen.doGenerate(path, path2);
+			simulationModelPaths.put(name, path);
+			simulationMetamodelPaths.put(name, path2);
+		}
+		loadAndRegisterMetamodel(name);
 		
+		Resource model = PersistenceUtils.loadResource(simulationModelPaths.get(name));
+		
+		if(simulationModelCache.containsKey(name)) {
+			unloadSimulationModel(name);
+		}
+		
+		simulationModelCache.put(name, model);
+		return model;
 	}
 
 }

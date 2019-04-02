@@ -5,12 +5,12 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Collection;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
-import org.simsg.container.Container;
 import org.simsg.core.gt.ModelGraphTransformer;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.persistence.SimplePersistenceManager;
@@ -19,15 +19,14 @@ import org.simsg.core.pm.match.PatternMatchingEngine;
 import org.simsg.core.pm.match.ViatraEngineWrapper;
 import org.simsg.core.pmc.PatternMatchingController;
 import org.simsg.core.pmc.SimplePMC;
-import org.simsg.simsgl.simSGL.SimSGLModel;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class GraphTransfromEGFScenarioTest {
 
 	protected PersistenceManager persistence;
-	protected SimSGLModel ruleModel;
-	protected Container containerModel;
+	protected Resource simulationDefinition;
+	protected Resource simulationModel;
 	protected PatternMatchingController pmc;
 	
 	protected ModelGraphTransformer gt;
@@ -43,19 +42,20 @@ public class GraphTransfromEGFScenarioTest {
 		PatternMatchingEngine engine = new ViatraEngineWrapper();
 		pmc = new SimplePMC();
 		pmc.setEngine(engine);
-		ruleModel = persistence.loadReactionRuleModel("EGF_Pathway_test1");
-		containerModel = persistence.loadReactionContainerModel("EGF_Pathway_test1");
-		pmc.loadModels(ruleModel, containerModel);
+		simulationDefinition = persistence.loadSimulationDefinition("EGF_Pathway_test1");
+		simulationModel = persistence.loadSimulationModel("EGF_Pathway_test1");
+		pmc.loadModels(simulationDefinition, simulationModel);
 		pmc.initEngine();
 		pmc.initController();
-		gt = new ModelGraphTransformer(pmc.getPatternContainer(), containerModel, pmc.getEPackageWrapper());
+		//TODO: how to?
+		//gt = new ModelGraphTransformer(pmc.getPatternContainer(), simulationModel, pmc.getEPackageWrapper());
 		gt.init();
 	}
 	
 	@AfterAll
 	void afterAllTest() throws Exception {
 		pmc.discardEngine();
-		persistence.unloadReactionContainerModel("EGF_Pathway_test1");
+		persistence.unloadSimulationModel("EGF_Pathway_test1");
 	}
 	
 	private void collectPatternMatches(String pattern) {

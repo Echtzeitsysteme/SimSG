@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.simsg.core.simulation.SimulationState;
 import org.simsg.simsgl.simSGL.Iterations;
 import org.simsg.simsgl.simSGL.Population;
@@ -36,6 +37,7 @@ public class ComplexTerminationCondition extends TerminationCondition {
 
 	@Override
 	public boolean isTerminated() {
+		// TODO: this is buggy -> div by zero
 		/*
 		if(state.getIterations()%itStatusStep==0) {
 			System.out.println(100.0*(double)state.getIterations() / (double)maxIterations + "% of iterations("+state.getIterations()+") completed!");
@@ -67,7 +69,11 @@ public class ComplexTerminationCondition extends TerminationCondition {
 	}
 
 	private void initCondition() {
-		SimSGLModel ruleModel = state.getSimSGLModel();
+		Resource simDef = state.getSimulationDefinition();
+		// TODO: Can we do this generically? This really depends on a simulation definition...
+		
+		// this part is domain specific and requires the SimSGL Metamodel 
+		/*
 		PatternContainer patternContainer = state.getPatternContainer();
 		
 		terminationPatterns = new HashMap<String, Integer>();
@@ -101,7 +107,7 @@ public class ComplexTerminationCondition extends TerminationCondition {
 				}
 			}
 		}
-		
+		*/
 		itStatusStep = maxIterations/20;
 		tStatusStep = maxElapsedTime/20;
 		currentTStep = 0;

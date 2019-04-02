@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -90,13 +89,13 @@ public class DemoclesEngine implements MatchEventListener {
 	// Notifications
 	protected NotificationProcessor observer;
 
-	public DemoclesEngine(EObject model) {
+	public DemoclesEngine(Resource model) {
 		patterns = new HashMap<String, Pattern>();
 		patternMatchers = new ArrayList<>();
 		matches = new HashMap<IDataFrame, Map<String, IMatch>>();
 		matchToPatternMap = new HashMap<String, Map<IDataFrame, IMatch>>();
 
-		rs = model.eResource().getResourceSet();
+		rs = model.getResourceSet();
 		
 		initReteModule();
 	}

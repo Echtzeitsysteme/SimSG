@@ -37,7 +37,7 @@ public class ViatraEngineWrapper extends PatternMatchingEngine {
 	@SuppressWarnings("restriction")
 	@Override
 	public void initEngineInternal() throws Exception {
-		EMFScope scope = new EMFScope(model);
+		EMFScope scope = new EMFScope(simulationModel);
 		queryEngine = AdvancedViatraQueryEngine.createUnmanagedEngine(scope);
 		
 		for(Pattern p : patternModel.getPatterns()) {

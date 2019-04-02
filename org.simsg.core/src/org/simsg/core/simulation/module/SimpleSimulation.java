@@ -37,13 +37,15 @@ public class SimpleSimulation extends Simulation {
 	@Override
 	public void initialize() throws Exception {
 		super.initialize();
-		staticReactionRates = state.getPatternContainer().getStochasticRules();
+		// TODO: How to do this generically??
+		//staticReactionRates = state.getPatternContainer().getStochasticRules();
 	}
 	
 	@Override
 	public void initializeClocked() {
 		super.initializeClocked();
-		staticReactionRates = state.getPatternContainer().getStochasticRules();
+		// TODO: How to do this generically??
+		//staticReactionRates = state.getPatternContainer().getStochasticRules();
 	}
 	
 	private ConcurrentLinkedQueue<String> generatePatternQueue() {

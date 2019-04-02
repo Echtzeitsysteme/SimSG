@@ -8,13 +8,13 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EPackage;
-import org.simsg.container.Container;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.simsg.core.pm.pattern.GenericPattern;
 
 public abstract class PatternMatchingEngine {
 	
 	protected EPackage metaModel;
-	protected Container model;
+	protected Resource simulationModel;
 	protected Map<String, GenericPattern> genericPatterns;
 	
 	protected Set<String> voidPatterns;
@@ -36,8 +36,8 @@ public abstract class PatternMatchingEngine {
 		this.genericPatterns = genericPatterns;
 	}
 	
-	public void setReactionContainer(Container container, EPackage metaModel) {
-		this.model = container;
+	public void setReactionContainer(Resource simulationModel, EPackage metaModel) {
+		this.simulationModel = simulationModel;
 		this.metaModel = metaModel;
 	}
 	

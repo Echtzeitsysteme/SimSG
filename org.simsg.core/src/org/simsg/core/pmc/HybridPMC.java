@@ -41,7 +41,7 @@ public class HybridPMC extends PatternMatchingController {
 		});
 		
 		engine.setReactionRules(genericPatterns);
-		engine.setReactionContainer(reactionContainer, metaModel.getPackage());
+		engine.setReactionContainer(simulationModel, metaModel.getPackage());
 		engine.loadModels();
 	}
 	

@@ -10,15 +10,15 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.simsg.container.Agent;
-import org.simsg.container.Container;
 import org.simsg.container.State;
 import org.simsg.core.simulation.SimulationState;
 import org.simsg.core.simulation.statistic.SimulationStatistics;
 
 public class ModelGraphProperties extends SimulationStatistics {
 	
-	private Container modelGraph;
+	private Resource modelGraph;
 	private List<Entry<Double, Integer>> subgraphStatistics = new LinkedList<>();
 	private double initialLog;
 	private double currentLog;
@@ -30,7 +30,7 @@ public class ModelGraphProperties extends SimulationStatistics {
 
 	public ModelGraphProperties(SimulationState state) {
 		super(state);
-		modelGraph = state.getContainerModel();
+		modelGraph = state.getSimulationModel();
 		initialLog = state.getTime();
 		currentLog = state.getTime();
 		lastConnected = state.getTime();
@@ -107,14 +107,17 @@ public class ModelGraphProperties extends SimulationStatistics {
 	
 	private int numOfDisjunctSubgraphs() {
 		Set<Agent> allAgents = new HashSet<>();
+		//TODO: mhh.. this is pretty domain specific..
+		/*
 		for(Agent agent : modelGraph.getAgents()) {
 			if(!agent.eClass().getName().equals("Edge")) {
 				allAgents.add(agent);
 			}
 		}
-		
+		*/
 		List<Set<Agent>> subGraphs = new LinkedList<>();
-		
+		//TODO: mhh.. this is pretty domain specific..
+		/*
 		while(!allAgents.isEmpty()) {
 			Agent current = allAgents.iterator().next();
 			allAgents.remove(current);
@@ -147,6 +150,7 @@ public class ModelGraphProperties extends SimulationStatistics {
 			}
 			
 		}
+		*/
 		return subGraphs.size();
 	}
 	

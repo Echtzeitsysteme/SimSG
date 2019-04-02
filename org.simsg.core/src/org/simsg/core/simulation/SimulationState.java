@@ -2,10 +2,9 @@ package org.simsg.core.simulation;
 
 import java.util.PriorityQueue;
 
-import org.simsg.container.Container;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.simsg.core.pm.match.IMatch;
 import org.simsg.core.pmc.PatternMatchingController;
-import org.simsg.simsgl.simSGL.SimSGLModel;
 import org.simsg.simsgl.utils.PatternContainer;
 
 public class SimulationState {
@@ -58,7 +57,6 @@ public class SimulationState {
 		try {
 			pmc.collectAllMatches();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			dirty = true;
 		}
@@ -94,15 +92,17 @@ public class SimulationState {
 		return time;
 	}
 	
+	// TODO: What to use instead of the pattern container ?
+	/*
 	public PatternContainer getPatternContainer() {
 		return pmc.getPatternContainer();
 	}
-	
-	public SimSGLModel getSimSGLModel() {
-		return pmc.getRuleModel();
+	*/
+	public Resource getSimulationDefinition() {
+		return pmc.getSimulationDefinion();
 	}
 	
-	public Container getContainerModel() {
-		return pmc.getContainerModel();
+	public Resource getSimulationModel() {
+		return pmc.getSimulationModel();
 	}
 }

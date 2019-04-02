@@ -7,22 +7,21 @@ import java.util.Map;
 import java.util.Random;
 
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.common.util.URI;
 
-import org.simsg.container.Container;
 import org.simsg.container.generator.ContainerGenerator;
 import org.simsg.container.util.EPackageWrapper;
 import org.simsg.core.pm.match.IMatch;
 import org.simsg.core.pm.match.PatternMatchingEngine;
-import org.simsg.simsgl.simSGL.SimSGLModel;
 import org.simsg.simsgl.utils.PatternContainer;
 import org.simsg.simsgl.utils.PatternUtils;
 
 
 public abstract class PatternMatchingController{
 
-	protected SimSGLModel ruleModel;
-	protected Container reactionContainer;
+	protected Resource simulationDefinition;
+	protected Resource simulationModel;
 	protected EPackageWrapper metaModel;
 	
 	protected PatternContainer patternContainer;
@@ -105,13 +104,16 @@ public abstract class PatternMatchingController{
 		this.engine = engine;
 	}
 	
-	public void loadModels(SimSGLModel ruleModel, Container reactionContainer) throws Exception {
-		this.ruleModel = ruleModel;
-		this.reactionContainer = reactionContainer;
+	public void loadModels(Resource simulationDefinition, Resource simulationModel) throws Exception {
+		this.simulationDefinition = simulationDefinition;
+		this.simulationModel = simulationModel;
+		// TODO: This is a problem...
+		/*
 		this.patternContainer = PatternUtils.createPatternContainer(ruleModel);
 		URI metaModelURI = ContainerGenerator.createMetaModelURI(ruleModel.getModel().getName());
 		EPackage ePack = EPackage.Registry.INSTANCE.getEPackage(metaModelURI.toString());
 		metaModel = new EPackageWrapper(ePack);
+		*/
 		feedEngine();
 	}
 	
@@ -153,16 +155,16 @@ public abstract class PatternMatchingController{
 		return patternContainer;
 	}
 	
-	public SimSGLModel getRuleModel() {
-		return ruleModel;
+	public Resource getSimulationDefinion() {
+		return simulationDefinition;
 	}
 	
 	public EPackageWrapper getEPackageWrapper() {
 		return metaModel;
 	}
 	
-	public Container getContainerModel() {
-		return reactionContainer;
+	public Resource getSimulationModel() {
+		return simulationModel;
 	}
 	
 }

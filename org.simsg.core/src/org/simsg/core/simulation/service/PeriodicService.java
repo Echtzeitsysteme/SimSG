@@ -15,7 +15,8 @@ public class PeriodicService extends ServiceRoutine {
 
 	public PeriodicService(SimulationState state) {
 		super(state);
-		nonStochasticRules.addAll(state.getPatternContainer().getNonStochasticRules());
+		// TODO: How to do this generically? Maybe define a SimulationDefinition Metamodel...
+		//nonStochasticRules.addAll(state.getPatternContainer().getNonStochasticRules());
 		java.util.Collections.sort(nonStochasticRules);
 	}
 	

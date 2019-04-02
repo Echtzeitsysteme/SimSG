@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.simsg.core.simulation.Observable;
 import org.simsg.core.simulation.SimulationState;
-import org.simsg.simsgl.utils.PatternContainer;
+//import org.simsg.simsgl.utils.PatternContainer;
 
 
 public class Observables extends SimulationStatistics {
@@ -19,10 +19,13 @@ public class Observables extends SimulationStatistics {
 	}
 	
 	public void initObservables() {
+		// TODO: do this generically or maybe define a SimulationDefiniton metamodel
+		/*
 		PatternContainer patternContainer = state.getPatternContainer();
 		for(String patternName : patternContainer.getObservablesPatterns().keySet()) {
 			observables.put(patternName, new Observable(patternName));
 		}
+		*/
 	}
 	
 	@Override
