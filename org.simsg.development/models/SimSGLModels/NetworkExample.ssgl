@@ -95,4 +95,4 @@ obs triangles {
 	E1:Edge(port*[1,2]){active}, E2:Edge(port*[3,4]){active}, E3:Edge(port*[5,6]){active}
 }[N1.id < N2.id, N2.id < N3.id]
 
-terminate end time=3600000
+terminate end time=360000

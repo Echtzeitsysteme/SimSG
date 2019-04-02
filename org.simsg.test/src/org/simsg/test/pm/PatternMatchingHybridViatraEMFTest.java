@@ -1,24 +1,18 @@
 package org.simsg.test.pm;
 
-import org.simsg.core.persistence.PersistenceManagerEnum;
-import org.simsg.core.pm.match.PatternMatchingEngineEnum;
-import org.simsg.core.pmc.PatternMatchingControllerEnum;
+import org.simsg.core.pm.match.ViatraEngineWrapper;
+import org.simsg.core.pmc.HybridPMC;
 
 public class PatternMatchingHybridViatraEMFTest extends PatternMatchingTest {
 
 	@Override
-	protected void setPersistenceType() {
-		persistenceType = PersistenceManagerEnum.SimplePersistence;
+	protected void initEngine() {
+		engine = new ViatraEngineWrapper();
 	}
 
 	@Override
-	protected void setEngineType() {
-		engineType = PatternMatchingEngineEnum.ViatraEngine;
-	}
-
-	@Override
-	protected void setPMCType() {
-		pmcType = PatternMatchingControllerEnum.HybridPMC;
+	protected void initPMC() {
+		pmc = new HybridPMC();
 	}
 
 }

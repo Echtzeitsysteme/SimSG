@@ -10,6 +10,8 @@ public abstract class TerminationCondition {
 		this.state = state;
 	}
 	
+	public abstract void setAdditionalParameters(Object ... params);
+	
 	public abstract boolean isTerminated();
 	
 }

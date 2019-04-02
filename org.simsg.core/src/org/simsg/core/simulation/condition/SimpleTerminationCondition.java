@@ -27,4 +27,10 @@ public class SimpleTerminationCondition extends TerminationCondition {
 		return (state.getIterations()>=maxIterations) || (state.getTime() >= maxElapsedTime);
 	}
 
+	@Override
+	public void setAdditionalParameters(Object... params) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

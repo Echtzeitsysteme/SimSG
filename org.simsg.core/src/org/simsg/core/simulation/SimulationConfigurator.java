@@ -8,14 +8,13 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.simsg.core.persistence.PersistenceManager;
-import org.simsg.core.persistence.PersistenceManagerEnum;
-import org.simsg.core.persistence.PersistenceManagerFactory;
+import org.simsg.core.persistence.SimplePersistenceManager;
+import org.simsg.core.pm.match.DemoclesEngineWrapper;
 import org.simsg.core.pm.match.PatternMatchingEngine;
-import org.simsg.core.pm.match.PatternMatchingEngineEnum;
-import org.simsg.core.pm.match.PatternMatchingEngineFactory;
+import org.simsg.core.pm.match.ViatraEngineWrapper;
+import org.simsg.core.pmc.HybridPMC;
 import org.simsg.core.pmc.PatternMatchingController;
-import org.simsg.core.pmc.PatternMatchingControllerEnum;
-import org.simsg.core.pmc.PatternMatchingControllerFactory;
+import org.simsg.core.pmc.SimplePMC;
 import org.simsg.core.simulation.condition.ComplexTerminationCondition;
 import org.simsg.core.simulation.condition.SimpleTerminationCondition;
 import org.simsg.core.simulation.condition.TerminationCondition;
@@ -24,56 +23,161 @@ import org.simsg.core.simulation.module.SimpleSimulation;
 import org.simsg.core.simulation.module.StochasticSimulation;
 import org.simsg.core.simulation.service.PeriodicService;
 import org.simsg.core.simulation.service.ServiceRoutine;
-import org.simsg.core.simulation.statistic.ModelGraphProperties;
 import org.simsg.core.simulation.statistic.Observables;
 import org.simsg.core.simulation.statistic.SimulationStatistics;
+import org.simsg.core.simulation.visualization.SimulationVisualization;
 
 public class SimulationConfigurator {
 	
 	private String modelName;
 	private String modelFolder;
 	
-	private PersistenceManagerEnum persistenceType;
-	private PatternMatchingEngineEnum engineType;
-	private PatternMatchingControllerEnum controllerType;
-	
+	protected Supplier<PersistenceManager> persistenceConstructor;
+	protected Supplier<PatternMatchingEngine> engineConstructor;
+	protected Supplier<PatternMatchingController> pmcConstructor;
 	protected Supplier<Simulation> simulationConstructor;
 	
 	protected List<Function<SimulationState, ServiceRoutine>> serviceConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, TerminationCondition>> conditionConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, ExternalConstraint>> constraintConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, SimulationStatistics>> statisticConstructors = new LinkedList<>();
+	protected List<Function<SimulationState, SimulationVisualization>> visualizationConstructors = new LinkedList<>();
 	
 	public SimulationConfigurator() {
-		persistenceType = PersistenceManagerEnum.SimplePersistence;
+		setEMFPersistence();
+		setViatraAsEngine();
+		setSimplePMC();
 	}
 	
 	public void setModel(String modelName) {
 		this.modelName = modelName;
 	}
 	
-	public void setEMFPersistence() {
-		persistenceType = PersistenceManagerEnum.SimplePersistence;
-	}
-	
 	public void setModelFolder(String path) {
 		this.modelFolder = path;
 	}
 	
+	public void setPersistence(Class<? extends PersistenceManager> persistenceType, Object ... params) {
+		persistenceConstructor = ()-> {
+			Constructor<? extends PersistenceManager> persistenceConstructor = null;
+			try {
+				persistenceConstructor = persistenceType.getConstructor();
+			} catch (NoSuchMethodException | SecurityException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			if(persistenceConstructor == null) return null;
+			try {
+				PersistenceManager persistence = persistenceConstructor.newInstance();
+				persistence.setAdditionalParameters(params);
+				return persistence;
+			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		};
+	}
+	
+	public void setEMFPersistence() {
+		persistenceConstructor = ()-> {
+			return new SimplePersistenceManager();
+		};
+	}
+	
+	public void setEngine(Class<? extends PatternMatchingEngine> engineType, Object ... params) {
+		engineConstructor = ()-> {
+			Constructor<? extends PatternMatchingEngine> engineConstructor = null;
+			try {
+				engineConstructor = engineType.getConstructor();
+			} catch (NoSuchMethodException | SecurityException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			if(engineConstructor == null) return null;
+			try {
+				PatternMatchingEngine engine = engineConstructor.newInstance();
+				engine.setAdditionalParameters(params);
+				return engine;
+			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		};
+	}
+	
 	public void setViatraAsEngine() {
-		engineType = PatternMatchingEngineEnum.ViatraEngine;
+		engineConstructor = () -> {
+			return new ViatraEngineWrapper();
+		};
 	}
 	
 	public void setDemoclesAsEngine() {
-		engineType = PatternMatchingEngineEnum.DemoclesEngine;
+		engineConstructor = () -> {
+			return new DemoclesEngineWrapper();
+		};
+	}
+	
+	public void setPMC(Class<? extends PatternMatchingController> pmcType, Object ... params) {
+		pmcConstructor = ()-> {
+			Constructor<? extends PatternMatchingController> pmcConstructor = null;
+			try {
+				pmcConstructor = pmcType.getConstructor();
+			} catch (NoSuchMethodException | SecurityException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			if(pmcConstructor == null) return null;
+			try {
+				PatternMatchingController pmc = pmcConstructor.newInstance();
+				pmc.setAdditionalParameters(params);
+				return pmc;
+			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		};
 	}
 	
 	public void setSimplePMC() {
-		controllerType = PatternMatchingControllerEnum.SimplePMC;
+		pmcConstructor = () -> {
+			return new SimplePMC();
+		};
 	}
 	
 	public void setHybridPMC() {
-		controllerType = PatternMatchingControllerEnum.HybridPMC;
+		pmcConstructor = () -> {
+			return new HybridPMC();
+		};
+	}
+	
+	public void addTerminationCondition(Class<? extends TerminationCondition> conditionType, Object ... params) {
+		Function<SimulationState, TerminationCondition> terminationCondition = (state) -> {
+			Constructor<? extends TerminationCondition> condConstructor = null;
+			try {
+				condConstructor = conditionType.getConstructor(SimulationState.class);
+			} catch (NoSuchMethodException | SecurityException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			if(condConstructor == null) return null;
+			try {
+				TerminationCondition condition = condConstructor.newInstance(state);
+				condition.setAdditionalParameters(params);
+				return condition;
+			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		};
+		conditionConstructors.add(terminationCondition);
 	}
 	
 	public void addSimpleTerminationCondition(int maxIterations, double maxElapsedTime) {
@@ -89,6 +193,30 @@ public class SimulationConfigurator {
 		conditionConstructors.add((state)-> new ComplexTerminationCondition(state));
 	}
 	
+	public void addServiceRoutine(Class<? extends ServiceRoutine> routineType, Object ... params) {
+		Function<SimulationState, ServiceRoutine> serviceRoutine = (state) -> {
+			Constructor<? extends ServiceRoutine> routineConstructor = null;
+			try {
+				routineConstructor = routineType.getConstructor(SimulationState.class);
+			} catch (NoSuchMethodException | SecurityException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			if(routineConstructor == null) return null;
+			try {
+				ServiceRoutine routine = routineConstructor.newInstance(state);
+				routine.setAdditionalParameters(params);
+				return routine;
+			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		};
+		serviceConstructors.add(serviceRoutine);
+	}
+	
 	public void addPeriodicServiceRoutine(double servicePeriod) {
 		serviceConstructors.add((state)-> {
 			PeriodicService service = new PeriodicService(state);
@@ -97,12 +225,56 @@ public class SimulationConfigurator {
 		});
 	}
 	
+	public void addSimulationStatistics(Class<? extends SimulationStatistics> statisticsType, Object ... params) {
+		Function<SimulationState, SimulationStatistics> simulationStatistics = (state) -> {
+			Constructor<? extends SimulationStatistics> statisticsConstructor = null;
+			try {
+				statisticsConstructor = statisticsType.getConstructor(SimulationState.class);
+			} catch (NoSuchMethodException | SecurityException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			if(statisticsConstructor == null) return null;
+			try {
+				SimulationStatistics statistics = statisticsConstructor.newInstance(state);
+				statistics.setAdditionalParameters(params);
+				return statistics;
+			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		};
+		statisticConstructors.add(simulationStatistics);
+	}
+	
 	public void addObservableStatistic() {
 		statisticConstructors.add((state)->new Observables(state));
 	}
 	
-	public void addModelGraphPropertiesStatistic() {
-		statisticConstructors.add((state)->new ModelGraphProperties(state));
+	public void addSimulationVisualization(Class<? extends SimulationVisualization> visualizationType, Object ... params) {
+		Function<SimulationState, SimulationVisualization> simulationVisualization = (state) -> {
+			Constructor<? extends SimulationVisualization> visualizationConstructor = null;
+			try {
+				visualizationConstructor = visualizationType.getConstructor(SimulationState.class);
+			} catch (NoSuchMethodException | SecurityException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			if(visualizationConstructor == null) return null;
+			try {
+				SimulationVisualization visualization = visualizationConstructor.newInstance(state);
+				visualization.setAdditionalParameters(params);
+				return visualization;
+			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		};
+		visualizationConstructors.add(simulationVisualization);
 	}
 	
 	public void setSimpleSimulation(boolean deterministic) {
@@ -154,12 +326,13 @@ public class SimulationConfigurator {
 		simulation.addTerminationConditions(conditionConstructors);
 		simulation.addExternalConstraints(constraintConstructors);
 		simulation.addSimulationStatistics(statisticConstructors);
+		simulation.addSimulationVisualization(visualizationConstructors);
 		
 		return simulation;
 	}
 	
 	private PersistenceManager createPersistenceManager() {
-		PersistenceManager persistence = PersistenceManagerFactory.create(persistenceType);
+		PersistenceManager persistence = persistenceConstructor.get();
 		if(modelFolder == null) {
 			System.out.println("Warning: No model folder has been set. Using default folder..");
 		}else {
@@ -169,8 +342,8 @@ public class SimulationConfigurator {
 	}
 	
 	private PatternMatchingController createPMC() {
-		PatternMatchingEngine engine = PatternMatchingEngineFactory.create(engineType);
-		PatternMatchingController pmc = PatternMatchingControllerFactory.create(controllerType);
+		PatternMatchingEngine engine = engineConstructor.get();
+		PatternMatchingController pmc = pmcConstructor.get();
 		pmc.setEngine(engine);
 		return pmc;
 	}

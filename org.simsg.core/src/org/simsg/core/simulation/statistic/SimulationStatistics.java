@@ -11,6 +11,8 @@ public abstract class SimulationStatistics {
 		this.state = state;
 	}
 	
+	public abstract void setAdditionalParameters(Object ... params);
+	
 	public abstract void logCurrentState();
 	
 	public void display() {
@@ -26,4 +28,6 @@ public abstract class SimulationStatistics {
 	}
 	
 	protected abstract void displayStatistics();
+	
+	protected abstract void saveStatistics();
 }

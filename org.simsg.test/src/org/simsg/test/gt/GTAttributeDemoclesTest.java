@@ -1,32 +1,23 @@
 package org.simsg.test.gt;
 
-import org.simsg.core.persistence.PersistenceManagerEnum;
-import org.simsg.core.pm.match.PatternMatchingEngineEnum;
-import org.simsg.core.pmc.PatternMatchingControllerEnum;
+import org.simsg.core.pm.match.DemoclesEngineWrapper;
+import org.simsg.core.pmc.SimplePMC;
 
 public class GTAttributeDemoclesTest extends GraphTransformAttributeTest {
 
 	@Override
-	protected void setEngineType() {
-		engineType = PatternMatchingEngineEnum.DemoclesEngine;
-
+	protected void initEngine() {
+		engine = new DemoclesEngineWrapper();
 	}
 
 	@Override
-	protected void setPMCType() {
-		pmcType = PatternMatchingControllerEnum.SimplePMC;
-
-	}
-
-	@Override
-	protected void setPersistenceType() {
-		persistenceType = PersistenceManagerEnum.SimplePersistence;
-		
+	protected void initPMC() {
+		pmc = new SimplePMC();
 	}
 	
 	@Override
 	protected void checkConsistency() {
-		// do nothing.. this takes for ever with democles
+		// do nothing.. this takes forever with democles
 	}
 
 }

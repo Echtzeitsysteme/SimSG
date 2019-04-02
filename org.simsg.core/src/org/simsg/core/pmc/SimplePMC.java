@@ -12,13 +12,8 @@ import org.simsg.simsgl.simSGL.Pattern;
 
 public class SimplePMC extends PatternMatchingController {
 
-	SimplePMC() {
+	public SimplePMC() {
 		super();
-	}
-	
-	@Override
-	protected void setPMCType() {
-		this.pmcType = PatternMatchingControllerEnum.SimplePMC;
 	}
 	
 	@Override
@@ -46,6 +41,12 @@ public class SimplePMC extends PatternMatchingController {
 	@Override
 	public Map<String, Collection<IMatch>> getAllMatches() {
 		return matches;
+	}
+
+	@Override
+	public void setAdditionalParameters(Object... params) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

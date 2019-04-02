@@ -15,15 +15,10 @@ import org.junit.runners.MethodSorters;
 import org.simsg.container.Container;
 import org.simsg.core.gt.ModelGraphTransformer;
 import org.simsg.core.persistence.PersistenceManager;
-import org.simsg.core.persistence.PersistenceManagerEnum;
-import org.simsg.core.persistence.PersistenceManagerFactory;
+import org.simsg.core.persistence.SimplePersistenceManager;
 import org.simsg.core.pm.match.IMatch;
 import org.simsg.core.pm.match.PatternMatchingEngine;
-import org.simsg.core.pm.match.PatternMatchingEngineEnum;
-import org.simsg.core.pm.match.PatternMatchingEngineFactory;
 import org.simsg.core.pmc.PatternMatchingController;
-import org.simsg.core.pmc.PatternMatchingControllerEnum;
-import org.simsg.core.pmc.PatternMatchingControllerFactory;
 import org.simsg.simsgl.simSGL.SimSGLModel;
 
 
@@ -31,37 +26,33 @@ import org.simsg.simsgl.simSGL.SimSGLModel;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 abstract class GraphTransformAttributeTest {
 	
-	protected PersistenceManagerEnum persistenceType;
 	protected PersistenceManager persistence;
-	
 	protected SimSGLModel ruleModel;
 	protected Container containerModel;
+	protected PatternMatchingEngine engine;
 	protected PatternMatchingController pmc;
 	
-	protected PatternMatchingEngineEnum engineType;
-	protected PatternMatchingControllerEnum pmcType;
 	
 	protected ModelGraphTransformer gt;
 	
 	protected GraphTransformAttributeTest() {
-		setPersistenceType();
-		persistence = PersistenceManagerFactory.create(persistenceType);
-		persistence.setModelFolderPath(System.getProperty("user.dir")+"//models");
-		persistence.init();
-		setEngineType();
-		setPMCType();
+		initPersistence();
 	}
 	
-	abstract protected void setPersistenceType();
+	protected void initPersistence() {
+		persistence = new SimplePersistenceManager();
+		persistence.setModelFolderPath(System.getProperty("user.dir")+"//models");
+		persistence.init();
+	}
 	
-	abstract protected void setEngineType();
+	abstract protected void initEngine();
 	
-	abstract protected void setPMCType();
+	abstract protected void initPMC();
 	
 	@BeforeAll
 	void beforeAllTest() throws Exception {
-		PatternMatchingEngine engine = PatternMatchingEngineFactory.create(engineType);
-		pmc = PatternMatchingControllerFactory.create(pmcType);
+		initEngine();
+		initPMC();
 		pmc.setEngine(engine);
 		ruleModel = persistence.loadReactionRuleModel("GraphTransformAttributeTest");
 		containerModel = persistence.loadReactionContainerModel("GraphTransformAttributeTest");

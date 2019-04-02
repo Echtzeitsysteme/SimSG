@@ -15,6 +15,7 @@ import org.simsg.core.simulation.condition.TerminationCondition;
 import org.simsg.core.simulation.constraint.ExternalConstraint;
 import org.simsg.core.simulation.service.ServiceRoutine;
 import org.simsg.core.simulation.statistic.SimulationStatistics;
+import org.simsg.core.simulation.visualization.SimulationVisualization;
 import org.simsg.core.utils.PersistenceUtils;
 import org.simsg.core.utils.Runtimer;
 import org.simsg.simsgl.simSGL.SimSGLModel;
@@ -34,11 +35,13 @@ public abstract class Simulation {
 	protected List<Function<SimulationState, TerminationCondition>> conditionConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, ExternalConstraint>> constraintConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, SimulationStatistics>> statisticConstructors = new LinkedList<>();
+	protected List<Function<SimulationState, SimulationVisualization>> visualizationConstructors = new LinkedList<>();
 	
 	protected List<ServiceRoutine> services = new LinkedList<>();
 	protected List<TerminationCondition> conditions = new LinkedList<>();
 	protected List<ExternalConstraint> constraints = new LinkedList<>();
 	protected List<SimulationStatistics> statistics = new LinkedList<>();
+	protected List<SimulationVisualization> visualizations = new LinkedList<>();
 	
 	public Simulation(String modelName, PersistenceManager persistence, PatternMatchingController pmc) {
 		this.modelName = modelName;
@@ -64,6 +67,10 @@ public abstract class Simulation {
 		statisticConstructors.add(constructor);
 	}
 	
+	void addSimulationVisualization(Function<SimulationState, SimulationVisualization> constructor) {
+		visualizationConstructors.add(constructor);
+	}
+	
 	void addServiceRoutine(List<Function<SimulationState, ServiceRoutine>> constructors) {
 		serviceConstructors.addAll(constructors);
 	}
@@ -80,6 +87,10 @@ public abstract class Simulation {
 		statisticConstructors.addAll(constructors);
 	}
 	
+	void addSimulationVisualization(List<Function<SimulationState, SimulationVisualization>> constructors) {
+		visualizationConstructors.addAll(constructors);
+	}
+	
 	public void initialize() throws Exception {
 		initModel();
 		initPMC();	
@@ -89,6 +100,7 @@ public abstract class Simulation {
 		initializeConditions();
 		initializeConstraints();
 		initializeStatistics();
+		initializeVisualizations();
 	}
 	
 	private void initModel() throws Exception {
@@ -134,6 +146,12 @@ public abstract class Simulation {
 	private void initializeStatistics() {
 		for(Function<SimulationState, SimulationStatistics> constructor : statisticConstructors) {
 			statistics.add(constructor.apply(state));
+		}
+	}
+	
+	private void initializeVisualizations() {
+		for(Function<SimulationState, SimulationVisualization> constructor : visualizationConstructors) {
+			visualizations.add(constructor.apply(state));
 		}
 	}
 	
@@ -288,6 +306,12 @@ public abstract class Simulation {
 	public void displayResults() {
 		for(SimulationStatistics statistic : statistics) {
 			statistic.display();
+		}
+	}
+	
+	public void displayVisualizations() {
+		for(SimulationVisualization visualization : visualizations) {
+			visualization.display();
 		}
 	}
 	

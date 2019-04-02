@@ -14,4 +14,10 @@ class GeometricConstraint extends ExternalConstraint {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public void setAdditionalParameters(Object... params) {
+		// TODO Auto-generated method stub
+		
+	}
 }

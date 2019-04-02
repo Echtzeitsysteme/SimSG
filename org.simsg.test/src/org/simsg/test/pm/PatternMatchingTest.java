@@ -15,15 +15,10 @@ import org.junit.jupiter.api.TestInstance;
 
 import org.simsg.container.Container;
 import org.simsg.core.persistence.PersistenceManager;
-import org.simsg.core.persistence.PersistenceManagerEnum;
-import org.simsg.core.persistence.PersistenceManagerFactory;
+import org.simsg.core.persistence.SimplePersistenceManager;
 import org.simsg.core.pm.match.IMatch;
 import org.simsg.core.pm.match.PatternMatchingEngine;
-import org.simsg.core.pm.match.PatternMatchingEngineEnum;
-import org.simsg.core.pm.match.PatternMatchingEngineFactory;
 import org.simsg.core.pmc.PatternMatchingController;
-import org.simsg.core.pmc.PatternMatchingControllerEnum;
-import org.simsg.core.pmc.PatternMatchingControllerFactory;
 import org.simsg.simsgl.simSGL.SimSGLModel;
 
 
@@ -31,40 +26,33 @@ import org.simsg.simsgl.simSGL.SimSGLModel;
 abstract class PatternMatchingTest {
 	public final static String TEST_MODEL_NAME = "PatternMatchingTest";
 	
-	protected PersistenceManagerEnum persistenceType;
 	protected PersistenceManager persistence;
-	
 	protected SimSGLModel ruleModel;
 	protected Container containerModel;
-	
 	protected PatternMatchingEngine engine;
-	protected PatternMatchingEngineEnum engineType;
-	
 	protected PatternMatchingController pmc;
-	protected PatternMatchingControllerEnum pmcType;
 	
 	
 	protected PatternMatchingTest() {
-		setPersistenceType();
-		setEngineType();
-		setPMCType();
+		initPersistence();
 	}
 	
-	abstract protected void setPersistenceType();
+	protected void initPersistence() {
+		persistence = new SimplePersistenceManager();
+		persistence.setModelFolderPath(System.getProperty("user.dir")+"//models");
+		persistence.init();
+	}
 	
-	abstract protected void setEngineType();
+	abstract protected void initEngine();
 	
-	abstract protected void setPMCType();
+	abstract protected void initPMC();
 	
 	@BeforeAll
 	void beforeAllTest() throws Exception {
-		persistence = PersistenceManagerFactory.create(persistenceType);
-		persistence.setModelFolderPath(System.getProperty("user.dir")+"//models");
-		persistence.init();
 		ruleModel = persistence.loadReactionRuleModel(TEST_MODEL_NAME);
 		containerModel = persistence.loadReactionContainerModel(TEST_MODEL_NAME);
-		engine = PatternMatchingEngineFactory.create(engineType);
-		pmc = PatternMatchingControllerFactory.create(pmcType);
+		initEngine();
+		initPMC();
 		pmc.setEngine(engine);
 		pmc.loadModels(ruleModel, containerModel);
 		pmc.initEngine();
