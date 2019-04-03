@@ -1,0 +1,33 @@
+import "platform:/resource/org.simsg.container/generated/Goldbeter_Koshland"
+import "http://www.simsg.container.org/container"
+
+abstract pattern forbidK() {
+
+	k: K {
+		-K_a-> k
+	}
+	
+} 
+
+abstract pattern forbidTx() {
+	 
+	t: T {
+		-T_x-> t
+	}
+}
+
+
+condition freeK = forbid forbidK
+condition freeTx = forbid forbidTx
+
+condition freeKandTx = freeK && freeTx
+
+rule KTx () {
+	k: K {
+		++ - K_a -> t
+	}
+	t: T {
+		++ - T_x -> k
+	}
+} when freeKandTx
+

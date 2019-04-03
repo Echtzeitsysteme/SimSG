@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="SimulationDefinition" nsURI="http://www.simsg.org/simulationdefinition/simulationdefinition"
+    nsPrefix="org.simsg">
+  <eClassifiers xsi:type="ecore:EClass" name="Rule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="GTRule" lowerBound="1"
+        eType="ecore:EClass ../../org.emoflon.ibex.gt/model/Gt.ecore#//GTRule"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SimDefinition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rules" upperBound="-1"
+        eType="#//Rule" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="terminationConditions"
+        lowerBound="1" upperBound="-1" eType="#//TerminationCondition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="simulationModelURI" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="observables" upperBound="-1"
+        eType="#//Observation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="gtRulesURI" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="GtRuleSet" lowerBound="1"
+        eType="ecore:EClass ../../org.emoflon.ibex.gt/model/Gt.ecore#//GTRuleSet"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ibexPatternSet" lowerBound="1"
+        eType="ecore:EClass ../../org.emoflon.ibex.common/model/Common.ecore#//IBeXPatternSet"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="metamodelURI" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ibexPatternsURI" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="metamodel" lowerBound="1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EPackage"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StochasticRule" eSuperTypes="#//Rule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rate" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TerminationCondition" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SimpleTerminationCondition" eSuperTypes="#//TerminationCondition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxIterations" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="-1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxSimulationTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        defaultValueLiteral="-1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PatternTerminationCondition" eSuperTypes="#//TerminationCondition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="threshold" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" lowerBound="1"
+        eType="ecore:EClass ../../org.emoflon.ibex.common/model/Common.ecore#//IBeXContextPattern"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Observation" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PatternObservation" eSuperTypes="#//Observation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" lowerBound="1"
+        eType="ecore:EClass ../../org.emoflon.ibex.common/model/Common.ecore#//IBeXContextPattern"/>
+  </eClassifiers>
+</ecore:EPackage>

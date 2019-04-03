@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<GTLanguage:GTRuleSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:GTLanguage="platform:/resource/org.emoflon.ibex.gt/model/Gt.ecore">
+  <rules name="KTx" documentation="" executable="true" ruleNodes="//@rules.0/@nodes.0 //@rules.0/@nodes.1">
+    <nodes name="k">
+      <type href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//K"/>
+    </nodes>
+    <nodes name="t">
+      <type href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//T"/>
+    </nodes>
+  </rules>
+</GTLanguage:GTRuleSet>

@@ -102,6 +102,18 @@ public class PersistenceUtils {
 		return modelResource;
 	}
 	
+	public static Resource loadResource(URI uri) throws Exception {
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ReactionRules", new XMIResourceFactoryImpl());
+		ResourceSet rs = new ResourceSetImpl();
+		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+
+		Resource modelResource = rs.getResource(uri, true);
+		if(modelResource == null)
+			throw new IOException("File did not contain a vaild model.");
+		
+		return modelResource;
+	}
+	
 	public static void saveModelContainer(Container model, String path) throws Exception {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("Container", new XMIResourceFactoryImpl());
 		ResourceSet rs = new ResourceSetImpl();

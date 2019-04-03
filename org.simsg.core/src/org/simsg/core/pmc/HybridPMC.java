@@ -15,7 +15,7 @@ import org.simsg.core.pm.pattern.HybridPattern;
 import org.simsg.simsgl.simSGL.Pattern;
 
 
-public class HybridPMC extends PatternMatchingController {
+public class HybridPMC extends LegacyPMC {
 	
 	private Map<String, HybridPattern> hybridPatterns;
 	private Map<String, GenericPattern> genericPatterns;

@@ -6,25 +6,18 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Random;
 
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.common.util.URI;
 
-import org.simsg.container.generator.ContainerGenerator;
-import org.simsg.container.util.EPackageWrapper;
 import org.simsg.core.pm.match.IMatch;
 import org.simsg.core.pm.match.PatternMatchingEngine;
-import org.simsg.simsgl.utils.PatternContainer;
-import org.simsg.simsgl.utils.PatternUtils;
+
+import SimulationDefinition.SimDefinition;
 
 
 public abstract class PatternMatchingController{
 
-	protected Resource simulationDefinition;
+	protected SimDefinition simulationDefinition;
 	protected Resource simulationModel;
-	protected EPackageWrapper metaModel;
-	
-	protected PatternContainer patternContainer;
 	
 	protected PatternMatchingEngine engine;
 	protected Map<String, Collection<IMatch>> matches;
@@ -40,61 +33,17 @@ public abstract class PatternMatchingController{
 	
 	protected abstract void feedEngine() throws Exception;
 
-	public void collectMatches(String patternName) throws Exception {
-		String patternHash = patternContainer.getPatternHash(patternName);
-		Collection<IMatch> matches = engine.getMatches(patternHash);
-		this.matches.replace(patternHash, matches);
-		this.matchCount.replace(patternHash, matches.size());
-	}
+	public abstract void collectMatches(String patternName) throws Exception;
 	
-	protected void collectMatchesWithHash(String patternHash) throws Exception {
-		Collection<IMatch> matches = engine.getMatches(patternHash);
-		this.matches.replace(patternHash, matches);
-		this.matchCount.replace(patternHash, matches.size());
-	}
+	public abstract void collectAllMatches() throws Exception;
 	
-	public void collectAllMatches() throws Exception {
-		engine.getAllMatches().forEach((name, matches) -> {
-			this.matches.replace(name, matches);
-			this.matchCount.replace(name, matches.size());
-		});
-	}
+	public abstract int getMatchCount(String patternName);
 	
-	public int getMatchCount(String patternName) {
-		String patternHash = patternContainer.getPatternHash(patternName);
-		return matchCount.get(patternHash);
-	}
+	protected abstract int getRandomMatchIdx(String patternName);
 	
-	public int getMatchCountWithHash(String patternHash) {
-		return matchCount.get(patternHash);
-	}
+	public abstract IMatch getRandomMatch(String patternName);
 	
-	protected int getRandomMatchIdx(String patternName) {
-		String patternHash = patternContainer.getPatternHash(patternName);
-		return (int)(getMatchCountWithHash(patternHash)*random.nextDouble());
-	}
-	
-	protected int getRandomMatchIdxWithHash(String patternHash) {
-		return (int)(getMatchCountWithHash(patternHash)*random.nextDouble());
-	}
-	
-	public IMatch getRandomMatch(String patternName) {
-		String patternHash = patternContainer.getPatternHash(patternName);
-		return (IMatch) matches.get(patternHash).toArray()[getRandomMatchIdxWithHash(patternHash)];
-	}
-	
-	public IMatch getRandomMatchWithHash(String patternHash) {
-		return (IMatch) matches.get(patternHash).toArray()[getRandomMatchIdxWithHash(patternHash)];
-	}
-	
-	public IMatch getMatchAt(String patternName, int idx) {
-		String patternHash = patternContainer.getPatternHash(patternName);
-		return (IMatch) matches.get(patternHash).toArray()[idx];
-	}
-	
-	public IMatch getMatchAtWitHash(String patternHash, int idx) {
-		return (IMatch) matches.get(patternHash).toArray()[idx];
-	}
+	public abstract IMatch getMatchAt(String patternName, int idx);
 	
 	public abstract Collection<IMatch> getMatches(String patternName);
 	
@@ -104,18 +53,7 @@ public abstract class PatternMatchingController{
 		this.engine = engine;
 	}
 	
-	public void loadModels(Resource simulationDefinition, Resource simulationModel) throws Exception {
-		this.simulationDefinition = simulationDefinition;
-		this.simulationModel = simulationModel;
-		// TODO: This is a problem...
-		/*
-		this.patternContainer = PatternUtils.createPatternContainer(ruleModel);
-		URI metaModelURI = ContainerGenerator.createMetaModelURI(ruleModel.getModel().getName());
-		EPackage ePack = EPackage.Registry.INSTANCE.getEPackage(metaModelURI.toString());
-		metaModel = new EPackageWrapper(ePack);
-		*/
-		feedEngine();
-	}
+	public abstract void loadModels(SimDefinition simulationDefinition, Resource simulationModel) throws Exception;
 	
 	public void initEngine() throws Exception {
 		engine.initEngine();
@@ -151,16 +89,8 @@ public abstract class PatternMatchingController{
 		return engine.getEngineType();
 	}
 	
-	public PatternContainer getPatternContainer() {
-		return patternContainer;
-	}
-	
-	public Resource getSimulationDefinion() {
+	public SimDefinition getSimulationDefinion() {
 		return simulationDefinition;
-	}
-	
-	public EPackageWrapper getEPackageWrapper() {
-		return metaModel;
 	}
 	
 	public Resource getSimulationModel() {

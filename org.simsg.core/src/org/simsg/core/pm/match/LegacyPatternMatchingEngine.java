@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.simsg.core.pm.pattern.GenericPattern;
 
-public abstract class PatternMatchingEngine {
+public abstract class LegacyPatternMatchingEngine extends PatternMatchingEngine {
 	
 	protected EPackage metaModel;
 	protected Resource simulationModel;
@@ -21,11 +21,20 @@ public abstract class PatternMatchingEngine {
 	protected Collection<String> nonVoidPatterns;
 	protected Collection<String> allPatterns;
 	
-	protected PatternMatchingEngine() {
+	protected LegacyPatternMatchingEngine() {
 		this.voidPatterns = new HashSet<String>();
 	}
 	
 	public abstract void setAdditionalParameters(Object ... params);
+	
+	public void setReactionRules(Map<String, GenericPattern> genericPatterns) {
+		genericPatterns.forEach((name, pattern) -> {
+			if(pattern.isVoidPattern()) {
+				voidPatterns.add(name);
+			}
+		});
+		this.genericPatterns = genericPatterns;
+	}
 	
 	public void setReactionContainer(Resource simulationModel, EPackage metaModel) {
 		this.simulationModel = simulationModel;

@@ -15,7 +15,7 @@ import org.eclipse.viatra.query.patternlanguage.emf.vql.*;
 import org.eclipse.viatra.query.patternlanguage.emf.specification.SpecificationBuilder;
 //import org.eclipse.viatra.query.patternlanguage.patternLanguage.Pattern;
 
-public class ViatraEngineWrapper extends PatternMatchingEngine {
+public class ViatraEngineWrapper extends LegacyPatternMatchingEngine {
 	
 	private AdvancedViatraQueryEngine queryEngine;
 	@SuppressWarnings("restriction")

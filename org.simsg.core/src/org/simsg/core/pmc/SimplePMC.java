@@ -10,7 +10,7 @@ import org.simsg.core.pm.pattern.GenericPattern;
 import org.simsg.simsgl.simSGL.Pattern;
 
 
-public class SimplePMC extends PatternMatchingController {
+public class SimplePMC extends LegacyPMC {
 
 	public SimplePMC() {
 		super();

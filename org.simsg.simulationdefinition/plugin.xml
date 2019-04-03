@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated simulationdefinition -->
+      <package
+            uri="http://www.simsg.org/simulationdefinition/simulationdefinition"
+            class="SimulationDefinition.SimulationDefinitionPackage"
+            genModel="model/simulationdefinition.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated simulationdefinition -->
+      <package
+            uri="platform:/resource/org.emoflon.ibex.gt/model/Gt.ecore"
+            class="GTLanguage.GTLanguagePackage"
+            genModel="model/simulationdefinition.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated simulationdefinition -->
+      <package
+            uri="platform:/resource/org.emoflon.ibex.common/model/Common.ecore"
+            class="IBeXLanguage.IBeXLanguagePackage"
+            genModel="model/simulationdefinition.genmodel"/>
+   </extension>
+</plugin>

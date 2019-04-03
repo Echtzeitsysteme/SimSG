@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Goldbeter_Koshland -->
+      <package
+            uri="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland"
+            class="Goldbeter_Koshland.Goldbeter_KoshlandPackage"
+            genModel="models/ContainerMetaModels/Goldbeter_Koshland.genmodel"/>
+   </extension>
+
+</plugin>

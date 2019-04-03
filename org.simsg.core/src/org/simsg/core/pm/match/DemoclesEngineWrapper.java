@@ -8,7 +8,7 @@ import org.gervarro.democles.specification.emf.Pattern;
 import org.simsg.core.pm.democles.DemoclesEngine;
 import org.simsg.core.pm.democles.DemoclesPatternGenerator;
 
-public class DemoclesEngineWrapper extends PatternMatchingEngine {
+public class DemoclesEngineWrapper extends LegacyPatternMatchingEngine {
 	
 	private DemoclesEngine engine;
 	List<Pattern> patterns;

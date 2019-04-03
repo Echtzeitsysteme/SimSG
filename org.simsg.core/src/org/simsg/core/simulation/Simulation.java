@@ -164,7 +164,6 @@ public abstract class Simulation {
 					try {
 						initModel();
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				});
@@ -172,7 +171,6 @@ public abstract class Simulation {
 					try {
 						initPMC();
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				});
@@ -191,7 +189,6 @@ public abstract class Simulation {
 			try {
 				run();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		});
