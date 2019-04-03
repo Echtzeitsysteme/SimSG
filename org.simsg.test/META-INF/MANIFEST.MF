@@ -7,3 +7,4 @@ Bundle-ClassPath: test.jar,
  sehmes/Eclipse/Eclipse for SimGT/eclipse/plugins/org.eclipse.emf.ecore_2.16.0.v20181124-0637.jar
 Export-Package: org.simsg.test.gt,
  org.simsg.test.pm
+Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.14.0"
