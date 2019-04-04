@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simSGL:SimSGLModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:simSGL="http://www.simsg.org/simsgl/SimSGL" xsi:schemaLocation="http://www.simsg.org/simsgl/SimSGL java://org.simsg.simsgl.simSGL.SimSGLPackage">
+  <model xmi:type="simSGL:Model" name="Goldbeter_Koshland"/>
+  <properties xmi:type="simSGL:Agent" name="K">
+    <sites xmi:type="simSGL:Sites">
+      <sites xmi:type="simSGL:SingleSite" name="a1">
+        <states xmi:type="simSGL:States"/>
+      </sites>
+    </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
+  </properties>
+  <properties xmi:type="simSGL:Agent" name="P">
+    <sites xmi:type="simSGL:Sites">
+      <sites xmi:type="simSGL:SingleSite" name="a2">
+        <states xmi:type="simSGL:States"/>
+      </sites>
+    </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
+  </properties>
+  <properties xmi:type="simSGL:Agent" name="T">
+    <sites xmi:type="simSGL:Sites">
+      <sites xmi:type="simSGL:SingleSite" name="x">
+        <states xmi:type="simSGL:States">
+          <state xmi:type="simSGL:State" name="us"/>
+          <state xmi:type="simSGL:State" name="ps"/>
+        </states>
+      </sites>
+      <sites xmi:type="simSGL:SingleSite" name="y">
+        <states xmi:type="simSGL:States">
+          <state xmi:type="simSGL:State" name="us"/>
+          <state xmi:type="simSGL:State" name="ps"/>
+        </states>
+      </sites>
+    </sites>
+    <states xmi:type="simSGL:States"/>
+    <attributes xmi:type="simSGL:Attributes"/>
+  </properties>
+  <properties xmi:type="simSGL:Initial" name="i1">
+    <count xmi:type="simSGL:NumericFromLiteral">
+      <value xmi:type="simSGL:ArithmeticValue" value="100"/>
+    </count>
+    <initialPattern xmi:type="simSGL:AssignFromPattern">
+      <pattern xmi:type="simSGL:Pattern">
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+          <sitePatterns xmi:type="simSGL:SitePatterns"/>
+        </agentPatterns>
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.1">
+          <sitePatterns xmi:type="simSGL:SitePatterns"/>
+        </agentPatterns>
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.0">
+              <state xmi:type="simSGL:SiteState" state="//@properties.2/@sites/@sites.0/@states/@state.0"/>
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
+              </linkState>
+            </sitePatterns>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.1">
+              <state xmi:type="simSGL:SiteState" state="//@properties.2/@sites/@sites.1/@states/@state.0"/>
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
+              </linkState>
+            </sitePatterns>
+          </sitePatterns>
+        </agentPatterns>
+      </pattern>
+    </initialPattern>
+  </properties>
+  <properties xmi:type="simSGL:Rule" name="KT_x">
+    <rule xmi:type="simSGL:RuleBody" operator="&lt;->">
+      <lhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+        </pattern>
+      </lhs>
+      <rhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+        </pattern>
+      </rhs>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
+          <value xmi:type="simSGL:ArithmeticValue" value="1"/>
+        </rates>
+        <rates xmi:type="simSGL:NumericFromLiteral">
+          <value xmi:type="simSGL:ArithmeticValue" value="10"/>
+        </rates>
+      </ruleRates>
+    </rule>
+  </properties>
+  <properties xmi:type="simSGL:Rule" name="Tp_x">
+    <rule xmi:type="simSGL:RuleBody" operator="->">
+      <lhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.0">
+                <state xmi:type="simSGL:SiteState" state="//@properties.2/@sites/@sites.0/@states/@state.0"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+        </pattern>
+      </lhs>
+      <rhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.0">
+                <state xmi:type="simSGL:SiteState" state="//@properties.2/@sites/@sites.0/@states/@state.1"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+        </pattern>
+      </rhs>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
+          <value xmi:type="simSGL:ArithmeticValue" value="1"/>
+        </rates>
+      </ruleRates>
+    </rule>
+  </properties>
+  <properties xmi:type="simSGL:Rule" name="KT_y">
+    <rule xmi:type="simSGL:RuleBody" operator="&lt;->">
+      <lhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.1">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+        </pattern>
+      </lhs>
+      <rhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.1">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+        </pattern>
+      </rhs>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
+          <value xmi:type="simSGL:ArithmeticValue" value="1"/>
+        </rates>
+        <rates xmi:type="simSGL:NumericFromLiteral">
+          <value xmi:type="simSGL:ArithmeticValue" value="10"/>
+        </rates>
+      </ruleRates>
+    </rule>
+  </properties>
+  <properties xmi:type="simSGL:Rule" name="Tp_y">
+    <rule xmi:type="simSGL:RuleBody" operator="->">
+      <lhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.1">
+                <state xmi:type="simSGL:SiteState" state="//@properties.2/@sites/@sites.1/@states/@state.0"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+        </pattern>
+      </lhs>
+      <rhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.0">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.0/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.1">
+                <state xmi:type="simSGL:SiteState" state="//@properties.2/@sites/@sites.1/@states/@state.1"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+        </pattern>
+      </rhs>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
+          <value xmi:type="simSGL:ArithmeticValue" value="1"/>
+        </rates>
+      </ruleRates>
+    </rule>
+  </properties>
+  <properties xmi:type="simSGL:Rule" name="PT_x">
+    <rule xmi:type="simSGL:RuleBody" operator="&lt;->">
+      <lhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.1">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+        </pattern>
+      </lhs>
+      <rhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.1">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+        </pattern>
+      </rhs>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
+          <value xmi:type="simSGL:ArithmeticValue" value="1"/>
+        </rates>
+        <rates xmi:type="simSGL:NumericFromLiteral">
+          <value xmi:type="simSGL:ArithmeticValue" value="10"/>
+        </rates>
+      </ruleRates>
+    </rule>
+  </properties>
+  <properties xmi:type="simSGL:Rule" name="Tu_x">
+    <rule xmi:type="simSGL:RuleBody" operator="->">
+      <lhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.1">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.0">
+                <state xmi:type="simSGL:SiteState" state="//@properties.2/@sites/@sites.0/@states/@state.1"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+        </pattern>
+      </lhs>
+      <rhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.1">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.0">
+                <state xmi:type="simSGL:SiteState" state="//@properties.2/@sites/@sites.0/@states/@state.0"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+        </pattern>
+      </rhs>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
+          <value xmi:type="simSGL:ArithmeticValue" value="1"/>
+        </rates>
+      </ruleRates>
+    </rule>
+  </properties>
+  <properties xmi:type="simSGL:Rule" name="PT_y">
+    <rule xmi:type="simSGL:RuleBody" operator="&lt;->">
+      <lhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.1">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.1">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:FreeLink" name="free"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+        </pattern>
+      </lhs>
+      <rhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.1">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.1">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+        </pattern>
+      </rhs>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
+          <value xmi:type="simSGL:ArithmeticValue" value="1"/>
+        </rates>
+        <rates xmi:type="simSGL:NumericFromLiteral">
+          <value xmi:type="simSGL:ArithmeticValue" value="10"/>
+        </rates>
+      </ruleRates>
+    </rule>
+  </properties>
+  <properties xmi:type="simSGL:Rule" name="Tu_y">
+    <rule xmi:type="simSGL:RuleBody" operator="->">
+      <lhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.1">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.1">
+                <state xmi:type="simSGL:SiteState" state="//@properties.2/@sites/@sites.1/@states/@state.1"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+        </pattern>
+      </lhs>
+      <rhs xmi:type="simSGL:AssignFromPattern">
+        <pattern xmi:type="simSGL:Pattern">
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.1">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.1/@sites/@sites.0">
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+          <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+            <sitePatterns xmi:type="simSGL:SitePatterns">
+              <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.1">
+                <state xmi:type="simSGL:SiteState" state="//@properties.2/@sites/@sites.1/@states/@state.0"/>
+                <linkState xmi:type="simSGL:LinkState">
+                  <linkState xmi:type="simSGL:BoundLink" state="1"/>
+                </linkState>
+              </sitePatterns>
+            </sitePatterns>
+          </agentPatterns>
+        </pattern>
+      </rhs>
+      <ruleRates xmi:type="simSGL:RuleRates">
+        <rates xmi:type="simSGL:NumericFromLiteral">
+          <value xmi:type="simSGL:ArithmeticValue" value="1"/>
+        </rates>
+      </ruleRates>
+    </rule>
+  </properties>
+  <properties xmi:type="simSGL:Observation" name="o1">
+    <observationPattern xmi:type="simSGL:AssignFromPattern">
+      <pattern xmi:type="simSGL:Pattern">
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.0">
+              <state xmi:type="simSGL:SiteState" state="//@properties.2/@sites/@sites.0/@states/@state.1"/>
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:WhatEver" name="?"/>
+              </linkState>
+            </sitePatterns>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.1">
+              <state xmi:type="simSGL:SiteState" state="//@properties.2/@sites/@sites.1/@states/@state.1"/>
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:WhatEver" name="?"/>
+              </linkState>
+            </sitePatterns>
+          </sitePatterns>
+        </agentPatterns>
+      </pattern>
+    </observationPattern>
+  </properties>
+  <properties xmi:type="simSGL:Observation" name="o2">
+    <observationPattern xmi:type="simSGL:AssignFromPattern">
+      <pattern xmi:type="simSGL:Pattern">
+        <agentPatterns xmi:type="simSGL:ValidAgentPattern" agent="//@properties.2">
+          <sitePatterns xmi:type="simSGL:SitePatterns">
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.0">
+              <state xmi:type="simSGL:SiteState" state="//@properties.2/@sites/@sites.0/@states/@state.1"/>
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
+              </linkState>
+            </sitePatterns>
+            <sitePatterns xmi:type="simSGL:SingleSitePattern" site="//@properties.2/@sites/@sites.1">
+              <state xmi:type="simSGL:SiteState" state="//@properties.2/@sites/@sites.1/@states/@state.1"/>
+              <linkState xmi:type="simSGL:LinkState">
+                <linkState xmi:type="simSGL:FreeLink" name="free"/>
+              </linkState>
+            </sitePatterns>
+          </sitePatterns>
+        </agentPatterns>
+      </pattern>
+    </observationPattern>
+  </properties>
+  <properties xmi:type="simSGL:Terminate" name="t1">
+    <condition xmi:type="simSGL:Time" value="20000"/>
+  </properties>
+</simSGL:SimSGLModel>

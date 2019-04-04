@@ -2,17 +2,18 @@ import "platform:/resource/org.simsg.container/generated/Goldbeter_Koshland"
 import "http://www.simsg.container.org/container"
 
 abstract pattern forbidK() {
-
+	a : Agent
+ 
 	k: K {
-		-K_a-> k
-	}
-	
+		-K_a1-> a
+	} 
 } 
 
 abstract pattern forbidTx() {
+	a : Agent
 	 
 	t: T {
-		-T_x-> t
+		-T_x-> a
 	}
 }
 
@@ -22,12 +23,20 @@ condition freeTx = forbid forbidTx
 
 condition freeKandTx = freeK && freeTx
 
-rule KTx () {
+rule KTx2 refines forbidK, forbidTx {
 	k: K {
-		++ - K_a -> t
+		++ - K_a1 -> t
 	}
 	t: T {
 		++ - T_x -> k
 	}
 } when freeKandTx
+
+pattern KTx () {
+	k : K
+}
+
+pattern agent () {
+	a : Agent
+}
 

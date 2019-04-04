@@ -18,7 +18,7 @@ rule Tu_y {P(a2[1]), T(y{ps}[1])} -> {P(a2[1]), T(y{us}[1])} @ [1]
 
 obs o1 {T(x{ps}[?], y{ps}[?])} 
 obs o2 {T(x{ps}[free], y{ps}[free])}
- 
+  
 terminate t1 time=20000 
 //terminate it1 iterations=100
 //terminate tp1 |{T(x{p}[?], y{p}[?])}| ==> 45
