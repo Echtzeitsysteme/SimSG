@@ -1,6 +1,6 @@
 package org.simsg.test.pm;
 
-import org.simsg.core.pm.match.ViatraEngineWrapper;
+import org.simsg.core.pm.viatra.ViatraEngineWrapper;
 import org.simsg.core.pmc.SimplePMC;
 
 public class PMAttributeViatraTest extends PatternMatchingAttributeTest {

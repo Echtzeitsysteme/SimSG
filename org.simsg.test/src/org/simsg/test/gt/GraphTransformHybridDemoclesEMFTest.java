@@ -1,7 +1,7 @@
 package org.simsg.test.gt;
 
-import org.simsg.core.pm.match.DemoclesEngineWrapper;
-import org.simsg.core.pmc.HybridPMC;
+import org.simsg.core.pm.democles.DemoclesEngineWrapper;
+import org.simsg.core.pmc.hybrid.HybridPMC;
 
 public class GraphTransformHybridDemoclesEMFTest extends GraphTransformTest {
 

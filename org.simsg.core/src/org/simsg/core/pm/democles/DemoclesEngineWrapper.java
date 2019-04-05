@@ -1,12 +1,12 @@
-package org.simsg.core.pm.match;
+package org.simsg.core.pm.democles;
 
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.gervarro.democles.specification.emf.Pattern;
-import org.simsg.core.pm.democles.DemoclesEngine;
-import org.simsg.core.pm.democles.DemoclesPatternGenerator;
+import org.simsg.core.pm.engine.LegacyPatternMatchingEngine;
+import org.simsg.core.pm.match.IMatch;
 
 public class DemoclesEngineWrapper extends LegacyPatternMatchingEngine {
 	
@@ -16,7 +16,7 @@ public class DemoclesEngineWrapper extends LegacyPatternMatchingEngine {
 	public DemoclesEngineWrapper() {}
 	
 	@Override
-	public void loadModels() throws Exception {
+	public void initPatterns() throws Exception {
 		DemoclesPatternGenerator generator = new DemoclesPatternGenerator(genericPatterns);
 		patterns = new LinkedList<Pattern>(generator.doGenerate().values());
 		

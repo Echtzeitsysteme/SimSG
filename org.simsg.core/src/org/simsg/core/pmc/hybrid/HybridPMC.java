@@ -1,4 +1,4 @@
-package org.simsg.core.pmc;
+package org.simsg.core.pmc.hybrid;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -12,6 +12,7 @@ import org.simsg.core.pm.match.IMatch;
 import org.simsg.core.pm.match.IMatchImpl;
 import org.simsg.core.pm.pattern.GenericPattern;
 import org.simsg.core.pm.pattern.HybridPattern;
+import org.simsg.core.pmc.LegacyPMC;
 import org.simsg.simsgl.simSGL.Pattern;
 
 
@@ -41,8 +42,8 @@ public class HybridPMC extends LegacyPMC {
 		});
 		
 		engine.setReactionRules(genericPatterns);
-		engine.setReactionContainer(simulationModel, metaModel.getPackage());
-		engine.loadModels();
+		engine.setSimulationModel(simulationModel, metaModel.getPackage());
+		engine.initPatterns();
 	}
 	
 	@Override

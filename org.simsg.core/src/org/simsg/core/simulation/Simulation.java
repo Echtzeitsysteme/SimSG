@@ -16,8 +16,9 @@ import org.simsg.core.simulation.constraint.ExternalConstraint;
 import org.simsg.core.simulation.service.ServiceRoutine;
 import org.simsg.core.simulation.statistic.SimulationStatistics;
 import org.simsg.core.simulation.visualization.SimulationVisualization;
-import org.simsg.core.utils.PersistenceUtils;
 import org.simsg.core.utils.Runtimer;
+
+import SimulationDefinition.SimDefinition;
 
 
 public abstract class Simulation {
@@ -26,7 +27,7 @@ public abstract class Simulation {
 	protected PersistenceManager persistence;
 	private PatternMatchingController pmc;
 	protected SimulationState state;
-	protected Resource simulationDefinition;
+	protected SimDefinition simulationDefinition;
 	protected Resource simulationModel;
 	private ModelGraphTransformer gt;
 	
@@ -105,7 +106,7 @@ public abstract class Simulation {
 	private void initModel() throws Exception {
 		persistence.init();
 		simulationDefinition = persistence.loadSimulationDefinition(modelName);
-		simulationModel = persistence.loadSimulationModel(modelName);
+		simulationModel = persistence.loadSimulationModel(simulationDefinition);
 	}
 	
 	private void initPMC() throws Exception {
@@ -212,16 +213,8 @@ public abstract class Simulation {
 		}
 	}
 	
-	public boolean saveModelGraph(String path) {
-		try {
-			// this should be part of the persistence module's job
-			//PersistenceUtils.saveSimulationModel(simulationModel, path);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
-		return true;
+	public boolean saveModelGraph() {
+		return persistence.saveSimulationModel(simulationDefinition, simulationModel);
 	}
 	
 	protected boolean checkTerminationConditions() {
@@ -281,18 +274,19 @@ public abstract class Simulation {
 		state.setDirty();
 	}
 	
-	
+	// TODO: results is definitely the wrong name here.. should more like current match counts
 	public Map<String, Collection<IMatch>> getResults() {
 		return pmc.getAllMatches();
 	}
 	
+	// TODO: results is definitely the wrong name here.. should more like current match counts
 	public String results() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Current "+toString()+"\n *******     RESULTS:     *****\n");
 		for (String key : getResults().keySet()) {
 			System.out.println(key);
 			if (getResults().get(key) != null) {
-				sb.append("Pattern: " + key + ", size: " + pmc.getMatchCountWithHash(key) +"\n");
+				sb.append("Pattern: " + key + ", size: " + pmc.getMatchCount(key) +"\n");
 			}
 		}
 		sb.append("*******   END   *****\n");

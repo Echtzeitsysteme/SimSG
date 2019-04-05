@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.viatra.query.patternlanguage.emf.EMFPatternLanguageStandaloneSetup;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.*;
 import org.simsg.container.ContainerPackage;
+import org.simsg.core.persistence.PersistenceUtils;
 import org.simsg.core.pm.pattern.GenericPattern;
-import org.simsg.core.utils.PersistenceUtils;
 
 public class ViatraPatternGenerator {
 	

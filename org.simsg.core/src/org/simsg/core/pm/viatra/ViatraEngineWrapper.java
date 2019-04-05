@@ -1,4 +1,4 @@
-package org.simsg.core.pm.match;
+package org.simsg.core.pm.viatra;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -8,8 +8,8 @@ import org.eclipse.viatra.query.runtime.api.AdvancedViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryMatcher;
 import org.eclipse.viatra.query.runtime.emf.EMFScope;
-import org.simsg.core.pm.viatra.ViatraMatch;
-import org.simsg.core.pm.viatra.ViatraPatternGenerator;
+import org.simsg.core.pm.engine.LegacyPatternMatchingEngine;
+import org.simsg.core.pm.match.IMatch;
 import org.eclipse.viatra.query.patternlanguage.emf.vql.*;
 //import org.eclipse.viatra.query.patternlanguage.emf.eMFPatternLanguage.PatternModel;
 import org.eclipse.viatra.query.patternlanguage.emf.specification.SpecificationBuilder;
@@ -29,7 +29,7 @@ public class ViatraEngineWrapper extends LegacyPatternMatchingEngine {
 	}
 	
 	@Override
-	public void loadModels() throws Exception {
+	public void initPatterns() throws Exception {
 		ViatraPatternGenerator gen = new ViatraPatternGenerator(metaModel, genericPatterns);
 		patternModel = gen.doGenerate();
 	}

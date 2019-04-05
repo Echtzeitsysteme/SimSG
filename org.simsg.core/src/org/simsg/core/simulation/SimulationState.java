@@ -5,7 +5,8 @@ import java.util.PriorityQueue;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.simsg.core.pm.match.IMatch;
 import org.simsg.core.pmc.PatternMatchingController;
-import org.simsg.simsgl.utils.PatternContainer;
+
+import SimulationDefinition.SimDefinition;
 
 public class SimulationState {
 	private int iterations;
@@ -92,13 +93,7 @@ public class SimulationState {
 		return time;
 	}
 	
-	// TODO: What to use instead of the pattern container ?
-	/*
-	public PatternContainer getPatternContainer() {
-		return pmc.getPatternContainer();
-	}
-	*/
-	public Resource getSimulationDefinition() {
+	public SimDefinition getSimulationDefinition() {
 		return pmc.getSimulationDefinion();
 	}
 	

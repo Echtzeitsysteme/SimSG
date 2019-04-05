@@ -126,6 +126,8 @@ Export-Package: org.jfree,
    org.gervarro.democles.common,
    org.gervarro.democles.event,
    org.gervarro.democles.specification.emf",
+ org.simsg.core.pm.engine,
+ org.simsg.core.pm.ibex,
  org.simsg.core.pm.match;uses:="org.eclipse.emf.ecore,org.simsg.container,org.simsg.core.pm.pattern",
  org.simsg.core.pm.pattern;uses:="org.eclipse.emf.ecore,org.simsg.container.util,org.simsg.simsgl.simSGL",
  org.simsg.core.pm.viatra;uses:="org.simsg.core.pm.pattern",
@@ -183,7 +185,8 @@ Require-Bundle: org.apache.log4j;bundle-version="1.2.15",
  org.eclipse.viatra.query.runtime.rete;bundle-version="2.0.2",
  org.simsg.container;bundle-version="0.1.0",
  org.eclipse.equinox.p2.ui;bundle-version="2.5.100",
- SimulationDefinition
+ SimulationDefinition,
+ org.emoflon.ibex.gt
 Import-Package: org.apache.commons.io
 Automatic-Module-Name: org.simsg.core
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

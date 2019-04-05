@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
@@ -15,14 +17,7 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.emoflon.ibex.gt.api.GraphTransformationAPI;
 import org.emoflon.ibex.gt.api.GraphTransformationApp;
-import org.emoflon.ibex.gt.api.GraphTransformationMatch;
 import org.emoflon.ibex.gt.api.GraphTransformationPattern;
-import org.simsg.core.utils.PersistenceUtils;
-import org.simsg.examples.devel.api.DevelAPI;
-import org.simsg.examples.devel.api.DevelApp;
-import org.simsg.examples.devel.api.DevelDemoclesApp;
-import org.simsg.examples.devel.api.rules.AgentPattern;
-import org.simsg.examples.devel.api.rules.KTxPattern;
 
 import GTLanguage.GTLanguagePackage;
 import GTLanguage.GTRuleSet;
@@ -31,12 +26,54 @@ import IBeXLanguage.IBeXPatternSet;
 import SimulationDefinition.SimDefinition;
 import SimulationDefinition.SimulationDefinitionFactory;
 import org.simsg.core.persistence.*;
+import org.simsg.core.pm.engine.PatternMatchingEngine;
+import org.simsg.core.pm.ibex.IBeXDemoclesEngine;
+import org.simsg.core.pmc.IBeXPMC;
+import org.simsg.core.pmc.PatternMatchingController;
 
 public class Sandbox {
 
 	public static void main(String[] args) {
-		//loadAModel("Goldbeter_Koshland");
-		//generateSimDef();
+		Resource model = loadAModel("Goldbeter_Koshland");
+		SimDefinition def = generateSimDef();
+		
+		PatternMatchingEngine e = new IBeXDemoclesEngine();
+		PatternMatchingController pmc = new IBeXPMC();
+		pmc.setEngine(e);
+		pmc.loadModels(def, model);
+		pmc.initController();
+		pmc.initEngine();
+		pmc.collectAllMatches();
+		pmc.getAllMatches().forEach((name, matches) -> {
+			System.out.println("Pattern: "+name+" num: "+matches.size());
+		});
+	}
+	
+	public static String eMoflonPackageFromDef(SimDefinition def) {
+		String pck = "";
+		String uri = def.getGtRulesURI();
+		System.out.println(uri);
+		Pattern pattern = Pattern.compile("^(.*src-gen/)(.*)(api/gt-rules.xmi)$");
+		Matcher matcher = pattern.matcher(uri);
+		matcher.matches();
+		String ns = matcher.group(2);
+		System.out.println(ns);
+		Pattern pattern2 = Pattern.compile("^(.*/)(.*)(/)$");
+		Matcher matcher2 = pattern2.matcher(ns);
+		matcher2.matches();
+		String pack = matcher2.group(2);
+		System.out.println(pack);
+		ns = ns.substring(0, ns.length()-1);
+		ns = ns.replace("/", ".");
+		System.out.println(ns);
+		pack = pack.substring(0, 1).toUpperCase() + pack.substring(1, pack.length());
+		System.out.println(pack);
+		String nsApi = ns+".api";
+		System.out.println(nsApi);
+		return pck;
+	}
+	
+	public static void runEMoflonDynamic() {
 		try {
 			// Load generated DemoclesApp-class by class name
 			Class<GraphTransformationApp<?>> democlesAppClass = (Class<GraphTransformationApp<?>>)java.lang.Class.forName("org.simsg.examples.devel.api.DevelDemoclesApp");
@@ -84,19 +121,9 @@ public class Sandbox {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		/*
-		DevelDemoclesApp dda = new DevelDemoclesApp();
-		dda.registerMetaModels();
-		dda.getModel().getResources().add(loadAModel("Goldbeter_Koshland"));
-		DevelAPI api2 = dda.initAPI();
-		api2.updateMatches();
-		System.out.println("Count: "+api2.KTx().findMatches().size());
-		System.out.println("Count: "+api2.agent().findMatches().size());
-		*/
 	}
 	
-	public static void generateSimDef() {
+	public static SimDefinition generateSimDef() {
 		URI gtRulesURI = URI.createFileURI("src-gen\\org\\simsg\\examples\\devel\\api\\gt-rules.xmi");
 		URI ibexPatternsURI = URI.createFileURI("src-gen\\org\\simsg\\examples\\devel\\api\\ibex-patterns.xmi");
 		URI simModelURI = URI.createFileURI("models\\SimulationModels\\Goldbeter_Koshland.xmi");
@@ -106,6 +133,7 @@ public class Sandbox {
 		
 		URI simDefinitionURI = URI.createFileURI("models\\SimDefTest.xmi");
 		saveDefinition(def, simDefinitionURI);
+		return def;
 	}
 	
 	public static Resource loadAModel(String model) {
@@ -113,8 +141,8 @@ public class Sandbox {
 		pm.setModelFolderPath(System.getProperty("user.dir")+"//models");
 		pm.init();
 		try {
-			pm.loadSimulationDefinition("Goldbeter_Koshland");
-			return pm.loadSimulationModel("Goldbeter_Koshland");
+			SimDefinition def = pm.loadSimulationDefinition("Goldbeter_Koshland");
+			return pm.loadSimulationModel(def);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

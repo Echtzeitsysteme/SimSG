@@ -9,13 +9,13 @@ import java.util.function.Supplier;
 
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.persistence.SimplePersistenceManager;
-import org.simsg.core.pm.match.DemoclesEngineWrapper;
-import org.simsg.core.pm.match.PatternMatchingEngine;
-import org.simsg.core.pm.match.ViatraEngineWrapper;
-import org.simsg.core.pmc.HybridPMC;
+import org.simsg.core.pm.democles.DemoclesEngineWrapper;
+import org.simsg.core.pm.engine.PatternMatchingEngine;
+import org.simsg.core.pm.viatra.ViatraEngineWrapper;
 import org.simsg.core.pmc.PatternMatchingController;
 import org.simsg.core.pmc.SimplePMC;
-import org.simsg.core.simulation.condition.ComplexTerminationCondition;
+import org.simsg.core.pmc.hybrid.HybridPMC;
+import org.simsg.core.simulation.condition.PatternTerminationCondition;
 import org.simsg.core.simulation.condition.SimpleTerminationCondition;
 import org.simsg.core.simulation.condition.TerminationCondition;
 import org.simsg.core.simulation.constraint.ExternalConstraint;
@@ -190,7 +190,7 @@ public class SimulationConfigurator {
 	}
 	
 	public void addComplexTerminationCondition() {
-		conditionConstructors.add((state)-> new ComplexTerminationCondition(state));
+		conditionConstructors.add((state)-> new PatternTerminationCondition(state));
 	}
 	
 	public void addServiceRoutine(Class<? extends ServiceRoutine> routineType, Object ... params) {

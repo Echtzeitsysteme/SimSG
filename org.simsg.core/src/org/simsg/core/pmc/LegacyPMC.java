@@ -6,8 +6,8 @@ import java.util.Map;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import org.simsg.container.util.EPackageWrapper;
+import org.simsg.core.pm.engine.PatternMatchingEngine;
 import org.simsg.core.pm.match.IMatch;
-import org.simsg.core.pm.match.PatternMatchingEngine;
 import org.simsg.simsgl.utils.PatternContainer;
 
 import SimulationDefinition.SimDefinition;

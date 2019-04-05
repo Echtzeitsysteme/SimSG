@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.simsg:SimDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:GTLanguage="platform:/resource/org.emoflon.ibex.gt/model/Gt.ecore" xmlns:IBeXLanguage="platform:/resource/org.emoflon.ibex.common/model/Common.ecore" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.simsg="http://www.simsg.org/simulationdefinition/simulationdefinition" xsi:schemaLocation="platform:/resource/org.emoflon.ibex.gt/model/Gt.ecore java://GTLanguage.GTLanguagePackage platform:/resource/org.emoflon.ibex.common/model/Common.ecore java://IBeXLanguage.IBeXLanguagePackage http://www.eclipse.org/emf/2002/Ecore java://org.eclipse.emf.ecore.EcorePackage http://www.simsg.org/simulationdefinition/simulationdefinition java://SimulationDefinition.SimulationDefinitionPackage" name="Goldbeter_Koshland" simulationModelURI="models/SimulationModels/Goldbeter_Koshland.xmi" gtRulesURI="src-gen/org/simsg/examples/devel/api/gt-rules.xmi" metamodelURI="models/SimulationMetaModels/Goldbeter_Koshland.ecore" ibexPatternsURI="src-gen/org/simsg/examples/devel/api/ibex-patterns.xmi">
+  <GtRuleSet xmi:type="GTLanguage:GTRuleSet">
+    <rules xmi:type="GTLanguage:GTRule" name="KTx" documentation="" ruleNodes="//@GtRuleSet/@rules.0/@nodes.0">
+      <nodes xmi:type="GTLanguage:GTNode" name="k">
+        <type xmi:type="ecore:EClass" href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//K"/>
+      </nodes>
+    </rules>
+    <rules xmi:type="GTLanguage:GTRule" name="KTx2" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.1/@nodes.0 //@GtRuleSet/@rules.1/@nodes.1 //@GtRuleSet/@rules.1/@nodes.2">
+      <nodes xmi:type="GTLanguage:GTNode" name="a">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.container.org/container#//Agent"/>
+      </nodes>
+      <nodes xmi:type="GTLanguage:GTNode" name="k">
+        <type xmi:type="ecore:EClass" href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//K"/>
+      </nodes>
+      <nodes xmi:type="GTLanguage:GTNode" name="t">
+        <type xmi:type="ecore:EClass" href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//T"/>
+      </nodes>
+    </rules>
+    <rules xmi:type="GTLanguage:GTRule" name="agent" documentation="" ruleNodes="//@GtRuleSet/@rules.2/@nodes.0">
+      <nodes xmi:type="GTLanguage:GTNode" name="a">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.container.org/container#//Agent"/>
+      </nodes>
+    </rules>
+  </GtRuleSet>
+  <ibexPatternSet xmi:type="IBeXLanguage:IBeXPatternSet">
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="KTx">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="k">
+        <type xmi:type="ecore:EClass" href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//K"/>
+      </signatureNodes>
+    </contextPatterns>
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="KTx2">
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.1/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.1/@signatureNodes.1"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.1/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.1/@signatureNodes.2"/>
+      <invocations xmi:type="IBeXLanguage:IBeXPatternInvocation" invokedPattern="//@ibexPatternSet/@contextPatterns.3">
+        <mapping xmi:type="IBeXLanguage:IBeXNodeToNodeMapping" key="//@ibexPatternSet/@contextPatterns.1/@signatureNodes.0" value="//@ibexPatternSet/@contextPatterns.3/@signatureNodes.0"/>
+        <mapping xmi:type="IBeXLanguage:IBeXNodeToNodeMapping" key="//@ibexPatternSet/@contextPatterns.1/@signatureNodes.1" value="//@ibexPatternSet/@contextPatterns.3/@signatureNodes.1"/>
+      </invocations>
+      <invocations xmi:type="IBeXLanguage:IBeXPatternInvocation" invokedPattern="//@ibexPatternSet/@contextPatterns.4">
+        <mapping xmi:type="IBeXLanguage:IBeXNodeToNodeMapping" key="//@ibexPatternSet/@contextPatterns.1/@signatureNodes.0" value="//@ibexPatternSet/@contextPatterns.4/@signatureNodes.0"/>
+        <mapping xmi:type="IBeXLanguage:IBeXNodeToNodeMapping" key="//@ibexPatternSet/@contextPatterns.1/@signatureNodes.2" value="//@ibexPatternSet/@contextPatterns.4/@signatureNodes.1"/>
+      </invocations>
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.1/@signatureNodes.1" targetNode="//@ibexPatternSet/@contextPatterns.1/@signatureNodes.0">
+        <type xmi:type="ecore:EReference" href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//K/K_a1"/>
+      </localEdges>
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.1/@signatureNodes.2" targetNode="//@ibexPatternSet/@contextPatterns.1/@signatureNodes.0">
+        <type xmi:type="ecore:EReference" href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//T/T_x"/>
+      </localEdges>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="a" incomingEdges="//@ibexPatternSet/@contextPatterns.1/@localEdges.0 //@ibexPatternSet/@contextPatterns.1/@localEdges.1">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.container.org/container#//Agent"/>
+      </signatureNodes>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="k" outgoingEdges="//@ibexPatternSet/@contextPatterns.1/@localEdges.0">
+        <type xmi:type="ecore:EClass" href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//K"/>
+      </signatureNodes>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="t" outgoingEdges="//@ibexPatternSet/@contextPatterns.1/@localEdges.1">
+        <type xmi:type="ecore:EClass" href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//T"/>
+      </signatureNodes>
+    </contextPatterns>
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="agent">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="a">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.container.org/container#//Agent"/>
+      </signatureNodes>
+    </contextPatterns>
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="forbidK">
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.3/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.3/@signatureNodes.1"/>
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.3/@signatureNodes.1" targetNode="//@ibexPatternSet/@contextPatterns.3/@signatureNodes.0">
+        <type xmi:type="ecore:EReference" href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//K/K_a1"/>
+      </localEdges>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="a" incomingEdges="//@ibexPatternSet/@contextPatterns.3/@localEdges.0">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.container.org/container#//Agent"/>
+      </signatureNodes>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="k" outgoingEdges="//@ibexPatternSet/@contextPatterns.3/@localEdges.0">
+        <type xmi:type="ecore:EClass" href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//K"/>
+      </signatureNodes>
+    </contextPatterns>
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="forbidTx">
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.4/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.4/@signatureNodes.1"/>
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.4/@signatureNodes.1" targetNode="//@ibexPatternSet/@contextPatterns.4/@signatureNodes.0">
+        <type xmi:type="ecore:EReference" href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//T/T_x"/>
+      </localEdges>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="a" incomingEdges="//@ibexPatternSet/@contextPatterns.4/@localEdges.0">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.container.org/container#//Agent"/>
+      </signatureNodes>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="t" outgoingEdges="//@ibexPatternSet/@contextPatterns.4/@localEdges.0">
+        <type xmi:type="ecore:EClass" href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//T"/>
+      </signatureNodes>
+    </contextPatterns>
+    <createPatterns xmi:type="IBeXLanguage:IBeXCreatePattern" name="KTx2">
+      <contextNodes xmi:type="IBeXLanguage:IBeXNode" name="k" incomingEdges="//@ibexPatternSet/@createPatterns.0/@createdEdges.1" outgoingEdges="//@ibexPatternSet/@createPatterns.0/@createdEdges.0">
+        <type xmi:type="ecore:EClass" href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//K"/>
+      </contextNodes>
+      <contextNodes xmi:type="IBeXLanguage:IBeXNode" name="t" incomingEdges="//@ibexPatternSet/@createPatterns.0/@createdEdges.0" outgoingEdges="//@ibexPatternSet/@createPatterns.0/@createdEdges.1">
+        <type xmi:type="ecore:EClass" href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//T"/>
+      </contextNodes>
+      <createdEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@createPatterns.0/@contextNodes.0" targetNode="//@ibexPatternSet/@createPatterns.0/@contextNodes.1">
+        <type xmi:type="ecore:EReference" href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//K/K_a1"/>
+      </createdEdges>
+      <createdEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@createPatterns.0/@contextNodes.1" targetNode="//@ibexPatternSet/@createPatterns.0/@contextNodes.0">
+        <type xmi:type="ecore:EReference" href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//T/T_x"/>
+      </createdEdges>
+    </createPatterns>
+    <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="KTx2"/>
+  </ibexPatternSet>
+  <metamodel xmi:type="ecore:EPackage" href="models/SimulationMetaModels/Goldbeter_Koshland.ecore#/"/>
+</org.simsg:SimDefinition>

@@ -1,4 +1,4 @@
-package org.simsg.core.pm.match;
+package org.simsg.core.pm.engine;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -9,6 +9,8 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.simsg.core.pm.match.IMatch;
+import org.simsg.core.pm.match.IMatchImpl;
 import org.simsg.core.pm.pattern.GenericPattern;
 
 public abstract class LegacyPatternMatchingEngine extends PatternMatchingEngine {
@@ -36,12 +38,12 @@ public abstract class LegacyPatternMatchingEngine extends PatternMatchingEngine 
 		this.genericPatterns = genericPatterns;
 	}
 	
-	public void setReactionContainer(Resource simulationModel, EPackage metaModel) {
+	public void setSimulationModel(Resource simulationModel, EPackage metaModel) {
 		this.simulationModel = simulationModel;
 		this.metaModel = metaModel;
 	}
 	
-	abstract public void loadModels() throws Exception;
+	abstract public void initPatterns() throws Exception;
 	
 	abstract protected void initEngineInternal() throws Exception;
 	

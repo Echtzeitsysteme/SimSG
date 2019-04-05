@@ -25,8 +25,8 @@ public class SimplePMC extends LegacyPMC {
 			genericPatterns.put(patternContainer.getPatternHash(pattern), new GenericPattern(patternContainer.getPatternHash(pattern), metaModel, pattern));
 		}
 		engine.setReactionRules(genericPatterns);
-		engine.setReactionContainer(simulationModel, metaModel.getPackage());
-		engine.loadModels();
+		engine.setSimulationModel(simulationModel, metaModel.getPackage());
+		engine.initPatterns();
 	}
 
 	@Override

@@ -4,28 +4,33 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.json.simple.JSONObject;
-import org.simsg.core.utils.PersistenceUtils;
+
+import SimulationDefinition.SimDefinition;
 
 public abstract class PersistenceManager {
 	
 	final public static String SIMULATION_MODEL_FOLDER = "SimulationModels";
+	final public static String SIMULATION_RESULTS_FOLDER = "SimulationResults";
 	final public static String SIMULATION_METAMODEL_FOLDER = "SimulationMetaModels";
 	final public static String SIMULATION_DEFINITION_FOLDER = "SimulationDefinitions";
 	//TODO: mh how to detect valid generic models?
-	final public static String SIMULATION_DEFINITION_HEADER = "<simSGL:SimSGLModel xmi:version=\"2.0\"";
+	final public static String SIMULATION_DEFINITION_HEADER = "<org.simsg:SimDefinition";
 	//TODO: same here..
-	final public static String SIMULATION_DEFINITION_NAME_LOCATION = "<model xmi:type=\"simSGL:Model\" name=";
+	final public static String SIMULATION_DEFINITION_NAME_LOCATION = "java://SimulationDefinition.SimulationDefinitionPackage\" name=";
 	final public static String PERSISTENCE_INDEX_FILE = "index.json";
 	final public static String DATA_FOLDER = "data";
 	final public static String SEPARATOR_WIN = "\\";
@@ -39,57 +44,113 @@ public abstract class PersistenceManager {
 	protected String dataFolder;
 	protected String indexPath;
 	protected String simulationModelFolder;
+	protected String simulationResultsFolder;
 	protected String simulationMetamodelFolder;
 	protected String simulationDefinitionFolder;
 	protected String simulationModelSuffix;
 	
 	protected JSONObject modelIndex;
-	protected HashMap<String, String> simulationModelPaths;
-	protected HashMap<String, String> simulationMetamodelPaths;
-	protected HashMap<String, String> simulationDefinitionPaths;
-	protected HashMap<String, Resource> simulationDefinitionCache = new HashMap<>();
-	protected HashMap<String, Resource> simulationModelCache = new HashMap<>();
+	protected Set<URI> simulationModelPaths = new HashSet<>();
+	protected Set<URI> simulationMetamodelPaths = new HashSet<>();
+	protected HashMap<String, URI> simulationDefinitionPaths = new HashMap<>();
+	protected HashMap<String, SimDefinition> simulationDefinitionCache = new HashMap<>();
+	protected HashMap<URI, Resource> simulationModelCache = new HashMap<>();
 	
 	public PersistenceManager() {}
 	
 	public abstract void setAdditionalParameters(Object ... params);
 	
-	public void setModelFolderPath(String path) {
-		dataFolder = path;
-	}
-	
-	protected abstract void setSimulationModelSuffix();
-	
-	protected abstract void fetchExistingSimulationModelPaths();
-	
-	protected void fetchExistingSimulationMetamodelPaths() {
-		simulationMetamodelPaths = new HashMap<String, String>();
-		
-		List<String> allFiles = PersistenceUtils.getAllFilesInFolder(simulationMetamodelFolder);
-		Pattern pattern = Pattern.compile(".+\\\\(.+)\\"+".ecore");
-		
-		for(String filePath : allFiles) {
-			if(filePath.matches(".+(\\"+".ecore"+")$")) {
-				Matcher matcher = pattern.matcher(filePath);
-				if(matcher.find()) {
-					String modelName = matcher.group(1);
-					simulationMetamodelPaths.put(modelName, filePath);
-				}
-			}
-		}
-	}
-	
-	public abstract Resource loadSimulationModel(String name) throws Exception;
-	
 	public void init() {
-		setSimulationModelSuffix();
 		setOSspecificSeparators();
 		classLoader();
 		setFolderPaths();
 		fetchExistingSimulationDefinitionPaths();
-		fetchExistingSimulationModelPaths();
-		fetchExistingSimulationMetamodelPaths();
 		fetchIndex();
+	}
+	
+	public void setModelFolderPath(String path) {
+		dataFolder = path;
+	}
+	
+	public Set<String> availableSimulationDefinitions() {
+		return simulationDefinitionPaths.keySet();
+	}
+	
+	public Collection<URI> availableSimulationDefinitionURIs() {
+		return simulationDefinitionPaths.values();
+	}
+
+	public Set<URI> availableSimulationModels() {
+		return simulationModelPaths;
+	}
+	
+	public SimDefinition loadSimulationDefinition (String name) {
+		if(simulationDefinitionCache.containsKey(name)) {
+			return simulationDefinitionCache.get(name);
+		}
+		if(!simulationDefinitionPaths.containsKey(name))
+			throw new IndexOutOfBoundsException("Requested reaction rule model with given name does not exist.");
+		
+		Resource resource = null;
+		try {
+			resource = PersistenceUtils.loadResource(simulationDefinitionPaths.get(name));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		SimDefinition simDef = (SimDefinition) resource.getContents().get(0);
+
+		simulationDefinitionCache.put(name, simDef);
+		return simDef;
+	}
+	
+	public SimDefinition loadSimulationDefinition (URI uri) {
+		Resource resource = null;
+		try {
+			resource = PersistenceUtils.loadResource(uri);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		SimDefinition simDef = (SimDefinition) resource.getContents().get(0);
+		simulationDefinitionPaths.put(simDef.getName(), uri);
+		simulationDefinitionCache.put(simDef.getName(), simDef);
+		return simDef;
+	}
+	
+	public abstract Resource loadSimulationModel(URI uri);
+	
+	public Resource loadSimulationModel(SimDefinition simDef) {
+		loadAndRegisterMetamodel(URI.createURI(simDef.getSimulationModelURI()));
+		return loadSimulationModel(URI.createURI(simDef.getSimulationModelURI()));
+	}
+	
+	public void loadAndRegisterMetamodel(URI uri) {
+		
+		Resource metaModelResource = null;
+		try {
+			metaModelResource = PersistenceUtils.loadResource(uri);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		EPackage metaModel = (EPackage) metaModelResource.getContents().get(0);
+		EPackage.Registry.INSTANCE.put(metaModel.getNsURI(), metaModel);
+	}
+	
+	public boolean saveSimulationModel(SimDefinition simDef, Resource simModel) {
+		String filename = simulationResultsFolder+"/"+simDef.getName();
+		return saveSimulationModel(filename, simModel);
+	}
+	
+	public abstract boolean saveSimulationModel(String filename, Resource simModel);
+	
+	public void unloadSimulationModel(URI uri) {
+		simulationModelCache.get(uri).unload();
+		simulationModelCache.remove(uri);
 	}
 	
 	private void classLoader() {
@@ -124,8 +185,8 @@ public abstract class PersistenceManager {
 	
 	@SuppressWarnings("unchecked")
 	private void updateIndex() {
-		simulationDefinitionPaths.forEach((modelName, path) -> {
-			modelIndex.put(modelName, PersistenceUtils.getLastModified(path));
+		simulationDefinitionPaths.forEach((modelName, uri) -> {
+			modelIndex.put(modelName, PersistenceUtils.getLastModified(uri.path()));
 		});
 	}
 	
@@ -148,18 +209,14 @@ public abstract class PersistenceManager {
 		
 		indexPath = dataFolder+PERSISTENCE_INDEX_FILE;
 		
-		simulationModelFolder = dataFolder + SIMULATION_MODEL_FOLDER;
-		PersistenceUtils.createFolderIfNotExist(simulationModelFolder);
-		
-		simulationMetamodelFolder = dataFolder + SIMULATION_METAMODEL_FOLDER;
-		PersistenceUtils.createFolderIfNotExist(simulationMetamodelFolder);
-		
 		simulationDefinitionFolder = dataFolder + SIMULATION_DEFINITION_FOLDER;
 		PersistenceUtils.createFolderIfNotExist(simulationDefinitionFolder);
+		
+		simulationResultsFolder = dataFolder + SIMULATION_RESULTS_FOLDER;
+		PersistenceUtils.createFolderIfNotExist(simulationResultsFolder);
 	}
 	
 	private void fetchExistingSimulationDefinitionPaths() {
-		simulationDefinitionPaths = new HashMap<String, String>();
 		
 		List<String> allFiles = PersistenceUtils.getAllFilesInFolder(simulationDefinitionFolder);
 		Pattern pattern = Pattern.compile("name=\"(.*?)\"");
@@ -176,7 +233,7 @@ public abstract class PersistenceManager {
 						Matcher matcher = pattern.matcher(key);
 						if(matcher.find()) {
 							key = matcher.group(1);
-							simulationDefinitionPaths.put(key, filePath);
+							simulationDefinitionPaths.put(key, URI.createFileURI(filePath));
 						}
 					}
 					
@@ -185,81 +242,6 @@ public abstract class PersistenceManager {
 				}
 			}
 		}
-	}
-	
-	protected boolean checkExistenceAndIndexSimulationModel(String modelName, boolean deleteOutdated) {
-		if(!simulationDefinitionPaths.containsKey(modelName)) {
-			return false;
-		}
-		if(!simulationModelPaths.containsKey(modelName)) {
-			return false;
-		}
-		long index = (long) modelIndex.get(modelName);
-		long file = PersistenceUtils.getLastModified(simulationModelPaths.get(modelName));
-		if(index >= file) {
-			if(deleteOutdated) {
-				PersistenceUtils.deleteFile(simulationModelPaths.get(modelName));
-			}
-			return false;
-		}
-		
-		return true;
-	}
-	
-	protected boolean checkExistenceAndIndexMetamodel(String modelName, boolean deleteOutdated) {
-		if(!simulationDefinitionPaths.containsKey(modelName)) {
-			return false;
-		}
-		if(!simulationMetamodelPaths.containsKey(modelName)) {
-			return false;
-		}
-		long index = (long) modelIndex.get(modelName);
-		long file = PersistenceUtils.getLastModified(simulationMetamodelPaths.get(modelName));
-		if(index >= file) {
-			if(deleteOutdated) {
-				PersistenceUtils.deleteFile(simulationMetamodelPaths.get(modelName));
-			}
-			return false;
-		}
-		
-		return true;
-	}
-	
-	public Set<String> availableSimulationDefinitions() {
-		return simulationDefinitionPaths.keySet();
-	}
-
-	public Set<String> availableSimulationModels() {
-		return simulationModelPaths.keySet();
-	}
-	
-	synchronized public Resource loadSimulationDefinition (String name) throws java.lang.Exception {
-		if(simulationDefinitionCache.containsKey(name)) {
-			return simulationDefinitionCache.get(name);
-		}
-		if(!simulationDefinitionPaths.containsKey(name))
-			throw new IndexOutOfBoundsException("Requested reaction rule model with given name does not exist.");
-		
-		Resource resource = PersistenceUtils.loadResource(simulationDefinitionPaths.get(name));
-
-		simulationDefinitionCache.put(name, resource);
-		return resource;
-	}
-	
-	synchronized public void loadAndRegisterMetamodel(String name) throws java.lang.Exception {
-		if(!simulationMetamodelPaths.containsKey(name))
-			throw new IndexOutOfBoundsException("Requested container metamodel with given name does not exist.");
-		
-		Resource metaModelResource = null;
-		metaModelResource = PersistenceUtils.loadResource(simulationMetamodelPaths.get(name));
-		
-		EPackage metaModel = (EPackage) metaModelResource.getContents().get(0);
-		EPackage.Registry.INSTANCE.put(metaModel.getNsURI(), metaModel);
-	}
-	
-	synchronized public void unloadSimulationModel(String name) {
-		simulationModelCache.get(name).unload();
-		simulationModelCache.remove(name);
-	}
+	}	
 
 }

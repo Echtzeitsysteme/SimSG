@@ -2,7 +2,9 @@ package org.simsg.core.simulation.condition;
 
 import org.simsg.core.simulation.SimulationState;
 
-public abstract class TerminationCondition {
+import SimulationDefinition.impl.TerminationConditionImpl;
+
+public abstract class TerminationCondition extends TerminationConditionImpl{
 	
 	protected final SimulationState state;
 	

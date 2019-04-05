@@ -1,4 +1,4 @@
-package org.simsg.core.utils;
+package org.simsg.core.persistence;
 
 import java.io.File;
 import java.io.FileReader;
@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.simsg.container.Container;
 
 public class PersistenceUtils {
 	
@@ -114,14 +113,14 @@ public class PersistenceUtils {
 		return modelResource;
 	}
 	
-	public static void saveModelContainer(Container model, String path) throws Exception {
+	public static void saveModelContainer(Resource simModel, String path) throws Exception {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("Container", new XMIResourceFactoryImpl());
 		ResourceSet rs = new ResourceSetImpl();
 		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		
 		URI uri = URI.createFileURI(path);
 		Resource modelResource = rs.createResource(uri);
-		modelResource.getContents().add(model);
+		modelResource.getContents().addAll(simModel.getContents());
 		
 		Map<Object, Object> saveOptions = ((XMIResource)modelResource).getDefaultSaveOptions();
 		saveOptions.put(XMIResource.OPTION_ENCODING,"UTF-8");

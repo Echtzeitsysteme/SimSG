@@ -16,8 +16,8 @@ import org.junit.jupiter.api.TestInstance;
 
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.persistence.SimplePersistenceManager;
+import org.simsg.core.pm.engine.PatternMatchingEngine;
 import org.simsg.core.pm.match.IMatch;
-import org.simsg.core.pm.match.PatternMatchingEngine;
 import org.simsg.core.pmc.PatternMatchingController;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)

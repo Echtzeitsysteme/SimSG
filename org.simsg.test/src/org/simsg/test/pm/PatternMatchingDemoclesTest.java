@@ -1,6 +1,6 @@
 package org.simsg.test.pm;
 
-import org.simsg.core.pm.match.DemoclesEngineWrapper;
+import org.simsg.core.pm.democles.DemoclesEngineWrapper;
 import org.simsg.core.pmc.SimplePMC;
 
 class PatternMatchingDemoclesTest extends PatternMatchingTest {

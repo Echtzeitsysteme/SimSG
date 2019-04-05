@@ -1,7 +1,7 @@
 package org.simsg.test.gt;
 
-import org.simsg.core.pm.match.ViatraEngineWrapper;
-import org.simsg.core.pmc.HybridPMC;
+import org.simsg.core.pm.viatra.ViatraEngineWrapper;
+import org.simsg.core.pmc.hybrid.HybridPMC;
 
 public class GraphTransformHybridViatraEMFTest extends GraphTransformTest {
 

@@ -1,6 +1,6 @@
 package org.simsg.test.gt;
 
-import org.simsg.core.pm.match.DemoclesEngineWrapper;
+import org.simsg.core.pm.democles.DemoclesEngineWrapper;
 import org.simsg.core.pmc.SimplePMC;
 
 public class GraphTransformDemoclesTest extends GraphTransformTest {
