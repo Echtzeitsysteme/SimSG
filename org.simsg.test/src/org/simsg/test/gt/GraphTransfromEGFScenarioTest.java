@@ -10,8 +10,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-
-import org.simsg.core.gt.ModelGraphTransformer;
+import org.simsg.core.gt.mgt.ModelGraphTransformer;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.persistence.SimplePersistenceManager;
 import org.simsg.core.pm.engine.PatternMatchingEngine;

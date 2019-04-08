@@ -4,8 +4,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
+import org.simsg.core.gt.GraphTransformationEngine;
 import org.simsg.core.persistence.PersistenceManager;
-import org.simsg.core.pm.match.IMatch;
+import org.simsg.core.pm.match.SimSGMatch;
 import org.simsg.core.pmc.PatternMatchingController;
 import org.simsg.core.simulation.Event;
 import org.simsg.core.simulation.Simulation;
@@ -18,8 +19,8 @@ public class StochasticSimulation extends Simulation {
 	private double systemActivity = 0;
 	private double timeStep = 0;
 	
-	public StochasticSimulation(String modelName, PersistenceManager persistence, PatternMatchingController pmc) {
-		super(modelName, persistence, pmc);
+	public StochasticSimulation(String modelName, PersistenceManager persistence, PatternMatchingController pmc, GraphTransformationEngine gt) {
+		super(modelName, persistence, pmc, gt);
 	}
 	
 	@Override
@@ -94,8 +95,8 @@ public class StochasticSimulation extends Simulation {
 
 	@Override
 	protected void processEvent(Event event) {
-		IMatch rndMatch = state.getRandomMatch(event.rule);
-		performGT(event.rule, rndMatch);
+		SimSGMatch rndMatch = state.getRandomMatch(event.rule);
+		performGT(rndMatch);
 	}
 	
 	@Override

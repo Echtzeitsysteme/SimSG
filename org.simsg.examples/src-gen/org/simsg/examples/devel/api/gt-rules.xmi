@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="ASCII"?>
 <GTLanguage:GTRuleSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:GTLanguage="platform:/resource/org.emoflon.ibex.gt/model/Gt.ecore">
-  <rules name="KTx" documentation="" ruleNodes="//@rules.0/@nodes.0">
-    <nodes name="k">
-      <type href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//K"/>
-    </nodes>
-  </rules>
-  <rules name="KTx2" documentation="" executable="true" ruleNodes="//@rules.1/@nodes.0 //@rules.1/@nodes.1 //@rules.1/@nodes.2">
+  <rules name="agent" documentation="abstract pattern forbidK() {&#x9;a : Agent &#x9;k: K {&#x9;&#x9;-K_a1-> a&#x9;} } abstract pattern forbidTx() {&#x9;a : Agent&#x9; &#x9;t: T {&#x9;&#x9;-T_x-> a&#x9;}}condition freeK = forbid forbidKcondition freeTx = forbid forbidTxcondition freeKandTx = freeK &amp;&amp; freeTxrule KTx2 refines forbidK, forbidTx {&#x9;k: K {&#x9;&#x9;++ - K_a1 -> t&#x9;}&#x9;t: T {&#x9;&#x9;++ - T_x -> k&#x9;}} when freeKandTxpattern KTx () {&#x9;k : K}" ruleNodes="//@rules.0/@nodes.0">
     <nodes name="a">
       <type href="http://www.simsg.container.org/container#//Agent"/>
     </nodes>
-    <nodes name="k">
-      <type href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//K"/>
-    </nodes>
-    <nodes name="t">
-      <type href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//T"/>
-    </nodes>
   </rules>
-  <rules name="agent" documentation="" ruleNodes="//@rules.2/@nodes.0">
+  <rules name="killAgent" documentation="" executable="true" ruleNodes="//@rules.1/@nodes.0">
     <nodes name="a">
       <type href="http://www.simsg.container.org/container#//Agent"/>
     </nodes>

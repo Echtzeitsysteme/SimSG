@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.simsg.core.pm.engine.PatternMatchingEngine;
-import org.simsg.core.pm.match.IMatch;
+import org.simsg.core.pm.match.SimSGMatch;
 
 import SimulationDefinition.SimDefinition;
 
@@ -17,7 +17,7 @@ public abstract class PatternMatchingController{
 	protected Resource simulationModel;
 	
 	protected PatternMatchingEngine engine;
-	protected Map<String, Collection<IMatch>> matches = new HashMap<>();
+	protected Map<String, Collection<SimSGMatch>> matches = new HashMap<>();
 	protected Map<String, Integer> matchCount = new HashMap<>();
 	
 	public abstract void setAdditionalParameters(Object ... params);
@@ -32,17 +32,17 @@ public abstract class PatternMatchingController{
 	
 	public abstract void collectAllMatches();
 	
-	public abstract Collection<IMatch> getMatches(String patternName);
+	public abstract Collection<SimSGMatch> getMatches(String patternName);
 	
-	public abstract Map<String, Collection<IMatch>> getAllMatches();
+	public abstract Map<String, Collection<SimSGMatch>> getAllMatches();
 	
 	public abstract int getMatchCount(String patternName);
 	
 	public abstract int getRandomMatchIdx(String patternName);
 	
-	public abstract IMatch getRandomMatch(String patternName);
+	public abstract SimSGMatch getRandomMatch(String patternName);
 	
-	public abstract IMatch getMatchAt(String patternName, int idx);
+	public abstract SimSGMatch getMatchAt(String patternName, int idx);
 	
 
 	public void setEngine(PatternMatchingEngine engine) {

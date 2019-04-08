@@ -3,15 +3,13 @@ package org.simsg.core.pm.engine;
 import java.util.Collection;
 import java.util.Map;
 
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.simsg.core.pm.match.IMatch;
+import org.simsg.core.pm.match.SimSGMatch;
 
 import SimulationDefinition.SimDefinition;
 
 public abstract class PatternMatchingEngine {
-	
-	protected EPackage metaModel;
+
 	protected Resource simulationModel;
 	protected SimDefinition simulationDefinition;
 	
@@ -36,13 +34,13 @@ public abstract class PatternMatchingEngine {
 	
 	public abstract void updateAllMatches();
 	
-	public abstract Collection<IMatch> getMatchesAndUpdate(String patternName);
+	public abstract Collection<SimSGMatch> getMatchesAndUpdate(String patternName);
 	
-	public abstract Map<String, Collection<IMatch>> getAllMatchesAndUpdate(String patternName);
+	public abstract Map<String, Collection<SimSGMatch>> getAllMatchesAndUpdate(String patternName);
 	
-	public abstract Collection<IMatch> getMatches(String patternName);
+	public abstract Collection<SimSGMatch> getMatches(String patternName);
 	
-	public abstract Map<String, Collection<IMatch>> getAllMatches();
+	public abstract Map<String, Collection<SimSGMatch>> getAllMatches();
 	
 	public String getEngineType() {
 		return this.getClass().getSimpleName();

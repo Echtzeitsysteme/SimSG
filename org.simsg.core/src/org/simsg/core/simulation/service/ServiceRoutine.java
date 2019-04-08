@@ -1,6 +1,7 @@
 package org.simsg.core.simulation.service;
 
-import org.simsg.core.gt.ModelGraphTransformer;
+import org.simsg.core.gt.GraphTransformationEngine;
+import org.simsg.core.gt.mgt.ModelGraphTransformer;
 import org.simsg.core.simulation.SimulationState;
 
 public abstract class ServiceRoutine {
@@ -12,5 +13,5 @@ public abstract class ServiceRoutine {
 	
 	public abstract void setAdditionalParameters(Object ... params);
 	
-	public abstract boolean performService(ModelGraphTransformer gt);
+	public abstract boolean performService(GraphTransformationEngine gt);
 }

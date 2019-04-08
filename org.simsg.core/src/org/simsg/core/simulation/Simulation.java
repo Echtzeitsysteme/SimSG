@@ -7,9 +7,9 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.simsg.core.gt.ModelGraphTransformer;
+import org.simsg.core.gt.GraphTransformationEngine;
 import org.simsg.core.persistence.PersistenceManager;
-import org.simsg.core.pm.match.IMatch;
+import org.simsg.core.pm.match.SimSGMatch;
 import org.simsg.core.pmc.PatternMatchingController;
 import org.simsg.core.simulation.condition.TerminationCondition;
 import org.simsg.core.simulation.constraint.ExternalConstraint;
@@ -29,7 +29,7 @@ public abstract class Simulation {
 	protected SimulationState state;
 	protected SimDefinition simulationDefinition;
 	protected Resource simulationModel;
-	private ModelGraphTransformer gt;
+	private GraphTransformationEngine gt;
 	
 	protected List<Function<SimulationState, ServiceRoutine>> serviceConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, TerminationCondition>> conditionConstructors = new LinkedList<>();
@@ -43,51 +43,53 @@ public abstract class Simulation {
 	protected List<SimulationStatistics> statistics = new LinkedList<>();
 	protected List<SimulationVisualization> visualizations = new LinkedList<>();
 	
-	public Simulation(String modelName, PersistenceManager persistence, PatternMatchingController pmc) {
+	public Simulation(String modelName, PersistenceManager persistence, PatternMatchingController pmc, GraphTransformationEngine gt) {
 		this.modelName = modelName;
 		this.persistence = persistence;
 		this.pmc = pmc;
+		this.gt = gt;
 	}
 	
 	public abstract void setAdditionalParameters(Object ... params);
 	
-	void addServiceRoutine(Function<SimulationState, ServiceRoutine> constructor) {
+	
+	public void addServiceRoutine(Function<SimulationState, ServiceRoutine> constructor) {
 		serviceConstructors.add(constructor);
 	}
 	
-	void addTerminationCondition(Function<SimulationState, TerminationCondition> constructor) {
+	public void addTerminationCondition(Function<SimulationState, TerminationCondition> constructor) {
 		conditionConstructors.add(constructor);
 	}
 	
-	void addExternalConstraint(Function<SimulationState, ExternalConstraint> constructor) {
+	public void addExternalConstraint(Function<SimulationState, ExternalConstraint> constructor) {
 		constraintConstructors.add(constructor);
 	}
 	
-	void addSimulationStatistic(Function<SimulationState, SimulationStatistics> constructor) {
+	public void addSimulationStatistic(Function<SimulationState, SimulationStatistics> constructor) {
 		statisticConstructors.add(constructor);
 	}
 	
-	void addSimulationVisualization(Function<SimulationState, SimulationVisualization> constructor) {
+	public void addSimulationVisualization(Function<SimulationState, SimulationVisualization> constructor) {
 		visualizationConstructors.add(constructor);
 	}
 	
-	void addServiceRoutine(List<Function<SimulationState, ServiceRoutine>> constructors) {
+	public void addServiceRoutine(List<Function<SimulationState, ServiceRoutine>> constructors) {
 		serviceConstructors.addAll(constructors);
 	}
 	
-	void addTerminationConditions(List<Function<SimulationState, TerminationCondition>> constructors) {
+	public void addTerminationConditions(List<Function<SimulationState, TerminationCondition>> constructors) {
 		conditionConstructors.addAll(constructors);
 	}
 	
-	void addExternalConstraints(List<Function<SimulationState, ExternalConstraint>> constructors) {
+	public void addExternalConstraints(List<Function<SimulationState, ExternalConstraint>> constructors) {
 		constraintConstructors.addAll(constructors);
 	}
 	
-	void addSimulationStatistics(List<Function<SimulationState, SimulationStatistics>> constructors) {
+	public void addSimulationStatistics(List<Function<SimulationState, SimulationStatistics>> constructors) {
 		statisticConstructors.addAll(constructors);
 	}
 	
-	void addSimulationVisualization(List<Function<SimulationState, SimulationVisualization>> constructors) {
+	public void addSimulationVisualization(List<Function<SimulationState, SimulationVisualization>> constructors) {
 		visualizationConstructors.addAll(constructors);
 	}
 	
@@ -116,11 +118,8 @@ public abstract class Simulation {
 	}
 	
 	private void initGT() {
-		//TODO: what to do here ?
-		/*
-		gt = new ModelGraphTransformer(pmc.getPatternContainer(), reactionContainer, pmc.getEPackageWrapper());
+		gt.setModels(simulationDefinition, simulationModel);
 		gt.init();
-		*/
 	}
 	
 	private void initState() {
@@ -269,23 +268,21 @@ public abstract class Simulation {
 		}
 	}
 	
-	protected void performGT(String ruleName, IMatch match) {
-		gt.applyRuleToMatch(match, ruleName);
+	protected void performGT(SimSGMatch match) {
+		gt.applyRuleToMatch(match);
 		state.setDirty();
 	}
 	
-	// TODO: results is definitely the wrong name here.. should more like current match counts
-	public Map<String, Collection<IMatch>> getResults() {
+	public Map<String, Collection<SimSGMatch>> getCurrentMatches() {
 		return pmc.getAllMatches();
 	}
 	
-	// TODO: results is definitely the wrong name here.. should more like current match counts
-	public String results() {
+	public String printCurrentMatches() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Current "+toString()+"\n *******     RESULTS:     *****\n");
-		for (String key : getResults().keySet()) {
+		for (String key : getCurrentMatches().keySet()) {
 			System.out.println(key);
-			if (getResults().get(key) != null) {
+			if (getCurrentMatches().get(key) != null) {
 				sb.append("Pattern: " + key + ", size: " + pmc.getMatchCount(key) +"\n");
 			}
 		}

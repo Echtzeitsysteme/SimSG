@@ -52,7 +52,7 @@ public class BiochemistrySimulation {
 		// This calls a visualization of the tracked patterns.
 		sim.displayResults();
 		if(saveResult) {
-			sim.saveModelGraph(System.getProperty("user.dir")+"//models//result.xmi");
+			sim.saveModelGraph();
 		}
 		sim.finish();
 		

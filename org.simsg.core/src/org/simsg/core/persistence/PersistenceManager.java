@@ -123,7 +123,7 @@ public abstract class PersistenceManager {
 	public abstract Resource loadSimulationModel(URI uri);
 	
 	public Resource loadSimulationModel(SimDefinition simDef) {
-		loadAndRegisterMetamodel(URI.createURI(simDef.getSimulationModelURI()));
+		loadAndRegisterMetamodel(URI.createURI(simDef.getMetamodelURI()));
 		return loadSimulationModel(URI.createURI(simDef.getSimulationModelURI()));
 	}
 	
@@ -131,7 +131,7 @@ public abstract class PersistenceManager {
 		
 		Resource metaModelResource = null;
 		try {
-			metaModelResource = PersistenceUtils.loadResource(uri);
+			metaModelResource = PersistenceUtils.loadEcoreResource(uri);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -139,6 +139,7 @@ public abstract class PersistenceManager {
 		
 		EPackage metaModel = (EPackage) metaModelResource.getContents().get(0);
 		EPackage.Registry.INSTANCE.put(metaModel.getNsURI(), metaModel);
+		metaModel.getEFactoryInstance().eClass();
 	}
 	
 	public boolean saveSimulationModel(SimDefinition simDef, Resource simModel) {

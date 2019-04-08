@@ -2,42 +2,31 @@ package org.simsg.core.pm.match;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.emoflon.ibex.gt.api.GraphTransformationMatch;
 import org.simsg.core.pm.pattern.HybridPattern;
 
-public class HybridMatch implements IMatch {
+
+public class HybridMatch extends SimSGMatch {
 	
 	private String patternName;
 	private Map<String, Object> parameters;
 	private List<String> parameterNames;
-	private int hashCode;
 	
-	public HybridMatch(String patternName, final Collection<IMatch> subMatches, HybridPattern pattern) {
+	public HybridMatch(String patternName, final Collection<SimSGMatch> subMatches, HybridPattern pattern) {
 		this.patternName = patternName;
 		
 		parameters = new LinkedHashMap<String, Object>();
-		for(IMatch subMatch : subMatches) {
-			for(String paramName : subMatch.parameterNames()) {
-				parameters.put(pattern.localToGlobalSignature(subMatch.patternName(), paramName), subMatch.get(paramName));
+		for(SimSGMatch subMatch : subMatches) {
+			for(String paramName : subMatch.getParameterNames()) {
+				parameters.put(pattern.localToGlobalSignature(subMatch.getPatternName(), paramName), subMatch.get(paramName));
 			}
 		}
 		parameterNames = new LinkedList<String>(parameters.keySet());
-		hashCode = 0;
-	}
-
-	@Override
-	public String patternName() {
-		return patternName;
-	}
-
-	@Override
-	public List<String> parameterNames() {
-		return parameterNames;
 	}
 
 	@Override
@@ -50,6 +39,9 @@ public class HybridMatch implements IMatch {
 		return parameters.containsKey(parameterName);
 	}
 	
+	
+	//TODO: Fix this dirty hack..
+	/*
 	@Override
 	public int hashCode() {
 		if(hashCode == 0) {
@@ -65,6 +57,49 @@ public class HybridMatch implements IMatch {
 	@Override
 	public boolean equals(Object other) {
 		return this.hashCode()==other.hashCode();
+	}
+	*/
+
+	@Override
+	public String getPatternName() {
+		return patternName;
+	}
+
+	@Override
+	public Collection<String> getParameterNames() {
+		return parameterNames;
+	}
+
+	@Override
+	public GraphTransformationMatch<?, ?> asGtMatch() {
+		return null;
+	}
+
+	@Override
+	protected int calcHashCode() {
+		return Arrays.hashCode(parameters.values().toArray());
+	}
+
+	@Override
+	protected boolean isEqual(Object obj) {
+		if(!(obj instanceof SimSGMatch) ) {
+			return false;
+		}
+		
+		SimSGMatch other = (SimSGMatch)obj;
+		if(!patternName.equals(other.getPatternName())) return false;
+		if(parameterNames.size() != other.getParameterNames().size()) return false;
+		
+		for(String param : parameterNames) {
+			if(get(param)!=other.get(param)) return false;
+		}
+		
+		for(String param : other.getParameterNames()) {
+			if(get(param)!=other.get(param)) return false;
+		}
+		
+		return true;
+		
 	}
 
 }

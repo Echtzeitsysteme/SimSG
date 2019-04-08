@@ -1,6 +1,6 @@
-import "platform:/resource/org.simsg.container/generated/Goldbeter_Koshland"
+import "platform:/resource/org.simsg.examples/models/SimulationMetaModels/Goldbeter_Koshland"
 import "http://www.simsg.container.org/container"
-
+/*
 abstract pattern forbidK() {
 	a : Agent
  
@@ -8,7 +8,7 @@ abstract pattern forbidK() {
 		-K_a1-> a
 	} 
 } 
-
+ 
 abstract pattern forbidTx() {
 	a : Agent
 	 
@@ -35,8 +35,12 @@ rule KTx2 refines forbidK, forbidTx {
 pattern KTx () {
 	k : K
 }
-
+ */
 pattern agent () {
 	a : Agent
+}
+
+rule killAgent() {
+	-- a : Agent 
 }
 

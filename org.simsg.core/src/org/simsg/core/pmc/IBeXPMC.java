@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Random;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.simsg.core.pm.match.IMatch;
+import org.simsg.core.pm.match.SimSGMatch;
 
 import GTLanguage.GTRule;
 import IBeXLanguage.IBeXPattern;
@@ -65,12 +65,12 @@ public class IBeXPMC extends PatternMatchingController {
 	}
 
 	@Override
-	public Collection<IMatch> getMatches(String patternName) {
+	public Collection<SimSGMatch> getMatches(String patternName) {
 		return matches.get(patternName);
 	}
 
 	@Override
-	public Map<String, Collection<IMatch>> getAllMatches() {
+	public Map<String, Collection<SimSGMatch>> getAllMatches() {
 		return matches;
 	}
 
@@ -81,18 +81,18 @@ public class IBeXPMC extends PatternMatchingController {
 
 	@Override
 	public int getRandomMatchIdx(String patternName) {
-		Collection<IMatch> m = matches.get(patternName);
+		Collection<SimSGMatch> m = matches.get(patternName);
 		return rnd.nextInt(m.size()-1);
 	}
 
 	@Override
-	public IMatch getRandomMatch(String patternName) {
-		return (IMatch)matches.get(patternName).toArray()[getRandomMatchIdx(patternName)];
+	public SimSGMatch getRandomMatch(String patternName) {
+		return (SimSGMatch)matches.get(patternName).toArray()[getRandomMatchIdx(patternName)];
 	}
 
 	@Override
-	public IMatch getMatchAt(String patternName, int idx) {
-		return (IMatch)matches.get(patternName).toArray()[idx];
+	public SimSGMatch getMatchAt(String patternName, int idx) {
+		return (SimSGMatch)matches.get(patternName).toArray()[idx];
 	}
 
 }

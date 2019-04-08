@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -89,7 +90,7 @@ public class PersistenceUtils {
 	}
 	
 	public static Resource loadResource(String path) throws Exception {
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ReactionRules", new XMIResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("Model", new XMIResourceFactoryImpl());
 		ResourceSet rs = new ResourceSetImpl();
 		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 
@@ -102,13 +103,25 @@ public class PersistenceUtils {
 	}
 	
 	public static Resource loadResource(URI uri) throws Exception {
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ReactionRules", new XMIResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("Model", new XMIResourceFactoryImpl());
 		ResourceSet rs = new ResourceSetImpl();
 		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 
 		Resource modelResource = rs.getResource(uri, true);
 		if(modelResource == null)
 			throw new IOException("File did not contain a vaild model.");
+		
+		return modelResource;
+	}
+	
+	public static Resource loadEcoreResource(URI uri) throws Exception {
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("MetaModel", new EcoreResourceFactoryImpl());
+		ResourceSet rs = new ResourceSetImpl();
+		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
+
+		Resource modelResource = rs.getResource(uri, true);
+		if(modelResource == null)
+			throw new IOException("File did not contain a vaild metamodel.");
 		
 		return modelResource;
 	}

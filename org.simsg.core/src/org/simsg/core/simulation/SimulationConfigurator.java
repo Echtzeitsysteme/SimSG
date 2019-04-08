@@ -7,11 +7,16 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import org.simsg.core.gt.GraphTransformationEngine;
+import org.simsg.core.gt.IBeXGT;
+import org.simsg.core.gt.mgt.ModelGraphTransformer;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.persistence.SimplePersistenceManager;
 import org.simsg.core.pm.democles.DemoclesEngineWrapper;
 import org.simsg.core.pm.engine.PatternMatchingEngine;
+import org.simsg.core.pm.ibex.IBeXDemoclesEngine;
 import org.simsg.core.pm.viatra.ViatraEngineWrapper;
+import org.simsg.core.pmc.IBeXPMC;
 import org.simsg.core.pmc.PatternMatchingController;
 import org.simsg.core.pmc.SimplePMC;
 import org.simsg.core.pmc.hybrid.HybridPMC;
@@ -35,6 +40,7 @@ public class SimulationConfigurator {
 	protected Supplier<PersistenceManager> persistenceConstructor;
 	protected Supplier<PatternMatchingEngine> engineConstructor;
 	protected Supplier<PatternMatchingController> pmcConstructor;
+	protected Supplier<GraphTransformationEngine> gtConstructor;
 	protected Supplier<Simulation> simulationConstructor;
 	
 	protected List<Function<SimulationState, ServiceRoutine>> serviceConstructors = new LinkedList<>();
@@ -45,8 +51,11 @@ public class SimulationConfigurator {
 	
 	public SimulationConfigurator() {
 		setEMFPersistence();
-		setViatraAsEngine();
-		setSimplePMC();
+		//setViatraAsEngine();
+		//setSimplePMC();
+		setIBeXDemoclesAsEngine();
+		setIBeXDemoclesPMC();
+		setIBeXGT();
 	}
 	
 	public void setModel(String modelName) {
@@ -121,6 +130,12 @@ public class SimulationConfigurator {
 		};
 	}
 	
+	public void setIBeXDemoclesAsEngine() {
+		engineConstructor = () -> {
+			return new IBeXDemoclesEngine();
+		};
+	}
+	
 	public void setPMC(Class<? extends PatternMatchingController> pmcType, Object ... params) {
 		pmcConstructor = ()-> {
 			Constructor<? extends PatternMatchingController> pmcConstructor = null;
@@ -153,6 +168,47 @@ public class SimulationConfigurator {
 	public void setHybridPMC() {
 		pmcConstructor = () -> {
 			return new HybridPMC();
+		};
+	}
+	
+	public void setIBeXDemoclesPMC() {
+		pmcConstructor = () -> {
+			return new IBeXPMC();
+		};
+	}
+	
+	public void setGT(Class<? extends GraphTransformationEngine> gtType, Object ... params) {
+		gtConstructor = ()-> {
+			Constructor<? extends GraphTransformationEngine> gtConstructor = null;
+			try {
+				gtConstructor = gtType.getConstructor();
+			} catch (NoSuchMethodException | SecurityException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			if(gtConstructor == null) return null;
+			try {
+				GraphTransformationEngine gt = gtConstructor.newInstance();
+				gt.setAdditionalParameters(params);
+				return gt;
+			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		};
+	}
+	
+	public void setSimpleGT() {
+		gtConstructor = () -> {
+			return new ModelGraphTransformer();
+		};
+	}
+	
+	public void setIBeXGT() {
+		gtConstructor = () -> {
+			return new IBeXGT();
 		};
 	}
 	
@@ -279,7 +335,7 @@ public class SimulationConfigurator {
 	
 	public void setSimpleSimulation(boolean deterministic) {
 		simulationConstructor = ()->{
-			SimpleSimulation sim = new SimpleSimulation(modelName, createPersistenceManager(), createPMC());
+			SimpleSimulation sim = new SimpleSimulation(modelName, createPersistenceManager(), createPMC(), gtConstructor.get());
 			sim.useReactionRate(!deterministic);
 			sim.randomizeRuleOrder(!deterministic);
 			return sim;
@@ -288,7 +344,7 @@ public class SimulationConfigurator {
 	
 	public void setStochasticSimulation() {
 		simulationConstructor = ()-> {	
-			return new StochasticSimulation(modelName, createPersistenceManager(), createPMC());
+			return new StochasticSimulation(modelName, createPersistenceManager(), createPMC(), gtConstructor.get());
 		};
 	}
 	

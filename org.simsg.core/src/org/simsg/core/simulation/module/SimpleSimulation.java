@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+import org.simsg.core.gt.GraphTransformationEngine;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.pmc.PatternMatchingController;
 import org.simsg.core.simulation.Event;
@@ -22,8 +23,8 @@ public class SimpleSimulation extends Simulation {
 	
 	private Random random = new Random();
 	
-	public SimpleSimulation(String modelName, PersistenceManager persistence, PatternMatchingController pmc) {
-		super(modelName, persistence, pmc);
+	public SimpleSimulation(String modelName, PersistenceManager persistence, PatternMatchingController pmc, GraphTransformationEngine gt) {
+		super(modelName, persistence, pmc, gt);
 	}
 	
 	public void randomizeRuleOrder(boolean activate) {
@@ -96,7 +97,7 @@ public class SimpleSimulation extends Simulation {
 
 	@Override
 	protected void processEvent(Event event) {
-		performGT(event.rule, state.getRandomMatch(event.rule));
+		performGT(state.getRandomMatch(event.rule));
 	}
 	
 	@Override

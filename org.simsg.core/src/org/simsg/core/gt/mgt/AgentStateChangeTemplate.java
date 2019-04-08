@@ -1,4 +1,4 @@
-package org.simsg.core.gt;
+package org.simsg.core.gt.mgt;
 
 import org.eclipse.emf.ecore.EReference;
 import org.simsg.container.Agent;

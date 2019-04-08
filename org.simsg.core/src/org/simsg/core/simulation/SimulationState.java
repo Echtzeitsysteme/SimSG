@@ -3,7 +3,7 @@ package org.simsg.core.simulation;
 import java.util.PriorityQueue;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.simsg.core.pm.match.IMatch;
+import org.simsg.core.pm.match.SimSGMatch;
 import org.simsg.core.pmc.PatternMatchingController;
 
 import SimulationDefinition.SimDefinition;
@@ -69,7 +69,7 @@ public class SimulationState {
 		return pmc.getMatchCount(ruleName);
 	}
 	
-	public IMatch getRandomMatch(String ruleName) {
+	public SimSGMatch getRandomMatch(String ruleName) {
 		return pmc.getRandomMatch(ruleName);
 	}
 	

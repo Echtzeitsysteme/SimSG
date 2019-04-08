@@ -1,79 +1,19 @@
 <?xml version="1.0" encoding="ASCII"?>
 <IBeXLanguage:IBeXPatternSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:IBeXLanguage="platform:/resource/org.emoflon.ibex.common/model/Common.ecore">
-  <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="KTx">
-    <signatureNodes name="k">
-      <type href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//K"/>
-    </signatureNodes>
-  </contextPatterns>
-  <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="KTx2">
-    <injectivityConstraints values="//@contextPatterns.1/@signatureNodes.0 //@contextPatterns.1/@signatureNodes.1"/>
-    <injectivityConstraints values="//@contextPatterns.1/@signatureNodes.0 //@contextPatterns.1/@signatureNodes.2"/>
-    <invocations invokedPattern="//@contextPatterns.3">
-      <mapping key="//@contextPatterns.1/@signatureNodes.0" value="//@contextPatterns.3/@signatureNodes.0"/>
-      <mapping key="//@contextPatterns.1/@signatureNodes.1" value="//@contextPatterns.3/@signatureNodes.1"/>
-    </invocations>
-    <invocations invokedPattern="//@contextPatterns.4">
-      <mapping key="//@contextPatterns.1/@signatureNodes.0" value="//@contextPatterns.4/@signatureNodes.0"/>
-      <mapping key="//@contextPatterns.1/@signatureNodes.2" value="//@contextPatterns.4/@signatureNodes.1"/>
-    </invocations>
-    <localEdges sourceNode="//@contextPatterns.1/@signatureNodes.1" targetNode="//@contextPatterns.1/@signatureNodes.0">
-      <type href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//K/K_a1"/>
-    </localEdges>
-    <localEdges sourceNode="//@contextPatterns.1/@signatureNodes.2" targetNode="//@contextPatterns.1/@signatureNodes.0">
-      <type href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//T/T_x"/>
-    </localEdges>
-    <signatureNodes name="a" incomingEdges="//@contextPatterns.1/@localEdges.0 //@contextPatterns.1/@localEdges.1">
-      <type href="http://www.simsg.container.org/container#//Agent"/>
-    </signatureNodes>
-    <signatureNodes name="k" outgoingEdges="//@contextPatterns.1/@localEdges.0">
-      <type href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//K"/>
-    </signatureNodes>
-    <signatureNodes name="t" outgoingEdges="//@contextPatterns.1/@localEdges.1">
-      <type href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//T"/>
-    </signatureNodes>
-  </contextPatterns>
   <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="agent">
     <signatureNodes name="a">
       <type href="http://www.simsg.container.org/container#//Agent"/>
     </signatureNodes>
   </contextPatterns>
-  <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="forbidK">
-    <injectivityConstraints values="//@contextPatterns.3/@signatureNodes.0 //@contextPatterns.3/@signatureNodes.1"/>
-    <localEdges sourceNode="//@contextPatterns.3/@signatureNodes.1" targetNode="//@contextPatterns.3/@signatureNodes.0">
-      <type href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//K/K_a1"/>
-    </localEdges>
-    <signatureNodes name="a" incomingEdges="//@contextPatterns.3/@localEdges.0">
+  <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="killAgent">
+    <signatureNodes name="a">
       <type href="http://www.simsg.container.org/container#//Agent"/>
     </signatureNodes>
-    <signatureNodes name="k" outgoingEdges="//@contextPatterns.3/@localEdges.0">
-      <type href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//K"/>
-    </signatureNodes>
   </contextPatterns>
-  <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="forbidTx">
-    <injectivityConstraints values="//@contextPatterns.4/@signatureNodes.0 //@contextPatterns.4/@signatureNodes.1"/>
-    <localEdges sourceNode="//@contextPatterns.4/@signatureNodes.1" targetNode="//@contextPatterns.4/@signatureNodes.0">
-      <type href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//T/T_x"/>
-    </localEdges>
-    <signatureNodes name="a" incomingEdges="//@contextPatterns.4/@localEdges.0">
+  <createPatterns name="killAgent"/>
+  <deletePatterns name="killAgent">
+    <deletedNodes name="a">
       <type href="http://www.simsg.container.org/container#//Agent"/>
-    </signatureNodes>
-    <signatureNodes name="t" outgoingEdges="//@contextPatterns.4/@localEdges.0">
-      <type href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//T"/>
-    </signatureNodes>
-  </contextPatterns>
-  <createPatterns name="KTx2">
-    <contextNodes name="k" incomingEdges="//@createPatterns.0/@createdEdges.1" outgoingEdges="//@createPatterns.0/@createdEdges.0">
-      <type href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//K"/>
-    </contextNodes>
-    <contextNodes name="t" incomingEdges="//@createPatterns.0/@createdEdges.0" outgoingEdges="//@createPatterns.0/@createdEdges.1">
-      <type href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//T"/>
-    </contextNodes>
-    <createdEdges sourceNode="//@createPatterns.0/@contextNodes.0" targetNode="//@createPatterns.0/@contextNodes.1">
-      <type href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//K/K_a1"/>
-    </createdEdges>
-    <createdEdges sourceNode="//@createPatterns.0/@contextNodes.1" targetNode="//@createPatterns.0/@contextNodes.0">
-      <type href="platform:/resource/org.simsg.container/generated/Goldbeter_Koshland#//T/T_x"/>
-    </createdEdges>
-  </createPatterns>
-  <deletePatterns name="KTx2"/>
+    </deletedNodes>
+  </deletePatterns>
 </IBeXLanguage:IBeXPatternSet>

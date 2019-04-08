@@ -3,7 +3,8 @@ package org.simsg.core.simulation.service;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.simsg.core.gt.ModelGraphTransformer;
+import org.simsg.core.gt.GraphTransformationEngine;
+import org.simsg.core.gt.mgt.ModelGraphTransformer;
 import org.simsg.core.simulation.SimulationState;
 
 public class PeriodicService extends ServiceRoutine {
@@ -25,7 +26,7 @@ public class PeriodicService extends ServiceRoutine {
 	}
 
 	@Override
-	public boolean performService(ModelGraphTransformer gt) {
+	public boolean performService(GraphTransformationEngine gt) {
 		if(state.peekNextEvent() == null) return false;
 		
 		double nextEventTime = state.peekNextEvent().time;
@@ -46,7 +47,7 @@ public class PeriodicService extends ServiceRoutine {
 				int count = state.getMatchCount(rule);
 				if(count <= 0) continue;
 				
-				gt.applyRuleToMatch(state.getRandomMatch(rule), rule);
+				gt.applyRuleToMatch(state.getRandomMatch(rule));
 				
 				state.refreshState();
 				if(count != state.getMatchCount(rule)) {

@@ -1,32 +1,29 @@
-package org.simsg.core.gt;
+package org.simsg.core.gt.mgt;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.simsg.container.Container;
-import org.simsg.container.util.EPackageWrapper;
-import org.simsg.core.pm.match.IMatch;
+import org.simsg.core.gt.GraphTransformationEngine;
+//import org.simsg.container.util.EPackageWrapper;
+import org.simsg.core.pm.match.SimSGMatch;
 import org.simsg.core.pm.pattern.GenericPattern;
-import org.simsg.simsgl.utils.PatternContainer;
-import org.simsg.simsgl.utils.PatternUtils;
 
-public class ModelGraphTransformer {
+public class ModelGraphTransformer extends GraphTransformationEngine {
 	
-	private PatternContainer patternContainer;
-	private Container reactionContainer;
-	private EPackageWrapper metaModel;
+	//TODO: make EPackageWrapper a Singleton and fetch instance and remove dependency on container!
+	//private EPackageWrapper metaModel;
 	
 	private Map<String, GenericPattern> patternMap = new HashMap<>();
 	private Map<String, GenericPattern> targetPatternMap = new HashMap<>();
 	private Map<String, TransformationTemplate> templateMap = new HashMap<>();
 	
-	public ModelGraphTransformer(PatternContainer patternContainer, Container reactionContainer, EPackageWrapper metaModel) {
-		this.patternContainer = patternContainer;
-		this.reactionContainer = reactionContainer;
-		this.metaModel = metaModel;
+	public ModelGraphTransformer() {
+		
 	}
 	
 	private void initPatternMaps() {
+		//TODO: how to, without pattern container?
+		/*
 		Map<String, GenericPattern> rulePatterns = new HashMap<>(); 
 		patternContainer.getAllRulePatterns().forEach((name, pattern) -> rulePatterns.put(name,  new GenericPattern(name, metaModel, pattern)));
 		rulePatterns.forEach((name, pattern) -> {
@@ -43,14 +40,17 @@ public class ModelGraphTransformer {
 				}
 			}
 		});
-		
+		*/
 	}
 	
 	private void initTransformationTemplates( ) {
+		//TODO: how to, without pattern container and without dependency on SimSGL?
+		/*
 		patternMap.forEach((patternName, lhsPattern) -> {
 			GenericPattern rhsPattern = targetPatternMap.get(patternName);
 			templateMap.put(patternName, new TransformationTemplate(patternName, lhsPattern, rhsPattern, reactionContainer, metaModel));
 		});
+		*/
 	}
 	
 	public void init() {
@@ -58,11 +58,28 @@ public class ModelGraphTransformer {
 		initTransformationTemplates();
 	}
 	
-	public void applyRuleToMatch(IMatch match, String patternName) {
-		templateMap.get(patternName).applyTransformation(match);
-	}
-	
 	public Map<String, GenericPattern> getPatternMap() {
 		return patternMap;
+	}
+	
+	//TODO: repair..
+	/*
+	@Override
+	public void applyRuleToMatch(IMatch match) {
+		templateMap.get(match.patternName()).applyTransformation(match);
+		
+	}
+	*/
+
+	@Override
+	public void setAdditionalParameters(Object... params) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void applyRuleToMatch(SimSGMatch match) {
+		// TODO Auto-generated method stub
+		
 	}
 }	

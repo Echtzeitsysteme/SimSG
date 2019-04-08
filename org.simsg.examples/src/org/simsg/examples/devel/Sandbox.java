@@ -3,6 +3,9 @@ package org.simsg.examples.devel;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Type;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,7 +20,9 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.emoflon.ibex.gt.api.GraphTransformationAPI;
 import org.emoflon.ibex.gt.api.GraphTransformationApp;
+import org.emoflon.ibex.gt.api.GraphTransformationMatch;
 import org.emoflon.ibex.gt.api.GraphTransformationPattern;
+import org.emoflon.ibex.gt.api.GraphTransformationRule;
 
 import GTLanguage.GTLanguagePackage;
 import GTLanguage.GTRuleSet;
@@ -25,11 +30,15 @@ import IBeXLanguage.IBeXLanguagePackage;
 import IBeXLanguage.IBeXPatternSet;
 import SimulationDefinition.SimDefinition;
 import SimulationDefinition.SimulationDefinitionFactory;
+
+import org.simsg.core.gt.GraphTransformationEngine;
+import org.simsg.core.gt.IBeXGT;
 import org.simsg.core.persistence.*;
 import org.simsg.core.pm.engine.PatternMatchingEngine;
 import org.simsg.core.pm.ibex.IBeXDemoclesEngine;
 import org.simsg.core.pmc.IBeXPMC;
 import org.simsg.core.pmc.PatternMatchingController;
+import org.simsg.core.utils.IBeXApiWrapper;
 
 public class Sandbox {
 
@@ -41,8 +50,19 @@ public class Sandbox {
 		PatternMatchingController pmc = new IBeXPMC();
 		pmc.setEngine(e);
 		pmc.loadModels(def, model);
+		
 		pmc.initController();
 		pmc.initEngine();
+		pmc.collectAllMatches();
+		pmc.getAllMatches().forEach((name, matches) -> {
+			System.out.println("Pattern: "+name+" num: "+matches.size());
+		});
+		
+		GraphTransformationEngine gt = new IBeXGT();
+		gt.setModels(def, model);
+		gt.init();
+		gt.applyRuleToMatch(pmc.getRandomMatch("killAgent"));
+		
 		pmc.collectAllMatches();
 		pmc.getAllMatches().forEach((name, matches) -> {
 			System.out.println("Pattern: "+name+" num: "+matches.size());
