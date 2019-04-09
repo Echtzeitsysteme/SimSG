@@ -82,7 +82,12 @@ public class IBeXPMC extends PatternMatchingController {
 	@Override
 	public int getRandomMatchIdx(String patternName) {
 		Collection<SimSGMatch> m = matches.get(patternName);
-		return rnd.nextInt(m.size()-1);
+		if(m.size()>1) {
+			return rnd.nextInt(m.size()-1);
+		}else {
+			return 0;
+		}
+		
 	}
 
 	@Override

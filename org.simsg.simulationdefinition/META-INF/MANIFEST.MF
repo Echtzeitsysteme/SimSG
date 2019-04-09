@@ -16,7 +16,9 @@ Export-Package: GTLanguage,
  IBeXLanguage.util,
  SimulationDefinition,
  SimulationDefinition.impl,
- SimulationDefinition.util
+ SimulationDefinition.util,
+ org.simsg.simulationdefinition.utils
 Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore.xmi
 Bundle-ActivationPolicy: lazy

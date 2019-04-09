@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ASCII"?>
+<IBeXLanguage:IBeXPatternSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:IBeXLanguage="platform:/resource/org.emoflon.ibex.common/model/Common.ecore">
+  <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="connected">
+    <injectivityConstraints values="//@contextPatterns.0/@signatureNodes.0 //@contextPatterns.0/@signatureNodes.1"/>
+    <signatureNodes name="n1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </signatureNodes>
+    <signatureNodes name="n2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </signatureNodes>
+  </contextPatterns>
+  <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="deleteLink">
+    <signatureNodes name="l">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </signatureNodes>
+  </contextPatterns>
+  <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="link">
+    <signatureNodes name="l">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </signatureNodes>
+  </contextPatterns>
+  <createPatterns name="deleteLink"/>
+  <deletePatterns name="deleteLink">
+    <deletedNodes name="l">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </deletedNodes>
+  </deletePatterns>
+</IBeXLanguage:IBeXPatternSet>

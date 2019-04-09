@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ComputerNetwork:Network xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ComputerNetwork="http://www.simsg.org/examples/ComputerNetwork" xsi:schemaLocation="http://www.simsg.org/examples/ComputerNetwork java://org.simsg.examples.network.ComputerNetwork.ComputerNetworkPackage" name="testNetwork1">
+  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.1 //@links.3 //@links.9 //@links.4" name="Node2" x="4.254729937983004" y="25.802285141513075"/>
+  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.2 //@links.7 //@links.4 //@links.8" name="Node4" x="25.73139839537812" y="27.32097755224127"/>
+  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.5 //@links.1 //@links.6 //@links.2" name="Node0" x="36.946979115730024" y="15.961753344111502"/>
+  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.5 //@links.3 //@links.0 //@links.7" name="Node1" x="40.843946217687616" y="23.930760183007504"/>
+  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.6 //@links.0 //@links.9 //@links.8" name="Node3" x="29.82805322809485" y="6.9743848420489805"/>
+  <links xmi:type="ComputerNetwork:Link" weight="20.220498585881245" endpoints="//@nodes.3 //@nodes.4"/>
+  <links xmi:type="ComputerNetwork:Link" weight="34.14116609542755" endpoints="//@nodes.2 //@nodes.0"/>
+  <links xmi:type="ComputerNetwork:Link" weight="15.963120794672035" endpoints="//@nodes.2 //@nodes.1"/>
+  <links xmi:type="ComputerNetwork:Link" weight="36.63704892091216" endpoints="//@nodes.3 //@nodes.0"/>
+  <links xmi:type="ComputerNetwork:Link" weight="21.53029759820504" endpoints="//@nodes.0 //@nodes.1"/>
+  <links xmi:type="ComputerNetwork:Link" weight="8.870818597632972" endpoints="//@nodes.2 //@nodes.3"/>
+  <links xmi:type="ComputerNetwork:Link" weight="11.465247419288769" endpoints="//@nodes.2 //@nodes.4"/>
+  <links xmi:type="ComputerNetwork:Link" weight="15.488146289735445" endpoints="//@nodes.3 //@nodes.1"/>
+  <links xmi:type="ComputerNetwork:Link" weight="20.754913050477263" endpoints="//@nodes.4 //@nodes.1"/>
+  <links xmi:type="ComputerNetwork:Link" weight="31.75664802505354" endpoints="//@nodes.0 //@nodes.4"/>
+</ComputerNetwork:Network>

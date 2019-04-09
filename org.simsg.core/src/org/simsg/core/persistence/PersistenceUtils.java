@@ -126,8 +126,8 @@ public class PersistenceUtils {
 		return modelResource;
 	}
 	
-	public static void saveModelContainer(Resource simModel, String path) throws Exception {
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("Container", new XMIResourceFactoryImpl());
+	public static void saveModel(Resource simModel, String path) throws Exception {
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("SimulationModel", new XMIResourceFactoryImpl());
 		ResourceSet rs = new ResourceSetImpl();
 		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		

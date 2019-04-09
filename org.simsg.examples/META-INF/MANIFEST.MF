@@ -12,7 +12,8 @@ Require-Bundle: com.google.guava,
  org.emoflon.ibex.common,
  org.emoflon.ibex.gt,
  org.emoflon.ibex.gt.democles,
- SimulationDefinition
+ SimulationDefinition,
+ org.simsg.examples.network
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
@@ -75,7 +76,10 @@ Export-Package: org.jgrapht,
  Goldbeter_Koshland.util,
  org.simsg.examples.devel.api,
  org.simsg.examples.devel.api.matches,
- org.simsg.examples.devel.api.rules
+ org.simsg.examples.devel.api.rules,
+ org.simsg.examples.network.api,
+ org.simsg.examples.network.api.matches,
+ org.simsg.examples.network.api.rules
 Bundle-Name: %pluginName
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: libs/jgrapht-core-1.3.0.jar,libs/gs-core-1.3.jar,lib

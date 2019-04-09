@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ASCII"?>
+<GTLanguage:GTRuleSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:GTLanguage="platform:/resource/org.emoflon.ibex.gt/model/Gt.ecore">
+  <rules name="connected" documentation="" ruleNodes="//@rules.0/@nodes.0 //@rules.0/@nodes.1">
+    <nodes name="n1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </nodes>
+    <nodes name="n2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </nodes>
+  </rules>
+  <rules name="deleteLink" documentation="" executable="true" ruleNodes="//@rules.1/@nodes.0">
+    <nodes name="l">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+  </rules>
+  <rules name="link" documentation="" ruleNodes="//@rules.2/@nodes.0">
+    <nodes name="l">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+  </rules>
+</GTLanguage:GTRuleSet>

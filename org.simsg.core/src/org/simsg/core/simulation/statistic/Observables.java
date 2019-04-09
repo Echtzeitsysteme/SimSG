@@ -1,31 +1,42 @@
 package org.simsg.core.simulation.statistic;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.simsg.core.simulation.Observable;
 import org.simsg.core.simulation.SimulationState;
-//import org.simsg.simsgl.utils.PatternContainer;
 
+import IBeXLanguage.IBeXContextPattern;
 
 public class Observables extends SimulationStatistics {
 	
-	private Map<String, Observable> observables;
+	private Map<String, Observable> observables = new HashMap<>();
 	
 	public Observables(SimulationState state) {
 		super(state);
-		observables = new HashMap<String, Observable>();
-		initObservables();
 	}
 	
-	public void initObservables() {
-		// TODO: do this generically or maybe define a SimulationDefiniton metamodel
-		/*
-		PatternContainer patternContainer = state.getPatternContainer();
-		for(String patternName : patternContainer.getObservablesPatterns().keySet()) {
-			observables.put(patternName, new Observable(patternName));
+	public Observables(SimulationState state, Collection<SimulationDefinition.Observation> observations) {
+		super(state);
+		for(SimulationDefinition.Observation obs : observations) {
+			if(obs instanceof SimulationDefinition.PatternObservation) {
+				SimulationDefinition.PatternObservation pObs = (SimulationDefinition.PatternObservation)obs;
+				observables.put(pObs.getName(), new Observable(pObs));
+			}
 		}
-		*/
+	}
+	
+	public void addObservation(SimulationDefinition.Observation observation) {
+		if(observation instanceof SimulationDefinition.PatternObservation) {
+			SimulationDefinition.PatternObservation pObs = (SimulationDefinition.PatternObservation)observation;
+			observables.put(pObs.getName(), new Observable(pObs));
+		}
+	}
+	
+	public void addObservation(IBeXContextPattern pattern) {
+		Observable obs = new Observable(pattern.getName());
+		obs.setPattern(pattern);
+		observables.put(obs.getName(), obs);
 	}
 	
 	@Override
@@ -47,12 +58,11 @@ public class Observables extends SimulationStatistics {
 	@Override
 	protected void saveStatistics() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void setAdditionalParameters(Object... params) {
 		// TODO Auto-generated method stub
-		
 	}
+
 }

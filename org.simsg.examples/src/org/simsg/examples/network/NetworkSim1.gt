@@ -1,0 +1,36 @@
+import "http://www.simsg.org/examples/ComputerNetwork"
+
+rule deleteLink() {
+	-- l : Link
+}
+
+pattern link() {
+	l : Link
+}
+
+pattern connected() {
+	n1 : Node {
+		
+	}
+	
+	n2 : Node {
+		
+	}
+	
+}
+
+/*
+condition notConnected = forbid connected
+
+rule connect refines connected {
+	++ l : Link
+	n1 : Node{
+		++ -links->l
+	}
+	
+	n2 : Node {
+		++ -links->l
+	}
+}
+* 
+*  */

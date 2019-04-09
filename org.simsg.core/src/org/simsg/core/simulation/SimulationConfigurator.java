@@ -336,7 +336,7 @@ public class SimulationConfigurator {
 	public void setSimpleSimulation(boolean deterministic) {
 		simulationConstructor = ()->{
 			SimpleSimulation sim = new SimpleSimulation(modelName, createPersistenceManager(), createPMC(), gtConstructor.get());
-			sim.useReactionRate(!deterministic);
+			sim.useRuleRates(!deterministic);
 			sim.randomizeRuleOrder(!deterministic);
 			return sim;
 		};

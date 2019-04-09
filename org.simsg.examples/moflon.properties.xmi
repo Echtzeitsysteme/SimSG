@@ -7,4 +7,7 @@
   <importMappings
       key="http://www.simsg.container.org/container"
       value="org.simsg.container"/>
+  <importMappings
+      key="http://www.simsg.org/examples/ComputerNetwork"
+      value="org.simsg.examples.network.ComputerNetwork"/>
 </org.moflon.core.propertycontainer:MoflonPropertiesContainer>

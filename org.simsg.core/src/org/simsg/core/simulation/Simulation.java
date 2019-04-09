@@ -11,9 +11,12 @@ import org.simsg.core.gt.GraphTransformationEngine;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.pm.match.SimSGMatch;
 import org.simsg.core.pmc.PatternMatchingController;
+import org.simsg.core.simulation.condition.PatternTerminationCondition;
+import org.simsg.core.simulation.condition.SimpleTerminationCondition;
 import org.simsg.core.simulation.condition.TerminationCondition;
 import org.simsg.core.simulation.constraint.ExternalConstraint;
 import org.simsg.core.simulation.service.ServiceRoutine;
+import org.simsg.core.simulation.statistic.Observables;
 import org.simsg.core.simulation.statistic.SimulationStatistics;
 import org.simsg.core.simulation.visualization.SimulationVisualization;
 import org.simsg.core.utils.Runtimer;
@@ -93,7 +96,7 @@ public abstract class Simulation {
 		visualizationConstructors.addAll(constructors);
 	}
 	
-	public void initialize() throws Exception {
+	public void initialize() {
 		initModel();
 		initPMC();	
 		initGT();
@@ -105,16 +108,16 @@ public abstract class Simulation {
 		initializeVisualizations();
 	}
 	
-	private void initModel() throws Exception {
+	private void initModel() {
 		persistence.init();
 		simulationDefinition = persistence.loadSimulationDefinition(modelName);
 		simulationModel = persistence.loadSimulationModel(simulationDefinition);
 	}
 	
-	private void initPMC() throws Exception {
+	private void initPMC() {
 		pmc.loadModels(simulationDefinition, simulationModel);
-		pmc.initEngine();
 		pmc.initController();
+		pmc.initEngine();
 	}
 	
 	private void initGT() {
@@ -137,6 +140,14 @@ public abstract class Simulation {
 		for(Function<SimulationState, TerminationCondition> constructor : conditionConstructors) {
 			conditions.add(constructor.apply(state));
 		}
+		for(SimulationDefinition.TerminationCondition term : simulationDefinition.getTerminationConditions()) {
+			if(term instanceof SimulationDefinition.SimpleTerminationCondition) {
+				conditions.add(new SimpleTerminationCondition(state, (SimulationDefinition.SimpleTerminationCondition)term));
+			} else if(term instanceof SimulationDefinition.PatternTerminationCondition) {
+				conditions.add(new PatternTerminationCondition(state, (SimulationDefinition.PatternTerminationCondition)term));
+			}
+			
+		}
 	}
 	
 	private void initializeConstraints() {
@@ -149,6 +160,9 @@ public abstract class Simulation {
 		for(Function<SimulationState, SimulationStatistics> constructor : statisticConstructors) {
 			statistics.add(constructor.apply(state));
 		}
+		
+		if(simulationDefinition.getObservations().isEmpty()) return;
+		statistics.add(new Observables(state, simulationDefinition.getObservations()));
 	}
 	
 	private void initializeVisualizations() {
@@ -194,7 +208,7 @@ public abstract class Simulation {
 		});
 	}
 	
-	public void run() throws Exception {
+	public void run() {
 		while(!checkTerminationConditions()) {
 			if(state.isDirty()) {
 				if(state.refreshState()) {

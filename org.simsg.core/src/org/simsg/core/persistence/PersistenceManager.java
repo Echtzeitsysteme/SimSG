@@ -14,7 +14,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.json.simple.JSONObject;
@@ -123,23 +122,7 @@ public abstract class PersistenceManager {
 	public abstract Resource loadSimulationModel(URI uri);
 	
 	public Resource loadSimulationModel(SimDefinition simDef) {
-		loadAndRegisterMetamodel(URI.createURI(simDef.getMetamodelURI()));
 		return loadSimulationModel(URI.createURI(simDef.getSimulationModelURI()));
-	}
-	
-	public void loadAndRegisterMetamodel(URI uri) {
-		
-		Resource metaModelResource = null;
-		try {
-			metaModelResource = PersistenceUtils.loadEcoreResource(uri);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		EPackage metaModel = (EPackage) metaModelResource.getContents().get(0);
-		EPackage.Registry.INSTANCE.put(metaModel.getNsURI(), metaModel);
-		metaModel.getEFactoryInstance().eClass();
 	}
 	
 	public boolean saveSimulationModel(SimDefinition simDef, Resource simModel) {

@@ -14,12 +14,15 @@ import org.simsg.core.pmc.PatternMatchingController;
 import org.simsg.core.simulation.Event;
 import org.simsg.core.simulation.Simulation;
 
+import SimulationDefinition.RuleAnnotation;
+import SimulationDefinition.StochasticRate;
+
 public class SimpleSimulation extends Simulation {
 	
 	protected boolean randomRuleOrder = true;
-	protected boolean useReactionRates = true;
+	protected boolean useRuleRates = true;
 	
-	private Map<String, Double> staticReactionRates = new HashMap<>();
+	private Map<String, Double> staticRuleRates = new HashMap<>();
 	
 	private Random random = new Random();
 	
@@ -31,30 +34,38 @@ public class SimpleSimulation extends Simulation {
 		randomRuleOrder = activate;
 	}
 
-	public void useReactionRate(boolean activate) {
-		useReactionRates = activate;
+	public void useRuleRates(boolean activate) {
+		useRuleRates = activate;
 	}
 	
 	@Override
-	public void initialize() throws Exception {
+	public void initialize() {
 		super.initialize();
-		// TODO: How to do this generically??
-		//staticReactionRates = state.getPatternContainer().getStochasticRules();
+		for(RuleAnnotation annotation : simulationDefinition.getRuleAnnotations()) {
+			if(annotation instanceof StochasticRate) {
+				StochasticRate rate = (StochasticRate) annotation;
+				staticRuleRates.put(rate.getGTRule().getName(), rate.getRate());
+			}
+		}
 	}
 	
 	@Override
 	public void initializeClocked() {
 		super.initializeClocked();
-		// TODO: How to do this generically??
-		//staticReactionRates = state.getPatternContainer().getStochasticRules();
+		for(RuleAnnotation annotation : simulationDefinition.getRuleAnnotations()) {
+			if(annotation instanceof StochasticRate) {
+				StochasticRate rate = (StochasticRate) annotation;
+				staticRuleRates.put(rate.getGTRule().getName(), rate.getRate());
+			}
+		}
 	}
 	
 	private ConcurrentLinkedQueue<String> generatePatternQueue() {
-		return new ConcurrentLinkedQueue<String>(staticReactionRates.keySet());
+		return new ConcurrentLinkedQueue<String>(staticRuleRates.keySet());
 	}
 	
 	private ConcurrentLinkedQueue<String> generateRndPatternQueue(){
-		List<String> rndPatternList = new LinkedList<String>(staticReactionRates.keySet());
+		List<String> rndPatternList = new LinkedList<String>(staticRuleRates.keySet());
 		Collections.shuffle(rndPatternList);
 		return new ConcurrentLinkedQueue<String>(rndPatternList);
 	}
@@ -78,11 +89,11 @@ public class SimpleSimulation extends Simulation {
 		String current = patternQueue.poll();
 		if(current == null) return;
 		
-		if(useReactionRates) {
-			if(!staticReactionRates.containsKey(current)) {
+		if(useRuleRates) {
+			if(!staticRuleRates.containsKey(current)) {
 				return;
 			}
-			double reactionRate = staticReactionRates.get(current);
+			double reactionRate = staticRuleRates.get(current);
 			double pRule = 1.0 - Math.pow((1.0-reactionRate), state.getMatchCount(current));
 			double rnd = random.nextDouble();
 			if(rnd <= pRule) {

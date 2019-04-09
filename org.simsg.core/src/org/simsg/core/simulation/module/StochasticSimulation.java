@@ -11,10 +11,13 @@ import org.simsg.core.pmc.PatternMatchingController;
 import org.simsg.core.simulation.Event;
 import org.simsg.core.simulation.Simulation;
 
+import SimulationDefinition.RuleAnnotation;
+import SimulationDefinition.StochasticRate;
+
 public class StochasticSimulation extends Simulation {
 	
 	private Random random = new Random();
-	private Map<String, Double> staticReactionRates;
+	private Map<String, Double> staticRuleRates = new LinkedHashMap<String, Double>();
 	private Map<String, Double> ruleProbabilities = new LinkedHashMap<String, Double>();
 	private double systemActivity = 0;
 	private double timeStep = 0;
@@ -24,29 +27,33 @@ public class StochasticSimulation extends Simulation {
 	}
 	
 	@Override
-	public void initialize() throws Exception {
+	public void initialize() {
 		super.initialize();
-		//TODO: How to do this generically?
-		//staticReactionRates = state.getPatternContainer().getStochasticRules();
-		for(String rule : staticReactionRates.keySet()) {
-			ruleProbabilities.put(rule, 0.0);
+		for(RuleAnnotation annotation : simulationDefinition.getRuleAnnotations()) {
+			if(annotation instanceof StochasticRate) {
+				StochasticRate rate = (StochasticRate) annotation;
+				staticRuleRates.put(rate.getGTRule().getName(), rate.getRate());
+				ruleProbabilities.put(rate.getGTRule().getName(), 0.0);
+			}
 		}
 	}
 	
 	@Override
 	public void initializeClocked() {
 		super.initializeClocked();
-		//TODO: How to do this generically?
-		//staticReactionRates = state.getPatternContainer().getStochasticRules();
-		for(String rule : staticReactionRates.keySet()) {
-			ruleProbabilities.put(rule, 0.0);
+		for(RuleAnnotation annotation : simulationDefinition.getRuleAnnotations()) {
+			if(annotation instanceof StochasticRate) {
+				StochasticRate rate = (StochasticRate) annotation;
+				staticRuleRates.put(rate.getGTRule().getName(), rate.getRate());
+				ruleProbabilities.put(rate.getGTRule().getName(), 0.0);
+			}
 		}
 	}
 	
 	private void updateProbabilities() {
 		systemActivity = 0;
-		for(String rule : staticReactionRates.keySet()) {
-			double p = state.getMatchCount(rule)*staticReactionRates.get(rule);
+		for(String rule : staticRuleRates.keySet()) {
+			double p = state.getMatchCount(rule)*staticRuleRates.get(rule);
 			ruleProbabilities.replace(rule, p);
 			systemActivity+=p;
 		}

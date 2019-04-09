@@ -39,7 +39,7 @@ public class SimplePersistenceManager extends PersistenceManager {
 	public boolean saveSimulationModel(String filename, Resource simModel) {
 		String path = filename+".xmi";
 		try {
-			PersistenceUtils.saveModelContainer(simModel, path);
+			PersistenceUtils.saveModel(simModel, path);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

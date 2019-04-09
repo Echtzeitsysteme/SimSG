@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.simsg:SimDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:GTLanguage="platform:/resource/org.emoflon.ibex.gt/model/Gt.ecore" xmlns:IBeXLanguage="platform:/resource/org.emoflon.ibex.common/model/Common.ecore" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.simsg="http://www.simsg.org/simulationdefinition/simulationdefinition" xsi:schemaLocation="platform:/resource/org.emoflon.ibex.gt/model/Gt.ecore java://GTLanguage.GTLanguagePackage platform:/resource/org.emoflon.ibex.common/model/Common.ecore java://IBeXLanguage.IBeXLanguagePackage http://www.eclipse.org/emf/2002/Ecore java://org.eclipse.emf.ecore.EcorePackage http://www.simsg.org/simulationdefinition/simulationdefinition java://SimulationDefinition.SimulationDefinitionPackage" name="testNetwork1" simulationModelURI="models/SimulationModels/testNetwork1.xmi" gtRulesURI="src-gen/org/simsg/examples/network/api/gt-rules.xmi" metamodelURI="platform:/resource/http://www.simsg.org/examples/ComputerNetwork" ibexPatternsURI="src-gen/org/simsg/examples/network/api/ibex-patterns.xmi">
+  <ruleAnnotations xmi:type="org.simsg:StochasticRate" GTRule="//@GtRuleSet/@rules.1" rate="0.1"/>
+  <terminationConditions xmi:type="org.simsg:SimpleTerminationCondition" maxIterations="50"/>
+  <observations xmi:type="org.simsg:PatternObservation" name="link" pattern="//@ibexPatternSet/@contextPatterns.2"/>
+  <GtRuleSet xmi:type="GTLanguage:GTRuleSet">
+    <rules xmi:type="GTLanguage:GTRule" name="connected" documentation="" ruleNodes="//@GtRuleSet/@rules.0/@nodes.0 //@GtRuleSet/@rules.0/@nodes.1">
+      <nodes xmi:type="GTLanguage:GTNode" name="n1">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+      </nodes>
+      <nodes xmi:type="GTLanguage:GTNode" name="n2">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+      </nodes>
+    </rules>
+    <rules xmi:type="GTLanguage:GTRule" name="deleteLink" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.1/@nodes.0">
+      <nodes xmi:type="GTLanguage:GTNode" name="l">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </nodes>
+    </rules>
+    <rules xmi:type="GTLanguage:GTRule" name="link" documentation="" ruleNodes="//@GtRuleSet/@rules.2/@nodes.0">
+      <nodes xmi:type="GTLanguage:GTNode" name="l">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </nodes>
+    </rules>
+  </GtRuleSet>
+  <ibexPatternSet xmi:type="IBeXLanguage:IBeXPatternSet">
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="connected">
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.0/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.0/@signatureNodes.1"/>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n1">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+      </signatureNodes>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n2">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+      </signatureNodes>
+    </contextPatterns>
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="deleteLink">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </signatureNodes>
+    </contextPatterns>
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="link">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </signatureNodes>
+    </contextPatterns>
+    <createPatterns xmi:type="IBeXLanguage:IBeXCreatePattern" name="deleteLink"/>
+    <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="deleteLink">
+      <deletedNodes xmi:type="IBeXLanguage:IBeXNode" name="l">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </deletedNodes>
+    </deletePatterns>
+  </ibexPatternSet>
+  <metamodel xmi:type="ecore:EPackage" href="file:/C:/Users/sehmes/Workspaces/SimSG-devel/org.simsg.examples.network/model/ComputerNetwork.ecore#/"/>
+</org.simsg:SimDefinition>
