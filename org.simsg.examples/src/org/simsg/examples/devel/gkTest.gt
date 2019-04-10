@@ -3,7 +3,7 @@ import "http://www.simsg.container.org/container"
 /*
 abstract pattern forbidK() {
 	a : Agent
- 
+  
 	k: K {
 		-K_a1-> a
 	} 

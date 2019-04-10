@@ -7,7 +7,7 @@ rule deleteLink() {
 pattern link() {
 	l : Link
 }
-
+ 
 pattern connected() {
 	n1 : Node {
 		
