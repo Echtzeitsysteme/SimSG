@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="ASCII"?>
 <GTLanguage:GTRuleSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:GTLanguage="platform:/resource/org.emoflon.ibex.gt/model/Gt.ecore">
-  <rules name="connected" documentation="" ruleNodes="//@rules.0/@nodes.0 //@rules.0/@nodes.1">
+  <rules name="aDeleteRedundantLink" documentation="" executable="true" ruleNodes="//@rules.0/@nodes.0 //@rules.0/@nodes.1 //@rules.0/@nodes.2 //@rules.0/@nodes.3">
+    <nodes name="l1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+    <nodes name="l2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
     <nodes name="n1">
       <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
     </nodes>
@@ -8,14 +14,135 @@
       <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
     </nodes>
   </rules>
-  <rules name="deleteLink" documentation="" executable="true" ruleNodes="//@rules.1/@nodes.0">
+  <rules name="bMarkUnknown" documentation="" executable="true" ruleNodes="//@rules.1/@nodes.0">
     <nodes name="l">
       <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
     </nodes>
   </rules>
-  <rules name="link" documentation="" ruleNodes="//@rules.2/@nodes.0">
+  <rules name="cKTCrepairTwo" documentation="" executable="true" ruleNodes="//@rules.2/@nodes.0 //@rules.2/@nodes.1 //@rules.2/@nodes.2 //@rules.2/@nodes.3 //@rules.2/@nodes.4 //@rules.2/@nodes.5">
+    <nodes name="l12">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+    <nodes name="l23">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+    <nodes name="l13">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+    <nodes name="n1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </nodes>
+    <nodes name="n2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </nodes>
+    <nodes name="n3">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </nodes>
+  </rules>
+  <rules name="changeWeight" documentation="" executable="true" ruleNodes="//@rules.3/@nodes.0">
     <nodes name="l">
       <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+  </rules>
+  <rules name="createLink" documentation="" executable="true" ruleNodes="//@rules.4/@nodes.1 //@rules.4/@nodes.2">
+    <nodes name="l">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+    <nodes name="n1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </nodes>
+    <nodes name="n2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </nodes>
+  </rules>
+  <rules name="dKTCrepairOne" documentation="" executable="true" ruleNodes="//@rules.5/@nodes.0 //@rules.5/@nodes.1 //@rules.5/@nodes.2 //@rules.5/@nodes.3 //@rules.5/@nodes.4 //@rules.5/@nodes.5">
+    <nodes name="l12">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+    <nodes name="l23">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+    <nodes name="l13">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+    <nodes name="n1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </nodes>
+    <nodes name="n2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </nodes>
+    <nodes name="n3">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </nodes>
+  </rules>
+  <rules name="deleteLink" documentation="" executable="true" ruleNodes="//@rules.6/@nodes.0">
+    <nodes name="l">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+  </rules>
+  <rules name="eRemoveDeleteLink" documentation="" executable="true" ruleNodes="//@rules.7/@nodes.0">
+    <nodes name="l">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+  </rules>
+  <rules name="fKTCpowerUp" documentation="" executable="true" ruleNodes="//@rules.8/@nodes.0 //@rules.8/@nodes.1 //@rules.8/@nodes.2 //@rules.8/@nodes.3 //@rules.8/@nodes.4 //@rules.8/@nodes.5">
+    <nodes name="l12">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+    <nodes name="l23">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+    <nodes name="l13">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+    <nodes name="n1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </nodes>
+    <nodes name="n2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </nodes>
+    <nodes name="n3">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </nodes>
+  </rules>
+  <rules name="gKTCpowerDown1" documentation="" executable="true" ruleNodes="//@rules.9/@nodes.0 //@rules.9/@nodes.1 //@rules.9/@nodes.2 //@rules.9/@nodes.3 //@rules.9/@nodes.4 //@rules.9/@nodes.5">
+    <nodes name="l12">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+    <nodes name="l23">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+    <nodes name="l13">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+    <nodes name="n1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </nodes>
+    <nodes name="n2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </nodes>
+    <nodes name="n3">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </nodes>
+  </rules>
+  <rules name="hKTCpowerDown2" documentation="" executable="true" ruleNodes="//@rules.10/@nodes.0 //@rules.10/@nodes.1 //@rules.10/@nodes.2 //@rules.10/@nodes.3 //@rules.10/@nodes.4 //@rules.10/@nodes.5">
+    <nodes name="l12">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+    <nodes name="l23">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+    <nodes name="l13">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </nodes>
+    <nodes name="n1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </nodes>
+    <nodes name="n2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </nodes>
+    <nodes name="n3">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
     </nodes>
   </rules>
 </GTLanguage:GTRuleSet>

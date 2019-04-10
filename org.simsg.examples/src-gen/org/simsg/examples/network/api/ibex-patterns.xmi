@@ -1,7 +1,119 @@
 <?xml version="1.0" encoding="ASCII"?>
 <IBeXLanguage:IBeXPatternSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:IBeXLanguage="platform:/resource/org.emoflon.ibex.common/model/Common.ecore">
-  <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="connected">
+  <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="aDeleteRedundantLink">
+    <attributeConstraint node="//@contextPatterns.0/@signatureNodes.1" relation="EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/UNKNOWN"/>
+      </value>
+    </attributeConstraint>
     <injectivityConstraints values="//@contextPatterns.0/@signatureNodes.0 //@contextPatterns.0/@signatureNodes.1"/>
+    <injectivityConstraints values="//@contextPatterns.0/@signatureNodes.2 //@contextPatterns.0/@signatureNodes.3"/>
+    <localEdges sourceNode="//@contextPatterns.0/@signatureNodes.2" targetNode="//@contextPatterns.0/@signatureNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.0/@signatureNodes.2" targetNode="//@contextPatterns.0/@signatureNodes.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.0/@signatureNodes.3" targetNode="//@contextPatterns.0/@signatureNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.0/@signatureNodes.3" targetNode="//@contextPatterns.0/@signatureNodes.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <signatureNodes name="l1" incomingEdges="//@contextPatterns.0/@localEdges.0 //@contextPatterns.0/@localEdges.2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </signatureNodes>
+    <signatureNodes name="l2" incomingEdges="//@contextPatterns.0/@localEdges.1 //@contextPatterns.0/@localEdges.3">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </signatureNodes>
+    <signatureNodes name="n1" outgoingEdges="//@contextPatterns.0/@localEdges.0 //@contextPatterns.0/@localEdges.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </signatureNodes>
+    <signatureNodes name="n2" outgoingEdges="//@contextPatterns.0/@localEdges.2 //@contextPatterns.0/@localEdges.3">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </signatureNodes>
+  </contextPatterns>
+  <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="bMarkUnknown">
+    <attributeConstraint node="//@contextPatterns.1/@signatureNodes.0" relation="EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/UNKNOWN"/>
+      </value>
+    </attributeConstraint>
+    <signatureNodes name="l">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </signatureNodes>
+  </contextPatterns>
+  <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="cKTCrepairTwo">
+    <attributeConstraint node="//@contextPatterns.2/@signatureNodes.0" relation="EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/INACTIVE"/>
+      </value>
+    </attributeConstraint>
+    <attributeConstraint node="//@contextPatterns.2/@signatureNodes.1" relation="EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/DELETED"/>
+      </value>
+    </attributeConstraint>
+    <attributeConstraint node="//@contextPatterns.2/@signatureNodes.2" relation="EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/INACTIVE"/>
+      </value>
+    </attributeConstraint>
+    <injectivityConstraints values="//@contextPatterns.2/@signatureNodes.0 //@contextPatterns.2/@signatureNodes.1"/>
+    <injectivityConstraints values="//@contextPatterns.2/@signatureNodes.0 //@contextPatterns.2/@signatureNodes.2"/>
+    <injectivityConstraints values="//@contextPatterns.2/@signatureNodes.1 //@contextPatterns.2/@signatureNodes.2"/>
+    <injectivityConstraints values="//@contextPatterns.2/@signatureNodes.3 //@contextPatterns.2/@signatureNodes.4"/>
+    <injectivityConstraints values="//@contextPatterns.2/@signatureNodes.3 //@contextPatterns.2/@signatureNodes.5"/>
+    <injectivityConstraints values="//@contextPatterns.2/@signatureNodes.4 //@contextPatterns.2/@signatureNodes.5"/>
+    <localEdges sourceNode="//@contextPatterns.2/@signatureNodes.3" targetNode="//@contextPatterns.2/@signatureNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.2/@signatureNodes.3" targetNode="//@contextPatterns.2/@signatureNodes.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.2/@signatureNodes.4" targetNode="//@contextPatterns.2/@signatureNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.2/@signatureNodes.4" targetNode="//@contextPatterns.2/@signatureNodes.2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.2/@signatureNodes.5" targetNode="//@contextPatterns.2/@signatureNodes.2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.2/@signatureNodes.5" targetNode="//@contextPatterns.2/@signatureNodes.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <signatureNodes name="l12" incomingEdges="//@contextPatterns.2/@localEdges.0 //@contextPatterns.2/@localEdges.2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </signatureNodes>
+    <signatureNodes name="l13" incomingEdges="//@contextPatterns.2/@localEdges.1 //@contextPatterns.2/@localEdges.5">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </signatureNodes>
+    <signatureNodes name="l23" incomingEdges="//@contextPatterns.2/@localEdges.3 //@contextPatterns.2/@localEdges.4">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </signatureNodes>
+    <signatureNodes name="n1" outgoingEdges="//@contextPatterns.2/@localEdges.0 //@contextPatterns.2/@localEdges.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </signatureNodes>
+    <signatureNodes name="n2" outgoingEdges="//@contextPatterns.2/@localEdges.2 //@contextPatterns.2/@localEdges.3">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </signatureNodes>
+    <signatureNodes name="n3" outgoingEdges="//@contextPatterns.2/@localEdges.4 //@contextPatterns.2/@localEdges.5">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </signatureNodes>
+  </contextPatterns>
+  <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="changeWeight">
+    <signatureNodes name="l">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </signatureNodes>
+  </contextPatterns>
+  <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="createLink">
+    <injectivityConstraints values="//@contextPatterns.4/@signatureNodes.0 //@contextPatterns.4/@signatureNodes.1"/>
     <signatureNodes name="n1">
       <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
     </signatureNodes>
@@ -9,20 +121,469 @@
       <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
     </signatureNodes>
   </contextPatterns>
+  <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="dKTCrepairOne">
+    <attributeConstraint node="//@contextPatterns.5/@signatureNodes.0" relation="EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/INACTIVE"/>
+      </value>
+    </attributeConstraint>
+    <attributeConstraint node="//@contextPatterns.5/@signatureNodes.1" relation="EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/DELETED"/>
+      </value>
+    </attributeConstraint>
+    <attributeConstraint node="//@contextPatterns.5/@signatureNodes.2" relation="EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+      </value>
+    </attributeConstraint>
+    <injectivityConstraints values="//@contextPatterns.5/@signatureNodes.0 //@contextPatterns.5/@signatureNodes.1"/>
+    <injectivityConstraints values="//@contextPatterns.5/@signatureNodes.0 //@contextPatterns.5/@signatureNodes.2"/>
+    <injectivityConstraints values="//@contextPatterns.5/@signatureNodes.1 //@contextPatterns.5/@signatureNodes.2"/>
+    <injectivityConstraints values="//@contextPatterns.5/@signatureNodes.3 //@contextPatterns.5/@signatureNodes.4"/>
+    <injectivityConstraints values="//@contextPatterns.5/@signatureNodes.3 //@contextPatterns.5/@signatureNodes.5"/>
+    <injectivityConstraints values="//@contextPatterns.5/@signatureNodes.4 //@contextPatterns.5/@signatureNodes.5"/>
+    <localEdges sourceNode="//@contextPatterns.5/@signatureNodes.3" targetNode="//@contextPatterns.5/@signatureNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.5/@signatureNodes.3" targetNode="//@contextPatterns.5/@signatureNodes.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.5/@signatureNodes.4" targetNode="//@contextPatterns.5/@signatureNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.5/@signatureNodes.4" targetNode="//@contextPatterns.5/@signatureNodes.2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.5/@signatureNodes.5" targetNode="//@contextPatterns.5/@signatureNodes.2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.5/@signatureNodes.5" targetNode="//@contextPatterns.5/@signatureNodes.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <signatureNodes name="l12" incomingEdges="//@contextPatterns.5/@localEdges.0 //@contextPatterns.5/@localEdges.2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </signatureNodes>
+    <signatureNodes name="l13" incomingEdges="//@contextPatterns.5/@localEdges.1 //@contextPatterns.5/@localEdges.5">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </signatureNodes>
+    <signatureNodes name="l23" incomingEdges="//@contextPatterns.5/@localEdges.3 //@contextPatterns.5/@localEdges.4">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </signatureNodes>
+    <signatureNodes name="n1" outgoingEdges="//@contextPatterns.5/@localEdges.0 //@contextPatterns.5/@localEdges.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </signatureNodes>
+    <signatureNodes name="n2" outgoingEdges="//@contextPatterns.5/@localEdges.2 //@contextPatterns.5/@localEdges.3">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </signatureNodes>
+    <signatureNodes name="n3" outgoingEdges="//@contextPatterns.5/@localEdges.4 //@contextPatterns.5/@localEdges.5">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </signatureNodes>
+  </contextPatterns>
   <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="deleteLink">
+    <attributeConstraint node="//@contextPatterns.6/@signatureNodes.0" relation="UNEQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/UNKNOWN"/>
+      </value>
+    </attributeConstraint>
+    <attributeConstraint node="//@contextPatterns.6/@signatureNodes.0" relation="UNEQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/DELETED"/>
+      </value>
+    </attributeConstraint>
     <signatureNodes name="l">
       <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
     </signatureNodes>
   </contextPatterns>
-  <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="link">
+  <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="eRemoveDeleteLink">
+    <attributeConstraint node="//@contextPatterns.7/@signatureNodes.0" relation="EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/DELETED"/>
+      </value>
+    </attributeConstraint>
     <signatureNodes name="l">
       <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
     </signatureNodes>
   </contextPatterns>
-  <createPatterns name="deleteLink"/>
-  <deletePatterns name="deleteLink">
+  <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="fKTCpowerUp">
+    <attributeConstraint node="//@contextPatterns.8/@signatureNodes.0" relation="EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+      </value>
+    </attributeConstraint>
+    <attributeConstraint node="//@contextPatterns.8/@signatureNodes.1" relation="EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/INACTIVE"/>
+      </value>
+    </attributeConstraint>
+    <attributeConstraint node="//@contextPatterns.8/@signatureNodes.1" relation="SMALLER_OR_EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+      <value xsi:type="IBeXLanguage:IBeXAttributeExpression" node="//@contextPatterns.8/@signatureNodes.0">
+        <attribute href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+      </value>
+    </attributeConstraint>
+    <attributeConstraint node="//@contextPatterns.8/@signatureNodes.1" relation="SMALLER_OR_EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+      <value xsi:type="IBeXLanguage:IBeXAttributeExpression" node="//@contextPatterns.8/@signatureNodes.2">
+        <attribute href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+      </value>
+    </attributeConstraint>
+    <attributeConstraint node="//@contextPatterns.8/@signatureNodes.2" relation="EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+      </value>
+    </attributeConstraint>
+    <injectivityConstraints values="//@contextPatterns.8/@signatureNodes.0 //@contextPatterns.8/@signatureNodes.1"/>
+    <injectivityConstraints values="//@contextPatterns.8/@signatureNodes.0 //@contextPatterns.8/@signatureNodes.2"/>
+    <injectivityConstraints values="//@contextPatterns.8/@signatureNodes.1 //@contextPatterns.8/@signatureNodes.2"/>
+    <injectivityConstraints values="//@contextPatterns.8/@signatureNodes.3 //@contextPatterns.8/@signatureNodes.4"/>
+    <injectivityConstraints values="//@contextPatterns.8/@signatureNodes.3 //@contextPatterns.8/@signatureNodes.5"/>
+    <injectivityConstraints values="//@contextPatterns.8/@signatureNodes.4 //@contextPatterns.8/@signatureNodes.5"/>
+    <localEdges sourceNode="//@contextPatterns.8/@signatureNodes.3" targetNode="//@contextPatterns.8/@signatureNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.8/@signatureNodes.3" targetNode="//@contextPatterns.8/@signatureNodes.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.8/@signatureNodes.4" targetNode="//@contextPatterns.8/@signatureNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.8/@signatureNodes.4" targetNode="//@contextPatterns.8/@signatureNodes.2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.8/@signatureNodes.5" targetNode="//@contextPatterns.8/@signatureNodes.2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.8/@signatureNodes.5" targetNode="//@contextPatterns.8/@signatureNodes.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <signatureNodes name="l12" incomingEdges="//@contextPatterns.8/@localEdges.0 //@contextPatterns.8/@localEdges.2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </signatureNodes>
+    <signatureNodes name="l13" incomingEdges="//@contextPatterns.8/@localEdges.1 //@contextPatterns.8/@localEdges.5">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </signatureNodes>
+    <signatureNodes name="l23" incomingEdges="//@contextPatterns.8/@localEdges.3 //@contextPatterns.8/@localEdges.4">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </signatureNodes>
+    <signatureNodes name="n1" outgoingEdges="//@contextPatterns.8/@localEdges.0 //@contextPatterns.8/@localEdges.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </signatureNodes>
+    <signatureNodes name="n2" outgoingEdges="//@contextPatterns.8/@localEdges.2 //@contextPatterns.8/@localEdges.3">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </signatureNodes>
+    <signatureNodes name="n3" outgoingEdges="//@contextPatterns.8/@localEdges.4 //@contextPatterns.8/@localEdges.5">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </signatureNodes>
+  </contextPatterns>
+  <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="gKTCpowerDown1">
+    <attributeConstraint node="//@contextPatterns.9/@signatureNodes.0" relation="EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+      </value>
+    </attributeConstraint>
+    <attributeConstraint node="//@contextPatterns.9/@signatureNodes.0" relation="SMALLER">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+      <value xsi:type="IBeXLanguage:IBeXAttributeExpression" node="//@contextPatterns.9/@signatureNodes.1">
+        <attribute href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+      </value>
+    </attributeConstraint>
+    <attributeConstraint node="//@contextPatterns.9/@signatureNodes.1" relation="EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+      </value>
+    </attributeConstraint>
+    <attributeConstraint node="//@contextPatterns.9/@signatureNodes.2" relation="EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+      </value>
+    </attributeConstraint>
+    <attributeConstraint node="//@contextPatterns.9/@signatureNodes.2" relation="SMALLER">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+      <value xsi:type="IBeXLanguage:IBeXAttributeExpression" node="//@contextPatterns.9/@signatureNodes.1">
+        <attribute href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+      </value>
+    </attributeConstraint>
+    <injectivityConstraints values="//@contextPatterns.9/@signatureNodes.0 //@contextPatterns.9/@signatureNodes.1"/>
+    <injectivityConstraints values="//@contextPatterns.9/@signatureNodes.0 //@contextPatterns.9/@signatureNodes.2"/>
+    <injectivityConstraints values="//@contextPatterns.9/@signatureNodes.1 //@contextPatterns.9/@signatureNodes.2"/>
+    <injectivityConstraints values="//@contextPatterns.9/@signatureNodes.3 //@contextPatterns.9/@signatureNodes.4"/>
+    <injectivityConstraints values="//@contextPatterns.9/@signatureNodes.3 //@contextPatterns.9/@signatureNodes.5"/>
+    <injectivityConstraints values="//@contextPatterns.9/@signatureNodes.4 //@contextPatterns.9/@signatureNodes.5"/>
+    <localEdges sourceNode="//@contextPatterns.9/@signatureNodes.3" targetNode="//@contextPatterns.9/@signatureNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.9/@signatureNodes.3" targetNode="//@contextPatterns.9/@signatureNodes.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.9/@signatureNodes.4" targetNode="//@contextPatterns.9/@signatureNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.9/@signatureNodes.4" targetNode="//@contextPatterns.9/@signatureNodes.2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.9/@signatureNodes.5" targetNode="//@contextPatterns.9/@signatureNodes.2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.9/@signatureNodes.5" targetNode="//@contextPatterns.9/@signatureNodes.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <signatureNodes name="l12" incomingEdges="//@contextPatterns.9/@localEdges.0 //@contextPatterns.9/@localEdges.2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </signatureNodes>
+    <signatureNodes name="l13" incomingEdges="//@contextPatterns.9/@localEdges.1 //@contextPatterns.9/@localEdges.5">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </signatureNodes>
+    <signatureNodes name="l23" incomingEdges="//@contextPatterns.9/@localEdges.3 //@contextPatterns.9/@localEdges.4">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </signatureNodes>
+    <signatureNodes name="n1" outgoingEdges="//@contextPatterns.9/@localEdges.0 //@contextPatterns.9/@localEdges.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </signatureNodes>
+    <signatureNodes name="n2" outgoingEdges="//@contextPatterns.9/@localEdges.2 //@contextPatterns.9/@localEdges.3">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </signatureNodes>
+    <signatureNodes name="n3" outgoingEdges="//@contextPatterns.9/@localEdges.4 //@contextPatterns.9/@localEdges.5">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </signatureNodes>
+  </contextPatterns>
+  <contextPatterns xsi:type="IBeXLanguage:IBeXContextPattern" name="hKTCpowerDown2">
+    <attributeConstraint node="//@contextPatterns.10/@signatureNodes.0" relation="EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+      </value>
+    </attributeConstraint>
+    <attributeConstraint node="//@contextPatterns.10/@signatureNodes.1" relation="EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+      </value>
+    </attributeConstraint>
+    <attributeConstraint node="//@contextPatterns.10/@signatureNodes.1" relation="SMALLER_OR_EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+      <value xsi:type="IBeXLanguage:IBeXAttributeExpression" node="//@contextPatterns.10/@signatureNodes.0">
+        <attribute href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+      </value>
+    </attributeConstraint>
+    <attributeConstraint node="//@contextPatterns.10/@signatureNodes.1" relation="SMALLER_OR_EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+      <value xsi:type="IBeXLanguage:IBeXAttributeExpression" node="//@contextPatterns.10/@signatureNodes.2">
+        <attribute href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+      </value>
+    </attributeConstraint>
+    <attributeConstraint node="//@contextPatterns.10/@signatureNodes.2" relation="EQUAL">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+      </value>
+    </attributeConstraint>
+    <injectivityConstraints values="//@contextPatterns.10/@signatureNodes.0 //@contextPatterns.10/@signatureNodes.1"/>
+    <injectivityConstraints values="//@contextPatterns.10/@signatureNodes.0 //@contextPatterns.10/@signatureNodes.2"/>
+    <injectivityConstraints values="//@contextPatterns.10/@signatureNodes.1 //@contextPatterns.10/@signatureNodes.2"/>
+    <injectivityConstraints values="//@contextPatterns.10/@signatureNodes.3 //@contextPatterns.10/@signatureNodes.4"/>
+    <injectivityConstraints values="//@contextPatterns.10/@signatureNodes.3 //@contextPatterns.10/@signatureNodes.5"/>
+    <injectivityConstraints values="//@contextPatterns.10/@signatureNodes.4 //@contextPatterns.10/@signatureNodes.5"/>
+    <localEdges sourceNode="//@contextPatterns.10/@signatureNodes.3" targetNode="//@contextPatterns.10/@signatureNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.10/@signatureNodes.3" targetNode="//@contextPatterns.10/@signatureNodes.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.10/@signatureNodes.4" targetNode="//@contextPatterns.10/@signatureNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.10/@signatureNodes.4" targetNode="//@contextPatterns.10/@signatureNodes.2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.10/@signatureNodes.5" targetNode="//@contextPatterns.10/@signatureNodes.2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <localEdges sourceNode="//@contextPatterns.10/@signatureNodes.5" targetNode="//@contextPatterns.10/@signatureNodes.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </localEdges>
+    <signatureNodes name="l12" incomingEdges="//@contextPatterns.10/@localEdges.0 //@contextPatterns.10/@localEdges.2">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </signatureNodes>
+    <signatureNodes name="l13" incomingEdges="//@contextPatterns.10/@localEdges.1 //@contextPatterns.10/@localEdges.5">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </signatureNodes>
+    <signatureNodes name="l23" incomingEdges="//@contextPatterns.10/@localEdges.3 //@contextPatterns.10/@localEdges.4">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </signatureNodes>
+    <signatureNodes name="n1" outgoingEdges="//@contextPatterns.10/@localEdges.0 //@contextPatterns.10/@localEdges.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </signatureNodes>
+    <signatureNodes name="n2" outgoingEdges="//@contextPatterns.10/@localEdges.2 //@contextPatterns.10/@localEdges.3">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </signatureNodes>
+    <signatureNodes name="n3" outgoingEdges="//@contextPatterns.10/@localEdges.4 //@contextPatterns.10/@localEdges.5">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </signatureNodes>
+  </contextPatterns>
+  <createPatterns name="aDeleteRedundantLink"/>
+  <createPatterns name="bMarkUnknown">
+    <attributeAssignments node="//@createPatterns.1/@contextNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/INACTIVE"/>
+      </value>
+    </attributeAssignments>
+    <contextNodes name="l">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </contextNodes>
+  </createPatterns>
+  <createPatterns name="cKTCrepairTwo">
+    <attributeAssignments node="//@createPatterns.2/@contextNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+      </value>
+    </attributeAssignments>
+    <attributeAssignments node="//@createPatterns.2/@contextNodes.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+      </value>
+    </attributeAssignments>
+    <contextNodes name="l12">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </contextNodes>
+    <contextNodes name="l23">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </contextNodes>
+  </createPatterns>
+  <createPatterns name="changeWeight">
+    <attributeAssignments node="//@createPatterns.3/@contextNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+      <value xsi:type="IBeXLanguage:IBeXAttributeExpression" node="//@createPatterns.3/@contextNodes.0">
+        <attribute href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+      </value>
+    </attributeAssignments>
+    <contextNodes name="l">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </contextNodes>
+  </createPatterns>
+  <createPatterns name="createLink">
+    <attributeAssignments node="//@createPatterns.4/@createdNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/UNKNOWN"/>
+      </value>
+    </attributeAssignments>
+    <contextNodes name="n1" outgoingEdges="//@createPatterns.4/@createdEdges.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </contextNodes>
+    <contextNodes name="n2" outgoingEdges="//@createPatterns.4/@createdEdges.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </contextNodes>
+    <createdEdges sourceNode="//@createPatterns.4/@contextNodes.0" targetNode="//@createPatterns.4/@createdNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </createdEdges>
+    <createdEdges sourceNode="//@createPatterns.4/@contextNodes.1" targetNode="//@createPatterns.4/@createdNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </createdEdges>
+    <createdNodes name="l" incomingEdges="//@createPatterns.4/@createdEdges.0 //@createPatterns.4/@createdEdges.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </createdNodes>
+  </createPatterns>
+  <createPatterns name="dKTCrepairOne">
+    <attributeAssignments node="//@createPatterns.5/@contextNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+      </value>
+    </attributeAssignments>
+    <contextNodes name="l12">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </contextNodes>
+  </createPatterns>
+  <createPatterns name="deleteLink">
+    <attributeAssignments node="//@createPatterns.6/@contextNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/DELETED"/>
+      </value>
+    </attributeAssignments>
+    <contextNodes name="l">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </contextNodes>
+  </createPatterns>
+  <createPatterns name="eRemoveDeleteLink"/>
+  <createPatterns name="fKTCpowerUp">
+    <attributeAssignments node="//@createPatterns.8/@contextNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+      </value>
+    </attributeAssignments>
+    <contextNodes name="l13">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </contextNodes>
+  </createPatterns>
+  <createPatterns name="gKTCpowerDown1">
+    <attributeAssignments node="//@createPatterns.9/@contextNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/INACTIVE"/>
+      </value>
+    </attributeAssignments>
+    <contextNodes name="l13">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </contextNodes>
+  </createPatterns>
+  <createPatterns name="hKTCpowerDown2">
+    <attributeAssignments node="//@createPatterns.10/@contextNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+      <value xsi:type="IBeXLanguage:IBeXEnumLiteral">
+        <literal href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/INACTIVE"/>
+      </value>
+    </attributeAssignments>
+    <contextNodes name="l13">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </contextNodes>
+  </createPatterns>
+  <deletePatterns name="aDeleteRedundantLink">
+    <contextNodes name="n1" outgoingEdges="//@deletePatterns.0/@deletedEdges.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </contextNodes>
+    <contextNodes name="n2" outgoingEdges="//@deletePatterns.0/@deletedEdges.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+    </contextNodes>
+    <deletedEdges sourceNode="//@deletePatterns.0/@contextNodes.0" targetNode="//@deletePatterns.0/@deletedNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </deletedEdges>
+    <deletedEdges sourceNode="//@deletePatterns.0/@contextNodes.1" targetNode="//@deletePatterns.0/@deletedNodes.0">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+    </deletedEdges>
+    <deletedNodes name="l2" incomingEdges="//@deletePatterns.0/@deletedEdges.0 //@deletePatterns.0/@deletedEdges.1">
+      <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+    </deletedNodes>
+  </deletePatterns>
+  <deletePatterns name="bMarkUnknown"/>
+  <deletePatterns name="cKTCrepairTwo"/>
+  <deletePatterns name="changeWeight"/>
+  <deletePatterns name="createLink"/>
+  <deletePatterns name="dKTCrepairOne"/>
+  <deletePatterns name="deleteLink"/>
+  <deletePatterns name="eRemoveDeleteLink">
     <deletedNodes name="l">
       <type href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
     </deletedNodes>
   </deletePatterns>
+  <deletePatterns name="fKTCpowerUp"/>
+  <deletePatterns name="gKTCpowerDown1"/>
+  <deletePatterns name="hKTCpowerDown2"/>
 </IBeXLanguage:IBeXPatternSet>

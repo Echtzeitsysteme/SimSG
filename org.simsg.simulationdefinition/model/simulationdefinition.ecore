@@ -53,4 +53,17 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" lowerBound="1"
         eType="ecore:EClass ../../org.emoflon.ibex.common/model/Common.ecore#//IBeXContextPattern"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ApplicationCondition" eSuperTypes="#//RuleAnnotation">
+    <eOperations name="checkPrecondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="match" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//AnySimpleType"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PostApplicationAction" eSuperTypes="#//RuleAnnotation">
+    <eOperations name="apply" lowerBound="1">
+      <eParameters name="match" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//AnySimpleType"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConfigureParameter" eSuperTypes="#//RuleAnnotation">
+    <eOperations name="configureParameter" lowerBound="1"/>
+  </eClassifiers>
 </ecore:EPackage>

@@ -100,11 +100,14 @@ public class NetworkSimulation {
 		SimulationDefinitionGenerator gen = new SimulationDefinitionGenerator(modelName);
 		gen.setGtRules("src-gen/org/simsg/examples/network/api/gt-rules.xmi");
 		gen.setIBeXPatterns("src-gen/org/simsg/examples/network/api/ibex-patterns.xmi");
-		gen.setMetaModel("C:\\Users\\sehmes\\Workspaces\\SimSG-devel\\org.simsg.examples.network\\model\\ComputerNetwork.ecore");
+		gen.setMetaModel("C:\\Users\\sehmes\\Workspaces\\SimSG-devel\\SimSG\\org.simsg.examples.network\\model\\ComputerNetwork.ecore");
 		//gen.setMetaModel(URI.createFileURI("http://www.simsg.org/examples/ComputerNetwork"));
 		gen.setModelURI("models/SimulationModels/"+modelName+".xmi");
 		gen.addRuleRateAnnotation("deleteLink", 0.1);
-		gen.addPatternObservation("link");
+		gen.addRuleApplicationCondition("fKTCpowerUp", ()->new PowerUpCondition(1));
+		gen.addRuleApplicationCondition("hKTCpowerDown2", ()->new PowerDownCondition(1));
+		gen.addRulePostApplicationAction("changeWeight", ()->new ChangeWeightAction(10));
+		//gen.addPatternObservation("link");
 		gen.addTerminationConditionIterations(50);
 		System.out.println(gen);
 		gen.saveDefinition("models/SimulationDefinitions/"+modelName+".xmi");
@@ -113,9 +116,9 @@ public class NetworkSimulation {
 	public static void main(String[] args) {
 		//runSimSGLModel("NetworkExample", true, false, true, false);
 		//generateComputerNetwork("testNetwork1", 5, 50, 50);
-		//generateNetworkSimulation("testNetwork1");
+		generateNetworkSimulation("testNetwork1");
 		
-		/*
+		
 		PersistenceManager pm = new SimplePersistenceManager();
 		pm.setModelFolderPath(System.getProperty("user.dir")+"//models");
 		pm.init();
@@ -137,13 +140,14 @@ public class NetworkSimulation {
 		GraphTransformationEngine gt = new IBeXGT();
 		gt.setModels(def, model);
 		gt.init();
-		gt.applyRuleToMatch(pmc.getRandomMatch("deleteLink"));
+		//gt.applyRuleToMatch(pmc.getRandomMatch("deleteLink"));
 		
 		pmc.collectAllMatches();
 		pmc.getAllMatches().forEach((name, matches) -> {
 			System.out.println("Pattern: "+name+" num: "+matches.size());
 		});
-		*/
+		
+		/*
 		SimulationConfigurator config = new SimulationConfigurator();
 		config.setModelFolder(System.getProperty("user.dir")+"//models");
 		config.setModel("testNetwork1");
@@ -153,5 +157,6 @@ public class NetworkSimulation {
 		sim.run();
 		sim.displayResults();
 		sim.displayVisualizations();
+		*/
 	}
 }

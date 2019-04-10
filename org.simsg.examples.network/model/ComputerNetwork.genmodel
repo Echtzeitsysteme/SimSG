@@ -10,6 +10,12 @@
   <testsDirectory xsi:nil="true"/>
   <genPackages prefix="ComputerNetwork" basePackage="org.simsg.examples.network" disposableProviderFactory="true"
       ecorePackage="ComputerNetwork.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ComputerNetwork.ecore#//LinkState">
+      <genEnumLiterals ecoreEnumLiteral="ComputerNetwork.ecore#//LinkState/ACTIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="ComputerNetwork.ecore#//LinkState/INACTIVE"/>
+      <genEnumLiterals ecoreEnumLiteral="ComputerNetwork.ecore#//LinkState/UNKNOWN"/>
+      <genEnumLiterals ecoreEnumLiteral="ComputerNetwork.ecore#//LinkState/DELETED"/>
+    </genEnums>
     <genClasses ecoreClass="ComputerNetwork.ecore#//Network">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ComputerNetwork.ecore#//Network/nodes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ComputerNetwork.ecore#//Network/links"/>
@@ -22,6 +28,7 @@
     <genClasses ecoreClass="ComputerNetwork.ecore#//Link">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ComputerNetwork.ecore#//Link/weight"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ComputerNetwork.ecore#//Link/endpoints"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ComputerNetwork.ecore#//Link/state"/>
     </genClasses>
     <genClasses ecoreClass="ComputerNetwork.ecore#//SimpleNode"/>
     <genClasses ecoreClass="ComputerNetwork.ecore#//GeometricNode">

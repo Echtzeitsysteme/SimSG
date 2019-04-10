@@ -1,36 +1,211 @@
 import "http://www.simsg.org/examples/ComputerNetwork"
+import "http://www.eclipse.org/emf/2002/Ecore"
 
 rule deleteLink() {
-	-- l : Link
+	l : Link {
+		.state != enum::UNKNOWN
+		.state != enum::DELETED
+		.state := enum::DELETED
+	}
 }
 
-pattern link() {
-	l : Link
+rule changeWeight() {
+	l : Link {
+		.weight := l.weight 
+	}
 }
  
-pattern connected() {
+rule createLink() {
+	++ l : Link {
+		.state := enum::UNKNOWN
+	}
+	
 	n1 : Node {
-		
-	}
-	
-	n2 : Node {
-		
-	}
-	
-}
-
-/*
-condition notConnected = forbid connected
-
-rule connect refines connected {
-	++ l : Link
-	n1 : Node{
 		++ -links->l
 	}
 	
 	n2 : Node {
 		++ -links->l
 	}
+	
 }
-* 
-*  */
+
+rule aDeleteRedundantLink() {
+	l1 : Link
+	-- l2 : Link {
+		.state == enum::UNKNOWN
+	}
+	
+	n1 : Node {
+		- links->l1
+		-- -links->l2
+	}
+	
+	n2 : Node {
+		- links->l1
+		-- -links->l2
+	}
+}
+
+rule bMarkUnknown() {
+	l : Link {
+		.state == enum::UNKNOWN
+		.state := enum::INACTIVE
+	}
+}
+
+
+
+rule cKTCrepairTwo() {
+	l12 : Link {
+		.state == enum::INACTIVE
+		.state := enum::ACTIVE
+	}
+	l23 : Link {
+		.state == enum::INACTIVE
+		.state := enum::ACTIVE
+	}
+	l13 : Link {
+		.state == enum::DELETED
+	}
+	
+	n1 : Node {
+		- links->l12
+		- links->l13
+	}
+	
+	n2 : Node {
+		- links->l12
+		- links->l23
+	}
+	
+	n3 : Node {
+		- links->l23
+		- links->l13
+	}
+}
+
+rule dKTCrepairOne() {
+	l12 : Link {
+		.state == enum::INACTIVE
+		.state := enum::ACTIVE
+	}
+	l23 : Link {
+		.state == enum::ACTIVE
+	}
+	l13 : Link {
+		.state == enum::DELETED
+	}
+	
+	n1 : Node {
+		- links->l12
+		- links->l13
+	}
+	
+	n2 : Node {
+		- links->l12
+		- links->l23
+	}
+	
+	n3 : Node {
+		- links->l23
+		- links->l13
+	}
+}
+
+rule eRemoveDeleteLink() {
+	-- l : Link {
+		.state == enum::DELETED
+	}
+}
+
+rule fKTCpowerUp() {
+	l12 : Link {
+		.state == enum::ACTIVE
+	}
+	l23 : Link {
+		.state == enum::ACTIVE
+	}
+	l13 : Link {
+		.state == enum::INACTIVE
+		.weight <= l12.weight
+		.weight <= l23.weight
+		.state := enum::ACTIVE
+	}
+	
+	n1 : Node {
+		- links->l12
+		- links->l13
+	}
+	
+	n2 : Node {
+		- links->l12
+		- links->l23
+	}
+	
+	n3 : Node {
+		- links->l23
+		- links->l13
+	}
+}
+
+rule gKTCpowerDown1() {
+	l12 : Link {
+		.state == enum::ACTIVE
+		.weight < l13.weight
+	}
+	l23 : Link {
+		.state == enum::ACTIVE
+		.weight < l13.weight
+	}
+	l13 : Link {
+		.state == enum::ACTIVE
+		.state := enum::INACTIVE
+	}
+	
+	n1 : Node {
+		- links->l12
+		- links->l13
+	}
+	
+	n2 : Node {
+		- links->l12
+		- links->l23
+	}
+	
+	n3 : Node {
+		- links->l23
+		- links->l13
+	}
+}
+
+rule hKTCpowerDown2() {
+	l12 : Link {
+		.state == enum::ACTIVE
+	}
+	l23 : Link {
+		.state == enum::ACTIVE
+	}
+	l13 : Link {
+		.state == enum::ACTIVE
+		.weight <= l12.weight
+		.weight <= l23.weight
+		.state := enum::INACTIVE
+	}
+	
+	n1 : Node {
+		- links->l12
+		- links->l13
+	}
+	
+	n2 : Node {
+		- links->l12
+		- links->l23
+	}
+	
+	n3 : Node {
+		- links->l23
+		- links->l13
+	}
+}
+

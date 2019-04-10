@@ -2,7 +2,11 @@ package org.simsg.core.utils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,6 +16,8 @@ import org.emoflon.ibex.gt.api.GraphTransformationAPI;
 import org.emoflon.ibex.gt.api.GraphTransformationApp;
 import org.emoflon.ibex.gt.api.GraphTransformationPattern;
 import org.emoflon.ibex.gt.api.GraphTransformationRule;
+
+import com.google.common.collect.Lists;
 
 import GTLanguage.GTRule;
 import IBeXLanguage.IBeXPattern;
@@ -177,10 +183,21 @@ public class IBeXApiWrapper {
 	
 	private void initMatcherGetter() {
 		
+		Map<String, Method> apiMethodsByName = new HashMap<>();
+		Method[] m = apiClass.getDeclaredMethods();
+		for(int i = 0; i<m.length; i++) {
+			Method met = m[i];
+			apiMethodsByName.put(met.getName(), met);
+		}
+		
 		for(IBeXPattern pattern : simulationDefinition.getIbexPatternSet().getContextPatterns()) {
 			Method getter = null;
+			
 			try {
-				getter = apiClass.getDeclaredMethod(pattern.getName());
+				if(!apiMethodsByName.containsKey(pattern.getName())) {
+					throw new NoSuchMethodException("Method with name: "+pattern.getName()+" not found in Class: "+apiClass.getName());
+				}
+				getter = apiMethodsByName.get(pattern.getName());
 			} catch (NoSuchMethodException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -198,7 +215,10 @@ public class IBeXApiWrapper {
 			Method getter = null;
 			
 			try {
-				getter = apiClass.getDeclaredMethod(rule.getName());
+				if(!apiMethodsByName.containsKey(rule.getName())) {
+					throw new NoSuchMethodException("Method with name: "+rule.getName()+" not found in Class: "+apiClass.getName());
+				}
+				getter = apiMethodsByName.get(rule.getName());
 			} catch (NoSuchMethodException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -217,8 +237,17 @@ public class IBeXApiWrapper {
 		for(String getterName : matcherGetter.keySet()) {
 			Method getter = matcherGetter.get(getterName);
 			GraphTransformationPattern<?,?> matcher = null;
-			try {
-				matcher = (GraphTransformationPattern<?,?>)getter.invoke(api);
+			try {	
+				List<Class<?>> paramTypes = Arrays.asList(getter.getParameterTypes());
+				List<Object> params = new LinkedList<>();
+				for(Class<?> paramType : paramTypes) {
+					params.add(instantiatePrimitiveTypes(paramType));
+				}
+				if(paramTypes.size() > 0) {
+					matcher = (GraphTransformationPattern<?,?>)getter.invoke(api, params.toArray());
+				}else {
+					matcher = (GraphTransformationPattern<?,?>)getter.invoke(api);
+				}
 			} catch (IllegalAccessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -242,6 +271,42 @@ public class IBeXApiWrapper {
 			if(rObj instanceof GraphTransformationRule<?,?>) {
 				GraphTransformationRule<?,?> r = (GraphTransformationRule<?,?>) matcher.get(name);
 				rules.put(name, r);
+			}
+		}
+	}
+	
+	public static Object instantiatePrimitiveTypes(Class<?> type) {
+		switch(type.getName()) {
+			case "float" : {
+				return new Float(0);
+			}
+			case "double" : {
+				return new Double(0);
+			}
+			case "byte" : {
+				return new Byte((byte)0x00);
+			}
+			case "short" : {
+				return new Short((short)0);
+			}
+			case "int" : {
+				return new Integer(0);
+			}
+			case "long" : {
+				return new Long(0);
+			}
+			case "char" : {
+				return new Character('\0');
+			}
+			case "String" : {
+				return "";
+			}
+			case "boolean" : {
+				return new Boolean(false);
+			}
+			default : {
+				System.err.println("Rule parameters do not allow for non primitive types.");
+				return null;
 			}
 		}
 	}
