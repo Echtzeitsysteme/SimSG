@@ -9,6 +9,8 @@ import java.util.function.Supplier;
 
 import org.simsg.core.gt.GraphTransformationEngine;
 import org.simsg.core.gt.IBeXGT;
+import org.simsg.core.gt.RuleApplicationCondition;
+import org.simsg.core.gt.RuleParameterConfiguration;
 import org.simsg.core.gt.mgt.ModelGraphTransformer;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.persistence.SimplePersistenceManager;
@@ -210,6 +212,18 @@ public class SimulationConfigurator {
 		gtConstructor = () -> {
 			return new IBeXGT();
 		};
+	}
+	
+	public void addRuleParameterConfigurator(Class<? extends RuleParameterConfiguration> gtType, Object ... params) {
+		
+	}
+	
+	public void addRuleApplicationCondition(Class<? extends RuleApplicationCondition> gtType, Object ... params) {
+		
+	}
+	
+	public void addPostApplicationAction(Class<? extends RuleParameterConfiguration> gtType, Object ... params) {
+		
 	}
 	
 	public void addTerminationCondition(Class<? extends TerminationCondition> conditionType, Object ... params) {
