@@ -1,30 +1,29 @@
 package org.simsg.examples.network;
 
-import org.emoflon.ibex.common.operational.IMatch;
+import org.simsg.core.gt.RuleApplicationCondition;
+import org.simsg.core.pm.match.SimSGMatch;
 import org.simsg.examples.network.ComputerNetwork.Link;
 
-import SimulationDefinition.impl.ApplicationConditionImpl;
+import GTLanguage.GTRule;
 
-public class PowerUpCondition extends ApplicationConditionImpl {
+
+public class PowerUpCondition extends RuleApplicationCondition {
 	
 	private double k;
 	
-	public PowerUpCondition(double k) {
+	public PowerUpCondition(GTRule rule, double k) {
+		super(rule);
 		this.k = k;
 	}
-	
+
 	@Override
-	public boolean checkPrecondition(Object match) {
-		if(!(match instanceof IMatch)) {
+	public boolean checkCondition(SimSGMatch match) {
+		if(!match.getPatternName().equals(gtRule.getName())) {
 			return false;
 		}
-		IMatch imatch = (IMatch)match;
-		if(!imatch.getPatternName().equals(gtRule.getName())) {
-			return false;
-		}
-		Link l13 = (Link)imatch.get("l13");
-		Link l23 = (Link)imatch.get("l23");
-		Link l12 = (Link)imatch.get("l12");
+		Link l13 = (Link)match.get("l13");
+		Link l23 = (Link)match.get("l23");
+		Link l12 = (Link)match.get("l12");
 		
 		double min = Math.min(l23.getWeight(), l12.getWeight());
 		return k*l13.getWeight() <= min;

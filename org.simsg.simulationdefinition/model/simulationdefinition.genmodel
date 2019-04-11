@@ -43,19 +43,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simulationdefinition.ecore#//PatternObservation/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference simulationdefinition.ecore#//PatternObservation/pattern"/>
     </genClasses>
-    <genClasses ecoreClass="simulationdefinition.ecore#//ApplicationCondition">
-      <genOperations ecoreOperation="simulationdefinition.ecore#//ApplicationCondition/checkPrecondition">
-        <genParameters ecoreParameter="simulationdefinition.ecore#//ApplicationCondition/checkPrecondition/match"/>
-      </genOperations>
-    </genClasses>
-    <genClasses ecoreClass="simulationdefinition.ecore#//PostApplicationAction">
-      <genOperations ecoreOperation="simulationdefinition.ecore#//PostApplicationAction/apply">
-        <genParameters ecoreParameter="simulationdefinition.ecore#//PostApplicationAction/apply/match"/>
-      </genOperations>
-    </genClasses>
-    <genClasses ecoreClass="simulationdefinition.ecore#//ConfigureParameter">
-      <genOperations ecoreOperation="simulationdefinition.ecore#//ConfigureParameter/configureParameter"/>
-    </genClasses>
   </genPackages>
   <genPackages prefix="GTLanguage" ecorePackage="../../org.emoflon.ibex.gt/model/Gt.ecore#/">
     <genClasses ecoreClass="../../org.emoflon.ibex.gt/model/Gt.ecore#//GTNamedElement">

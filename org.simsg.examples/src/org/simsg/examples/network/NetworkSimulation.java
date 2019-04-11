@@ -16,7 +16,7 @@ import org.simsg.core.utils.Runtimer;
 import org.simsg.examples.network.generator.NetworkGenerator;
 import org.simsg.examples.network.generator.NetworkType;
 import org.simsg.examples.network.statistics.ModelGraphProperties;
-import org.simsg.simulationdefinition.utils.SimulationDefinitionGenerator;
+import org.simsg.simulationdefinition.utils.SimulationDefinitionGenerator; 
 
 import SimulationDefinition.SimDefinition;
 

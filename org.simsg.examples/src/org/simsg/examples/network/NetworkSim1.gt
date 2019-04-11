@@ -5,10 +5,10 @@ rule deleteLink() {
 	l : Link {
 		.state != enum::UNKNOWN
 		.state != enum::DELETED
-		.state := enum::DELETED
+		.state := enum::DELETED 
 	}
 }
-
+  
 rule changeWeight() {
 	l : Link {
 		.weight := l.weight 

@@ -1,6 +1,7 @@
 package org.simsg.core.simulation;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,9 @@ import java.util.function.Function;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.simsg.core.gt.GraphTransformationEngine;
+import org.simsg.core.gt.PostApplicationAction;
+import org.simsg.core.gt.RuleApplicationCondition;
+import org.simsg.core.gt.RuleParameterConfiguration;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.pm.match.SimSGMatch;
 import org.simsg.core.pmc.PatternMatchingController;
@@ -21,6 +25,7 @@ import org.simsg.core.simulation.statistic.SimulationStatistics;
 import org.simsg.core.simulation.visualization.SimulationVisualization;
 import org.simsg.core.utils.Runtimer;
 
+import GTLanguage.GTRule;
 import SimulationDefinition.SimDefinition;
 
 
@@ -46,6 +51,10 @@ public abstract class Simulation {
 	protected List<SimulationStatistics> statistics = new LinkedList<>();
 	protected List<SimulationVisualization> visualizations = new LinkedList<>();
 	
+	protected Map<String, Function<GTRule, RuleApplicationCondition>> ruleConditions = new HashMap<>();
+	protected Map<String, Function<GTRule, PostApplicationAction>> ruleActions = new HashMap<>();
+	protected Map<String, Function<GTRule, RuleParameterConfiguration>> ruleConfigs = new HashMap<>();
+	
 	public Simulation(String modelName, PersistenceManager persistence, PatternMatchingController pmc, GraphTransformationEngine gt) {
 		this.modelName = modelName;
 		this.persistence = persistence;
@@ -55,28 +64,7 @@ public abstract class Simulation {
 	
 	public abstract void setAdditionalParameters(Object ... params);
 	
-	
-	public void addServiceRoutine(Function<SimulationState, ServiceRoutine> constructor) {
-		serviceConstructors.add(constructor);
-	}
-	
-	public void addTerminationCondition(Function<SimulationState, TerminationCondition> constructor) {
-		conditionConstructors.add(constructor);
-	}
-	
-	public void addExternalConstraint(Function<SimulationState, ExternalConstraint> constructor) {
-		constraintConstructors.add(constructor);
-	}
-	
-	public void addSimulationStatistic(Function<SimulationState, SimulationStatistics> constructor) {
-		statisticConstructors.add(constructor);
-	}
-	
-	public void addSimulationVisualization(Function<SimulationState, SimulationVisualization> constructor) {
-		visualizationConstructors.add(constructor);
-	}
-	
-	public void addServiceRoutine(List<Function<SimulationState, ServiceRoutine>> constructors) {
+	public void addServiceRoutines(List<Function<SimulationState, ServiceRoutine>> constructors) {
 		serviceConstructors.addAll(constructors);
 	}
 	
@@ -94,6 +82,10 @@ public abstract class Simulation {
 	
 	public void addSimulationVisualization(List<Function<SimulationState, SimulationVisualization>> constructors) {
 		visualizationConstructors.addAll(constructors);
+	}
+	
+	public void addRuleParameterConfigurators(Map<String, Function<GTRule, RuleParameterConfiguration>> constructors) {
+		ruleConfigs.putAll(constructors);
 	}
 	
 	public void initialize() {

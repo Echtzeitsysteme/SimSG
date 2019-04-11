@@ -2,13 +2,16 @@ package org.simsg.core.simulation;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.simsg.core.gt.GraphTransformationEngine;
 import org.simsg.core.gt.IBeXGT;
+import org.simsg.core.gt.PostApplicationAction;
 import org.simsg.core.gt.RuleApplicationCondition;
 import org.simsg.core.gt.RuleParameterConfiguration;
 import org.simsg.core.gt.mgt.ModelGraphTransformer;
@@ -34,6 +37,8 @@ import org.simsg.core.simulation.statistic.Observables;
 import org.simsg.core.simulation.statistic.SimulationStatistics;
 import org.simsg.core.simulation.visualization.SimulationVisualization;
 
+import GTLanguage.GTRule;
+
 public class SimulationConfigurator {
 	
 	private String modelName;
@@ -50,6 +55,10 @@ public class SimulationConfigurator {
 	protected List<Function<SimulationState, ExternalConstraint>> constraintConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, SimulationStatistics>> statisticConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, SimulationVisualization>> visualizationConstructors = new LinkedList<>();
+	
+	protected Map<String, Function<GTRule, RuleApplicationCondition>> ruleConditions = new HashMap<>();
+	protected Map<String, Function<GTRule, PostApplicationAction>> ruleActions = new HashMap<>();
+	protected Map<String, Function<GTRule, RuleParameterConfiguration>> ruleConfigs = new HashMap<>();
 	
 	public SimulationConfigurator() {
 		setEMFPersistence();
@@ -74,7 +83,6 @@ public class SimulationConfigurator {
 			try {
 				persistenceConstructor = persistenceType.getConstructor();
 			} catch (NoSuchMethodException | SecurityException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			if(persistenceConstructor == null) return null;
@@ -84,7 +92,6 @@ public class SimulationConfigurator {
 				return persistence;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return null;
@@ -103,7 +110,6 @@ public class SimulationConfigurator {
 			try {
 				engineConstructor = engineType.getConstructor();
 			} catch (NoSuchMethodException | SecurityException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			if(engineConstructor == null) return null;
@@ -113,7 +119,6 @@ public class SimulationConfigurator {
 				return engine;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return null;
@@ -144,7 +149,6 @@ public class SimulationConfigurator {
 			try {
 				pmcConstructor = pmcType.getConstructor();
 			} catch (NoSuchMethodException | SecurityException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			if(pmcConstructor == null) return null;
@@ -154,7 +158,6 @@ public class SimulationConfigurator {
 				return pmc;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return null;
@@ -185,7 +188,6 @@ public class SimulationConfigurator {
 			try {
 				gtConstructor = gtType.getConstructor();
 			} catch (NoSuchMethodException | SecurityException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			if(gtConstructor == null) return null;
@@ -195,7 +197,6 @@ public class SimulationConfigurator {
 				return gt;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return null;
@@ -214,16 +215,64 @@ public class SimulationConfigurator {
 		};
 	}
 	
-	public void addRuleParameterConfigurator(Class<? extends RuleParameterConfiguration> gtType, Object ... params) {
-		
+	public void addRuleParameterConfigurator(String ruleName, Class<? extends RuleParameterConfiguration> paramType, Object ... params) {
+		ruleConfigs.put(ruleName, (rule) -> {
+			Constructor<? extends RuleParameterConfiguration> ruleParamConstructor = null;
+			try {
+				ruleParamConstructor = paramType.getConstructor();
+			} catch (NoSuchMethodException | SecurityException e1) {
+				e1.printStackTrace();
+			}
+			if(ruleParamConstructor == null) return null;
+			try {
+				RuleParameterConfiguration param = ruleParamConstructor.newInstance(params);
+				return param;
+			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException e) {
+				e.printStackTrace();
+			}
+			return null;
+		});
 	}
 	
-	public void addRuleApplicationCondition(Class<? extends RuleApplicationCondition> gtType, Object ... params) {
-		
+	public void addRuleApplicationCondition(String ruleName, Class<? extends RuleApplicationCondition> conditionType, Object ... params) {
+		ruleConditions.put(ruleName, (rule) -> {
+			Constructor<? extends RuleApplicationCondition> conditionConstructor = null;
+			try {
+				conditionConstructor = conditionType.getConstructor();
+			} catch (NoSuchMethodException | SecurityException e1) {
+				e1.printStackTrace();
+			}
+			if(conditionConstructor == null) return null;
+			try {
+				RuleApplicationCondition condition = conditionConstructor.newInstance(params);
+				return condition;
+			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException e) {
+				e.printStackTrace();
+			}
+			return null;
+		});
 	}
 	
-	public void addPostApplicationAction(Class<? extends RuleParameterConfiguration> gtType, Object ... params) {
-		
+	public void addPostApplicationAction(String ruleName, Class<? extends PostApplicationAction> actionType, Object ... params) {
+		ruleActions.put(ruleName, (rule) -> {
+			Constructor<? extends PostApplicationAction> actionConstructor = null;
+			try {
+				actionConstructor = actionType.getConstructor();
+			} catch (NoSuchMethodException | SecurityException e1) {
+				e1.printStackTrace();
+			}
+			if(actionConstructor == null) return null;
+			try {
+				PostApplicationAction action = actionConstructor.newInstance(params);
+				return action;
+			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException e) {
+				e.printStackTrace();
+			}
+			return null;
+		});
 	}
 	
 	public void addTerminationCondition(Class<? extends TerminationCondition> conditionType, Object ... params) {
@@ -232,7 +281,6 @@ public class SimulationConfigurator {
 			try {
 				condConstructor = conditionType.getConstructor(SimulationState.class);
 			} catch (NoSuchMethodException | SecurityException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			if(condConstructor == null) return null;
@@ -242,7 +290,6 @@ public class SimulationConfigurator {
 				return condition;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return null;
@@ -269,7 +316,6 @@ public class SimulationConfigurator {
 			try {
 				routineConstructor = routineType.getConstructor(SimulationState.class);
 			} catch (NoSuchMethodException | SecurityException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			if(routineConstructor == null) return null;
@@ -279,7 +325,6 @@ public class SimulationConfigurator {
 				return routine;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return null;
@@ -301,7 +346,6 @@ public class SimulationConfigurator {
 			try {
 				statisticsConstructor = statisticsType.getConstructor(SimulationState.class);
 			} catch (NoSuchMethodException | SecurityException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			if(statisticsConstructor == null) return null;
@@ -311,7 +355,6 @@ public class SimulationConfigurator {
 				return statistics;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return null;
@@ -329,7 +372,6 @@ public class SimulationConfigurator {
 			try {
 				visualizationConstructor = visualizationType.getConstructor(SimulationState.class);
 			} catch (NoSuchMethodException | SecurityException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			if(visualizationConstructor == null) return null;
@@ -339,7 +381,6 @@ public class SimulationConfigurator {
 				return visualization;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return null;
@@ -368,7 +409,6 @@ public class SimulationConfigurator {
 			try {
 				simConstructor = simulationType.getConstructor();
 			} catch (NoSuchMethodException | SecurityException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			if(simConstructor == null) return null;
@@ -378,7 +418,6 @@ public class SimulationConfigurator {
 				return sim;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return null;
