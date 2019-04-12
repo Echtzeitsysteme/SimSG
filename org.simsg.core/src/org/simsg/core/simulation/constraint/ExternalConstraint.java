@@ -10,7 +10,5 @@ public abstract class ExternalConstraint {
 		this.state = state;
 	}
 	
-	public abstract void setAdditionalParameters(Object ... params);
-	
 	public abstract boolean checkConstraint(Event event);
 }

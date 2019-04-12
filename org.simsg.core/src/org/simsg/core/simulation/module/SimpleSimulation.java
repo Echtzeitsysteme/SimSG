@@ -110,10 +110,5 @@ public class SimpleSimulation extends Simulation {
 	protected void processEvent(Event event) {
 		performGT(state.getRandomMatch(event.rule));
 	}
-	
-	@Override
-	public void setAdditionalParameters(Object... params) {
-		// Do nothing..
-	}
 
 }

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import org.eclipse.emf.ecore.resource.Resource;
@@ -39,7 +40,7 @@ public abstract class Simulation {
 	protected Resource simulationModel;
 	private GraphTransformationEngine gt;
 	
-	protected List<Function<SimulationState, ServiceRoutine>> serviceConstructors = new LinkedList<>();
+	protected List<BiFunction<SimulationState, GraphTransformationEngine, ServiceRoutine>> serviceConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, TerminationCondition>> conditionConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, ExternalConstraint>> constraintConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, SimulationStatistics>> statisticConstructors = new LinkedList<>();
@@ -62,9 +63,7 @@ public abstract class Simulation {
 		this.gt = gt;
 	}
 	
-	public abstract void setAdditionalParameters(Object ... params);
-	
-	public void addServiceRoutines(List<Function<SimulationState, ServiceRoutine>> constructors) {
+	public void addServiceRoutines(List<BiFunction<SimulationState, GraphTransformationEngine, ServiceRoutine>> constructors) {
 		serviceConstructors.addAll(constructors);
 	}
 	
@@ -80,7 +79,7 @@ public abstract class Simulation {
 		statisticConstructors.addAll(constructors);
 	}
 	
-	public void addSimulationVisualization(List<Function<SimulationState, SimulationVisualization>> constructors) {
+	public void addSimulationVisualizations(List<Function<SimulationState, SimulationVisualization>> constructors) {
 		visualizationConstructors.addAll(constructors);
 	}
 	
@@ -88,16 +87,30 @@ public abstract class Simulation {
 		ruleConfigs.putAll(constructors);
 	}
 	
+	public void addRuleApplicationConditions(Map<String, Function<GTRule, RuleApplicationCondition>> constructors) {
+		ruleConditions.putAll(constructors);
+	}
+	
+	public void addPostApplicationActions(Map<String, Function<GTRule, PostApplicationAction>> constructors) {
+		ruleActions.putAll(constructors);
+	}
+	
 	public void initialize() {
 		initModel();
 		initPMC();	
 		initGT();
+		
 		initState();
+		
 		initializeServices();
 		initializeConditions();
 		initializeConstraints();
 		initializeStatistics();
 		initializeVisualizations();
+		
+		initializeRuleConfigurators();
+		initializeRuleConditions();
+		initializeRuleActions();
 	}
 	
 	private void initModel() {
@@ -123,8 +136,8 @@ public abstract class Simulation {
 	}
 	
 	private void initializeServices() {
-		for(Function<SimulationState, ServiceRoutine> constructor : serviceConstructors) {
-			services.add(constructor.apply(state));
+		for(BiFunction<SimulationState, GraphTransformationEngine, ServiceRoutine> constructor : serviceConstructors) {
+			services.add(constructor.apply(state, gt));
 		}
 	}
 	
@@ -160,6 +173,27 @@ public abstract class Simulation {
 	private void initializeVisualizations() {
 		for(Function<SimulationState, SimulationVisualization> constructor : visualizationConstructors) {
 			visualizations.add(constructor.apply(state));
+		}
+	}
+	
+	private void initializeRuleConfigurators() {
+		for(String ruleName : ruleConfigs.keySet()) {
+			GTRule rule = gt.getRule(ruleName);
+			gt.addRuleParameterConfiguration(ruleConfigs.get(ruleName).apply(rule));
+		}
+	}
+	
+	private void initializeRuleConditions() {
+		for(String ruleName : ruleConditions.keySet()) {
+			GTRule rule = gt.getRule(ruleName);
+			pmc.getEngine().addRuleApplicationCondition(ruleConditions.get(ruleName).apply(rule));
+		}
+	}
+	
+	private void initializeRuleActions() {
+		for(String ruleName : ruleActions.keySet()) {
+			GTRule rule = gt.getRule(ruleName);
+			gt.addPostApplicationAction(ruleActions.get(ruleName).apply(rule));
 		}
 	}
 	
@@ -238,7 +272,7 @@ public abstract class Simulation {
 				state.refreshState();
 			}
 			
-			if(service.performService(gt)) {
+			if(service.performService()) {
 				state.setDirty();
 				performedService = true;
 			}
@@ -283,17 +317,16 @@ public abstract class Simulation {
 		return pmc.getAllMatches();
 	}
 	
-	public String printCurrentMatches() {
+	public void printCurrentMatches() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Current "+toString()+"\n *******     RESULTS:     *****\n");
 		for (String key : getCurrentMatches().keySet()) {
-			System.out.println(key);
 			if (getCurrentMatches().get(key) != null) {
 				sb.append("Pattern: " + key + ", size: " + pmc.getMatchCount(key) +"\n");
 			}
 		}
 		sb.append("*******   END   *****\n");
-		return sb.toString();
+		System.out.println(sb);
 	}
 	
 	public void finish() {

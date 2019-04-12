@@ -25,6 +25,7 @@ import org.jgrapht.graph.SimpleWeightedGraph;
 import org.simsg.examples.network.ComputerNetwork.ComputerNetworkFactory;
 import org.simsg.examples.network.ComputerNetwork.GeometricNode;
 import org.simsg.examples.network.ComputerNetwork.Link;
+import org.simsg.examples.network.ComputerNetwork.LinkState;
 import org.simsg.examples.network.ComputerNetwork.Network;
 import org.simsg.examples.network.ComputerNetwork.Node;
 import org.simsg.examples.network.generator.SimSGLGenerator;
@@ -103,6 +104,7 @@ public class NetworkGenerator {
 			l.getEndpoints().add(nodes.get(e.src));
 			l.getEndpoints().add(nodes.get(e.trg));
 			links.put(e, l);
+			l.setState(LinkState.ACTIVE);
 		}
 		
 		network.getNodes().addAll(nodes.values());

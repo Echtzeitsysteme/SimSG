@@ -17,11 +17,6 @@ public class IBeXPMC extends PatternMatchingController {
 	private Random rnd = new Random();
 
 	@Override
-	public void setAdditionalParameters(Object... params) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
 	public void loadModels(SimDefinition simulationDefinition, Resource simulationModel) {
 		this.simulationDefinition = simulationDefinition;
 		this.simulationModel = simulationModel;

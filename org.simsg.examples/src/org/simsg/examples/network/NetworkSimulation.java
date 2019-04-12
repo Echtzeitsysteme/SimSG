@@ -52,7 +52,7 @@ public class NetworkSimulation {
 		// Adds statistics module that tracks network graph properties
 		simConfigurator.addSimulationStatistics(ModelGraphProperties.class);
 		// Adds a periodic service interval during which the kTC repair rules are applied
-		simConfigurator.addPeriodicServiceRoutine(60);
+		//simConfigurator.addPeriodicServiceRoutine(60);
 		// This creates a runnable  simulation instance
 		Simulation sim = simConfigurator.createSimulation();
 		// Methods with the "clocked" suffix have their runtime measured.
@@ -64,11 +64,10 @@ public class NetworkSimulation {
 				sim.initialize();
 				sim.run();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		System.out.println(sim.printCurrentMatches());
+		sim.printCurrentMatches();
 		// This calls a visualization of the tracked patterns.
 		sim.displayResults();
 		if(saveResult) {
@@ -100,63 +99,48 @@ public class NetworkSimulation {
 		SimulationDefinitionGenerator gen = new SimulationDefinitionGenerator(modelName);
 		gen.setGtRules("src-gen/org/simsg/examples/network/api/gt-rules.xmi");
 		gen.setIBeXPatterns("src-gen/org/simsg/examples/network/api/ibex-patterns.xmi");
-		gen.setMetaModel("C:\\Users\\sehmes\\Workspaces\\SimSG-devel\\SimSG\\org.simsg.examples.network\\model\\ComputerNetwork.ecore");
+		gen.setMetaModel("F:\\Eclipse Workspaces\\SimSG\\org.simsg.examples.network\\model\\ComputerNetwork.ecore");
 		//gen.setMetaModel(URI.createFileURI("http://www.simsg.org/examples/ComputerNetwork"));
 		gen.setModelURI("models/SimulationModels/"+modelName+".xmi");
-		gen.addRuleRateAnnotation("deleteLink", 0.1);
-		gen.addRuleApplicationCondition("fKTCpowerUp", ()->new PowerUpCondition(1));
-		gen.addRuleApplicationCondition("hKTCpowerDown2", ()->new PowerDownCondition(1));
-		gen.addRulePostApplicationAction("changeWeight", ()->new ChangeWeightAction(10));
-		//gen.addPatternObservation("link");
-		gen.addTerminationConditionIterations(50);
+		gen.addRuleRateAnnotation("deleteLink", 0.2);
+		gen.addRuleRateAnnotation("changeWeight", 0.2);
+		gen.addRuleRateAnnotation("createLink", 0.1);
+		gen.addPatternObservation("link");
+		gen.addPatternObservation("unknown");
+		gen.addPatternObservation("active");
+		gen.addPatternObservation("inactive");
+		gen.addPatternObservation("deleted");
+		//gen.addTerminationConditionIterations(500);
+		gen.addTerminationConditionTime(15);
 		System.out.println(gen);
 		gen.saveDefinition("models/SimulationDefinitions/"+modelName+".xmi");
 	}
 	
 	public static void main(String[] args) {
 		//runSimSGLModel("NetworkExample", true, false, true, false);
-		//generateComputerNetwork("testNetwork1", 5, 50, 50);
+		//generateComputerNetwork("testNetwork1", 15, 50, 50);
 		generateNetworkSimulation("testNetwork1");
 		
-		
-		PersistenceManager pm = new SimplePersistenceManager();
-		pm.setModelFolderPath(System.getProperty("user.dir")+"//models");
-		pm.init();
-		SimDefinition def = pm.loadSimulationDefinition("testNetwork1");
-		Resource model = pm.loadSimulationModel(def);
-		
-		PatternMatchingEngine e = new IBeXDemoclesEngine();
-		PatternMatchingController pmc = new IBeXPMC();
-		pmc.setEngine(e);
-		pmc.loadModels(def, model);
-		
-		pmc.initController();
-		pmc.initEngine();
-		pmc.collectAllMatches();
-		pmc.getAllMatches().forEach((name, matches) -> {
-			System.out.println("Pattern: "+name+" num: "+matches.size());
-		});
-		
-		GraphTransformationEngine gt = new IBeXGT();
-		gt.setModels(def, model);
-		gt.init();
-		//gt.applyRuleToMatch(pmc.getRandomMatch("deleteLink"));
-		
-		pmc.collectAllMatches();
-		pmc.getAllMatches().forEach((name, matches) -> {
-			System.out.println("Pattern: "+name+" num: "+matches.size());
-		});
-		
-		/*
 		SimulationConfigurator config = new SimulationConfigurator();
 		config.setModelFolder(System.getProperty("user.dir")+"//models");
 		config.setModel("testNetwork1");
 		config.setStochasticSimulation();
+		
+		config.addRuleApplicationCondition("gKTCpowerUp", PowerUpCondition.class, 1.0);
+		config.addRuleApplicationCondition("iKTCpowerDown2", PowerDownCondition.class, 1.0);
+		config.addPostApplicationAction("changeWeight", ChangeWeightAction.class, 10.0);
+		config.addPostApplicationAction("aCreateLink2", CreateLinkAction.class);
+		
+		config.addServiceRoutine(KTCPeriodicService.class, 5.0);
+		
 		Simulation sim = config.createSimulation();
 		sim.initialize();
 		sim.run();
+		sim.printCurrentMatches();
 		sim.displayResults();
-		sim.displayVisualizations();
-		*/
+		//sim.displayVisualizations();
+		sim.finish();
+		
+		
 	}
 }

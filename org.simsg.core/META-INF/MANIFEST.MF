@@ -148,6 +148,7 @@ Export-Package: org.jfree,
    org.simsg.core.persistence,
    org.simsg.simsgl.simSGL",
  org.simsg.core.simulation.constraint,
+ org.simsg.core.simulation.service,
  org.simsg.core.simulation.statistic,
  org.simsg.core.simulation.visualization,
  org.simsg.core.utils;uses:="org.json.simple,org.eclipse.emf.ecore.resource"

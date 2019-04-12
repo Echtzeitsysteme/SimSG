@@ -1,18 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ComputerNetwork:Network xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ComputerNetwork="http://www.simsg.org/examples/ComputerNetwork" xsi:schemaLocation="http://www.simsg.org/examples/ComputerNetwork java://org.simsg.examples.network.ComputerNetwork.ComputerNetworkPackage" name="testNetwork1">
-  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.1 //@links.3 //@links.9 //@links.4" name="Node2" x="4.254729937983004" y="25.802285141513075"/>
-  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.2 //@links.7 //@links.4 //@links.8" name="Node4" x="25.73139839537812" y="27.32097755224127"/>
-  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.5 //@links.1 //@links.6 //@links.2" name="Node0" x="36.946979115730024" y="15.961753344111502"/>
-  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.5 //@links.3 //@links.0 //@links.7" name="Node1" x="40.843946217687616" y="23.930760183007504"/>
-  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.6 //@links.0 //@links.9 //@links.8" name="Node3" x="29.82805322809485" y="6.9743848420489805"/>
-  <links xmi:type="ComputerNetwork:Link" weight="20.220498585881245" endpoints="//@nodes.3 //@nodes.4"/>
-  <links xmi:type="ComputerNetwork:Link" weight="34.14116609542755" endpoints="//@nodes.2 //@nodes.0"/>
-  <links xmi:type="ComputerNetwork:Link" weight="15.963120794672035" endpoints="//@nodes.2 //@nodes.1"/>
-  <links xmi:type="ComputerNetwork:Link" weight="36.63704892091216" endpoints="//@nodes.3 //@nodes.0"/>
-  <links xmi:type="ComputerNetwork:Link" weight="21.53029759820504" endpoints="//@nodes.0 //@nodes.1"/>
-  <links xmi:type="ComputerNetwork:Link" weight="8.870818597632972" endpoints="//@nodes.2 //@nodes.3"/>
-  <links xmi:type="ComputerNetwork:Link" weight="11.465247419288769" endpoints="//@nodes.2 //@nodes.4"/>
-  <links xmi:type="ComputerNetwork:Link" weight="15.488146289735445" endpoints="//@nodes.3 //@nodes.1"/>
-  <links xmi:type="ComputerNetwork:Link" weight="20.754913050477263" endpoints="//@nodes.4 //@nodes.1"/>
-  <links xmi:type="ComputerNetwork:Link" weight="31.75664802505354" endpoints="//@nodes.0 //@nodes.4"/>
+  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.96 //@links.56 //@links.43 //@links.41 //@links.77 //@links.59 //@links.72 //@links.48 //@links.65 //@links.94 //@links.52 //@links.50 //@links.93 //@links.42" name="Node7" x="44.32963370199556" y="33.47378426277873"/>
+  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.55 //@links.20 //@links.25 //@links.15 //@links.2 //@links.23 //@links.33 //@links.42 //@links.35 //@links.104 //@links.58 //@links.31 //@links.91 //@links.16" name="Node14" x="47.81352665653012" y="18.494886152162536"/>
+  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.3 //@links.68 //@links.39 //@links.101 //@links.8 //@links.90 //@links.13 //@links.50 //@links.76 //@links.53 //@links.66 //@links.36 //@links.49 //@links.91" name="Node12" x="16.526937622276943" y="40.00107435281273"/>
+  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.30 //@links.103 //@links.7 //@links.79 //@links.14 //@links.100 //@links.32 //@links.52 //@links.0 //@links.27 //@links.6 //@links.36 //@links.82 //@links.31" name="Node11" x="37.226699160999274" y="46.306834921875094"/>
+  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.10 //@links.63 //@links.26 //@links.78 //@links.92 //@links.17 //@links.41 //@links.24 //@links.61 //@links.74 //@links.79 //@links.101 //@links.46 //@links.15" name="Node3" x="24.305503834174115" y="0.12385741857200983"/>
+  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.47 //@links.57 //@links.88 //@links.61 //@links.29 //@links.60 //@links.97 //@links.65 //@links.95 //@links.102 //@links.27 //@links.53 //@links.19 //@links.104" name="Node9" x="7.104718282697419" y="5.319524057731484"/>
+  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.71 //@links.98 //@links.10 //@links.38 //@links.67 //@links.64 //@links.96 //@links.28 //@links.47 //@links.9 //@links.30 //@links.3 //@links.1 //@links.55" name="Node0" x="4.775307224804942" y="25.317346235559242"/>
+  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.28 //@links.99 //@links.45 //@links.24 //@links.5 //@links.69 //@links.12 //@links.48 //@links.95 //@links.11 //@links.0 //@links.76 //@links.37 //@links.35" name="Node8" x="16.930611509455495" y="11.286901811989086"/>
+  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.38 //@links.85 //@links.80 //@links.78 //@links.86 //@links.44 //@links.77 //@links.5 //@links.29 //@links.54 //@links.14 //@links.8 //@links.18 //@links.2" name="Node4" x="9.786555136479569" y="43.39466775902484"/>
+  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.1 //@links.89 //@links.81 //@links.46 //@links.18 //@links.87 //@links.22 //@links.93 //@links.37 //@links.19 //@links.73 //@links.82 //@links.49 //@links.16" name="Node13" x="43.59480295428798" y="35.21619464276525"/>
+  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.64 //@links.40 //@links.34 //@links.17 //@links.44 //@links.21 //@links.72 //@links.12 //@links.97 //@links.51 //@links.32 //@links.13 //@links.22 //@links.33" name="Node6" x="16.17591652623707" y="24.454711917094052"/>
+  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.71 //@links.75 //@links.63 //@links.85 //@links.62 //@links.40 //@links.56 //@links.99 //@links.57 //@links.84 //@links.103 //@links.68 //@links.89 //@links.20" name="Node1" x="39.88182118516402" y="5.491717557919213"/>
+  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.67 //@links.62 //@links.70 //@links.92 //@links.86 //@links.21 //@links.59 //@links.69 //@links.60 //@links.83 //@links.100 //@links.90 //@links.87 //@links.23" name="Node5" x="11.56240708443647" y="11.42670247020004"/>
+  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.98 //@links.75 //@links.26 //@links.80 //@links.70 //@links.34 //@links.43 //@links.45 //@links.88 //@links.4 //@links.7 //@links.39 //@links.81 //@links.25" name="Node2" x="31.892211261814797" y="18.240901092768922"/>
+  <nodes xmi:type="ComputerNetwork:GeometricNode" links="//@links.9 //@links.84 //@links.4 //@links.74 //@links.54 //@links.83 //@links.51 //@links.94 //@links.11 //@links.102 //@links.6 //@links.66 //@links.73 //@links.58" name="Node10" x="27.357394153609153" y="34.68177084477802"/>
+  <links xmi:type="ComputerNetwork:Link" weight="40.47625092545057" endpoints="//@nodes.7 //@nodes.3" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="40.06170800752505" endpoints="//@nodes.6 //@nodes.9" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="45.453819279090006" endpoints="//@nodes.8 //@nodes.1" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="18.807250953294812" endpoints="//@nodes.6 //@nodes.2" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="17.054816457745957" endpoints="//@nodes.13 //@nodes.14" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="32.89295024119738" endpoints="//@nodes.8 //@nodes.7" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="15.249435928109227" endpoints="//@nodes.14 //@nodes.3" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="28.568398674869965" endpoints="//@nodes.13 //@nodes.3" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="7.546471510681685" endpoints="//@nodes.8 //@nodes.2" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="24.446740034651086" endpoints="//@nodes.6 //@nodes.14" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="31.876958110401247" endpoints="//@nodes.6 //@nodes.4" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="25.613232778580894" endpoints="//@nodes.7 //@nodes.14" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="13.18941952785639" endpoints="//@nodes.10 //@nodes.7" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="15.55032478093592" endpoints="//@nodes.10 //@nodes.2" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="27.59424254569724" endpoints="//@nodes.8 //@nodes.3" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="29.834909648712188" endpoints="//@nodes.4 //@nodes.1" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="17.245283045336258" endpoints="//@nodes.9 //@nodes.1" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="25.653083058876597" endpoints="//@nodes.4 //@nodes.10" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="34.78340183224935" endpoints="//@nodes.8 //@nodes.9" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="47.173479746674104" endpoints="//@nodes.5 //@nodes.9" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="15.231360581865786" endpoints="//@nodes.11 //@nodes.1" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="13.820763347874202" endpoints="//@nodes.12 //@nodes.10" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="29.455132717563398" endpoints="//@nodes.10 //@nodes.9" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="36.93376356116706" endpoints="//@nodes.12 //@nodes.1" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="13.379185211760618" endpoints="//@nodes.4 //@nodes.7" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="15.923341116373612" endpoints="//@nodes.13 //@nodes.1" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="19.641420546523022" endpoints="//@nodes.13 //@nodes.4" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="50.86544390749704" endpoints="//@nodes.5 //@nodes.3" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="18.563533957071183" endpoints="//@nodes.6 //@nodes.7" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="38.16947493461815" endpoints="//@nodes.8 //@nodes.5" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="38.64778743873289" endpoints="//@nodes.6 //@nodes.3" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="29.758787118920754" endpoints="//@nodes.3 //@nodes.1" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="30.34222683574966" endpoints="//@nodes.10 //@nodes.3" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="32.194066190911066" endpoints="//@nodes.10 //@nodes.1" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="16.900099561128282" endpoints="//@nodes.13 //@nodes.10" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="31.71292301617114" endpoints="//@nodes.7 //@nodes.1" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="21.638917350789757" endpoints="//@nodes.3 //@nodes.2" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="35.827226529382834" endpoints="//@nodes.7 //@nodes.9" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="18.759055389198462" endpoints="//@nodes.6 //@nodes.8" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="26.638257719396783" endpoints="//@nodes.13 //@nodes.2" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="30.357290240800992" endpoints="//@nodes.11 //@nodes.10" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="38.89965806375834" endpoints="//@nodes.4 //@nodes.0" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="15.378715769753887" endpoints="//@nodes.0 //@nodes.1" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="19.66545719343133" endpoints="//@nodes.13 //@nodes.0" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="19.98864343228955" endpoints="//@nodes.8 //@nodes.10" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="16.498714287691765" endpoints="//@nodes.13 //@nodes.7" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="40.04434032921162" endpoints="//@nodes.4 //@nodes.9" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="20.133033743890945" endpoints="//@nodes.6 //@nodes.5" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="35.25569698633769" endpoints="//@nodes.0 //@nodes.7" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="27.4875318548521" endpoints="//@nodes.2 //@nodes.9" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="28.558631361125432" endpoints="//@nodes.0 //@nodes.2" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="15.153157302745285" endpoints="//@nodes.10 //@nodes.14" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="14.66761290437581" endpoints="//@nodes.0 //@nodes.3" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="35.93867204215253" endpoints="//@nodes.5 //@nodes.2" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="19.612469411172455" endpoints="//@nodes.8 //@nodes.14" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="43.575615812548975" endpoints="//@nodes.6 //@nodes.1" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="28.333356547717585" endpoints="//@nodes.11 //@nodes.0" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="32.777555205969705" endpoints="//@nodes.11 //@nodes.5" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="26.085792934643354" endpoints="//@nodes.14 //@nodes.1" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="39.493859722431885" endpoints="//@nodes.12 //@nodes.0" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="7.560993163260478" endpoints="//@nodes.12 //@nodes.5" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="17.96836039857739" endpoints="//@nodes.4 //@nodes.5" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="28.93463773606795" endpoints="//@nodes.11 //@nodes.12" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="16.475302264126803" endpoints="//@nodes.11 //@nodes.4" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="11.433198608057793" endpoints="//@nodes.6 //@nodes.10" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="46.672868946181225" endpoints="//@nodes.0 //@nodes.5" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="12.066224699037676" endpoints="//@nodes.14 //@nodes.2" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="15.46010054044678" endpoints="//@nodes.6 //@nodes.12" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="41.66948874936285" endpoints="//@nodes.11 //@nodes.2" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="5.370024485310105" endpoints="//@nodes.12 //@nodes.7" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="21.441414150152713" endpoints="//@nodes.13 //@nodes.12" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="40.31777368497112" endpoints="//@nodes.6 //@nodes.11" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="29.56307590203179" endpoints="//@nodes.10 //@nodes.0" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="16.246201197702103" endpoints="//@nodes.14 //@nodes.9" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="34.6924114886096" endpoints="//@nodes.4 //@nodes.14" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="15.045781718892618" endpoints="//@nodes.11 //@nodes.13" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="28.717009895032255" endpoints="//@nodes.7 //@nodes.2" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="35.93950759442175" endpoints="//@nodes.8 //@nodes.0" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="45.641679403870825" endpoints="//@nodes.4 //@nodes.8" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="47.95648756679921" endpoints="//@nodes.4 //@nodes.3" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="33.486893111066884" endpoints="//@nodes.13 //@nodes.8" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="20.61822600102369" endpoints="//@nodes.13 //@nodes.9" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="12.78886420768911" endpoints="//@nodes.3 //@nodes.9" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="28.1119160076582" endpoints="//@nodes.12 //@nodes.14" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="31.76350867518258" endpoints="//@nodes.11 //@nodes.14" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="48.39792012564788" endpoints="//@nodes.11 //@nodes.8" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="32.01725245627066" endpoints="//@nodes.8 //@nodes.12" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="39.90005417278805" endpoints="//@nodes.12 //@nodes.9" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="27.953207198305282" endpoints="//@nodes.13 //@nodes.5" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="29.955479825657676" endpoints="//@nodes.11 //@nodes.9" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="29.002435965742556" endpoints="//@nodes.12 //@nodes.2" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="37.96533661539216" endpoints="//@nodes.2 //@nodes.1" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="17.03352051204584" endpoints="//@nodes.4 //@nodes.12" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="1.8910235746973827" endpoints="//@nodes.0 //@nodes.9" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="17.01517401821392" endpoints="//@nodes.0 //@nodes.14" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="11.495989516594852" endpoints="//@nodes.7 //@nodes.5" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="40.38653518632238" endpoints="//@nodes.6 //@nodes.0" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="21.176450410460518" endpoints="//@nodes.10 //@nodes.5" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="28.025034530064758" endpoints="//@nodes.6 //@nodes.13" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="23.671548029585136" endpoints="//@nodes.11 //@nodes.7" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="43.30449777606847" endpoints="//@nodes.12 //@nodes.3" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="40.62878933383769" endpoints="//@nodes.4 //@nodes.2" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="35.66948859060969" endpoints="//@nodes.5 //@nodes.14" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="40.9013872429371" endpoints="//@nodes.11 //@nodes.3" state="ACTIVE"/>
+  <links xmi:type="ComputerNetwork:Link" weight="42.787816554912006" endpoints="//@nodes.5 //@nodes.1" state="ACTIVE"/>
 </ComputerNetwork:Network>

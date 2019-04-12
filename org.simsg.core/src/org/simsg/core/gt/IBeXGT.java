@@ -38,7 +38,7 @@ public class IBeXGT extends GraphTransformationEngine {
 	}
 
 	@Override
-	public void applyRuleToMatch(SimSGMatch match) {
+	protected void applyRule(SimSGMatch match) {
 		try {
 			ruleApplicationMethod.invoke(rules.get(match.getPatternName()), match.asGtMatch());
 		} catch (IllegalAccessException e) {
@@ -51,12 +51,6 @@ public class IBeXGT extends GraphTransformationEngine {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public void setAdditionalParameters(Object... params) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }

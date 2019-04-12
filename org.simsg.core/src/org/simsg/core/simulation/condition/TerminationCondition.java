@@ -12,8 +12,6 @@ public abstract class TerminationCondition extends TerminationConditionImpl{
 		this.state = state;
 	}
 	
-	public abstract void setAdditionalParameters(Object ... params);
-	
 	public abstract boolean isTerminated();
 	
 }

@@ -20,13 +20,10 @@ import IBeXLanguage.IBeXContext;
 import IBeXLanguage.IBeXContextPattern;
 import IBeXLanguage.IBeXLanguagePackage;
 import IBeXLanguage.IBeXPatternSet;
-import SimulationDefinition.ApplicationCondition;
-import SimulationDefinition.ConfigureParameter;
 import SimulationDefinition.PatternObservation;
 import SimulationDefinition.SimDefinition;
 import SimulationDefinition.SimpleTerminationCondition;
 import SimulationDefinition.PatternTerminationCondition;
-import SimulationDefinition.PostApplicationAction;
 import SimulationDefinition.SimulationDefinitionFactory;
 import SimulationDefinition.StochasticRate;
 
@@ -101,57 +98,6 @@ public class SimulationDefinitionGenerator {
 		annotation.setGTRule(rule);
 		annotation.setRate(rate);
 		definition.getRuleAnnotations().add(annotation);
-	}
-	
-	public void addRuleApplicationCondition(String ruleName, Supplier<ApplicationCondition> constructor) {
-		GTRule rule = null;
-		for(GTRule r : definition.getGtRuleSet().getRules()) {
-			if(r.getName().equals(ruleName)) {
-				rule = r;
-				break;
-			}
-		}
-		if(rule == null) {
-			System.err.println("Rule with name: <"+ruleName+"> not found!");
-			return;
-		}
-		ApplicationCondition condition = constructor.get();
-		condition.setGTRule(rule);
-		definition.getRuleAnnotations().add(condition);
-	}
-	
-	public void addRulePostApplicationAction(String ruleName, Supplier<PostApplicationAction> constructor) {
-		GTRule rule = null;
-		for(GTRule r : definition.getGtRuleSet().getRules()) {
-			if(r.getName().equals(ruleName)) {
-				rule = r;
-				break;
-			}
-		}
-		if(rule == null) {
-			System.err.println("Rule with name: <"+ruleName+"> not found!");
-			return;
-		}
-		PostApplicationAction action = constructor.get();
-		action.setGTRule(rule);
-		definition.getRuleAnnotations().add(action);
-	}
-	
-	public void addRuleParameterConfiguration(String ruleName, Supplier<ConfigureParameter> constructor) {
-		GTRule rule = null;
-		for(GTRule r : definition.getGtRuleSet().getRules()) {
-			if(r.getName().equals(ruleName)) {
-				rule = r;
-				break;
-			}
-		}
-		if(rule == null) {
-			System.err.println("Rule with name: <"+ruleName+"> not found!");
-			return;
-		}
-		ConfigureParameter param = constructor.get();
-		param.setGTRule(rule);
-		definition.getRuleAnnotations().add(param);
 	}
 	
 	public void addPatternObservation(String patternName) {
@@ -229,7 +175,6 @@ public class SimulationDefinitionGenerator {
 		try {
 			((XMIResource)defResource).save(saveOptions);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println("Model saved to: "+uri.path());
@@ -285,7 +230,6 @@ public class SimulationDefinitionGenerator {
 			Resource rs = loadResource(gtRulesUri);
 			rules = (GTRuleSet) rs.getContents().get(0);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		definition.setGtRuleSet(rules);
@@ -298,7 +242,6 @@ public class SimulationDefinitionGenerator {
 			Resource rs = loadResource(ibexPatternsUri);
 			patterns = (IBeXPatternSet) rs.getContents().get(0);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		definition.setIbexPatternSet(patterns);
@@ -314,7 +257,6 @@ public class SimulationDefinitionGenerator {
 			Resource rs = loadEcoreResource(metaModelUri);
 			metamodel = (EPackage) rs.getContents().get(0);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		metaModelUri = URI.createPlatformResourceURI(metamodel.getNsURI(), true);

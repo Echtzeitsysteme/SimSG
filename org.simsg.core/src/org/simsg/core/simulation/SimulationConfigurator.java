@@ -2,13 +2,16 @@ package org.simsg.core.simulation;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.simsg.core.gt.GraphTransformationEngine;
 import org.simsg.core.gt.IBeXGT;
 import org.simsg.core.gt.PostApplicationAction;
@@ -31,7 +34,6 @@ import org.simsg.core.simulation.condition.TerminationCondition;
 import org.simsg.core.simulation.constraint.ExternalConstraint;
 import org.simsg.core.simulation.module.SimpleSimulation;
 import org.simsg.core.simulation.module.StochasticSimulation;
-import org.simsg.core.simulation.service.PeriodicService;
 import org.simsg.core.simulation.service.ServiceRoutine;
 import org.simsg.core.simulation.statistic.Observables;
 import org.simsg.core.simulation.statistic.SimulationStatistics;
@@ -50,7 +52,7 @@ public class SimulationConfigurator {
 	protected Supplier<GraphTransformationEngine> gtConstructor;
 	protected Supplier<Simulation> simulationConstructor;
 	
-	protected List<Function<SimulationState, ServiceRoutine>> serviceConstructors = new LinkedList<>();
+	protected List<BiFunction<SimulationState, GraphTransformationEngine, ServiceRoutine>> serviceConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, TerminationCondition>> conditionConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, ExternalConstraint>> constraintConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, SimulationStatistics>> statisticConstructors = new LinkedList<>();
@@ -62,8 +64,6 @@ public class SimulationConfigurator {
 	
 	public SimulationConfigurator() {
 		setEMFPersistence();
-		//setViatraAsEngine();
-		//setSimplePMC();
 		setIBeXDemoclesAsEngine();
 		setIBeXDemoclesPMC();
 		setIBeXGT();
@@ -81,14 +81,13 @@ public class SimulationConfigurator {
 		persistenceConstructor = ()-> {
 			Constructor<? extends PersistenceManager> persistenceConstructor = null;
 			try {
-				persistenceConstructor = persistenceType.getConstructor();
+				persistenceConstructor = persistenceType.getConstructor(parameterTypes(params));
 			} catch (NoSuchMethodException | SecurityException e1) {
 				e1.printStackTrace();
 			}
 			if(persistenceConstructor == null) return null;
 			try {
-				PersistenceManager persistence = persistenceConstructor.newInstance();
-				persistence.setAdditionalParameters(params);
+				PersistenceManager persistence = persistenceConstructor.newInstance(params);
 				return persistence;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
@@ -108,14 +107,13 @@ public class SimulationConfigurator {
 		engineConstructor = ()-> {
 			Constructor<? extends PatternMatchingEngine> engineConstructor = null;
 			try {
-				engineConstructor = engineType.getConstructor();
+				engineConstructor = engineType.getConstructor(parameterTypes(params));
 			} catch (NoSuchMethodException | SecurityException e1) {
 				e1.printStackTrace();
 			}
 			if(engineConstructor == null) return null;
 			try {
-				PatternMatchingEngine engine = engineConstructor.newInstance();
-				engine.setAdditionalParameters(params);
+				PatternMatchingEngine engine = engineConstructor.newInstance(params);
 				return engine;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
@@ -147,14 +145,13 @@ public class SimulationConfigurator {
 		pmcConstructor = ()-> {
 			Constructor<? extends PatternMatchingController> pmcConstructor = null;
 			try {
-				pmcConstructor = pmcType.getConstructor();
+				pmcConstructor = pmcType.getConstructor(parameterTypes(params));
 			} catch (NoSuchMethodException | SecurityException e1) {
 				e1.printStackTrace();
 			}
 			if(pmcConstructor == null) return null;
 			try {
-				PatternMatchingController pmc = pmcConstructor.newInstance();
-				pmc.setAdditionalParameters(params);
+				PatternMatchingController pmc = pmcConstructor.newInstance(params);
 				return pmc;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
@@ -186,14 +183,13 @@ public class SimulationConfigurator {
 		gtConstructor = ()-> {
 			Constructor<? extends GraphTransformationEngine> gtConstructor = null;
 			try {
-				gtConstructor = gtType.getConstructor();
+				gtConstructor = gtType.getConstructor(parameterTypes(params));
 			} catch (NoSuchMethodException | SecurityException e1) {
 				e1.printStackTrace();
 			}
 			if(gtConstructor == null) return null;
 			try {
-				GraphTransformationEngine gt = gtConstructor.newInstance();
-				gt.setAdditionalParameters(params);
+				GraphTransformationEngine gt = gtConstructor.newInstance(params);
 				return gt;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
@@ -219,13 +215,13 @@ public class SimulationConfigurator {
 		ruleConfigs.put(ruleName, (rule) -> {
 			Constructor<? extends RuleParameterConfiguration> ruleParamConstructor = null;
 			try {
-				ruleParamConstructor = paramType.getConstructor();
+				ruleParamConstructor = paramType.getConstructor(concatParamTypes(parameterTypes(params), GTRule.class));
 			} catch (NoSuchMethodException | SecurityException e1) {
 				e1.printStackTrace();
 			}
 			if(ruleParamConstructor == null) return null;
 			try {
-				RuleParameterConfiguration param = ruleParamConstructor.newInstance(params);
+				RuleParameterConfiguration param = ruleParamConstructor.newInstance(concatParams(params, rule));
 				return param;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
@@ -239,13 +235,13 @@ public class SimulationConfigurator {
 		ruleConditions.put(ruleName, (rule) -> {
 			Constructor<? extends RuleApplicationCondition> conditionConstructor = null;
 			try {
-				conditionConstructor = conditionType.getConstructor();
+				conditionConstructor = conditionType.getConstructor(concatParamTypes(parameterTypes(params), GTRule.class));
 			} catch (NoSuchMethodException | SecurityException e1) {
 				e1.printStackTrace();
 			}
 			if(conditionConstructor == null) return null;
 			try {
-				RuleApplicationCondition condition = conditionConstructor.newInstance(params);
+				RuleApplicationCondition condition = conditionConstructor.newInstance(concatParams(params, rule));
 				return condition;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
@@ -259,13 +255,13 @@ public class SimulationConfigurator {
 		ruleActions.put(ruleName, (rule) -> {
 			Constructor<? extends PostApplicationAction> actionConstructor = null;
 			try {
-				actionConstructor = actionType.getConstructor();
+				actionConstructor = actionType.getConstructor(concatParamTypes(parameterTypes(params), GTRule.class));
 			} catch (NoSuchMethodException | SecurityException e1) {
 				e1.printStackTrace();
 			}
 			if(actionConstructor == null) return null;
 			try {
-				PostApplicationAction action = actionConstructor.newInstance(params);
+				PostApplicationAction action = actionConstructor.newInstance(concatParams(params, rule));
 				return action;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
@@ -279,14 +275,13 @@ public class SimulationConfigurator {
 		Function<SimulationState, TerminationCondition> terminationCondition = (state) -> {
 			Constructor<? extends TerminationCondition> condConstructor = null;
 			try {
-				condConstructor = conditionType.getConstructor(SimulationState.class);
+				condConstructor = conditionType.getConstructor(concatParamTypes(parameterTypes(params), SimulationState.class));
 			} catch (NoSuchMethodException | SecurityException e1) {
 				e1.printStackTrace();
 			}
 			if(condConstructor == null) return null;
 			try {
-				TerminationCondition condition = condConstructor.newInstance(state);
-				condition.setAdditionalParameters(params);
+				TerminationCondition condition = condConstructor.newInstance(concatParams(params, state));
 				return condition;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
@@ -311,17 +306,16 @@ public class SimulationConfigurator {
 	}
 	
 	public void addServiceRoutine(Class<? extends ServiceRoutine> routineType, Object ... params) {
-		Function<SimulationState, ServiceRoutine> serviceRoutine = (state) -> {
+		BiFunction<SimulationState, GraphTransformationEngine, ServiceRoutine> serviceRoutine = (state, gt) -> {
 			Constructor<? extends ServiceRoutine> routineConstructor = null;
 			try {
-				routineConstructor = routineType.getConstructor(SimulationState.class);
+				routineConstructor = routineType.getConstructor(concatParamTypes(parameterTypes(params), SimulationState.class, GraphTransformationEngine.class));
 			} catch (NoSuchMethodException | SecurityException e1) {
 				e1.printStackTrace();
 			}
 			if(routineConstructor == null) return null;
 			try {
-				ServiceRoutine routine = routineConstructor.newInstance(state);
-				routine.setAdditionalParameters(params);
+				ServiceRoutine routine = routineConstructor.newInstance(concatParams(params, state, gt));
 				return routine;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
@@ -332,26 +326,17 @@ public class SimulationConfigurator {
 		serviceConstructors.add(serviceRoutine);
 	}
 	
-	public void addPeriodicServiceRoutine(double servicePeriod) {
-		serviceConstructors.add((state)-> {
-			PeriodicService service = new PeriodicService(state);
-			service.setServicePeriod(servicePeriod);
-			return service;
-		});
-	}
-	
 	public void addSimulationStatistics(Class<? extends SimulationStatistics> statisticsType, Object ... params) {
 		Function<SimulationState, SimulationStatistics> simulationStatistics = (state) -> {
 			Constructor<? extends SimulationStatistics> statisticsConstructor = null;
 			try {
-				statisticsConstructor = statisticsType.getConstructor(SimulationState.class);
+				statisticsConstructor = statisticsType.getConstructor(concatParamTypes(parameterTypes(params), SimulationState.class));
 			} catch (NoSuchMethodException | SecurityException e1) {
 				e1.printStackTrace();
 			}
 			if(statisticsConstructor == null) return null;
 			try {
-				SimulationStatistics statistics = statisticsConstructor.newInstance(state);
-				statistics.setAdditionalParameters(params);
+				SimulationStatistics statistics = statisticsConstructor.newInstance(concatParams(params, state));
 				return statistics;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
@@ -370,14 +355,13 @@ public class SimulationConfigurator {
 		Function<SimulationState, SimulationVisualization> simulationVisualization = (state) -> {
 			Constructor<? extends SimulationVisualization> visualizationConstructor = null;
 			try {
-				visualizationConstructor = visualizationType.getConstructor(SimulationState.class);
+				visualizationConstructor = visualizationType.getConstructor(concatParamTypes(parameterTypes(params), SimulationState.class));
 			} catch (NoSuchMethodException | SecurityException e1) {
 				e1.printStackTrace();
 			}
 			if(visualizationConstructor == null) return null;
 			try {
-				SimulationVisualization visualization = visualizationConstructor.newInstance(state);
-				visualization.setAdditionalParameters(params);
+				SimulationVisualization visualization = visualizationConstructor.newInstance(concatParams(params, state));
 				return visualization;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
@@ -407,14 +391,13 @@ public class SimulationConfigurator {
 		simulationConstructor = ()->{
 			Constructor<? extends Simulation> simConstructor = null;
 			try {
-				simConstructor = simulationType.getConstructor();
+				simConstructor = simulationType.getConstructor(concatParamTypes(parameterTypes(params), String.class, PersistenceManager.class, PatternMatchingController.class));
 			} catch (NoSuchMethodException | SecurityException e1) {
 				e1.printStackTrace();
 			}
 			if(simConstructor == null) return null;
 			try {
-				Simulation sim = simConstructor.newInstance(modelName, createPersistenceManager(), createPMC());
-				sim.setAdditionalParameters(params);
+				Simulation sim = simConstructor.newInstance(concatParams(params, modelName, createPersistenceManager(), createPMC()));
 				return sim;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
@@ -431,11 +414,15 @@ public class SimulationConfigurator {
 		if(!constraintConstructors.isEmpty()) System.out.println("Info: Additional external constraints were specified.");
 		if(statisticConstructors.isEmpty()) System.out.println("Info: No simulation statistic modules were specified.");
 		
-		simulation.addServiceRoutine(serviceConstructors);
+		simulation.addServiceRoutines(serviceConstructors);
 		simulation.addTerminationConditions(conditionConstructors);
 		simulation.addExternalConstraints(constraintConstructors);
 		simulation.addSimulationStatistics(statisticConstructors);
-		simulation.addSimulationVisualization(visualizationConstructors);
+		simulation.addSimulationVisualizations(visualizationConstructors);
+		
+		simulation.addRuleParameterConfigurators(ruleConfigs);
+		simulation.addRuleApplicationConditions(ruleConditions);
+		simulation.addPostApplicationActions(ruleActions);
 		
 		return simulation;
 	}
@@ -455,6 +442,29 @@ public class SimulationConfigurator {
 		PatternMatchingController pmc = pmcConstructor.get();
 		pmc.setEngine(engine);
 		return pmc;
+	}
+	
+	public static Class<?>[] parameterTypes(Object ... params) {
+		Class<?>[] types = new Class<?>[params.length];
+		for(int i = 0; i<params.length; i++) {
+			Class<?> type = params[i].getClass();
+			if(com.google.common.primitives.Primitives.isWrapperType(type)) {
+				types[i] = com.google.common.primitives.Primitives.unwrap(type);
+			} else {
+				types[i] = params[i].getClass();
+			}
+		}
+		return types;
+	}
+	
+	public static Class<?>[] concatParamTypes(Class<?>[] params2, Class<?> ... params1) {
+		Class<?>[] types = ArrayUtils.addAll(params1, params2);
+		return types;
+	}
+	
+	public static Object[] concatParams(Object[] params2, Object ... params1) {
+		Object[] params = ArrayUtils.addAll(params1, params2);
+		return params;
 	}
 	
 }

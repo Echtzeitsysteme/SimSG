@@ -6,16 +6,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 public class SimplePersistenceManager extends PersistenceManager {
 	
-	public SimplePersistenceManager() {
-		super();
-	}
-	
-	@Override
-	public void setAdditionalParameters(Object... params) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	public Resource loadSimulationModel(URI uri) {
 		Resource model = null;

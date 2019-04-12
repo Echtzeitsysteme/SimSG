@@ -10,8 +10,6 @@ public abstract class SimulationVisualization {
 		this.state = state;
 	}
 	
-	public abstract void setAdditionalParameters(Object ... params);
-	
 	public void display() {
 		Thread t = new Thread(new Runnable() {
 			

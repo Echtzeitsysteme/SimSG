@@ -20,8 +20,6 @@ public abstract class PatternMatchingController{
 	protected Map<String, Collection<SimSGMatch>> matches = new HashMap<>();
 	protected Map<String, Integer> matchCount = new HashMap<>();
 	
-	public abstract void setAdditionalParameters(Object ... params);
-	
 	public abstract void loadModels(SimDefinition simulationDefinition, Resource simulationModel);
 	
 	public abstract void initController();
@@ -55,6 +53,10 @@ public abstract class PatternMatchingController{
 
 	public String getPMCType() {
 		return this.getClass().getSimpleName();
+	}
+	
+	public PatternMatchingEngine getEngine() {
+		return engine;
 	}
 	
 	public String getEngineType() {

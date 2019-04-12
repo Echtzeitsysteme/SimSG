@@ -60,9 +60,4 @@ public class Observables extends SimulationStatistics {
 		// TODO Auto-generated method stub
 	}
 
-	@Override
-	public void setAdditionalParameters(Object... params) {
-		// TODO Auto-generated method stub
-	}
-
 }

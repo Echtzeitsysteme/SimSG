@@ -20,12 +20,6 @@ public class SimpleTerminationCondition extends TerminationCondition implements 
 		maxElapsedTime = other.getMaxSimulationTime();
 	}
 	
-	@Override
-	public void setAdditionalParameters(Object... params) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	public void setMaxIterations(int maxIterations) {
 		this.maxIterations = maxIterations;
 	}

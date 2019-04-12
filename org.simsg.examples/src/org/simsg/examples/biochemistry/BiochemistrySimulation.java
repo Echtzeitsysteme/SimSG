@@ -48,7 +48,7 @@ public class BiochemistrySimulation {
 				e.printStackTrace();
 			}
 		}
-		System.out.println(sim.results());
+		sim.printCurrentMatches();
 		// This calls a visualization of the tracked patterns.
 		sim.displayResults();
 		if(saveResult) {

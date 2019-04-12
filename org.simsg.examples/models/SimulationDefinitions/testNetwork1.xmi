@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <org.simsg:SimDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:GTLanguage="platform:/resource/org.emoflon.ibex.gt/model/Gt.ecore" xmlns:IBeXLanguage="platform:/resource/org.emoflon.ibex.common/model/Common.ecore" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.simsg="http://www.simsg.org/simulationdefinition/simulationdefinition" xsi:schemaLocation="platform:/resource/org.emoflon.ibex.gt/model/Gt.ecore java://GTLanguage.GTLanguagePackage platform:/resource/org.emoflon.ibex.common/model/Common.ecore java://IBeXLanguage.IBeXLanguagePackage http://www.eclipse.org/emf/2002/Ecore java://org.eclipse.emf.ecore.EcorePackage http://www.simsg.org/simulationdefinition/simulationdefinition java://SimulationDefinition.SimulationDefinitionPackage" name="testNetwork1" simulationModelURI="models/SimulationModels/testNetwork1.xmi" gtRulesURI="src-gen/org/simsg/examples/network/api/gt-rules.xmi" metamodelURI="platform:/resource/http://www.simsg.org/examples/ComputerNetwork" ibexPatternsURI="src-gen/org/simsg/examples/network/api/ibex-patterns.xmi">
-  <ruleAnnotations xmi:type="org.simsg:StochasticRate" GTRule="//@GtRuleSet/@rules.6" rate="0.1"/>
-  <ruleAnnotations xmi:type="org.simsg:ApplicationCondition" GTRule="//@GtRuleSet/@rules.8"/>
-  <ruleAnnotations xmi:type="org.simsg:ApplicationCondition" GTRule="//@GtRuleSet/@rules.10"/>
-  <ruleAnnotations xmi:type="org.simsg:PostApplicationAction" GTRule="//@GtRuleSet/@rules.3"/>
-  <terminationConditions xmi:type="org.simsg:SimpleTerminationCondition" maxIterations="50"/>
+  <ruleAnnotations xmi:type="org.simsg:StochasticRate" GTRule="//@GtRuleSet/@rules.7" rate="0.2"/>
+  <ruleAnnotations xmi:type="org.simsg:StochasticRate" GTRule="//@GtRuleSet/@rules.4" rate="0.2"/>
+  <ruleAnnotations xmi:type="org.simsg:StochasticRate" GTRule="//@GtRuleSet/@rules.5" rate="0.1"/>
+  <terminationConditions xmi:type="org.simsg:SimpleTerminationCondition" maxSimulationTime="15.0"/>
+  <observations xmi:type="org.simsg:PatternObservation" name="link" pattern="//@ibexPatternSet/@contextPatterns.15"/>
+  <observations xmi:type="org.simsg:PatternObservation" name="unknown" pattern="//@ibexPatternSet/@contextPatterns.16"/>
+  <observations xmi:type="org.simsg:PatternObservation" name="active" pattern="//@ibexPatternSet/@contextPatterns.1"/>
+  <observations xmi:type="org.simsg:PatternObservation" name="inactive" pattern="//@ibexPatternSet/@contextPatterns.14"/>
+  <observations xmi:type="org.simsg:PatternObservation" name="deleted" pattern="//@ibexPatternSet/@contextPatterns.8"/>
   <GtRuleSet xmi:type="GTLanguage:GTRuleSet">
-    <rules xmi:type="GTLanguage:GTRule" name="aDeleteRedundantLink" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.0/@nodes.0 //@GtRuleSet/@rules.0/@nodes.1 //@GtRuleSet/@rules.0/@nodes.2 //@GtRuleSet/@rules.0/@nodes.3">
+    <rules xmi:type="GTLanguage:GTRule" name="aCreateLink2" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.0/@nodes.0">
+      <nodes xmi:type="GTLanguage:GTNode" name="l">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </nodes>
+    </rules>
+    <rules xmi:type="GTLanguage:GTRule" name="active" documentation="" ruleNodes="//@GtRuleSet/@rules.1/@nodes.0">
+      <nodes xmi:type="GTLanguage:GTNode" name="l">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </nodes>
+    </rules>
+    <rules xmi:type="GTLanguage:GTRule" name="bMarkUnknown" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.2/@nodes.0">
+      <nodes xmi:type="GTLanguage:GTNode" name="l">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </nodes>
+    </rules>
+    <rules xmi:type="GTLanguage:GTRule" name="cDeleteRedundantLink" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.3/@nodes.0 //@GtRuleSet/@rules.3/@nodes.1 //@GtRuleSet/@rules.3/@nodes.2 //@GtRuleSet/@rules.3/@nodes.3">
       <nodes xmi:type="GTLanguage:GTNode" name="l1">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </nodes>
@@ -20,12 +39,23 @@
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
       </nodes>
     </rules>
-    <rules xmi:type="GTLanguage:GTRule" name="bMarkUnknown" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.1/@nodes.0">
+    <rules xmi:type="GTLanguage:GTRule" name="changeWeight" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.4/@nodes.0">
       <nodes xmi:type="GTLanguage:GTNode" name="l">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </nodes>
     </rules>
-    <rules xmi:type="GTLanguage:GTRule" name="cKTCrepairTwo" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.2/@nodes.0 //@GtRuleSet/@rules.2/@nodes.1 //@GtRuleSet/@rules.2/@nodes.2 //@GtRuleSet/@rules.2/@nodes.3 //@GtRuleSet/@rules.2/@nodes.4 //@GtRuleSet/@rules.2/@nodes.5">
+    <rules xmi:type="GTLanguage:GTRule" name="createLink" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.5/@nodes.1 //@GtRuleSet/@rules.5/@nodes.2">
+      <nodes xmi:type="GTLanguage:GTNode" name="l">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </nodes>
+      <nodes xmi:type="GTLanguage:GTNode" name="n1">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+      </nodes>
+      <nodes xmi:type="GTLanguage:GTNode" name="n2">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+      </nodes>
+    </rules>
+    <rules xmi:type="GTLanguage:GTRule" name="dKTCrepairTwo" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.6/@nodes.0 //@GtRuleSet/@rules.6/@nodes.1 //@GtRuleSet/@rules.6/@nodes.2 //@GtRuleSet/@rules.6/@nodes.3 //@GtRuleSet/@rules.6/@nodes.4 //@GtRuleSet/@rules.6/@nodes.5">
       <nodes xmi:type="GTLanguage:GTNode" name="l12">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </nodes>
@@ -45,23 +75,17 @@
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
       </nodes>
     </rules>
-    <rules xmi:type="GTLanguage:GTRule" name="changeWeight" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.3/@nodes.0">
+    <rules xmi:type="GTLanguage:GTRule" name="deleteLink" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.7/@nodes.0">
       <nodes xmi:type="GTLanguage:GTNode" name="l">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </nodes>
     </rules>
-    <rules xmi:type="GTLanguage:GTRule" name="createLink" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.4/@nodes.1 //@GtRuleSet/@rules.4/@nodes.2">
+    <rules xmi:type="GTLanguage:GTRule" name="deleted" documentation="" ruleNodes="//@GtRuleSet/@rules.8/@nodes.0">
       <nodes xmi:type="GTLanguage:GTNode" name="l">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </nodes>
-      <nodes xmi:type="GTLanguage:GTNode" name="n1">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
-      </nodes>
-      <nodes xmi:type="GTLanguage:GTNode" name="n2">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
-      </nodes>
     </rules>
-    <rules xmi:type="GTLanguage:GTRule" name="dKTCrepairOne" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.5/@nodes.0 //@GtRuleSet/@rules.5/@nodes.1 //@GtRuleSet/@rules.5/@nodes.2 //@GtRuleSet/@rules.5/@nodes.3 //@GtRuleSet/@rules.5/@nodes.4 //@GtRuleSet/@rules.5/@nodes.5">
+    <rules xmi:type="GTLanguage:GTRule" name="eKTCrepairOne" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.9/@nodes.0 //@GtRuleSet/@rules.9/@nodes.1 //@GtRuleSet/@rules.9/@nodes.2 //@GtRuleSet/@rules.9/@nodes.3 //@GtRuleSet/@rules.9/@nodes.4 //@GtRuleSet/@rules.9/@nodes.5">
       <nodes xmi:type="GTLanguage:GTNode" name="l12">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </nodes>
@@ -81,114 +105,90 @@
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
       </nodes>
     </rules>
-    <rules xmi:type="GTLanguage:GTRule" name="deleteLink" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.6/@nodes.0">
+    <rules xmi:type="GTLanguage:GTRule" name="fRemoveDeleteLink" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.10/@nodes.0">
       <nodes xmi:type="GTLanguage:GTNode" name="l">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </nodes>
     </rules>
-    <rules xmi:type="GTLanguage:GTRule" name="eRemoveDeleteLink" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.7/@nodes.0">
+    <rules xmi:type="GTLanguage:GTRule" name="gKTCpowerUp" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.11/@nodes.0 //@GtRuleSet/@rules.11/@nodes.1 //@GtRuleSet/@rules.11/@nodes.2 //@GtRuleSet/@rules.11/@nodes.3 //@GtRuleSet/@rules.11/@nodes.4 //@GtRuleSet/@rules.11/@nodes.5">
+      <nodes xmi:type="GTLanguage:GTNode" name="l12">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </nodes>
+      <nodes xmi:type="GTLanguage:GTNode" name="l23">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </nodes>
+      <nodes xmi:type="GTLanguage:GTNode" name="l13">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </nodes>
+      <nodes xmi:type="GTLanguage:GTNode" name="n1">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+      </nodes>
+      <nodes xmi:type="GTLanguage:GTNode" name="n2">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+      </nodes>
+      <nodes xmi:type="GTLanguage:GTNode" name="n3">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+      </nodes>
+    </rules>
+    <rules xmi:type="GTLanguage:GTRule" name="hKTCpowerDown1" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.12/@nodes.0 //@GtRuleSet/@rules.12/@nodes.1 //@GtRuleSet/@rules.12/@nodes.2 //@GtRuleSet/@rules.12/@nodes.3 //@GtRuleSet/@rules.12/@nodes.4 //@GtRuleSet/@rules.12/@nodes.5">
+      <nodes xmi:type="GTLanguage:GTNode" name="l12">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </nodes>
+      <nodes xmi:type="GTLanguage:GTNode" name="l23">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </nodes>
+      <nodes xmi:type="GTLanguage:GTNode" name="l13">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </nodes>
+      <nodes xmi:type="GTLanguage:GTNode" name="n1">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+      </nodes>
+      <nodes xmi:type="GTLanguage:GTNode" name="n2">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+      </nodes>
+      <nodes xmi:type="GTLanguage:GTNode" name="n3">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+      </nodes>
+    </rules>
+    <rules xmi:type="GTLanguage:GTRule" name="iKTCpowerDown2" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.13/@nodes.0 //@GtRuleSet/@rules.13/@nodes.1 //@GtRuleSet/@rules.13/@nodes.2 //@GtRuleSet/@rules.13/@nodes.3 //@GtRuleSet/@rules.13/@nodes.4 //@GtRuleSet/@rules.13/@nodes.5">
+      <nodes xmi:type="GTLanguage:GTNode" name="l12">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </nodes>
+      <nodes xmi:type="GTLanguage:GTNode" name="l23">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </nodes>
+      <nodes xmi:type="GTLanguage:GTNode" name="l13">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </nodes>
+      <nodes xmi:type="GTLanguage:GTNode" name="n1">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+      </nodes>
+      <nodes xmi:type="GTLanguage:GTNode" name="n2">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+      </nodes>
+      <nodes xmi:type="GTLanguage:GTNode" name="n3">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+      </nodes>
+    </rules>
+    <rules xmi:type="GTLanguage:GTRule" name="inactive" documentation="" ruleNodes="//@GtRuleSet/@rules.14/@nodes.0">
       <nodes xmi:type="GTLanguage:GTNode" name="l">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </nodes>
     </rules>
-    <rules xmi:type="GTLanguage:GTRule" name="fKTCpowerUp" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.8/@nodes.0 //@GtRuleSet/@rules.8/@nodes.1 //@GtRuleSet/@rules.8/@nodes.2 //@GtRuleSet/@rules.8/@nodes.3 //@GtRuleSet/@rules.8/@nodes.4 //@GtRuleSet/@rules.8/@nodes.5">
-      <nodes xmi:type="GTLanguage:GTNode" name="l12">
+    <rules xmi:type="GTLanguage:GTRule" name="link" documentation="" ruleNodes="//@GtRuleSet/@rules.15/@nodes.0">
+      <nodes xmi:type="GTLanguage:GTNode" name="l">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
-      </nodes>
-      <nodes xmi:type="GTLanguage:GTNode" name="l23">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
-      </nodes>
-      <nodes xmi:type="GTLanguage:GTNode" name="l13">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
-      </nodes>
-      <nodes xmi:type="GTLanguage:GTNode" name="n1">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
-      </nodes>
-      <nodes xmi:type="GTLanguage:GTNode" name="n2">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
-      </nodes>
-      <nodes xmi:type="GTLanguage:GTNode" name="n3">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
       </nodes>
     </rules>
-    <rules xmi:type="GTLanguage:GTRule" name="gKTCpowerDown1" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.9/@nodes.0 //@GtRuleSet/@rules.9/@nodes.1 //@GtRuleSet/@rules.9/@nodes.2 //@GtRuleSet/@rules.9/@nodes.3 //@GtRuleSet/@rules.9/@nodes.4 //@GtRuleSet/@rules.9/@nodes.5">
-      <nodes xmi:type="GTLanguage:GTNode" name="l12">
+    <rules xmi:type="GTLanguage:GTRule" name="unknown" documentation="" ruleNodes="//@GtRuleSet/@rules.16/@nodes.0">
+      <nodes xmi:type="GTLanguage:GTNode" name="l">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
-      </nodes>
-      <nodes xmi:type="GTLanguage:GTNode" name="l23">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
-      </nodes>
-      <nodes xmi:type="GTLanguage:GTNode" name="l13">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
-      </nodes>
-      <nodes xmi:type="GTLanguage:GTNode" name="n1">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
-      </nodes>
-      <nodes xmi:type="GTLanguage:GTNode" name="n2">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
-      </nodes>
-      <nodes xmi:type="GTLanguage:GTNode" name="n3">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
-      </nodes>
-    </rules>
-    <rules xmi:type="GTLanguage:GTRule" name="hKTCpowerDown2" documentation="" executable="true" ruleNodes="//@GtRuleSet/@rules.10/@nodes.0 //@GtRuleSet/@rules.10/@nodes.1 //@GtRuleSet/@rules.10/@nodes.2 //@GtRuleSet/@rules.10/@nodes.3 //@GtRuleSet/@rules.10/@nodes.4 //@GtRuleSet/@rules.10/@nodes.5">
-      <nodes xmi:type="GTLanguage:GTNode" name="l12">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
-      </nodes>
-      <nodes xmi:type="GTLanguage:GTNode" name="l23">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
-      </nodes>
-      <nodes xmi:type="GTLanguage:GTNode" name="l13">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
-      </nodes>
-      <nodes xmi:type="GTLanguage:GTNode" name="n1">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
-      </nodes>
-      <nodes xmi:type="GTLanguage:GTNode" name="n2">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
-      </nodes>
-      <nodes xmi:type="GTLanguage:GTNode" name="n3">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
       </nodes>
     </rules>
   </GtRuleSet>
   <ibexPatternSet xmi:type="IBeXLanguage:IBeXPatternSet">
-    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="aDeleteRedundantLink">
-      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.0/@signatureNodes.1" relation="EQUAL">
-        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
-        <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
-          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/UNKNOWN"/>
-        </value>
-      </attributeConstraint>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.0/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.0/@signatureNodes.1"/>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.0/@signatureNodes.2 //@ibexPatternSet/@contextPatterns.0/@signatureNodes.3"/>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.0/@signatureNodes.2" targetNode="//@ibexPatternSet/@contextPatterns.0/@signatureNodes.0">
-        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
-      </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.0/@signatureNodes.2" targetNode="//@ibexPatternSet/@contextPatterns.0/@signatureNodes.1">
-        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
-      </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.0/@signatureNodes.3" targetNode="//@ibexPatternSet/@contextPatterns.0/@signatureNodes.0">
-        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
-      </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.0/@signatureNodes.3" targetNode="//@ibexPatternSet/@contextPatterns.0/@signatureNodes.1">
-        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
-      </localEdges>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l1" incomingEdges="//@ibexPatternSet/@contextPatterns.0/@localEdges.0 //@ibexPatternSet/@contextPatterns.0/@localEdges.2">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
-      </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l2" incomingEdges="//@ibexPatternSet/@contextPatterns.0/@localEdges.1 //@ibexPatternSet/@contextPatterns.0/@localEdges.3">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
-      </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n1" outgoingEdges="//@ibexPatternSet/@contextPatterns.0/@localEdges.0 //@ibexPatternSet/@contextPatterns.0/@localEdges.1">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
-      </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n2" outgoingEdges="//@ibexPatternSet/@contextPatterns.0/@localEdges.2 //@ibexPatternSet/@contextPatterns.0/@localEdges.3">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
-      </signatureNodes>
-    </contextPatterns>
-    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="bMarkUnknown">
-      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.1/@signatureNodes.0" relation="EQUAL">
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="aCreateLink2">
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.0/@signatureNodes.0" relation="EQUAL">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
         <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
           <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/UNKNOWN"/>
@@ -198,65 +198,65 @@
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </signatureNodes>
     </contextPatterns>
-    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="cKTCrepairTwo">
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="active">
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.1/@signatureNodes.0" relation="EQUAL">
+        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+        <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
+          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+        </value>
+      </attributeConstraint>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </signatureNodes>
+    </contextPatterns>
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="bMarkUnknown">
       <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.2/@signatureNodes.0" relation="EQUAL">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
         <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
-          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/INACTIVE"/>
+          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/UNKNOWN"/>
         </value>
       </attributeConstraint>
-      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.2/@signatureNodes.1" relation="EQUAL">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </signatureNodes>
+    </contextPatterns>
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="cDeleteRedundantLink">
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.3/@signatureNodes.0" relation="UNEQUAL">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
         <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
           <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/DELETED"/>
         </value>
       </attributeConstraint>
-      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.2/@signatureNodes.2" relation="EQUAL">
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.3/@signatureNodes.1" relation="UNEQUAL">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
         <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
-          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/INACTIVE"/>
+          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/DELETED"/>
         </value>
       </attributeConstraint>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.2/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.2/@signatureNodes.1"/>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.2/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.2/@signatureNodes.2"/>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.2/@signatureNodes.1 //@ibexPatternSet/@contextPatterns.2/@signatureNodes.2"/>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.2/@signatureNodes.3 //@ibexPatternSet/@contextPatterns.2/@signatureNodes.4"/>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.2/@signatureNodes.3 //@ibexPatternSet/@contextPatterns.2/@signatureNodes.5"/>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.2/@signatureNodes.4 //@ibexPatternSet/@contextPatterns.2/@signatureNodes.5"/>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.2/@signatureNodes.3" targetNode="//@ibexPatternSet/@contextPatterns.2/@signatureNodes.0">
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.3/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.3/@signatureNodes.1"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.3/@signatureNodes.2 //@ibexPatternSet/@contextPatterns.3/@signatureNodes.3"/>
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.3/@signatureNodes.2" targetNode="//@ibexPatternSet/@contextPatterns.3/@signatureNodes.0">
         <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
       </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.2/@signatureNodes.3" targetNode="//@ibexPatternSet/@contextPatterns.2/@signatureNodes.1">
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.3/@signatureNodes.2" targetNode="//@ibexPatternSet/@contextPatterns.3/@signatureNodes.1">
         <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
       </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.2/@signatureNodes.4" targetNode="//@ibexPatternSet/@contextPatterns.2/@signatureNodes.0">
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.3/@signatureNodes.3" targetNode="//@ibexPatternSet/@contextPatterns.3/@signatureNodes.0">
         <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
       </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.2/@signatureNodes.4" targetNode="//@ibexPatternSet/@contextPatterns.2/@signatureNodes.2">
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.3/@signatureNodes.3" targetNode="//@ibexPatternSet/@contextPatterns.3/@signatureNodes.1">
         <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
       </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.2/@signatureNodes.5" targetNode="//@ibexPatternSet/@contextPatterns.2/@signatureNodes.2">
-        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
-      </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.2/@signatureNodes.5" targetNode="//@ibexPatternSet/@contextPatterns.2/@signatureNodes.1">
-        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
-      </localEdges>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l12" incomingEdges="//@ibexPatternSet/@contextPatterns.2/@localEdges.0 //@ibexPatternSet/@contextPatterns.2/@localEdges.2">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l1" incomingEdges="//@ibexPatternSet/@contextPatterns.3/@localEdges.0 //@ibexPatternSet/@contextPatterns.3/@localEdges.2">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l13" incomingEdges="//@ibexPatternSet/@contextPatterns.2/@localEdges.1 //@ibexPatternSet/@contextPatterns.2/@localEdges.5">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l2" incomingEdges="//@ibexPatternSet/@contextPatterns.3/@localEdges.1 //@ibexPatternSet/@contextPatterns.3/@localEdges.3">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l23" incomingEdges="//@ibexPatternSet/@contextPatterns.2/@localEdges.3 //@ibexPatternSet/@contextPatterns.2/@localEdges.4">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
-      </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n1" outgoingEdges="//@ibexPatternSet/@contextPatterns.2/@localEdges.0 //@ibexPatternSet/@contextPatterns.2/@localEdges.1">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n1" outgoingEdges="//@ibexPatternSet/@contextPatterns.3/@localEdges.0 //@ibexPatternSet/@contextPatterns.3/@localEdges.1">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
       </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n2" outgoingEdges="//@ibexPatternSet/@contextPatterns.2/@localEdges.2 //@ibexPatternSet/@contextPatterns.2/@localEdges.3">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
-      </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n3" outgoingEdges="//@ibexPatternSet/@contextPatterns.2/@localEdges.4 //@ibexPatternSet/@contextPatterns.2/@localEdges.5">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n2" outgoingEdges="//@ibexPatternSet/@contextPatterns.3/@localEdges.2 //@ibexPatternSet/@contextPatterns.3/@localEdges.3">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
       </signatureNodes>
     </contextPatterns>
@@ -266,7 +266,7 @@
       </signatureNodes>
     </contextPatterns>
     <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="createLink">
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.4/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.4/@signatureNodes.1"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.5/@signatureNodes.1"/>
       <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n1">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
       </signatureNodes>
@@ -274,76 +274,70 @@
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
       </signatureNodes>
     </contextPatterns>
-    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="dKTCrepairOne">
-      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.0" relation="EQUAL">
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="dKTCrepairTwo">
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.0" relation="EQUAL">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
         <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
           <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/INACTIVE"/>
         </value>
       </attributeConstraint>
-      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.1" relation="EQUAL">
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.1" relation="EQUAL">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
         <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
           <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/DELETED"/>
         </value>
       </attributeConstraint>
-      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.2" relation="EQUAL">
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.2" relation="EQUAL">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
         <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
-          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/INACTIVE"/>
         </value>
       </attributeConstraint>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.5/@signatureNodes.1"/>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.5/@signatureNodes.2"/>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.1 //@ibexPatternSet/@contextPatterns.5/@signatureNodes.2"/>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.3 //@ibexPatternSet/@contextPatterns.5/@signatureNodes.4"/>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.3 //@ibexPatternSet/@contextPatterns.5/@signatureNodes.5"/>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.4 //@ibexPatternSet/@contextPatterns.5/@signatureNodes.5"/>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.3" targetNode="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.0">
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.6/@signatureNodes.1"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.6/@signatureNodes.2"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.1 //@ibexPatternSet/@contextPatterns.6/@signatureNodes.2"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.3 //@ibexPatternSet/@contextPatterns.6/@signatureNodes.4"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.3 //@ibexPatternSet/@contextPatterns.6/@signatureNodes.5"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.4 //@ibexPatternSet/@contextPatterns.6/@signatureNodes.5"/>
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.3" targetNode="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.0">
         <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
       </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.3" targetNode="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.1">
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.3" targetNode="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.1">
         <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
       </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.4" targetNode="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.0">
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.4" targetNode="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.0">
         <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
       </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.4" targetNode="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.2">
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.4" targetNode="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.2">
         <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
       </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.5" targetNode="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.2">
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.5" targetNode="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.2">
         <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
       </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.5" targetNode="//@ibexPatternSet/@contextPatterns.5/@signatureNodes.1">
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.5" targetNode="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.1">
         <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
       </localEdges>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l12" incomingEdges="//@ibexPatternSet/@contextPatterns.5/@localEdges.0 //@ibexPatternSet/@contextPatterns.5/@localEdges.2">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l12" incomingEdges="//@ibexPatternSet/@contextPatterns.6/@localEdges.0 //@ibexPatternSet/@contextPatterns.6/@localEdges.2">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l13" incomingEdges="//@ibexPatternSet/@contextPatterns.5/@localEdges.1 //@ibexPatternSet/@contextPatterns.5/@localEdges.5">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l13" incomingEdges="//@ibexPatternSet/@contextPatterns.6/@localEdges.1 //@ibexPatternSet/@contextPatterns.6/@localEdges.5">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l23" incomingEdges="//@ibexPatternSet/@contextPatterns.5/@localEdges.3 //@ibexPatternSet/@contextPatterns.5/@localEdges.4">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l23" incomingEdges="//@ibexPatternSet/@contextPatterns.6/@localEdges.3 //@ibexPatternSet/@contextPatterns.6/@localEdges.4">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n1" outgoingEdges="//@ibexPatternSet/@contextPatterns.5/@localEdges.0 //@ibexPatternSet/@contextPatterns.5/@localEdges.1">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n1" outgoingEdges="//@ibexPatternSet/@contextPatterns.6/@localEdges.0 //@ibexPatternSet/@contextPatterns.6/@localEdges.1">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
       </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n2" outgoingEdges="//@ibexPatternSet/@contextPatterns.5/@localEdges.2 //@ibexPatternSet/@contextPatterns.5/@localEdges.3">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n2" outgoingEdges="//@ibexPatternSet/@contextPatterns.6/@localEdges.2 //@ibexPatternSet/@contextPatterns.6/@localEdges.3">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
       </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n3" outgoingEdges="//@ibexPatternSet/@contextPatterns.5/@localEdges.4 //@ibexPatternSet/@contextPatterns.5/@localEdges.5">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n3" outgoingEdges="//@ibexPatternSet/@contextPatterns.6/@localEdges.4 //@ibexPatternSet/@contextPatterns.6/@localEdges.5">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
       </signatureNodes>
     </contextPatterns>
     <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="deleteLink">
-      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.0" relation="UNEQUAL">
-        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
-        <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
-          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/UNKNOWN"/>
-        </value>
-      </attributeConstraint>
-      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.6/@signatureNodes.0" relation="UNEQUAL">
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.7/@signatureNodes.0" relation="UNEQUAL">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
         <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
           <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/DELETED"/>
@@ -353,120 +347,34 @@
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </signatureNodes>
     </contextPatterns>
-    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="eRemoveDeleteLink">
-      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.7/@signatureNodes.0" relation="EQUAL">
-        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
-        <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
-          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/DELETED"/>
-        </value>
-      </attributeConstraint>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
-      </signatureNodes>
-    </contextPatterns>
-    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="fKTCpowerUp">
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="deleted">
       <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.0" relation="EQUAL">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
         <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
-          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/DELETED"/>
         </value>
       </attributeConstraint>
-      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.1" relation="EQUAL">
-        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
-        <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
-          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/INACTIVE"/>
-        </value>
-      </attributeConstraint>
-      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.1" relation="SMALLER_OR_EQUAL">
-        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
-        <value xmi:type="IBeXLanguage:IBeXAttributeExpression" node="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.0">
-          <attribute xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
-        </value>
-      </attributeConstraint>
-      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.1" relation="SMALLER_OR_EQUAL">
-        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
-        <value xmi:type="IBeXLanguage:IBeXAttributeExpression" node="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.2">
-          <attribute xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
-        </value>
-      </attributeConstraint>
-      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.2" relation="EQUAL">
-        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
-        <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
-          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
-        </value>
-      </attributeConstraint>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.8/@signatureNodes.1"/>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.8/@signatureNodes.2"/>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.1 //@ibexPatternSet/@contextPatterns.8/@signatureNodes.2"/>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.3 //@ibexPatternSet/@contextPatterns.8/@signatureNodes.4"/>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.3 //@ibexPatternSet/@contextPatterns.8/@signatureNodes.5"/>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.4 //@ibexPatternSet/@contextPatterns.8/@signatureNodes.5"/>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.3" targetNode="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.0">
-        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
-      </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.3" targetNode="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.1">
-        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
-      </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.4" targetNode="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.0">
-        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
-      </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.4" targetNode="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.2">
-        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
-      </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.5" targetNode="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.2">
-        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
-      </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.5" targetNode="//@ibexPatternSet/@contextPatterns.8/@signatureNodes.1">
-        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
-      </localEdges>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l12" incomingEdges="//@ibexPatternSet/@contextPatterns.8/@localEdges.0 //@ibexPatternSet/@contextPatterns.8/@localEdges.2">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
-      </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l13" incomingEdges="//@ibexPatternSet/@contextPatterns.8/@localEdges.1 //@ibexPatternSet/@contextPatterns.8/@localEdges.5">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
-      </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l23" incomingEdges="//@ibexPatternSet/@contextPatterns.8/@localEdges.3 //@ibexPatternSet/@contextPatterns.8/@localEdges.4">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
-      </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n1" outgoingEdges="//@ibexPatternSet/@contextPatterns.8/@localEdges.0 //@ibexPatternSet/@contextPatterns.8/@localEdges.1">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
-      </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n2" outgoingEdges="//@ibexPatternSet/@contextPatterns.8/@localEdges.2 //@ibexPatternSet/@contextPatterns.8/@localEdges.3">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
-      </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n3" outgoingEdges="//@ibexPatternSet/@contextPatterns.8/@localEdges.4 //@ibexPatternSet/@contextPatterns.8/@localEdges.5">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
       </signatureNodes>
     </contextPatterns>
-    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="gKTCpowerDown1">
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="eKTCrepairOne">
       <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.9/@signatureNodes.0" relation="EQUAL">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
         <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
-          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
-        </value>
-      </attributeConstraint>
-      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.9/@signatureNodes.0" relation="SMALLER">
-        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
-        <value xmi:type="IBeXLanguage:IBeXAttributeExpression" node="//@ibexPatternSet/@contextPatterns.9/@signatureNodes.1">
-          <attribute xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/INACTIVE"/>
         </value>
       </attributeConstraint>
       <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.9/@signatureNodes.1" relation="EQUAL">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
         <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
-          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/DELETED"/>
         </value>
       </attributeConstraint>
       <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.9/@signatureNodes.2" relation="EQUAL">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
         <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
           <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
-        </value>
-      </attributeConstraint>
-      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.9/@signatureNodes.2" relation="SMALLER">
-        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
-        <value xmi:type="IBeXLanguage:IBeXAttributeExpression" node="//@ibexPatternSet/@contextPatterns.9/@signatureNodes.1">
-          <attribute xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
         </value>
       </attributeConstraint>
       <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.9/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.9/@signatureNodes.1"/>
@@ -512,81 +420,277 @@
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
       </signatureNodes>
     </contextPatterns>
-    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="hKTCpowerDown2">
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="fRemoveDeleteLink">
       <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.0" relation="EQUAL">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
         <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
-          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/DELETED"/>
         </value>
       </attributeConstraint>
-      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.1" relation="EQUAL">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </signatureNodes>
+    </contextPatterns>
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="gKTCpowerUp">
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.0" relation="EQUAL">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
         <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
           <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
         </value>
       </attributeConstraint>
-      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.1" relation="SMALLER_OR_EQUAL">
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.1" relation="EQUAL">
+        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+        <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
+          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/INACTIVE"/>
+        </value>
+      </attributeConstraint>
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.1" relation="SMALLER_OR_EQUAL">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
-        <value xmi:type="IBeXLanguage:IBeXAttributeExpression" node="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.0">
+        <value xmi:type="IBeXLanguage:IBeXAttributeExpression" node="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.0">
           <attribute xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
         </value>
       </attributeConstraint>
-      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.1" relation="SMALLER_OR_EQUAL">
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.1" relation="SMALLER_OR_EQUAL">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
-        <value xmi:type="IBeXLanguage:IBeXAttributeExpression" node="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.2">
+        <value xmi:type="IBeXLanguage:IBeXAttributeExpression" node="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.2">
           <attribute xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
         </value>
       </attributeConstraint>
-      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.2" relation="EQUAL">
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.2" relation="EQUAL">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
         <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
           <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
         </value>
       </attributeConstraint>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.10/@signatureNodes.1"/>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.10/@signatureNodes.2"/>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.1 //@ibexPatternSet/@contextPatterns.10/@signatureNodes.2"/>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.3 //@ibexPatternSet/@contextPatterns.10/@signatureNodes.4"/>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.3 //@ibexPatternSet/@contextPatterns.10/@signatureNodes.5"/>
-      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.4 //@ibexPatternSet/@contextPatterns.10/@signatureNodes.5"/>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.3" targetNode="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.0">
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.11/@signatureNodes.1"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.11/@signatureNodes.2"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.1 //@ibexPatternSet/@contextPatterns.11/@signatureNodes.2"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.3 //@ibexPatternSet/@contextPatterns.11/@signatureNodes.4"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.3 //@ibexPatternSet/@contextPatterns.11/@signatureNodes.5"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.4 //@ibexPatternSet/@contextPatterns.11/@signatureNodes.5"/>
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.3" targetNode="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.0">
         <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
       </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.3" targetNode="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.1">
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.3" targetNode="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.1">
         <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
       </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.4" targetNode="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.0">
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.4" targetNode="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.0">
         <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
       </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.4" targetNode="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.2">
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.4" targetNode="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.2">
         <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
       </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.5" targetNode="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.2">
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.5" targetNode="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.2">
         <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
       </localEdges>
-      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.5" targetNode="//@ibexPatternSet/@contextPatterns.10/@signatureNodes.1">
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.5" targetNode="//@ibexPatternSet/@contextPatterns.11/@signatureNodes.1">
         <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
       </localEdges>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l12" incomingEdges="//@ibexPatternSet/@contextPatterns.10/@localEdges.0 //@ibexPatternSet/@contextPatterns.10/@localEdges.2">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l12" incomingEdges="//@ibexPatternSet/@contextPatterns.11/@localEdges.0 //@ibexPatternSet/@contextPatterns.11/@localEdges.2">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l13" incomingEdges="//@ibexPatternSet/@contextPatterns.10/@localEdges.1 //@ibexPatternSet/@contextPatterns.10/@localEdges.5">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l13" incomingEdges="//@ibexPatternSet/@contextPatterns.11/@localEdges.1 //@ibexPatternSet/@contextPatterns.11/@localEdges.5">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l23" incomingEdges="//@ibexPatternSet/@contextPatterns.10/@localEdges.3 //@ibexPatternSet/@contextPatterns.10/@localEdges.4">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l23" incomingEdges="//@ibexPatternSet/@contextPatterns.11/@localEdges.3 //@ibexPatternSet/@contextPatterns.11/@localEdges.4">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n1" outgoingEdges="//@ibexPatternSet/@contextPatterns.10/@localEdges.0 //@ibexPatternSet/@contextPatterns.10/@localEdges.1">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n1" outgoingEdges="//@ibexPatternSet/@contextPatterns.11/@localEdges.0 //@ibexPatternSet/@contextPatterns.11/@localEdges.1">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
       </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n2" outgoingEdges="//@ibexPatternSet/@contextPatterns.10/@localEdges.2 //@ibexPatternSet/@contextPatterns.10/@localEdges.3">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n2" outgoingEdges="//@ibexPatternSet/@contextPatterns.11/@localEdges.2 //@ibexPatternSet/@contextPatterns.11/@localEdges.3">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
       </signatureNodes>
-      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n3" outgoingEdges="//@ibexPatternSet/@contextPatterns.10/@localEdges.4 //@ibexPatternSet/@contextPatterns.10/@localEdges.5">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n3" outgoingEdges="//@ibexPatternSet/@contextPatterns.11/@localEdges.4 //@ibexPatternSet/@contextPatterns.11/@localEdges.5">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
       </signatureNodes>
     </contextPatterns>
-    <createPatterns xmi:type="IBeXLanguage:IBeXCreatePattern" name="aDeleteRedundantLink"/>
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="hKTCpowerDown1">
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.0" relation="EQUAL">
+        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+        <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
+          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+        </value>
+      </attributeConstraint>
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.0" relation="SMALLER">
+        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+        <value xmi:type="IBeXLanguage:IBeXAttributeExpression" node="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.1">
+          <attribute xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+        </value>
+      </attributeConstraint>
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.1" relation="EQUAL">
+        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+        <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
+          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+        </value>
+      </attributeConstraint>
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.2" relation="EQUAL">
+        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+        <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
+          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+        </value>
+      </attributeConstraint>
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.2" relation="SMALLER">
+        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+        <value xmi:type="IBeXLanguage:IBeXAttributeExpression" node="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.1">
+          <attribute xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+        </value>
+      </attributeConstraint>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.12/@signatureNodes.1"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.12/@signatureNodes.2"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.1 //@ibexPatternSet/@contextPatterns.12/@signatureNodes.2"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.3 //@ibexPatternSet/@contextPatterns.12/@signatureNodes.4"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.3 //@ibexPatternSet/@contextPatterns.12/@signatureNodes.5"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.4 //@ibexPatternSet/@contextPatterns.12/@signatureNodes.5"/>
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.3" targetNode="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.0">
+        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+      </localEdges>
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.3" targetNode="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.1">
+        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+      </localEdges>
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.4" targetNode="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.0">
+        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+      </localEdges>
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.4" targetNode="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.2">
+        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+      </localEdges>
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.5" targetNode="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.2">
+        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+      </localEdges>
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.5" targetNode="//@ibexPatternSet/@contextPatterns.12/@signatureNodes.1">
+        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+      </localEdges>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l12" incomingEdges="//@ibexPatternSet/@contextPatterns.12/@localEdges.0 //@ibexPatternSet/@contextPatterns.12/@localEdges.2">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </signatureNodes>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l13" incomingEdges="//@ibexPatternSet/@contextPatterns.12/@localEdges.1 //@ibexPatternSet/@contextPatterns.12/@localEdges.5">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </signatureNodes>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l23" incomingEdges="//@ibexPatternSet/@contextPatterns.12/@localEdges.3 //@ibexPatternSet/@contextPatterns.12/@localEdges.4">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </signatureNodes>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n1" outgoingEdges="//@ibexPatternSet/@contextPatterns.12/@localEdges.0 //@ibexPatternSet/@contextPatterns.12/@localEdges.1">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+      </signatureNodes>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n2" outgoingEdges="//@ibexPatternSet/@contextPatterns.12/@localEdges.2 //@ibexPatternSet/@contextPatterns.12/@localEdges.3">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+      </signatureNodes>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n3" outgoingEdges="//@ibexPatternSet/@contextPatterns.12/@localEdges.4 //@ibexPatternSet/@contextPatterns.12/@localEdges.5">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+      </signatureNodes>
+    </contextPatterns>
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="iKTCpowerDown2">
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.0" relation="EQUAL">
+        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+        <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
+          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+        </value>
+      </attributeConstraint>
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.1" relation="EQUAL">
+        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+        <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
+          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+        </value>
+      </attributeConstraint>
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.1" relation="SMALLER_OR_EQUAL">
+        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+        <value xmi:type="IBeXLanguage:IBeXAttributeExpression" node="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.0">
+          <attribute xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+        </value>
+      </attributeConstraint>
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.1" relation="SMALLER_OR_EQUAL">
+        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+        <value xmi:type="IBeXLanguage:IBeXAttributeExpression" node="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.2">
+          <attribute xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+        </value>
+      </attributeConstraint>
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.2" relation="EQUAL">
+        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+        <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
+          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+        </value>
+      </attributeConstraint>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.13/@signatureNodes.1"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.0 //@ibexPatternSet/@contextPatterns.13/@signatureNodes.2"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.1 //@ibexPatternSet/@contextPatterns.13/@signatureNodes.2"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.3 //@ibexPatternSet/@contextPatterns.13/@signatureNodes.4"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.3 //@ibexPatternSet/@contextPatterns.13/@signatureNodes.5"/>
+      <injectivityConstraints xmi:type="IBeXLanguage:IBeXNodePair" values="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.4 //@ibexPatternSet/@contextPatterns.13/@signatureNodes.5"/>
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.3" targetNode="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.0">
+        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+      </localEdges>
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.3" targetNode="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.1">
+        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+      </localEdges>
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.4" targetNode="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.0">
+        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+      </localEdges>
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.4" targetNode="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.2">
+        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+      </localEdges>
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.5" targetNode="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.2">
+        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+      </localEdges>
+      <localEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.5" targetNode="//@ibexPatternSet/@contextPatterns.13/@signatureNodes.1">
+        <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
+      </localEdges>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l12" incomingEdges="//@ibexPatternSet/@contextPatterns.13/@localEdges.0 //@ibexPatternSet/@contextPatterns.13/@localEdges.2">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </signatureNodes>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l13" incomingEdges="//@ibexPatternSet/@contextPatterns.13/@localEdges.1 //@ibexPatternSet/@contextPatterns.13/@localEdges.5">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </signatureNodes>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l23" incomingEdges="//@ibexPatternSet/@contextPatterns.13/@localEdges.3 //@ibexPatternSet/@contextPatterns.13/@localEdges.4">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </signatureNodes>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n1" outgoingEdges="//@ibexPatternSet/@contextPatterns.13/@localEdges.0 //@ibexPatternSet/@contextPatterns.13/@localEdges.1">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+      </signatureNodes>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n2" outgoingEdges="//@ibexPatternSet/@contextPatterns.13/@localEdges.2 //@ibexPatternSet/@contextPatterns.13/@localEdges.3">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+      </signatureNodes>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="n3" outgoingEdges="//@ibexPatternSet/@contextPatterns.13/@localEdges.4 //@ibexPatternSet/@contextPatterns.13/@localEdges.5">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
+      </signatureNodes>
+    </contextPatterns>
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="inactive">
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.14/@signatureNodes.0" relation="EQUAL">
+        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+        <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
+          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/INACTIVE"/>
+        </value>
+      </attributeConstraint>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </signatureNodes>
+    </contextPatterns>
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="link">
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </signatureNodes>
+    </contextPatterns>
+    <contextPatterns xmi:type="IBeXLanguage:IBeXContextPattern" name="unknown">
+      <attributeConstraint xmi:type="IBeXLanguage:IBeXAttributeConstraint" node="//@ibexPatternSet/@contextPatterns.16/@signatureNodes.0" relation="EQUAL">
+        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+        <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
+          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/UNKNOWN"/>
+        </value>
+      </attributeConstraint>
+      <signatureNodes xmi:type="IBeXLanguage:IBeXNode" name="l">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </signatureNodes>
+    </contextPatterns>
+    <createPatterns xmi:type="IBeXLanguage:IBeXCreatePattern" name="aCreateLink2">
+      <attributeAssignments xmi:type="IBeXLanguage:IBeXAttributeAssignment" node="//@ibexPatternSet/@createPatterns.0/@contextNodes.0">
+        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+        <value xmi:type="IBeXLanguage:IBeXAttributeExpression" node="//@ibexPatternSet/@createPatterns.0/@contextNodes.0">
+          <attribute xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
+        </value>
+      </attributeAssignments>
+      <contextNodes xmi:type="IBeXLanguage:IBeXNode" name="l">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </contextNodes>
+    </createPatterns>
     <createPatterns xmi:type="IBeXLanguage:IBeXCreatePattern" name="bMarkUnknown">
       <attributeAssignments xmi:type="IBeXLanguage:IBeXAttributeAssignment" node="//@ibexPatternSet/@createPatterns.1/@contextNodes.0">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
@@ -598,26 +702,7 @@
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </contextNodes>
     </createPatterns>
-    <createPatterns xmi:type="IBeXLanguage:IBeXCreatePattern" name="cKTCrepairTwo">
-      <attributeAssignments xmi:type="IBeXLanguage:IBeXAttributeAssignment" node="//@ibexPatternSet/@createPatterns.2/@contextNodes.0">
-        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
-        <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
-          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
-        </value>
-      </attributeAssignments>
-      <attributeAssignments xmi:type="IBeXLanguage:IBeXAttributeAssignment" node="//@ibexPatternSet/@createPatterns.2/@contextNodes.1">
-        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
-        <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
-          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
-        </value>
-      </attributeAssignments>
-      <contextNodes xmi:type="IBeXLanguage:IBeXNode" name="l12">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
-      </contextNodes>
-      <contextNodes xmi:type="IBeXLanguage:IBeXNode" name="l23">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
-      </contextNodes>
-    </createPatterns>
+    <createPatterns xmi:type="IBeXLanguage:IBeXCreatePattern" name="cDeleteRedundantLink"/>
     <createPatterns xmi:type="IBeXLanguage:IBeXCreatePattern" name="changeWeight">
       <attributeAssignments xmi:type="IBeXLanguage:IBeXAttributeAssignment" node="//@ibexPatternSet/@createPatterns.3/@contextNodes.0">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/weight"/>
@@ -652,14 +737,23 @@
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </createdNodes>
     </createPatterns>
-    <createPatterns xmi:type="IBeXLanguage:IBeXCreatePattern" name="dKTCrepairOne">
+    <createPatterns xmi:type="IBeXLanguage:IBeXCreatePattern" name="dKTCrepairTwo">
       <attributeAssignments xmi:type="IBeXLanguage:IBeXAttributeAssignment" node="//@ibexPatternSet/@createPatterns.5/@contextNodes.0">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
         <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
           <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
         </value>
       </attributeAssignments>
+      <attributeAssignments xmi:type="IBeXLanguage:IBeXAttributeAssignment" node="//@ibexPatternSet/@createPatterns.5/@contextNodes.1">
+        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+        <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
+          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+        </value>
+      </attributeAssignments>
       <contextNodes xmi:type="IBeXLanguage:IBeXNode" name="l12">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </contextNodes>
+      <contextNodes xmi:type="IBeXLanguage:IBeXNode" name="l23">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </contextNodes>
     </createPatterns>
@@ -674,9 +768,20 @@
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </contextNodes>
     </createPatterns>
-    <createPatterns xmi:type="IBeXLanguage:IBeXCreatePattern" name="eRemoveDeleteLink"/>
-    <createPatterns xmi:type="IBeXLanguage:IBeXCreatePattern" name="fKTCpowerUp">
-      <attributeAssignments xmi:type="IBeXLanguage:IBeXAttributeAssignment" node="//@ibexPatternSet/@createPatterns.8/@contextNodes.0">
+    <createPatterns xmi:type="IBeXLanguage:IBeXCreatePattern" name="eKTCrepairOne">
+      <attributeAssignments xmi:type="IBeXLanguage:IBeXAttributeAssignment" node="//@ibexPatternSet/@createPatterns.7/@contextNodes.0">
+        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+        <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
+          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
+        </value>
+      </attributeAssignments>
+      <contextNodes xmi:type="IBeXLanguage:IBeXNode" name="l12">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </contextNodes>
+    </createPatterns>
+    <createPatterns xmi:type="IBeXLanguage:IBeXCreatePattern" name="fRemoveDeleteLink"/>
+    <createPatterns xmi:type="IBeXLanguage:IBeXCreatePattern" name="gKTCpowerUp">
+      <attributeAssignments xmi:type="IBeXLanguage:IBeXAttributeAssignment" node="//@ibexPatternSet/@createPatterns.9/@contextNodes.0">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
         <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
           <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/ACTIVE"/>
@@ -686,18 +791,7 @@
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </contextNodes>
     </createPatterns>
-    <createPatterns xmi:type="IBeXLanguage:IBeXCreatePattern" name="gKTCpowerDown1">
-      <attributeAssignments xmi:type="IBeXLanguage:IBeXAttributeAssignment" node="//@ibexPatternSet/@createPatterns.9/@contextNodes.0">
-        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
-        <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
-          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/INACTIVE"/>
-        </value>
-      </attributeAssignments>
-      <contextNodes xmi:type="IBeXLanguage:IBeXNode" name="l13">
-        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
-      </contextNodes>
-    </createPatterns>
-    <createPatterns xmi:type="IBeXLanguage:IBeXCreatePattern" name="hKTCpowerDown2">
+    <createPatterns xmi:type="IBeXLanguage:IBeXCreatePattern" name="hKTCpowerDown1">
       <attributeAssignments xmi:type="IBeXLanguage:IBeXAttributeAssignment" node="//@ibexPatternSet/@createPatterns.10/@contextNodes.0">
         <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
         <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
@@ -708,37 +802,49 @@
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </contextNodes>
     </createPatterns>
-    <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="aDeleteRedundantLink">
-      <contextNodes xmi:type="IBeXLanguage:IBeXNode" name="n1" outgoingEdges="//@ibexPatternSet/@deletePatterns.0/@deletedEdges.0">
+    <createPatterns xmi:type="IBeXLanguage:IBeXCreatePattern" name="iKTCpowerDown2">
+      <attributeAssignments xmi:type="IBeXLanguage:IBeXAttributeAssignment" node="//@ibexPatternSet/@createPatterns.11/@contextNodes.0">
+        <type xmi:type="ecore:EAttribute" href="http://www.simsg.org/examples/ComputerNetwork#//Link/state"/>
+        <value xmi:type="IBeXLanguage:IBeXEnumLiteral">
+          <literal xmi:type="ecore:EEnumLiteral" href="http://www.simsg.org/examples/ComputerNetwork#//LinkState/INACTIVE"/>
+        </value>
+      </attributeAssignments>
+      <contextNodes xmi:type="IBeXLanguage:IBeXNode" name="l13">
+        <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
+      </contextNodes>
+    </createPatterns>
+    <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="aCreateLink2"/>
+    <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="bMarkUnknown"/>
+    <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="cDeleteRedundantLink">
+      <contextNodes xmi:type="IBeXLanguage:IBeXNode" name="n1" outgoingEdges="//@ibexPatternSet/@deletePatterns.2/@deletedEdges.0">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
       </contextNodes>
-      <contextNodes xmi:type="IBeXLanguage:IBeXNode" name="n2" outgoingEdges="//@ibexPatternSet/@deletePatterns.0/@deletedEdges.1">
+      <contextNodes xmi:type="IBeXLanguage:IBeXNode" name="n2" outgoingEdges="//@ibexPatternSet/@deletePatterns.2/@deletedEdges.1">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Node"/>
       </contextNodes>
-      <deletedEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@deletePatterns.0/@contextNodes.0" targetNode="//@ibexPatternSet/@deletePatterns.0/@deletedNodes.0">
+      <deletedEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@deletePatterns.2/@contextNodes.0" targetNode="//@ibexPatternSet/@deletePatterns.2/@deletedNodes.0">
         <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
       </deletedEdges>
-      <deletedEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@deletePatterns.0/@contextNodes.1" targetNode="//@ibexPatternSet/@deletePatterns.0/@deletedNodes.0">
+      <deletedEdges xmi:type="IBeXLanguage:IBeXEdge" sourceNode="//@ibexPatternSet/@deletePatterns.2/@contextNodes.1" targetNode="//@ibexPatternSet/@deletePatterns.2/@deletedNodes.0">
         <type xmi:type="ecore:EReference" href="http://www.simsg.org/examples/ComputerNetwork#//Node/links"/>
       </deletedEdges>
-      <deletedNodes xmi:type="IBeXLanguage:IBeXNode" name="l2" incomingEdges="//@ibexPatternSet/@deletePatterns.0/@deletedEdges.0 //@ibexPatternSet/@deletePatterns.0/@deletedEdges.1">
+      <deletedNodes xmi:type="IBeXLanguage:IBeXNode" name="l2" incomingEdges="//@ibexPatternSet/@deletePatterns.2/@deletedEdges.0 //@ibexPatternSet/@deletePatterns.2/@deletedEdges.1">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </deletedNodes>
     </deletePatterns>
-    <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="bMarkUnknown"/>
-    <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="cKTCrepairTwo"/>
     <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="changeWeight"/>
     <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="createLink"/>
-    <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="dKTCrepairOne"/>
+    <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="dKTCrepairTwo"/>
     <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="deleteLink"/>
-    <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="eRemoveDeleteLink">
+    <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="eKTCrepairOne"/>
+    <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="fRemoveDeleteLink">
       <deletedNodes xmi:type="IBeXLanguage:IBeXNode" name="l">
         <type xmi:type="ecore:EClass" href="http://www.simsg.org/examples/ComputerNetwork#//Link"/>
       </deletedNodes>
     </deletePatterns>
-    <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="fKTCpowerUp"/>
-    <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="gKTCpowerDown1"/>
-    <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="hKTCpowerDown2"/>
+    <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="gKTCpowerUp"/>
+    <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="hKTCpowerDown1"/>
+    <deletePatterns xmi:type="IBeXLanguage:IBeXDeletePattern" name="iKTCpowerDown2"/>
   </ibexPatternSet>
-  <metamodel xmi:type="ecore:EPackage" href="file:/C:/Users/sehmes/Workspaces/SimSG-devel/SimSG/org.simsg.examples.network/model/ComputerNetwork.ecore#/"/>
+  <metamodel xmi:type="ecore:EPackage" href="file:/F:/Eclipse%20Workspaces/SimSG/org.simsg.examples.network/model/ComputerNetwork.ecore#/"/>
 </org.simsg:SimDefinition>

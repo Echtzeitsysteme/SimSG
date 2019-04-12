@@ -24,12 +24,6 @@ public class PatternTerminationCondition extends TerminationCondition implements
 	}
 
 	@Override
-	public void setAdditionalParameters(Object... params) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public int getThreshold() {
 		return countThreshold;
 	}

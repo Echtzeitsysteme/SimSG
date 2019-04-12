@@ -3,13 +3,12 @@ import "http://www.eclipse.org/emf/2002/Ecore"
 
 rule deleteLink() {
 	l : Link {
-		.state != enum::UNKNOWN
 		.state != enum::DELETED
 		.state := enum::DELETED 
 	}
 }
   
-rule changeWeight() {
+rule changeWeight() { 
 	l : Link {
 		.weight := l.weight 
 	}
@@ -30,21 +29,11 @@ rule createLink() {
 	
 }
 
-rule aDeleteRedundantLink() {
-	l1 : Link
-	-- l2 : Link {
+rule aCreateLink2() {
+	 l : Link { 
 		.state == enum::UNKNOWN
-	}
-	
-	n1 : Node {
-		- links->l1
-		-- -links->l2
-	}
-	
-	n2 : Node {
-		- links->l1
-		-- -links->l2
-	}
+		.weight := l.weight 
+	}	
 }
 
 rule bMarkUnknown() {
@@ -54,9 +43,26 @@ rule bMarkUnknown() {
 	}
 }
 
+rule cDeleteRedundantLink() {
+	l1 : Link {
+		.state != enum::DELETED
+	}
+	-- l2 : Link {
+		.state != enum::DELETED
+	}
+	
+	n1 : Node {
+		- links->l1
+		-- -links->l2
+	}
+	
+	n2 : Node {
+		- links->l1
+		-- -links->l2
+	}
+}
 
-
-rule cKTCrepairTwo() {
+rule dKTCrepairTwo() {
 	l12 : Link {
 		.state == enum::INACTIVE
 		.state := enum::ACTIVE
@@ -85,7 +91,7 @@ rule cKTCrepairTwo() {
 	}
 }
 
-rule dKTCrepairOne() {
+rule eKTCrepairOne() {
 	l12 : Link {
 		.state == enum::INACTIVE
 		.state := enum::ACTIVE
@@ -113,13 +119,13 @@ rule dKTCrepairOne() {
 	}
 }
 
-rule eRemoveDeleteLink() {
+rule fRemoveDeleteLink() {
 	-- l : Link {
 		.state == enum::DELETED
 	}
 }
 
-rule fKTCpowerUp() {
+rule gKTCpowerUp() {
 	l12 : Link {
 		.state == enum::ACTIVE
 	}
@@ -149,7 +155,7 @@ rule fKTCpowerUp() {
 	}
 }
 
-rule gKTCpowerDown1() {
+rule hKTCpowerDown1() {
 	l12 : Link {
 		.state == enum::ACTIVE
 		.weight < l13.weight
@@ -179,7 +185,7 @@ rule gKTCpowerDown1() {
 	}
 }
 
-rule hKTCpowerDown2() {
+rule iKTCpowerDown2() {
 	l12 : Link {
 		.state == enum::ACTIVE
 	}
@@ -209,3 +215,31 @@ rule hKTCpowerDown2() {
 	}
 }
 
+pattern unknown() {
+	l : Link{
+		.state == enum::UNKNOWN
+	}
+}
+
+pattern active() {
+	l : Link{
+		.state == enum::ACTIVE
+	}
+}
+
+pattern inactive() {
+	l : Link{
+		.state == enum::INACTIVE
+	}
+}
+
+pattern deleted() {
+	l : Link{
+		.state == enum::DELETED
+	}
+}
+
+pattern link() {
+	l : Link{
+	}
+}

@@ -55,10 +55,6 @@ public abstract class PersistenceManager {
 	protected HashMap<String, SimDefinition> simulationDefinitionCache = new HashMap<>();
 	protected HashMap<URI, Resource> simulationModelCache = new HashMap<>();
 	
-	public PersistenceManager() {}
-	
-	public abstract void setAdditionalParameters(Object ... params);
-	
 	public void init() {
 		setOSspecificSeparators();
 		classLoader();

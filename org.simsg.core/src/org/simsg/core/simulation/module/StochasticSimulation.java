@@ -105,10 +105,5 @@ public class StochasticSimulation extends Simulation {
 		SimSGMatch rndMatch = state.getRandomMatch(event.rule);
 		performGT(rndMatch);
 	}
-	
-	@Override
-	public void setAdditionalParameters(Object... params) {
-		// do nothing..
-	}
 
 }
