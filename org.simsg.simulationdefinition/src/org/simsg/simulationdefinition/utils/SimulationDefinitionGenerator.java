@@ -2,7 +2,6 @@ package org.simsg.simulationdefinition.utils;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.function.Supplier;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;

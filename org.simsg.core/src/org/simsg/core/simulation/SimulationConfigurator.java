@@ -2,7 +2,6 @@ package org.simsg.core.simulation;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,17 +16,12 @@ import org.simsg.core.gt.IBeXGT;
 import org.simsg.core.gt.PostApplicationAction;
 import org.simsg.core.gt.RuleApplicationCondition;
 import org.simsg.core.gt.RuleParameterConfiguration;
-import org.simsg.core.gt.mgt.ModelGraphTransformer;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.persistence.SimplePersistenceManager;
-import org.simsg.core.pm.democles.DemoclesEngineWrapper;
 import org.simsg.core.pm.engine.PatternMatchingEngine;
 import org.simsg.core.pm.ibex.IBeXDemoclesEngine;
-import org.simsg.core.pm.viatra.ViatraEngineWrapper;
 import org.simsg.core.pmc.IBeXPMC;
 import org.simsg.core.pmc.PatternMatchingController;
-import org.simsg.core.pmc.SimplePMC;
-import org.simsg.core.pmc.hybrid.HybridPMC;
 import org.simsg.core.simulation.condition.PatternTerminationCondition;
 import org.simsg.core.simulation.condition.SimpleTerminationCondition;
 import org.simsg.core.simulation.condition.TerminationCondition;
@@ -123,18 +117,6 @@ public class SimulationConfigurator {
 		};
 	}
 	
-	public void setViatraAsEngine() {
-		engineConstructor = () -> {
-			return new ViatraEngineWrapper();
-		};
-	}
-	
-	public void setDemoclesAsEngine() {
-		engineConstructor = () -> {
-			return new DemoclesEngineWrapper();
-		};
-	}
-	
 	public void setIBeXDemoclesAsEngine() {
 		engineConstructor = () -> {
 			return new IBeXDemoclesEngine();
@@ -161,18 +143,6 @@ public class SimulationConfigurator {
 		};
 	}
 	
-	public void setSimplePMC() {
-		pmcConstructor = () -> {
-			return new SimplePMC();
-		};
-	}
-	
-	public void setHybridPMC() {
-		pmcConstructor = () -> {
-			return new HybridPMC();
-		};
-	}
-	
 	public void setIBeXDemoclesPMC() {
 		pmcConstructor = () -> {
 			return new IBeXPMC();
@@ -196,12 +166,6 @@ public class SimulationConfigurator {
 				e.printStackTrace();
 			}
 			return null;
-		};
-	}
-	
-	public void setSimpleGT() {
-		gtConstructor = () -> {
-			return new ModelGraphTransformer();
 		};
 	}
 	
