@@ -104,6 +104,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.emoflon.ibex.common/model/Common.ecore#//IBeXContextPattern/localEdges"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.emoflon.ibex.common/model/Common.ecore#//IBeXContextPattern/localNodes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.emoflon.ibex.common/model/Common.ecore#//IBeXContextPattern/signatureNodes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.emoflon.ibex.common/model/Common.ecore#//IBeXContextPattern/csps"/>
     </genClasses>
     <genClasses ecoreClass="../../org.emoflon.ibex.common/model/Common.ecore#//IBeXCreatePattern">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.emoflon.ibex.common/model/Common.ecore#//IBeXCreatePattern/attributeAssignments"/>
@@ -150,6 +151,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.emoflon.ibex.common/model/Common.ecore#//IBeXPatternSet/contextPatterns"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.emoflon.ibex.common/model/Common.ecore#//IBeXPatternSet/createPatterns"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.emoflon.ibex.common/model/Common.ecore#//IBeXPatternSet/deletePatterns"/>
+    </genClasses>
+    <genClasses ecoreClass="../../org.emoflon.ibex.common/model/Common.ecore#//IBeXCSP">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.emoflon.ibex.common/model/Common.ecore#//IBeXCSP/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ../../org.emoflon.ibex.common/model/Common.ecore#//IBeXCSP/package"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ../../org.emoflon.ibex.common/model/Common.ecore#//IBeXCSP/values"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
