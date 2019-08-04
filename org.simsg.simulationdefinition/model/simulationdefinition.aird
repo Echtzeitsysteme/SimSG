@@ -5,7 +5,6 @@
     <semanticResources>simulationdefinition.genmodel</semanticResources>
     <semanticResources>http://www.eclipse.org/emf/2002/Ecore</semanticResources>
     <semanticResources>platform:/resource/org.emoflon.ibex.gt/model/Gt.ecore</semanticResources>
-    <semanticResources>platform:/resource/org.emoflon.ibex.common/model/Common.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_4R7dkFXsEemPG58LIfQxog">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_4Vl1kFXsEemPG58LIfQxog" name="simulationdefinition" repPath="#_4Te8wFXsEemPG58LIfQxog">
@@ -264,6 +263,10 @@
             <children xmi:type="notation:Node" xmi:id="_LbDrTFYSEemnf-RHMzlXgw" type="3010" element="_LbDq-FYSEemnf-RHMzlXgw">
               <styles xmi:type="notation:FontStyle" xmi:id="_LbDrTVYSEemnf-RHMzlXgw" fontName="Segoe UI" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_LbDrTlYSEemnf-RHMzlXgw"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_gMCqkLVCEemSVqHTqWDB1g" type="3010" element="_gLjiZLVCEemSVqHTqWDB1g">
+              <styles xmi:type="notation:FontStyle" xmi:id="_gMCqkbVCEemSVqHTqWDB1g" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_gMCqkrVCEemSVqHTqWDB1g"/>
             </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_LbDrO1YSEemnf-RHMzlXgw"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_LbDrPFYSEemnf-RHMzlXgw"/>
@@ -1028,6 +1031,14 @@
         <target xmi:type="ecore:EReference" href="platform:/resource/org.emoflon.ibex.common/model/Common.ecore#//IBeXContextPattern/signatureNodes"/>
         <semanticElements xmi:type="ecore:EReference" href="platform:/resource/org.emoflon.ibex.common/model/Common.ecore#//IBeXContextPattern/signatureNodes"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_LbDq-VYSEemnf-RHMzlXgw" labelAlignment="LEFT" color="114,159,207">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_gLjiZLVCEemSVqHTqWDB1g" name=" csps : IBeXCSP" tooltipText="">
+        <target xmi:type="ecore:EReference" href="platform:/resource/org.emoflon.ibex.common/model/Common.ecore#//IBeXContextPattern/csps"/>
+        <semanticElements xmi:type="ecore:EReference" href="platform:/resource/org.emoflon.ibex.common/model/Common.ecore#//IBeXContextPattern/csps"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_gLkwgLVCEemSVqHTqWDB1g" labelAlignment="LEFT" color="114,159,207">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EReferenceNode']"/>

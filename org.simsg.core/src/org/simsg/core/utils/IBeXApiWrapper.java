@@ -20,6 +20,7 @@ import org.emoflon.ibex.gt.api.GraphTransformationRule;
 import com.google.common.collect.Lists;
 
 import GTLanguage.GTRule;
+import IBeXLanguage.IBeXContextPattern;
 import IBeXLanguage.IBeXPattern;
 import SimulationDefinition.SimDefinition;
 
@@ -193,14 +194,13 @@ public class IBeXApiWrapper {
 		for(IBeXPattern pattern : simulationDefinition.getIbexPatternSet().getContextPatterns()) {
 			Method getter = null;
 			
+			
+			
 			try {
 				if(!apiMethodsByName.containsKey(pattern.getName())) {
-					throw new NoSuchMethodException("Method with name: "+pattern.getName()+" not found in Class: "+apiClass.getName());
+					System.out.println("Pattern "+pattern.getName()+" does not seem to have a generated api -> might be abstract or conidition.");
 				}
 				getter = apiMethodsByName.get(pattern.getName());
-			} catch (NoSuchMethodException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			} catch (SecurityException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
