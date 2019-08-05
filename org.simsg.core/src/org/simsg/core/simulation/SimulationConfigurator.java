@@ -12,7 +12,8 @@ import java.util.function.Supplier;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.simsg.core.gt.GraphTransformationEngine;
-import org.simsg.core.gt.IBeXGT;
+import org.simsg.core.gt.IBeXDemoclesGT;
+import org.simsg.core.gt.IBeXHiPEGT;
 import org.simsg.core.gt.PostApplicationAction;
 import org.simsg.core.gt.RuleApplicationCondition;
 import org.simsg.core.gt.RuleParameterConfiguration;
@@ -20,6 +21,7 @@ import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.persistence.SimplePersistenceManager;
 import org.simsg.core.pm.engine.PatternMatchingEngine;
 import org.simsg.core.pm.ibex.IBeXDemoclesEngine;
+import org.simsg.core.pm.ibex.IBeXHiPEEngine;
 import org.simsg.core.pmc.IBeXPMC;
 import org.simsg.core.pmc.PatternMatchingController;
 import org.simsg.core.simulation.condition.PatternTerminationCondition;
@@ -58,9 +60,9 @@ public class SimulationConfigurator {
 	
 	public SimulationConfigurator() {
 		setEMFPersistence();
-		setIBeXDemoclesAsEngine();
-		setIBeXDemoclesPMC();
-		setIBeXGT();
+		//setIBeXDemoclesAsEngine();
+		setIBeXPMC();
+		//setIBeXDemoclesGT();
 	}
 	
 	public void setModel(String modelName) {
@@ -123,6 +125,12 @@ public class SimulationConfigurator {
 		};
 	}
 	
+	public void setIBeXHiPEAsEngine() {
+		engineConstructor = () -> {
+			return new IBeXHiPEEngine();
+		};
+	}
+	
 	public void setPMC(Class<? extends PatternMatchingController> pmcType, Object ... params) {
 		pmcConstructor = ()-> {
 			Constructor<? extends PatternMatchingController> pmcConstructor = null;
@@ -143,7 +151,7 @@ public class SimulationConfigurator {
 		};
 	}
 	
-	public void setIBeXDemoclesPMC() {
+	public void setIBeXPMC() {
 		pmcConstructor = () -> {
 			return new IBeXPMC();
 		};
@@ -169,9 +177,15 @@ public class SimulationConfigurator {
 		};
 	}
 	
-	public void setIBeXGT() {
+	public void setIBeXDemoclesGT() {
 		gtConstructor = () -> {
-			return new IBeXGT();
+			return new IBeXDemoclesGT();
+		};
+	}
+	
+	public void setIBeXHiPEGT() {
+		gtConstructor = () -> {
+			return new IBeXHiPEGT();
 		};
 	}
 	

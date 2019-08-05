@@ -2,7 +2,6 @@ package org.simsg.core.utils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -17,10 +16,8 @@ import org.emoflon.ibex.gt.api.GraphTransformationApp;
 import org.emoflon.ibex.gt.api.GraphTransformationPattern;
 import org.emoflon.ibex.gt.api.GraphTransformationRule;
 
-import com.google.common.collect.Lists;
 
 import GTLanguage.GTRule;
-import IBeXLanguage.IBeXContextPattern;
 import IBeXLanguage.IBeXPattern;
 import SimulationDefinition.SimDefinition;
 
@@ -31,13 +28,13 @@ public class IBeXApiWrapper {
 	private String nameSpace;
 	private String packageName;
 	
-	private Class<GraphTransformationApp<?>> democlesAppClass;
+	private Class<GraphTransformationApp<?>> engineAppClass;
 	private Class<GraphTransformationApp<?>> appClass;
 	private Class<GraphTransformationAPI> apiClass;
 	private Method registerMetaModels;
 	private Map<String, Method> matcherGetter = new HashMap<>();
 	
-	private GraphTransformationApp<?> democlesApp;
+	private GraphTransformationApp<?> engineApp;
 	private GraphTransformationAPI api;
 	
 	private Map<String, GraphTransformationPattern<?,?>> matcher = new HashMap<>();
@@ -57,7 +54,6 @@ public class IBeXApiWrapper {
 		if(instance == null) {
 			instance = new IBeXApiWrapper();
 		}
-		
 		return instance;
 	}
 	
@@ -76,13 +72,24 @@ public class IBeXApiWrapper {
 		return apiClass;
 	}
 	
-	public void initWrapper(SimDefinition simulationDefinition) {
+	public void initDemoclesWrapper(SimDefinition simulationDefinition) {
 		this.simulationDefinition = simulationDefinition;
 		setNameSpaceAndPackageName();
 		initDemoclesApp();
-		initDemoclesApiClasses();
+		initApiClasses();
 		initMatcherGetter();
 		wrapperInitialized = true;
+		System.out.println("Actual engine: "+ engineAppClass);
+	}
+	
+	public void initHiPEWrapper(SimDefinition simulationDefinition) {
+		this.simulationDefinition = simulationDefinition;
+		setNameSpaceAndPackageName();
+		initHiPEApp();
+		initApiClasses();
+		initMatcherGetter();
+		wrapperInitialized = true;
+		System.out.println("Actual engine: "+ engineAppClass);
 	}
 	
 	public GraphTransformationAPI initEngine(Resource simulationModel) throws IncompleteInitializationException {
@@ -91,19 +98,16 @@ public class IBeXApiWrapper {
 			throw new IncompleteInitializationException("IBeX wrapper must be initialized before initializing the Match/GT-Engine aka IBeXApi.");
 		}
 		try {
-			registerMetaModels.invoke(democlesApp);
+			registerMetaModels.invoke(engineApp);
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		democlesApp.getModel().getResources().add(this.simulationModel);
-		api = democlesApp.initAPI();
+		engineApp.getModel().getResources().add(this.simulationModel);
+		api = engineApp.initAPI();
 		initMatcher();
 		initRules();
 		apiInitialized = true;
@@ -146,38 +150,48 @@ public class IBeXApiWrapper {
 	@SuppressWarnings("unchecked")
 	private void initDemoclesApp() {
 		try {
-			democlesAppClass = (Class<GraphTransformationApp<?>>)java.lang.Class.forName(nameSpace+"."+packageName+"DemoclesApp");
-			democlesApp = democlesAppClass.newInstance();
+			engineAppClass = (Class<GraphTransformationApp<?>>)java.lang.Class.forName(nameSpace+"."+packageName+"DemoclesApp");
+			engineApp = engineAppClass.newInstance();
 			
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
 	@SuppressWarnings("unchecked")
-	private void initDemoclesApiClasses() {
+	private void initHiPEApp() {
+		try {
+			engineAppClass = (Class<GraphTransformationApp<?>>)java.lang.Class.forName(nameSpace+"."+packageName+"HiPEApp");
+			engineApp = engineAppClass.newInstance();
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	private void initApiClasses() {
 		try {
 			appClass = (Class<GraphTransformationApp<?>>)java.lang.Class.forName(nameSpace+"."+packageName+"App");
 			registerMetaModels = appClass.getDeclaredMethod("registerMetaModels");
 			apiClass = (Class<GraphTransformationAPI>)java.lang.Class.forName(nameSpace+"."+packageName+"API");
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  catch (SecurityException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -202,7 +216,6 @@ public class IBeXApiWrapper {
 				}
 				getter = apiMethodsByName.get(pattern.getName());
 			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -220,10 +233,8 @@ public class IBeXApiWrapper {
 				}
 				getter = apiMethodsByName.get(rule.getName());
 			} catch (NoSuchMethodException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -249,13 +260,10 @@ public class IBeXApiWrapper {
 					matcher = (GraphTransformationPattern<?,?>)getter.invoke(api);
 				}
 			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
