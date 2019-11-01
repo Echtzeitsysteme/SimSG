@@ -22,4 +22,9 @@ public abstract class SimSGMatch implements IMatch{
 	public boolean equals(Object obj) {
 		return isEqual(obj);
 	}
+	
+	@Override
+	public int getHashCode() {
+		return calcHashCode();
+	}
 }
