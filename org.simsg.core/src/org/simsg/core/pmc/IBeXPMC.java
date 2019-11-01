@@ -14,7 +14,7 @@ import SimulationDefinition.SimDefinition;
 
 public class IBeXPMC extends PatternMatchingController {
 	
-	private Random rnd = new Random();
+	protected Random rnd = new Random();
 
 	@Override
 	public void loadModels(SimDefinition simulationDefinition, Resource simulationModel) {
