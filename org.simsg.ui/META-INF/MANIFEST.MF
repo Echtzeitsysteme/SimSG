@@ -4,7 +4,8 @@ Bundle-Name: Ui
 Bundle-SymbolicName: org.simsg.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.simsg.ui.SimSGUiActivator
-Require-Bundle: javax.inject,
+Require-Bundle: org.moflon.core.utilities,
+ javax.inject,
  org.eclipse.osgi,
  org.eclipse.jface,
  org.eclipse.jface.text,
@@ -15,17 +16,24 @@ Require-Bundle: javax.inject,
  org.eclipse.core.runtime,
  org.apache.log4j,
  org.apache.commons.io,
- org.moflon.core.utilities,
  org.eclipse.ui.workbench,
  org.eclipse.ui.console,
  org.eclipse.core.expressions,
  org.eclipse.jdt.ui,
  org.eclipse.core.resources,
+ org.eclipse.ui.ide,
  org.moflon.core.build,
  org.moflon.core.ui,
+ org.moflon.core.plugins,
  org.simsg.build,
- org.eclipse.ui.ide
+ org.emoflon.core.dependencies,
+ org.moflon.emf.build
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: org.simsg.ui
 Import-Package: javax.annotation;version="1.2.0"
 Bundle-ActivationPolicy: lazy
+Export-Package: org.simsg.ui,
+ org.simsg.ui.errorhandling,
+ org.simsg.ui.handler,
+ org.simsg.ui.propertypage,
+ org.simsg.ui.wizard

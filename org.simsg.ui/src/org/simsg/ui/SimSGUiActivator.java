@@ -26,7 +26,7 @@ public class SimSGUiActivator extends AbstractUIPlugin implements BundleActivato
 	private static final String LOG4J_CONFIG_PROPERTIES = "log4jConfig.properties";
 
 	// Default plugin-relative resources path
-	private static final String RESOURCES_DEFAULT_FILES_PATH = "resources/defaultFiles/";
+	private static final String RESOURCES_DEFAULT_FILES_PATH = "";
 		
 	// The config file used for logging in plugin
 	private File loggingConfigurationFile;

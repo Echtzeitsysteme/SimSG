@@ -9,7 +9,7 @@ import org.moflon.core.ui.UiUtilities;
 import org.simsg.ui.SimSGUiActivator;
 
 /**
- * Opens the eMoflon logging configuration file for editing.
+ * Opens the SimSG logging configuration file for editing.
  */
 public class EditLoggingConfigurationHandler extends AbstractCommandHandler {
 
