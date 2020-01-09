@@ -26,8 +26,15 @@ import org.moflon.core.utilities.WorkspaceHelper;
  */
 public class SimSGBuilder extends AbstractVisitorBuilder {
 	public static final Logger logger = Logger.getLogger(SimSGBuilder.class);
+	
+	public static final String DEFAULT_SRC_FOLDER = "src";
+	public static final String DEFAULT_RULE_MODEL_LOCATION = "**/api/gt-rules.xmi";
+	public static final String DEFAULT_PATTERN_MODEL_LOCATION = "**/api/ibex-patterns.xmi";
 
 	private static final String SIMSG_BUILDER_ID = "org.simsg.build.SimSGBuilder";
+	
+	protected String ruleModelLocation;
+	protected String patternModelLocation;
 
 	/**
 	 * Initializes the visitor condition
@@ -36,7 +43,9 @@ public class SimSGBuilder extends AbstractVisitorBuilder {
 	 */
 	public SimSGBuilder() {
 		//TODO: Change patterns to adequate build triggers, e.g., *.gt changes, etc..
-		super(new AntPatternCondition(new String[] { "model/*.ecore", "model/*.xcore" }));
+		super(new AntPatternCondition(new String[] { "model/*.ecore", "src/**/*.gt", "**/api/gt-rules.xmi", "**/api/ibex-patterns.xmi" }));
+		ruleModelLocation = DEFAULT_RULE_MODEL_LOCATION;
+		patternModelLocation = DEFAULT_PATTERN_MODEL_LOCATION;
 	}
 
 	public static String getId() {
@@ -88,6 +97,21 @@ public class SimSGBuilder extends AbstractVisitorBuilder {
 		//TODO: Build simsg code
 		logger.info("Building SimSGProject: "+resource.getName());
 		
+		// Build meta-model code
+		if(WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".ecore")) {
+			
+		}
+		
+		// Build eMoflon-api code and generate gt-rule & ibex-pattern models
+		if(WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".gt")) {
+			
+		}
+		
+		// Build eMoflon-api code
+		if(WorkspaceHelper.isFile(resource) && resource.getName().endsWith("gt-rules.xmi")) {
+			
+		}
+		
 //		if (WorkspaceHelper.isXcoreFile(resource))
 //			resource = convertXcoreToEcore(resource);
 //
@@ -119,8 +143,8 @@ public class SimSGBuilder extends AbstractVisitorBuilder {
 	 */
 	private void removeGeneratedCode(final IProject project) throws CoreException {
 		final CleanVisitor cleanVisitor = new CleanVisitor(project, //
-				new AntPatternCondition(new String[] { "gen/**" }), //
-				new AntPatternCondition(new String[] { "gen/.keep*" }));
+				new AntPatternCondition(new String[] { "src-gen/**" }), //
+				new AntPatternCondition(new String[] { ruleModelLocation, patternModelLocation }));
 		project.accept(cleanVisitor, IResource.DEPTH_INFINITE, IResource.NONE);
 	}
 
