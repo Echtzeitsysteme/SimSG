@@ -14,8 +14,8 @@ import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.moflon.core.build.MoflonBuildJob;
 import org.moflon.core.ui.AbstractCommandHandler;
+import org.simsg.build.SimSGBuildJob;
 
 /**
  * Handler for the 'Build' command.
@@ -46,7 +46,7 @@ public class BuildHandler extends AbstractCommandHandler {
 	}
 
 	private void cleanAndBuild(final List<IProject> projects) {
-		final Job job = new MoflonBuildJob(projects, IncrementalProjectBuilder.FULL_BUILD);
+		final Job job = new SimSGBuildJob(projects, IncrementalProjectBuilder.FULL_BUILD);
 		job.setUser(true);
 		job.schedule();
 	}

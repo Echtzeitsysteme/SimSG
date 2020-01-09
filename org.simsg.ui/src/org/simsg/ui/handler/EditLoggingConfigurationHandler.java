@@ -5,8 +5,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.moflon.core.ui.AbstractCommandHandler;
-import org.moflon.core.ui.MoflonCoreUiActivator;
 import org.moflon.core.ui.UiUtilities;
+import org.simsg.ui.SimSGUiActivator;
 
 /**
  * Opens the eMoflon logging configuration file for editing.
@@ -21,6 +21,6 @@ public class EditLoggingConfigurationHandler extends AbstractCommandHandler {
 	}
 
 	public void openConfigFileInEditor(final IWorkbenchWindow window) {
-		UiUtilities.openFileInEditor(window, MoflonCoreUiActivator.getDefault().getConfigFile());
+		UiUtilities.openFileInEditor(window, SimSGUiActivator.getDefault().getConfigFile());
 	}
 }

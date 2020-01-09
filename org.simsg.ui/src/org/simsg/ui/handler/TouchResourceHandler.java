@@ -19,8 +19,6 @@ import org.moflon.core.ui.AbstractCommandHandler;
 
 /**
  * This handler touches the set of currently selected {@link IResource}s
- *
- * @author Roland Kluge - Initial implementation
  * @see #execute(ExecutionEvent)
  */
 public class TouchResourceHandler extends AbstractCommandHandler {
