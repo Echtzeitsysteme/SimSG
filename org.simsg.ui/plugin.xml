@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+<extension id="org.simsg.build.SimSGNature" name="SimSG Nature" point="org.eclipse.core.resources.natures">
+        <runtime>
+            <run class="org.simsg.ui.SimSGNature"/>
+        </runtime>
+        <builder id="org.simsg.build.SimSGBuilder">
+        </builder>
+        <one-of-nature id="org.simsg.ui.runtime.natures.SimSGNature">
+        </one-of-nature>
+        <requires-nature id="org.eclipse.jdt.core.javanature">
+        </requires-nature>
+    </extension>
+    <extension point="org.eclipse.ui.ide.projectNatureImages">
+        <image icon="icons/daten-und-ordner.png" id="org.simsg.ui.SimSGNatureImage" natureId="org.simsg.build.SimSGNature"/>
+</extension>
+    
 <extension point="org.eclipse.core.expressions.propertyTesters">
     <propertyTester class="org.simsg.ui.PerspectivePropertyTester" id="org.simsg.ui.PerspectivePropertyTester" namespace="org.simsg.ui.property" properties="perspectiveId" type="org.eclipse.e4.ui.model.application.ui.advanced.MPerspective"/>
   </extension>

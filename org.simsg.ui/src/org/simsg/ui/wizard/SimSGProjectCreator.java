@@ -7,8 +7,8 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.moflon.core.plugins.PluginProperties;
 import org.simsg.build.SimSGBuilder;
-import org.simsg.build.SimSGNature;
 import org.simsg.ui.AbstractSimSGProjectCreator;
+import org.simsg.ui.SimSGNature;
 
 /**
  * Creator for SimSG projects (see {@link SimSGNature})

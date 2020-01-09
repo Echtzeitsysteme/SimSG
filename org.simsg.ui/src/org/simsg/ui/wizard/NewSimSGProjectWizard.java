@@ -11,10 +11,10 @@ import org.moflon.core.plugins.PluginProducerWorkspaceRunnable;
 import org.moflon.core.plugins.PluginProperties;
 import org.moflon.core.ui.WorkingSetUtilities;
 import org.moflon.core.utilities.LogUtils;
-import org.simsg.build.SimSGNature;
 import org.simsg.ui.AbstractSimSGProjectCreator;
 import org.simsg.ui.AbstractSimSGProjectInfoPage;
 import org.simsg.ui.AbstractSimSGWizard;
+import org.simsg.ui.SimSGNature;
 
 /**
  * This wizard creates a new SimSG EMF project

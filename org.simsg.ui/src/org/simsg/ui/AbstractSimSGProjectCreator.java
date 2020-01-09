@@ -11,6 +11,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
@@ -18,6 +19,7 @@ import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
+import org.emoflon.ibex.gt.editor.ui.builder.GTNature;
 import org.gervarro.eclipse.workspace.autosetup.JavaProjectConfigurator;
 import org.gervarro.eclipse.workspace.autosetup.PluginProjectConfigurator;
 import org.gervarro.eclipse.workspace.autosetup.ProjectConfigurator;
@@ -32,7 +34,6 @@ import org.moflon.core.plugins.manifest.ManifestFileUpdater;
 import org.moflon.core.plugins.manifest.ManifestFileUpdater.AttributeUpdatePolicy;
 import org.moflon.core.plugins.manifest.PluginManifestConstants;
 import org.moflon.core.utilities.WorkspaceHelper;
-import org.simsg.build.SimSGNature;
 
 public abstract class AbstractSimSGProjectCreator extends WorkspaceTask implements ProjectConfigurator {
 	private final IProject project;
@@ -107,6 +108,21 @@ public abstract class AbstractSimSGProjectCreator extends WorkspaceTask implemen
 			natureAndBuilderConfiguratorTask.updateBuildSpecs(pluginProjectConfigurator, true);
 			WorkspaceTask.executeInCurrentThread(natureAndBuilderConfiguratorTask, IWorkspace.AVOID_UPDATE,
 					subMon.split(1));
+			
+			//Add GT-Nature and GT-Builder
+			WorkspaceHelper.addNature(project, GTNature.NATURE_ID, new NullProgressMonitor());
+			//Add Xtext-Nature
+			WorkspaceHelper.addNature(project, "org.eclipse.xtext.ui.shared.xtextNature", new NullProgressMonitor());
+			
+//			IProjectDescription projectDescription = project.getDescription();
+//			ICommand[] buildSpec = projectDescription.getBuildSpec();
+//			ICommand command = projectDescription.newCommand();
+//			command.setBuilderName(GTBuilder.BUILDER_ID);
+//			Collection<ICommand> list = new ArrayList<>();
+//			list.addAll(Arrays.asList(buildSpec));
+//			list.add(command);
+//			projectDescription.setBuildSpec(list.toArray(new ICommand[list.size()]));
+//			project.setDescription(projectDescription, new NullProgressMonitor());
 
 			// (3) Create folders and files in project
 			createFoldersIfNecessary(project, subMon.split(4));
