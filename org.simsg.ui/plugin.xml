@@ -15,7 +15,6 @@
     <extension point="org.eclipse.ui.ide.projectNatureImages">
         <image icon="icons/daten-und-ordner.png" id="org.simsg.ui.SimSGNatureImage" natureId="org.simsg.build.SimSGNature"/>
 </extension>
-    
 <extension point="org.eclipse.core.expressions.propertyTesters">
     <propertyTester class="org.simsg.ui.PerspectivePropertyTester" id="org.simsg.ui.PerspectivePropertyTester" namespace="org.simsg.ui.property" properties="perspectiveId" type="org.eclipse.e4.ui.model.application.ui.advanced.MPerspective"/>
   </extension>
@@ -262,5 +261,16 @@
         <adapt type="org.eclipse.core.resources.IMarker"></adapt>
       </enabledWhen>
     </page>
+  </extension>
+  <extension
+        id="org.simsg.build.SimSGBuilder"
+        name="SimSG Builder"
+        point="org.eclipse.core.resources.builders">
+     <builder
+           hasNature="true">
+        <run
+              class="org.simsg.ui.build.SimSGBuilder">
+        </run>
+     </builder>
   </extension>
 </plugin>

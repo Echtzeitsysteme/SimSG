@@ -15,7 +15,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.moflon.core.ui.AbstractCommandHandler;
-import org.simsg.build.SimSGBuildJob;
+import org.simsg.ui.build.SimSGBuildJob;
 
 /**
  * Handler for the 'Build' command.

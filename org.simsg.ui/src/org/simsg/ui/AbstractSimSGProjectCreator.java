@@ -19,7 +19,7 @@ import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
-import org.emoflon.ibex.gt.editor.ui.builder.GTNature;
+//import org.emoflon.ibex.gt.editor.ui.builder.GTNature;
 import org.gervarro.eclipse.workspace.autosetup.JavaProjectConfigurator;
 import org.gervarro.eclipse.workspace.autosetup.PluginProjectConfigurator;
 import org.gervarro.eclipse.workspace.autosetup.ProjectConfigurator;
@@ -109,20 +109,10 @@ public abstract class AbstractSimSGProjectCreator extends WorkspaceTask implemen
 			WorkspaceTask.executeInCurrentThread(natureAndBuilderConfiguratorTask, IWorkspace.AVOID_UPDATE,
 					subMon.split(1));
 			
-			//Add GT-Nature and GT-Builder
-			WorkspaceHelper.addNature(project, GTNature.NATURE_ID, new NullProgressMonitor());
+//			//Add GT-Nature and GT-Builder
+//			WorkspaceHelper.addNature(project, GTNature.NATURE_ID, new NullProgressMonitor());
 			//Add Xtext-Nature
 			WorkspaceHelper.addNature(project, "org.eclipse.xtext.ui.shared.xtextNature", new NullProgressMonitor());
-			
-//			IProjectDescription projectDescription = project.getDescription();
-//			ICommand[] buildSpec = projectDescription.getBuildSpec();
-//			ICommand command = projectDescription.newCommand();
-//			command.setBuilderName(GTBuilder.BUILDER_ID);
-//			Collection<ICommand> list = new ArrayList<>();
-//			list.addAll(Arrays.asList(buildSpec));
-//			list.add(command);
-//			projectDescription.setBuildSpec(list.toArray(new ICommand[list.size()]));
-//			project.setDescription(projectDescription, new NullProgressMonitor());
 
 			// (3) Create folders and files in project
 			createFoldersIfNecessary(project, subMon.split(4));
@@ -139,6 +129,8 @@ public abstract class AbstractSimSGProjectCreator extends WorkspaceTask implemen
 			final IJavaProject javaProject = JavaCore.create(project);
 			final IClasspathEntry srcFolderEntry = JavaCore
 					.newSourceEntry(WorkspaceHelper.getSourceFolder(project).getFullPath());
+			final IClasspathEntry srcGenFolderEntry = JavaCore
+					.newSourceEntry(project.getFolder("src-gen").getFullPath());
 
 			// Integration projects contain a lot of (useful?) boilerplate code in /gen,
 			// which requires to ignore warnings such as 'unused variable', 'unused import'
@@ -148,7 +140,7 @@ public abstract class AbstractSimSGProjectCreator extends WorkspaceTask implemen
 			final IClasspathEntry pdeContainerEntry = JavaCore
 					.newContainerEntry(new Path("org.eclipse.pde.core.requiredPlugins"));
 			javaProject.setRawClasspath(
-					new IClasspathEntry[] { srcFolderEntry, jreContainerEntry,
+					new IClasspathEntry[] { srcFolderEntry, srcGenFolderEntry, jreContainerEntry,
 							pdeContainerEntry },
 					WorkspaceHelper.getBinFolder(project).getFullPath(), true, subMon.split(1));
 		}
@@ -260,6 +252,11 @@ public abstract class AbstractSimSGProjectCreator extends WorkspaceTask implemen
 
 		WorkspaceHelper.createFolderIfNotExists(WorkspaceHelper.getSourceFolder(project), subMon.split(1));
 		WorkspaceHelper.createFolderIfNotExists(WorkspaceHelper.getBinFolder(project), subMon.split(1));
+		WorkspaceHelper.createFolderIfNotExists(WorkspaceHelper.getModelFolder(project), subMon.split(1));
+		WorkspaceHelper.createFolderIfNotExists(project.getFolder("src-gen"), subMon.split(1));
+		WorkspaceHelper.createFolderIfNotExists(project.getFolder("instances"), subMon.split(1));
+		WorkspaceHelper.createFolderIfNotExists(project.getFolder("instances/simulation_definitions"), subMon.split(1));
+		WorkspaceHelper.createFolderIfNotExists(project.getFolder("instances/simulation_results"), subMon.split(1));
 	}
 
 	/**

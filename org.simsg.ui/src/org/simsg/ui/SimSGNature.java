@@ -1,7 +1,7 @@
 package org.simsg.ui;
 
 import org.moflon.core.build.nature.MoflonProjectConfigurator;
-import org.simsg.build.SimSGBuilder;
+import org.simsg.ui.build.SimSGBuilder;
 
 /**
  * Nature for SimSG projects

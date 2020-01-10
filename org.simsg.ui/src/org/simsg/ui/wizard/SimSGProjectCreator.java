@@ -6,7 +6,7 @@ import java.util.List;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.moflon.core.plugins.PluginProperties;
-import org.simsg.build.SimSGBuilder;
+import org.simsg.ui.build.SimSGBuilder;
 import org.simsg.ui.AbstractSimSGProjectCreator;
 import org.simsg.ui.SimSGNature;
 
