@@ -22,9 +22,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simulationdefinition.ecore#//SimDefinition/gtRulesURI"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simulationdefinition.ecore#//SimDefinition/GtRuleSet"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simulationdefinition.ecore#//SimDefinition/ibexPatternSet"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simulationdefinition.ecore#//SimDefinition/metamodelURI"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simulationdefinition.ecore#//SimDefinition/ibexPatternsURI"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference simulationdefinition.ecore#//SimDefinition/metamodel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simulationdefinition.ecore#//SimDefinition/metaModels"/>
     </genClasses>
     <genClasses ecoreClass="simulationdefinition.ecore#//StochasticRate">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simulationdefinition.ecore#//StochasticRate/rate"/>
@@ -42,6 +41,10 @@
     <genClasses ecoreClass="simulationdefinition.ecore#//PatternObservation">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simulationdefinition.ecore#//PatternObservation/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference simulationdefinition.ecore#//PatternObservation/pattern"/>
+    </genClasses>
+    <genClasses ecoreClass="simulationdefinition.ecore#//PackageMapping">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simulationdefinition.ecore#//PackageMapping/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simulationdefinition.ecore#//PackageMapping/value"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="GTLanguage" ecorePackage="../../org.emoflon.ibex.gt/model/Gt.ecore#/">

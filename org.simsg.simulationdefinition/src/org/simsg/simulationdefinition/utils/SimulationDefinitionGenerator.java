@@ -1,10 +1,11 @@
 package org.simsg.simulationdefinition.utils;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -33,7 +34,7 @@ public class SimulationDefinitionGenerator {
 	
 	private URI gtRulesUri;
 	private URI ibexPatternsUri;
-	private URI metaModelUri;
+	private Map<String, URI> metaModelUris = new HashMap<>();
 	private URI modelUri;
 	
 	public SimulationDefinitionGenerator(String name) {
@@ -61,16 +62,6 @@ public class SimulationDefinitionGenerator {
 		setIBeXPatterns();
 	}
 	
-	public void setMetaModel(String path) {
-		setMetaModelURI(path);
-		setMetaModel();
-	}
-	
-	public void setMetaModel(URI uri) {
-		setMetaModelURI(uri);
-		setMetaModel();
-	}
-	
 	public void setModelURI(String path) {
 		URI fileUri = URI.createFileURI(path);
 		setModelURI(fileUri);
@@ -79,6 +70,23 @@ public class SimulationDefinitionGenerator {
 	public void setModelURI(URI uri) {
 		modelUri = uri;
 		definition.setSimulationModelURI(uri.toString());
+	}
+	
+	public void addMetaModel(String name, URI uri) throws IOException {
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
+		ResourceSet rs = new ResourceSetImpl();
+		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
+		Resource resource = rs.getResource(uri, true);	
+		
+		if(resource == null ) {
+			throw new IOException("Could not load resource: " + uri.path());
+		}
+		
+		if(resource.getContents().isEmpty()) {
+			throw new IOException("Could not load resource: " + uri.path());
+		}
+		
+		definition.getMetaModels().put(name, uri.toPlatformString(true));
 	}
 	
 	public void addRuleRateAnnotation(String ruleName, double rate) {
@@ -187,7 +195,9 @@ public class SimulationDefinitionGenerator {
 		sb.append("GtRules-URI: "+gtRulesUri+"\n");
 		sb.append("IBeXPatterns-URI: "+ibexPatternsUri+"\n");
 		sb.append("SimulationModel-URI: "+modelUri+"\n");
-		sb.append("SimulationMetaModel-URI: "+metaModelUri);
+		for(Entry<String, URI> metamodel : metaModelUris.entrySet()) {
+			sb.append("SimulationMetaModel: "+metamodel.getKey()+", "+metamodel.getValue()+"\n");
+		}		
 		return sb.toString();
 	}
 	
@@ -213,15 +223,6 @@ public class SimulationDefinitionGenerator {
 		definition.setIbexPatternsURI(uri.toString());
 	}
 	
-	private void setMetaModelURI(String path) {
-		URI fileUri = URI.createFileURI(path);
-		setMetaModelURI(fileUri);
-	}
-	
-	private void setMetaModelURI(URI uri) {
-		metaModelUri = uri;
-	}
-	
 	private void setGtRules() {
 		GTLanguagePackage.eINSTANCE.eClass();
 		GTRuleSet rules = null;
@@ -244,24 +245,6 @@ public class SimulationDefinitionGenerator {
 			e.printStackTrace();
 		}
 		definition.setIbexPatternSet(patterns);
-	}
-	
-	private void setMetaModel() {
-		//EPackage ePack = (EPackage)EPackage.Registry.INSTANCE.get(metaModelUri);
-		//ePack.getEFactoryInstance().eClass();
-		
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
-		EPackage metamodel = null;
-		try {
-			Resource rs = loadEcoreResource(metaModelUri);
-			metamodel = (EPackage) rs.getContents().get(0);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		metaModelUri = URI.createPlatformResourceURI(metamodel.getNsURI(), true);
-		definition.setMetamodel(metamodel);
-		definition.setMetamodelURI(metaModelUri.toString());
-		
 	}
 	
 	public static Resource loadResource(URI uri) throws Exception {

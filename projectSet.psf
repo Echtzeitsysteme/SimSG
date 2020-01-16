@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.eclipse.egit.core.GitProvider">
+<project reference="1.0,https://github.com/eMoflon/SimSG.git,origin,org.simsg.core"/>
+<project reference="1.0,https://github.com/eMoflon/SimSG.git,origin,org.simsg.dependencies"/>
+<project reference="1.0,https://github.com/eMoflon/SimSG.git,origin,org.simsg.feature"/>
+<project reference="1.0,https://github.com/eMoflon/SimSG.git,origin,org.simsg.simulationdefinition"/>
+<project reference="1.0,https://github.com/eMoflon/SimSG.git,origin,org.simsg.ui"/>
+<project reference="1.0,https://github.com/eMoflon/SimSG.git,origin,org.simsg.updatesite"/>
+<project reference="1.0,https://github.com/eMoflon/SimSG.git,origin,SimSG-UpdateSite"/>
+</provider>
+<workingSets editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" id="1576246345394_19" label="simsg-core" name="simsg-core">
+<item elementID="=org.simsg.core" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=org.simsg.dependencies" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.simsg.feature" type="4"/>
+<item elementID="=org.simsg.simulationdefinition" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/org.simsg.updatesite" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/SimSG-UpdateSite" type="4"/>
+<item elementID="=org.simsg.ui" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSets>
+</psf>
