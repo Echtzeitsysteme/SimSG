@@ -40,7 +40,9 @@ import GTLanguage.GTRule;
 public class SimulationConfigurator {
 	
 	private String modelName;
-	private String modelFolder;
+	private String rootDataFolder;
+	private String simulationDefinitonFolder;
+	private String simulationResultsFolder;
 	
 	protected Supplier<PersistenceManager> persistenceConstructor;
 	protected Supplier<PatternMatchingEngine> engineConstructor;
@@ -69,8 +71,16 @@ public class SimulationConfigurator {
 		this.modelName = modelName;
 	}
 	
-	public void setModelFolder(String path) {
-		this.modelFolder = path;
+	public void setRootDataFolder(String path) {
+		this.rootDataFolder = path;
+	}
+	
+	public void setSimulationDefinitionFolder(String path) {
+		this.simulationDefinitonFolder = path;
+	}
+	
+	public void setSimulationResultsFolder(String path) {
+		this.simulationResultsFolder = path;
 	}
 	
 	public void setPersistence(Class<? extends PersistenceManager> persistenceType, Object ... params) {
@@ -407,10 +417,20 @@ public class SimulationConfigurator {
 	
 	private PersistenceManager createPersistenceManager() {
 		PersistenceManager persistence = persistenceConstructor.get();
-		if(modelFolder == null) {
-			System.out.println("Warning: No model folder has been set. Using default folder..");
+		if(rootDataFolder == null) {
+			System.out.println("Warning: No data folder has been set. Using default folder..");
 		}else {
-			persistence.setModelFolderPath(modelFolder);
+			persistence.setRootDataFolderPath(rootDataFolder);
+		}
+		if(simulationDefinitonFolder == null) {
+			System.out.println("Warning: No simulation definition folder has been set. Using default folder..");
+		}else {
+			persistence.setSimulationDefinitionFolderPath(simulationDefinitonFolder);
+		}
+		if(simulationResultsFolder == null) {
+			System.out.println("Warning: No simulation results folder has been set. Using default folder..");
+		}else {
+			persistence.setSimulationResultsFolderPath(simulationResultsFolder);
 		}
 		return persistence;
 	}

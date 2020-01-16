@@ -117,6 +117,7 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 					Object content = xmiResource.getContents().get(0);
 					if(content instanceof GTRuleSet) {
 						gtRules = (GTRuleSet)content;
+						resource.copy(project.getFile("src-gen/"+project.getName().replace(".", "/")+"/api/gt-rules.xmi").getFullPath(), false, monitor);
 					}
 					if(content instanceof IBeXPatternSet) {
 						resource.copy(project.getFile("src-gen/"+project.getName().replace(".", "/")+"/api/ibex-patterns.xmi").getFullPath(), false, monitor);
@@ -154,7 +155,7 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 	
 	private boolean processManifestForPackage(IProject project, Manifest manifest) {
 		List<String> dependencies = new ArrayList<String>();
-		dependencies.addAll(Arrays.asList("org.emoflon.ibex.common", "org.emoflon.ibex.gt"));
+		dependencies.addAll(Arrays.asList("org.emoflon.ibex.common", "org.emoflon.ibex.gt", "org.simsg.core", "SimulationDefinition"));
 		IBeXUtils.collectEngineExtensions().forEach(engine -> dependencies.addAll(engine.getDependencies()));
 
 		boolean changedBasics = ManifestFileUpdater.setBasicProperties(manifest, project.getName());

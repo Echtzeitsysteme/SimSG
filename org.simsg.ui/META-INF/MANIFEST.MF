@@ -30,7 +30,9 @@ Require-Bundle: org.moflon.core.utilities,
  org.emoflon.ibex.gt.editor.ui,
  org.moflon.emf.codegen,
  org.emoflon.ibex.gt,
- org.moflon.core.propertycontainer
+ org.moflon.core.propertycontainer,
+ SimulationDefinition;bundle-version="0.1.0",
+ org.simsg.core;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Automatic-Module-Name: org.simsg.ui
 Import-Package: javax.annotation;version="1.2.0"

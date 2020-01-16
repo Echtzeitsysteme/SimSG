@@ -63,8 +63,16 @@ public abstract class PersistenceManager {
 		fetchIndex();
 	}
 	
-	public void setModelFolderPath(String path) {
+	public void setRootDataFolderPath(String path) {
 		dataFolder = path;
+	}
+	
+	public void setSimulationDefinitionFolderPath(String path) {
+		simulationDefinitionFolder = path;
+	}
+	
+	public void setSimulationResultsFolderPath(String path) {
+		simulationResultsFolder = path;
 	}
 	
 	public Set<String> availableSimulationDefinitions() {
@@ -90,7 +98,6 @@ public abstract class PersistenceManager {
 		try {
 			resource = PersistenceUtils.loadResource(simulationDefinitionPaths.get(name));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -105,7 +112,6 @@ public abstract class PersistenceManager {
 		try {
 			resource = PersistenceUtils.loadResource(uri);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -189,10 +195,15 @@ public abstract class PersistenceManager {
 		
 		indexPath = dataFolder+PERSISTENCE_INDEX_FILE;
 		
-		simulationDefinitionFolder = dataFolder + SIMULATION_DEFINITION_FOLDER;
+		if(simulationDefinitionFolder == null) {
+			simulationDefinitionFolder = dataFolder + SIMULATION_DEFINITION_FOLDER;
+		}
 		PersistenceUtils.createFolderIfNotExist(simulationDefinitionFolder);
 		
-		simulationResultsFolder = dataFolder + SIMULATION_RESULTS_FOLDER;
+		if(simulationResultsFolder == null) {
+			simulationResultsFolder = dataFolder + SIMULATION_RESULTS_FOLDER;
+		}
+		
 		PersistenceUtils.createFolderIfNotExist(simulationResultsFolder);
 	}
 	

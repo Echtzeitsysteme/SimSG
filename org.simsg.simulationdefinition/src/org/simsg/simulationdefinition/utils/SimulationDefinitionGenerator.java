@@ -166,7 +166,7 @@ public class SimulationDefinitionGenerator {
 	}
 	
 	public void saveDefinition(URI uri) {
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("SimulationDefinition", new XMIResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		ResourceSet rs = new ResourceSetImpl();
 		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		
@@ -248,7 +248,7 @@ public class SimulationDefinitionGenerator {
 	}
 	
 	public static Resource loadResource(URI uri) throws Exception {
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("Model", new XMIResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		ResourceSet rs = new ResourceSetImpl();
 		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 
@@ -260,7 +260,7 @@ public class SimulationDefinitionGenerator {
 	}
 	
 	public static Resource loadEcoreResource(URI uri) throws Exception {
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("MetaModel", new EcoreResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 		ResourceSet rs = new ResourceSetImpl();
 		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 
