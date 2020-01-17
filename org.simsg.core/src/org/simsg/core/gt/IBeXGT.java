@@ -13,6 +13,12 @@ public abstract class IBeXGT extends GraphTransformationEngine {
 	protected IBeXApiWrapper apiWrapper;
 	protected Map<String, GraphTransformationRule<?,?>> rules;
 	protected Method ruleApplicationMethod;
+	
+	protected final String fqApiPackageName;
+	
+	protected IBeXGT(final String fqApiPackageName) {
+		this.fqApiPackageName = fqApiPackageName;
+	}
 
 
 	@Override

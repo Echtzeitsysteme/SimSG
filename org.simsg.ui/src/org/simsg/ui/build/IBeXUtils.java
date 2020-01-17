@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.emoflon.ibex.gt.codegen.EClassifiersManager;
@@ -32,7 +33,7 @@ public final class IBeXUtils {
 		});
 
 		generator.generateAPIClass(apiPackage, gtRuleSet,
-				String.format("%s/%s/%s/api/ibex-patterns.xmi", project.getName(), "src-gen", project.getName()));
+				String.format("%s/%s/%s/api/ibex-patterns.xmi", project.getName(), "src-gen", project.getName().replace(".", "/")));
 		generator.generateAppClass(apiPackage);
 		collectEngineExtensions().forEach(e -> generator.generateAppClassForEngine(apiPackage, e));
 	}
@@ -74,7 +75,9 @@ public final class IBeXUtils {
 	}
 	
 	public static String getClassNamePrefix(final IProject project) {
-		return project.getName();
+		URI projectNameAsURI = URI.createFileURI(project.getName().replace(".", "/"));
+		String prefix = projectNameAsURI.lastSegment();
+		return Character.toUpperCase(prefix.charAt(0)) + prefix.substring(1);
 	}
 
 	public static EClassifiersManager createEClassifierManager(final Registry packageRegistry) {

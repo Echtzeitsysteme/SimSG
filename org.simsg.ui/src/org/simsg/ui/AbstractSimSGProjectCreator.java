@@ -257,6 +257,7 @@ public abstract class AbstractSimSGProjectCreator extends WorkspaceTask implemen
 		WorkspaceHelper.createFolderIfNotExists(project.getFolder("instances"), subMon.split(1));
 		WorkspaceHelper.createFolderIfNotExists(project.getFolder("instances/simulation_definitions"), subMon.split(1));
 		WorkspaceHelper.createFolderIfNotExists(project.getFolder("instances/simulation_results"), subMon.split(1));
+		WorkspaceHelper.createFolderIfNotExists(project.getFolder("instances/simulation_instances"), subMon.split(1));
 	}
 
 	/**

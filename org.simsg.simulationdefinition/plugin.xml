@@ -13,23 +13,5 @@
             class="SimulationDefinition.SimulationDefinitionPackage"
             genModel="model/simulationdefinition.genmodel"/>
    </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated SimulationDefinition -->
-      <package
-            uri="platform:/resource/org.emoflon.ibex.gt/model/Gt.ecore"
-            class="GTLanguage.GTLanguagePackage"
-            genModel="model/simulationdefinition.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated SimulationDefinition -->
-      <package
-            uri="platform:/resource/org.emoflon.ibex.common/model/Common.ecore"
-            class="IBeXLanguage.IBeXLanguagePackage"
-            genModel="model/simulationdefinition.genmodel"/>
-   </extension>
-
-
    
 </plugin>

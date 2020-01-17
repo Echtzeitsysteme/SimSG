@@ -5,10 +5,14 @@ import org.simsg.core.utils.IBeXApiWrapper;
 public class IBeXHiPEEngine extends IBeXEngine {
 
 
+	public IBeXHiPEEngine(final String fqApiPackageName) {
+		super(fqApiPackageName);
+	}
+
 	@Override
 	public void initPatterns() {
 		apiWrapper = IBeXApiWrapper.getInstance();
-		apiWrapper.initHiPEWrapper(simulationDefinition);
+		apiWrapper.initHiPEWrapper(simulationDefinition, fqApiPackageName);
 	}
 
 	@Override
@@ -19,7 +23,7 @@ public class IBeXHiPEEngine extends IBeXEngine {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Trying to re-initialize...");
-			apiWrapper.initHiPEWrapper(simulationDefinition);
+			apiWrapper.initHiPEWrapper(simulationDefinition, fqApiPackageName);
 			try {
 				api = apiWrapper.initEngine(simulationModel);
 			} catch (Exception e1) {

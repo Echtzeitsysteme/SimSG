@@ -7,9 +7,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.emoflon.ibex.gt.api.GraphTransformationAPI;
 import org.emoflon.ibex.gt.api.GraphTransformationApp;
@@ -72,9 +71,9 @@ public class IBeXApiWrapper {
 		return apiClass;
 	}
 	
-	public void initDemoclesWrapper(SimDefinition simulationDefinition) {
+	public void initDemoclesWrapper(SimDefinition simulationDefinition, String fqApiPackageName) {
 		this.simulationDefinition = simulationDefinition;
-		setNameSpaceAndPackageName();
+		setNameSpaceAndPackageName(fqApiPackageName);
 		initDemoclesApp();
 		initApiClasses();
 		initMatcherGetter();
@@ -82,9 +81,9 @@ public class IBeXApiWrapper {
 		System.out.println("Actual engine: "+ engineAppClass);
 	}
 	
-	public void initHiPEWrapper(SimDefinition simulationDefinition) {
+	public void initHiPEWrapper(SimDefinition simulationDefinition, String fqApiPackageName) {
 		this.simulationDefinition = simulationDefinition;
-		setNameSpaceAndPackageName();
+		setNameSpaceAndPackageName(fqApiPackageName);
 		initHiPEApp();
 		initApiClasses();
 		initMatcherGetter();
@@ -128,24 +127,32 @@ public class IBeXApiWrapper {
 		return rules;
 	}
 	
-	private void setNameSpaceAndPackageName() {
-		String uri = simulationDefinition.getGtRulesURI();
-		Pattern pattern = Pattern.compile("^(.*src-gen/)(.*)(api/gt-rules.xmi)$");
-		Matcher matcher = pattern.matcher(uri);
-		matcher.matches();
-		String ns = matcher.group(2);
-		
-		Pattern pattern2 = Pattern.compile("^(.*/)(.*)(/)$");
-		Matcher matcher2 = pattern2.matcher(ns);
-		matcher2.matches();
-		String pack = matcher2.group(2);
-		ns = ns.substring(0, ns.length()-1);
-		ns = ns.replace("/", ".");
-		
-		packageName = pack.substring(0, 1).toUpperCase() + pack.substring(1, pack.length());
-		nameSpace = ns+".api";
+//	private void setNameSpaceAndPackageName() {
+//		URI uri = URI.createFileURI(simulationDefinition.getGtRulesURI()).trimSegments(2);
+//		List<String> segments = new LinkedList<>(uri.segmentsList());
+//		segments.remove(0);
+//		uri = URI.createFileURI(segments.stream()
+//				.reduce("", (str1, str2) -> {
+//						if(!str1.equals("")) {
+//							return str1 +"/"+str2;
+//						}else {
+//							return str1 + str2;
+//						}
+//					}
+//				));
+//		String ns = uri.toString().replace("/", ".");
+//		
+//		packageName = uri.lastSegment().substring(0,1).toUpperCase() + uri.lastSegment().substring(1, uri.lastSegment().length());
+//		nameSpace = ns+".api";
+//
+//	}
+	
+	private void setNameSpaceAndPackageName(String fqApiPackageName) {
+	nameSpace = fqApiPackageName;
+	URI uri = URI.createFileURI(fqApiPackageName.replace(".", "/")).trimSegments(1);
+	packageName = uri.lastSegment().substring(0,1).toUpperCase() + uri.lastSegment().substring(1, uri.lastSegment().length());
 
-	}
+}
 	
 	@SuppressWarnings("unchecked")
 	private void initDemoclesApp() {

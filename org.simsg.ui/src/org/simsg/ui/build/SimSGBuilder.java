@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.moflon.core.plugins.manifest.ManifestFileUpdater;
@@ -108,6 +109,8 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 		}
 		subMon.worked(3);
 		
+		boolean foundPatterns = false;
+		boolean foundRules = false;
 		// build eMoflon api code
 		for(IResource resource : modelFolder.members()) {
 			if(WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".xmi")) {
@@ -118,9 +121,11 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 					if(content instanceof GTRuleSet) {
 						gtRules = (GTRuleSet)content;
 						resource.copy(project.getFile("src-gen/"+project.getName().replace(".", "/")+"/api/gt-rules.xmi").getFullPath(), false, monitor);
+						foundRules = true;
 					}
 					if(content instanceof IBeXPatternSet) {
 						resource.copy(project.getFile("src-gen/"+project.getName().replace(".", "/")+"/api/ibex-patterns.xmi").getFullPath(), false, monitor);
+						foundPatterns = true;
 					}
 				} catch (IOException e) {
 					logger.error("Could not load resource. Error: \n" + e.getMessage());
@@ -139,10 +144,22 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 		}
 		subMon.worked(6);
 		
-		IFolder packagePath = project.getFolder(project.getName().replace(".", "/"));
 		// build HiPE engine code
-		IBeXUtils.collectEngineBuilderExtensions().forEach(ext->ext.run(project, packagePath.getProjectRelativePath()));
+		if(foundPatterns) {
+			IFolder packagePath = project.getFolder(project.getName().replace(".", "/"));
+			IBeXUtils.collectEngineBuilderExtensions().forEach(ext->ext.run(project, packagePath.getProjectRelativePath()));
+		}
 		subMon.worked(7);
+		
+		// build SimSG API code
+		if(foundRules) {
+			IFolder apiPackage = project.getFolder("src-gen/"+project.getName().replace(".", "/")+"/api");
+			String apiPackageName = project.getName()+".api";
+			String classPrefix = URI.createFileURI(project.getName().replace(".", "/")).lastSegment();
+			classPrefix = Character.toUpperCase(classPrefix.charAt(0)) + classPrefix.substring(1);
+			SimSGAPIBuilder.buildAPI(apiPackage.getFile(classPrefix+"SimSGApi.java"), apiPackageName, classPrefix);
+		}
+		subMon.worked(8);
 	}
 	
 	private void updateManifest(final IProject project, final BiFunction<IProject, Manifest, Boolean> updateFunction) {
@@ -185,6 +202,7 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 		WorkspaceHelper.createFolderIfNotExists(project.getFolder("instances"), subMon.split(1));
 		WorkspaceHelper.createFolderIfNotExists(project.getFolder("instances/simulation_definitions"), subMon.split(1));
 		WorkspaceHelper.createFolderIfNotExists(project.getFolder("instances/simulation_results"), subMon.split(1));
+		WorkspaceHelper.createFolderIfNotExists(project.getFolder("instances/simulation_instances"), subMon.split(1));
 	}
 
 	

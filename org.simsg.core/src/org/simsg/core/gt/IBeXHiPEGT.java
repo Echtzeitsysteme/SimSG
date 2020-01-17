@@ -6,11 +6,15 @@ import org.simsg.core.utils.IBeXApiWrapper;
 
 public class IBeXHiPEGT extends IBeXGT {
 
+	public IBeXHiPEGT(final String fqApiPackageName) {
+		super(fqApiPackageName);
+	}
+
 	@Override
 	public void init() {
 		apiWrapper = IBeXApiWrapper.getInstance();
 		if(!apiWrapper.isInitialized()) {
-			apiWrapper.initHiPEWrapper(simulationDefinition);
+			apiWrapper.initHiPEWrapper(simulationDefinition, fqApiPackageName);
 			try {
 				apiWrapper.initEngine(simulationModel);
 			} catch (Exception e) {

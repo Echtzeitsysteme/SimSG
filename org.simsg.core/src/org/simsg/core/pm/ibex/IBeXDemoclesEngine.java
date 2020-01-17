@@ -4,11 +4,14 @@ import org.simsg.core.utils.IBeXApiWrapper;
 
 public class IBeXDemoclesEngine extends IBeXEngine {
 
+	public IBeXDemoclesEngine(final String fqApiPackageName) {
+		super(fqApiPackageName);
+	}
 
 	@Override
 	public void initPatterns() {
 		apiWrapper = IBeXApiWrapper.getInstance();
-		apiWrapper.initDemoclesWrapper(simulationDefinition);
+		apiWrapper.initDemoclesWrapper(simulationDefinition, fqApiPackageName);
 	}
 
 	@Override
@@ -19,7 +22,7 @@ public class IBeXDemoclesEngine extends IBeXEngine {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Trying to re-initialize...");
-			apiWrapper.initDemoclesWrapper(simulationDefinition);
+			apiWrapper.initDemoclesWrapper(simulationDefinition, fqApiPackageName);
 			try {
 				api = apiWrapper.initEngine(simulationModel);
 			} catch (Exception e1) {

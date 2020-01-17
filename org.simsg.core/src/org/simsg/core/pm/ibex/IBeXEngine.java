@@ -20,6 +20,12 @@ public abstract class IBeXEngine extends PatternMatchingEngine {
 	
 	protected Map<String, GraphTransformationPattern<?,?>> matcher;
 	protected Map<String, Collection<SimSGMatch>> matches = new HashMap<>();
+	
+	protected final String fqApiPackageName;
+	
+	protected IBeXEngine(final String fqApiPackageName) {
+		this.fqApiPackageName = fqApiPackageName;
+	}
 
 	@Override
 	public Collection<SimSGMatch> getMatches(String patternName) {

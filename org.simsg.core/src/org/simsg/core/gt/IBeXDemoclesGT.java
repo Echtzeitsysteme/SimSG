@@ -6,11 +6,15 @@ import org.simsg.core.utils.IBeXApiWrapper;
 
 public class IBeXDemoclesGT extends IBeXGT {
 
+	public IBeXDemoclesGT(final String fqApiPackageName) {
+		super(fqApiPackageName);
+	}
+
 	@Override
 	public void init() {
 		apiWrapper = IBeXApiWrapper.getInstance();
 		if(!apiWrapper.isInitialized()) {
-			apiWrapper.initDemoclesWrapper(simulationDefinition);
+			apiWrapper.initDemoclesWrapper(simulationDefinition, fqApiPackageName);
 			try {
 				apiWrapper.initEngine(simulationModel);
 			} catch (Exception e) {

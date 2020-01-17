@@ -62,9 +62,6 @@ public class SimulationConfigurator {
 	
 	public SimulationConfigurator() {
 		setEMFPersistence();
-		//setIBeXDemoclesAsEngine();
-		setIBeXPMC();
-		//setIBeXDemoclesGT();
 	}
 	
 	public void setModel(String modelName) {
@@ -129,15 +126,15 @@ public class SimulationConfigurator {
 		};
 	}
 	
-	public void setIBeXDemoclesAsEngine() {
+	public void setIBeXDemoclesAsEngine(final String fqApiPackageName) {
 		engineConstructor = () -> {
-			return new IBeXDemoclesEngine();
+			return new IBeXDemoclesEngine(fqApiPackageName);
 		};
 	}
 	
-	public void setIBeXHiPEAsEngine() {
+	public void setIBeXHiPEAsEngine(final String fqApiPackageName) {
 		engineConstructor = () -> {
-			return new IBeXHiPEEngine();
+			return new IBeXHiPEEngine(fqApiPackageName);
 		};
 	}
 	
@@ -187,15 +184,15 @@ public class SimulationConfigurator {
 		};
 	}
 	
-	public void setIBeXDemoclesGT() {
+	public void setIBeXDemoclesGT(final String fqApiPackageName) {
 		gtConstructor = () -> {
-			return new IBeXDemoclesGT();
+			return new IBeXDemoclesGT(fqApiPackageName);
 		};
 	}
 	
-	public void setIBeXHiPEGT() {
+	public void setIBeXHiPEGT(final String fqApiPackageName) {
 		gtConstructor = () -> {
-			return new IBeXHiPEGT();
+			return new IBeXHiPEGT(fqApiPackageName);
 		};
 	}
 	
@@ -360,8 +357,11 @@ public class SimulationConfigurator {
 		visualizationConstructors.add(simulationVisualization);
 	}
 	
-	public void setSimpleSimulation(boolean deterministic) {
+	public void setSimpleSimulation(boolean deterministic) throws Exception{
 		simulationConstructor = ()->{
+			if(gtConstructor == null) {
+				throw new RuntimeException("No GT has been set.");
+			}
 			SimpleSimulation sim = new SimpleSimulation(modelName, createPersistenceManager(), createPMC(), gtConstructor.get());
 			sim.useRuleRates(!deterministic);
 			sim.randomizeRuleOrder(!deterministic);
@@ -369,8 +369,11 @@ public class SimulationConfigurator {
 		};
 	}
 	
-	public void setStochasticSimulation() {
+	public void setStochasticSimulation() throws Exception{
 		simulationConstructor = ()-> {	
+			if(gtConstructor == null) {
+				throw new RuntimeException("No GT has been set.");
+			}
 			return new StochasticSimulation(modelName, createPersistenceManager(), createPMC(), gtConstructor.get());
 		};
 	}
@@ -435,9 +438,17 @@ public class SimulationConfigurator {
 		return persistence;
 	}
 	
-	private PatternMatchingController createPMC() {
+	private PatternMatchingController createPMC() throws RuntimeException{
+		if(engineConstructor == null) {
+			throw new RuntimeException("No engine has been set.");
+		}
 		PatternMatchingEngine engine = engineConstructor.get();
+		
+		if(pmcConstructor == null) {
+			throw new RuntimeException("No pmc has been set.");
+		}
 		PatternMatchingController pmc = pmcConstructor.get();
+		
 		pmc.setEngine(engine);
 		return pmc;
 	}
