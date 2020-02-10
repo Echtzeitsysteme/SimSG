@@ -24,7 +24,7 @@ public abstract class SimSGMatch implements IMatch{
 	}
 	
 	@Override
-	public int getHashCode() {
+	public long getHashCode() {
 		return calcHashCode();
 	}
 }
