@@ -12,8 +12,9 @@ Export-Package: SimulationDefinition,
  SimulationDefinition.impl,
  SimulationDefinition.util,
  org.simsg.simulationdefinition.utils
-Require-Bundle: org.emoflon.ibex.gt;bundle-version="1.0.0",
+Require-Bundle: org.emoflon.ibex.gt;bundle-version="1.0.0";visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
+ org.emoflon.ibex.patternmodel;visibility:=reexport,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xmi
 Bundle-ActivationPolicy: lazy

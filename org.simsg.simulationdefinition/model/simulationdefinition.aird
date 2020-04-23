@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:diagram="http://www.eclipse.org/sirius/diagram/1.1.0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description http://www.eclipse.org/sirius/diagram/description/style/1.1.0 http://www.eclipse.org/sirius/diagram/1.1.0#//description/style">
-  <viewpoint:DAnalysis uid="_4NSOIFXsEemPG58LIfQxog" selectedViews="_4R7dkFXsEemPG58LIfQxog" version="14.1.0.201810161215">
+  <viewpoint:DAnalysis uid="_4NSOIFXsEemPG58LIfQxog" selectedViews="_4R7dkFXsEemPG58LIfQxog" version="14.3.0.201909031200">
     <semanticResources>simulationdefinition.ecore</semanticResources>
     <semanticResources>simulationdefinition.genmodel</semanticResources>
     <semanticResources>http://www.eclipse.org/emf/2002/Ecore</semanticResources>
     <semanticResources>platform:/resource/org.emoflon.ibex.gt/model/Gt.ecore</semanticResources>
     <semanticResources>platform:/resource/org.emoflon.ibex.common/model/Common.ecore</semanticResources>
+    <semanticResources>platform:/resource/org.emoflon.ibex.patternmodel/model/IBeXPatternModel.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_4R7dkFXsEemPG58LIfQxog">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_4Vl1kFXsEemPG58LIfQxog" name="simulationdefinition" repPath="#_4Te8wFXsEemPG58LIfQxog">
@@ -14,7 +15,7 @@
       </ownedRepresentationDescriptors>
     </ownedViews>
   </viewpoint:DAnalysis>
-  <diagram:DSemanticDiagram uid="_4Te8wFXsEemPG58LIfQxog" name="simulationdefinition">
+  <diagram:DSemanticDiagram uid="_4Te8wFXsEemPG58LIfQxog">
     <ownedAnnotationEntries xmi:type="description:AnnotationEntry" uid="_4VhkIFXsEemPG58LIfQxog" source="DANNOTATION_CUSTOMIZATION_KEY">
       <data xmi:type="diagram:ComputedStyleDescriptionRegistry" uid="_4ViLMFXsEemPG58LIfQxog">
         <computedStyleDescriptions xmi:type="style:BundledImageDescription" xmi:id="_wgAugFXuEemv8f_SMg902Q" labelExpression="service:render" labelAlignment="LEFT" tooltipExpression="service:renderTooltip" sizeComputationExpression="1">

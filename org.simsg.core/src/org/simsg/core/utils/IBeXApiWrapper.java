@@ -14,10 +14,9 @@ import org.emoflon.ibex.gt.api.GraphTransformationAPI;
 import org.emoflon.ibex.gt.api.GraphTransformationApp;
 import org.emoflon.ibex.gt.api.GraphTransformationPattern;
 import org.emoflon.ibex.gt.api.GraphTransformationRule;
-
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPattern;
 
 import GTLanguage.GTRule;
-import IBeXLanguage.IBeXPattern;
 import SimulationDefinition.SimDefinition;
 
 public class IBeXApiWrapper {
