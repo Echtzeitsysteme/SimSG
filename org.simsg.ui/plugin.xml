@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="SimSGModelBuilderExtension" name="SimSGModelBuilderExtension" schema="schema/SimSGModelBuilderExtension.exsd"/>
 <extension id="org.simsg.build.SimSGNature" name="SimSG Nature" point="org.eclipse.core.resources.natures">
         <runtime>
             <run class="org.simsg.ui.SimSGNature"/>

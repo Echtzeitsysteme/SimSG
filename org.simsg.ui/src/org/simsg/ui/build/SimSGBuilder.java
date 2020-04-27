@@ -72,9 +72,13 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 	protected void fullBuild(final IProject project, final IProgressMonitor monitor) throws CoreException {
 		final SubMonitor subMon = SubMonitor.convert(monitor, "Generating code: " + getProject(), 8);
 		
+		// create models
+		runModelBuilders(project, monitor);
+		subMon.worked(0);
+		
 		// clean old code
 		GeneratorUtils.removeGeneratedCode(project, "src-gen/**");
-		subMon.worked(0);
+		subMon.worked(1);
 		
 		// create necessary folders
 		try {
@@ -87,7 +91,7 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 		metaModelFolder = getProject().getFolder(DEFAULT_METAMODEL_LOCATION);
 		modelFolder  = getProject().getFolder(DEFAULT_MODEL_LOCATION);
 		
-		subMon.worked(1);
+		subMon.worked(2);
 		
 		// build metamodel code
 		for(IResource resource : metaModelFolder.members()) {
@@ -107,7 +111,7 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 				
 			}
 		}
-		subMon.worked(3);
+		subMon.worked(4);
 		
 		boolean foundPatterns = false;
 		boolean foundRules = false;
@@ -142,14 +146,14 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 				updateManifest(project, this::processManifestForPackage);
 			}
 		}
-		subMon.worked(6);
+		subMon.worked(7);
 		
 		// build HiPE engine code
 		if(foundPatterns) {
 			IFolder packagePath = project.getFolder(project.getName().replace(".", "/"));
 			IBeXUtils.collectEngineBuilderExtensions().forEach(ext->ext.run(project, packagePath.getProjectRelativePath()));
 		}
-		subMon.worked(7);
+		subMon.worked(8);
 		
 		// build SimSG API code
 		if(foundRules) {
@@ -159,7 +163,11 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 			classPrefix = Character.toUpperCase(classPrefix.charAt(0)) + classPrefix.substring(1);
 			SimSGAPIBuilder.buildAPI(apiPackage.getFile(classPrefix+"SimSGApi.java"), apiPackageName, classPrefix);
 		}
-		subMon.worked(8);
+		subMon.worked(9);
+	}
+	
+	private void runModelBuilders(final IProject project, final IProgressMonitor monitor) {
+		IBeXUtils.collectModelBuilderExtensions().forEach(ext->ext.run(project, monitor));
 	}
 	
 	private void updateManifest(final IProject project, final BiFunction<IProject, Manifest, Boolean> updateFunction) {

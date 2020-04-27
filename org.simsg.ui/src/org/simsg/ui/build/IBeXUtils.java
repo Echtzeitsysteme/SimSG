@@ -62,6 +62,11 @@ public final class IBeXUtils {
 		return folder;
 	}
 	
+	public static Collection<ModelBuilderExtension> collectModelBuilderExtensions() {
+		return ExtensionsUtil.collectExtensions(ModelBuilderExtension.BUILDER_EXTENSON_ID, "class",
+				ModelBuilderExtension.class);
+	}
+	
 	public static Collection<GTEngineExtension> collectEngineExtensions() {
 		return ExtensionsUtil.collectExtensions(GTEngineExtension.BUILDER_EXTENSON_ID, "class",
 				GTEngineExtension.class);
