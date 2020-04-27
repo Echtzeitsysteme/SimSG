@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPatternModelPackage;
 import org.gervarro.eclipse.workspace.util.AntPatternCondition;
 import org.moflon.core.build.CleanVisitor;
 import org.moflon.core.utilities.MoflonUtil;
@@ -35,7 +36,6 @@ import org.moflon.emf.codegen.resource.GenModelResource;
 import org.moflon.emf.codegen.resource.GenModelResourceFactory;
 
 import GTLanguage.GTLanguagePackage;
-import IBeXLanguage.IBeXLanguagePackage;
 
 public final class GeneratorUtils {
 	
@@ -151,7 +151,7 @@ public final class GeneratorUtils {
 	
 	public static final Resource loadXmi(final IResource xmiResource) throws IOException {
 		GTLanguagePackage.eINSTANCE.getClass();
-		IBeXLanguagePackage.eINSTANCE.getClass();
+		IBeXPatternModelPackage.eINSTANCE.getClass();
 		
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		final ResourceSet rs = new ResourceSetImpl();

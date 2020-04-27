@@ -1,7 +1,7 @@
 package org.simsg.core.simulation.condition;
 
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXContextPattern;
 import org.simsg.core.simulation.SimulationState;
-import IBeXLanguage.IBeXContextPattern;
 
 public class PatternTerminationCondition extends TerminationCondition implements SimulationDefinition.PatternTerminationCondition{
 

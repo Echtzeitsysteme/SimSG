@@ -23,7 +23,8 @@ Require-Bundle: org.simsg.dependencies;bundle-version="1.0.0";visibility:=reexpo
  org.eclipse.emf.ecore,
  com.google.guava;bundle-version="21.0.0",
  org.eclipse.emf.ecore.xmi,
- org.eclipse.emf;bundle-version="2.6.0"
+ org.eclipse.emf;bundle-version="2.6.0",
+ org.emoflon.ibex.patternmodel
 Import-Package: org.apache.commons.io
 Automatic-Module-Name: org.simsg.core
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

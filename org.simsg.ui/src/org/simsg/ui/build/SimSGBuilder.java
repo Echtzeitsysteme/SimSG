@@ -1,7 +1,6 @@
 package org.simsg.ui.build;
 
 import GTLanguage.GTRuleSet;
-import IBeXLanguage.IBeXPatternSet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,6 +21,7 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPatternSet;
 import org.moflon.core.plugins.manifest.ManifestFileUpdater;
 import org.moflon.core.utilities.WorkspaceHelper;
 import org.moflon.emf.codegen.resource.GenModelResource;

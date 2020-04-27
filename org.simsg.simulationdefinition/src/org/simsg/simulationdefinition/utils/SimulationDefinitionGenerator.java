@@ -12,14 +12,14 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXContext;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXContextPattern;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPatternModelPackage;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPatternSet;
 
 import GTLanguage.GTLanguagePackage;
 import GTLanguage.GTRule;
 import GTLanguage.GTRuleSet;
-import IBeXLanguage.IBeXContext;
-import IBeXLanguage.IBeXContextPattern;
-import IBeXLanguage.IBeXLanguagePackage;
-import IBeXLanguage.IBeXPatternSet;
 import SimulationDefinition.PatternObservation;
 import SimulationDefinition.SimDefinition;
 import SimulationDefinition.SimpleTerminationCondition;
@@ -236,7 +236,7 @@ public class SimulationDefinitionGenerator {
 	}
 	
 	private void setIBeXPatterns() {
-		IBeXLanguagePackage.eINSTANCE.eClass();
+		IBeXPatternModelPackage.eINSTANCE.eClass();
 		IBeXPatternSet patterns = null;
 		try {
 			Resource rs = loadResource(ibexPatternsUri);

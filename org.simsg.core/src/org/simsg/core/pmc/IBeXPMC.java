@@ -6,10 +6,10 @@ import java.util.Map;
 import java.util.Random;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPattern;
 import org.simsg.core.pm.match.SimSGMatch;
 
 import GTLanguage.GTRule;
-import IBeXLanguage.IBeXPattern;
 import SimulationDefinition.SimDefinition;
 
 public class IBeXPMC extends PatternMatchingController {

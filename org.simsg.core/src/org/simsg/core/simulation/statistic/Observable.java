@@ -3,7 +3,8 @@ package org.simsg.core.simulation.statistic;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import IBeXLanguage.IBeXContextPattern;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXContextPattern;
+
 
 public class Observable extends SimulationDefinition.impl.ObservationImpl implements SimulationDefinition.PatternObservation{
 	private String name;

@@ -4,9 +4,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXContextPattern;
 import org.simsg.core.simulation.SimulationState;
 
-import IBeXLanguage.IBeXContextPattern;
 
 public class Observables extends SimulationStatistics {
 	
