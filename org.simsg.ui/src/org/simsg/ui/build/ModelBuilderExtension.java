@@ -5,7 +5,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 
 public interface ModelBuilderExtension {
 	
-	static final String BUILDER_EXTENSON_ID = "org.simsg.ui.build.ModelBuilderExtension";
+	static final String BUILDER_EXTENSON_ID = "org.simsg.ui.SimSGModelBuilderExtension";
 	
 	public void run(final IProject project, final IProgressMonitor monitor);
 	

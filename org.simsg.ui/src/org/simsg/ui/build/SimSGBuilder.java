@@ -72,13 +72,11 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 	protected void fullBuild(final IProject project, final IProgressMonitor monitor) throws CoreException {
 		final SubMonitor subMon = SubMonitor.convert(monitor, "Generating code: " + getProject(), 8);
 		
-		// create models
-		runModelBuilders(project, monitor);
-		subMon.worked(0);
+		
 		
 		// clean old code
 		GeneratorUtils.removeGeneratedCode(project, "src-gen/**");
-		subMon.worked(1);
+		subMon.worked(0);
 		
 		// create necessary folders
 		try {
@@ -90,80 +88,83 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 		srcFolder = getProject().getFolder(DEFAULT_SRC_LOCATION);
 		metaModelFolder = getProject().getFolder(DEFAULT_METAMODEL_LOCATION);
 		modelFolder  = getProject().getFolder(DEFAULT_MODEL_LOCATION);
+		subMon.worked(1);
 		
+		// create models
+		runModelBuilders(project, monitor);
 		subMon.worked(2);
 		
-		// build metamodel code
-		for(IResource resource : metaModelFolder.members()) {
-			if(WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".ecore")) {
-				GenModelResource genModelResource = null;
-				try {
-					genModelResource = GeneratorUtils.findOrCreateGenModel(project, metaModelFolder, resource, subMon);
-				} catch (IOException | CoreException e) {
-					logger.error("Could not load or create genmodel. Error: \n" + e.getMessage());
-				}
-				
-				try {
-					GeneratorUtils.generateMetaModelCode(genModelResource, project, subMon);
-				} catch (IOException e) {
-					logger.error("Could not generate metamodel code. Error: \n" + e.getMessage());
-				}
-				
-			}
-		}
-		subMon.worked(4);
-		
-		boolean foundPatterns = false;
-		boolean foundRules = false;
-		// build eMoflon api code
-		for(IResource resource : modelFolder.members()) {
-			if(WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".xmi")) {
-				GTRuleSet gtRules = null;
-				try {
-					Resource xmiResource = GeneratorUtils.loadXmi(resource);
-					Object content = xmiResource.getContents().get(0);
-					if(content instanceof GTRuleSet) {
-						gtRules = (GTRuleSet)content;
-						resource.copy(project.getFile("src-gen/"+project.getName().replace(".", "/")+"/api/gt-rules.xmi").getFullPath(), false, monitor);
-						foundRules = true;
-					}
-					if(content instanceof IBeXPatternSet) {
-						resource.copy(project.getFile("src-gen/"+project.getName().replace(".", "/")+"/api/ibex-patterns.xmi").getFullPath(), false, monitor);
-						foundPatterns = true;
-					}
-				} catch (IOException e) {
-					logger.error("Could not load resource. Error: \n" + e.getMessage());
-				}
-				
-				if(gtRules == null)
-					continue;
-				
-				IFolder apiPackage = project.getFolder("src-gen/"+project.getName().replace(".", "/")+"/api");
-				final Registry packageRegistry = gtRules.eResource().getResourceSet().getPackageRegistry();
-				IBeXUtils.findAllEPackages(gtRules, packageRegistry);
-				
-				IBeXUtils.generateAPI(project, apiPackage, gtRules, packageRegistry);
-				updateManifest(project, this::processManifestForPackage);
-			}
-		}
-		subMon.worked(7);
-		
-		// build HiPE engine code
-		if(foundPatterns) {
-			IFolder packagePath = project.getFolder(project.getName().replace(".", "/"));
-			IBeXUtils.collectEngineBuilderExtensions().forEach(ext->ext.run(project, packagePath.getProjectRelativePath()));
-		}
-		subMon.worked(8);
-		
-		// build SimSG API code
-		if(foundRules) {
-			IFolder apiPackage = project.getFolder("src-gen/"+project.getName().replace(".", "/")+"/api");
-			String apiPackageName = project.getName()+".api";
-			String classPrefix = URI.createFileURI(project.getName().replace(".", "/")).lastSegment();
-			classPrefix = Character.toUpperCase(classPrefix.charAt(0)) + classPrefix.substring(1);
-			SimSGAPIBuilder.buildAPI(apiPackage.getFile(classPrefix+"SimSGApi.java"), apiPackageName, classPrefix);
-		}
-		subMon.worked(9);
+//		// build metamodel code
+//		for(IResource resource : metaModelFolder.members()) {
+//			if(WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".ecore")) {
+//				GenModelResource genModelResource = null;
+//				try {
+//					genModelResource = GeneratorUtils.findOrCreateGenModel(project, metaModelFolder, resource, subMon);
+//				} catch (IOException | CoreException e) {
+//					logger.error("Could not load or create genmodel. Error: \n" + e.getMessage());
+//				}
+//				
+//				try {
+//					GeneratorUtils.generateMetaModelCode(genModelResource, project, subMon);
+//				} catch (IOException e) {
+//					logger.error("Could not generate metamodel code. Error: \n" + e.getMessage());
+//				}
+//				
+//			}
+//		}
+//		subMon.worked(4);
+//		
+//		boolean foundPatterns = false;
+//		boolean foundRules = false;
+//		// build eMoflon api code
+//		for(IResource resource : modelFolder.members()) {
+//			if(WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".xmi")) {
+//				GTRuleSet gtRules = null;
+//				try {
+//					Resource xmiResource = GeneratorUtils.loadXmi(resource);
+//					Object content = xmiResource.getContents().get(0);
+//					if(content instanceof GTRuleSet) {
+//						gtRules = (GTRuleSet)content;
+//						resource.copy(project.getFile("src-gen/"+project.getName().replace(".", "/")+"/api/gt-rules.xmi").getFullPath(), false, monitor);
+//						foundRules = true;
+//					}
+//					if(content instanceof IBeXPatternSet) {
+//						resource.copy(project.getFile("src-gen/"+project.getName().replace(".", "/")+"/api/ibex-patterns.xmi").getFullPath(), false, monitor);
+//						foundPatterns = true;
+//					}
+//				} catch (IOException e) {
+//					logger.error("Could not load resource. Error: \n" + e.getMessage());
+//				}
+//				
+//				if(gtRules == null)
+//					continue;
+//				
+//				IFolder apiPackage = project.getFolder("src-gen/"+project.getName().replace(".", "/")+"/api");
+//				final Registry packageRegistry = gtRules.eResource().getResourceSet().getPackageRegistry();
+//				IBeXUtils.findAllEPackages(gtRules, packageRegistry);
+//				
+//				IBeXUtils.generateAPI(project, apiPackage, gtRules, packageRegistry);
+//				updateManifest(project, this::processManifestForPackage);
+//			}
+//		}
+//		subMon.worked(7);
+//		
+//		// build HiPE engine code
+//		if(foundPatterns) {
+//			IFolder packagePath = project.getFolder(project.getName().replace(".", "/"));
+//			IBeXUtils.collectEngineBuilderExtensions().forEach(ext->ext.run(project, packagePath.getProjectRelativePath()));
+//		}
+//		subMon.worked(8);
+//		
+//		// build SimSG API code
+//		if(foundRules) {
+//			IFolder apiPackage = project.getFolder("src-gen/"+project.getName().replace(".", "/")+"/api");
+//			String apiPackageName = project.getName()+".api";
+//			String classPrefix = URI.createFileURI(project.getName().replace(".", "/")).lastSegment();
+//			classPrefix = Character.toUpperCase(classPrefix.charAt(0)) + classPrefix.substring(1);
+//			SimSGAPIBuilder.buildAPI(apiPackage.getFile(classPrefix+"SimSGApi.java"), apiPackageName, classPrefix);
+//		}
+//		subMon.worked(9);
 	}
 	
 	private void runModelBuilders(final IProject project, final IProgressMonitor monitor) {
