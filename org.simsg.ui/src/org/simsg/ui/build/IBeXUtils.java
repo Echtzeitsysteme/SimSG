@@ -87,7 +87,7 @@ public final class IBeXUtils {
 
 	public static EClassifiersManager createEClassifierManager(final Registry packageRegistry) {
 		EClassifiersManager eClassifiersManager = new EClassifiersManager(new HashMap<>());
-		packageRegistry.values().forEach(obj -> {
+		packageRegistry.values().stream().filter(x -> (x instanceof EPackage)).forEach(obj -> {
 			EPackage epackage = (EPackage) obj;
 			eClassifiersManager.loadMetaModelClasses(epackage.eResource());
 		});

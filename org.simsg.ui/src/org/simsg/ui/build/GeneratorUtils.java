@@ -156,8 +156,9 @@ public final class GeneratorUtils {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		final ResourceSet rs = new ResourceSetImpl();
 		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+		rs.setPackageRegistry(EPackage.Registry.INSTANCE);
 		
-		URI resourceURI = URI.createFileURI(xmiResource.getLocation().toPortableString());
+		URI resourceURI = URI.createPlatformResourceURI(xmiResource.getFullPath().toPortableString(), true);
 		final Resource resource = rs.getResource(resourceURI, true);
 		if(resource == null) {
 			throw new IOException("Could not load resource: " + resourceURI.path());
