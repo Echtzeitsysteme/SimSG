@@ -10,6 +10,7 @@ import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -90,10 +91,10 @@ public class PersistenceUtils {
 	}
 	
 	public static Resource loadResource(String path) throws Exception {
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("Model", new XMIResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		ResourceSet rs = new ResourceSetImpl();
 		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
-
+		rs.setPackageRegistry(EPackage.Registry.INSTANCE);
 		URI uri = URI.createFileURI(path);
 		Resource modelResource = rs.getResource(uri, true);
 		if(modelResource == null)
@@ -103,10 +104,10 @@ public class PersistenceUtils {
 	}
 	
 	public static Resource loadResource(URI uri) throws Exception {
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("Model", new XMIResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		ResourceSet rs = new ResourceSetImpl();
 		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
-
+		rs.setPackageRegistry(EPackage.Registry.INSTANCE);
 		Resource modelResource = rs.getResource(uri, true);
 		if(modelResource == null)
 			throw new IOException("File did not contain a vaild model.");
@@ -115,10 +116,10 @@ public class PersistenceUtils {
 	}
 	
 	public static Resource loadEcoreResource(URI uri) throws Exception {
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("MetaModel", new EcoreResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 		ResourceSet rs = new ResourceSetImpl();
 		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
-
+		rs.setPackageRegistry(EPackage.Registry.INSTANCE);
 		Resource modelResource = rs.getResource(uri, true);
 		if(modelResource == null)
 			throw new IOException("File did not contain a vaild metamodel.");

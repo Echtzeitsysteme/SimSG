@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -52,6 +53,11 @@ public class SimulationDefinitionGenerator {
 		setGtRules();
 	}
 	
+	public void setGtRules(GTRuleSet gtRules) {
+		setGtRulesURI(gtRules.eResource().getURI());
+		definition.setGtRuleSet(gtRules);
+	}
+	
 	public void setIBeXPatterns(String path) {
 		setIBeXPatternsURI(path);
 		setIBeXPatterns();
@@ -60,6 +66,11 @@ public class SimulationDefinitionGenerator {
 	public void setIBeXPatterns(URI uri) {
 		setIBeXPatternsURI(uri);
 		setIBeXPatterns();
+	}
+	
+	public void setIBeXPatterns(IBeXPatternSet ibexPatterns) {
+		setIBeXPatternsURI(ibexPatterns.eResource().getURI());
+		definition.setIbexPatternSet(ibexPatterns);
 	}
 	
 	public void setModelURI(String path) {
@@ -87,6 +98,10 @@ public class SimulationDefinitionGenerator {
 		}
 		
 		definition.getMetaModels().put(name, uri.toPlatformString(true));
+	}
+	
+	public void addMetaModel(EPackage metaModel) {
+		definition.getMetaModels().put(metaModel.getName(), metaModel.getNsURI());
 	}
 	
 	public void addRuleRateAnnotation(String ruleName, double rate) {
@@ -210,7 +225,7 @@ public class SimulationDefinitionGenerator {
 	
 	private void setGtRulesURI(URI uri) {
 		gtRulesUri = uri;
-		definition.setGtRulesURI(uri.toString());
+		definition.setGtRulesURI("file:"+uri.toString());
 	}
 	
 	private void setIBeXPatternsURI(String path) {
@@ -220,7 +235,7 @@ public class SimulationDefinitionGenerator {
 	
 	private void setIBeXPatternsURI(URI uri) {
 		ibexPatternsUri = uri;
-		definition.setIbexPatternsURI(uri.toString());
+		definition.setIbexPatternsURI("file:"+uri.toString());
 	}
 	
 	private void setGtRules() {

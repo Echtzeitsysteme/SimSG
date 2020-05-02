@@ -302,7 +302,7 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 		WorkspaceHelper.createFolderIfNotExists(WorkspaceHelper.getSourceFolder(project), subMon.split(1));
 		WorkspaceHelper.createFolderIfNotExists(WorkspaceHelper.getBinFolder(project), subMon.split(1));
 		WorkspaceHelper.createFolderIfNotExists(WorkspaceHelper.getModelFolder(project), subMon.split(1));
-		WorkspaceHelper.createFolderIfNotExists(project.getFolder("gen"), subMon.split(1));
+		WorkspaceHelper.createFolderIfNotExists(WorkspaceHelper.getGenFolder(project), subMon.split(1));
 		WorkspaceHelper.createFolderIfNotExists(project.getFolder("src-gen"), subMon.split(1));
 		WorkspaceHelper.createFolderIfNotExists(project.getFolder("src-gen/"+project.getName().replace(".", "/")+"/api"), subMon.split(1));
 		WorkspaceHelper.createFolderIfNotExists(project.getFolder("src-gen/"+project.getName().replace(".", "/")+"/api/matches"), subMon.split(1));

@@ -129,6 +129,8 @@ public abstract class AbstractSimSGProjectCreator extends WorkspaceTask implemen
 			final IJavaProject javaProject = JavaCore.create(project);
 			final IClasspathEntry srcFolderEntry = JavaCore
 					.newSourceEntry(WorkspaceHelper.getSourceFolder(project).getFullPath());
+			final IClasspathEntry genFolderEntry = JavaCore
+					.newSourceEntry(project.getFolder("gen").getFullPath());
 			final IClasspathEntry srcGenFolderEntry = JavaCore
 					.newSourceEntry(project.getFolder("src-gen").getFullPath());
 
@@ -140,7 +142,7 @@ public abstract class AbstractSimSGProjectCreator extends WorkspaceTask implemen
 			final IClasspathEntry pdeContainerEntry = JavaCore
 					.newContainerEntry(new Path("org.eclipse.pde.core.requiredPlugins"));
 			javaProject.setRawClasspath(
-					new IClasspathEntry[] { srcFolderEntry, srcGenFolderEntry, jreContainerEntry,
+					new IClasspathEntry[] { srcFolderEntry, srcGenFolderEntry, genFolderEntry, jreContainerEntry,
 							pdeContainerEntry },
 					WorkspaceHelper.getBinFolder(project).getFullPath(), true, subMon.split(1));
 		}
@@ -253,6 +255,7 @@ public abstract class AbstractSimSGProjectCreator extends WorkspaceTask implemen
 		WorkspaceHelper.createFolderIfNotExists(WorkspaceHelper.getSourceFolder(project), subMon.split(1));
 		WorkspaceHelper.createFolderIfNotExists(WorkspaceHelper.getBinFolder(project), subMon.split(1));
 		WorkspaceHelper.createFolderIfNotExists(WorkspaceHelper.getModelFolder(project), subMon.split(1));
+		WorkspaceHelper.createFolderIfNotExists(WorkspaceHelper.getGenFolder(project), subMon.split(1));
 		WorkspaceHelper.createFolderIfNotExists(project.getFolder("src-gen"), subMon.split(1));
 		WorkspaceHelper.createFolderIfNotExists(project.getFolder("instances"), subMon.split(1));
 		WorkspaceHelper.createFolderIfNotExists(project.getFolder("instances/simulation_definitions"), subMon.split(1));
