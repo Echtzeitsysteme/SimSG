@@ -46,6 +46,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.importer.ecore.EcoreImporter;
+import org.emoflon.ibex.gt.codegen.EClassifiersManager;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPatternSet;
 import org.moflon.core.plugins.manifest.ManifestFileUpdater;
 import org.moflon.core.utilities.MoflonUtil;
@@ -145,6 +146,8 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 		
 		boolean foundPatterns = false;
 		boolean foundRules = false;
+		
+		final Registry packageRegistry = new EPackageRegistryImpl();
 		// build eMoflon api code
 		for(IResource resource : metaModelFolder.members()) {
 			if(WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".xmi")) {
@@ -171,7 +174,6 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 				
 				IFolder apiPackage = project.getFolder("src-gen/"+project.getName().replace(".", "/")+"/api");
 				//final Registry packageRegistry = gtRules.eResource().getResourceSet().getPackageRegistry();
-				final Registry packageRegistry = new EPackageRegistryImpl();
 				IBeXUtils.findAllEPackages(gtRules, packageRegistry);
 				
 				IBeXUtils.generateAPI(project, apiPackage, gtRules, packageRegistry);
@@ -193,7 +195,8 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 			String apiPackageName = project.getName()+".api";
 			String classPrefix = URI.createFileURI(project.getName().replace(".", "/")).lastSegment();
 			classPrefix = Character.toUpperCase(classPrefix.charAt(0)) + classPrefix.substring(1);
-			SimSGAPIBuilder.buildAPI(apiPackage.getFile(classPrefix+"SimSGApi.java"), apiPackageName, classPrefix);
+			EClassifiersManager ecManager = IBeXUtils.createEClassifierManager(packageRegistry);
+			SimSGAPIBuilder.buildAPI(apiPackage.getFile(classPrefix+"SimSGApi.java"), apiPackageName, classPrefix, ecManager);
 		}
 		subMon.worked(9);
 	}

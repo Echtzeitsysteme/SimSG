@@ -74,7 +74,7 @@ public class SimulationDefinitionGenerator {
 	}
 	
 	public void setModelURI(String path) {
-		URI fileUri = URI.createFileURI(path);
+		URI fileUri = URI.createURI("file:/"+path);
 		setModelURI(fileUri);
 	}
 	
@@ -199,7 +199,7 @@ public class SimulationDefinitionGenerator {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Model saved to: "+uri.path());
+//		System.out.println("Model saved to: "+uri.path());
 	}
 	
 	@Override
