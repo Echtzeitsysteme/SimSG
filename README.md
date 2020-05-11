@@ -3,17 +3,8 @@
 
 ## Setup instructions
 
-* Get Eclipse 2018-12 with Modeling Components
-* Install Democles http://gervarro.org/democles/advanced/integration-0.5.0/
-* Install XText Complete SDK 2.16.0: https://download.eclipse.org/modeling/tmf/xtext/updates/releases/
-* Install Viatra: http://download.eclipse.org/viatra/updates/release/latest
-* Install Epsilon: http://download.eclipse.org/epsilon/updates/ (Required for manual Ecore Epackage registration)
-  * Check: Epsilon Core / Epsilon Core Development Tools / Epsilon EMF Integration / Model Monitoring
-
+* Get Eclipse 2019-12 with Modeling Components
+* Install eMoflon::IBeX as given [here](https://github.com/eMoflon/emoflon-ibex#how-to-install) (ATTENTION: Do not get the newest version of Eclispe Modeling Tools but [Version 2019-09R](https://www.eclipse.org/downloads/packages/release/2019-09/r/eclipse-modeling-tools) 
 * In a fresh Eclipse workspace, check out: https://github.com/eMoflon/SimSG (Branch: origin) and import all projects.
 * Get rid of all errors:
-   * Make sure you have JDK 9 or above.
-* In the project *org.simsg.simsgl.updatesite*, open *site.xml* and select *Build all*
-* Install the resulting update site in the same Eclipse and restart.
-* Run the Java class *Sandbox* in the project *org.simsg.development*
-   
+   * Make sure you have JDK 8 or above.
