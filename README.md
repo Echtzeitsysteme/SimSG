@@ -9,4 +9,7 @@
     * Check Sirius and Uncategorized
 * In a fresh Eclipse workspace, check out: https://github.com/eMoflon/SimSG (Branch: origin) and import all projects.
 * Get rid of all errors:
+   * Set your text file encoding to `UTF-8` in `Window->Preferences->General->Workspace`
+   * Open `org.simsg.simulationdefinition -> model -> simulationdefinition.genmodel` click the top-level item and choose "Generate Model Code"
+   * Eventually rebuild
    * Make sure you have JDK 8 or above.
