@@ -12,3 +12,5 @@
    * Open `org.simsg.simulationdefinition -> model -> simulationdefinition.genmodel` click the top-level item and choose "Generate Model Code"
    * Eventually rebuild
    * Make sure you have JDK 8 or above.
+
+You are now able to start a dynamic workspace from any of the projects in your workspace by running it as eclipse application. In this dynamic workspace you can use SimSG e.g. by creating new projects with the SimSG-Wizard.
