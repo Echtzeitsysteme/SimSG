@@ -1,9 +1,18 @@
 package org.simsg.ui.wizard;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+
 import org.apache.log4j.Logger;
+import org.eclipse.core.filesystem.URIUtil;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IProjectDescription;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.ui.IWorkingSet;
@@ -50,8 +59,8 @@ public class NewSimSGProjectWizard extends AbstractSimSGWizard
          final SubMonitor subMon = SubMonitor.convert(monitor, "Creating SimSG project", 8);
 
          final String projectName = projectInfo.getProjectName();
-
          final IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+         
          final PluginProperties pluginProperties = new PluginProperties();
          pluginProperties.put(PluginProperties.NAME_KEY, projectName);
          pluginProperties.put(PluginProperties.PLUGIN_ID_KEY, projectName);
@@ -82,7 +91,13 @@ public class NewSimSGProjectWizard extends AbstractSimSGWizard
    protected void createProject(final IProgressMonitor monitor, final IProject project, final PluginProperties pluginProperties) throws CoreException
    {
       final SubMonitor subMon = SubMonitor.convert(monitor, "Creating project", 1);
-      final AbstractSimSGProjectCreator createSimSGProject = new SimSGProjectCreator(project, pluginProperties, new SimSGNature());
+      
+      IPath rawProjectPath = projectInfo.getProjectLocation();
+      URI locationURI = null;
+      if(rawProjectPath != null) { 
+          locationURI = URI.create(rawProjectPath.toString());
+      }
+      final AbstractSimSGProjectCreator createSimSGProject = new SimSGProjectCreator(project, locationURI, pluginProperties, new SimSGNature());
       ResourcesPlugin.getWorkspace().run(createSimSGProject, subMon.split(1));
    }
 

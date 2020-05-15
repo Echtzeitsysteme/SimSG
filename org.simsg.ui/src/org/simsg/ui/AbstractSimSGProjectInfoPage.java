@@ -3,6 +3,7 @@ package org.simsg.ui;
 import java.io.File;
 import java.util.Arrays;
 
+import org.eclipse.core.filesystem.URIUtil;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -119,6 +120,7 @@ public abstract class AbstractSimSGProjectInfoPage extends WizardPage {
 
 				if (destinationDirectory != null) {
 					projectLocationTextfield.setText(destinationDirectory + File.separator + projectName);
+					defaultLocationChanged();
 				}
 			}
 
@@ -127,17 +129,17 @@ public abstract class AbstractSimSGProjectInfoPage extends WizardPage {
 		defaultLocationCheckbox.addSelectionListener(new SelectionListener() {
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
-				defaultLocationSelectionChanged();
+				defaultLocationChanged();
 			}
 
 			@Override
 			public void widgetDefaultSelected(final SelectionEvent e) {
-				defaultLocationSelectionChanged();
+				defaultLocationChanged();
 			}
-
 		});
+		
 		defaultLocationCheckbox.setSelection(useDefaultLocation);
-		defaultLocationSelectionChanged();
+		defaultLocationChanged();
 
 		//TODO: Create some default files?
 		
@@ -190,13 +192,13 @@ public abstract class AbstractSimSGProjectInfoPage extends WizardPage {
 		return new Label(container, SWT.NULL);
 	}
 
-	public void defaultLocationSelectionChanged() {
+	public void defaultLocationChanged() {
 		useDefaultLocation = defaultLocationCheckbox.getSelection();
 		projectLocationLabel.setEnabled(!useDefaultLocation);
 		projectLocationTextfield.setEnabled(!useDefaultLocation);
 		browseTargetDirectoryButton.setEnabled(!useDefaultLocation);
 
-		final String desiredLocation = useDefaultLocation ? null : projectLocationTextfield.getText();
+		final String desiredLocation = useDefaultLocation ? null : "file:///"+projectLocationTextfield.getText();
 		setProjectLocation(desiredLocation);
 	}
 

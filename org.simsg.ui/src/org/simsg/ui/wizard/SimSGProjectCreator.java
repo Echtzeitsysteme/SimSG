@@ -1,5 +1,6 @@
 package org.simsg.ui.wizard;
 
+import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,9 +30,9 @@ public class SimSGProjectCreator extends AbstractSimSGProjectCreator {
 	 * @param projectConfigurator
 	 *                                the project configurator
 	 */
-	public SimSGProjectCreator(final IProject project, final PluginProperties projectProperties,
+	public SimSGProjectCreator(final IProject project, final URI projectLocation, final PluginProperties projectProperties,
 			final SimSGNature projectConfigurator) {
-		super(project, projectProperties, projectConfigurator);
+		super(project, projectLocation, projectProperties, projectConfigurator);
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package org.simsg.ui;
 
+import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,10 +41,13 @@ public abstract class AbstractSimSGProjectCreator extends WorkspaceTask implemen
 
 	private final PluginProperties pluginProperties;
 
+	private final URI projectLocation;
+	
 	private final SimSGNature projectConfigurator;
 
-	public AbstractSimSGProjectCreator(final IProject project, final PluginProperties projectProperties,
+	public AbstractSimSGProjectCreator(final IProject project, URI projectLocation, final PluginProperties projectProperties,
 			final SimSGNature projectConfigurator) {
+		this.projectLocation = projectLocation;
 		this.project = project;
 		this.pluginProperties = projectProperties;
 		this.projectConfigurator = projectConfigurator;
@@ -91,6 +95,10 @@ public abstract class AbstractSimSGProjectCreator extends WorkspaceTask implemen
 
 			// (1) Create project
 			final IProjectDescription description = ResourcesPlugin.getWorkspace().newProjectDescription(projectName);
+			if(projectLocation != null) {
+				description.setLocationURI(projectLocation);
+			}
+			
 			project.create(description, IWorkspace.AVOID_UPDATE, subMon.split(1));
 			project.open(IWorkspace.AVOID_UPDATE, subMon.split(1));
 
