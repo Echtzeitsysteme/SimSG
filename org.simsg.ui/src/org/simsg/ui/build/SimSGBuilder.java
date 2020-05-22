@@ -72,7 +72,7 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 	public final static String PACKAGE_SIMSG_CORE = "org.simsg.core";
 	public final static String PACKAGE_SIMULATION_DEFINITION = "SimulationDefinition";
 
-	private static final String SIMSG_BUILDER_ID = "org.simsg.build.SimSGBuilder";
+	public static final String SIMSG_BUILDER_ID = "org.simsg.build.SimSGBuilder";
 
 	private IFolder srcFolder;
 	private IFolder metaModelFolder;
