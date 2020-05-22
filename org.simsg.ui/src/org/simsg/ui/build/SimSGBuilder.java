@@ -1,7 +1,5 @@
 package org.simsg.ui.build;
 
-import GTLanguage.GTRuleSet;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,13 +12,13 @@ import java.util.jar.Manifest;
 import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
+import org.eclipse.core.resources.IBuildConfiguration;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
@@ -33,7 +31,6 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter;
 import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.common.util.BasicMonitor;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
@@ -49,9 +46,10 @@ import org.eclipse.emf.importer.ecore.EcoreImporter;
 import org.emoflon.ibex.gt.codegen.EClassifiersManager;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPatternSet;
 import org.moflon.core.plugins.manifest.ManifestFileUpdater;
-import org.moflon.core.utilities.MoflonUtil;
+import org.moflon.core.utilities.ClasspathUtil;
 import org.moflon.core.utilities.WorkspaceHelper;
-import org.moflon.emf.codegen.resource.GenModelResource;
+
+import GTLanguage.GTRuleSet;
 
 /**
  * This builder triggers a basic code generation workflow for all Ecore models
@@ -256,6 +254,8 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 
 		GenModel genModel = importer.getGenModel();
 		genModel.setModelDirectory(projectGenFolder);
+		
+		IBuildConfiguration[] buildConfs = project.getBuildConfigs();
 
 		Set<GenPackage> removals = genModel.getGenPackages().stream()
 				.filter(pkg -> !pkg.getEcorePackage().getName().equals(metamodelName)).collect(Collectors.toSet());
@@ -341,11 +341,13 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 		final String apiResourceLocation = "src-gen/" + project.getName().replace(".", "/") + "/api";
 		final String apiMatchesLocation = apiResourceLocation + "/matches";
 		final String apiRulesLocation = apiResourceLocation + "/rules";
+		IFolder genFolder = WorkspaceHelper.getGenFolder(project);
 		
 		WorkspaceHelper.createFolderIfNotExists(WorkspaceHelper.getSourceFolder(project), subMon.split(1));
 		WorkspaceHelper.createFolderIfNotExists(WorkspaceHelper.getBinFolder(project), subMon.split(1));
 		WorkspaceHelper.createFolderIfNotExists(WorkspaceHelper.getModelFolder(project), subMon.split(1));
-		WorkspaceHelper.createFolderIfNotExists(WorkspaceHelper.getGenFolder(project), subMon.split(1));
+		WorkspaceHelper.createFolderIfNotExists(genFolder, subMon.split(1));
+		ClasspathUtil.makeSourceFolderIfNecessary(genFolder);
 		WorkspaceHelper.createFolderIfNotExists(project.getFolder(srcGenLocation), subMon.split(1));
 		WorkspaceHelper.createFolderIfNotExists(project.getFolder(apiResourceLocation), subMon.split(1));
 		WorkspaceHelper.createFolderIfNotExists(project.getFolder(apiMatchesLocation), subMon.split(1));
