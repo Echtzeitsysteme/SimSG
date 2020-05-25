@@ -13,6 +13,7 @@ Export-Package: SimulationDefinition,
  SimulationDefinition.util,
  org.simsg.simulationdefinition.utils
 Require-Bundle: org.emoflon.ibex.gt;bundle-version="1.0.0";visibility:=reexport,
+ org.emoflon.ibex.gt.sgtpatternmodel;visibility:=reexport,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.emoflon.ibex.patternmodel;visibility:=reexport,
  org.eclipse.core.runtime,
