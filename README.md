@@ -4,7 +4,7 @@
 ## Setup instructions
 
 * Install eMoflon::IBeX as given [here](https://github.com/eMoflon/emoflon-ibex) and follow the "How to Develop" or "How to Install" instructions based on what you want to do (ATTENTION: Do not get the newest version of Eclipse Modeling Tools but [Version 2019-12R](https://www.eclipse.org/downloads/packages/release/2019-12/r/eclipse-modeling-tools))
-* In a fresh Eclipse workspace, check out: https://github.com/eMoflon/SimSG (Branch: origin) and import all projects.
+* In the workspace containing eMoflon, check out: https://github.com/eMoflon/SimSG (Branch: origin) and import all projects.
 * Get rid of all errors:
    * Set your text file encoding to `UTF-8` in `Window->Preferences->General->Workspace`
    * Open `org.simsg.simulationdefinition -> model -> simulationdefinition.genmodel` click the top-level item and choose "Generate Model Code"
