@@ -1,8 +1,11 @@
 package org.simsg.core.pmc;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.simsg.core.pm.engine.PatternMatchingEngine;
@@ -17,8 +20,10 @@ public abstract class PatternMatchingController{
 	protected Resource simulationModel;
 	
 	protected PatternMatchingEngine engine;
-	protected Map<String, Collection<SimSGMatch>> matches = new HashMap<>();
-	protected Map<String, Integer> matchCount = new HashMap<>();
+	protected Set<String> patternNames = new HashSet<>();
+	
+//	protected Map<String, Collection<SimSGMatch>> matches = new HashMap<>();
+	protected Map<String, Integer> matchCount = Collections.synchronizedMap(new HashMap<>());
 	
 	public abstract void loadModels(SimDefinition simulationDefinition, Resource simulationModel);
 	
@@ -41,6 +46,10 @@ public abstract class PatternMatchingController{
 	public abstract SimSGMatch getRandomMatch(String patternName);
 	
 	public abstract SimSGMatch getMatchAt(String patternName, int idx);
+	
+	public Set<String> getPatternNames() {
+		return patternNames;
+	}
 	
 
 	public void setEngine(PatternMatchingEngine engine) {

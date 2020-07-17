@@ -320,10 +320,13 @@ public abstract class Simulation {
 	public void printCurrentMatches() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Current "+toString()+"\n *******     RESULTS:     *****\n");
-		for (String key : getCurrentMatches().keySet()) {
-			if (getCurrentMatches().get(key) != null) {
-				sb.append("Pattern: " + key + ", size: " + pmc.getMatchCount(key) +"\n");
-			}
+//		for (String key : getCurrentMatches().keySet()) {
+//			if (getCurrentMatches().get(key) != null) {
+//				sb.append("Pattern: " + key + ", size: " + pmc.getMatchCount(key) +"\n");
+//			}
+//		}
+		for (String key : pmc.getPatternNames()) {
+			sb.append("Pattern: " + key + ", size: " + pmc.getMatchCount(key) +"\n");
 		}
 		sb.append("*******   END   *****\n");
 		System.out.println(sb);

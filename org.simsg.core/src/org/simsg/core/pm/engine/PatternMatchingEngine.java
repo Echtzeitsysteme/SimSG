@@ -37,38 +37,40 @@ public abstract class PatternMatchingEngine {
 	
 	public void updateMatches(String patternName) {
 		updateMatchesInternal(patternName);
-		List<SimSGMatch> flaggedForRemoval = new LinkedList<>();
-		
-		if(ruleConditions.containsKey(patternName)) {
-			for(SimSGMatch match : getMatches(patternName)) {
-				if(!ruleConditions.get(patternName).checkCondition(match)) {
-					flaggedForRemoval.add(match);
-				}
-			}
-		}
-		
-		for(SimSGMatch match : flaggedForRemoval) {
-			removeMatch(match);
-		}
+//		TODO: This needs to be fixed -> important for external conditions!
+//		List<SimSGMatch> flaggedForRemoval = new LinkedList<>();
+//		
+//		if(ruleConditions.containsKey(patternName)) {
+//			for(SimSGMatch match : getMatches(patternName)) {
+//				if(!ruleConditions.get(patternName).checkCondition(match)) {
+//					flaggedForRemoval.add(match);
+//				}
+//			}
+//		}
+//		
+//		for(SimSGMatch match : flaggedForRemoval) {
+//			removeMatch(match);
+//		}
 	}
 	
 	public void updateAllMatches() {
 		updateAllMatchesInternal();
-		List<SimSGMatch> flaggedForRemoval = new LinkedList<>();
-		
-		for(String patternName : getAllMatches().keySet()) {
-			if(ruleConditions.containsKey(patternName)) {
-				for(SimSGMatch match : getMatches(patternName)) {
-					if(!ruleConditions.get(patternName).checkCondition(match)) {
-						flaggedForRemoval.add(match);
-					}
-				}
-			}
-		}
-		
-		for(SimSGMatch match : flaggedForRemoval) {
-			removeMatch(match);
-		}
+//		TODO: This needs to be fixed -> important for external conditions!
+//		List<SimSGMatch> flaggedForRemoval = new LinkedList<>();
+//		
+//		for(String patternName : getAllMatches().keySet()) {
+//			if(ruleConditions.containsKey(patternName)) {
+//				for(SimSGMatch match : getMatches(patternName)) {
+//					if(!ruleConditions.get(patternName).checkCondition(match)) {
+//						flaggedForRemoval.add(match);
+//					}
+//				}
+//			}
+//		}
+//		
+//		for(SimSGMatch match : flaggedForRemoval) {
+//			removeMatch(match);
+//		}
 	}
 	
 	protected abstract void removeMatch(SimSGMatch match);
@@ -88,6 +90,10 @@ public abstract class PatternMatchingEngine {
 	}
 	
 	public abstract Collection<SimSGMatch> getMatches(String patternName);
+	
+	public abstract int getMatchCount(String patternName);
+	
+	public abstract SimSGMatch getRandomMatch(String patternName);
 	
 	public abstract Map<String, Collection<SimSGMatch>> getAllMatches();
 	

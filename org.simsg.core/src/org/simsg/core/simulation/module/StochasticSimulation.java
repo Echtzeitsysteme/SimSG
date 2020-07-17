@@ -2,7 +2,10 @@ package org.simsg.core.simulation.module;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import org.simsg.core.gt.GraphTransformationEngine;
 import org.simsg.core.persistence.PersistenceManager;
@@ -52,8 +55,12 @@ public class StochasticSimulation extends Simulation {
 	
 	private void updateProbabilities() {
 		systemActivity = 0;
+//		Map<String, Integer> matchCounts = staticRuleRates.keySet().parallelStream()
+//				.map(rule -> new SimpleEntry<String, Integer>(rule, state.getMatchCount(rule)))
+//						.collect(Collectors.toMap(entry->entry.getKey(), entry->entry.getValue()));
 		for(String rule : staticRuleRates.keySet()) {
 			double p = state.getMatchCount(rule)*staticRuleRates.get(rule);
+//			double p = matchCounts.get(rule)*staticRuleRates.get(rule);
 			ruleProbabilities.replace(rule, p);
 			systemActivity+=p;
 		}
