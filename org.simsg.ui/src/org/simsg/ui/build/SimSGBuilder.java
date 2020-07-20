@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IBuildConfiguration;
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -44,6 +45,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.importer.ecore.EcoreImporter;
 import org.emoflon.ibex.gt.codegen.EClassifiersManager;
+import org.emoflon.ibex.gt.editor.ui.builder.GTBuilder;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPatternSet;
 import org.moflon.core.plugins.manifest.ManifestFileUpdater;
 import org.moflon.core.utilities.ClasspathUtil;
@@ -143,91 +145,151 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 		// create models
 		runModelBuilders(project, monitor);
 		subMon.worked(2);
-
-		// build metamodel code
-		for (IResource resource : metaModelFolder.members()) {
-			if (WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".ecore")) {
-				
-				final String platformURI = "platform:/resource/" + project.getName() + "/" + resource.getProjectRelativePath();
-				
-				Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().putIfAbsent("ecore",
-						new EcoreResourceFactoryImpl());
-				ResourceSet rs = new ResourceSetImpl();
-				rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
-				Resource modelResource = rs.getResource(URI.createURI(platformURI), true);
-				EPackage metaModel = (EPackage) modelResource.getContents().get(0);
-				modelResource.unload();
-				try {
-					generateMetaModelCode(project, (IFile) resource, metaModel);
-				} catch (Exception e) {
-					logger.error("Could not generate genmodel. Error: \n" + e.getMessage());
-					return;
-				}
-
-			}
+		
+		// check if there are *.gt files in the src folder
+		List<IFile> gtFiles = null;
+		try {
+			gtFiles = IBeXUtils.getGTFiles(srcFolder);
+		} catch (CoreException e) {
+			logger.error("Could find folder. Error: \n" + e.getMessage());
 		}
-		subMon.worked(3);
-
-		boolean foundPatterns = false;
-		boolean foundRules = false;
-
-		final Registry packageRegistry = new EPackageRegistryImpl();
-		// build eMoflon api code
-		for (IResource resource : metaModelFolder.members()) {
-			if (WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".xmi")) {
-				GTRuleSet gtRules = null;
+		// IF *.gt files are present: use the standard eMoflon::GT-builder and generate API
+		if(gtFiles != null && gtFiles.size()>0) {
+			GTBuilder gtBuilder = new GTBuilder();
+			gtBuilder.setProject(project);
+			gtBuilder.buildManually(FULL_BUILD);
+			
+			// build SimSG API code for each rule package
+			IBeXUtils.findGTFolders(srcFolder, srcFolder).forEach(pkg -> {
+				String genPkgLocation = "src-gen/" + pkg.toPortableString() + "/api";
+				IFolder apiPackage = project.getFolder(genPkgLocation);
+				String apiPackageName = pkg.toPortableString().replace("/", ".") + ".api";
+				String classPrefix = URI.createFileURI(pkg.toPortableString()).lastSegment();
+				classPrefix = Character.toUpperCase(classPrefix.charAt(0)) + classPrefix.substring(1);
+				final Registry packageRegistry = new EPackageRegistryImpl();
 				try {
-					Resource xmiResource = GeneratorUtils.loadXmi(resource);
-					Object content = xmiResource.getContents().get(0);
-					EcoreUtil.resolveAll(xmiResource);
-					if (content instanceof GTRuleSet) {
-						gtRules = (GTRuleSet) content;
-						resource.copy(project.getFile(gtRulesLocation).getFullPath(), false,
-								monitor);
-						foundRules = true;
+					for (IResource resource : apiPackage.members()) {
+						if (WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".xmi")) {
+							GTRuleSet gtRules = null;
+							try {
+								Resource xmiResource = GeneratorUtils.loadXmi(resource);
+								Object content = xmiResource.getContents().get(0);
+								EcoreUtil.resolveAll(xmiResource);
+								if (content instanceof GTRuleSet) {
+									gtRules = (GTRuleSet) content;
+									resource.copy(project.getFile(gtRulesLocation).getFullPath(), false,
+											monitor);
+
+								}
+							} catch (IOException e) {
+								logger.error("Could not load resource. Error: \n" + e.getMessage());
+							}
+
+							if (gtRules == null)
+								continue;
+
+							IBeXUtils.findAllEPackages(gtRules, packageRegistry);
+						}
 					}
-					if (content instanceof IBeXPatternSet) {
-						resource.copy(project.getFile(ibexPatternsLocation).getFullPath(), false,
-								monitor);
-						foundPatterns = true;
-					}
-				} catch (IOException e) {
+				} catch (CoreException e) {
 					logger.error("Could not load resource. Error: \n" + e.getMessage());
 				}
+				
+				
+				EClassifiersManager ecManager = IBeXUtils.createEClassifierManager(packageRegistry);
+				SimSGAPIBuilder.buildAPI(apiPackage.getFile(classPrefix + "SimSGApi.java"), apiPackageName, classPrefix, ecManager);
+			});
 
-				if (gtRules == null)
-					continue;
+			
+		}
+		// ELSE: scan through model and metamodel folders, generate metamodel code and eMoflon API from scratch
+		else {
+			// build metamodel code
+			for (IResource resource : metaModelFolder.members()) {
+				if (WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".ecore")) {
+					
+					final String platformURI = "platform:/resource/" + project.getName() + "/" + resource.getProjectRelativePath();
+					
+					Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().putIfAbsent("ecore",
+							new EcoreResourceFactoryImpl());
+					ResourceSet rs = new ResourceSetImpl();
+					rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
+					Resource modelResource = rs.getResource(URI.createURI(platformURI), true);
+					EPackage metaModel = (EPackage) modelResource.getContents().get(0);
+					modelResource.unload();
+					try {
+						generateMetaModelCode(project, (IFile) resource, metaModel);
+					} catch (Exception e) {
+						logger.error("Could not generate genmodel. Error: \n" + e.getMessage());
+						return;
+					}
 
-				IFolder apiPackage = project.getFolder(apiResourcesLocation);
-				// final Registry packageRegistry =
-				// gtRules.eResource().getResourceSet().getPackageRegistry();
-				IBeXUtils.findAllEPackages(gtRules, packageRegistry);
-
-				IBeXUtils.generateAPI(project, apiPackage, gtRules, packageRegistry);
-				updateManifest(project, this::processManifestForPackage);
+				}
 			}
-		}
-		subMon.worked(7);
+			subMon.worked(3);
 
-		// build HiPE engine code
-		if (foundPatterns) {
-			IFolder packagePath = project.getFolder(projectName.replace(".", "/"));
-			IBeXUtils.collectEngineBuilderExtensions()
-					.forEach(ext -> ext.run(project, packagePath.getProjectRelativePath()));
-		}
-		subMon.worked(8);
+			boolean foundPatterns = false;
+			boolean foundRules = false;
 
-		// build SimSG API code
-		if (foundRules) {
-			IFolder apiPackage = project.getFolder(apiResourcesLocation);
-			String apiPackageName = project.getName() + ".api";
-			String classPrefix = URI.createFileURI(projectName.replace(".", "/")).lastSegment();
-			classPrefix = Character.toUpperCase(classPrefix.charAt(0)) + classPrefix.substring(1);
-			EClassifiersManager ecManager = IBeXUtils.createEClassifierManager(packageRegistry);
-			SimSGAPIBuilder.buildAPI(apiPackage.getFile(classPrefix + "SimSGApi.java"), apiPackageName, classPrefix,
-					ecManager);
+			final Registry packageRegistry = new EPackageRegistryImpl();
+			// build eMoflon api code
+			for (IResource resource : metaModelFolder.members()) {
+				if (WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".xmi")) {
+					GTRuleSet gtRules = null;
+					try {
+						Resource xmiResource = GeneratorUtils.loadXmi(resource);
+						Object content = xmiResource.getContents().get(0);
+						EcoreUtil.resolveAll(xmiResource);
+						if (content instanceof GTRuleSet) {
+							gtRules = (GTRuleSet) content;
+							resource.copy(project.getFile(gtRulesLocation).getFullPath(), false,
+									monitor);
+							foundRules = true;
+						}
+						if (content instanceof IBeXPatternSet) {
+							resource.copy(project.getFile(ibexPatternsLocation).getFullPath(), false,
+									monitor);
+							foundPatterns = true;
+						}
+					} catch (IOException e) {
+						logger.error("Could not load resource. Error: \n" + e.getMessage());
+					}
+
+					if (gtRules == null)
+						continue;
+
+					IFolder apiPackage = project.getFolder(apiResourcesLocation);
+					// final Registry packageRegistry =
+					// gtRules.eResource().getResourceSet().getPackageRegistry();
+					IBeXUtils.findAllEPackages(gtRules, packageRegistry);
+
+					IBeXUtils.generateAPI(project, apiPackage, gtRules, packageRegistry);
+					updateManifest(project, this::processManifestForPackage);
+				}
+			}
+			subMon.worked(7);
+
+			// build HiPE engine code
+			if (foundPatterns) {
+				IFolder packagePath = project.getFolder(projectName.replace(".", "/"));
+				IBeXUtils.collectEngineBuilderExtensions()
+						.forEach(ext -> ext.run(project, packagePath.getProjectRelativePath()));
+			}
+			subMon.worked(8);
+
+			// build SimSG API code
+			if (foundRules) {
+				IFolder apiPackage = project.getFolder(apiResourcesLocation);
+				String apiPackageName = project.getName() + ".api";
+				String classPrefix = URI.createFileURI(projectName.replace(".", "/")).lastSegment();
+				classPrefix = Character.toUpperCase(classPrefix.charAt(0)) + classPrefix.substring(1);
+				EClassifiersManager ecManager = IBeXUtils.createEClassifierManager(packageRegistry);
+				SimSGAPIBuilder.buildAPI(apiPackage.getFile(classPrefix + "SimSGApi.java"), apiPackageName, classPrefix,
+						ecManager);
+			}
+			subMon.worked(9);
 		}
-		subMon.worked(9);
+		
 	}
 
 	protected void generateMetaModelCode(IProject project, IFile modelFile, EPackage metaModel) throws Exception {
