@@ -75,6 +75,10 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 	public final static String PACKAGE_SIMULATION_DEFINITION = "SimulationDefinition";
 
 	public static final String SIMSG_BUILDER_ID = "org.simsg.build.SimSGBuilder";
+	
+	public static final int BUILDSTEP_MODELBUILDER = 0;
+	public static final int BUILDSTEP_API_FROM_GT = 1;
+	public static final int BUILDSTEP_API_FROM_MODEL = 2;
 
 	private IFolder srcFolder;
 	private IFolder metaModelFolder;
@@ -105,7 +109,8 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 
 	@Override
 	protected IProject[] build(int kind, Map<String, String> args, IProgressMonitor monitor) throws CoreException {
-		IProject project = getProject();
+		project = getProject();
+		
 		setConstants(project);
 		final SubMonitor subMon = SubMonitor.convert(monitor, "Building SimSGProject: " + project, 1);
 
@@ -123,23 +128,21 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 	}
 
 	protected void fullBuild(final IProject project, final IProgressMonitor monitor) throws CoreException {
-		final SubMonitor subMon = SubMonitor.convert(monitor, "Generating code: " + getProject(), 8);
-
+		final SubMonitor subMon = SubMonitor.convert(monitor, "Generating code: " + getProject(), 4);
+		
 		// clean old code
 		GeneratorUtils.removeGeneratedCode(project, "src-gen/**");
 		subMon.worked(0);
 
-		// create necessary folders
+		// create necessary model folders
 		try {
-			createFoldersIfNecessary(project, subMon.split(1));
+			createFoldersIfNecessary(project, subMon.split(1), BUILDSTEP_MODELBUILDER);
 		} catch (OperationCanceledException | CoreException e) {
 			logger.error("Could not create necessary folders. Error: \n" + e.getMessage());
 			return;
 		}
 
 		srcFolder = getProject().getFolder(DEFAULT_SRC_LOCATION);
-		metaModelFolder = getProject().getFolder(DEFAULT_METAMODEL_LOCATION);
-//		modelFolder  = getProject().getFolder(DEFAULT_MODEL_LOCATION);
 		subMon.worked(1);
 
 		// create models
@@ -155,141 +158,155 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 		}
 		// IF *.gt files are present: use the standard eMoflon::GT-builder and generate API
 		if(gtFiles != null && gtFiles.size()>0) {
-			GTBuilder gtBuilder = new GTBuilder();
-			gtBuilder.setProject(project);
-			gtBuilder.buildManually(FULL_BUILD);
-			
-			// build SimSG API code for each rule package
-			IBeXUtils.findGTFolders(srcFolder, srcFolder).forEach(pkg -> {
-				String genPkgLocation = "src-gen/" + pkg.toPortableString() + "/api";
-				IFolder apiPackage = project.getFolder(genPkgLocation);
-				String apiPackageName = pkg.toPortableString().replace("/", ".") + ".api";
-				String classPrefix = URI.createFileURI(pkg.toPortableString()).lastSegment();
-				classPrefix = Character.toUpperCase(classPrefix.charAt(0)) + classPrefix.substring(1);
-				final Registry packageRegistry = new EPackageRegistryImpl();
-				try {
-					for (IResource resource : apiPackage.members()) {
-						if (WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".xmi")) {
-							GTRuleSet gtRules = null;
-							try {
-								Resource xmiResource = GeneratorUtils.loadXmi(resource);
-								Object content = xmiResource.getContents().get(0);
-								EcoreUtil.resolveAll(xmiResource);
-								if (content instanceof GTRuleSet) {
-									gtRules = (GTRuleSet) content;
-									resource.copy(project.getFile(gtRulesLocation).getFullPath(), false,
-											monitor);
-
-								}
-							} catch (IOException e) {
-								logger.error("Could not load resource. Error: \n" + e.getMessage());
-							}
-
-							if (gtRules == null)
-								continue;
-
-							IBeXUtils.findAllEPackages(gtRules, packageRegistry);
-						}
-					}
-				} catch (CoreException e) {
-					logger.error("Could not load resource. Error: \n" + e.getMessage());
-				}
-				
-				
-				EClassifiersManager ecManager = IBeXUtils.createEClassifierManager(packageRegistry);
-				SimSGAPIBuilder.buildAPI(apiPackage.getFile(classPrefix + "SimSGApi.java"), apiPackageName, classPrefix, ecManager);
-			});
-
-			
+			buildFromGT(subMon);
 		}
 		// ELSE: scan through model and metamodel folders, generate metamodel code and eMoflon API from scratch
 		else {
-			// build metamodel code
-			for (IResource resource : metaModelFolder.members()) {
-				if (WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".ecore")) {
-					
-					final String platformURI = "platform:/resource/" + project.getName() + "/" + resource.getProjectRelativePath();
-					
-					Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().putIfAbsent("ecore",
-							new EcoreResourceFactoryImpl());
-					ResourceSet rs = new ResourceSetImpl();
-					rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
-					Resource modelResource = rs.getResource(URI.createURI(platformURI), true);
-					EPackage metaModel = (EPackage) modelResource.getContents().get(0);
-					modelResource.unload();
-					try {
-						generateMetaModelCode(project, (IFile) resource, metaModel);
-					} catch (Exception e) {
-						logger.error("Could not generate genmodel. Error: \n" + e.getMessage());
-						return;
-					}
-
-				}
-			}
-			subMon.worked(3);
-
-			boolean foundPatterns = false;
-			boolean foundRules = false;
-
-			final Registry packageRegistry = new EPackageRegistryImpl();
-			// build eMoflon api code
-			for (IResource resource : metaModelFolder.members()) {
-				if (WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".xmi")) {
-					GTRuleSet gtRules = null;
-					try {
-						Resource xmiResource = GeneratorUtils.loadXmi(resource);
-						Object content = xmiResource.getContents().get(0);
-						EcoreUtil.resolveAll(xmiResource);
-						if (content instanceof GTRuleSet) {
-							gtRules = (GTRuleSet) content;
-							resource.copy(project.getFile(gtRulesLocation).getFullPath(), false,
-									monitor);
-							foundRules = true;
-						}
-						if (content instanceof IBeXPatternSet) {
-							resource.copy(project.getFile(ibexPatternsLocation).getFullPath(), false,
-									monitor);
-							foundPatterns = true;
-						}
-					} catch (IOException e) {
-						logger.error("Could not load resource. Error: \n" + e.getMessage());
-					}
-
-					if (gtRules == null)
-						continue;
-
-					IFolder apiPackage = project.getFolder(apiResourcesLocation);
-					// final Registry packageRegistry =
-					// gtRules.eResource().getResourceSet().getPackageRegistry();
-					IBeXUtils.findAllEPackages(gtRules, packageRegistry);
-
-					IBeXUtils.generateAPI(project, apiPackage, gtRules, packageRegistry);
-					updateManifest(project, this::processManifestForPackage);
-				}
-			}
-			subMon.worked(7);
-
-			// build HiPE engine code
-			if (foundPatterns) {
-				IFolder packagePath = project.getFolder(projectName.replace(".", "/"));
-				IBeXUtils.collectEngineBuilderExtensions()
-						.forEach(ext -> ext.run(project, packagePath.getProjectRelativePath()));
-			}
-			subMon.worked(8);
-
-			// build SimSG API code
-			if (foundRules) {
-				IFolder apiPackage = project.getFolder(apiResourcesLocation);
-				String apiPackageName = project.getName() + ".api";
-				String classPrefix = URI.createFileURI(projectName.replace(".", "/")).lastSegment();
-				classPrefix = Character.toUpperCase(classPrefix.charAt(0)) + classPrefix.substring(1);
-				EClassifiersManager ecManager = IBeXUtils.createEClassifierManager(packageRegistry);
-				SimSGAPIBuilder.buildAPI(apiPackage.getFile(classPrefix + "SimSGApi.java"), apiPackageName, classPrefix,
-						ecManager);
-			}
-			subMon.worked(9);
+			buildFromModel(subMon);
 		}
 		
+		updateManifest(project, this::processManifestForPackage);
+		subMon.worked(3);
+	}
+	
+	protected void buildFromGT(final SubMonitor monitor) throws CoreException {
+		final SubMonitor subMon = SubMonitor.convert(monitor, "Generating api from gt-files: " + getProject(), 2);
+		// create necessary api folders
+		createFoldersIfNecessary(project, subMon.split(1), BUILDSTEP_API_FROM_GT);
+		
+		GTBuilder gtBuilder = new GTBuilder();
+		gtBuilder.setProject(project);
+		gtBuilder.buildManually(FULL_BUILD);
+		subMon.worked(0);
+		
+		// build SimSG API code for each rule package
+		IBeXUtils.findGTFolders(srcFolder, srcFolder).forEach(pkg -> {
+			String genPkgLocation = "src-gen/" + pkg.toPortableString() + "/api";
+			IFolder apiPackage = project.getFolder(genPkgLocation);
+			String apiPackageName = pkg.toPortableString().replace("/", ".") + ".api";
+			String classPrefix = URI.createFileURI(pkg.toPortableString()).lastSegment();
+			classPrefix = Character.toUpperCase(classPrefix.charAt(0)) + classPrefix.substring(1);
+			final Registry packageRegistry = new EPackageRegistryImpl();
+			try {
+				for (IResource resource : apiPackage.members()) {
+					if (WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".xmi")) {
+						GTRuleSet gtRules = null;
+						try {
+							Resource xmiResource = GeneratorUtils.loadXmi(resource);
+							Object content = xmiResource.getContents().get(0);
+							EcoreUtil.resolveAll(xmiResource);
+							if (content instanceof GTRuleSet) {
+								gtRules = (GTRuleSet) content;
+							}
+						} catch (IOException e) {
+							logger.error("Could not load resource. Error: \n" + e.getMessage());
+						}
+
+						if (gtRules == null)
+							continue;
+
+						IBeXUtils.findAllEPackages(gtRules, packageRegistry);
+					}
+				}
+			} catch (CoreException e) {
+				logger.error("Could not load resource. Error: \n" + e.getMessage());
+			}
+			
+			
+			EClassifiersManager ecManager = IBeXUtils.createEClassifierManager(packageRegistry);
+			SimSGAPIBuilder.buildAPI(apiPackage.getFile(classPrefix + "SimSGApi.java"), apiPackageName, classPrefix, ecManager);
+		});
+		subMon.worked(1);
+		
+	}
+	
+	protected void buildFromModel(final SubMonitor monitor) throws CoreException {
+		final SubMonitor subMon = SubMonitor.convert(monitor, "Generating api from gt-files: " + getProject(), 4);
+		// create necessary api folders
+		createFoldersIfNecessary(project, subMon.split(1), BUILDSTEP_API_FROM_MODEL);
+		
+		// build metamodel code
+		metaModelFolder = getProject().getFolder(DEFAULT_METAMODEL_LOCATION);
+		
+		for (IResource resource : metaModelFolder.members()) {
+			if (WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".ecore")) {
+				
+				final String platformURI = "platform:/resource/" + project.getName() + "/" + resource.getProjectRelativePath();
+				
+				Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().putIfAbsent("ecore",
+						new EcoreResourceFactoryImpl());
+				ResourceSet rs = new ResourceSetImpl();
+				rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
+				Resource modelResource = rs.getResource(URI.createURI(platformURI), true);
+				EPackage metaModel = (EPackage) modelResource.getContents().get(0);
+				modelResource.unload();
+				try {
+					generateMetaModelCode(project, (IFile) resource, metaModel);
+				} catch (Exception e) {
+					logger.error("Could not generate genmodel. Error: \n" + e.getMessage());
+					return;
+				}
+
+			}
+		}
+		subMon.worked(0);
+
+		boolean foundPatterns = false;
+		boolean foundRules = false;
+
+		final Registry packageRegistry = new EPackageRegistryImpl();
+		// build eMoflon api code
+		for (IResource resource : metaModelFolder.members()) {
+			if (WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".xmi")) {
+				GTRuleSet gtRules = null;
+				try {
+					Resource xmiResource = GeneratorUtils.loadXmi(resource);
+					Object content = xmiResource.getContents().get(0);
+					EcoreUtil.resolveAll(xmiResource);
+					if (content instanceof GTRuleSet) {
+						gtRules = (GTRuleSet) content;
+						resource.copy(project.getFile(gtRulesLocation).getFullPath(), false,
+								subMon);
+						foundRules = true;
+					}
+					if (content instanceof IBeXPatternSet) {
+						resource.copy(project.getFile(ibexPatternsLocation).getFullPath(), false,
+								subMon);
+						foundPatterns = true;
+					}
+				} catch (IOException e) {
+					logger.error("Could not load resource. Error: \n" + e.getMessage());
+				}
+
+				if (gtRules == null)
+					continue;
+
+				IFolder apiPackage = project.getFolder(apiResourcesLocation);
+				IBeXUtils.findAllEPackages(gtRules, packageRegistry);
+				IBeXUtils.generateAPI(project, apiPackage, gtRules, packageRegistry);
+			}
+		}
+		subMon.worked(1);
+
+		// build HiPE engine code
+		if (foundPatterns) {
+			IFolder packagePath = project.getFolder(projectName.replace(".", "/"));
+			IBeXUtils.collectEngineBuilderExtensions()
+					.forEach(ext -> ext.run(project, packagePath.getProjectRelativePath()));
+		}
+		subMon.worked(2);
+
+		// build SimSG API code
+		if (foundRules) {
+			IFolder apiPackage = project.getFolder(apiResourcesLocation);
+			String apiPackageName = project.getName() + ".api";
+			String classPrefix = URI.createFileURI(projectName.replace(".", "/")).lastSegment();
+			classPrefix = Character.toUpperCase(classPrefix.charAt(0)) + classPrefix.substring(1);
+			EClassifiersManager ecManager = IBeXUtils.createEClassifierManager(packageRegistry);
+			SimSGAPIBuilder.buildAPI(apiPackage.getFile(classPrefix + "SimSGApi.java"), apiPackageName, classPrefix,
+					ecManager);
+		}
+		subMon.worked(3);
 	}
 
 	protected void generateMetaModelCode(IProject project, IFile modelFile, EPackage metaModel) throws Exception {
@@ -395,29 +412,46 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 		return changedBasics || updatedDependencies;
 	}
 
-	private static void createFoldersIfNecessary(final IProject project, final IProgressMonitor monitor)
+	private static void createFoldersIfNecessary(final IProject project, final IProgressMonitor monitor, int buildStep)
 			throws CoreException {
-		final SubMonitor subMon = SubMonitor.convert(monitor, "Creating folders within project " + project, 4);
-		
 		final String srcGenLocation = "src-gen";
 		final String apiResourceLocation = "src-gen/" + project.getName().replace(".", "/") + "/api";
 		final String apiMatchesLocation = apiResourceLocation + "/matches";
 		final String apiRulesLocation = apiResourceLocation + "/rules";
 		IFolder genFolder = WorkspaceHelper.getGenFolder(project);
 		
-		WorkspaceHelper.createFolderIfNotExists(WorkspaceHelper.getSourceFolder(project), subMon.split(1));
-		WorkspaceHelper.createFolderIfNotExists(WorkspaceHelper.getBinFolder(project), subMon.split(1));
-		WorkspaceHelper.createFolderIfNotExists(WorkspaceHelper.getModelFolder(project), subMon.split(1));
-		WorkspaceHelper.createFolderIfNotExists(genFolder, subMon.split(1));
-		ClasspathUtil.makeSourceFolderIfNecessary(genFolder);
-		WorkspaceHelper.createFolderIfNotExists(project.getFolder(srcGenLocation), subMon.split(1));
-		WorkspaceHelper.createFolderIfNotExists(project.getFolder(apiResourceLocation), subMon.split(1));
-		WorkspaceHelper.createFolderIfNotExists(project.getFolder(apiMatchesLocation), subMon.split(1));
-		WorkspaceHelper.createFolderIfNotExists(project.getFolder(apiRulesLocation), subMon.split(1));
-		WorkspaceHelper.createFolderIfNotExists(project.getFolder(DEFAULT_INSTANCES_LOCATION), subMon.split(1));
-		WorkspaceHelper.createFolderIfNotExists(project.getFolder(DEFAULT_DEFINITION_LOCATION), subMon.split(1));
-		WorkspaceHelper.createFolderIfNotExists(project.getFolder(DEFAULT_RESULTS_LOCATION), subMon.split(1));
-		WorkspaceHelper.createFolderIfNotExists(project.getFolder(DEFAULT_INSTANCES_LOCATION), subMon.split(1));
+		switch(buildStep)  {
+			case BUILDSTEP_MODELBUILDER : {
+				final SubMonitor subMon = SubMonitor.convert(monitor, "Creating folders within project " + project, 1);
+				WorkspaceHelper.createFolderIfNotExists(WorkspaceHelper.getSourceFolder(project), subMon.split(1));
+				WorkspaceHelper.createFolderIfNotExists(WorkspaceHelper.getBinFolder(project), subMon.split(1));
+				WorkspaceHelper.createFolderIfNotExists(WorkspaceHelper.getModelFolder(project), subMon.split(1));
+				WorkspaceHelper.createFolderIfNotExists(project.getFolder(DEFAULT_INSTANCES_LOCATION), subMon.split(1));
+				WorkspaceHelper.createFolderIfNotExists(project.getFolder(DEFAULT_DEFINITION_LOCATION), subMon.split(1));
+				WorkspaceHelper.createFolderIfNotExists(project.getFolder(DEFAULT_RESULTS_LOCATION), subMon.split(1));
+				subMon.worked(0);
+				return;
+			}
+			case BUILDSTEP_API_FROM_GT : {
+				final SubMonitor subMon = SubMonitor.convert(monitor, "Creating folders within project " + project, 1);
+				WorkspaceHelper.createFolderIfNotExists(project.getFolder(srcGenLocation), subMon.split(1));
+				subMon.worked(0);
+				return;
+			}
+			
+			case BUILDSTEP_API_FROM_MODEL : {
+				final SubMonitor subMon = SubMonitor.convert(monitor, "Creating folders within project " + project, 1);
+				WorkspaceHelper.createFolderIfNotExists(project.getFolder(srcGenLocation), subMon.split(1));
+				WorkspaceHelper.createFolderIfNotExists(genFolder, subMon.split(1));
+				ClasspathUtil.makeSourceFolderIfNecessary(genFolder);
+				WorkspaceHelper.createFolderIfNotExists(project.getFolder(apiResourceLocation), subMon.split(1));
+				WorkspaceHelper.createFolderIfNotExists(project.getFolder(apiMatchesLocation), subMon.split(1));
+				WorkspaceHelper.createFolderIfNotExists(project.getFolder(apiRulesLocation), subMon.split(1));
+				subMon.worked(0);
+				return;
+			}
+		}
+		
 	}
 
 }
