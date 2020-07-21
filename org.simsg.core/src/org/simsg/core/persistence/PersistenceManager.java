@@ -42,7 +42,7 @@ public abstract class PersistenceManager {
 	protected String pathSeparator;
 	protected String dataFolder;
 	protected String indexPath;
-	protected String simulationModelFolder;
+	protected String simulationInstancesFolder;
 	protected String simulationResultsFolder;
 	protected String simulationMetamodelFolder;
 	protected String simulationDefinitionFolder;
@@ -69,6 +69,10 @@ public abstract class PersistenceManager {
 	
 	public void setSimulationDefinitionFolderPath(String path) {
 		simulationDefinitionFolder = path;
+	}
+	
+	public void setSimulationInstancesFolderPath(String path) {
+		simulationInstancesFolder = path;
 	}
 	
 	public void setSimulationResultsFolderPath(String path) {
@@ -124,7 +128,14 @@ public abstract class PersistenceManager {
 	public abstract Resource loadSimulationModel(URI uri);
 	
 	public Resource loadSimulationModel(SimDefinition simDef) {
-		return loadSimulationModel(URI.createURI(simDef.getSimulationModelURI()));
+		URI rawModelURI = URI.createURI(simDef.getSimulationModelURI());
+		File rawModelPath = new File(rawModelURI.toFileString());
+		if(rawModelPath.isAbsolute()) {
+			return loadSimulationModel(rawModelURI);
+		}else {
+			String absolutePath = simulationInstancesFolder+"/"+rawModelURI.lastSegment();
+			return loadSimulationModel(URI.createFileURI(absolutePath));
+		}
 	}
 	
 	public boolean saveSimulationModel(SimDefinition simDef, Resource simModel) {
@@ -200,10 +211,14 @@ public abstract class PersistenceManager {
 		}
 		PersistenceUtils.createFolderIfNotExist(simulationDefinitionFolder);
 		
+		if(simulationInstancesFolder == null) {
+			simulationInstancesFolder = dataFolder + SIMULATION_MODEL_FOLDER;
+		}
+		PersistenceUtils.createFolderIfNotExist(simulationInstancesFolder);
+		
 		if(simulationResultsFolder == null) {
 			simulationResultsFolder = dataFolder + SIMULATION_RESULTS_FOLDER;
 		}
-		
 		PersistenceUtils.createFolderIfNotExist(simulationResultsFolder);
 	}
 	

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.BiFunction;
+import java.util.jar.Attributes;
 import java.util.jar.Manifest;
 import java.util.stream.Collectors;
 
@@ -48,6 +49,8 @@ import org.emoflon.ibex.gt.codegen.EClassifiersManager;
 import org.emoflon.ibex.gt.editor.ui.builder.GTBuilder;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPatternSet;
 import org.moflon.core.plugins.manifest.ManifestFileUpdater;
+import org.moflon.core.plugins.manifest.PluginManifestConstants;
+import org.moflon.core.plugins.manifest.ManifestFileUpdater.AttributeUpdatePolicy;
 import org.moflon.core.utilities.ClasspathUtil;
 import org.moflon.core.utilities.WorkspaceHelper;
 
@@ -400,6 +403,11 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 		IBeXUtils.collectEngineExtensions().forEach(engine -> dependencies.addAll(engine.getDependencies()));
 
 		boolean changedBasics = ManifestFileUpdater.setBasicProperties(manifest, project.getName());
+		Attributes attributes = manifest.getMainAttributes();
+		if(!attributes.containsKey(PluginManifestConstants.BUNDLE_VENDOR)) {
+			attributes.put(PluginManifestConstants.BUNDLE_VENDOR, "%providerName");
+			changedBasics = true;
+		}
 		if (changedBasics) {
 			logger.info("Initialized MANIFEST.MF.");
 		}

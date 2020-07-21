@@ -23,6 +23,7 @@ public class «classPrefix»SimSGApi extends SimSGAPI{
 		super();
 		configurator.setRootDataFolder(System.getProperty("user.dir")+"/instances"); 
 		configurator.setSimulationDefinitionFolder(System.getProperty("user.dir")+"/instances/simulation_definitions"); 
+		configurator.setSimulationInstancesFolder(System.getProperty("user.dir")+"/instances/simulation_instances"); 
 		configurator.setSimulationResultsFolder(System.getProperty("user.dir")+"/instances/simulation_results"); 
 	}
 			

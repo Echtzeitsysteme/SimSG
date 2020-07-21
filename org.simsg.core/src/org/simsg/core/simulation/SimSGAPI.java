@@ -7,8 +7,8 @@ public abstract class SimSGAPI {
 	final protected SimulationConfigurator configurator;
 	
 	protected SimSGAPI() {
-		configurator = new SimulationConfigurator();
 		registerMetamodels();
+		configurator = new SimulationConfigurator();
 	}
 
 	public SimulationConfigurator getSimulationConfigurator() {

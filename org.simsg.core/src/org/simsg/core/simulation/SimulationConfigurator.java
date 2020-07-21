@@ -41,6 +41,7 @@ public class SimulationConfigurator {
 	
 	private String modelName;
 	private String rootDataFolder;
+	private String simulationInstancesFolder;
 	private String simulationDefinitonFolder;
 	private String simulationResultsFolder;
 	
@@ -70,6 +71,10 @@ public class SimulationConfigurator {
 	
 	public void setRootDataFolder(String path) {
 		this.rootDataFolder = path;
+	}
+	
+	public void setSimulationInstancesFolder(String path) {
+		this.simulationInstancesFolder = path;
 	}
 	
 	public void setSimulationDefinitionFolder(String path) {
@@ -429,6 +434,11 @@ public class SimulationConfigurator {
 			System.out.println("Warning: No simulation definition folder has been set. Using default folder..");
 		}else {
 			persistence.setSimulationDefinitionFolderPath(simulationDefinitonFolder);
+		}
+		if(simulationInstancesFolder == null) {
+			System.out.println("Warning: No simulation instances folder has been set. Using default folder..");
+		} else {
+			persistence.setSimulationInstancesFolderPath(simulationInstancesFolder);
 		}
 		if(simulationResultsFolder == null) {
 			System.out.println("Warning: No simulation results folder has been set. Using default folder..");

@@ -107,7 +107,7 @@ public class PersistenceUtils {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		ResourceSet rs = new ResourceSetImpl();
 		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
-		rs.setPackageRegistry(EPackage.Registry.INSTANCE);	
+		rs.setPackageRegistry(EPackage.Registry.INSTANCE);
 		Resource modelResource = rs.getResource(uri, true);
 		if(modelResource == null)
 			throw new IOException("File did not contain a vaild model.");
