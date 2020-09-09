@@ -33,6 +33,7 @@ import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.impl.EPackageRegistryImpl;
@@ -41,12 +42,20 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.importer.ecore.EcoreImporter;
+import org.emoflon.ibex.IBeXDisjunctPatternModel.IBeXDisjunctContextPattern;
 import org.emoflon.ibex.gt.codegen.EClassifiersManager;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXContext;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXContextPattern;
+import org.simsg.ui.build.IBeXDisjunctPatternCreator;
+import org.simsg.ui.build.IBeXDisjunctPatternFinder;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPatternSet;
 import org.moflon.core.plugins.manifest.ManifestFileUpdater;
 import org.moflon.core.utilities.ClasspathUtil;
+import org.moflon.core.utilities.LogUtils;
 import org.moflon.core.utilities.WorkspaceHelper;
 
 import GTLanguage.GTRuleSet;
@@ -187,9 +196,35 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 						foundRules = true;
 					}
 					if (content instanceof IBeXPatternSet) {
-						resource.copy(project.getFile(ibexPatternsLocation).getFullPath(), false,
-								monitor);
+						IBeXPatternSet ibexPattern = (IBeXPatternSet) content;
+						List<IBeXContext> possiblePatterns = ibexPattern.getContextPatterns().stream().filter(pattern -> {
+								try {
+									return new IBeXDisjunctPatternFinder(pattern).isDisjunct();							
+								}catch(IllegalArgumentException e) {
+									return false;
+								}
+								}).collect(Collectors.toList());
+													
+						// change the other patterns
+						List<IBeXDisjunctContextPattern> transformedPatterns = possiblePatterns.stream().filter(pattern -> !(pattern instanceof IBeXDisjunctContextPattern))
+								.map(pattern -> {
+									return new IBeXDisjunctPatternCreator((IBeXContextPattern) pattern, new IBeXDisjunctPatternFinder(pattern)
+											.getSubgraphs()).transformToContextPattern();
+								}).collect(Collectors.toList());
+						List<String> disjunctPatternNames = transformedPatterns.stream().map(pattern -> pattern.getName()).collect(Collectors.toList());
+						//add to the pattern set
+						EcoreUtil.removeAll(ibexPattern.getContextPatterns().stream().filter(pattern -> disjunctPatternNames.contains(pattern.getName())).collect(Collectors.toSet()));
+						ibexPattern.getContextPatterns().addAll(transformedPatterns);
+						ibexPattern.getContextPatterns().addAll(transformedPatterns.stream().flatMap(pattern -> pattern.getSubpatterns().stream()).collect(Collectors.toList()));
+						
+						//resource needs to be saved because of the changes
+//						saveResource(xmiResource.getContents().get(0), xmiResource.getURI());
+						saveResource(saveResource(xmiResource.getContents().get(0), xmiResource.getURI()),
+								URI.createFileURI(project.getFile(ibexPatternsLocation).getFullPath().toPortableString()));
+//						resource.copy(project.getFile(ibexPatternsLocation).getFullPath(), false,
+//								monitor);
 						foundPatterns = true;
+
 					}
 				} catch (IOException e) {
 					logger.error("Could not load resource. Error: \n" + e.getMessage());
@@ -357,5 +392,38 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 		WorkspaceHelper.createFolderIfNotExists(project.getFolder(DEFAULT_RESULTS_LOCATION), subMon.split(1));
 		WorkspaceHelper.createFolderIfNotExists(project.getFolder(DEFAULT_INSTANCES_LOCATION), subMon.split(1));
 	}
+	
+	public static EObject saveResource(EObject model, URI uri) {
+		ResourceSet rs = new ResourceSetImpl();
+		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+		try {
+			repairMetamodelResource(((IBeXPatternSet) model).getContextPatterns().stream().filter(pattern -> pattern instanceof IBeXContextPattern)
+					.map(pattern -> ((IBeXContextPattern) pattern)).findAny().get().getSignatureNodes().stream().findAny().get().getType().getEPackage().getNsURI());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		Resource parent = model.eResource();
+		Resource modelResource = rs.createResource(uri);
+		modelResource.getContents().add(model);
 
+		Map<Object, Object> saveOptions = ((XMIResource) modelResource).getDefaultSaveOptions();
+		saveOptions.put(XMIResource.OPTION_ENCODING, "UTF-8");
+		saveOptions.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
+		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
+		saveOptions.put(XMIResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION, Boolean.TRUE);
+
+		try {
+			((XMIResource) modelResource).save(saveOptions);
+		} catch (IOException e) {
+			LogUtils.error(logger, "Couldn't save resource: \n " + e.getMessage());
+		}
+		return model;
+	}
+	private static void repairMetamodelResource(String uri) throws Exception {
+		org.eclipse.emf.ecore.EPackage.Registry reg = EPackage.Registry.INSTANCE;
+		EPackage pk = reg.getEPackage(uri);
+		if(pk == null || pk.eIsProxy()) {
+			EcoreUtil.resolveAll(pk);
+		}
+	}
 }
