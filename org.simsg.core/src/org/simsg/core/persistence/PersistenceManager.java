@@ -2,16 +2,12 @@ package org.simsg.core.persistence;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -26,17 +22,11 @@ public abstract class PersistenceManager {
 	final public static String SIMULATION_RESULTS_FOLDER = "SimulationResults";
 	final public static String SIMULATION_METAMODEL_FOLDER = "SimulationMetaModels";
 	final public static String SIMULATION_DEFINITION_FOLDER = "SimulationDefinitions";
-	//TODO: mh how to detect valid generic models?
-	final public static String SIMULATION_DEFINITION_HEADER = "<org.simsg:SimDefinition";
-	//TODO: same here..
-	final public static String SIMULATION_DEFINITION_NAME_LOCATION = "java://SimulationDefinition.SimulationDefinitionPackage\" name=";
 	final public static String PERSISTENCE_INDEX_FILE = "index.json";
 	final public static String DATA_FOLDER = "data";
-	final public static String SEPARATOR_WIN = "\\";
-	final public static String SEPARATOR_OSX = "/";
 	final public static String SYSTEM_OS_PROPERTY = "os.name";
 	final public static String SYSTEM_OS_WIN = "Windows";
-	final public static String SYSTEM_OS_OSX = "Mac OS X";
+	final public static String SYSTEM_OS_OTHER = "Other";
 	
 	protected String os;
 	protected String pathSeparator;
@@ -56,7 +46,7 @@ public abstract class PersistenceManager {
 	protected HashMap<URI, Resource> simulationModelCache = new HashMap<>();
 	
 	public void init() {
-		setOSspecificSeparators();
+		setOSType();
 		classLoader();
 		setFolderPaths();
 		fetchExistingSimulationDefinitionPaths();
@@ -130,7 +120,12 @@ public abstract class PersistenceManager {
 	public Resource loadSimulationModel(SimDefinition simDef) {
 		URI rawModelURI = URI.createURI(simDef.getSimulationModelURI());
 		File rawModelPath = new File(rawModelURI.toFileString());
-		if(rawModelPath.isAbsolute()) {
+		File canonicalPath = null;
+		try {
+			canonicalPath = rawModelPath.getCanonicalFile();
+		} catch (IOException e) {}
+		
+		if(canonicalPath != null && canonicalPath.exists()) {
 			return loadSimulationModel(rawModelURI);
 		}else {
 			String absolutePath = simulationInstancesFolder+"/"+rawModelURI.lastSegment();
@@ -154,13 +149,12 @@ public abstract class PersistenceManager {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 	}
 	
-	private void setOSspecificSeparators() {
+	private void setOSType() {
 		os = System.getProperty(SYSTEM_OS_PROPERTY);
 		if(os.contains(SYSTEM_OS_WIN)) {
-			pathSeparator = SEPARATOR_WIN;
 			os = SYSTEM_OS_WIN;
 		}else {
-			pathSeparator = SEPARATOR_OSX;
+			os = SYSTEM_OS_OTHER;
 		}
 	}
 	
@@ -225,29 +219,26 @@ public abstract class PersistenceManager {
 	private void fetchExistingSimulationDefinitionPaths() {
 		
 		List<String> allFiles = PersistenceUtils.getAllFilesInFolder(simulationDefinitionFolder);
-		Pattern pattern = Pattern.compile("name=\"(.*?)\"");
 		
-		for(String filePath : allFiles) {
-			if(!filePath.matches(".+(\\.xmi)$")) {
-			}else {
-				File candidate = new File(filePath);
-				Path p = candidate.toPath();
+		allFiles.parallelStream()
+			.filter(path -> path.matches(".+(\\.xmi)$"))
+			.map(path -> URI.createFileURI(path))
+			.map(uri -> {
 				try {
-					if(Files.lines(p).filter(x->x.contains(SIMULATION_DEFINITION_HEADER)).findFirst().isPresent()) {
-						Optional<String> line = Files.lines(p).filter(x->x.contains(SIMULATION_DEFINITION_NAME_LOCATION)).findFirst();
-						String key = line.orElse("");
-						Matcher matcher = pattern.matcher(key);
-						if(matcher.find()) {
-							key = matcher.group(1);
-							simulationDefinitionPaths.put(key, URI.createFileURI(filePath));
-						}
-					}
-					
-				} catch (IOException e1) {
-					e1.printStackTrace();
+					return Optional.of(PersistenceUtils.loadResource(uri));
+				} catch (Exception e) {
+					return Optional.empty();
 				}
-			}
-		}
+			})
+			.filter(opt -> opt.isPresent())
+			.map(opt -> (Resource)opt.get())
+			.filter(resource -> resource.getContents().size()>0)
+			.filter(resource -> (resource.getContents().get(0) instanceof SimDefinition))
+			.map(resource -> (SimDefinition)resource.getContents().get(0))
+			.forEach(simDef -> {
+				simulationDefinitionPaths.put(simDef.getName(), simDef.eResource().getURI());
+				simDef.eResource().unload();
+			});
 	}	
 
 }
