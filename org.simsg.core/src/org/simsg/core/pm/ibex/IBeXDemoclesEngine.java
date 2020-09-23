@@ -11,7 +11,7 @@ public class IBeXDemoclesEngine extends IBeXEngine {
 	@Override
 	public void initPatterns() {
 		apiWrapper = IBeXApiWrapper.getInstance();
-		apiWrapper.initDemoclesWrapper(simulationDefinition, fqApiPackageName);
+		apiWrapper.initDemoclesWrapper(ibexModel, fqApiPackageName);
 	}
 
 	@Override
@@ -22,7 +22,7 @@ public class IBeXDemoclesEngine extends IBeXEngine {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Trying to re-initialize...");
-			apiWrapper.initDemoclesWrapper(simulationDefinition, fqApiPackageName);
+			apiWrapper.initDemoclesWrapper(ibexModel, fqApiPackageName);
 			try {
 				api = apiWrapper.initEngine(simulationModel);
 			} catch (Exception e1) {

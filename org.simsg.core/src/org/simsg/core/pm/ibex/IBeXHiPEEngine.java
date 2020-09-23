@@ -12,7 +12,7 @@ public class IBeXHiPEEngine extends IBeXEngine {
 	@Override
 	public void initPatterns() {
 		apiWrapper = IBeXApiWrapper.getInstance();
-		apiWrapper.initHiPEWrapper(simulationDefinition, fqApiPackageName);
+		apiWrapper.initHiPEWrapper(ibexModel, fqApiPackageName);
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class IBeXHiPEEngine extends IBeXEngine {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Trying to re-initialize...");
-			apiWrapper.initHiPEWrapper(simulationDefinition, fqApiPackageName);
+			apiWrapper.initHiPEWrapper(ibexModel, fqApiPackageName);
 			try {
 				api = apiWrapper.initEngine(simulationModel);
 			} catch (Exception e1) {

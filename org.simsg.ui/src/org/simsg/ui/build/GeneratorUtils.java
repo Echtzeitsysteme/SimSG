@@ -35,8 +35,6 @@ import org.moflon.emf.codegen.StandalonePackageDescriptor;
 import org.moflon.emf.codegen.resource.GenModelResource;
 import org.moflon.emf.codegen.resource.GenModelResourceFactory;
 
-import GTLanguage.GTLanguagePackage;
-
 public final class GeneratorUtils {
 	
 	public static final GenModelResource findOrCreateGenModel(final IProject project, final IFolder modelFolder, final IResource ecoreFile, 
@@ -150,7 +148,6 @@ public final class GeneratorUtils {
 	}
 	
 	public static final Resource loadXmi(final IResource xmiResource) throws IOException {
-		GTLanguagePackage.eINSTANCE.getClass();
 		IBeXPatternModelPackage.eINSTANCE.getClass();
 		
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());

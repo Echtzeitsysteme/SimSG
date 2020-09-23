@@ -2,11 +2,10 @@ package org.simsg.core.pm.engine;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXModel;
 import org.simsg.core.gt.RuleApplicationCondition;
 import org.simsg.core.pm.match.SimSGMatch;
 
@@ -15,6 +14,7 @@ import SimulationDefinition.SimDefinition;
 public abstract class PatternMatchingEngine {
 
 	protected Resource simulationModel;
+	protected IBeXModel ibexModel;
 	protected SimDefinition simulationDefinition;
 	protected Map<String, RuleApplicationCondition> ruleConditions = new HashMap<>();
 	
@@ -22,12 +22,16 @@ public abstract class PatternMatchingEngine {
 		this.simulationDefinition = simulationdefinition;
 	}
 	
+	public void setIBeXModel(final IBeXModel ibexModel) {
+		this.ibexModel = ibexModel;
+	}
+	
 	public void setSimulationModel(Resource simulationModel) {
 		this.simulationModel = simulationModel;
 	}
 	
 	public void addRuleApplicationCondition(RuleApplicationCondition condition) {
-		ruleConditions.put(condition.getGTRule().getName(), condition);
+		ruleConditions.put(condition.getIbexRule().getName(), condition);
 		condition.setEngine(this);
 	}
 	

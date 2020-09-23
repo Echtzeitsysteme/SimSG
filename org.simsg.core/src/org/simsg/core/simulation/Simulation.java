@@ -9,6 +9,8 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXModel;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXRule;
 import org.simsg.core.gt.GraphTransformationEngine;
 import org.simsg.core.gt.PostApplicationAction;
 import org.simsg.core.gt.RuleApplicationCondition;
@@ -26,7 +28,6 @@ import org.simsg.core.simulation.statistic.SimulationStatistics;
 import org.simsg.core.simulation.visualization.SimulationVisualization;
 import org.simsg.core.utils.Runtimer;
 
-import GTLanguage.GTRule;
 import SimulationDefinition.SimDefinition;
 
 
@@ -37,6 +38,7 @@ public abstract class Simulation {
 	private PatternMatchingController pmc;
 	protected SimulationState state;
 	protected SimDefinition simulationDefinition;
+	protected IBeXModel ibexModel;
 	protected Resource simulationModel;
 	private GraphTransformationEngine gt;
 	
@@ -52,9 +54,9 @@ public abstract class Simulation {
 	protected List<SimulationStatistics> statistics = new LinkedList<>();
 	protected List<SimulationVisualization> visualizations = new LinkedList<>();
 	
-	protected Map<String, Function<GTRule, RuleApplicationCondition>> ruleConditions = new HashMap<>();
-	protected Map<String, Function<GTRule, PostApplicationAction>> ruleActions = new HashMap<>();
-	protected Map<String, Function<GTRule, RuleParameterConfiguration>> ruleConfigs = new HashMap<>();
+	protected Map<String, Function<IBeXRule, RuleApplicationCondition>> ruleConditions = new HashMap<>();
+	protected Map<String, Function<IBeXRule, PostApplicationAction>> ruleActions = new HashMap<>();
+	protected Map<String, Function<IBeXRule, RuleParameterConfiguration>> ruleConfigs = new HashMap<>();
 	
 	public Simulation(String modelName, PersistenceManager persistence, PatternMatchingController pmc, GraphTransformationEngine gt) {
 		this.modelName = modelName;
@@ -83,15 +85,15 @@ public abstract class Simulation {
 		visualizationConstructors.addAll(constructors);
 	}
 	
-	public void addRuleParameterConfigurators(Map<String, Function<GTRule, RuleParameterConfiguration>> constructors) {
+	public void addRuleParameterConfigurators(Map<String, Function<IBeXRule, RuleParameterConfiguration>> constructors) {
 		ruleConfigs.putAll(constructors);
 	}
 	
-	public void addRuleApplicationConditions(Map<String, Function<GTRule, RuleApplicationCondition>> constructors) {
+	public void addRuleApplicationConditions(Map<String, Function<IBeXRule, RuleApplicationCondition>> constructors) {
 		ruleConditions.putAll(constructors);
 	}
 	
-	public void addPostApplicationActions(Map<String, Function<GTRule, PostApplicationAction>> constructors) {
+	public void addPostApplicationActions(Map<String, Function<IBeXRule, PostApplicationAction>> constructors) {
 		ruleActions.putAll(constructors);
 	}
 	
@@ -116,17 +118,18 @@ public abstract class Simulation {
 	private void initModel() {
 		persistence.init();
 		simulationDefinition = persistence.loadSimulationDefinition(modelName);
+		ibexModel = persistence.loadIBeXModel(simulationDefinition);
 		simulationModel = persistence.loadSimulationModel(simulationDefinition);
 	}
 	
 	private void initPMC() {
-		pmc.loadModels(simulationDefinition, simulationModel);
+		pmc.loadModels(simulationDefinition, ibexModel, simulationModel);
 		pmc.initController();
 		pmc.initEngine();
 	}
 	
 	private void initGT() {
-		gt.setModels(simulationDefinition, simulationModel);
+		gt.setModels(simulationDefinition, ibexModel, simulationModel);
 		gt.init();
 	}
 	
@@ -178,21 +181,21 @@ public abstract class Simulation {
 	
 	private void initializeRuleConfigurators() {
 		for(String ruleName : ruleConfigs.keySet()) {
-			GTRule rule = gt.getRule(ruleName);
+			IBeXRule rule = gt.getRule(ruleName);
 			gt.addRuleParameterConfiguration(ruleConfigs.get(ruleName).apply(rule));
 		}
 	}
 	
 	private void initializeRuleConditions() {
 		for(String ruleName : ruleConditions.keySet()) {
-			GTRule rule = gt.getRule(ruleName);
+			IBeXRule rule = gt.getRule(ruleName);
 			pmc.getEngine().addRuleApplicationCondition(ruleConditions.get(ruleName).apply(rule));
 		}
 	}
 	
 	private void initializeRuleActions() {
 		for(String ruleName : ruleActions.keySet()) {
-			GTRule rule = gt.getRule(ruleName);
+			IBeXRule rule = gt.getRule(ruleName);
 			gt.addPostApplicationAction(ruleActions.get(ruleName).apply(rule));
 		}
 	}

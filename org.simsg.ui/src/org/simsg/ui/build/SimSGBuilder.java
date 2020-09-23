@@ -13,8 +13,6 @@ import java.util.jar.Manifest;
 import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
-import org.eclipse.core.resources.IBuildConfiguration;
-import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -47,14 +45,11 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.importer.ecore.EcoreImporter;
 import org.emoflon.ibex.gt.codegen.EClassifiersManager;
 import org.emoflon.ibex.gt.editor.ui.builder.GTBuilder;
-import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPatternSet;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXModel;
 import org.moflon.core.plugins.manifest.ManifestFileUpdater;
 import org.moflon.core.plugins.manifest.PluginManifestConstants;
-import org.moflon.core.plugins.manifest.ManifestFileUpdater.AttributeUpdatePolicy;
 import org.moflon.core.utilities.ClasspathUtil;
 import org.moflon.core.utilities.WorkspaceHelper;
-
-import GTLanguage.GTRuleSet;
 
 /**
  * This builder triggers a basic code generation workflow for all Ecore models
@@ -91,7 +86,6 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 	private String projectName;
 	private String projectGenFolder;
 	private String apiResourcesLocation;
-	private String gtRulesLocation;
 	private String ibexPatternsLocation;
 
 	/**
@@ -106,7 +100,6 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 		projectName = project.getName();
 		projectGenFolder = projectName + "/gen/";
 		apiResourcesLocation = "src-gen/" + projectName.replace(".", "/") + "/api";
-		gtRulesLocation = apiResourcesLocation + "/gt-rules.xmi";
 		ibexPatternsLocation = apiResourcesLocation + "/ibex-patterns.xmi";
 	}
 
@@ -193,22 +186,22 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 			try {
 				for (IResource resource : apiPackage.members()) {
 					if (WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".xmi")) {
-						GTRuleSet gtRules = null;
+						IBeXModel ibexModel = null;
 						try {
 							Resource xmiResource = GeneratorUtils.loadXmi(resource);
 							Object content = xmiResource.getContents().get(0);
 							EcoreUtil.resolveAll(xmiResource);
-							if (content instanceof GTRuleSet) {
-								gtRules = (GTRuleSet) content;
+							if (content instanceof IBeXModel) {
+								ibexModel = (IBeXModel) content;
 							}
 						} catch (IOException e) {
 							logger.error("Could not load resource. Error: \n" + e.getMessage());
 						}
 
-						if (gtRules == null)
+						if (ibexModel == null)
 							continue;
 
-						IBeXUtils.findAllEPackages(gtRules, packageRegistry);
+						IBeXUtils.findAllEPackages(ibexModel, packageRegistry);
 					}
 				}
 			} catch (CoreException e) {
@@ -261,32 +254,28 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 		// build eMoflon api code
 		for (IResource resource : metaModelFolder.members()) {
 			if (WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".xmi")) {
-				GTRuleSet gtRules = null;
+				IBeXModel ibexModel = null;
 				try {
 					Resource xmiResource = GeneratorUtils.loadXmi(resource);
 					Object content = xmiResource.getContents().get(0);
 					EcoreUtil.resolveAll(xmiResource);
-					if (content instanceof GTRuleSet) {
-						gtRules = (GTRuleSet) content;
-						resource.copy(project.getFile(gtRulesLocation).getFullPath(), false,
-								subMon);
-						foundRules = true;
-					}
-					if (content instanceof IBeXPatternSet) {
+					if (content instanceof IBeXModel) {
+						ibexModel = (IBeXModel) content;
 						resource.copy(project.getFile(ibexPatternsLocation).getFullPath(), false,
 								subMon);
+						foundRules = true;
 						foundPatterns = true;
 					}
 				} catch (IOException e) {
 					logger.error("Could not load resource. Error: \n" + e.getMessage());
 				}
 
-				if (gtRules == null)
+				if (ibexModel == null)
 					continue;
 
 				IFolder apiPackage = project.getFolder(apiResourcesLocation);
-				IBeXUtils.findAllEPackages(gtRules, packageRegistry);
-				IBeXUtils.generateAPI(project, apiPackage, gtRules, packageRegistry);
+				IBeXUtils.findAllEPackages(ibexModel, packageRegistry);
+				IBeXUtils.generateAPI(project, apiPackage, ibexModel, packageRegistry);
 			}
 		}
 		subMon.worked(1);
@@ -336,8 +325,6 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 
 		GenModel genModel = importer.getGenModel();
 		genModel.setModelDirectory(projectGenFolder);
-		
-		IBuildConfiguration[] buildConfs = project.getBuildConfigs();
 
 		Set<GenPackage> removals = genModel.getGenPackages().stream()
 				.filter(pkg -> !pkg.getEcorePackage().getName().equals(metamodelName)).collect(Collectors.toSet());

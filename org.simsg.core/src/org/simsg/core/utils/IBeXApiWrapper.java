@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -14,10 +15,9 @@ import org.emoflon.ibex.gt.api.GraphTransformationAPI;
 import org.emoflon.ibex.gt.api.GraphTransformationApp;
 import org.emoflon.ibex.gt.api.GraphTransformationPattern;
 import org.emoflon.ibex.gt.api.GraphTransformationRule;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXModel;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPattern;
-
-import GTLanguage.GTRule;
-import SimulationDefinition.SimDefinition;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXRule;
 
 public class IBeXApiWrapper {
 	
@@ -39,7 +39,7 @@ public class IBeXApiWrapper {
 	private Map<String, GraphTransformationRule<?,?>> rules = new HashMap<>();
 	
 	private Resource simulationModel;
-	private SimDefinition simulationDefinition;
+	private IBeXModel ibexModel;
 	
 	private boolean wrapperInitialized = false;
 	private boolean apiInitialized = false;
@@ -70,8 +70,8 @@ public class IBeXApiWrapper {
 		return apiClass;
 	}
 	
-	public void initDemoclesWrapper(SimDefinition simulationDefinition, String fqApiPackageName) {
-		this.simulationDefinition = simulationDefinition;
+	public void initDemoclesWrapper(final IBeXModel ibexModel, final String fqApiPackageName) {
+		this.ibexModel = ibexModel;
 		setNameSpaceAndPackageName(fqApiPackageName);
 		initDemoclesApp();
 		initApiClasses();
@@ -80,8 +80,8 @@ public class IBeXApiWrapper {
 		System.out.println("Actual engine: "+ engineAppClass);
 	}
 	
-	public void initHiPEWrapper(SimDefinition simulationDefinition, String fqApiPackageName) {
-		this.simulationDefinition = simulationDefinition;
+	public void initHiPEWrapper(final IBeXModel ibexModel, final String fqApiPackageName) {
+		this.ibexModel = ibexModel;
 		setNameSpaceAndPackageName(fqApiPackageName);
 		initHiPEApp();
 		initApiClasses();
@@ -211,10 +211,10 @@ public class IBeXApiWrapper {
 			apiMethodsByName.put(met.getName(), met);
 		}
 		
-		for(IBeXPattern pattern : simulationDefinition.getIbexPatternSet().getContextPatterns()) {
+		for(IBeXPattern pattern : ibexModel.getPatternSet().getContextPatterns().stream()
+				.filter(pattern -> pattern.getName().contains("CONDITION"))
+				.collect(Collectors.toList())) {
 			Method getter = null;
-			
-			
 			
 			try {
 				if(!apiMethodsByName.containsKey(pattern.getName())) {
@@ -230,7 +230,7 @@ public class IBeXApiWrapper {
 			}
 		}
 		
-		for(GTRule rule : simulationDefinition.getGtRuleSet().getRules()) {
+		for(IBeXRule rule : ibexModel.getRuleSet().getRules()) {
 			Method getter = null;
 			
 			try {

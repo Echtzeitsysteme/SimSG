@@ -23,25 +23,39 @@ import org.emoflon.ibex.gt.codegen.EClassifiersManager;
 import org.emoflon.ibex.gt.codegen.GTEngineExtension;
 import org.emoflon.ibex.gt.codegen.JavaFileGenerator;
 import org.emoflon.ibex.gt.editor.ui.builder.GTBuilderExtension;
+import org.emoflon.ibex.gt.transformations.EditorToIBeXPatternHelper;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXModel;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXNode;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPattern;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXRule;
 import org.moflon.core.utilities.ExtensionsUtil;
-
-import GTLanguage.GTNode;
-import GTLanguage.GTRule;
-import GTLanguage.GTRuleSet;
 
 public final class IBeXUtils {
 	
-	public static void generateAPI(final IProject project, final IFolder apiPackage, final GTRuleSet gtRuleSet,
+	public static void generateAPI(final IProject project, final IFolder apiPackage, final IBeXModel ibexModel,
 			final Registry packageRegistry) throws CoreException {
 		JavaFileGenerator generator = new JavaFileGenerator(getClassNamePrefix(project), project.getName(), createEClassifierManager(packageRegistry));
 		IFolder matchesPackage = ensureFolderExists(apiPackage.getFolder("matches"));
 		IFolder rulesPackage = ensureFolderExists(apiPackage.getFolder("rules"));
-		gtRuleSet.getRules().forEach(gtRule -> {
+		IFolder probabilitiesPackage = ensureFolderExists(apiPackage.getFolder("probabilities"));
+		
+		Set<IBeXPattern> ruleContextPatterns = new HashSet<>();
+		ibexModel.getRuleSet().getRules().forEach(gtRule -> {
 			generator.generateMatchClass(matchesPackage, gtRule);
 			generator.generateRuleClass(rulesPackage, gtRule);
+			generator.generateProbabilityClass(probabilitiesPackage, gtRule);
+			ruleContextPatterns.add(gtRule.getLhs());
+		});
+		
+		ibexModel.getPatternSet().getContextPatterns().stream()
+			.filter(pattern -> !ruleContextPatterns.contains(pattern))
+			.filter(pattern -> !pattern.getName().contains("CONDITION"))
+			.forEach(pattern -> {
+				generator.generateMatchClass(matchesPackage, pattern);
+				generator.generatePatternClass(rulesPackage, pattern);
 		});
 
-		generator.generateAPIClass(apiPackage, gtRuleSet,
+		generator.generateAPIClass(apiPackage, ibexModel,
 				String.format("%s/%s/%s/api/ibex-patterns.xmi", project.getName(), "src-gen", project.getName().replace(".", "/")));
 		generator.generateAppClass(apiPackage);
 		collectEngineExtensions().forEach(e -> generator.generateAppClassForEngine(apiPackage, e));
@@ -118,15 +132,9 @@ public final class IBeXUtils {
 				.anyMatch(f -> "gt".equals(f.getFileExtension())); // with extension gt
 	}
 	
-	public static void findAllEPackages(final GTRuleSet gtRules, final Registry packageRegistry) {
-		for(GTRule rule : gtRules.getRules()) {
-			for(GTNode node : rule.getNodes()) {
-				EPackage foreign = node.getType().getEPackage();
-				if(!packageRegistry.containsKey(foreign.getNsURI())) {
-					packageRegistry.put(foreign.getNsURI(), foreign);
-				}
-			}
-			for(GTNode node : rule.getRuleNodes()) {
+	public static void findAllEPackages(final IBeXModel ibexModel, final Registry packageRegistry) {
+		for(IBeXRule rule : ibexModel.getRuleSet().getRules()) {
+			for(IBeXNode node : EditorToIBeXPatternHelper.getAllRuleNodes(rule)) {
 				EPackage foreign = node.getType().getEPackage();
 				if(!packageRegistry.containsKey(foreign.getNsURI())) {
 					packageRegistry.put(foreign.getNsURI(), foreign);

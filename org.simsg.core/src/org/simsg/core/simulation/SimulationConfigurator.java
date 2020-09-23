@@ -11,6 +11,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXRule;
 import org.simsg.core.gt.GraphTransformationEngine;
 import org.simsg.core.gt.IBeXDemoclesGT;
 import org.simsg.core.gt.IBeXHiPEGT;
@@ -35,8 +36,6 @@ import org.simsg.core.simulation.statistic.Observables;
 import org.simsg.core.simulation.statistic.SimulationStatistics;
 import org.simsg.core.simulation.visualization.SimulationVisualization;
 
-import GTLanguage.GTRule;
-
 public class SimulationConfigurator {
 	
 	private String modelName;
@@ -57,9 +56,9 @@ public class SimulationConfigurator {
 	protected List<Function<SimulationState, SimulationStatistics>> statisticConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, SimulationVisualization>> visualizationConstructors = new LinkedList<>();
 	
-	protected Map<String, Function<GTRule, RuleApplicationCondition>> ruleConditions = new HashMap<>();
-	protected Map<String, Function<GTRule, PostApplicationAction>> ruleActions = new HashMap<>();
-	protected Map<String, Function<GTRule, RuleParameterConfiguration>> ruleConfigs = new HashMap<>();
+	protected Map<String, Function<IBeXRule, RuleApplicationCondition>> ruleConditions = new HashMap<>();
+	protected Map<String, Function<IBeXRule, PostApplicationAction>> ruleActions = new HashMap<>();
+	protected Map<String, Function<IBeXRule, RuleParameterConfiguration>> ruleConfigs = new HashMap<>();
 	
 	public SimulationConfigurator() {
 		setEMFPersistence();
@@ -205,7 +204,7 @@ public class SimulationConfigurator {
 		ruleConfigs.put(ruleName, (rule) -> {
 			Constructor<? extends RuleParameterConfiguration> ruleParamConstructor = null;
 			try {
-				ruleParamConstructor = paramType.getConstructor(concatParamTypes(parameterTypes(params), GTRule.class));
+				ruleParamConstructor = paramType.getConstructor(concatParamTypes(parameterTypes(params), IBeXRule.class));
 			} catch (NoSuchMethodException | SecurityException e1) {
 				e1.printStackTrace();
 			}
@@ -225,7 +224,7 @@ public class SimulationConfigurator {
 		ruleConditions.put(ruleName, (rule) -> {
 			Constructor<? extends RuleApplicationCondition> conditionConstructor = null;
 			try {
-				conditionConstructor = conditionType.getConstructor(concatParamTypes(parameterTypes(params), GTRule.class));
+				conditionConstructor = conditionType.getConstructor(concatParamTypes(parameterTypes(params), IBeXRule.class));
 			} catch (NoSuchMethodException | SecurityException e1) {
 				e1.printStackTrace();
 			}
@@ -245,7 +244,7 @@ public class SimulationConfigurator {
 		ruleActions.put(ruleName, (rule) -> {
 			Constructor<? extends PostApplicationAction> actionConstructor = null;
 			try {
-				actionConstructor = actionType.getConstructor(concatParamTypes(parameterTypes(params), GTRule.class));
+				actionConstructor = actionType.getConstructor(concatParamTypes(parameterTypes(params), IBeXRule.class));
 			} catch (NoSuchMethodException | SecurityException e1) {
 				e1.printStackTrace();
 			}

@@ -4,30 +4,19 @@
     modelDirectory="/org.simsg.simulationdefinition/src-gen" creationIcons="false"
     editDirectory="/org.simsg.simulationdefinition.edit/src-gen" editorDirectory="/org.simsg.simulationdefinition.editor/src-gen"
     modelPluginID="SimulationDefinition" modelName="SimulationDefinition" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
-    usedGenPackages="platform:/resource/org.emoflon.ibex.patternmodel/model/IBeXPatternModel.genmodel#//IBeXPatternModel platform:/resource/org.emoflon.ibex.gt/model/Gt.genmodel#//GTLanguage"
     codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0"
-    copyrightFields="false" operationReflection="true" importOrganizing="true" pluginKey="SimulationDefinition">
+    copyrightFields="false" usedGenPackages="../../org.emoflon.ibex.patternmodel/model/IBeXPatternModel.genmodel#//IBeXPatternModel"
+    operationReflection="true" importOrganizing="true" pluginKey="SimulationDefinition">
   <foreignModel>simulationdefinition.ecore</foreignModel>
   <testsDirectory xsi:nil="true"/>
   <genPackages prefix="SimulationDefinition" disposableProviderFactory="true" fileExtensions="SimulationDefinition"
       ecorePackage="simulationdefinition.ecore#/">
-    <genClasses ecoreClass="simulationdefinition.ecore#//RuleAnnotation">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference simulationdefinition.ecore#//RuleAnnotation/GTRule"/>
-    </genClasses>
     <genClasses ecoreClass="simulationdefinition.ecore#//SimDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simulationdefinition.ecore#//SimDefinition/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simulationdefinition.ecore#//SimDefinition/ruleAnnotations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simulationdefinition.ecore#//SimDefinition/terminationConditions"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simulationdefinition.ecore#//SimDefinition/simulationModelURI"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simulationdefinition.ecore#//SimDefinition/observations"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simulationdefinition.ecore#//SimDefinition/gtRulesURI"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simulationdefinition.ecore#//SimDefinition/GtRuleSet"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simulationdefinition.ecore#//SimDefinition/ibexPatternSet"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simulationdefinition.ecore#//SimDefinition/ibexPatternsURI"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference simulationdefinition.ecore#//SimDefinition/metaModels"/>
-    </genClasses>
-    <genClasses ecoreClass="simulationdefinition.ecore#//StochasticRate">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simulationdefinition.ecore#//StochasticRate/rate"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simulationdefinition.ecore#//SimDefinition/ibexModelURI"/>
     </genClasses>
     <genClasses ecoreClass="simulationdefinition.ecore#//TerminationCondition"/>
     <genClasses ecoreClass="simulationdefinition.ecore#//SimpleTerminationCondition">
@@ -42,10 +31,6 @@
     <genClasses ecoreClass="simulationdefinition.ecore#//PatternObservation">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simulationdefinition.ecore#//PatternObservation/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference simulationdefinition.ecore#//PatternObservation/pattern"/>
-    </genClasses>
-    <genClasses ecoreClass="simulationdefinition.ecore#//PackageMapping">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simulationdefinition.ecore#//PackageMapping/key"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute simulationdefinition.ecore#//PackageMapping/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
