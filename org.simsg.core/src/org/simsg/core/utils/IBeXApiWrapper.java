@@ -212,7 +212,7 @@ public class IBeXApiWrapper {
 		}
 		
 		for(IBeXPattern pattern : ibexModel.getPatternSet().getContextPatterns().stream()
-				.filter(pattern -> pattern.getName().contains("CONDITION"))
+				.filter(pattern -> !pattern.getName().contains("CONDITION"))
 				.collect(Collectors.toList())) {
 			Method getter = null;
 			

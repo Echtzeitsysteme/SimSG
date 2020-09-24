@@ -13,6 +13,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXModel;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPatternModelPackage;
 import org.json.simple.JSONObject;
 
 import SimulationDefinition.SimDefinition;
@@ -31,6 +32,7 @@ public abstract class PersistenceManager {
 	
 	protected String os;
 	protected String pathSeparator;
+	protected String projectPath;
 	protected String dataFolder;
 	protected String indexPath;
 	protected String simulationInstancesFolder;
@@ -53,6 +55,10 @@ public abstract class PersistenceManager {
 		setFolderPaths();
 		fetchExistingSimulationDefinitionPaths();
 		fetchIndex();
+	}
+	
+	public void setProjectFolderPath(String path) {
+		projectPath = path;
 	}
 	
 	public void setRootDataFolderPath(String path) {
@@ -121,14 +127,25 @@ public abstract class PersistenceManager {
 	
 	public Resource loadSimulationModel(SimDefinition simDef) {
 		URI rawModelURI = URI.createURI(simDef.getSimulationModelURI());
-		File rawModelPath = new File(rawModelURI.toFileString());
-		File canonicalPath = null;
+		
+		String fileString = rawModelURI.toFileString();
+		if(fileString == null) {
+			fileString = simDef.getIbexModelURI().replace("file:", "");
+			fileString = fileString.replace("platform:", "");
+			fileString = fileString.replace("plugin:", "");
+			new File(fileString);
+		}
+		File rawModelPath = new File(fileString);
+		
+		String canonicalPath = null;
 		try {
-			canonicalPath = rawModelPath.getCanonicalFile();
+			File cFile = rawModelPath.getCanonicalFile();
+			if(cFile.exists())
+				canonicalPath = cFile.getCanonicalPath();
 		} catch (IOException e) {}
 		
-		if(canonicalPath != null && canonicalPath.exists()) {
-			return loadSimulationModel(rawModelURI);
+		if(canonicalPath != null) {
+			return loadSimulationModel(URI.createFileURI(canonicalPath));
 		}else {
 			String absolutePath = simulationInstancesFolder+"/"+rawModelURI.lastSegment();
 			return loadSimulationModel(URI.createFileURI(absolutePath));
@@ -137,22 +154,34 @@ public abstract class PersistenceManager {
 	
 	public IBeXModel loadIBeXModel(SimDefinition simDef) {
 		URI rawModelURI = URI.createURI(simDef.getIbexModelURI());
-//		File rawModelPath = new File(rawModelURI.toFileString());
-//		File canonicalPath = null;
-//		try {
-//			canonicalPath = rawModelPath.getCanonicalFile();
-//		} catch (IOException e) {}
-//		
-//		if(canonicalPath != null && canonicalPath.exists()) {
-//			return loadIBeXModel(rawModelURI);
-//		}else {
-//			String absolutePath = simulationInstancesFolder+"/"+rawModelURI.lastSegment();
-//			return loadIBeXModel(URI.createFileURI(absolutePath));
-//		}
-		return loadIBeXModel(rawModelURI);
+		
+		String fileString = rawModelURI.toFileString();
+		if(fileString == null) {
+			fileString = simDef.getIbexModelURI().replace("file:", "");
+			fileString = fileString.replace("platform:", "");
+			fileString = fileString.replace("plugin:", "");
+			new File(fileString);
+		} 
+		File rawModelPath = new File(fileString);
+		
+		String canonicalPath = null;
+		try {
+			File cFile = rawModelPath.getCanonicalFile();
+			if(cFile.exists())
+				canonicalPath = cFile.getCanonicalPath();
+		} catch (IOException e) {}
+		
+		if(canonicalPath != null ) {
+			return loadIBeXModel(URI.createFileURI(canonicalPath));
+		}else {
+			String absolutePath = projectPath+"/"+rawModelURI.path();
+			return loadIBeXModel(URI.createFileURI(absolutePath));
+		}
 	}
 	
 	public IBeXModel loadIBeXModel(URI uri) {
+		IBeXPatternModelPackage.eINSTANCE.getClass();
+		
 		Resource model = null;
 		try {
 			model = PersistenceUtils.loadResource(uri);

@@ -39,6 +39,7 @@ import org.simsg.core.simulation.visualization.SimulationVisualization;
 public class SimulationConfigurator {
 	
 	private String modelName;
+	private String projectFolder;
 	private String rootDataFolder;
 	private String simulationInstancesFolder;
 	private String simulationDefinitonFolder;
@@ -66,6 +67,10 @@ public class SimulationConfigurator {
 	
 	public void setModel(String modelName) {
 		this.modelName = modelName;
+	}
+	
+	public void setProjectFolder(String path) {
+		this.projectFolder = path;
 	}
 	
 	public void setRootDataFolder(String path) {
@@ -424,6 +429,11 @@ public class SimulationConfigurator {
 	
 	private PersistenceManager createPersistenceManager() {
 		PersistenceManager persistence = persistenceConstructor.get();
+		if(projectFolder == null) {
+			throw new RuntimeException("No project path has been set.");
+		} else {
+			persistence.setProjectFolderPath(projectFolder);
+		}
 		if(rootDataFolder == null) {
 			System.out.println("Warning: No data folder has been set. Using default folder..");
 		}else {

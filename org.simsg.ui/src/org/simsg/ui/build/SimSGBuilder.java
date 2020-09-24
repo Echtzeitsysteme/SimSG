@@ -70,6 +70,7 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 	public final static String PACKAGE_IBEX_COMMON = "org.emoflon.ibex.common";
 	public final static String PACKAGE_IBEX_GT = "org.emoflon.ibex.gt";
 	public final static String PACKAGE_SIMSG_CORE = "org.simsg.core";
+	public final static String PACKAGE_IBEX_PATTERNMODEL = "org.emoflon.ibex.patternmodel";
 	public final static String PACKAGE_SIMULATION_DEFINITION = "SimulationDefinition";
 
 	public static final String SIMSG_BUILDER_ID = "org.simsg.build.SimSGBuilder";
@@ -87,6 +88,8 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 	private String projectGenFolder;
 	private String apiResourcesLocation;
 	private String ibexPatternsLocation;
+	
+	private boolean cleanBuild = false;
 
 	/**
 	 * Initializes the visitor condition
@@ -106,6 +109,18 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 	@Override
 	protected IProject[] build(int kind, Map<String, String> args, IProgressMonitor monitor) throws CoreException {
 		project = getProject();
+		
+		if(cleanBuild) {
+			cleanBuild = false;
+			logger.info("Auto-Building: "+project.getName()+" auto build disabled -> initiate full build manually.");
+			return null;
+		}
+		
+		if(kind == CLEAN_BUILD) {
+			logger.info("Clean: "+project.getName());
+			cleanBuild = true;
+			return null;
+		}
 		
 		setConstants(project);
 		final SubMonitor subMon = SubMonitor.convert(monitor, "Building SimSGProject: " + project, 1);
@@ -386,7 +401,7 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 		List<String> dependencies = new ArrayList<String>();
 
 		dependencies.addAll(
-				Arrays.asList(PACKAGE_IBEX_COMMON, PACKAGE_IBEX_GT, PACKAGE_SIMSG_CORE, PACKAGE_SIMULATION_DEFINITION));
+				Arrays.asList(PACKAGE_IBEX_COMMON, PACKAGE_IBEX_GT, PACKAGE_SIMSG_CORE, PACKAGE_IBEX_PATTERNMODEL, PACKAGE_SIMULATION_DEFINITION));
 		IBeXUtils.collectEngineExtensions().forEach(engine -> dependencies.addAll(engine.getDependencies()));
 
 		boolean changedBasics = ManifestFileUpdater.setBasicProperties(manifest, project.getName());
