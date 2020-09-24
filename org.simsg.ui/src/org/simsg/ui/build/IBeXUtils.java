@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.emoflon.ibex.gt.codegen.EClassifiersManager;
+import org.emoflon.ibex.gt.codegen.GTEngineBuilderExtension;
 import org.emoflon.ibex.gt.codegen.GTEngineExtension;
 import org.emoflon.ibex.gt.codegen.JavaFileGenerator;
 import org.emoflon.ibex.gt.editor.ui.builder.GTBuilderExtension;
@@ -160,11 +161,11 @@ public final class IBeXUtils {
 				GTEngineExtension.class);
 	}
 	
-	public static Collection<GTBuilderExtension> collectEngineBuilderExtensions() {
-		return ExtensionsUtil.collectExtensions(GTBuilderExtension.BUILDER_EXTENSON_ID, "class", GTBuilderExtension.class)
-				.stream()
-				.filter(ext -> ext.getClass().getCanonicalName().contains("HiPE"))
-				.collect(Collectors.toList());
+	public static Collection<GTEngineBuilderExtension> collectEngineBuilderExtensions() {
+		return ExtensionsUtil.collectExtensions(GTEngineBuilderExtension.BUILDER_EXTENSON_ID, "class", GTEngineBuilderExtension.class);
+//				.stream()
+//				.filter(ext -> ext.getClass().getCanonicalName().contains("HiPE"))
+//				.collect(Collectors.toList());
 	}
 	
 	public static String getClassNamePrefix(final IProject project) {

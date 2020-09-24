@@ -44,6 +44,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.importer.ecore.EcoreImporter;
 import org.emoflon.ibex.gt.codegen.EClassifiersManager;
+import org.emoflon.ibex.gt.codegen.GTEngineBuilderExtension;
 import org.emoflon.ibex.gt.editor.ui.builder.GTBuilder;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXModel;
 import org.moflon.core.plugins.manifest.ManifestFileUpdater;
@@ -267,9 +268,9 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 
 		final Registry packageRegistry = new EPackageRegistryImpl();
 		// build eMoflon api code
+		IBeXModel ibexModel = null;
 		for (IResource resource : metaModelFolder.members()) {
 			if (WorkspaceHelper.isFile(resource) && resource.getName().endsWith(".xmi")) {
-				IBeXModel ibexModel = null;
 				try {
 					Resource xmiResource = GeneratorUtils.loadXmi(resource);
 					Object content = xmiResource.getContents().get(0);
@@ -298,8 +299,9 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 		// build HiPE engine code
 		if (foundPatterns) {
 			IFolder packagePath = project.getFolder(projectName.replace(".", "/"));
-			IBeXUtils.collectEngineBuilderExtensions()
-					.forEach(ext -> ext.run(project, packagePath.getProjectRelativePath()));
+			for(GTEngineBuilderExtension ext : IBeXUtils.collectEngineBuilderExtensions()) {
+				ext.run(project, packagePath.getProjectRelativePath(), ibexModel);
+			}
 		}
 		subMon.worked(2);
 

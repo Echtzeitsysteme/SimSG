@@ -50,6 +50,11 @@ public class SimulationDefinitionGenerator {
 		this.ibexModel = ibexModel;
 	}
 	
+	public void setIBeXModel(IBeXModel ibexModel, String path) {
+		definition.setIbexModelURI(URI.createURI("file:/"+path).toString());
+		this.ibexModel = ibexModel;
+	}
+	
 	public void setModelURI(String path) {
 		URI fileUri = URI.createURI("file:/"+path);
 		setModelURI(fileUri);
