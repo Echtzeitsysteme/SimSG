@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXModel;
 import org.simsg.core.pm.engine.PatternMatchingEngine;
 import org.simsg.core.pm.match.SimSGMatch;
 
@@ -17,15 +18,15 @@ import SimulationDefinition.SimDefinition;
 public abstract class PatternMatchingController{
 
 	protected SimDefinition simulationDefinition;
+	protected IBeXModel ibexModel;
 	protected Resource simulationModel;
 	
 	protected PatternMatchingEngine engine;
 	protected Set<String> patternNames = new HashSet<>();
 	
-//	protected Map<String, Collection<SimSGMatch>> matches = new HashMap<>();
 	protected Map<String, Integer> matchCount = Collections.synchronizedMap(new HashMap<>());
 	
-	public abstract void loadModels(SimDefinition simulationDefinition, Resource simulationModel);
+	public abstract void loadModels(final SimDefinition simulationDefinition, final IBeXModel ibexModel, final Resource simulationModel);
 	
 	public abstract void initController();
 	

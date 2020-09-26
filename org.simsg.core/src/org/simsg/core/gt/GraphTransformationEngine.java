@@ -4,24 +4,26 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXModel;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXRule;
 import org.simsg.core.pm.match.SimSGMatch;
-
-import GTLanguage.GTRule;
 import SimulationDefinition.SimDefinition;
 
 abstract public class GraphTransformationEngine {
 	
 	protected SimDefinition simulationDefinition;
 	protected Resource simulationModel;
-	protected Map<String, GTRule> gtRules = new HashMap<>();
+	protected IBeXModel ibexModel;
+	protected Map<String, IBeXRule> ibexRules = new HashMap<>();
 	protected Map<String, PostApplicationAction> actions = new HashMap<>();
 	protected Map<String, RuleParameterConfiguration> configs = new HashMap<>();
 	
-	public void setModels(SimDefinition simulationDefinition, Resource simulationModel) {
+	public void setModels(SimDefinition simulationDefinition, IBeXModel ibexModel, Resource simulationModel) {
 		this.simulationDefinition = simulationDefinition;
 		this.simulationModel = simulationModel;
-		for(GTRule rule : simulationDefinition.getGtRuleSet().getRules()) {
-			gtRules.put(rule.getName(), rule);
+		this.ibexModel = ibexModel;
+		for(IBeXRule rule : ibexModel.getRuleSet().getRules()) {
+			ibexRules.put(rule.getName(), rule);
 		}
 	}
 	
@@ -35,18 +37,18 @@ abstract public class GraphTransformationEngine {
 	
 	public abstract void init();
 	
-	public GTRule getRule(String name) {
-		return gtRules.get(name);
+	public IBeXRule getRule(String name) {
+		return ibexRules.get(name);
 	}
 	
 	public void addPostApplicationAction(PostApplicationAction action) {
 		action.setGT(this);
-		actions.put(action.getGTRule().getName(), action);
+		actions.put(action.getIbexRule().getName(), action);
 	}
 
 	public void addRuleParameterConfiguration(RuleParameterConfiguration config) {
 		config.setGT(this);
-		configs.put(config.getGTRule().getName(), config);
+		configs.put(config.getIbexRule().getName(), config);
 	}
 	
 	public void applyRuleToMatch(SimSGMatch match) {

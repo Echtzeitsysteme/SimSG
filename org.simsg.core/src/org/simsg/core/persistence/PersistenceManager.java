@@ -12,6 +12,8 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXModel;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPatternModelPackage;
 import org.json.simple.JSONObject;
 
 import SimulationDefinition.SimDefinition;
@@ -30,6 +32,7 @@ public abstract class PersistenceManager {
 	
 	protected String os;
 	protected String pathSeparator;
+	protected String projectPath;
 	protected String dataFolder;
 	protected String indexPath;
 	protected String simulationInstancesFolder;
@@ -44,6 +47,7 @@ public abstract class PersistenceManager {
 	protected HashMap<String, URI> simulationDefinitionPaths = new HashMap<>();
 	protected HashMap<String, SimDefinition> simulationDefinitionCache = new HashMap<>();
 	protected HashMap<URI, Resource> simulationModelCache = new HashMap<>();
+	protected HashMap<URI, Resource> ibexModelCache = new HashMap<>();
 	
 	public void init() {
 		setOSType();
@@ -51,6 +55,10 @@ public abstract class PersistenceManager {
 		setFolderPaths();
 		fetchExistingSimulationDefinitionPaths();
 		fetchIndex();
+	}
+	
+	public void setProjectFolderPath(String path) {
+		projectPath = path;
 	}
 	
 	public void setRootDataFolderPath(String path) {
@@ -119,18 +127,81 @@ public abstract class PersistenceManager {
 	
 	public Resource loadSimulationModel(SimDefinition simDef) {
 		URI rawModelURI = URI.createURI(simDef.getSimulationModelURI());
-		File rawModelPath = new File(rawModelURI.toFileString());
-		File canonicalPath = null;
+		
+		String fileString = rawModelURI.toFileString();
+		if(fileString == null) {
+			fileString = simDef.getIbexModelURI().replace("file:", "");
+			fileString = fileString.replace("platform:", "");
+			fileString = fileString.replace("plugin:", "");
+			new File(fileString);
+		}
+		File rawModelPath = new File(fileString);
+		
+		String canonicalPath = null;
 		try {
-			canonicalPath = rawModelPath.getCanonicalFile();
+			File cFile = rawModelPath.getCanonicalFile();
+			if(cFile.exists())
+				canonicalPath = cFile.getCanonicalPath();
 		} catch (IOException e) {}
 		
-		if(canonicalPath != null && canonicalPath.exists()) {
-			return loadSimulationModel(rawModelURI);
+		if(canonicalPath != null) {
+			return loadSimulationModel(URI.createFileURI(canonicalPath));
 		}else {
 			String absolutePath = simulationInstancesFolder+"/"+rawModelURI.lastSegment();
 			return loadSimulationModel(URI.createFileURI(absolutePath));
 		}
+	}
+	
+	public IBeXModel loadIBeXModel(SimDefinition simDef) {
+		URI rawModelURI = URI.createURI(simDef.getIbexModelURI());
+		
+		String fileString = rawModelURI.toFileString();
+		if(fileString == null) {
+			fileString = simDef.getIbexModelURI().replace("file:", "");
+			fileString = fileString.replace("platform:", "");
+			fileString = fileString.replace("plugin:", "");
+			new File(fileString);
+		} 
+		File rawModelPath = new File(fileString);
+		
+		String canonicalPath = null;
+		try {
+			File cFile = rawModelPath.getCanonicalFile();
+			if(cFile.exists())
+				canonicalPath = cFile.getCanonicalPath();
+		} catch (IOException e) {}
+		
+		if(canonicalPath != null ) {
+			return loadIBeXModel(URI.createFileURI(canonicalPath));
+		}else {
+			String absolutePath = projectPath+"/"+rawModelURI.path();
+			return loadIBeXModel(URI.createFileURI(absolutePath));
+		}
+	}
+	
+	public IBeXModel loadIBeXModel(URI uri) {
+		IBeXPatternModelPackage.eINSTANCE.getClass();
+		
+		Resource model = null;
+		try {
+			model = PersistenceUtils.loadResource(uri);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		if(model.getContents().isEmpty())
+			return null;
+		
+		if(!(model.getContents().get(0) instanceof IBeXModel))
+			return null;
+		
+		if(ibexModelCache.containsKey(uri)) {
+			unloadIBeXModel(uri);
+		}
+		
+		ibexModelCache.put(uri, model);
+		return (IBeXModel)model.getContents().get(0);
 	}
 	
 	public boolean saveSimulationModel(SimDefinition simDef, Resource simModel) {
@@ -143,6 +214,11 @@ public abstract class PersistenceManager {
 	public void unloadSimulationModel(URI uri) {
 		simulationModelCache.get(uri).unload();
 		simulationModelCache.remove(uri);
+	}
+	
+	public void unloadIBeXModel(URI uri) {
+		ibexModelCache.get(uri).unload();
+		ibexModelCache.remove(uri);
 	}
 	
 	private void classLoader() {

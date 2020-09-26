@@ -14,7 +14,7 @@ public class IBeXDemoclesGT extends IBeXGT {
 	public void init() {
 		apiWrapper = IBeXApiWrapper.getInstance();
 		if(!apiWrapper.isInitialized()) {
-			apiWrapper.initDemoclesWrapper(simulationDefinition, fqApiPackageName);
+			apiWrapper.initDemoclesWrapper(ibexModel, fqApiPackageName);
 			try {
 				apiWrapper.initEngine(simulationModel);
 			} catch (Exception e) {

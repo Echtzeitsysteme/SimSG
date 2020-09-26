@@ -2,20 +2,21 @@ package org.simsg.core.simulation.module;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.AbstractMap.SimpleEntry;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.ecore.EcorePackage;
+import org.emoflon.ibex.gt.arithmetic.IBeXArithmeticCalculatorHelper;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXArithmeticValue;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXDistributionType;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPatternModelFactory;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXRule;
 import org.simsg.core.gt.GraphTransformationEngine;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.pm.match.SimSGMatch;
 import org.simsg.core.pmc.PatternMatchingController;
 import org.simsg.core.simulation.Event;
 import org.simsg.core.simulation.Simulation;
-
-import SimulationDefinition.RuleAnnotation;
-import SimulationDefinition.StochasticRate;
 
 public class StochasticSimulation extends Simulation {
 	
@@ -32,35 +33,37 @@ public class StochasticSimulation extends Simulation {
 	@Override
 	public void initialize() {
 		super.initialize();
-		for(RuleAnnotation annotation : simulationDefinition.getRuleAnnotations()) {
-			if(annotation instanceof StochasticRate) {
-				StochasticRate rate = (StochasticRate) annotation;
-				staticRuleRates.put(rate.getGTRule().getName(), rate.getRate());
-				ruleProbabilities.put(rate.getGTRule().getName(), 0.0);
-			}
+		for(IBeXRule rule : ibexModel.getRuleSet().getRules().stream()
+				.filter(rule ->rule.getProbability() != null)
+				.filter(rule -> rule.getProbability().getDistribution().getType() == IBeXDistributionType.STATIC)
+				.collect(Collectors.toList())) {
+			//This step will fail spectacularly if someone tries to use dynamically calculated values! -> only static values or static arithm. expressions allowed!
+			IBeXArithmeticValue val = IBeXPatternModelFactory.eINSTANCE.createIBeXArithmeticValue();
+			val.setExpression(rule.getProbability().getDistribution().getMean());
+			staticRuleRates.put(rule.getName(), (Double)IBeXArithmeticCalculatorHelper.getValue(null, val, null, EcorePackage.Literals.EDOUBLE));
+			ruleProbabilities.put(rule.getName(), 0.0);
 		}
 	}
 	
 	@Override
 	public void initializeClocked() {
 		super.initializeClocked();
-		for(RuleAnnotation annotation : simulationDefinition.getRuleAnnotations()) {
-			if(annotation instanceof StochasticRate) {
-				StochasticRate rate = (StochasticRate) annotation;
-				staticRuleRates.put(rate.getGTRule().getName(), rate.getRate());
-				ruleProbabilities.put(rate.getGTRule().getName(), 0.0);
-			}
+		for(IBeXRule rule : ibexModel.getRuleSet().getRules().stream()
+				.filter(rule ->rule.getProbability() != null)
+				.filter(rule -> rule.getProbability().getDistribution().getType() == IBeXDistributionType.STATIC)
+				.collect(Collectors.toList())) {
+			//This step will fail spectacularly if someone tries to use dynamically calculated values! -> only static values or static arithm. expressions allowed!
+			IBeXArithmeticValue val = IBeXPatternModelFactory.eINSTANCE.createIBeXArithmeticValue();
+			val.setExpression(rule.getProbability().getDistribution().getMean());
+			staticRuleRates.put(rule.getName(), (Double)IBeXArithmeticCalculatorHelper.getValue(null, val, null, EcorePackage.Literals.EDOUBLE));
+			ruleProbabilities.put(rule.getName(), 0.0);
 		}
 	}
 	
 	private void updateProbabilities() {
 		systemActivity = 0;
-//		Map<String, Integer> matchCounts = staticRuleRates.keySet().parallelStream()
-//				.map(rule -> new SimpleEntry<String, Integer>(rule, state.getMatchCount(rule)))
-//						.collect(Collectors.toMap(entry->entry.getKey(), entry->entry.getValue()));
 		for(String rule : staticRuleRates.keySet()) {
 			double p = state.getMatchCount(rule)*staticRuleRates.get(rule);
-//			double p = matchCounts.get(rule)*staticRuleRates.get(rule);
 			ruleProbabilities.replace(rule, p);
 			systemActivity+=p;
 		}

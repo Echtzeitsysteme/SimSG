@@ -14,7 +14,7 @@ public class IBeXHiPEGT extends IBeXGT {
 	public void init() {
 		apiWrapper = IBeXApiWrapper.getInstance();
 		if(!apiWrapper.isInitialized()) {
-			apiWrapper.initHiPEWrapper(simulationDefinition, fqApiPackageName);
+			apiWrapper.initHiPEWrapper(ibexModel, fqApiPackageName);
 			try {
 				apiWrapper.initEngine(simulationModel);
 			} catch (Exception e) {
