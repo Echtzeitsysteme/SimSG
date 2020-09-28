@@ -2,6 +2,7 @@ package org.simsg.core.pmc;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -89,6 +90,16 @@ public class IBeXPMC extends PatternMatchingController {
 	@Override
 	public SimSGMatch getMatchAt(String patternName, int idx) {
 		return (SimSGMatch)getMatches(patternName).toArray()[idx];
+	}
+
+	@Override
+	public Optional<Double> getStaticProbability(String ruleName) {
+		return engine.getStaticProbability(ruleName);
+	}
+
+	@Override
+	public Optional<Double> getDynamicProbability(SimSGMatch match) {
+		return engine.getDynamicProbability(match);
 	}
 
 }

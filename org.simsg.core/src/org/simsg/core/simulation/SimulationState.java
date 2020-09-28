@@ -1,5 +1,6 @@
 package org.simsg.core.simulation;
 
+import java.util.Optional;
 import java.util.PriorityQueue;
 
 import org.eclipse.emf.ecore.resource.Resource;
@@ -71,6 +72,14 @@ public class SimulationState {
 	
 	public SimSGMatch getRandomMatch(String ruleName) {
 		return pmc.getRandomMatch(ruleName);
+	}
+	
+	public Optional<Double> getStaticProbability(String ruleName) {
+		return pmc.getStaticProbability(ruleName);
+	}
+	
+	public Optional<Double> getDynamicProbability(SimSGMatch match) {
+		return pmc.getDynamicProbability(match);
 	}
 	
 	public void incrementIterations() {

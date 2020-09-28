@@ -11,6 +11,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.emoflon.ibex.gt.api.GraphTransformationApp;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXRule;
 import org.simsg.core.gt.GraphTransformationEngine;
 import org.simsg.core.gt.IBeXDemoclesGT;
@@ -21,8 +22,7 @@ import org.simsg.core.gt.RuleParameterConfiguration;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.persistence.SimplePersistenceManager;
 import org.simsg.core.pm.engine.PatternMatchingEngine;
-import org.simsg.core.pm.ibex.IBeXDemoclesEngine;
-import org.simsg.core.pm.ibex.IBeXHiPEEngine;
+import org.simsg.core.pm.ibex.IBeXEngine;
 import org.simsg.core.pmc.IBeXPMC;
 import org.simsg.core.pmc.PatternMatchingController;
 import org.simsg.core.simulation.condition.PatternTerminationCondition;
@@ -135,15 +135,9 @@ public class SimulationConfigurator {
 		};
 	}
 	
-	public void setIBeXDemoclesAsEngine(final String fqApiPackageName) {
+	public void setIBeXAsEngine(final Supplier<GraphTransformationApp<?>> appConstructor) {
 		engineConstructor = () -> {
-			return new IBeXDemoclesEngine(fqApiPackageName);
-		};
-	}
-	
-	public void setIBeXHiPEAsEngine(final String fqApiPackageName) {
-		engineConstructor = () -> {
-			return new IBeXHiPEEngine(fqApiPackageName);
+			return new IBeXEngine(appConstructor);
 		};
 	}
 	

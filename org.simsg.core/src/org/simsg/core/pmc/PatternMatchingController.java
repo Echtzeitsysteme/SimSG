@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.resource.Resource;
@@ -80,5 +81,9 @@ public abstract class PatternMatchingController{
 	public Resource getSimulationModel() {
 		return simulationModel;
 	}
+
+	public abstract Optional<Double> getStaticProbability(String ruleName);
+
+	public abstract Optional<Double> getDynamicProbability(SimSGMatch match);
 	
 }

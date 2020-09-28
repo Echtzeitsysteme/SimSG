@@ -5,33 +5,46 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
+import java.util.Optional;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.emoflon.ibex.gt.api.GraphTransformationAPI;
-import org.emoflon.ibex.gt.api.GraphTransformationMatch;
+import org.emoflon.ibex.gt.api.GraphTransformationApp;
 import org.emoflon.ibex.gt.api.GraphTransformationPattern;
+import org.emoflon.ibex.gt.api.GraphTransformationRule;
 import org.simsg.core.pm.engine.PatternMatchingEngine;
 import org.simsg.core.pm.match.SimSGMatch;
 import org.simsg.core.utils.IBeXApiWrapper;
 
-public abstract class IBeXEngine extends PatternMatchingEngine {
+public class IBeXEngine extends PatternMatchingEngine {
 	
 	protected IBeXApiWrapper apiWrapper;
 	protected GraphTransformationAPI api;
 	
 	protected Map<String, GraphTransformationPattern<?,?>> matcher;
-//	protected Map<String, Collection<SimSGMatch>> matches = new HashMap<>();
+	protected GraphTransformationApp<?> app;
 	
-	protected final String fqApiPackageName;
+	public IBeXEngine(final Supplier<GraphTransformationApp<?>> appConstructor) {
+		this.app = appConstructor.get();
+	}
 	
-	protected IBeXEngine(final String fqApiPackageName) {
-		this.fqApiPackageName = fqApiPackageName;
+	@Override
+	public void initPatterns() {}
+
+	@Override
+	public void initEngine() {
+		app.registerMetaModels();
+		app.getModel().getResources().add(simulationModel);
+		api = app.initAPI();
+		
+		matcher = new HashMap<>();
+		api.getAllPatterns().forEach((name, pattern) -> matcher.put(name, pattern.get()));
+		updateAllMatches();
 	}
 
 	@Override
 	public Collection<SimSGMatch> getMatches(String patternName) {
-//		return matches.get(patternName);
 		if(!matcher.containsKey(patternName))
 			return new HashSet<>();
 		
@@ -44,7 +57,6 @@ public abstract class IBeXEngine extends PatternMatchingEngine {
 		Map<String, Collection<SimSGMatch>> matches = Collections.synchronizedMap(new HashMap<>());
 		matcher.keySet().parallelStream().forEach(pattern -> matches.put(pattern, getMatches(pattern)));
 		return matches;
-//		return matches;
 	}
 	
 	@Override
@@ -73,29 +85,11 @@ public abstract class IBeXEngine extends PatternMatchingEngine {
 	@Override
 	public void updateMatchesInternal(String patternName) {
 		api.updateMatches();
-//		GraphTransformationPattern<?,?> m = matcher.get(patternName);
-//		@SuppressWarnings("unchecked")
-//		Collection<GraphTransformationMatch<?,?>> ibexMatches = (Collection<GraphTransformationMatch<?, ?>>) m.findMatches();
-//		Collection<SimSGMatch> iMatches = new HashSet<SimSGMatch>();
-//		matches.put(patternName, iMatches);
-//		for(GraphTransformationMatch<?,?> match : ibexMatches) {
-//			iMatches.add(new IBeXMatch(match));
-//		}
 	}
 
 	@Override
 	public void updateAllMatchesInternal() {
 		api.updateMatches();
-//		for(String patternName : matcher.keySet()) {
-//			GraphTransformationPattern<?,?> m = matcher.get(patternName);
-//			@SuppressWarnings("unchecked")
-//			Collection<GraphTransformationMatch<?,?>> ibexMatches = (Collection<GraphTransformationMatch<?, ?>>) m.findMatches();
-//			Collection<SimSGMatch> iMatches = new HashSet<SimSGMatch>();
-//			matches.put(patternName, iMatches);
-//			for(GraphTransformationMatch<?,?> match : ibexMatches) {
-//				iMatches.add(new IBeXMatch(match));
-//			}
-//		}
 	}
 
 	@Override
@@ -103,6 +97,28 @@ public abstract class IBeXEngine extends PatternMatchingEngine {
 //		TODO: This needs to be fixed -> important for external conditions!
 //		Set<SimSGMatch> mSet = (Set<SimSGMatch>)matches.get(match.getPatternName());
 //		mSet.remove(match);
+	}
+
+	@Override
+	public Optional<Double> getStaticProbability(String ruleName) {
+		if(matcher.get(ruleName) instanceof GraphTransformationRule<?,?>) {
+			GraphTransformationRule<?,?> rule = (GraphTransformationRule<?,?>) matcher.get(ruleName);
+			if(rule.getProbability().isPresent()) {
+				return Optional.of(rule.getProbability().get().getProbability());
+			}
+		}
+		return Optional.empty();
+	}
+
+	@Override
+	public Optional<Double> getDynamicProbability(SimSGMatch match) {
+		if(matcher.get(match.getPatternName()) instanceof GraphTransformationRule<?,?>) {
+			GraphTransformationRule<?,?> rule = (GraphTransformationRule<?,?>) matcher.get(match.getPatternName());
+			if(rule.getProbability().isPresent()) {
+				return Optional.of(rule.getProbability().get().getProbabilityGeneric(match.asGtMatch()));
+			}
+		}
+		return Optional.empty();
 	}
 
 }
