@@ -57,4 +57,9 @@ public class IBeXMatch extends SimSGMatch {
 		return ibexMatch.isEqual(other);
 	}
 
+	@Override
+	public Collection<Object> getObjects() {
+		return ibexMatch.getObjects();
+	}
+
 }

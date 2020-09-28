@@ -49,4 +49,9 @@ public class SimSGMatchImpl extends SimSGMatch {
 		return false;
 	}
 
+	@Override
+	public Collection<Object> getObjects() {
+		return null;
+	}
+
 }
