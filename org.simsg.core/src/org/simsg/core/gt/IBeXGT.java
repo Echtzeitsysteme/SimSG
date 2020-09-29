@@ -1,40 +1,43 @@
 package org.simsg.core.gt;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.Map;
 
+import org.emoflon.ibex.gt.api.GraphTransformationAPI;
+import org.emoflon.ibex.gt.api.GraphTransformationPattern;
 import org.emoflon.ibex.gt.api.GraphTransformationRule;
 import org.simsg.core.pm.match.SimSGMatch;
-import org.simsg.core.utils.IBeXApiWrapper;
 
-public abstract class IBeXGT extends GraphTransformationEngine {
+public class IBeXGT extends GraphTransformationEngine {
 	
-	protected IBeXApiWrapper apiWrapper;
+	protected boolean initialized = false;
+	protected GraphTransformationAPI api;
 	protected Map<String, GraphTransformationRule<?,?>> rules;
-	protected Method ruleApplicationMethod;
-	
-	protected final String fqApiPackageName;
-	
-	protected IBeXGT(final String fqApiPackageName) {
-		this.fqApiPackageName = fqApiPackageName;
-	}
 
+	public void setApiAndInit(final GraphTransformationAPI api) {
+		this.api = api;
+		init();
+	}
+	
+	@Override
+	public void init() {
+		if(initialized)
+			return;
+		
+		rules = new HashMap<>();
+		api.getAllPatterns().forEach((name, pattern) -> {
+			GraphTransformationPattern<?,?> gtPattern = pattern.get();
+			if(gtPattern instanceof GraphTransformationRule<?,?>) {
+				rules.put(name, (GraphTransformationRule<?,?>)gtPattern);
+			}
+		});
+		
+		initialized = true;
+	}
 
 	@Override
 	protected void applyRule(SimSGMatch match) {
-		try {
-			ruleApplicationMethod.invoke(rules.get(match.getPatternName()), match.asGtMatch());
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		rules.get(match.getPatternName()).applyGeneric(match.asGtMatch());
 	}
 	
 }

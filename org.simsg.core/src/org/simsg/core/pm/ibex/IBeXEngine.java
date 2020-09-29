@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Supplier;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import org.emoflon.ibex.gt.api.GraphTransformationAPI;
@@ -15,18 +15,17 @@ import org.emoflon.ibex.gt.api.GraphTransformationPattern;
 import org.emoflon.ibex.gt.api.GraphTransformationRule;
 import org.simsg.core.pm.engine.PatternMatchingEngine;
 import org.simsg.core.pm.match.SimSGMatch;
-import org.simsg.core.utils.IBeXApiWrapper;
 
 public class IBeXEngine extends PatternMatchingEngine {
 	
-	protected IBeXApiWrapper apiWrapper;
 	protected GraphTransformationAPI api;
-	
+	protected Consumer<GraphTransformationAPI> gtInit;
 	protected Map<String, GraphTransformationPattern<?,?>> matcher;
 	protected GraphTransformationApp<?> app;
 	
-	public IBeXEngine(final Supplier<GraphTransformationApp<?>> appConstructor) {
-		this.app = appConstructor.get();
+	public IBeXEngine(final GraphTransformationApp<?> app, final Consumer<GraphTransformationAPI> gtInit) {
+		this.app = app;
+		this.gtInit = gtInit;
 	}
 	
 	@Override
@@ -37,6 +36,7 @@ public class IBeXEngine extends PatternMatchingEngine {
 		app.registerMetaModels();
 		app.getModel().getResources().add(simulationModel);
 		api = app.initAPI();
+		gtInit.accept(api);
 		
 		matcher = new HashMap<>();
 		api.getAllPatterns().forEach((name, pattern) -> matcher.put(name, pattern.get()));
@@ -119,6 +119,10 @@ public class IBeXEngine extends PatternMatchingEngine {
 			}
 		}
 		return Optional.empty();
+	}
+	
+	public GraphTransformationAPI getApi() {
+		return api;
 	}
 
 }

@@ -33,15 +33,11 @@ public class «classPrefix»SimSGApi extends SimSGAPI{
 	}
 			
 	public void configureForHiPE() {
-		configurator.setIBeXPMC();
-		configurator.setIBeXGT();
-		configurator.setIBeXEngine(getApp(«createEMoflonAppName(apiPackage, "HiPE")»));
+		configurator.configureForIBeX(apps.get("«createEMoflonAppName(apiPackage, "HiPE")»"));
 	}
 			
 	public void configureForDemocles() {
-		configurator.setIBeXPMC();
-		configurator.setIBeXGT();
-		configurator.setIBeXEngine(getApp(«createEMoflonAppName(apiPackage, "Democles")»));
+		configurator.configureForIBeX(apps.get("«createEMoflonAppName(apiPackage, "Democles")»"));
 	}	
 				
 	public void configureStochasticSimulation() {
@@ -63,8 +59,8 @@ public class «classPrefix»SimSGApi extends SimSGAPI{
 	@Override
 	public void initAppsMap() {
 		apps = new HashMap<>();
-		apps.put(«createEMoflonAppName(apiPackage, "HiPE")», () -> return new «createEMoflonAppName(apiPackage, "HiPE")»());
-		apps.put(«createEMoflonAppName(apiPackage, "Democles")», () -> return new «createEMoflonAppName(apiPackage, "Democles")»());
+		apps.put("«createEMoflonAppName(apiPackage, "HiPE")»", () -> new «createEMoflonAppName(apiPackage, "HiPE")»());
+		apps.put("«createEMoflonAppName(apiPackage, "Democles")»", () -> new «createEMoflonAppName(apiPackage, "Democles")»());
 	}
 			
 	@Override
