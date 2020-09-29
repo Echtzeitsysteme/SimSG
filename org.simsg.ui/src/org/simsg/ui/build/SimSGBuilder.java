@@ -114,12 +114,14 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 		if(cleanBuild) {
 			cleanBuild = false;
 			logger.info("Auto-Building: "+project.getName()+" auto build disabled -> initiate full build manually.");
+			refreshWorkspace();
 			return null;
 		}
 		
 		if(kind == CLEAN_BUILD) {
 			logger.info("Clean: "+project.getName());
 			cleanBuild = true;
+			refreshWorkspace();
 			return null;
 		}
 		
@@ -128,7 +130,7 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 
 		if (kind == FULL_BUILD || kind == CLEAN_BUILD) {
 			fullBuild(project, monitor);
-			project.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_ONE, new NullProgressMonitor());
+			refreshWorkspace();
 		}
 		subMon.worked(1);
 
@@ -179,6 +181,15 @@ public class SimSGBuilder extends IncrementalProjectBuilder {
 		
 		updateManifest(project, this::processManifestForPackage);
 		subMon.worked(3);
+	}
+	
+	protected void refreshWorkspace() {
+		try {
+			project.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
+		} catch (CoreException e) {
+			e.printStackTrace();
+			return;
+		}
 	}
 	
 	protected void buildFromGT(final SubMonitor monitor) throws CoreException {

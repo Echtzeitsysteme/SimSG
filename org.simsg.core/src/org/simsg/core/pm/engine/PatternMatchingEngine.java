@@ -3,6 +3,7 @@ package org.simsg.core.pm.engine;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXModel;
@@ -106,5 +107,9 @@ public abstract class PatternMatchingEngine {
 	}
 	
 	abstract public void disposeEngine();
+
+	public abstract Optional<Double> getStaticProbability(String ruleName);
+
+	public abstract Optional<Double> getDynamicProbability(SimSGMatch match);
 	
 }

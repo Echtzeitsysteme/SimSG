@@ -9,15 +9,12 @@ import java.util.Random;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.ecore.EcorePackage;
-import org.emoflon.ibex.gt.arithmetic.IBeXArithmeticCalculatorHelper;
-import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXArithmeticValue;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXDistributionType;
-import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPatternModelFactory;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXRule;
 import org.simsg.core.gt.GraphTransformationEngine;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.pmc.PatternMatchingController;
+import org.simsg.core.simulation.BackendContainer;
 import org.simsg.core.simulation.Event;
 import org.simsg.core.simulation.Simulation;
 
@@ -29,6 +26,10 @@ public class SimpleSimulation extends Simulation {
 	private Map<String, Double> staticRuleRates = new HashMap<>();
 	
 	private Random random = new Random();
+	
+	public SimpleSimulation(String modelName, final BackendContainer backend) {
+		super(modelName, backend);
+	}
 	
 	public SimpleSimulation(String modelName, PersistenceManager persistence, PatternMatchingController pmc, GraphTransformationEngine gt) {
 		super(modelName, persistence, pmc, gt);
@@ -49,10 +50,7 @@ public class SimpleSimulation extends Simulation {
 				.filter(rule ->rule.getProbability() != null)
 				.filter(rule -> rule.getProbability().getDistribution().getType() == IBeXDistributionType.STATIC)
 				.collect(Collectors.toList())) {
-			//This step will fail spectacularly if someone tries to use dynamically calculated values! -> only static values or static arithm. expressions allowed!
-			IBeXArithmeticValue val = IBeXPatternModelFactory.eINSTANCE.createIBeXArithmeticValue();
-			val.setExpression(rule.getProbability().getDistribution().getMean());
-			staticRuleRates.put(rule.getName(), (Double)IBeXArithmeticCalculatorHelper.getValue(null, val, null, EcorePackage.Literals.EDOUBLE));
+			staticRuleRates.put(rule.getName(), state.getStaticProbability(rule.getName()).get());
 		}
 	}
 	
@@ -63,10 +61,7 @@ public class SimpleSimulation extends Simulation {
 				.filter(rule ->rule.getProbability() != null)
 				.filter(rule -> rule.getProbability().getDistribution().getType() == IBeXDistributionType.STATIC)
 				.collect(Collectors.toList())) {
-			//This step will fail spectacularly if someone tries to use dynamically calculated values! -> only static values or static arithm. expressions allowed!
-			IBeXArithmeticValue val = IBeXPatternModelFactory.eINSTANCE.createIBeXArithmeticValue();
-			val.setExpression(rule.getProbability().getDistribution().getMean());
-			staticRuleRates.put(rule.getName(), (Double)IBeXArithmeticCalculatorHelper.getValue(null, val, null, EcorePackage.Literals.EDOUBLE));
+			staticRuleRates.put(rule.getName(), state.getStaticProbability(rule.getName()).get());
 		}
 	}
 	

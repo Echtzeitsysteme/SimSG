@@ -4,6 +4,7 @@ import org.eclipse.core.resources.IFile
 import java.io.ByteArrayInputStream
 import java.nio.charset.StandardCharsets
 import org.emoflon.ibex.gt.codegen.EClassifiersManager
+import org.eclipse.emf.common.util.URI
 
 class SimSGAPIBuilder {
 	static def buildAPI(IFile path, String apiPackage, String classPrefix, EClassifiersManager ecManager) {
@@ -13,9 +14,12 @@ class SimSGAPIBuilder {
 	static def String generateAPICode(String apiPackage, String classPrefix, EClassifiersManager ecManager) {
 		return '''package «apiPackage»;
 import org.simsg.core.simulation.SimSGAPI;
+import java.util.HashMap;
 «FOR importClass : ecManager.getImportsForPackages.sortBy[it.toLowerCase]»
 import «importClass»;
 «ENDFOR»
+import «createEMoflonFQNAppName(apiPackage, "HiPE")»;
+import «createEMoflonFQNAppName(apiPackage, "Democles")»;
 		
 public class «classPrefix»SimSGApi extends SimSGAPI{
 			
@@ -29,27 +33,11 @@ public class «classPrefix»SimSGApi extends SimSGAPI{
 	}
 			
 	public void configureForHiPE() {
-		configurator.setIBeXPMC();
-		configurator.setIBeXHiPEGT("«apiPackage»");
-		configurator.setIBeXHiPEAsEngine("«apiPackage»");
+		configurator.configureForIBeX(apps.get("«createEMoflonAppName(apiPackage, "HiPE")»"));
 	}
 			
 	public void configureForDemocles() {
-		configurator.setIBeXPMC();
-		configurator.setIBeXDemoclesGT("«apiPackage»");
-		configurator.setIBeXDemoclesAsEngine("«apiPackage»");
-	}
-			
-	public void configureForHiPE(final String externalApiPackage) {
-		configurator.setIBeXPMC();
-		configurator.setIBeXHiPEGT(externalApiPackage);
-		configurator.setIBeXHiPEAsEngine(externalApiPackage);
-	}
-			
-	public void configureForDemocles(final String externalApiPackage) {
-		configurator.setIBeXPMC();
-		configurator.setIBeXDemoclesGT(externalApiPackage);
-		configurator.setIBeXDemoclesAsEngine(externalApiPackage);
+		configurator.configureForIBeX(apps.get("«createEMoflonAppName(apiPackage, "Democles")»"));
 	}	
 				
 	public void configureStochasticSimulation() {
@@ -66,6 +54,13 @@ public class «classPrefix»SimSGApi extends SimSGAPI{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public void initAppsMap() {
+		apps = new HashMap<>();
+		apps.put("«createEMoflonAppName(apiPackage, "HiPE")»", () -> new «createEMoflonAppName(apiPackage, "HiPE")»());
+		apps.put("«createEMoflonAppName(apiPackage, "Democles")»", () -> new «createEMoflonAppName(apiPackage, "Democles")»());
 	}
 			
 	@Override
@@ -88,5 +83,17 @@ public class «classPrefix»SimSGApi extends SimSGAPI{
 		} else {
 			file.create(contentStream, true, null)
 		}
+	}
+	
+	private static def createEMoflonAppName(String apiPackage, String engineName) {
+		val uri = URI.createFileURI(apiPackage.replace(".", "/")).trimSegments(1)
+		val packageName = uri.lastSegment().substring(0,1).toUpperCase() + uri.lastSegment().substring(1, uri.lastSegment().length())
+		return '''«packageName»«engineName»App'''
+	}
+	
+	private static def createEMoflonFQNAppName(String apiPackage, String engineName) {
+		val uri = URI.createFileURI(apiPackage.replace(".", "/")).trimSegments(1)
+		val packageName = uri.lastSegment().substring(0,1).toUpperCase() + uri.lastSegment().substring(1, uri.lastSegment().length())
+		return '''«apiPackage».«packageName»«engineName»App'''
 	}
 }

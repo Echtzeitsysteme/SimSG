@@ -11,18 +11,17 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.emoflon.ibex.gt.api.GraphTransformationApp;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXRule;
 import org.simsg.core.gt.GraphTransformationEngine;
-import org.simsg.core.gt.IBeXDemoclesGT;
-import org.simsg.core.gt.IBeXHiPEGT;
+import org.simsg.core.gt.IBeXGT;
 import org.simsg.core.gt.PostApplicationAction;
 import org.simsg.core.gt.RuleApplicationCondition;
 import org.simsg.core.gt.RuleParameterConfiguration;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.persistence.SimplePersistenceManager;
 import org.simsg.core.pm.engine.PatternMatchingEngine;
-import org.simsg.core.pm.ibex.IBeXDemoclesEngine;
-import org.simsg.core.pm.ibex.IBeXHiPEEngine;
+import org.simsg.core.pm.ibex.IBeXEngine;
 import org.simsg.core.pmc.IBeXPMC;
 import org.simsg.core.pmc.PatternMatchingController;
 import org.simsg.core.simulation.condition.PatternTerminationCondition;
@@ -49,6 +48,7 @@ public class SimulationConfigurator {
 	protected Supplier<PatternMatchingEngine> engineConstructor;
 	protected Supplier<PatternMatchingController> pmcConstructor;
 	protected Supplier<GraphTransformationEngine> gtConstructor;
+	protected Supplier<BackendContainer> backendConstructor;
 	protected Supplier<Simulation> simulationConstructor;
 	
 	protected List<BiFunction<SimulationState, GraphTransformationEngine, ServiceRoutine>> serviceConstructors = new LinkedList<>();
@@ -135,18 +135,6 @@ public class SimulationConfigurator {
 		};
 	}
 	
-	public void setIBeXDemoclesAsEngine(final String fqApiPackageName) {
-		engineConstructor = () -> {
-			return new IBeXDemoclesEngine(fqApiPackageName);
-		};
-	}
-	
-	public void setIBeXHiPEAsEngine(final String fqApiPackageName) {
-		engineConstructor = () -> {
-			return new IBeXHiPEEngine(fqApiPackageName);
-		};
-	}
-	
 	public void setPMC(Class<? extends PatternMatchingController> pmcType, Object ... params) {
 		pmcConstructor = ()-> {
 			Constructor<? extends PatternMatchingController> pmcConstructor = null;
@@ -164,12 +152,6 @@ public class SimulationConfigurator {
 				e.printStackTrace();
 			}
 			return null;
-		};
-	}
-	
-	public void setIBeXPMC() {
-		pmcConstructor = () -> {
-			return new IBeXPMC();
 		};
 	}
 	
@@ -193,15 +175,22 @@ public class SimulationConfigurator {
 		};
 	}
 	
-	public void setIBeXDemoclesGT(final String fqApiPackageName) {
-		gtConstructor = () -> {
-			return new IBeXDemoclesGT(fqApiPackageName);
-		};
+	public void setBackend(final Supplier<BackendContainer> backend) {
+		this.backendConstructor = backend;
 	}
 	
-	public void setIBeXHiPEGT(final String fqApiPackageName) {
-		gtConstructor = () -> {
-			return new IBeXHiPEGT(fqApiPackageName);
+	public void configureForIBeX(final Supplier<GraphTransformationApp<?>> appConstructor) {
+		backendConstructor = () -> {
+			BackendContainer backend = new BackendContainer();
+			backend.persistence = createPersistenceManager();
+			GraphTransformationApp<?> app = appConstructor.get();
+			IBeXGT gt = new IBeXGT();
+			backend.gtEngine = gt;
+			backend.pmEngine = new IBeXEngine(app, gt::setApiAndInit);
+			backend.pmc = new IBeXPMC();
+			backend.pmc.setEngine(backend.pmEngine);
+			
+			return backend;
 		};
 	}
 	
@@ -368,10 +357,12 @@ public class SimulationConfigurator {
 	
 	public void setSimpleSimulation(boolean deterministic) throws Exception{
 		simulationConstructor = ()->{
-			if(gtConstructor == null) {
-				throw new RuntimeException("No GT has been set.");
-			}
-			SimpleSimulation sim = new SimpleSimulation(modelName, createPersistenceManager(), createPMC(), gtConstructor.get());
+			SimpleSimulation sim = null;
+			if(backendConstructor != null)
+				 sim = new SimpleSimulation(modelName, backendConstructor.get());
+			else
+				sim = new SimpleSimulation(modelName, createPersistenceManager(), createPMC(), gtConstructor.get());
+			
 			sim.useRuleRates(!deterministic);
 			sim.randomizeRuleOrder(!deterministic);
 			return sim;
@@ -379,11 +370,14 @@ public class SimulationConfigurator {
 	}
 	
 	public void setStochasticSimulation() throws Exception{
-		simulationConstructor = ()-> {	
-			if(gtConstructor == null) {
-				throw new RuntimeException("No GT has been set.");
-			}
-			return new StochasticSimulation(modelName, createPersistenceManager(), createPMC(), gtConstructor.get());
+		simulationConstructor = ()-> {
+			StochasticSimulation sim = null;
+			if(backendConstructor != null)
+				sim = new StochasticSimulation(modelName, backendConstructor.get());
+			else
+				sim = new StochasticSimulation(modelName, createPersistenceManager(), createPMC(), gtConstructor.get());
+			
+			return sim;
 		};
 	}
 	

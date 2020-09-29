@@ -58,6 +58,13 @@ public abstract class Simulation {
 	protected Map<String, Function<IBeXRule, PostApplicationAction>> ruleActions = new HashMap<>();
 	protected Map<String, Function<IBeXRule, RuleParameterConfiguration>> ruleConfigs = new HashMap<>();
 	
+	public Simulation(String modelName, BackendContainer backend) {
+		this.modelName = modelName;
+		this.persistence = backend.persistence;
+		this.pmc = backend.pmc;
+		this.gt = backend.gtEngine;
+	}
+	
 	public Simulation(String modelName, PersistenceManager persistence, PatternMatchingController pmc, GraphTransformationEngine gt) {
 		this.modelName = modelName;
 		this.persistence = persistence;
