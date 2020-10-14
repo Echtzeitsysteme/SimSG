@@ -162,7 +162,7 @@ public class SimulationDefinitionGenerator {
 	
 	private void setIBeXModelURI(URI uri) {
 		ibexModelUri = uri;
-		definition.setIbexModelURI("file:"+uri.toString());
+		definition.setIbexModelURI("file:/"+uri.toFileString());
 	}
 	
 	private void setIBeXModel() {
