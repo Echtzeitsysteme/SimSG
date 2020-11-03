@@ -112,4 +112,12 @@ public abstract class PatternMatchingEngine {
 
 	public abstract Optional<Double> getDynamicProbability(SimSGMatch match);
 	
+	public abstract void trackRuleDeltas(String ruleName);
+	
+	public abstract  void untrackRuleDeltas(String ruleName);
+	
+	public abstract  Collection<SimSGMatch> getRemovedMatches(String ruleName);
+	
+	public abstract  Collection<SimSGMatch> getAddedMatches(String ruleName);
+	
 }

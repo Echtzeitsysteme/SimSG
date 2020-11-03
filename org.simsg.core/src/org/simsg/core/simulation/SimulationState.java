@@ -1,7 +1,8 @@
 package org.simsg.core.simulation;
 
+import java.util.Collection;
 import java.util.Optional;
-import java.util.PriorityQueue;
+import java.util.TreeSet;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.simsg.core.pm.match.SimSGMatch;
@@ -12,7 +13,7 @@ import SimulationDefinition.SimDefinition;
 public class SimulationState {
 	private int iterations;
 	private double time;
-	private PriorityQueue<Event> events = new PriorityQueue<>();
+	private TreeSet<Event> events = new TreeSet<>();
 	
 	private boolean dirty = true;
 	
@@ -36,11 +37,11 @@ public class SimulationState {
 	}
 	
 	public Event popNextEvent() {
-		return events.poll();
+		return events.pollFirst();
 	}
 	
 	public Event peekNextEvent() {
-		return events.peek();
+		return events.first();
 	}
 	
 	public void clearEvents() {
@@ -80,6 +81,22 @@ public class SimulationState {
 	
 	public Optional<Double> getDynamicProbability(SimSGMatch match) {
 		return pmc.getDynamicProbability(match);
+	}
+	
+	public void trackRuleDeltas(String ruleName) {
+		
+	}
+	
+	public void untrackRuleDeltas(String ruleName) {
+		
+	}
+	
+	public Collection<SimSGMatch> getRemovedMatches(String ruleName) {
+		return null;
+	}
+	
+	public Collection<SimSGMatch> getAddedMatches(String ruleName) {
+		return null;
 	}
 	
 	public void incrementIterations() {

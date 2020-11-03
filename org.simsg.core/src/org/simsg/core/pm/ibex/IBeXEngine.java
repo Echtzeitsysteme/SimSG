@@ -6,11 +6,14 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
+import org.emoflon.ibex.common.operational.IMatch;
 import org.emoflon.ibex.gt.api.GraphTransformationAPI;
 import org.emoflon.ibex.gt.api.GraphTransformationApp;
+import org.emoflon.ibex.gt.api.GraphTransformationMatch;
 import org.emoflon.ibex.gt.api.GraphTransformationPattern;
 import org.emoflon.ibex.gt.api.GraphTransformationRule;
 import org.simsg.core.pm.engine.PatternMatchingEngine;
@@ -22,6 +25,10 @@ public class IBeXEngine extends PatternMatchingEngine {
 	protected Consumer<GraphTransformationAPI> gtInit;
 	protected Map<String, GraphTransformationPattern<?,?>> matcher;
 	protected GraphTransformationApp<?> app;
+	protected Map<String, Set<SimSGMatch>> addedMatches = new HashMap<>();
+	protected Map<String, Set<SimSGMatch>> deletedMatches = new HashMap<>();
+	protected Map<String, Consumer<GraphTransformationMatch<?,?>>> appearingSubscribers = new HashMap<>();
+	protected Map<String, Consumer<GraphTransformationMatch<?,?>>> disappearingSubscribers = new HashMap<>();
 	
 	public IBeXEngine(final GraphTransformationApp<?> app, final Consumer<GraphTransformationAPI> gtInit) {
 		this.app = app;
@@ -123,6 +130,49 @@ public class IBeXEngine extends PatternMatchingEngine {
 	
 	public GraphTransformationAPI getApi() {
 		return api;
+	}
+
+	@Override
+	public void trackRuleDeltas(String ruleName) {
+		if(matcher.get(ruleName) instanceof GraphTransformationRule<?,?>) {
+			addedMatches.put(ruleName, new HashSet<>());
+			deletedMatches.put(ruleName, new HashSet<>());
+			
+			GraphTransformationRule<?,?> rule = (GraphTransformationRule<?,?>) matcher.get(ruleName);
+			Consumer<GraphTransformationMatch<?,?>> appearing = (match) -> {
+				addedMatches.get(ruleName).add(new IBeXMatch(match));
+			};
+			
+			rule.subscribeDisappearing((match) -> {
+				deletedMatches.get(ruleName).add(new IBeXMatch(match));
+			});
+		}
+	}
+
+	@Override
+	public void untrackRuleDeltas(String ruleName) {
+		if(matcher.get(ruleName) instanceof GraphTransformationRule<?,?>) {
+			addedMatches.remove(ruleName);
+			deletedMatches.remove(ruleName);
+			
+			GraphTransformationRule<?,?> rule = (GraphTransformationRule<?,?>) matcher.get(ruleName);
+//			rule.unsubscribeAppearing(action);
+			rule.subscribeDisappearing((match) -> {
+				deletedMatches.get(ruleName).add(new IBeXMatch(match));
+			});
+		}
+	}
+
+	@Override
+	public Collection<SimSGMatch> getRemovedMatches(String ruleName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Collection<SimSGMatch> getAddedMatches(String ruleName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
