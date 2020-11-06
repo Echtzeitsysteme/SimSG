@@ -27,8 +27,8 @@ public class IBeXEngine extends PatternMatchingEngine {
 	protected GraphTransformationApp<?> app;
 	protected Map<String, Set<SimSGMatch>> addedMatches = new HashMap<>();
 	protected Map<String, Set<SimSGMatch>> deletedMatches = new HashMap<>();
-	protected Map<String, Consumer<GraphTransformationMatch<?,?>>> appearingSubscribers = new HashMap<>();
-	protected Map<String, Consumer<GraphTransformationMatch<?,?>>> disappearingSubscribers = new HashMap<>();
+	protected Map<String, Consumer<IMatch>> appearingSubscribers = new HashMap<>();
+	protected Map<String, Consumer<IMatch>> disappearingSubscribers = new HashMap<>();
 	
 	public IBeXEngine(final GraphTransformationApp<?> app, final Consumer<GraphTransformationAPI> gtInit) {
 		this.app = app;
@@ -135,44 +135,65 @@ public class IBeXEngine extends PatternMatchingEngine {
 	@Override
 	public void trackRuleDeltas(String ruleName) {
 		if(matcher.get(ruleName) instanceof GraphTransformationRule<?,?>) {
-			addedMatches.put(ruleName, new HashSet<>());
-			deletedMatches.put(ruleName, new HashSet<>());
-			
 			GraphTransformationRule<?,?> rule = (GraphTransformationRule<?,?>) matcher.get(ruleName);
-			Consumer<GraphTransformationMatch<?,?>> appearing = (match) -> {
-				addedMatches.get(ruleName).add(new IBeXMatch(match));
+			Consumer<IMatch> appearing = (match) -> {
+				Set<SimSGMatch> matches = addedMatches.get(ruleName);
+				if(matches == null) {
+					matches = new HashSet<>();
+					addedMatches.put(ruleName, matches);
+				}
+				
+				matches.add(new IBeXMatch(rule.convertMatch(match)));
 			};
+			appearingSubscribers.put(ruleName, appearing);
+			api.getInterpreter().subscribeAppearing(ruleName, appearing);
 			
-			rule.subscribeDisappearing((match) -> {
-				deletedMatches.get(ruleName).add(new IBeXMatch(match));
-			});
+			Consumer<IMatch> disappearing = (match) -> {
+				Set<SimSGMatch> matches = deletedMatches.get(ruleName);
+				if(matches == null) {
+					matches = new HashSet<>();
+					deletedMatches.put(ruleName, matches);
+				}
+				
+				matches.add(new IBeXMatch(rule.convertMatch(match)));
+			};
+			disappearingSubscribers.put(ruleName, disappearing);
+			api.getInterpreter().subscribeDisappearing(ruleName, disappearing);
 		}
 	}
 
 	@Override
 	public void untrackRuleDeltas(String ruleName) {
-		if(matcher.get(ruleName) instanceof GraphTransformationRule<?,?>) {
+		if(matcher.get(ruleName) instanceof GraphTransformationRule<?,?>) {	
+			GraphTransformationRule<?,?> rule = (GraphTransformationRule<?,?>) matcher.get(ruleName);
+			api.getInterpreter().unsubscibeAppearing(rule.getPatternName(), appearingSubscribers.get(rule.getPatternName()));
+			api.getInterpreter().unsubscibeDisappearing(rule.getPatternName(), disappearingSubscribers.get(rule.getPatternName()));
+			
+			appearingSubscribers.remove(ruleName);
+			disappearingSubscribers.remove(ruleName);	
 			addedMatches.remove(ruleName);
 			deletedMatches.remove(ruleName);
-			
-			GraphTransformationRule<?,?> rule = (GraphTransformationRule<?,?>) matcher.get(ruleName);
-//			rule.unsubscribeAppearing(action);
-			rule.subscribeDisappearing((match) -> {
-				deletedMatches.get(ruleName).add(new IBeXMatch(match));
-			});
 		}
 	}
 
 	@Override
-	public Collection<SimSGMatch> getRemovedMatches(String ruleName) {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<SimSGMatch> pollRemovedMatches(String ruleName) {
+		Set<SimSGMatch> matches = deletedMatches.get(ruleName);
+		if(matches == null)
+			return new HashSet<>();
+		
+		deletedMatches.remove(ruleName);
+		return matches;
 	}
 
 	@Override
-	public Collection<SimSGMatch> getAddedMatches(String ruleName) {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<SimSGMatch> pollAddedMatches(String ruleName) {
+		Set<SimSGMatch> matches = addedMatches.get(ruleName);
+		if(matches == null)
+			return new HashSet<>();
+		
+		addedMatches.remove(ruleName);
+		return matches;
 	}
 
 }

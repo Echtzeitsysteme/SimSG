@@ -116,8 +116,8 @@ public abstract class PatternMatchingEngine {
 	
 	public abstract  void untrackRuleDeltas(String ruleName);
 	
-	public abstract  Collection<SimSGMatch> getRemovedMatches(String ruleName);
+	public abstract  Collection<SimSGMatch> pollRemovedMatches(String ruleName);
 	
-	public abstract  Collection<SimSGMatch> getAddedMatches(String ruleName);
+	public abstract  Collection<SimSGMatch> pollAddedMatches(String ruleName);
 	
 }

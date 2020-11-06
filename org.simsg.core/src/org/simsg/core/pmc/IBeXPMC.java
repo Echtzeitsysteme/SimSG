@@ -101,5 +101,25 @@ public class IBeXPMC extends PatternMatchingController {
 	public Optional<Double> getDynamicProbability(SimSGMatch match) {
 		return engine.getDynamicProbability(match);
 	}
+	
+	@Override
+	public void trackRuleDeltas(String ruleName) {
+		engine.trackRuleDeltas(ruleName);
+	}
+	
+	@Override
+	public void untrackRuleDeltas(String ruleName) {
+		engine.untrackRuleDeltas(ruleName);
+	}
+	
+	@Override
+	public Collection<SimSGMatch> pollRemovedMatches(String ruleName) {
+		return engine.pollRemovedMatches(ruleName);
+	}
+	
+	@Override
+	public Collection<SimSGMatch> pollAddedMatches(String ruleName) {
+		return engine.pollAddedMatches(ruleName);
+	}
 
 }

@@ -52,6 +52,10 @@ public class SimulationState {
 		return events.isEmpty();
 	}
 	
+	public boolean removeEvent(Event event) {
+		return events.remove(event);
+	}
+	
 	public void enqueueEvent(Event event) {
 		events.add(event);
 	}
@@ -84,19 +88,19 @@ public class SimulationState {
 	}
 	
 	public void trackRuleDeltas(String ruleName) {
-		
+		pmc.trackRuleDeltas(ruleName);
 	}
 	
 	public void untrackRuleDeltas(String ruleName) {
-		
+		pmc.untrackRuleDeltas(ruleName);
 	}
 	
-	public Collection<SimSGMatch> getRemovedMatches(String ruleName) {
-		return null;
+	public Collection<SimSGMatch> pollRemovedMatches(String ruleName) {
+		return pmc.pollRemovedMatches(ruleName);
 	}
 	
-	public Collection<SimSGMatch> getAddedMatches(String ruleName) {
-		return null;
+	public Collection<SimSGMatch> pollAddedMatches(String ruleName) {
+		return pmc.pollAddedMatches(ruleName);
 	}
 	
 	public void incrementIterations() {

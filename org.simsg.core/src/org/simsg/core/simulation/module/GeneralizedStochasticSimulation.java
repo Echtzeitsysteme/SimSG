@@ -1,8 +1,14 @@
 package org.simsg.core.simulation.module;
 
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXDistributionType;
@@ -18,8 +24,8 @@ import org.simsg.core.simulation.Simulation;
 public class GeneralizedStochasticSimulation extends Simulation {
 	
 	private Random random = new Random();
-	private Map<String, Double> staticRuleRates = new LinkedHashMap<String, Double>();
-	private Map<String, Double> ruleProbabilities = new LinkedHashMap<String, Double>();
+	private Map<String, IBeXRule> stochasticRules = new LinkedHashMap<>();
+	private Map<SimSGMatch, Event> match2event = new HashMap<>();
 	private double systemActivity = 0;
 	private double timeStep = 0;
 	
@@ -36,10 +42,9 @@ public class GeneralizedStochasticSimulation extends Simulation {
 		super.initialize();
 		for(IBeXRule rule : ibexModel.getRuleSet().getRules().stream()
 				.filter(rule ->rule.getProbability() != null)
-				.filter(rule -> rule.getProbability().getDistribution().getType() == IBeXDistributionType.STATIC)
 				.collect(Collectors.toList())) {
-			staticRuleRates.put(rule.getName(), state.getStaticProbability(rule.getName()).get());
-			ruleProbabilities.put(rule.getName(), 0.0);
+			stochasticRules.put(rule.getName(), rule);
+			state.trackRuleDeltas(rule.getName());
 		}
 	}
 	
@@ -48,42 +53,10 @@ public class GeneralizedStochasticSimulation extends Simulation {
 		super.initializeClocked();
 		for(IBeXRule rule : ibexModel.getRuleSet().getRules().stream()
 				.filter(rule ->rule.getProbability() != null)
-				.filter(rule -> rule.getProbability().getDistribution().getType() == IBeXDistributionType.STATIC)
 				.collect(Collectors.toList())) {
-			staticRuleRates.put(rule.getName(), state.getStaticProbability(rule.getName()).get());
-			ruleProbabilities.put(rule.getName(), 0.0);
+			stochasticRules.put(rule.getName(), rule);
+			state.trackRuleDeltas(rule.getName());
 		}
-	}
-	
-	private void updateProbabilities() {
-		systemActivity = 0;
-		for(String rule : staticRuleRates.keySet()) {
-			double p = state.getMatchCount(rule)*staticRuleRates.get(rule);
-			ruleProbabilities.replace(rule, p);
-			systemActivity+=p;
-		}
-		
-	}
-	
-	private void updateTimeStep() {
-		timeStep = (1.0/systemActivity)*Math.log(1.0/random.nextDouble());
-	}
-	
-	private String pickRule() {
-		double interval = random.nextDouble()*systemActivity;
-		double p = 0;
-		for(String rule : ruleProbabilities.keySet()) {
-			boolean greaterThanPrevious = p < interval;
-			
-			p += ruleProbabilities.get(rule);
-			
-			if(p >=interval && greaterThanPrevious) {
-				return rule;
-			}
-			
-		}
-		
-		return null;
 	}
 
 	@Override
@@ -92,17 +65,35 @@ public class GeneralizedStochasticSimulation extends Simulation {
 			state.refreshState();
 		}
 		
-		if(!state.noEvents()) {
-			state.clearEvents();
+		removeInvalidEvents();
+		addNewEvents();
+		
+	}
+	
+	protected void removeInvalidEvents() {
+		for(String ruleName : stochasticRules.keySet()) {
+			Collection<SimSGMatch> removals = state.pollRemovedMatches(ruleName);
+			for(SimSGMatch match : removals) {
+				Event event = match2event.remove(match);
+				if(event != null) {
+					state.removeEvent(event);
+					match2event.remove(match);
+				}
+			}
 		}
 		
-		updateProbabilities();
-		updateTimeStep();
-		String currentRule = pickRule();
-		
-		if(currentRule != null) {
-			state.enqueueEvent(new Event(state.getTime()+timeStep, currentRule));
+	}
+	
+	protected void addNewEvents() {
+		for(String ruleName : stochasticRules.keySet()) {
+			Collection<SimSGMatch> additons = state.pollAddedMatches(ruleName);
+			for(SimSGMatch match : additons) {
+				// TODO: Calc time correctly!
+				Event event = match2event.put(match, new Event(0.0, ruleName, match));
+				state.enqueueEvent(event);
+			}
 		}
+		
 	}
 
 	@Override
