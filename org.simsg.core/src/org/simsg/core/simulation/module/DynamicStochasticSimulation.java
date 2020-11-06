@@ -3,7 +3,10 @@ package org.simsg.core.simulation.module;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXRule;
@@ -15,17 +18,21 @@ import org.simsg.core.simulation.BackendContainer;
 import org.simsg.core.simulation.Event;
 import org.simsg.core.simulation.Simulation;
 
-//TODO: Test this implementation
-public class GeneralizedStochasticSimulation extends Simulation {
+public class DynamicStochasticSimulation extends Simulation {
 	
+	private Random random = new Random();
+	private double systemActivity = 0;
+	private double timeStep = 0;
+	
+	private Set<DynamicEvent> activeEvents = new LinkedHashSet<>();
 	private Map<String, IBeXRule> stochasticRules = new LinkedHashMap<>();
-	private Map<SimSGMatch, Event> match2event = new HashMap<>();
+	private Map<SimSGMatch, DynamicEvent> match2event = new HashMap<>();
 	
-	public GeneralizedStochasticSimulation(String modelName, final BackendContainer backend) {
+	public DynamicStochasticSimulation(String modelName, final BackendContainer backend) {
 		super(modelName, backend);
 	}
 	
-	public GeneralizedStochasticSimulation(String modelName, PersistenceManager persistence, PatternMatchingController pmc, GraphTransformationEngine gt) {
+	public DynamicStochasticSimulation(String modelName, PersistenceManager persistence, PatternMatchingController pmc, GraphTransformationEngine gt) {
 		super(modelName, persistence, pmc, gt);
 	}
 	
@@ -50,6 +57,25 @@ public class GeneralizedStochasticSimulation extends Simulation {
 			state.trackRuleDeltas(rule.getName());
 		}
 	}
+	
+	private void updateTimeStep() {
+		timeStep = (1.0/systemActivity)*Math.log(1.0/random.nextDouble());
+	}
+	
+	private DynamicEvent pickEvent() {
+		double probingProbability = random.nextDouble()*systemActivity;
+		double lowerBound = 0.0;
+		for(DynamicEvent event : activeEvents) {
+			double upperBound = event.probability + lowerBound;
+			if(probingProbability < upperBound && probingProbability >= lowerBound) {
+				return event;
+			} else {
+				lowerBound = upperBound;
+			}
+		}
+		
+		return null;
+	}
 
 	@Override
 	protected void updateEvents() {
@@ -57,19 +83,32 @@ public class GeneralizedStochasticSimulation extends Simulation {
 			state.refreshState();
 		}
 		
+		if(!state.noEvents()) {
+			state.clearEvents();
+		}
+		
 		removeInvalidEvents();
 		addNewEvents();
+		updateTimeStep();
 		
+		
+		DynamicEvent event = pickEvent();
+		
+		if(event != null) {
+			event.time = state.getTime()+timeStep;
+			state.enqueueEvent(event);
+		}
 	}
 	
 	protected void removeInvalidEvents() {
 		for(String ruleName : stochasticRules.keySet()) {
 			Collection<SimSGMatch> removals = state.pollRemovedMatches(ruleName);
 			for(SimSGMatch match : removals) {
-				Event event = match2event.remove(match);
+				DynamicEvent event = match2event.remove(match);
 				if(event != null) {
-					state.removeEvent(event);
+					activeEvents.remove(event);
 					match2event.remove(match);
+					systemActivity -= event.probability;
 				}
 			}
 		}
@@ -80,8 +119,9 @@ public class GeneralizedStochasticSimulation extends Simulation {
 		for(String ruleName : stochasticRules.keySet()) {
 			Collection<SimSGMatch> additons = state.pollAddedMatches(ruleName);
 			for(SimSGMatch match : additons) {
-				Event event = match2event.put(match, new Event(state.getTime()+state.getDynamicProbability(match).get(), ruleName, match));
-				state.enqueueEvent(event);
+				DynamicEvent event = match2event.put(match, new DynamicEvent(state.getDynamicProbability(match).get(), 0.0, ruleName, match));
+				activeEvents.add(event);
+				systemActivity += event.probability;
 			}
 		}
 	}
@@ -89,6 +129,22 @@ public class GeneralizedStochasticSimulation extends Simulation {
 	@Override
 	protected void processEvent(Event event) {
 		performGT(event.match);
+	}
+
+}
+
+class DynamicEvent extends Event {
+	
+	final public double probability;
+
+	public DynamicEvent(double probability, double time, String rule) {
+		super(time, rule);
+		this.probability = probability;
+	}
+	
+	public DynamicEvent(double probability, double time, final String rule, final SimSGMatch match) {
+		super(time, rule, match);
+		this.probability = probability;
 	}
 
 }
