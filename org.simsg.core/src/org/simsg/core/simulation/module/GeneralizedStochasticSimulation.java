@@ -21,13 +21,12 @@ import org.simsg.core.simulation.BackendContainer;
 import org.simsg.core.simulation.Event;
 import org.simsg.core.simulation.Simulation;
 
+//TODO: Test this implementation
 public class GeneralizedStochasticSimulation extends Simulation {
 	
 	private Random random = new Random();
 	private Map<String, IBeXRule> stochasticRules = new LinkedHashMap<>();
 	private Map<SimSGMatch, Event> match2event = new HashMap<>();
-	private double systemActivity = 0;
-	private double timeStep = 0;
 	
 	public GeneralizedStochasticSimulation(String modelName, final BackendContainer backend) {
 		super(modelName, backend);
@@ -88,12 +87,10 @@ public class GeneralizedStochasticSimulation extends Simulation {
 		for(String ruleName : stochasticRules.keySet()) {
 			Collection<SimSGMatch> additons = state.pollAddedMatches(ruleName);
 			for(SimSGMatch match : additons) {
-				// TODO: Calc time correctly!
-				Event event = match2event.put(match, new Event(0.0, ruleName, match));
+				Event event = match2event.put(match, new Event(state.getTime()+state.getDynamicProbability(match).get(), ruleName, match));
 				state.enqueueEvent(event);
 			}
 		}
-		
 	}
 
 	@Override
