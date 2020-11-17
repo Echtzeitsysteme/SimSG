@@ -37,7 +37,7 @@ public class IBeXGT extends GraphTransformationEngine {
 
 	@Override
 	protected void applyRule(SimSGMatch match) {
-		rules.get(match.getPatternName()).applyGeneric(match.asGtMatch());
+		rules.get(match.getPatternName()).applyGeneric(match.asGtMatch(), false);
 	}
 	
 }

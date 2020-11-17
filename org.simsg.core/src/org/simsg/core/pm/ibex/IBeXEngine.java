@@ -49,7 +49,7 @@ public class IBeXEngine extends PatternMatchingEngine {
 			return new HashSet<>();
 		
 		GraphTransformationPattern<?,?> m = matcher.get(patternName);
-		return m.findMatches().parallelStream().map(iMatch -> new IBeXMatch(iMatch)).collect(Collectors.toSet());
+		return m.findMatches(false).parallelStream().map(iMatch -> new IBeXMatch(iMatch)).collect(Collectors.toSet());
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public class IBeXEngine extends PatternMatchingEngine {
 			return 0;
 		
 		GraphTransformationPattern<?,?> m = matcher.get(patternName);
-		return (int) m.countMatches();
+		return (int) m.countMatches(false);
 	}
 	
 	@Override
@@ -74,7 +74,7 @@ public class IBeXEngine extends PatternMatchingEngine {
 			return null;
 		
 		GraphTransformationPattern<?,?> m = matcher.get(patternName);
-		return new IBeXMatch(m.findAnyMatch().get());
+		return new IBeXMatch(m.findAnyMatch(false).get());
 	}
 
 	@Override
