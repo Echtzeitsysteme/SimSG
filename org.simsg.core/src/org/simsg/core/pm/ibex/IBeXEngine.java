@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.emoflon.ibex.gt.api.GraphTransformationAPI;
@@ -21,10 +22,11 @@ public class IBeXEngine extends PatternMatchingEngine {
 	protected GraphTransformationAPI api;
 	protected Consumer<GraphTransformationAPI> gtInit;
 	protected Map<String, GraphTransformationPattern<?,?>> matcher;
+	protected Supplier<GraphTransformationApp<?>> appConstructor;
 	protected GraphTransformationApp<?> app;
 	
-	public IBeXEngine(final GraphTransformationApp<?> app, final Consumer<GraphTransformationAPI> gtInit) {
-		this.app = app;
+	public IBeXEngine(final Supplier<GraphTransformationApp<?>> appConstructor, final Consumer<GraphTransformationAPI> gtInit) {
+		this.appConstructor = appConstructor;
 		this.gtInit = gtInit;
 	}
 	
@@ -33,6 +35,7 @@ public class IBeXEngine extends PatternMatchingEngine {
 
 	@Override
 	public void initEngine() {
+		app = appConstructor.get();
 		app.registerMetaModels();
 		app.getModel().getResources().add(simulationModel);
 		api = app.initAPI();

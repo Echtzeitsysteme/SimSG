@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 import org.eclipse.emf.ecore.resource.Resource;
@@ -31,7 +32,7 @@ import org.simsg.core.utils.Runtimer;
 import SimulationDefinition.SimDefinition;
 
 
-public abstract class Simulation {
+public abstract class Simulation implements SimulationProcess{
 	
 	protected String modelName;
 	protected PersistenceManager persistence;
@@ -57,6 +58,9 @@ public abstract class Simulation {
 	protected Map<String, Function<IBeXRule, RuleApplicationCondition>> ruleConditions = new HashMap<>();
 	protected Map<String, Function<IBeXRule, PostApplicationAction>> ruleActions = new HashMap<>();
 	protected Map<String, Function<IBeXRule, RuleParameterConfiguration>> ruleConfigs = new HashMap<>();
+	
+	private boolean paused = false;
+	private Consumer<Simulation> notifier;
 	
 	public Simulation(String modelName, BackendContainer backend) {
 		this.modelName = modelName;
@@ -104,6 +108,7 @@ public abstract class Simulation {
 		ruleActions.putAll(constructors);
 	}
 	
+	@Override
 	public void initialize() {
 		initModel();
 		initPMC();	
@@ -244,8 +249,10 @@ public abstract class Simulation {
 		});
 	}
 	
-	public void run() {
-		while(!checkTerminationConditions()) {
+	@Override
+	public synchronized void run() {
+		System.out.println("Start..");
+		while(!paused && !checkTerminationConditions()) {
 			if(state.isDirty()) {
 				if(state.refreshState()) {
 					System.out.println("Something went wrong.. Exit.");
@@ -259,6 +266,11 @@ public abstract class Simulation {
 			processNextEvent();
 			updateStatistics();
 			state.incrementIterations();
+		}
+		System.out.println("Stop.");
+		if(notifier != null) {
+			System.out.println("Notify..");
+			notifier.accept(this);
 		}
 	}
 	
@@ -342,16 +354,19 @@ public abstract class Simulation {
 		System.out.println(sb);
 	}
 	
-	public void finish() {
+	@Override
+	public synchronized void finish() {
 		pmc.discardEngine();
 	}
 	
+	@Override
 	public void displayResults() {
 		for(SimulationStatistics statistic : statistics) {
 			statistic.display();
 		}
 	}
 	
+	@Override
 	public void displayVisualizations() {
 		for(SimulationVisualization visualization : visualizations) {
 			visualization.display();
@@ -361,5 +376,25 @@ public abstract class Simulation {
 	@Override
 	public String toString() {
 		return "Simulation-object: "+this.hashCode()+"/ Model: "+modelName+" / MatchingEngine: " + pmc.getEngineType() + " / PMC: " + pmc.getPMCType();
+	}
+
+	@Override
+	public synchronized void pause() {
+		paused = true;
+	}
+
+	@Override
+	public synchronized void unpause() {
+		paused = false;
+		run();
+	}
+	
+	public void notifyTermination(Consumer<Simulation> notifier) {
+		this.notifier = notifier;
+	}
+
+	@Override
+	public synchronized boolean isTerminated() {
+		return checkTerminationConditions();
 	}
 }

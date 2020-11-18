@@ -2,6 +2,7 @@ package org.simsg.core.simulation;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,6 +10,8 @@ import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.emoflon.ibex.gt.api.GraphTransformationApp;
@@ -183,10 +186,9 @@ public class SimulationConfigurator {
 		backendConstructor = () -> {
 			BackendContainer backend = new BackendContainer();
 			backend.persistence = createPersistenceManager();
-			GraphTransformationApp<?> app = appConstructor.get();
 			IBeXGT gt = new IBeXGT();
 			backend.gtEngine = gt;
-			backend.pmEngine = new IBeXEngine(app, gt::setApiAndInit);
+			backend.pmEngine = new IBeXEngine(appConstructor, gt::setApiAndInit);
 			backend.pmc = new IBeXPMC();
 			backend.pmc.setEngine(backend.pmEngine);
 			
@@ -419,6 +421,14 @@ public class SimulationConfigurator {
 		simulation.addPostApplicationActions(ruleActions);
 		
 		return simulation;
+	}
+	
+	public SimulationContainer createSimulations(int numOfSimulations) {
+		Collection<Simulation> simulations = IntStream.range(0, numOfSimulations).parallel()
+				.mapToObj(num -> createSimulation())
+				.collect(Collectors.toSet());
+		
+		return new SimulationContainer(simulations);
 	}
 	
 	private PersistenceManager createPersistenceManager() {
