@@ -12,6 +12,7 @@ import java.util.function.Function;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXModel;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXRule;
+import org.jfree.data.statistics.Statistics;
 import org.simsg.core.gt.GraphTransformationEngine;
 import org.simsg.core.gt.PostApplicationAction;
 import org.simsg.core.gt.RuleApplicationCondition;
@@ -352,6 +353,10 @@ public abstract class Simulation implements SimulationProcess{
 		}
 		sb.append("*******   END   *****\n");
 		System.out.println(sb);
+	}
+	
+	public synchronized Collection<SimulationStatistics> getSimulationStatistics() {
+		return statistics;
 	}
 	
 	@Override

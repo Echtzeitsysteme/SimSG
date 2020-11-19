@@ -7,9 +7,9 @@ import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXContextPattern;
 
 
 public class Observable extends SimulationDefinition.impl.ObservationImpl implements SimulationDefinition.PatternObservation{
-	private String name;
-	private Map<Double, Integer> measurements = new LinkedHashMap<>();
-	private IBeXContextPattern pattern;
+	protected String name;
+	protected Map<Double, Integer> measurements = new LinkedHashMap<>();
+	protected IBeXContextPattern pattern;
 	
 	public Observable(String name) {
 		this.name = name;
@@ -28,6 +28,7 @@ public class Observable extends SimulationDefinition.impl.ObservationImpl implem
 		return measurements;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}

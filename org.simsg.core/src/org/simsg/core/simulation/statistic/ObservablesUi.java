@@ -7,6 +7,7 @@ import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.data.xy.XYSeries;
 
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
@@ -29,9 +30,15 @@ public class ObservablesUi extends ApplicationFrame {
 		
 		observables.forEach((name, obs) -> {
 			XYSeries series = new XYSeries(name);
-			obs.getMeasurements().forEach((time, value) -> {
-				series.add(time, value);
-			});
+			int i = 0;
+			for(Entry<Double, Integer> entry : obs.getMeasurements().entrySet()) {
+				series.add(i, entry.getValue());
+				i++;
+			}
+			//TODO: dirty fix
+//			obs.getMeasurements().forEach((time, value) -> {
+//				series.add(time, value);
+//			});
 			seriesCollection.addSeries(series);
 		});
 		

@@ -26,6 +26,13 @@ public class Observables extends SimulationStatistics {
 		}
 	}
 	
+	public Observables(Collection<Observable> observations) {
+		super(null);
+		for(Observable obs : observations) {
+			observables.put(obs.getName(), obs);
+		}
+	}
+	
 	public void addObservation(SimulationDefinition.Observation observation) {
 		if(observation instanceof SimulationDefinition.PatternObservation) {
 			SimulationDefinition.PatternObservation pObs = (SimulationDefinition.PatternObservation)observation;
@@ -37,6 +44,10 @@ public class Observables extends SimulationStatistics {
 		Observable obs = new Observable(pattern.getName());
 		obs.setPattern(pattern);
 		observables.put(obs.getName(), obs);
+	}
+	
+	public Map<String, Observable> getObservables() {
+		return observables;
 	}
 	
 	@Override
