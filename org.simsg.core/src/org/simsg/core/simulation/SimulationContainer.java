@@ -28,6 +28,7 @@ public class SimulationContainer implements SimulationProcess{
 	
 	private Thread currentThread = Thread.currentThread();
 	private boolean asleep = false;
+	private int thread = 0;
 	
 	public SimulationContainer(Collection<Simulation> simulations) {
 		this.simulations.addAll(simulations);
@@ -37,39 +38,39 @@ public class SimulationContainer implements SimulationProcess{
 	@Override
 	public void initialize() {
 //		TODO: Currently parallelization is disabled since HiPE can not be run in multiple instances
-//		pendingSimulations.addAll(simulations.parallelStream()
-//				.map(sim -> {
-//					sim.initialize();
-//					sim.notifyTermination(this::terminationNotifier);
-//					return sim;
-//				})
-//				.collect(Collectors.toSet()));
+		pendingSimulations.addAll(simulations.parallelStream()
+				.map(sim -> {
+					sim.initialize();
+					sim.notifyTermination(this::terminationNotifier);
+					return sim;
+				})
+				.collect(Collectors.toSet()));
 	}
 
 	@Override
 	public void run() {
 //		TODO: Currently parallelization is disabled since HiPE can not be run in multiple instances
-//		activeSimulations.addAll(pendingSimulations.parallelStream()
-//				.map(sim -> {
-//					Thread thread = new Thread(sim);
-//					activeThreads.add(thread);
-//					thread.start();
+		activeSimulations.addAll(pendingSimulations.parallelStream()
+				.map(sim -> {
+					Thread thread = new Thread(sim);
+					activeThreads.add(thread);
+					thread.start();
 //					sim.run();
-//					return sim;
-//				})
-//				.collect(Collectors.toSet()));
-//		pendingSimulations.clear();
-//		
-//		while(!isTerminated()) {
-//			try {
-//				asleep = true;
-//				Thread.sleep(1000);
-//			} catch (InterruptedException e) {
-//				asleep = false;
-//			}
-//		}
-//		asleep = false;
-//		
+					return sim;
+				})
+				.collect(Collectors.toSet()));
+		pendingSimulations.clear();
+		
+		while(!isTerminated()) {
+			try {
+				asleep = true;
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				asleep = false;
+			}
+		}
+		asleep = false;
+		
 //		activeThreads.parallelStream().forEach(thread -> {
 //			try {
 //				thread.join();
@@ -80,8 +81,8 @@ public class SimulationContainer implements SimulationProcess{
 //		});
 		
 		simulations.forEach(sim -> {
-			sim.initialize();
-			sim.run();
+//			sim.initialize();
+//			sim.run();
 			
 			Observables obs = sim.getSimulationStatistics().stream()
 				.filter(stat -> (stat instanceof Observables))
@@ -92,14 +93,15 @@ public class SimulationContainer implements SimulationProcess{
 				observables.put(sim, obs);
 			}
 			sim.finish();
-			completedSimulations.add(sim);
+//			completedSimulations.add(sim);
 		});
 	}
 	
 	private synchronized void terminationNotifier(final Simulation simulation) {
 		activeSimulations.remove(simulation);
 		completedSimulations.add(simulation);
-		
+		thread++;
+		System.out.println("Thread: "+thread);
 		if(asleep)
 			currentThread.interrupt();
 	}

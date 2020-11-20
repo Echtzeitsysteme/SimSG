@@ -23,7 +23,7 @@ import org.json.simple.parser.ParseException;
 
 public class PersistenceUtils {
 	
-	public static List<String> getAllFilesInFolder(String folder) {
+	public synchronized static List<String> getAllFilesInFolder(String folder) {
 		List<String> fileNames = new LinkedList<String>();
 		File dir = new File(folder);
 		if(dir.exists()) {
@@ -36,19 +36,19 @@ public class PersistenceUtils {
 		return fileNames;
 	}
 	
-	public static void createFolderIfNotExist(String path) {
+	public synchronized static void createFolderIfNotExist(String path) {
 		File dir = new File(path);
 		if(dir.isDirectory() && dir.exists())
 			return;
 		dir.mkdir();
 	}
 	
-	public static long getLastModified(String path) {
+	public synchronized static long getLastModified(String path) {
 		File file = new File(path);
 		return file.lastModified();
 	}
 	
-	public static void deleteFile(String path) {
+	public synchronized static void deleteFile(String path) {
 		File file = new File(path);
 		if(file.isDirectory()) {
 			try {
@@ -69,7 +69,7 @@ public class PersistenceUtils {
 		}
 	}
 	
-	public static JSONObject loadJSONFile(String path) {
+	public synchronized static JSONObject loadJSONFile(String path) {
 		JSONParser parser = new JSONParser();
 		try {
 			return (JSONObject) parser.parse(new FileReader(path));
@@ -80,7 +80,7 @@ public class PersistenceUtils {
 		return null;
 	}
 	
-	public static void saveJSONFile(String path, JSONObject obj) {
+	public synchronized static void saveJSONFile(String path, JSONObject obj) {
 		try (FileWriter file = new FileWriter(path)) {
             file.write(obj.toJSONString());
             file.flush();
@@ -90,7 +90,7 @@ public class PersistenceUtils {
         }
 	}
 	
-	public static Resource loadResource(String path) throws Exception {
+	public synchronized static Resource loadResource(String path) throws Exception {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		ResourceSet rs = new ResourceSetImpl();
 		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
@@ -103,7 +103,7 @@ public class PersistenceUtils {
 		return modelResource;
 	}
 	
-	public static Resource loadResource(URI uri) throws Exception {
+	public synchronized static Resource loadResource(URI uri) throws Exception {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		ResourceSet rs = new ResourceSetImpl();
 		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
@@ -115,7 +115,7 @@ public class PersistenceUtils {
 		return modelResource;
 	}
 	
-	public static Resource loadEcoreResource(URI uri) throws Exception {
+	public synchronized static Resource loadEcoreResource(URI uri) throws Exception {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 		ResourceSet rs = new ResourceSetImpl();
 		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
@@ -127,7 +127,7 @@ public class PersistenceUtils {
 		return modelResource;
 	}
 	
-	public static void saveModel(Resource simModel, String path) throws Exception {
+	public synchronized static void saveModel(Resource simModel, String path) throws Exception {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("SimulationModel", new XMIResourceFactoryImpl());
 		ResourceSet rs = new ResourceSetImpl();
 		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());

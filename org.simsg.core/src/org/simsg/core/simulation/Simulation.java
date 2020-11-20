@@ -260,12 +260,13 @@ public abstract class Simulation implements SimulationProcess{
 					break;
 				}
 			}
+			updateStatistics();
+			
 			updateEvents();
 			if(performServiceInterval()) {
 				updateEvents();
 			}
 			processNextEvent();
-			updateStatistics();
 			state.incrementIterations();
 		}
 		System.out.println("Stop.");
