@@ -15,7 +15,6 @@ import org.simsg.core.simulation.statistic.MultiObservable;
 import org.simsg.core.simulation.statistic.Observable;
 import org.simsg.core.simulation.statistic.Observables;
 
-import SimulationDefinition.Observation;
 
 public class SimulationContainer implements SimulationProcess{
 	private Set<Simulation> simulations = Collections.synchronizedSet(new HashSet<>());
@@ -24,7 +23,7 @@ public class SimulationContainer implements SimulationProcess{
 	private Set<Simulation> pendingSimulations = Collections.synchronizedSet(new HashSet<>());
 	private Set<Simulation> completedSimulations = Collections.synchronizedSet(new HashSet<>());
 	
-	private Map<Simulation, Observables> observables = Collections.synchronizedMap(new HashMap());
+	private Map<Simulation, Observables> observables = Collections.synchronizedMap(new HashMap<>());
 	
 	private Thread currentThread = Thread.currentThread();
 	private boolean asleep = false;
@@ -71,37 +70,24 @@ public class SimulationContainer implements SimulationProcess{
 		}
 		asleep = false;
 		
-//		activeThreads.parallelStream().forEach(thread -> {
-//			try {
-//				thread.join();
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		});
-		
-		simulations.forEach(sim -> {
-//			sim.initialize();
-//			sim.run();
-			
-			Observables obs = sim.getSimulationStatistics().stream()
+	}
+	
+	private synchronized void terminationNotifier(final Simulation simulation) {
+		Observables obs = simulation.getSimulationStatistics().stream()
 				.filter(stat -> (stat instanceof Observables))
 				.map(stat -> (Observables) stat)
 				.findFirst()
 				.orElseGet(null);
 			if(obs != null) {
-				observables.put(sim, obs);
+				observables.put(simulation, obs);
 			}
-			sim.finish();
-//			completedSimulations.add(sim);
-		});
-	}
-	
-	private synchronized void terminationNotifier(final Simulation simulation) {
+			simulation.finish();	
+		
 		activeSimulations.remove(simulation);
 		completedSimulations.add(simulation);
+		
 		thread++;
-		System.out.println("Thread: "+thread);
+		System.out.println("Finished Simulation: #"+thread);
 		if(asleep)
 			currentThread.interrupt();
 	}
