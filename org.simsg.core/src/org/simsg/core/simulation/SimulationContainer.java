@@ -36,7 +36,6 @@ public class SimulationContainer implements SimulationProcess{
 
 	@Override
 	public void initialize() {
-//		TODO: Currently parallelization is disabled since HiPE can not be run in multiple instances
 		pendingSimulations.addAll(simulations.parallelStream()
 				.map(sim -> {
 					sim.initialize();
@@ -48,13 +47,11 @@ public class SimulationContainer implements SimulationProcess{
 
 	@Override
 	public void run() {
-//		TODO: Currently parallelization is disabled since HiPE can not be run in multiple instances
 		activeSimulations.addAll(pendingSimulations.parallelStream()
 				.map(sim -> {
 					Thread thread = new Thread(sim);
 					activeThreads.add(thread);
 					thread.start();
-//					sim.run();
 					return sim;
 				})
 				.collect(Collectors.toSet()));
@@ -94,36 +91,45 @@ public class SimulationContainer implements SimulationProcess{
 
 	@Override
 	public void pause() {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public void unpause() {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public void finish() {
-//		simulations.parallelStream().forEach(sim -> sim.finish());
+		throw new UnsupportedOperationException();
+	}
+	
+	public void displayAllResults() {
+		for(Observables obs : observables.values()) {
+			obs.display();
+		}
+	}
+	
+	public void displayResult(int index) {
+		Observables obj = (Observables)observables.values().toArray()[index];
+		obj.display();
 	}
 
 	@Override
 	public void displayResults() {
-		Map<IBeXContextPattern, Collection<Observable>> pattern2observable = new LinkedHashMap<>();
+		Map<String, Collection<Observable>> pattern2observable = new LinkedHashMap<>();
 		observables.values().forEach(obs -> {
 			obs.getObservables().values().forEach( o -> {
-				Collection<Observable> oList = pattern2observable.get(o.getPattern());
+				Collection<Observable> oList = pattern2observable.get(o.getName());
 				if(oList == null) {
 					oList = new LinkedList<>();
-					pattern2observable.put(o.getPattern(), oList);
+					pattern2observable.put(o.getName(), oList);
 				}
 				oList.add(o);
 			});
 		});
 		
-		Map<IBeXContextPattern, Observable> pattern2multi = Collections.synchronizedMap(new LinkedHashMap<>());
+		Map<String, Observable> pattern2multi = Collections.synchronizedMap(new LinkedHashMap<>());
 		pattern2observable.keySet().parallelStream().forEach(pattern -> {
 			MultiObservable mObs = new MultiObservable(pattern, pattern2observable.get(pattern));
 			pattern2multi.put(pattern, mObs);
@@ -137,8 +143,7 @@ public class SimulationContainer implements SimulationProcess{
 
 	@Override
 	public void displayVisualizations() {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException();
 	}
 
 	@Override

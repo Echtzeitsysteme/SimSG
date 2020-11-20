@@ -30,15 +30,15 @@ public class ObservablesUi extends ApplicationFrame {
 		
 		observables.forEach((name, obs) -> {
 			XYSeries series = new XYSeries(name);
-			int i = 0;
-			for(Entry<Double, Integer> entry : obs.getMeasurements().entrySet()) {
-				series.add(i, entry.getValue());
-				i++;
-			}
+//			int i = 0;
+//			for(Entry<Double, Integer> entry : obs.getMeasurements().entrySet()) {
+//				series.add(i, entry.getValue());
+//				i++;
+//			}
 			//TODO: dirty fix
-//			obs.getMeasurements().forEach((time, value) -> {
-//				series.add(time, value);
-//			});
+			obs.getMeasurements().forEach((time, value) -> {
+				series.add(time, value);
+			});
 			seriesCollection.addSeries(series);
 		});
 		
