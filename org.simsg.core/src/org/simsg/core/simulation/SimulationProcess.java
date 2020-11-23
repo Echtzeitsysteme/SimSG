@@ -6,20 +6,26 @@ public interface SimulationProcess extends Runnable {
 	final public static int CONSOLE_LEVEL_INFO = 1;
 	final public static int CONSOLE_LEVEL_NONE = 2;
 	
-	public abstract void setConsoleInfoLevel(int level);
+	public void setConsoleInfoLevel(int level);
+	
+	public void setProcessID(long id);
+	
+	public long getProcessID();
 
-	public abstract void initialize();
+	public void initialize();
 	
-	public abstract void pause();
+	public void pause();
 	
-	public abstract void unpause();
+	public void unpause();
 	
-	public abstract boolean isTerminated();
+	public void displayResults(boolean timeOnXAxis);
 	
-	public abstract void finish();
+	public void displayVisualizations();
 	
-	public abstract void displayResults(boolean timeOnXAxis);
+	public String saveResultsToFile();
 	
-	public abstract void displayVisualizations();
+	public boolean isTerminated();
+	
+	public void finish();
 
 }

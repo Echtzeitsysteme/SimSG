@@ -59,7 +59,7 @@ public class SimulationConfigurator {
 	protected List<BiFunction<SimulationState, GraphTransformationEngine, ServiceRoutine>> serviceConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, TerminationCondition>> conditionConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, ExternalConstraint>> constraintConstructors = new LinkedList<>();
-	protected List<Function<SimulationState, SimulationStatistics>> statisticConstructors = new LinkedList<>();
+	protected List<BiFunction<SimulationState, PersistenceManager, SimulationStatistics>> statisticConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, SimulationVisualization>> visualizationConstructors = new LinkedList<>();
 	
 	protected Map<String, Function<IBeXRule, RuleApplicationCondition>> ruleConditions = new HashMap<>();
@@ -321,7 +321,7 @@ public class SimulationConfigurator {
 	}
 	
 	public void addSimulationStatistics(Class<? extends SimulationStatistics> statisticsType, Object ... params) {
-		Function<SimulationState, SimulationStatistics> simulationStatistics = (state) -> {
+		BiFunction<SimulationState, PersistenceManager, SimulationStatistics> simulationStatistics = (state, persistence) -> {
 			Constructor<? extends SimulationStatistics> statisticsConstructor = null;
 			try {
 				statisticsConstructor = statisticsType.getConstructor(concatParamTypes(parameterTypes(params), SimulationState.class));
@@ -330,7 +330,7 @@ public class SimulationConfigurator {
 			}
 			if(statisticsConstructor == null) return null;
 			try {
-				SimulationStatistics statistics = statisticsConstructor.newInstance(concatParams(params, state));
+				SimulationStatistics statistics = statisticsConstructor.newInstance(concatParams(params, state, persistence));
 				return statistics;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
@@ -342,7 +342,7 @@ public class SimulationConfigurator {
 	}
 	
 	public void addObservableStatistic() {
-		statisticConstructors.add((state)->new Observables(state));
+		statisticConstructors.add((state, persistence)->new Observables(state, persistence));
 	}
 	
 	public void addSimulationVisualization(Class<? extends SimulationVisualization> visualizationType, Object ... params) {
@@ -441,7 +441,7 @@ public class SimulationConfigurator {
 				.mapToObj(num -> createSimulation())
 				.collect(Collectors.toSet());
 		
-		SimulationContainer simContainer = new SimulationContainer(simulations);
+		SimulationContainer simContainer = new SimulationContainer(modelName, simulations, backendConstructor.get());
 		simContainer.setConsoleInfoLevel(debugLevel);
 		
 		return simContainer;

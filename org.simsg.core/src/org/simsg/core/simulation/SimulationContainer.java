@@ -14,9 +14,17 @@ import org.simsg.core.simulation.statistic.MultiObservable;
 import org.simsg.core.simulation.statistic.Observable;
 import org.simsg.core.simulation.statistic.Observables;
 
+import SimulationDefinition.SimDefinition;
+
 
 public class SimulationContainer implements SimulationProcess{
 	private int debugLevel = CONSOLE_LEVEL_NONE;
+	private long processID = Thread.currentThread().getId();
+	
+	final String modelName;
+	final protected BackendContainer backend;
+	protected SimulationState state;
+	protected SimDefinition simulationDefinition;
 	
 	private Set<Simulation> simulations = Collections.synchronizedSet(new HashSet<>());
 	private Set<Simulation> activeSimulations = Collections.synchronizedSet(new HashSet<>());
@@ -25,18 +33,29 @@ public class SimulationContainer implements SimulationProcess{
 	private Set<Simulation> completedSimulations = Collections.synchronizedSet(new HashSet<>());
 	
 	private Map<Simulation, Observables> observables = Collections.synchronizedMap(new HashMap<>());
+	private Observables stats;
 	
 	private Thread currentThread = Thread.currentThread();
 	private boolean asleep = false;
 	private int thread = 0;
 	
-	public SimulationContainer(Collection<Simulation> simulations) {
+	public SimulationContainer(final String modelName, final Collection<Simulation> simulations, final BackendContainer backend) {
+		this.modelName = modelName;
+		this.backend = backend;
+		
 		this.simulations.addAll(simulations);
 		pendingSimulations.addAll(simulations);
+		
 	}
 
 	@Override
 	public void initialize() {
+		backend.persistence.init();
+		simulationDefinition = backend.persistence.loadSimulationDefinition(modelName);
+		backend.pmc.loadModels(simulationDefinition, null, null);
+		state = new SimulationState();
+		state.setPmc(backend.pmc);
+		
 		pendingSimulations.addAll(simulations.parallelStream()
 				.map(sim -> {
 					if(debugLevel == CONSOLE_LEVEL_INFO) {
@@ -56,6 +75,7 @@ public class SimulationContainer implements SimulationProcess{
 		
 		activeSimulations.addAll(pendingSimulations.parallelStream()
 				.map(sim -> {
+					sim.setProcessID(thread++);
 					Thread thread = new Thread(sim);
 					activeThreads.add(thread);
 					thread.start();
@@ -76,6 +96,32 @@ public class SimulationContainer implements SimulationProcess{
 		
 		if(debugLevel <= SimulationProcess.CONSOLE_LEVEL_INFO)
 			System.out.println("... multi-simulation complete.");
+		
+		createStatistics();
+	}
+	
+	private void createStatistics() {
+		Map<String, Collection<Observable>> pattern2observable = new LinkedHashMap<>();
+		observables.values().forEach(obs -> {
+			obs.getObservables().values().forEach( o -> {
+				Collection<Observable> oList = pattern2observable.get(o.getName());
+				if(oList == null) {
+					oList = new LinkedList<>();
+					pattern2observable.put(o.getName(), oList);
+				}
+				oList.add(o);
+			});
+		});
+		
+		Map<String, Observable> pattern2multi = Collections.synchronizedMap(new LinkedHashMap<>());
+		pattern2observable.keySet().parallelStream().forEach(pattern -> {
+			MultiObservable mObs = new MultiObservable(pattern, pattern2observable.get(pattern));
+			pattern2multi.put(pattern, mObs);
+			mObs.updateMeasurements();
+			
+		});
+		
+		stats = new Observables(state, backend.persistence, pattern2multi.values());
 	}
 	
 	private synchronized void terminationNotifier(final Simulation simulation) {
@@ -92,9 +138,8 @@ public class SimulationContainer implements SimulationProcess{
 		activeSimulations.remove(simulation);
 		completedSimulations.add(simulation);
 		
-		thread++;
 		if(debugLevel <= SimulationProcess.CONSOLE_LEVEL_INFO)
-			System.out.println("Finished Simulation: #"+thread);
+			System.out.println("Finished Simulation: #"+simulation.getProcessID());
 		
 		if(asleep)
 			currentThread.interrupt();
@@ -128,28 +173,7 @@ public class SimulationContainer implements SimulationProcess{
 
 	@Override
 	public void displayResults(boolean timeOnXAxis) {
-		Map<String, Collection<Observable>> pattern2observable = new LinkedHashMap<>();
-		observables.values().forEach(obs -> {
-			obs.getObservables().values().forEach( o -> {
-				Collection<Observable> oList = pattern2observable.get(o.getName());
-				if(oList == null) {
-					oList = new LinkedList<>();
-					pattern2observable.put(o.getName(), oList);
-				}
-				oList.add(o);
-			});
-		});
-		
-		Map<String, Observable> pattern2multi = Collections.synchronizedMap(new LinkedHashMap<>());
-		pattern2observable.keySet().parallelStream().forEach(pattern -> {
-			MultiObservable mObs = new MultiObservable(pattern, pattern2observable.get(pattern));
-			pattern2multi.put(pattern, mObs);
-			mObs.updateMeasurements();
-			
-		});
-		
-		Observables observables = new Observables(pattern2multi.values());
-		observables.display(timeOnXAxis);
+		stats.display(timeOnXAxis);
 	}
 
 	@Override
@@ -167,4 +191,18 @@ public class SimulationContainer implements SimulationProcess{
 		debugLevel = level;
 	}
 
+	@Override
+	public long getProcessID() {
+		return processID;
+	}
+	
+	@Override
+	public void setProcessID(long id) {
+		this.processID = id;
+	}
+
+	@Override
+	public String saveResultsToFile() {
+		return stats.saveStatistics();
+	}
 }

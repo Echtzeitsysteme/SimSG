@@ -90,6 +90,16 @@ public class PersistenceUtils {
         }
 	}
 	
+	public synchronized static void saveAsFile(String path, String content) {
+		try (FileWriter file = new FileWriter(path)) {
+            file.write(content);
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
 	public synchronized static Resource loadResource(String path) throws Exception {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 		ResourceSet rs = new ResourceSetImpl();

@@ -214,6 +214,11 @@ public abstract class PersistenceManager {
 	
 	public abstract boolean saveSimulationModel(String filename, Resource simModel);
 	
+	public void saveStatistics(SimDefinition simDef, String statistics) {
+		String filename = simulationResultsFolder+"/"+simDef.getName()+".csv";
+		PersistenceUtils.saveAsFile(filename, statistics);
+	}
+	
 	public void unloadSimulationModel(URI uri) {
 		simulationModelCache.get(uri).unload();
 		simulationModelCache.remove(uri);

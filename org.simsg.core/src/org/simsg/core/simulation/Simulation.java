@@ -34,6 +34,7 @@ import SimulationDefinition.SimDefinition;
 
 public abstract class Simulation implements SimulationProcess{
 	private int debugLevel = CONSOLE_LEVEL_NONE;
+	private long processID = Thread.currentThread().getId();
 	
 	protected String modelName;
 	protected PersistenceManager persistence;
@@ -47,7 +48,7 @@ public abstract class Simulation implements SimulationProcess{
 	protected List<BiFunction<SimulationState, GraphTransformationEngine, ServiceRoutine>> serviceConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, TerminationCondition>> conditionConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, ExternalConstraint>> constraintConstructors = new LinkedList<>();
-	protected List<Function<SimulationState, SimulationStatistics>> statisticConstructors = new LinkedList<>();
+	protected List<BiFunction<SimulationState, PersistenceManager, SimulationStatistics>> statisticConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, SimulationVisualization>> visualizationConstructors = new LinkedList<>();
 	
 	protected List<ServiceRoutine> services = new LinkedList<>();
@@ -89,7 +90,7 @@ public abstract class Simulation implements SimulationProcess{
 		constraintConstructors.addAll(constructors);
 	}
 	
-	public void addSimulationStatistics(List<Function<SimulationState, SimulationStatistics>> constructors) {
+	public void addSimulationStatistics(List<BiFunction<SimulationState, PersistenceManager, SimulationStatistics>> constructors) {
 		statisticConstructors.addAll(constructors);
 	}
 	
@@ -186,12 +187,12 @@ public abstract class Simulation implements SimulationProcess{
 	}
 	
 	private void initializeStatistics() {
-		for(Function<SimulationState, SimulationStatistics> constructor : statisticConstructors) {
-			statistics.add(constructor.apply(state));
+		for(BiFunction<SimulationState, PersistenceManager, SimulationStatistics> constructor : statisticConstructors) {
+			statistics.add(constructor.apply(state, persistence));
 		}
 		
 		if(simulationDefinition.getObservations().isEmpty()) return;
-		statistics.add(new Observables(state, simulationDefinition.getObservations()));
+		statistics.add(new Observables(state, persistence, simulationDefinition.getObservations()));
 	}
 	
 	private void initializeVisualizations() {
@@ -421,5 +422,20 @@ public abstract class Simulation implements SimulationProcess{
 	@Override
 	public void setConsoleInfoLevel(int level) {
 		debugLevel = level;
+	}
+	
+	@Override
+	public long getProcessID() {
+		return processID;
+	}
+	
+	@Override
+	public void setProcessID(long id) {
+		this.processID = id;
+	}
+	
+	@Override
+	public String saveResultsToFile() {
+		return statistics.stream().map(stats -> stats.saveStatistics()).reduce("", (current, sum) -> current+sum);
 	}
 }
