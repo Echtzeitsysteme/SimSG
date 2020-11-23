@@ -1,5 +1,6 @@
 package org.simsg.core.simulation.condition;
 
+import org.simsg.core.simulation.SimulationProcess;
 import org.simsg.core.simulation.SimulationState;
 
 public class SimpleTerminationCondition extends TerminationCondition implements SimulationDefinition.SimpleTerminationCondition {
@@ -44,16 +45,21 @@ public class SimpleTerminationCondition extends TerminationCondition implements 
 			int delta = state.getIterations()-iterations;
 			if(delta >= iStep) {
 				iterations += delta;
-				System.out.println("Completed: "+ ((double)iterations/maxIterations)*100.0 + "%, "
-				+ state.getIterations() +" iterations, " + state.getTime() + " ms sim time.");
+				
+				if(debugLevel == SimulationProcess.CONSOLE_LEVEL_DEBUG) {
+					System.out.println("Completed: "+ ((double)iterations/maxIterations)*100.0 + "%, "
+							+ state.getIterations() +" iterations, " + state.getTime() + " ms sim time.");
+				}
 			}
 		}
 		if(maxElapsedTime != NO_TIME_LIMIT) {
 			double delta = state.getTime()-time;
 			if(delta >= tStep) {
 				time += delta;
-				System.out.println("Completed: "+ (time/maxElapsedTime)*100.0 + "%, "
-				+ state.getIterations() +" iterations, " + state.getTime() + " ms sim time.");
+				if(debugLevel == SimulationProcess.CONSOLE_LEVEL_DEBUG) {
+					System.out.println("Completed: "+ (time/maxElapsedTime)*100.0 + "%, "
+							+ state.getIterations() +" iterations, " + state.getTime() + " ms sim time.");
+				}
 			}
 		}
 		

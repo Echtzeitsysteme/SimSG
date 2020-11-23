@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXModel;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPatternModelPackage;
 import org.json.simple.JSONObject;
+import org.simsg.core.simulation.SimulationProcess;
 
 import SimulationDefinition.SimDefinition;
 
@@ -29,6 +30,8 @@ public abstract class PersistenceManager {
 	final public static String SYSTEM_OS_PROPERTY = "os.name";
 	final public static String SYSTEM_OS_WIN = "Windows";
 	final public static String SYSTEM_OS_OTHER = "Other";
+	
+	private int debugLevel = SimulationProcess.CONSOLE_LEVEL_NONE;
 	
 	protected String os;
 	protected String pathSeparator;
@@ -266,11 +269,15 @@ public abstract class PersistenceManager {
 			}
 			dataFolder = dataFolder.replaceFirst("%20", " ");
 			dataFolder += DATA_FOLDER+"/";
-			System.out.println("Using default model folder: "+dataFolder);
+			
+			if(debugLevel <= SimulationProcess.CONSOLE_LEVEL_DEBUG)
+				System.out.println("Using default model folder: "+dataFolder);
 		}else {
 			dataFolder = dataFolder.replaceAll("\\\\", "//");
 			dataFolder += "//";
-			System.out.println("Using user model folder: "+dataFolder);
+			
+			if(debugLevel <= SimulationProcess.CONSOLE_LEVEL_DEBUG)
+				System.out.println("Using user model folder: "+dataFolder);
 		}
 		PersistenceUtils.createFolderIfNotExist(dataFolder);
 		
@@ -315,6 +322,10 @@ public abstract class PersistenceManager {
 				simulationDefinitionPaths.put(simDef.getName(), simDef.eResource().getURI());
 				simDef.eResource().unload();
 			});
-	}	
+	}
+	
+	public void setConsoleInfoLevel(int level) {
+		debugLevel = level;
+	}
 
 }

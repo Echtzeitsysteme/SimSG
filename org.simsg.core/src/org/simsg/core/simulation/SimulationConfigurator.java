@@ -47,6 +47,8 @@ public class SimulationConfigurator {
 	private String simulationDefinitonFolder;
 	private String simulationResultsFolder;
 	
+	private int debugLevel = SimulationProcess.CONSOLE_LEVEL_NONE;
+	
 	protected Supplier<PersistenceManager> persistenceConstructor;
 	protected Supplier<PatternMatchingEngine> engineConstructor;
 	protected Supplier<PatternMatchingController> pmcConstructor;
@@ -92,6 +94,10 @@ public class SimulationConfigurator {
 		this.simulationResultsFolder = path;
 	}
 	
+	public void setConsoleInfoLevel(int level) {
+		debugLevel = level;
+	}
+	
 	public void setPersistence(Class<? extends PersistenceManager> persistenceType, Object ... params) {
 		persistenceConstructor = ()-> {
 			Constructor<? extends PersistenceManager> persistenceConstructor = null;
@@ -103,6 +109,7 @@ public class SimulationConfigurator {
 			if(persistenceConstructor == null) return null;
 			try {
 				PersistenceManager persistence = persistenceConstructor.newInstance(params);
+				persistence.setConsoleInfoLevel(debugLevel);
 				return persistence;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
@@ -114,7 +121,9 @@ public class SimulationConfigurator {
 	
 	public void setEMFPersistence() {
 		persistenceConstructor = ()-> {
-			return new SimplePersistenceManager();
+			PersistenceManager pm = new SimplePersistenceManager();
+			pm.setConsoleInfoLevel(debugLevel);
+			return pm;
 		};
 	}
 	
@@ -405,10 +414,14 @@ public class SimulationConfigurator {
 	
 	public Simulation createSimulation() {
 		Simulation simulation = simulationConstructor.get();
+		simulation.setConsoleInfoLevel(debugLevel);
 		
-		if(conditionConstructors.isEmpty()) System.out.println("Warning: No termination condition was specified. Simulation will run indefinetly.");
-		if(!constraintConstructors.isEmpty()) System.out.println("Info: Additional external constraints were specified.");
-		if(statisticConstructors.isEmpty()) System.out.println("Info: No simulation statistic modules were specified.");
+		if(debugLevel == SimulationProcess.CONSOLE_LEVEL_DEBUG) {
+			if(conditionConstructors.isEmpty()) System.out.println("Info: No external termination condition was specified. "
+					+ "Simulation will run indefinetly if no additional termination conditions have been specified.");
+			if(!constraintConstructors.isEmpty()) System.out.println("Info: Additional external constraints were specified.");
+			if(statisticConstructors.isEmpty()) System.out.println("Info: No simulation statistic modules were specified.");
+		}
 		
 		simulation.addServiceRoutines(serviceConstructors);
 		simulation.addTerminationConditions(conditionConstructors);
@@ -428,7 +441,10 @@ public class SimulationConfigurator {
 				.mapToObj(num -> createSimulation())
 				.collect(Collectors.toSet());
 		
-		return new SimulationContainer(simulations);
+		SimulationContainer simContainer = new SimulationContainer(simulations);
+		simContainer.setConsoleInfoLevel(debugLevel);
+		
+		return simContainer;
 	}
 	
 	private PersistenceManager createPersistenceManager() {
@@ -438,23 +454,28 @@ public class SimulationConfigurator {
 		} else {
 			persistence.setProjectFolderPath(projectFolder);
 		}
+		
 		if(rootDataFolder == null) {
-			System.out.println("Warning: No data folder has been set. Using default folder..");
+			if(debugLevel == SimulationProcess.CONSOLE_LEVEL_DEBUG)
+				System.out.println("Warning: No data folder has been set. Using default folder..");
 		}else {
 			persistence.setRootDataFolderPath(rootDataFolder);
 		}
 		if(simulationDefinitonFolder == null) {
-			System.out.println("Warning: No simulation definition folder has been set. Using default folder..");
+			if(debugLevel == SimulationProcess.CONSOLE_LEVEL_DEBUG)
+				System.out.println("Warning: No simulation definition folder has been set. Using default folder..");
 		}else {
 			persistence.setSimulationDefinitionFolderPath(simulationDefinitonFolder);
 		}
 		if(simulationInstancesFolder == null) {
-			System.out.println("Warning: No simulation instances folder has been set. Using default folder..");
+			if(debugLevel == SimulationProcess.CONSOLE_LEVEL_DEBUG)
+				System.out.println("Warning: No simulation instances folder has been set. Using default folder..");
 		} else {
 			persistence.setSimulationInstancesFolderPath(simulationInstancesFolder);
 		}
 		if(simulationResultsFolder == null) {
-			System.out.println("Warning: No simulation results folder has been set. Using default folder..");
+			if(debugLevel == SimulationProcess.CONSOLE_LEVEL_DEBUG)
+				System.out.println("Warning: No simulation results folder has been set. Using default folder..");
 		}else {
 			persistence.setSimulationResultsFolderPath(simulationResultsFolder);
 		}

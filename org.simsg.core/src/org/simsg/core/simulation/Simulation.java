@@ -12,7 +12,6 @@ import java.util.function.Function;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXModel;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXRule;
-import org.jfree.data.statistics.Statistics;
 import org.simsg.core.gt.GraphTransformationEngine;
 import org.simsg.core.gt.PostApplicationAction;
 import org.simsg.core.gt.RuleApplicationCondition;
@@ -34,6 +33,7 @@ import SimulationDefinition.SimDefinition;
 
 
 public abstract class Simulation implements SimulationProcess{
+	private int debugLevel = CONSOLE_LEVEL_NONE;
 	
 	protected String modelName;
 	protected PersistenceManager persistence;
@@ -163,11 +163,19 @@ public abstract class Simulation implements SimulationProcess{
 		}
 		for(SimulationDefinition.TerminationCondition term : simulationDefinition.getTerminationConditions()) {
 			if(term instanceof SimulationDefinition.SimpleTerminationCondition) {
-				conditions.add(new SimpleTerminationCondition(state, (SimulationDefinition.SimpleTerminationCondition)term));
+				TerminationCondition tc = new SimpleTerminationCondition(state, (SimulationDefinition.SimpleTerminationCondition)term);
+				tc.setConsoleInfoLevel(debugLevel);
+				conditions.add(tc);
 			} else if(term instanceof SimulationDefinition.PatternTerminationCondition) {
-				conditions.add(new PatternTerminationCondition(state, (SimulationDefinition.PatternTerminationCondition)term));
+				TerminationCondition tc = new PatternTerminationCondition(state, (SimulationDefinition.PatternTerminationCondition)term);
+				tc.setConsoleInfoLevel(debugLevel);
+				conditions.add(tc);
 			}
 			
+		}
+		if(conditions.isEmpty()) {
+			if(debugLevel <= SimulationProcess.CONSOLE_LEVEL_INFO)
+				if(conditionConstructors.isEmpty()) System.out.println("Warning: No termination condition was specified. Simulation will run indefinetly.");
 		}
 	}
 	
@@ -252,12 +260,13 @@ public abstract class Simulation implements SimulationProcess{
 	
 	@Override
 	public synchronized void run() {
-		System.out.println("Start..");
+		if(debugLevel <= CONSOLE_LEVEL_INFO)
+			System.out.println("Start..");
+		
 		while(!paused && !checkTerminationConditions()) {
 			if(state.isDirty()) {
 				if(state.refreshState()) {
-					System.out.println("Something went wrong.. Exit.");
-					break;
+					throw new RuntimeException("Something went wrong.. Exit.");
 				}
 			}
 			updateStatistics();
@@ -269,9 +278,14 @@ public abstract class Simulation implements SimulationProcess{
 			processNextEvent();
 			state.incrementIterations();
 		}
-		System.out.println("Stop.");
+		
+		if(debugLevel <= CONSOLE_LEVEL_INFO)
+			System.out.println("Stop.");
+		
 		if(notifier != null) {
-			System.out.println("Notify..");
+			if(debugLevel == CONSOLE_LEVEL_DEBUG)
+				System.out.println("Notify..");
+			
 			notifier.accept(this);
 		}
 	}
@@ -366,9 +380,9 @@ public abstract class Simulation implements SimulationProcess{
 	}
 	
 	@Override
-	public void displayResults() {
+	public void displayResults(boolean timeOnXAxis) {
 		for(SimulationStatistics statistic : statistics) {
-			statistic.display();
+			statistic.display(timeOnXAxis);
 		}
 	}
 	
@@ -402,5 +416,10 @@ public abstract class Simulation implements SimulationProcess{
 	@Override
 	public synchronized boolean isTerminated() {
 		return checkTerminationConditions();
+	}
+	
+	@Override
+	public void setConsoleInfoLevel(int level) {
+		debugLevel = level;
 	}
 }

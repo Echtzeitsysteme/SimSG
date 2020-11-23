@@ -51,8 +51,9 @@ public class Observables extends SimulationStatistics {
 	}
 	
 	@Override
-	protected void displayStatistics() {
+	protected void displayStatistics(boolean timeOnXAxis) {
 		ObservablesUi ui = new ObservablesUi("Simulation Results");
+		ui.setDisplayTimeOnXAxis(timeOnXAxis);
 		ui.initDataSet(observables);
 		ui.displayDataSet();
 	}

@@ -16,45 +16,58 @@ import org.jfree.chart.plot.PlotOrientation;
 
 public class ObservablesUi extends ApplicationFrame {
 
+	private boolean timeOnXAxis = true;
 	private static final long serialVersionUID = 1L;
-	XYDataset dataset;
-
+	private XYDataset dataset;
+	
 	public ObservablesUi(String title) {
 		super(title);
+		setName(title);
 		// TODO Auto-generated constructor stub
+	}
+	
+	public void setDisplayTimeOnXAxis(boolean timeOnXAxis) {
+		this.timeOnXAxis = timeOnXAxis;
 	}
 	
 	public void initDataSet(Map<String, Observable> observables) {
 		XYSeriesCollection seriesCollection = new XYSeriesCollection();
 		dataset = seriesCollection;
 		
-		observables.forEach((name, obs) -> {
-			XYSeries series = new XYSeries(name);
-//			int i = 0;
-//			for(Entry<Double, Integer> entry : obs.getMeasurements().entrySet()) {
-//				series.add(i, entry.getValue());
-//				i++;
-//			}
-			//TODO: dirty fix
-			obs.getMeasurements().forEach((time, value) -> {
-				series.add(time, value);
+		if(timeOnXAxis) {
+			observables.forEach((name, obs) -> {
+				XYSeries series = new XYSeries(name);
+				obs.getMeasurements().forEach((time, value) -> {
+					series.add(time, value);
+				});
+				seriesCollection.addSeries(series);
 			});
-			seriesCollection.addSeries(series);
-		});
+		} else {
+			observables.forEach((name, obs) -> {
+				XYSeries series = new XYSeries(name);
+				int i = 0;
+				for(Entry<Double, Integer> entry : obs.getMeasurements().entrySet()) {
+					series.add(i, entry.getValue());
+					i++;
+				}
+				seriesCollection.addSeries(series);
+			});
+		}
+		
 		
 	}
 	
 	public void displayDataSet() {
 		JFreeChart xylineChart = ChartFactory.createXYLineChart(
 		         super.getName() ,
-		         "Time [s]" ,
+		         (timeOnXAxis)?"Time [s]":"#Steps" ,
 		         "Population" ,
 		         dataset ,
 		         PlotOrientation.VERTICAL ,
 		         true , true , false);
 		
+		xylineChart.setTitle(super.getName());
 		ChartFrame frame = new ChartFrame(super.getName(), xylineChart);
-		
 		setContentPane(frame.getContentPane());
 		
 		frame.setPreferredSize( new java.awt.Dimension( 800 , 600 ) );

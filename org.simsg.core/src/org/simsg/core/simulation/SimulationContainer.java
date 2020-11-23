@@ -10,13 +10,14 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXContextPattern;
 import org.simsg.core.simulation.statistic.MultiObservable;
 import org.simsg.core.simulation.statistic.Observable;
 import org.simsg.core.simulation.statistic.Observables;
 
 
 public class SimulationContainer implements SimulationProcess{
+	private int debugLevel = CONSOLE_LEVEL_NONE;
+	
 	private Set<Simulation> simulations = Collections.synchronizedSet(new HashSet<>());
 	private Set<Simulation> activeSimulations = Collections.synchronizedSet(new HashSet<>());
 	private Set<Thread> activeThreads = Collections.synchronizedSet(new HashSet<>());
@@ -38,6 +39,9 @@ public class SimulationContainer implements SimulationProcess{
 	public void initialize() {
 		pendingSimulations.addAll(simulations.parallelStream()
 				.map(sim -> {
+					if(debugLevel == CONSOLE_LEVEL_INFO) {
+						sim.setConsoleInfoLevel(debugLevel+1);
+					}
 					sim.initialize();
 					sim.notifyTermination(this::terminationNotifier);
 					return sim;
@@ -47,6 +51,9 @@ public class SimulationContainer implements SimulationProcess{
 
 	@Override
 	public void run() {
+		if(debugLevel <= SimulationProcess.CONSOLE_LEVEL_INFO)
+			System.out.println("Starting multi-simulation using "+simulations.size()+" concurrent simulation threads ...");
+		
 		activeSimulations.addAll(pendingSimulations.parallelStream()
 				.map(sim -> {
 					Thread thread = new Thread(sim);
@@ -67,6 +74,8 @@ public class SimulationContainer implements SimulationProcess{
 		}
 		asleep = false;
 		
+		if(debugLevel <= SimulationProcess.CONSOLE_LEVEL_INFO)
+			System.out.println("... multi-simulation complete.");
 	}
 	
 	private synchronized void terminationNotifier(final Simulation simulation) {
@@ -84,7 +93,9 @@ public class SimulationContainer implements SimulationProcess{
 		completedSimulations.add(simulation);
 		
 		thread++;
-		System.out.println("Finished Simulation: #"+thread);
+		if(debugLevel <= SimulationProcess.CONSOLE_LEVEL_INFO)
+			System.out.println("Finished Simulation: #"+thread);
+		
 		if(asleep)
 			currentThread.interrupt();
 	}
@@ -104,19 +115,19 @@ public class SimulationContainer implements SimulationProcess{
 		throw new UnsupportedOperationException();
 	}
 	
-	public void displayAllResults() {
+	public void displayAllResults(boolean timeOnXAxis) {
 		for(Observables obs : observables.values()) {
-			obs.display();
+			obs.display(timeOnXAxis);
 		}
 	}
 	
-	public void displayResult(int index) {
+	public void displayResult(int index, boolean timeOnXAxis) {
 		Observables obj = (Observables)observables.values().toArray()[index];
-		obj.display();
+		obj.display(timeOnXAxis);
 	}
 
 	@Override
-	public void displayResults() {
+	public void displayResults(boolean timeOnXAxis) {
 		Map<String, Collection<Observable>> pattern2observable = new LinkedHashMap<>();
 		observables.values().forEach(obs -> {
 			obs.getObservables().values().forEach( o -> {
@@ -138,7 +149,7 @@ public class SimulationContainer implements SimulationProcess{
 		});
 		
 		Observables observables = new Observables(pattern2multi.values());
-		observables.display();
+		observables.display(timeOnXAxis);
 	}
 
 	@Override
@@ -149,6 +160,11 @@ public class SimulationContainer implements SimulationProcess{
 	@Override
 	public boolean isTerminated() {
 		return completedSimulations.size() == simulations.size();
+	}
+
+	@Override
+	public void setConsoleInfoLevel(int level) {
+		debugLevel = level;
 	}
 
 }

@@ -13,19 +13,19 @@ public abstract class SimulationStatistics {
 	
 	public abstract void logCurrentState();
 	
-	public void display() {
+	public void display(boolean timeOnXAxis) {
 		Thread t = new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
-				displayStatistics();
+				displayStatistics(timeOnXAxis);
 			}
 		});
 		
 		t.run();
 	}
 	
-	protected abstract void displayStatistics();
+	protected abstract void displayStatistics(boolean timeOnXAxis);
 	
 	protected abstract void saveStatistics();
 }

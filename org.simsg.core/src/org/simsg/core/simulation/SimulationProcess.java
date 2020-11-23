@@ -1,6 +1,12 @@
 package org.simsg.core.simulation;
 
 public interface SimulationProcess extends Runnable {
+	
+	final public static int CONSOLE_LEVEL_DEBUG = 0;
+	final public static int CONSOLE_LEVEL_INFO = 1;
+	final public static int CONSOLE_LEVEL_NONE = 2;
+	
+	public abstract void setConsoleInfoLevel(int level);
 
 	public abstract void initialize();
 	
@@ -12,7 +18,7 @@ public interface SimulationProcess extends Runnable {
 	
 	public abstract void finish();
 	
-	public abstract void displayResults();
+	public abstract void displayResults(boolean timeOnXAxis);
 	
 	public abstract void displayVisualizations();
 
