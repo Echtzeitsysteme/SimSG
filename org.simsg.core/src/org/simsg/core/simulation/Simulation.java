@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 import org.eclipse.emf.ecore.resource.Resource;
@@ -31,7 +32,9 @@ import org.simsg.core.utils.Runtimer;
 import SimulationDefinition.SimDefinition;
 
 
-public abstract class Simulation {
+public abstract class Simulation implements SimulationProcess{
+	private int debugLevel = CONSOLE_LEVEL_NONE;
+	private long processID = Thread.currentThread().getId();
 	
 	protected String modelName;
 	protected PersistenceManager persistence;
@@ -45,7 +48,7 @@ public abstract class Simulation {
 	protected List<BiFunction<SimulationState, GraphTransformationEngine, ServiceRoutine>> serviceConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, TerminationCondition>> conditionConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, ExternalConstraint>> constraintConstructors = new LinkedList<>();
-	protected List<Function<SimulationState, SimulationStatistics>> statisticConstructors = new LinkedList<>();
+	protected List<BiFunction<SimulationState, PersistenceManager, SimulationStatistics>> statisticConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, SimulationVisualization>> visualizationConstructors = new LinkedList<>();
 	
 	protected List<ServiceRoutine> services = new LinkedList<>();
@@ -57,6 +60,9 @@ public abstract class Simulation {
 	protected Map<String, Function<IBeXRule, RuleApplicationCondition>> ruleConditions = new HashMap<>();
 	protected Map<String, Function<IBeXRule, PostApplicationAction>> ruleActions = new HashMap<>();
 	protected Map<String, Function<IBeXRule, RuleParameterConfiguration>> ruleConfigs = new HashMap<>();
+	
+	private boolean paused = false;
+	private Consumer<Simulation> notifier;
 	
 	public Simulation(String modelName, BackendContainer backend) {
 		this.modelName = modelName;
@@ -84,7 +90,7 @@ public abstract class Simulation {
 		constraintConstructors.addAll(constructors);
 	}
 	
-	public void addSimulationStatistics(List<Function<SimulationState, SimulationStatistics>> constructors) {
+	public void addSimulationStatistics(List<BiFunction<SimulationState, PersistenceManager, SimulationStatistics>> constructors) {
 		statisticConstructors.addAll(constructors);
 	}
 	
@@ -104,6 +110,7 @@ public abstract class Simulation {
 		ruleActions.putAll(constructors);
 	}
 	
+	@Override
 	public void initialize() {
 		initModel();
 		initPMC();	
@@ -157,11 +164,19 @@ public abstract class Simulation {
 		}
 		for(SimulationDefinition.TerminationCondition term : simulationDefinition.getTerminationConditions()) {
 			if(term instanceof SimulationDefinition.SimpleTerminationCondition) {
-				conditions.add(new SimpleTerminationCondition(state, (SimulationDefinition.SimpleTerminationCondition)term));
+				TerminationCondition tc = new SimpleTerminationCondition(state, (SimulationDefinition.SimpleTerminationCondition)term);
+				tc.setConsoleInfoLevel(debugLevel);
+				conditions.add(tc);
 			} else if(term instanceof SimulationDefinition.PatternTerminationCondition) {
-				conditions.add(new PatternTerminationCondition(state, (SimulationDefinition.PatternTerminationCondition)term));
+				TerminationCondition tc = new PatternTerminationCondition(state, (SimulationDefinition.PatternTerminationCondition)term);
+				tc.setConsoleInfoLevel(debugLevel);
+				conditions.add(tc);
 			}
 			
+		}
+		if(conditions.isEmpty()) {
+			if(debugLevel <= SimulationProcess.CONSOLE_LEVEL_INFO)
+				if(conditionConstructors.isEmpty()) System.out.println("Warning: No termination condition was specified. Simulation will run indefinetly.");
 		}
 	}
 	
@@ -172,12 +187,12 @@ public abstract class Simulation {
 	}
 	
 	private void initializeStatistics() {
-		for(Function<SimulationState, SimulationStatistics> constructor : statisticConstructors) {
-			statistics.add(constructor.apply(state));
+		for(BiFunction<SimulationState, PersistenceManager, SimulationStatistics> constructor : statisticConstructors) {
+			statistics.add(constructor.apply(state, persistence));
 		}
 		
 		if(simulationDefinition.getObservations().isEmpty()) return;
-		statistics.add(new Observables(state, simulationDefinition.getObservations()));
+		statistics.add(new Observables(state, persistence, simulationDefinition.getObservations()));
 	}
 	
 	private void initializeVisualizations() {
@@ -244,21 +259,35 @@ public abstract class Simulation {
 		});
 	}
 	
-	public void run() {
-		while(!checkTerminationConditions()) {
+	@Override
+	public synchronized void run() {
+		if(debugLevel <= CONSOLE_LEVEL_INFO)
+			System.out.println("Start..");
+		
+		while(!paused && !checkTerminationConditions()) {
 			if(state.isDirty()) {
 				if(state.refreshState()) {
-					System.out.println("Something went wrong.. Exit.");
-					break;
+					throw new RuntimeException("Something went wrong.. Exit.");
 				}
 			}
+			updateStatistics();
+			
 			updateEvents();
 			if(performServiceInterval()) {
 				updateEvents();
 			}
 			processNextEvent();
-			updateStatistics();
 			state.incrementIterations();
+		}
+		
+		if(debugLevel <= CONSOLE_LEVEL_INFO)
+			System.out.println("Stop.");
+		
+		if(notifier != null) {
+			if(debugLevel == CONSOLE_LEVEL_DEBUG)
+				System.out.println("Notify..");
+			
+			notifier.accept(this);
 		}
 	}
 	
@@ -342,16 +371,23 @@ public abstract class Simulation {
 		System.out.println(sb);
 	}
 	
-	public void finish() {
+	public synchronized Collection<SimulationStatistics> getSimulationStatistics() {
+		return statistics;
+	}
+	
+	@Override
+	public synchronized void finish() {
 		pmc.discardEngine();
 	}
 	
-	public void displayResults() {
+	@Override
+	public void displayResults(boolean timeOnXAxis) {
 		for(SimulationStatistics statistic : statistics) {
-			statistic.display();
+			statistic.display(timeOnXAxis);
 		}
 	}
 	
+	@Override
 	public void displayVisualizations() {
 		for(SimulationVisualization visualization : visualizations) {
 			visualization.display();
@@ -361,5 +397,45 @@ public abstract class Simulation {
 	@Override
 	public String toString() {
 		return "Simulation-object: "+this.hashCode()+"/ Model: "+modelName+" / MatchingEngine: " + pmc.getEngineType() + " / PMC: " + pmc.getPMCType();
+	}
+
+	@Override
+	public synchronized void pause() {
+		paused = true;
+	}
+
+	@Override
+	public synchronized void unpause() {
+		paused = false;
+		run();
+	}
+	
+	public void notifyTermination(Consumer<Simulation> notifier) {
+		this.notifier = notifier;
+	}
+
+	@Override
+	public synchronized boolean isTerminated() {
+		return checkTerminationConditions();
+	}
+	
+	@Override
+	public void setConsoleInfoLevel(int level) {
+		debugLevel = level;
+	}
+	
+	@Override
+	public long getProcessID() {
+		return processID;
+	}
+	
+	@Override
+	public void setProcessID(long id) {
+		this.processID = id;
+	}
+	
+	@Override
+	public String saveResultsToFile() {
+		return statistics.stream().map(stats -> stats.saveStatistics()).reduce("", (current, sum) -> current+sum);
 	}
 }

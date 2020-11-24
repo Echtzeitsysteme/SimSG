@@ -2,6 +2,7 @@ package org.simsg.core.simulation;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,6 +10,8 @@ import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.emoflon.ibex.gt.api.GraphTransformationApp;
@@ -44,6 +47,8 @@ public class SimulationConfigurator {
 	private String simulationDefinitonFolder;
 	private String simulationResultsFolder;
 	
+	private int debugLevel = SimulationProcess.CONSOLE_LEVEL_NONE;
+	
 	protected Supplier<PersistenceManager> persistenceConstructor;
 	protected Supplier<PatternMatchingEngine> engineConstructor;
 	protected Supplier<PatternMatchingController> pmcConstructor;
@@ -54,7 +59,7 @@ public class SimulationConfigurator {
 	protected List<BiFunction<SimulationState, GraphTransformationEngine, ServiceRoutine>> serviceConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, TerminationCondition>> conditionConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, ExternalConstraint>> constraintConstructors = new LinkedList<>();
-	protected List<Function<SimulationState, SimulationStatistics>> statisticConstructors = new LinkedList<>();
+	protected List<BiFunction<SimulationState, PersistenceManager, SimulationStatistics>> statisticConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, SimulationVisualization>> visualizationConstructors = new LinkedList<>();
 	
 	protected Map<String, Function<IBeXRule, RuleApplicationCondition>> ruleConditions = new HashMap<>();
@@ -89,6 +94,10 @@ public class SimulationConfigurator {
 		this.simulationResultsFolder = path;
 	}
 	
+	public void setConsoleInfoLevel(int level) {
+		debugLevel = level;
+	}
+	
 	public void setPersistence(Class<? extends PersistenceManager> persistenceType, Object ... params) {
 		persistenceConstructor = ()-> {
 			Constructor<? extends PersistenceManager> persistenceConstructor = null;
@@ -100,6 +109,7 @@ public class SimulationConfigurator {
 			if(persistenceConstructor == null) return null;
 			try {
 				PersistenceManager persistence = persistenceConstructor.newInstance(params);
+				persistence.setConsoleInfoLevel(debugLevel);
 				return persistence;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
@@ -111,7 +121,9 @@ public class SimulationConfigurator {
 	
 	public void setEMFPersistence() {
 		persistenceConstructor = ()-> {
-			return new SimplePersistenceManager();
+			PersistenceManager pm = new SimplePersistenceManager();
+			pm.setConsoleInfoLevel(debugLevel);
+			return pm;
 		};
 	}
 	
@@ -183,10 +195,9 @@ public class SimulationConfigurator {
 		backendConstructor = () -> {
 			BackendContainer backend = new BackendContainer();
 			backend.persistence = createPersistenceManager();
-			GraphTransformationApp<?> app = appConstructor.get();
 			IBeXGT gt = new IBeXGT();
 			backend.gtEngine = gt;
-			backend.pmEngine = new IBeXEngine(app, gt::setApiAndInit);
+			backend.pmEngine = new IBeXEngine(appConstructor, gt::setApiAndInit);
 			backend.pmc = new IBeXPMC();
 			backend.pmc.setEngine(backend.pmEngine);
 			
@@ -310,7 +321,7 @@ public class SimulationConfigurator {
 	}
 	
 	public void addSimulationStatistics(Class<? extends SimulationStatistics> statisticsType, Object ... params) {
-		Function<SimulationState, SimulationStatistics> simulationStatistics = (state) -> {
+		BiFunction<SimulationState, PersistenceManager, SimulationStatistics> simulationStatistics = (state, persistence) -> {
 			Constructor<? extends SimulationStatistics> statisticsConstructor = null;
 			try {
 				statisticsConstructor = statisticsType.getConstructor(concatParamTypes(parameterTypes(params), SimulationState.class));
@@ -319,7 +330,7 @@ public class SimulationConfigurator {
 			}
 			if(statisticsConstructor == null) return null;
 			try {
-				SimulationStatistics statistics = statisticsConstructor.newInstance(concatParams(params, state));
+				SimulationStatistics statistics = statisticsConstructor.newInstance(concatParams(params, state, persistence));
 				return statistics;
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
@@ -331,7 +342,7 @@ public class SimulationConfigurator {
 	}
 	
 	public void addObservableStatistic() {
-		statisticConstructors.add((state)->new Observables(state));
+		statisticConstructors.add((state, persistence)->new Observables(state, persistence));
 	}
 	
 	public void addSimulationVisualization(Class<? extends SimulationVisualization> visualizationType, Object ... params) {
@@ -403,10 +414,14 @@ public class SimulationConfigurator {
 	
 	public Simulation createSimulation() {
 		Simulation simulation = simulationConstructor.get();
+		simulation.setConsoleInfoLevel(debugLevel);
 		
-		if(conditionConstructors.isEmpty()) System.out.println("Warning: No termination condition was specified. Simulation will run indefinetly.");
-		if(!constraintConstructors.isEmpty()) System.out.println("Info: Additional external constraints were specified.");
-		if(statisticConstructors.isEmpty()) System.out.println("Info: No simulation statistic modules were specified.");
+		if(debugLevel == SimulationProcess.CONSOLE_LEVEL_DEBUG) {
+			if(conditionConstructors.isEmpty()) System.out.println("Info: No external termination condition was specified. "
+					+ "Simulation will run indefinetly if no additional termination conditions have been specified.");
+			if(!constraintConstructors.isEmpty()) System.out.println("Info: Additional external constraints were specified.");
+			if(statisticConstructors.isEmpty()) System.out.println("Info: No simulation statistic modules were specified.");
+		}
 		
 		simulation.addServiceRoutines(serviceConstructors);
 		simulation.addTerminationConditions(conditionConstructors);
@@ -421,6 +436,17 @@ public class SimulationConfigurator {
 		return simulation;
 	}
 	
+	public SimulationContainer createSimulations(int numOfSimulations) {
+		Collection<Simulation> simulations = IntStream.range(0, numOfSimulations).parallel()
+				.mapToObj(num -> createSimulation())
+				.collect(Collectors.toSet());
+		
+		SimulationContainer simContainer = new SimulationContainer(modelName, simulations, backendConstructor.get());
+		simContainer.setConsoleInfoLevel(debugLevel);
+		
+		return simContainer;
+	}
+	
 	private PersistenceManager createPersistenceManager() {
 		PersistenceManager persistence = persistenceConstructor.get();
 		if(projectFolder == null) {
@@ -428,23 +454,28 @@ public class SimulationConfigurator {
 		} else {
 			persistence.setProjectFolderPath(projectFolder);
 		}
+		
 		if(rootDataFolder == null) {
-			System.out.println("Warning: No data folder has been set. Using default folder..");
+			if(debugLevel == SimulationProcess.CONSOLE_LEVEL_DEBUG)
+				System.out.println("Warning: No data folder has been set. Using default folder..");
 		}else {
 			persistence.setRootDataFolderPath(rootDataFolder);
 		}
 		if(simulationDefinitonFolder == null) {
-			System.out.println("Warning: No simulation definition folder has been set. Using default folder..");
+			if(debugLevel == SimulationProcess.CONSOLE_LEVEL_DEBUG)
+				System.out.println("Warning: No simulation definition folder has been set. Using default folder..");
 		}else {
 			persistence.setSimulationDefinitionFolderPath(simulationDefinitonFolder);
 		}
 		if(simulationInstancesFolder == null) {
-			System.out.println("Warning: No simulation instances folder has been set. Using default folder..");
+			if(debugLevel == SimulationProcess.CONSOLE_LEVEL_DEBUG)
+				System.out.println("Warning: No simulation instances folder has been set. Using default folder..");
 		} else {
 			persistence.setSimulationInstancesFolderPath(simulationInstancesFolder);
 		}
 		if(simulationResultsFolder == null) {
-			System.out.println("Warning: No simulation results folder has been set. Using default folder..");
+			if(debugLevel == SimulationProcess.CONSOLE_LEVEL_DEBUG)
+				System.out.println("Warning: No simulation results folder has been set. Using default folder..");
 		}else {
 			persistence.setSimulationResultsFolderPath(simulationResultsFolder);
 		}
