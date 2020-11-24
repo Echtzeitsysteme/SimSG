@@ -3,12 +3,15 @@ package org.simsg.core.simulation.statistic;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXContextPattern;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.simulation.SimulationState;
+
+import com.ibm.icu.text.NumberFormat;
 
 
 public class Observables extends SimulationStatistics {
@@ -75,11 +78,12 @@ public class Observables extends SimulationStatistics {
 	@Override
 	public String saveStatistics() {
 		StringBuilder sb = new StringBuilder();
-		
+		// set delimiter for excel
+		sb.append("sep=|\n");
 		// add spread sheet header
 		sb.append("Step, Time[ms]");
 		for(String observable : observables.keySet()) {
-			sb.append(", ");
+			sb.append("|");
 			sb.append(observable);
 		}
 		sb.append("\n");
@@ -93,7 +97,6 @@ public class Observables extends SimulationStatistics {
 			}
 			iterators.put(patternName, obs.getMeasurements().entrySet().iterator());
 		}
-		
 		// print values
 		for(int i = 0; i<maxIndex; i++) {
 			sb.append(i);
@@ -102,11 +105,13 @@ public class Observables extends SimulationStatistics {
 				if(itr.hasNext()) {
 					Entry<Double, Integer> entry = itr.next();
 					if(!timeSet) {
-						sb.append(", ");
-						sb.append(entry.getKey());
+						sb.append("|");
+						NumberFormat nf = NumberFormat.getNumberInstance(Locale.GERMANY);
+						nf.setMaximumFractionDigits(10);
+						sb.append(nf.format(entry.getKey().doubleValue()));
 						timeSet = true;
 					}
-					sb.append(", ");
+					sb.append("|");
 					sb.append(entry.getValue());
 				}
 			}
