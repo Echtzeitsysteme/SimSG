@@ -81,7 +81,7 @@ public class Observables extends SimulationStatistics {
 		// set delimiter for excel
 		sb.append("sep=|\n");
 		// add spread sheet header
-		sb.append("Step, Time[ms]");
+		sb.append("Step|Time[ms]");
 		for(String observable : observables.keySet()) {
 			sb.append("|");
 			sb.append(observable);
