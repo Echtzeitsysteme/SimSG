@@ -1,14 +1,13 @@
 package org.simsg.core.simulation.statistic;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.TreeMap;
 
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXContextPattern;
 
 
 public class Observable extends SimulationDefinition.impl.ObservationImpl implements SimulationDefinition.PatternObservation{
 	protected String name;
-	protected Map<Double, Integer> measurements = new LinkedHashMap<>();
+	protected TreeMap<Double, Integer> measurements = new TreeMap<>();
 	protected IBeXContextPattern pattern;
 	
 	public Observable(String name) {
@@ -24,8 +23,17 @@ public class Observable extends SimulationDefinition.impl.ObservationImpl implem
 		measurements.put(time, amount);
 	}
 	
-	public Map<Double, Integer> getMeasurements() {
+	public TreeMap<Double, Integer> getMeasurements() {
 		return measurements;
+	}
+	
+	public int drawSample(double queryTime) {
+		Double result = measurements.floorKey(queryTime);
+		if(result != null) {
+			return measurements.get(result);
+		} else {
+			return measurements.firstEntry().getValue();
+		}
 	}
 
 	@Override
