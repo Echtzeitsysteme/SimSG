@@ -2,7 +2,10 @@ package org.simsg.core.simulation.statistic;
 
 import java.util.TreeMap;
 
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXContext;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXContextAlternatives;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXContextPattern;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXDisjointContextPattern;
 
 
 public class Observable extends SimulationDefinition.impl.ObservationImpl implements SimulationDefinition.PatternObservation{
@@ -16,7 +19,7 @@ public class Observable extends SimulationDefinition.impl.ObservationImpl implem
 	
 	public Observable(SimulationDefinition.PatternObservation other) {
 		this.name = other.getName();
-		pattern = other.getPattern();
+		setPattern(other.getPattern());
 	}
 	
 	public void addMeasurement(double time, int amount) {
@@ -52,7 +55,13 @@ public class Observable extends SimulationDefinition.impl.ObservationImpl implem
 	}
 
 	@Override
-	public void setPattern(IBeXContextPattern value) {
-		this.pattern = value;
+	public void setPattern(IBeXContext value) {
+		if(value instanceof IBeXContextPattern) {
+			pattern = (IBeXContextPattern) value; 
+		} else if(value instanceof IBeXContextAlternatives) {
+			pattern = ((IBeXContextAlternatives) value).getContext();
+		} else {
+			pattern = ((IBeXDisjointContextPattern) value).getNonOptimizedPattern();
+		}
 	}
 }

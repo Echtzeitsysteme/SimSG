@@ -7,7 +7,10 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXContext;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXContextAlternatives;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXContextPattern;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXDisjointContextPattern;
 
 public class MultiObservable extends Observable{
 	
@@ -139,8 +142,14 @@ public class MultiObservable extends Observable{
 	}
 
 	@Override
-	public void setPattern(IBeXContextPattern value) {
-		this.pattern = value;	
+	public void setPattern(IBeXContext value) {
+		if(value instanceof IBeXContextPattern) {
+			pattern = (IBeXContextPattern) value; 
+		} else if(value instanceof IBeXContextAlternatives) {
+			pattern = ((IBeXContextAlternatives) value).getContext();
+		} else {
+			pattern = ((IBeXDisjointContextPattern) value).getNonOptimizedPattern();
+		}
 	}
 
 }
