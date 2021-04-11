@@ -375,6 +375,10 @@ public abstract class Simulation implements SimulationProcess{
 		return statistics;
 	}
 	
+	public SimulationState getSimulationState() {
+		return state;
+	}
+	
 	@Override
 	public synchronized void finish() {
 		pmc.discardEngine();
