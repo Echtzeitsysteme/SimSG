@@ -29,3 +29,8 @@ You are now able to start a dynamic workspace from any of the projects in your w
 We provide two working examples of the biochmistry domain, simulating the *Goldbeter-Koshland-Loop (GKL)*.
 1. The [SimSG-test repository](https://github.com/Echtzeitsysteme/SimSG-tests) provides an implementation of the GKL simulation, using an Ecore metamodel, a set of eMoflon::GT rules and an initial EMF-based model. You can find it in the `org.simsg.applications.gklsimulation`-project. To see it in action, follow the instructions on the repository's readme.
 2. The [Re.action test repository](https://github.com/Echtzeitsysteme/Re.actionFramework-tests) contains a working example model of the GKL simulation, which was specified using the [Re.action](https://github.com/Echtzeitsysteme/Re.actionFramework) domain specific language. From this specification all the necessary components mentioned in (1) are generated automatically. You can find it in the `org.reaction.gklExample`-folder. To see it in action, follow the instructions on the repository's readme.
+
+### Creating your own simulation
+We provide two tutorials to help you in getting started with your own simulation
+1. The [metamodeling tutorial](https://github.com/Echtzeitsysteme/SimSG/blob/origin/Ecore%20Metamodelling%20-%20Tutorial.pdf) guides you through the process of creating your own metamodel with ecore and describes the process of instantiating new emf-based models that conform to that metamodel.
+2. The [simulation tutorial](https://github.com/Echtzeitsysteme/SimSG/blob/origin/Simulation%20Models%20%26%20Rules%20%26%20Startup%20-%20Tutorial.pdf) helps you with setting up your own simulation project and steps you through the rule creation procedure.
