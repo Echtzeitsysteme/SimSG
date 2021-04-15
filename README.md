@@ -16,7 +16,7 @@ If you don't already have a working setup of eMoflon it is recommended to start 
 
 ## Setup instructions
 * Install eMoflon::IBeX as given [here](https://github.com/eMoflon/emoflon-ibex) and follow the "How to Develop" or "How to Install" instructions based on what you want to do.
-* In the workspace containing eMoflon, check out: https://github.com/eMoflon/SimSG (Branch: origin) and import all projects.
+* Import all required projects by using the following link to our [psf-file](https://raw.githubusercontent.com/Echtzeitsysteme/SimSG/origin/projectSet.psf) via `Import... -> Team -> Team Project Set`
 * Get rid of all errors:
    * Set your text file encoding to `UTF-8` in `Window->Preferences->General->Workspace`
    * Open `org.simsg.simulationdefinition -> model -> simulationdefinition.genmodel` click the top-level item and choose "Generate Model Code"
