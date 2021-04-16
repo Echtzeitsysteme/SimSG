@@ -31,6 +31,16 @@ public class «classPrefix»SimSGApi extends SimSGAPI{
 		configurator.setSimulationInstancesFolder(System.getProperty("user.dir")+"/instances/simulation_instances"); 
 		configurator.setSimulationResultsFolder(System.getProperty("user.dir")+"/instances/simulation_results"); 
 	}
+	
+	public «classPrefix»SimSGApi(final String projectFolder) {
+		super();
+		configurator.setProjectFolder(projectFolder);
+		configurator.setRootDataFolder(projectFolder+"/instances"); 
+		configurator.setSimulationDefinitionFolder(projectFolder+"/instances/simulation_definitions"); 
+		configurator.setSimulationInstancesFolder(projectFolder+"/instances/simulation_instances"); 
+		configurator.setSimulationResultsFolder(projectFolder+"/instances/simulation_results"); 
+	}
+	
 			
 	public void configureForHiPE() {
 		configurator.configureForIBeX(apps.get("«createEMoflonAppName(apiPackage, "HiPE")»"));
