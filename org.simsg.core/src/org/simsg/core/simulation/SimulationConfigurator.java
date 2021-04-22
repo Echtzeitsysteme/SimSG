@@ -396,14 +396,24 @@ public class SimulationConfigurator {
 		simulationConstructor = ()->{
 			Constructor<? extends Simulation> simConstructor = null;
 			try {
-				simConstructor = simulationType.getConstructor(concatParamTypes(parameterTypes(params), String.class, PersistenceManager.class, PatternMatchingController.class));
+				if(backendConstructor != null) {
+					simConstructor = simulationType.getConstructor(concatParamTypes(parameterTypes(params), 
+							String.class, BackendContainer.class));
+				} else {
+					simConstructor = simulationType.getConstructor(concatParamTypes(parameterTypes(params), 
+							String.class, PersistenceManager.class, PatternMatchingController.class, GraphTransformationEngine.class));
+				}
+				
 			} catch (NoSuchMethodException | SecurityException e1) {
 				e1.printStackTrace();
 			}
 			if(simConstructor == null) return null;
 			try {
-				Simulation sim = simConstructor.newInstance(concatParams(params, modelName, createPersistenceManager(), createPMC()));
-				return sim;
+				if(backendConstructor != null) {
+					return simConstructor.newInstance(concatParams(params, modelName, backendConstructor.get()));
+				} else {
+					return simConstructor.newInstance(concatParams(params, modelName, createPersistenceManager(), createPMC(), gtConstructor.get()));
+				}
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
 				e.printStackTrace();
