@@ -66,10 +66,18 @@ public class StochasticSimulation extends Simulation {
 	}
 	
 	private void updateTimeStep() {
-		timeStep = (1.0/systemActivity)*Math.log(1.0/random.nextDouble());
+		if(systemActivity != 0) {
+			timeStep = (1.0/systemActivity)*Math.log(1.0/random.nextDouble());
+		} else {
+			timeStep = state.getTime() / state.getIterations();
+		}
+		
 	}
 	
 	private String pickRule() {
+		if(systemActivity == 0)
+			return null;
+		
 		double interval = random.nextDouble()*systemActivity;
 		double p = 0;
 		for(String rule : ruleProbabilities.keySet()) {
@@ -102,6 +110,8 @@ public class StochasticSimulation extends Simulation {
 		
 		if(currentRule != null) {
 			state.enqueueEvent(new Event(state.getTime()+timeStep, currentRule));
+		} else {
+			state.setTime(state.getTime()+timeStep);
 		}
 	}
 
