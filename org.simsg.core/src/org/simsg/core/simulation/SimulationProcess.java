@@ -1,5 +1,7 @@
 package org.simsg.core.simulation;
 
+import java.util.Map;
+
 public interface SimulationProcess extends Runnable {
 	
 	final public static int CONSOLE_LEVEL_DEBUG = 0;

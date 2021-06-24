@@ -65,4 +65,8 @@ abstract public class GraphTransformationEngine {
 	}
 	
 	protected abstract void applyRule(SimSGMatch match);
+	
+	// TODO Changed
+	public abstract void trackModelStates(boolean active, boolean forceNewStates);
+	public abstract SimSGVisualizer displayModelStates(String modelName);
 }

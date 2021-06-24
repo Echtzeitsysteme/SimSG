@@ -40,4 +40,20 @@ public class IBeXGT extends GraphTransformationEngine {
 		rules.get(match.getPatternName()).applyGeneric(match.asGtMatch(), false);
 	}
 	
+	// TODO Changed
+	@Override
+	public void trackModelStates(boolean active, boolean forceNewStates) {
+		if(active)
+			api.trackModelStates(forceNewStates);
+		else 
+			api.deactivateModelStatesTracking();
+	}
+	// TODO Changed
+	@Override
+	public SimSGVisualizer displayModelStates(String modelName) {
+		return new SimSGVisualizer(api.getModel().getResources().get(0), api.getStateManager(), api.getInterpreter(), ibexModel.getRuleSet(), ibexModel.getPatternSet(), modelName);
+//		api.displayModelStates();
+	}
+	
+	
 }

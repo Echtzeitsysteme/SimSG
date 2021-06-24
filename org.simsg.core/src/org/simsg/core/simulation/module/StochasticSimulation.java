@@ -14,14 +14,21 @@ import org.simsg.core.pmc.PatternMatchingController;
 import org.simsg.core.simulation.BackendContainer;
 import org.simsg.core.simulation.Event;
 import org.simsg.core.simulation.Simulation;
+import org.simsg.core.simulation.statistic.Observable;
+import org.simsg.core.simulation.statistic.Observables;
 
 public class StochasticSimulation extends Simulation {
 	
 	private Random random = new Random();
 	private Map<String, Double> staticRuleRates = new LinkedHashMap<String, Double>();
-	private Map<String, Double> ruleProbabilities = new LinkedHashMap<String, Double>();
+	private Map<String, Double> ruleProbabilities = new LinkedHashMap<String, Double>(); //dynamic rule rates
+	
+	private Map<Integer, Map<String, Double>> dynamicRuleRatesState = new LinkedHashMap<Integer, Map<String, Double>>();
+	private Map<Integer, Map<String, Observable>> observablesState = new LinkedHashMap<Integer, Map<String, Observable>>();
+	
 	private double systemActivity = 0;
 	private double timeStep = 0;
+	private Integer currentState = 0;
 	
 	public StochasticSimulation(String modelName, final BackendContainer backend) {
 		super(modelName, backend);
@@ -41,6 +48,8 @@ public class StochasticSimulation extends Simulation {
 			staticRuleRates.put(rule.getName(), state.getStaticProbability(rule.getName()).get());
 			ruleProbabilities.put(rule.getName(), 0.0);
 		}
+		dynamicRuleRatesState.put(currentState, new LinkedHashMap<String, Double>(ruleProbabilities));
+		currentState++;
 	}
 	
 	@Override
@@ -53,6 +62,7 @@ public class StochasticSimulation extends Simulation {
 			staticRuleRates.put(rule.getName(), state.getStaticProbability(rule.getName()).get());
 			ruleProbabilities.put(rule.getName(), 0.0);
 		}
+		
 	}
 	
 	private void updateProbabilities() {
@@ -113,12 +123,24 @@ public class StochasticSimulation extends Simulation {
 		} else {
 			state.setTime(state.getTime()+timeStep);
 		}
+	
 	}
 
 	@Override
 	protected void processEvent(Event event) {
+		dynamicRuleRatesState.put(currentState, new LinkedHashMap<String, Double>(ruleProbabilities));
+		observablesState.put(currentState, new LinkedHashMap<String, Observable>(((Observables) statistics.get(0)).getObservables()));
+		currentState++;
 		SimSGMatch rndMatch = state.getRandomMatch(event.rule);
 		performGT(rndMatch);
+		
+		// process statistics
+	}
+	
+	@Override
+	protected void setRuleRatesAndObservables() {
+		simVis.addRuleRatesToState(staticRuleRates, dynamicRuleRatesState);
+		simVis.addObservablesToState(observablesState);
 	}
 
 }

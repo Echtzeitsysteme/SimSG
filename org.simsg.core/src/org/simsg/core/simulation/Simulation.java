@@ -16,6 +16,7 @@ import org.simsg.core.gt.GraphTransformationEngine;
 import org.simsg.core.gt.PostApplicationAction;
 import org.simsg.core.gt.RuleApplicationCondition;
 import org.simsg.core.gt.RuleParameterConfiguration;
+import org.simsg.core.gt.SimSGVisualizer;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.pm.match.SimSGMatch;
 import org.simsg.core.pmc.PatternMatchingController;
@@ -43,7 +44,8 @@ public abstract class Simulation implements SimulationProcess{
 	protected SimDefinition simulationDefinition;
 	protected IBeXModel ibexModel;
 	protected Resource simulationModel;
-	private GraphTransformationEngine gt;
+	protected SimSGVisualizer simVis;
+	protected GraphTransformationEngine gt;
 	
 	protected List<BiFunction<SimulationState, GraphTransformationEngine, ServiceRoutine>> serviceConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, TerminationCondition>> conditionConstructors = new LinkedList<>();
@@ -379,6 +381,18 @@ public abstract class Simulation implements SimulationProcess{
 		return state;
 	}
 	
+	// TODO Changed
+	public void modelStates(boolean active, boolean forceNewStates) {
+		gt.trackModelStates(active, forceNewStates);
+	}
+
+	// TODO Changed
+	public void displayModelStates() {
+		simVis = gt.displayModelStates(modelName);
+		setRuleRatesAndObservables();
+		simVis.runVis();
+	}
+	
 	@Override
 	public synchronized void finish() {
 		pmc.discardEngine();
@@ -441,5 +455,10 @@ public abstract class Simulation implements SimulationProcess{
 	@Override
 	public String saveResultsToFile() {
 		return statistics.stream().map(stats -> stats.saveStatistics()).reduce("", (current, sum) -> current+sum);
+	}
+
+	protected void setRuleRatesAndObservables() {
+		simVis.addRuleRatesToState(null, null);
+		simVis.addObservablesToState(null);
 	}
 }

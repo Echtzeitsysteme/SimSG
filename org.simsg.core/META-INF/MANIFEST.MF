@@ -19,7 +19,7 @@ Export-Package: org.simsg.core.gt,
  org.simsg.core.utils
 Require-Bundle: org.simsg.dependencies;bundle-version="1.0.0";visibility:=reexport,
  SimulationDefinition,
- org.emoflon.ibex.gt,
+ org.emoflon.ibex.gt;visibility:=reexport,
  org.eclipse.emf.ecore,
  com.google.guava;bundle-version="21.0.0",
  org.eclipse.emf.ecore.xmi,
