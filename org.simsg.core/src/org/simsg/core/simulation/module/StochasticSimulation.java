@@ -21,10 +21,9 @@ public class StochasticSimulation extends Simulation {
 	
 	private Random random = new Random();
 	private Map<String, Double> staticRuleRates = new LinkedHashMap<String, Double>();
-	private Map<String, Double> ruleProbabilities = new LinkedHashMap<String, Double>(); //dynamic rule rates
-	
+	private Map<String, Double> ruleProbabilities = new LinkedHashMap<String, Double>(); 
+	// Map with state mapped to dynamic rule rates
 	private Map<Integer, Map<String, Double>> dynamicRuleRatesState = new LinkedHashMap<Integer, Map<String, Double>>();
-	private Map<Integer, Map<String, Observable>> observablesState = new LinkedHashMap<Integer, Map<String, Observable>>();
 	
 	private double systemActivity = 0;
 	private double timeStep = 0;
@@ -128,19 +127,19 @@ public class StochasticSimulation extends Simulation {
 
 	@Override
 	protected void processEvent(Event event) {
+		// Map state and current rule probabilities
 		dynamicRuleRatesState.put(currentState, new LinkedHashMap<String, Double>(ruleProbabilities));
-		observablesState.put(currentState, new LinkedHashMap<String, Observable>(((Observables) statistics.get(0)).getObservables()));
 		currentState++;
+		
 		SimSGMatch rndMatch = state.getRandomMatch(event.rule);
 		performGT(rndMatch);
-		
-		// process statistics
 	}
 	
 	@Override
-	protected void setRuleRatesAndObservables() {
-		simVis.addRuleRatesToState(staticRuleRates, dynamicRuleRatesState);
-		simVis.addObservablesToState(observablesState);
+	public void displayStatistics() {
+		simVis.initializeRuleRates(staticRuleRates, dynamicRuleRatesState);
+		Observables obs = (Observables) statistics.get(0);
+		simVis.initializeObservables(obs.getObservables());
 	}
 
 }

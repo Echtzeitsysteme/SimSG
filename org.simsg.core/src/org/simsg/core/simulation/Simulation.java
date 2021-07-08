@@ -381,15 +381,14 @@ public abstract class Simulation implements SimulationProcess{
 		return state;
 	}
 	
-	// TODO Changed
 	public void modelStates(boolean active, boolean forceNewStates) {
 		gt.trackModelStates(active, forceNewStates);
 	}
 
-	// TODO Changed
-	public void displayModelStates() {
+	public void displayModelStates(boolean timeOnXAxis) {
 		simVis = gt.displayModelStates(modelName);
-		setRuleRatesAndObservables();
+		simVis.timeOnXAxis = timeOnXAxis;
+		displayStatistics();
 		simVis.runVis();
 	}
 	
@@ -410,6 +409,11 @@ public abstract class Simulation implements SimulationProcess{
 		for(SimulationVisualization visualization : visualizations) {
 			visualization.display();
 		}
+	}
+	
+	public void displayStatistics() {
+		Observables obs = (Observables) statistics.get(0);
+		simVis.initializeObservables(obs.getObservables());
 	}
 	
 	@Override
@@ -457,8 +461,5 @@ public abstract class Simulation implements SimulationProcess{
 		return statistics.stream().map(stats -> stats.saveStatistics()).reduce("", (current, sum) -> current+sum);
 	}
 
-	protected void setRuleRatesAndObservables() {
-		simVis.addRuleRatesToState(null, null);
-		simVis.addObservablesToState(null);
-	}
+
 }
