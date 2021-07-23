@@ -2,14 +2,17 @@ package org.simsg.core.simulation;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXDistributionType;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXModel;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXRule;
 import org.simsg.core.gt.GraphTransformationEngine;
@@ -52,6 +55,12 @@ public abstract class Simulation implements SimulationProcess{
 	protected List<Function<SimulationState, ExternalConstraint>> constraintConstructors = new LinkedList<>();
 	protected List<BiFunction<SimulationState, PersistenceManager, SimulationStatistics>> statisticConstructors = new LinkedList<>();
 	protected List<Function<SimulationState, SimulationVisualization>> visualizationConstructors = new LinkedList<>();
+	
+	protected Map<String, Double> staticRuleRates = new LinkedHashMap<String, Double>();
+	protected Map<String, Double> ruleProbabilities = new LinkedHashMap<String, Double>(); 
+	private Integer currentStateAsInt = 0;
+	// Map with currentStateAsInt mapped to dynamic rule rates
+	private Map<Integer, Map<String, Double>> dynamicRuleRatesState = new LinkedHashMap<Integer, Map<String, Double>>();
 	
 	protected List<ServiceRoutine> services = new LinkedList<>();
 	protected List<TerminationCondition> conditions = new LinkedList<>();
@@ -129,6 +138,7 @@ public abstract class Simulation implements SimulationProcess{
 		initializeRuleConfigurators();
 		initializeRuleConditions();
 		initializeRuleActions();
+		
 	}
 	
 	private void initModel() {
@@ -412,8 +422,22 @@ public abstract class Simulation implements SimulationProcess{
 	}
 	
 	public void displayStatistics() {
-		Observables obs = (Observables) statistics.get(0);
+		if(!dynamicRuleRatesState.isEmpty()) {
+			simVis.initializeRuleRates(staticRuleRates, dynamicRuleRatesState);
+		}
+		int i = 0;
+		while(((Observables) statistics.get(i)).getObservables().isEmpty()) {
+			i++;
+		}
+		Observables obs = (Observables) statistics.get(i);
 		simVis.initializeObservables(obs.getObservables());
+		
+//		int i = 0;
+//		while(((Observables) statistics.get(i)).getObservables().isEmpty()) {
+//			i++;
+//		}
+//		Observables obs = (Observables) statistics.get(i);
+//		simVis.initializeObservables(obs.getObservables());
 	}
 	
 	@Override
@@ -459,6 +483,23 @@ public abstract class Simulation implements SimulationProcess{
 	@Override
 	public String saveResultsToFile() {
 		return statistics.stream().map(stats -> stats.saveStatistics()).reduce("", (current, sum) -> current+sum);
+	}
+	
+	protected void addRuleRates() {
+		if(dynamicRuleRatesState.isEmpty()) {
+			HashMap<String, Double> initRuleRates = new LinkedHashMap<String, Double>();
+			for(IBeXRule rule : ibexModel.getRuleSet().getRules().stream()
+					.filter(rule ->rule.getProbability() != null)
+					.filter(rule -> rule.getProbability().getDistribution().getType() == IBeXDistributionType.STATIC)
+					.collect(Collectors.toList())) {
+				initRuleRates.put(rule.getName(), 0.0);
+			}
+			dynamicRuleRatesState.put(currentStateAsInt, new LinkedHashMap<String, Double>(initRuleRates));
+			currentStateAsInt++;
+		}
+		// Map currentStateAsInt and current rule probabilities
+		dynamicRuleRatesState.put(currentStateAsInt, new LinkedHashMap<String, Double>(ruleProbabilities));
+		currentStateAsInt++;
 	}
 
 
