@@ -19,7 +19,7 @@ import org.simsg.core.gt.GraphTransformationEngine;
 import org.simsg.core.gt.PostApplicationAction;
 import org.simsg.core.gt.RuleApplicationCondition;
 import org.simsg.core.gt.RuleParameterConfiguration;
-import org.simsg.core.gt.SimSGVisualizer;
+import org.simsg.core.gt.VaDoSimSG;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.pm.match.SimSGMatch;
 import org.simsg.core.pmc.PatternMatchingController;
@@ -47,7 +47,7 @@ public abstract class Simulation implements SimulationProcess{
 	protected SimDefinition simulationDefinition;
 	protected IBeXModel ibexModel;
 	protected Resource simulationModel;
-	protected SimSGVisualizer simVis;
+	protected VaDoSimSG simVis;
 	protected GraphTransformationEngine gt;
 	
 	protected List<BiFunction<SimulationState, GraphTransformationEngine, ServiceRoutine>> serviceConstructors = new LinkedList<>();
@@ -362,6 +362,7 @@ public abstract class Simulation implements SimulationProcess{
 	protected void performGT(SimSGMatch match) {
 		gt.applyRuleToMatch(match);
 		state.setDirty();
+
 	}
 	
 	public Map<String, Collection<SimSGMatch>> getCurrentMatches() {

@@ -14,7 +14,7 @@ import org.emoflon.ibex.gt.StateModel.RuleState;
 import org.emoflon.ibex.gt.StateModel.State;
 import org.emoflon.ibex.gt.engine.GraphTransformationInterpreter;
 import org.emoflon.ibex.gt.state.ModelStateManager;
-import org.emoflon.ibex.gt.ui.GraphVisualizer;
+import org.emoflon.ibex.gt.ui.VaDoSGT;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXContext;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXPatternSet;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXRule;
@@ -28,7 +28,7 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.simsg.core.simulation.statistic.Observable;
 
-public class SimSGVisualizer extends GraphVisualizer {
+public class VaDoSimSG extends VaDoSGT {
 
 	// Simulation statistics
 	private Map<String, Double> sRR;
@@ -49,7 +49,7 @@ public class SimSGVisualizer extends GraphVisualizer {
 	 * @param iBeXPatternSet patterns
 	 * @param modelName	model name
 	 */
-	public SimSGVisualizer(Resource resource, ModelStateManager stateManager,
+	public VaDoSimSG(Resource resource, ModelStateManager stateManager,
 			GraphTransformationInterpreter graphTransformationInterpreter, IBeXRuleSet iBeXRuleSet,
 			IBeXPatternSet iBeXPatternSet, String modelName) {
 			super(resource, stateManager, graphTransformationInterpreter, iBeXRuleSet, iBeXPatternSet, modelName);

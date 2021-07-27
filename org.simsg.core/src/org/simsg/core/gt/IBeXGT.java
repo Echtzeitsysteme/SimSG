@@ -50,8 +50,8 @@ public class IBeXGT extends GraphTransformationEngine {
 	}
 	// TODO Changed
 	@Override
-	public SimSGVisualizer displayModelStates(String modelName) {
-		return new SimSGVisualizer(api.getModel().getResources().get(0), api.getStateManager(), api.getInterpreter(), ibexModel.getRuleSet(), ibexModel.getPatternSet(), modelName);
+	public VaDoSimSG displayModelStates(String modelName) {
+		return new VaDoSimSG(api.getModel().getResources().get(0), api.getStateManager(), api.getInterpreter(), ibexModel.getRuleSet(), ibexModel.getPatternSet(), modelName);
 //		api.displayModelStates();
 	}
 	

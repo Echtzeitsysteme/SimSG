@@ -68,5 +68,5 @@ abstract public class GraphTransformationEngine {
 	
 	// TODO Changed
 	public abstract void trackModelStates(boolean active, boolean forceNewStates);
-	public abstract SimSGVisualizer displayModelStates(String modelName);
+	public abstract VaDoSimSG displayModelStates(String modelName);
 }
