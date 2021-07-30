@@ -82,7 +82,7 @@ public class VaDoSimSG extends VaDoSGT {
 		if(sRR != null && dRR != null) {
 			info.setText("");
 			for(IBeXRule rule : this.ruleSet) {
-				info.setText(info.getText() + rule.getName() + " " + sRR.get(rule.getName()) + " --> " + dRR.get(localStateManager.modelStates.getStates().indexOf(localStateManager.getCurrentState())).get(rule.getName()) + "\n");
+				info.setText(info.getText() + rule.getName() + " " + sRR.get(rule.getName()) + " --> " + dRR.get(localStateManager.getModelStates().getStates().indexOf(localStateManager.getCurrentState())).get(rule.getName()) + "\n");
 			}
 		}
 	}
@@ -101,7 +101,7 @@ public class VaDoSimSG extends VaDoSGT {
 	private void prepDataSet() {
 		XYSeriesCollection seriesCollection = new XYSeriesCollection();
 		dataset = seriesCollection;
-		int state = localStateManager.modelStates.getStates().indexOf(localStateManager.getCurrentState());
+		int state = localStateManager.getModelStates().getStates().indexOf(localStateManager.getCurrentState());
 		if(state == 0) {
 			observables.forEach((name, obs) -> {
 				XYSeries series = new XYSeries(name);
