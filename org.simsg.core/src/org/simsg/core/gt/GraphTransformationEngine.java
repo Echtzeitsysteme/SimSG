@@ -2,6 +2,7 @@ package org.simsg.core.gt;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXModel;
@@ -65,8 +66,17 @@ abstract public class GraphTransformationEngine {
 	}
 	
 	protected abstract void applyRule(SimSGMatch match);
+
+	public abstract void deactivateModelStatesTracking();
 	
-	// TODO Changed
-	public abstract void trackModelStates(boolean active, boolean forceNewStates);
-	public abstract VaDoSimSG displayModelStates(String modelName);
+	public abstract VaDoSGT displayModelStates(String modelName);
+	
+	public abstract void saveModelStates(String path);
+	
+	public abstract VaDoSGT loadModelStates(String path, String modelName);
+	
+	public  abstract void trackModelStates(boolean forceNewStates); 
+
+
+	
 }

@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -19,7 +20,7 @@ import org.simsg.core.gt.GraphTransformationEngine;
 import org.simsg.core.gt.PostApplicationAction;
 import org.simsg.core.gt.RuleApplicationCondition;
 import org.simsg.core.gt.RuleParameterConfiguration;
-import org.simsg.core.gt.VaDoSimSG;
+import org.simsg.core.gt.VaDoSGT;
 import org.simsg.core.persistence.PersistenceManager;
 import org.simsg.core.pm.match.SimSGMatch;
 import org.simsg.core.pmc.PatternMatchingController;
@@ -27,6 +28,7 @@ import org.simsg.core.simulation.condition.PatternTerminationCondition;
 import org.simsg.core.simulation.condition.SimpleTerminationCondition;
 import org.simsg.core.simulation.condition.TerminationCondition;
 import org.simsg.core.simulation.constraint.ExternalConstraint;
+import org.simsg.core.simulation.module.ReconstructionSimulation;
 import org.simsg.core.simulation.service.ServiceRoutine;
 import org.simsg.core.simulation.statistic.Observables;
 import org.simsg.core.simulation.statistic.SimulationStatistics;
@@ -47,7 +49,7 @@ public abstract class Simulation implements SimulationProcess{
 	protected SimDefinition simulationDefinition;
 	protected IBeXModel ibexModel;
 	protected Resource simulationModel;
-	protected VaDoSimSG simVis;
+	protected VaDoSGT vadoSGT;
 	protected GraphTransformationEngine gt;
 	
 	protected List<BiFunction<SimulationState, GraphTransformationEngine, ServiceRoutine>> serviceConstructors = new LinkedList<>();
@@ -58,9 +60,6 @@ public abstract class Simulation implements SimulationProcess{
 	
 	protected Map<String, Double> staticRuleRates = new LinkedHashMap<String, Double>();
 	protected Map<String, Double> ruleProbabilities = new LinkedHashMap<String, Double>(); 
-	private Integer currentStateAsInt = 0;
-	// Map with currentStateAsInt mapped to dynamic rule rates
-	private Map<Integer, Map<String, Double>> dynamicRuleRatesState = new LinkedHashMap<Integer, Map<String, Double>>();
 	
 	protected List<ServiceRoutine> services = new LinkedList<>();
 	protected List<TerminationCondition> conditions = new LinkedList<>();
@@ -392,15 +391,57 @@ public abstract class Simulation implements SimulationProcess{
 		return state;
 	}
 	
-	public void modelStates(boolean active, boolean forceNewStates) {
-		gt.trackModelStates(active, forceNewStates);
+	public void trackModelStates(boolean forceNewStates) {
+		gt.trackModelStates(forceNewStates);
+	
 	}
 
+	public void deactivateModelStatesTracking() {
+		gt.deactivateModelStatesTracking();
+	}
+	
+	public void saveModelStates(String path) {		
+		gt.saveModelStates(path);
+	}
+	
+	public void loadModelStates(String path) {
+		// Load model from data
+		vadoSGT = gt.loadModelStates(path, modelName);
+		
+		// Init rates
+		vadoSGT.initializeStaticRuleRates(staticRuleRates);
+		vadoSGT.initializeDynamicRuleRates();
+
+		// Init observables
+		int i = 0;
+		while(((Observables) statistics.get(i)).getObservables().isEmpty()) {
+			i++;
+		}
+		Observables obs = (Observables) statistics.get(i);
+		vadoSGT.reconstructObservables(obs.getObservables().keySet());
+		
+		// Run visualization
+		vadoSGT.runVis();
+	}
+	
 	public void displayModelStates(boolean timeOnXAxis) {
-		simVis = gt.displayModelStates(modelName);
-		simVis.timeOnXAxis = timeOnXAxis;
-		displayStatistics();
-		simVis.runVis();
+		vadoSGT = gt.displayModelStates(modelName);
+		
+		// Init rates
+		vadoSGT.initializeStaticRuleRates(staticRuleRates);
+		vadoSGT.initializeDynamicRuleRates();
+		
+		
+		// Init observables
+		int i = 0;
+		while(((Observables) statistics.get(i)).getObservables().isEmpty()) {
+			i++;
+		}
+		Observables obs = (Observables) statistics.get(i);
+		vadoSGT.initializeObservables(obs, timeOnXAxis);
+		
+		// Run visualization
+		vadoSGT.runVis();
 	}
 	
 	@Override
@@ -420,25 +461,6 @@ public abstract class Simulation implements SimulationProcess{
 		for(SimulationVisualization visualization : visualizations) {
 			visualization.display();
 		}
-	}
-	
-	public void displayStatistics() {
-		if(!dynamicRuleRatesState.isEmpty()) {
-			simVis.initializeRuleRates(staticRuleRates, dynamicRuleRatesState);
-		}
-		int i = 0;
-		while(((Observables) statistics.get(i)).getObservables().isEmpty()) {
-			i++;
-		}
-		Observables obs = (Observables) statistics.get(i);
-		simVis.initializeObservables(obs.getObservables());
-		
-//		int i = 0;
-//		while(((Observables) statistics.get(i)).getObservables().isEmpty()) {
-//			i++;
-//		}
-//		Observables obs = (Observables) statistics.get(i);
-//		simVis.initializeObservables(obs.getObservables());
 	}
 	
 	@Override
@@ -485,23 +507,5 @@ public abstract class Simulation implements SimulationProcess{
 	public String saveResultsToFile() {
 		return statistics.stream().map(stats -> stats.saveStatistics()).reduce("", (current, sum) -> current+sum);
 	}
-	
-	protected void addRuleRates() {
-		if(dynamicRuleRatesState.isEmpty()) {
-			HashMap<String, Double> initRuleRates = new LinkedHashMap<String, Double>();
-			for(IBeXRule rule : ibexModel.getRuleSet().getRules().stream()
-					.filter(rule ->rule.getProbability() != null)
-					.filter(rule -> rule.getProbability().getDistribution().getType() == IBeXDistributionType.STATIC)
-					.collect(Collectors.toList())) {
-				initRuleRates.put(rule.getName(), 0.0);
-			}
-			dynamicRuleRatesState.put(currentStateAsInt, new LinkedHashMap<String, Double>(initRuleRates));
-			currentStateAsInt++;
-		}
-		// Map currentStateAsInt and current rule probabilities
-		dynamicRuleRatesState.put(currentStateAsInt, new LinkedHashMap<String, Double>(ruleProbabilities));
-		currentStateAsInt++;
-	}
-
 
 }

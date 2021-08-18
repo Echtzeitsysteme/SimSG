@@ -20,14 +20,9 @@ import org.simsg.core.simulation.statistic.Observables;
 public class StochasticSimulation extends Simulation {
 	
 	private Random random = new Random();
-//	private Map<String, Double> staticRuleRates = new LinkedHashMap<String, Double>();
-//	private Map<String, Double> ruleProbabilities = new LinkedHashMap<String, Double>(); 
-	// Map with state mapped to dynamic rule rates
-//	private Map<Integer, Map<String, Double>> dynamicRuleRatesState = new LinkedHashMap<Integer, Map<String, Double>>();
 	
 	private double systemActivity = 0;
 	private double timeStep = 0;
-//	private Integer currentState = 0;
 	
 	public StochasticSimulation(String modelName, final BackendContainer backend) {
 		super(modelName, backend);
@@ -47,8 +42,6 @@ public class StochasticSimulation extends Simulation {
 			staticRuleRates.put(rule.getName(), state.getStaticProbability(rule.getName()).get());
 			ruleProbabilities.put(rule.getName(), 0.0);
 		}
-//		dynamicRuleRatesState.put(currentState, new LinkedHashMap<String, Double>(ruleProbabilities));
-//		currentState++;
 	}
 	
 	@Override
@@ -127,20 +120,8 @@ public class StochasticSimulation extends Simulation {
 
 	@Override
 	protected void processEvent(Event event) {
-		addRuleRates();
 		SimSGMatch rndMatch = state.getRandomMatch(event.rule);
 		performGT(rndMatch);
 	}
-	
-//	@Override
-//	public void displayStatistics() {
-//		simVis.initializeRuleRates(staticRuleRates, dynamicRuleRatesState);
-//		int i = 0;
-//		while(((Observables) statistics.get(i)).getObservables().isEmpty()) {
-//			i++;
-//		}
-//		Observables obs = (Observables) statistics.get(i);
-//		simVis.initializeObservables(obs.getObservables());
-//	}
 
 }
