@@ -93,14 +93,15 @@ public class ReconstructionSimulation extends Simulation {
 			HashMap<String, Double> ruleActivity = new HashMap<String, Double>();
 			
 			RuleState rState = (RuleState) currentState;
-			for(IBeXRule rule : this.ruleSet) {
-				for(AllMatches allMatches : rState.getAllMatches()) {
-					if(allMatches.getPatternName().equals(rule.getName())) {
-						ruleActivity.put(rule.getName(), allMatches.getAllMatchesForPattern().size() * sRR.get(rule.getName()));
-						break;
-					}
-				}
-			}
+			// TODO calc with deltas
+//			for(IBeXRule rule : this.ruleSet) {
+//				for(AllMatches allMatches : rState.getAllMatches()) {
+//					if(allMatches.getPatternName().equals(rule.getName())) {
+//						ruleActivity.put(rule.getName(), allMatches.getAllMatchesForPattern().size() * sRR.get(rule.getName()));
+//						break;
+//					}
+//				}
+//			}
 			
 			for(String rule : ruleActivity.keySet()) {
 				systemActivity += ruleActivity.get(rule);

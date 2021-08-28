@@ -67,6 +67,7 @@ public class VaDoSGT extends VaDoGT {
 		sRR = ruleProbabilities;
 	}	
 
+	// TODO schneller machen
 	public void initializeDynamicRuleRates() {
 //		double ruleActivity = matchCOunt*staticRate
 //		double systemActivity = sum of all rule Activitys
@@ -83,12 +84,14 @@ public class VaDoSGT extends VaDoGT {
 			
 			RuleState rState = (RuleState) state;
 			for(IBeXRule rule : this.ruleSet) {
-				for(AllMatches allMatches : rState.getAllMatches()) {
-					if(allMatches.getPatternName().equals(rule.getName())) {
-						ruleActivity.put(rule.getName(), allMatches.getAllMatchesForPattern().size() * sRR.get(rule.getName()));
-						break;
-					}
-				}
+				long matchCount = calculateCurrentMatches(rState, rule.getName()).size();
+				ruleActivity.put(rule.getName(), matchCount * sRR.get(rule.getName()));
+
+//				for(AllMatches allMatches : rState.getAllMatches()) {
+//					if(allMatches.getPatternName().equals(rule.getName())) {
+//						break;
+//					}
+//				}
 			}
 //			for(String rule : ruleActivity.keySet()) {
 //				systemActivity += ruleActivity.get(rule);
@@ -112,12 +115,18 @@ public class VaDoSGT extends VaDoGT {
 		for(State state : localStateManager.getModelStates().getStates()) {
 			RuleState rState = (RuleState) state;
 			Map<String, Double> patternValue = new HashMap<String, Double>();
-			for(AllMatches matches : rState.getAllMatches()) {
-				if(set.contains(matches.getPatternName())) {
-					patternValue.put(matches.getPatternName(), (double) matches.getAllMatchesForPattern().size());
-					
-				}
+			for(String patternName : set) {
+				double matchCount = calculateCurrentMatches(rState, patternName).size();
+				patternValue.put(patternName, (double) matchCount);
 			}
+			
+			
+//			for(AllMatches matches : rState.getAllMatches()) {
+//				if(set.contains(matches.getPatternName())) {
+//					patternValue.put(matches.getPatternName(), (double) matches.getAllMatchesForPattern().size());
+//					
+//				}
+//			}
 		
 			observ.put((double) (localStateManager.getModelStates().getStates().indexOf(state)), patternValue);
 		}
@@ -161,13 +170,11 @@ public class VaDoSGT extends VaDoGT {
 		DecimalFormat df = new DecimalFormat("#.##");
 		if(sRR != null && dRR != null) {
 			for(String rule : sRR.keySet()) {
-				double dynamic;
-				if(localStateManager.getCurrentState().getChildren().isEmpty()) {
-					dynamic = 0.0;
-				} else {
-					dynamic = dRR.get(localStateManager.getCurrentState().getChildren().get(0)).get(rule);
+				double dynamic = 0.0;
+				if(!localStateManager.getCurrentState().getChildren().isEmpty()) {
+					if(dRR.get(localStateManager.getCurrentState().getChildren().get(0)).get(rule) != null)
+						dynamic = dRR.get(localStateManager.getCurrentState().getChildren().get(0)).get(rule);
 				}
-				
 				
 				info.setText(info.getText() 
 						+ rule 

@@ -405,6 +405,7 @@ public abstract class Simulation implements SimulationProcess{
 	}
 	
 	public void loadModelStates(String path) {
+		persistence.init();
 		// Load model from data
 		vadoSGT = gt.loadModelStates(path, modelName);
 		

@@ -49,6 +49,9 @@ public class IBeXGT extends GraphTransformationEngine {
 	@Override
 	public VaDoSGT displayModelStates(String modelName) {
 		return new VaDoSGT(api.getStateManager().getModel(), api.getStateManager(), api.getInterpreter(), ibexModel.getRuleSet(), ibexModel.getPatternSet(), modelName);
+//		return new VaDoSGT(api.getModel().getResources().get(0), api.getStateManager(), api.getInterpreter(), ibexModel.getRuleSet(), ibexModel.getPatternSet(), modelName);
+		
+		
 	}
 	
 	@Override
