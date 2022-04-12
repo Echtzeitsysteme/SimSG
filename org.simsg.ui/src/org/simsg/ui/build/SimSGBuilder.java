@@ -9,6 +9,7 @@ import java.util.jar.Manifest;
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -18,6 +19,7 @@ import org.emoflon.ibex.gt.codegen.EClassifiersManager;
 import org.emoflon.ibex.gt.codegen.GTDependingBuilderExtension;
 import org.emoflon.ibex.patternmodel.IBeXPatternModel.IBeXModel;
 import org.moflon.core.plugins.manifest.ManifestFileUpdater;
+import org.simsg.ui.wizard.SimSGNature;
 
 /**
  * This builder triggers a basic code generation workflow for all Ecore models
@@ -56,16 +58,29 @@ public class SimSGBuilder implements GTDependingBuilderExtension {
 
 	@Override
 	public void run(IProject project, IPath packagePath, IBeXModel ibexModel) {
-
 		this.project = project;
 		this.ibexModel = ibexModel;
 		this.packagePath = packagePath;
-		setConstants();
+
 		try {
+			if (!hasSimSGNature())
+				return;
+
+			setConstants();
 			fullBuild();
 		} catch (CoreException e) {
 			e.printStackTrace();
 		}
+	}
+
+	protected boolean hasSimSGNature() throws CoreException {
+		IProjectDescription description = project.getDescription();
+		String[] natures = description.getNatureIds();
+		for (String nature : natures) {
+			if (nature.equals(SimSGNature.NATURE_ID))
+				return true;
+		}
+		return false;
 	}
 
 	private void setConstants() {

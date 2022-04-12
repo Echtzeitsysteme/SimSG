@@ -20,7 +20,7 @@ import org.simsg.core.simulation.SimulationProcess;
 import SimulationDefinition.SimDefinition;
 
 public abstract class PersistenceManager {
-	
+
 	final public static String SIMULATION_MODEL_FOLDER = "SimulationModels";
 	final public static String SIMULATION_RESULTS_FOLDER = "SimulationResults";
 	final public static String SIMULATION_METAMODEL_FOLDER = "SimulationMetaModels";
@@ -30,11 +30,14 @@ public abstract class PersistenceManager {
 	final public static String SYSTEM_OS_PROPERTY = "os.name";
 	final public static String SYSTEM_OS_WIN = "Windows";
 	final public static String SYSTEM_OS_OTHER = "Other";
-	
+
 	private int debugLevel = SimulationProcess.CONSOLE_LEVEL_NONE;
-	
+
+	protected boolean useEMF = false;
+
 	protected String os;
 	protected String pathSeparator;
+	protected String workspacePath;
 	protected String projectPath;
 	protected String dataFolder;
 	protected String indexPath;
@@ -43,7 +46,7 @@ public abstract class PersistenceManager {
 	protected String simulationMetamodelFolder;
 	protected String simulationDefinitionFolder;
 	protected String simulationModelSuffix;
-	
+
 	protected JSONObject modelIndex;
 	protected Set<URI> simulationModelPaths = new HashSet<>();
 	protected Set<URI> simulationMetamodelPaths = new HashSet<>();
@@ -51,7 +54,11 @@ public abstract class PersistenceManager {
 	protected HashMap<String, SimDefinition> simulationDefinitionCache = new HashMap<>();
 	protected HashMap<URI, Resource> simulationModelCache = new HashMap<>();
 	protected HashMap<URI, Resource> ibexModelCache = new HashMap<>();
-	
+
+	public PersistenceManager(boolean useEMF) {
+		this.useEMF = useEMF;
+	}
+
 	public void init() {
 		setOSType();
 		classLoader();
@@ -59,31 +66,32 @@ public abstract class PersistenceManager {
 		fetchExistingSimulationDefinitionPaths();
 		fetchIndex();
 	}
-	
+
 	public void setProjectFolderPath(String path) {
 		projectPath = path;
+		workspacePath = projectPath + "/../";
 	}
-	
+
 	public void setRootDataFolderPath(String path) {
 		dataFolder = path;
 	}
-	
+
 	public void setSimulationDefinitionFolderPath(String path) {
 		simulationDefinitionFolder = path;
 	}
-	
+
 	public void setSimulationInstancesFolderPath(String path) {
 		simulationInstancesFolder = path;
 	}
-	
+
 	public void setSimulationResultsFolderPath(String path) {
 		simulationResultsFolder = path;
 	}
-	
+
 	public Set<String> availableSimulationDefinitions() {
 		return simulationDefinitionPaths.keySet();
 	}
-	
+
 	public Collection<URI> availableSimulationDefinitionURIs() {
 		return simulationDefinitionPaths.values();
 	}
@@ -91,17 +99,17 @@ public abstract class PersistenceManager {
 	public Set<URI> availableSimulationModels() {
 		return simulationModelPaths;
 	}
-	
-	public SimDefinition loadSimulationDefinition (String name) {
-		if(simulationDefinitionCache.containsKey(name)) {
+
+	public SimDefinition loadSimulationDefinition(String name) {
+		if (simulationDefinitionCache.containsKey(name)) {
 			return simulationDefinitionCache.get(name);
 		}
-		if(!simulationDefinitionPaths.containsKey(name))
+		if (!simulationDefinitionPaths.containsKey(name))
 			throw new IndexOutOfBoundsException("Requested reaction rule model with given name does not exist.");
-		
+
 		Resource resource = null;
 		try {
-			resource = PersistenceUtils.loadResource(simulationDefinitionPaths.get(name));
+			resource = PersistenceUtils.loadXMIResource(simulationDefinitionPaths.get(name));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -111,11 +119,11 @@ public abstract class PersistenceManager {
 		simulationDefinitionCache.put(name, simDef);
 		return simDef;
 	}
-	
-	public SimDefinition loadSimulationDefinition (URI uri) {
+
+	public SimDefinition loadSimulationDefinition(URI uri) {
 		Resource resource = null;
 		try {
-			resource = PersistenceUtils.loadResource(uri);
+			resource = PersistenceUtils.loadXMIResource(uri);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -125,210 +133,207 @@ public abstract class PersistenceManager {
 		simulationDefinitionCache.put(simDef.getName(), simDef);
 		return simDef;
 	}
-	
+
 	public abstract Resource loadSimulationModel(URI uri);
-	
+
 	public Resource loadSimulationModel(SimDefinition simDef) {
 		URI rawModelURI = URI.createURI(simDef.getSimulationModelURI());
-		
+
 		String fileString = rawModelURI.toFileString();
-		if(fileString == null) {
+		if (fileString == null) {
 			fileString = simDef.getIbexModelURI().replace("file:", "");
 			fileString = fileString.replace("platform:", "");
 			fileString = fileString.replace("plugin:", "");
 			new File(fileString);
 		}
 		File rawModelPath = new File(fileString);
-		
+
 		String canonicalPath = null;
 		try {
 			File cFile = rawModelPath.getCanonicalFile();
-			if(cFile.exists())
+			if (cFile.exists())
 				canonicalPath = cFile.getCanonicalPath();
-		} catch (IOException e) {}
-		
-		if(canonicalPath != null) {
+		} catch (IOException e) {
+		}
+
+		if (canonicalPath != null) {
 			return loadSimulationModel(URI.createFileURI(canonicalPath));
-		}else {
-			String absolutePath = simulationInstancesFolder+"/"+rawModelURI.lastSegment();
+		} else {
+			String absolutePath = simulationInstancesFolder + "/" + rawModelURI.lastSegment();
 			return loadSimulationModel(URI.createFileURI(absolutePath));
 		}
 	}
-	
+
 	public IBeXModel loadIBeXModel(SimDefinition simDef) {
 		URI rawModelURI = URI.createURI(simDef.getIbexModelURI());
-		
+
 		String fileString = rawModelURI.toFileString();
-		if(fileString == null) {
+		if (fileString == null) {
 			fileString = simDef.getIbexModelURI().replace("file:", "");
 			fileString = fileString.replace("platform:", "");
 			fileString = fileString.replace("plugin:", "");
 			new File(fileString);
-		} 
+		}
 		File rawModelPath = new File(fileString);
-		
+
 		String canonicalPath = null;
 		try {
 			File cFile = rawModelPath.getCanonicalFile();
-			if(cFile.exists())
+			if (cFile.exists())
 				canonicalPath = cFile.getCanonicalPath();
-		} catch (IOException e) {}
-		
-		if(canonicalPath != null ) {
+		} catch (IOException e) {
+		}
+
+		if (canonicalPath != null) {
 			return loadIBeXModel(URI.createFileURI(canonicalPath));
-		}else {
-			String absolutePath = projectPath+"/"+rawModelURI.path();
+		} else {
+			String absolutePath = projectPath + "/" + rawModelURI.path();
 			return loadIBeXModel(URI.createFileURI(absolutePath));
 		}
 	}
-	
+
 	public IBeXModel loadIBeXModel(URI uri) {
 		IBeXPatternModelPackage.eINSTANCE.getClass();
-		
+
 		Resource model = null;
 		try {
-			model = PersistenceUtils.loadResource(uri);
+			model = PersistenceUtils.loadXMIResource(uri);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
-		
-		if(model.getContents().isEmpty())
+
+		if (model.getContents().isEmpty())
 			return null;
-		
-		if(!(model.getContents().get(0) instanceof IBeXModel))
+
+		if (!(model.getContents().get(0) instanceof IBeXModel))
 			return null;
-		
-		if(ibexModelCache.containsKey(uri)) {
+
+		if (ibexModelCache.containsKey(uri)) {
 			unloadIBeXModel(uri);
 		}
-		
+
 		ibexModelCache.put(uri, model);
-		return (IBeXModel)model.getContents().get(0);
+		return (IBeXModel) model.getContents().get(0);
 	}
-	
+
 	public boolean saveSimulationModel(SimDefinition simDef, Resource simModel) {
-		String filename = simulationResultsFolder+"/"+simDef.getName();
+		String filename = simulationResultsFolder + "/" + simDef.getName();
 		return saveSimulationModel(filename, simModel);
 	}
-	
+
 	public abstract boolean saveSimulationModel(String filename, Resource simModel);
-	
+
 	public void saveStatistics(SimDefinition simDef, String statistics) {
-		String filename = simulationResultsFolder+"/"+simDef.getName()+".csv";
+		String filename = simulationResultsFolder + "/" + simDef.getName() + ".csv";
 		PersistenceUtils.saveAsFile(filename, statistics);
 	}
-	
+
 	public void unloadSimulationModel(URI uri) {
 		simulationModelCache.get(uri).unload();
 		simulationModelCache.remove(uri);
 	}
-	
+
 	public void unloadIBeXModel(URI uri) {
 		ibexModelCache.get(uri).unload();
 		ibexModelCache.remove(uri);
 	}
-	
+
 	private void classLoader() {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 	}
-	
+
 	private void setOSType() {
 		os = System.getProperty(SYSTEM_OS_PROPERTY);
-		if(os.contains(SYSTEM_OS_WIN)) {
+		if (os.contains(SYSTEM_OS_WIN)) {
 			os = SYSTEM_OS_WIN;
-		}else {
+		} else {
 			os = SYSTEM_OS_OTHER;
 		}
 	}
-	
+
 	private void fetchIndex() {
 		modelIndex = PersistenceUtils.loadJSONFile(indexPath);
-		if(modelIndex == null) {
+		if (modelIndex == null) {
 			createNewIndex();
 			PersistenceUtils.saveJSONFile(indexPath, modelIndex);
-		}else {
+		} else {
 			updateIndex();
 			PersistenceUtils.saveJSONFile(indexPath, modelIndex);
 		}
 	}
-	
+
 	private void createNewIndex() {
 		modelIndex = new JSONObject();
 		updateIndex();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private void updateIndex() {
 		simulationDefinitionPaths.forEach((modelName, uri) -> {
 			modelIndex.put(modelName, PersistenceUtils.getLastModified(uri.path()));
 		});
 	}
-	
+
 	private void setFolderPaths() {
-		if(dataFolder == null) {
+		if (dataFolder == null) {
 			dataFolder = this.getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
 			dataFolder = dataFolder.replaceFirst("/bin", "");
-			if(os.equalsIgnoreCase(SYSTEM_OS_WIN)) {
+			if (os.equalsIgnoreCase(SYSTEM_OS_WIN)) {
 				dataFolder = dataFolder.replaceFirst("^/", "");
 			}
 			dataFolder = dataFolder.replaceFirst("%20", " ");
-			dataFolder += DATA_FOLDER+"/";
-			
-			if(debugLevel <= SimulationProcess.CONSOLE_LEVEL_DEBUG)
-				System.out.println("Using default model folder: "+dataFolder);
-		}else {
+			dataFolder += DATA_FOLDER + "/";
+
+			if (debugLevel <= SimulationProcess.CONSOLE_LEVEL_DEBUG)
+				System.out.println("Using default model folder: " + dataFolder);
+		} else {
 			dataFolder = dataFolder.replaceAll("\\\\", "//");
 			dataFolder += "//";
-			
-			if(debugLevel <= SimulationProcess.CONSOLE_LEVEL_DEBUG)
-				System.out.println("Using user model folder: "+dataFolder);
+
+			if (debugLevel <= SimulationProcess.CONSOLE_LEVEL_DEBUG)
+				System.out.println("Using user model folder: " + dataFolder);
 		}
 		PersistenceUtils.createFolderIfNotExist(dataFolder);
-		
-		indexPath = dataFolder+PERSISTENCE_INDEX_FILE;
-		
-		if(simulationDefinitionFolder == null) {
+
+		indexPath = dataFolder + PERSISTENCE_INDEX_FILE;
+
+		if (simulationDefinitionFolder == null) {
 			simulationDefinitionFolder = dataFolder + SIMULATION_DEFINITION_FOLDER;
 		}
 		PersistenceUtils.createFolderIfNotExist(simulationDefinitionFolder);
-		
-		if(simulationInstancesFolder == null) {
+
+		if (simulationInstancesFolder == null) {
 			simulationInstancesFolder = dataFolder + SIMULATION_MODEL_FOLDER;
 		}
 		PersistenceUtils.createFolderIfNotExist(simulationInstancesFolder);
-		
-		if(simulationResultsFolder == null) {
+
+		if (simulationResultsFolder == null) {
 			simulationResultsFolder = dataFolder + SIMULATION_RESULTS_FOLDER;
 		}
 		PersistenceUtils.createFolderIfNotExist(simulationResultsFolder);
 	}
-	
+
 	private void fetchExistingSimulationDefinitionPaths() {
-		
+
 		List<String> allFiles = PersistenceUtils.getAllFilesInFolder(simulationDefinitionFolder);
-		
-		allFiles.parallelStream()
-			.filter(path -> path.matches(".+(\\.xmi)$"))
-			.map(path -> URI.createFileURI(path))
-			.map(uri -> {
-				try {
-					return Optional.of(PersistenceUtils.loadResource(uri));
-				} catch (Exception e) {
-					return Optional.empty();
-				}
-			})
-			.filter(opt -> opt.isPresent())
-			.map(opt -> (Resource)opt.get())
-			.filter(resource -> resource.getContents().size()>0)
-			.filter(resource -> (resource.getContents().get(0) instanceof SimDefinition))
-			.map(resource -> (SimDefinition)resource.getContents().get(0))
-			.forEach(simDef -> {
-				simulationDefinitionPaths.put(simDef.getName(), simDef.eResource().getURI());
-				simDef.eResource().unload();
-			});
+
+		allFiles.parallelStream().filter(path -> path.matches(".+(\\.xmi)$")).map(path -> URI.createFileURI(path))
+				.map(uri -> {
+					try {
+						return Optional.of(PersistenceUtils.loadXMIResource(uri));
+					} catch (Exception e) {
+						return Optional.empty();
+					}
+				}).filter(opt -> opt.isPresent()).map(opt -> (Resource) opt.get())
+				.filter(resource -> resource.getContents().size() > 0)
+				.filter(resource -> (resource.getContents().get(0) instanceof SimDefinition))
+				.map(resource -> (SimDefinition) resource.getContents().get(0)).forEach(simDef -> {
+					simulationDefinitionPaths.put(simDef.getName(), simDef.eResource().getURI());
+					simDef.eResource().unload();
+				});
 	}
-	
+
 	public void setConsoleInfoLevel(int level) {
 		debugLevel = level;
 	}

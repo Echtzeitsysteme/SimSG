@@ -43,11 +43,11 @@ public class «classPrefix»SimSGApi extends SimSGAPI{
 	
 			
 	public void configureForHiPE() {
-		configurator.configureForIBeX(apps.get("«createEMoflonAppName(apiPackage, "HiPE")»"));
+		configurator.configureForIBeX(apps.get("«createEMoflonAppName(apiPackage, "HiPE")»"), true);
 	}
 			
 	public void configureForDemocles() {
-		configurator.configureForIBeX(apps.get("«createEMoflonAppName(apiPackage, "Democles")»"));
+		configurator.configureForIBeX(apps.get("«createEMoflonAppName(apiPackage, "Democles")»"), false);
 	}	
 				
 	public void configureStochasticSimulation() {
