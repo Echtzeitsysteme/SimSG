@@ -66,8 +66,7 @@ Export-Package: com.keypoint,
  org.jfree.util,
  org.json.simple,
  org.json.simple.parser
-Require-Bundle: javax.servlet,
- javax.xml,
+Require-Bundle: javax.xml,
  org.eclipse.core.runtime
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-16
 Automatic-Module-Name: org.simsg.dependencies

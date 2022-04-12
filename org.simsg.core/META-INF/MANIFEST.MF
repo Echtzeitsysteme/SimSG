@@ -28,4 +28,4 @@ Require-Bundle: org.simsg.dependencies;bundle-version="1.0.0";visibility:=reexpo
  org.eclipse.emf.common
 Import-Package: org.apache.commons.io
 Automatic-Module-Name: org.simsg.core
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-16

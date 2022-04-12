@@ -3,8 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Ui
 Bundle-SymbolicName: org.simsg.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.simsg.ui.SimSGUiActivator
-Require-Bundle: org.moflon.core.utilities,
+Require-Bundle: org.eclipse.xtext.ui;bundle-version="2.25.0",
  javax.inject,
  org.eclipse.osgi,
  org.eclipse.jface,
@@ -22,28 +21,16 @@ Require-Bundle: org.moflon.core.utilities,
  org.eclipse.jdt.ui,
  org.eclipse.core.resources,
  org.eclipse.ui.ide,
- org.moflon.core.build,
- org.moflon.core.ui,
- org.moflon.core.plugins,
- org.emoflon.core.dependencies,
- org.moflon.emf.build,
  org.emoflon.ibex.gt.editor.ui,
- org.moflon.emf.codegen,
  org.emoflon.ibex.gt,
- org.moflon.core.propertycontainer,
  SimulationDefinition;bundle-version="0.1.0",
  org.simsg.core;bundle-version="1.0.0",
  org.emoflon.ibex.patternmodel,
- org.eclipse.equinox.registry,
- org.eclipse.emf.importer,
- org.eclipse.emf.importer.ecore
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+ org.moflon.core.plugins,
+ org.eclipse.xtext.builder
+Bundle-RequiredExecutionEnvironment: JavaSE-16
 Automatic-Module-Name: org.simsg.ui
 Import-Package: javax.annotation;version="1.2.0"
 Bundle-ActivationPolicy: lazy
-Export-Package: org.simsg.ui,
- org.simsg.ui.build,
- org.simsg.ui.errorhandling,
- org.simsg.ui.handler,
- org.simsg.ui.propertypage,
+Export-Package: org.simsg.ui.build,
  org.simsg.ui.wizard

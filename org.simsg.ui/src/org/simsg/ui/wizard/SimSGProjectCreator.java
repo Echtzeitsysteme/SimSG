@@ -1,53 +1,46 @@
 package org.simsg.ui.wizard;
 
-import java.net.URI;
-import java.util.Arrays;
-import java.util.List;
-
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.moflon.core.plugins.PluginProperties;
-import org.simsg.ui.build.SimSGBuilder;
-import org.simsg.ui.AbstractSimSGProjectCreator;
-import org.simsg.ui.SimSGNature;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.xtext.builder.EclipseResourceFileSystemAccess2;
+import org.eclipse.xtext.ui.util.PluginProjectFactory;
+import org.emoflon.ibex.gt.editor.ui.wizard.GTProjectCreator;
 
 /**
  * Creator for SimSG projects (see {@link SimSGNature})
  * 
  */
-public class SimSGProjectCreator extends AbstractSimSGProjectCreator {
-	private static final List<String> GITIGNORE_LINES = Arrays.asList(//
-			"/bin", //
-			"/gen"); //
+public class SimSGProjectCreator extends GTProjectCreator {
+	@Override
+	protected IProject createProject(IProgressMonitor monitor) {
+		IProject project = super.createProject(monitor);
+		try {
+			addNatureIfNotExists(project, SimSGNature.GT_NATURE_ID);
+			addNatureIfNotExists(project, SimSGNature.NATURE_ID);
+			enhanceProject(project, monitor);
+		} catch (CoreException e) {
+			e.printStackTrace();
+		}
 
-	/**
-	 * Pass-through constructor to {@link SimSGProjectCreator}
-	 * 
-	 * @param project
-	 *                                the project to create
-	 * @param projectProperties
-	 *                                the metadata to use
-	 * @param projectConfigurator
-	 *                                the project configurator
-	 */
-	public SimSGProjectCreator(final IProject project, final URI projectLocation, final PluginProperties projectProperties,
-			final SimSGNature projectConfigurator) {
-		super(project, projectLocation, projectProperties, projectConfigurator);
+		return project;
 	}
 
 	@Override
-	protected List<String> getGitignoreLines() {
-		return GITIGNORE_LINES;
+	protected void enhanceProject(final IProject project, final IProgressMonitor monitor) throws CoreException {
+		EclipseResourceFileSystemAccess2 access = new EclipseResourceFileSystemAccess2();
+		access.setMonitor(monitor);
+		SimSGNewFileInitialContents initialContents = new SimSGNewFileInitialContents();
+		initialContents.generateInitialContents(access, project);
+		project.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 	}
 
 	@Override
-	protected String getNatureId() throws CoreException {
-		return SimSGNature.getId();
+	protected PluginProjectFactory createProjectFactory() {
+		PluginProjectFactory ppf = new PluginProjectFactory();
+		ppf.setWorkspace(ResourcesPlugin.getWorkspace());
+		return ppf;
 	}
-
-	@Override
-	protected String getBuilderId() throws CoreException {
-		return SimSGBuilder.getId();
-	}
-
 }
